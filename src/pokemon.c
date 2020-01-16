@@ -55,7 +55,6 @@ struct SpeciesItem
 
 // this file's functions
 static u16 CalculateBoxMonChecksum(struct BoxPokemon *boxMon);
-//static union PokemonSubstruct *GetSubstruct(struct BoxPokemon *boxMon, u32 personality, u8 substructType);
 static union PokemonSubstruct *GetSubstruct(struct BoxPokemon *boxMon, u8 substructType);
 static void EncryptBoxMon(struct BoxPokemon *boxMon);
 static void DecryptBoxMon(struct BoxPokemon *boxMon);
@@ -2202,9 +2201,6 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
 
     SetBoxMonData(boxMon, MON_DATA_OT_ID, &value);
 
-    //checksum = CalculateBoxMonChecksum(boxMon);
-    //SetBoxMonData(boxMon, MON_DATA_CHECKSUM, &checksum);
-    //EncryptBoxMon(boxMon);
     GetSpeciesName(speciesName, species);
     SetBoxMonData(boxMon, MON_DATA_NICKNAME, speciesName);
     SetBoxMonData(boxMon, MON_DATA_LANGUAGE, &gGameLanguage);
@@ -3483,7 +3479,6 @@ static void DecryptBoxMon(struct BoxPokemon *boxMon)
 
 static union PokemonSubstruct *GetSubstruct(struct BoxPokemon *boxMon, u8 substructType)
 {
-    //union PokemonSubstruct *substruct = NULL;
     union PokemonSubstruct *substructs = boxMon->secure.substructs;
     return &substructs[substructType];
 }
