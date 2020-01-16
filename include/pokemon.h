@@ -6,34 +6,36 @@
 
 struct PokemonSubstruct0
 {
-    u16 species;
-    u16 heldItem;
-    u32 experience;
-    u8 ppBonuses;
-    u8 friendship;
-};
+    /*0x00*/ u16 species;
+    /*0x02*/ u16 heldItem;
+    /*0x04*/ u32 experience;
+    /*0x08*/ u8 ppBonuses;
+    /*0x09*/ u8 friendship;
+    /*0x0A*/ u8 unusedA;
+    /*0x0B*/ u8 unusedB;
+}; /* size = 12 */
 
 struct PokemonSubstruct1
 {
-    u16 moves[MAX_MON_MOVES];
-    u8 pp[MAX_MON_MOVES];
-};
+    /*0x00*/ u16 moves[MAX_MON_MOVES];
+    /*0x08*/ u8 pp[MAX_MON_MOVES];
+}; /* size = 12 */
 
 struct PokemonSubstruct2
 {
-    u8 hpEV;
-    u8 attackEV;
-    u8 defenseEV;
-    u8 speedEV;
-    u8 spAttackEV;
-    u8 spDefenseEV;
-    u8 cool;
-    u8 beauty;
-    u8 cute;
-    u8 smart;
-    u8 tough;
-    u8 sheen;
-};
+    /*0x00*/ u8 hpEV;
+    /*0x01*/ u8 attackEV;
+    /*0x02*/ u8 defenseEV;
+    /*0x03*/ u8 speedEV;
+    /*0x04*/ u8 spAttackEV;
+    /*0x05*/ u8 spDefenseEV;
+    /*0x06*/ u8 cool;
+    /*0x07*/ u8 beauty;
+    /*0x08*/ u8 cute;
+    /*0x09*/ u8 smart;
+    /*0x0A*/ u8 tough;
+    /*0x0B*/ u8 sheen;
+}; /* size = 12 */
 
 struct PokemonSubstruct3
 {
@@ -73,7 +75,7 @@ struct PokemonSubstruct3
  /* 0x0B */ u32 giftRibbon7:1;
  /* 0x0B */ u32 fatefulEncounter:4;
  /* 0x0B */ u32 obedient:1;
-};
+}; /* size = 12 */
 
 union PokemonSubstruct
 {
@@ -86,40 +88,39 @@ union PokemonSubstruct
 
 struct BoxPokemon
 {
-    u32 personality;
-    u32 otId;
-    u8 nickname[POKEMON_NAME_LENGTH];
-    u8 language;
-    u8 isBadEgg:1;
-    u8 hasSpecies:1;
-    u8 isEgg:1;
-    u8 unused:5;
-    u8 otName[PLAYER_NAME_LENGTH];
-    u8 markings;
-    u16 checksum;
-    u16 unknown;
-
+    /*0x00*/ u32 personality;
+    /*0x04*/ u32 otId;
+    /*0x08*/ u8 nickname[POKEMON_NAME_LENGTH];
+    /*0x12*/ u8 language;
+    /*0x13*/ u8 isBadEgg:1;
+             u8 hasSpecies:1;
+             u8 isEgg:1;
+             u8 unused:5;
+    /*0x14*/ u8 otName[PLAYER_NAME_LENGTH];
+    /*0x1B*/ u8 markings;
+    /*0x1C*/ u16 checksum;
+    /*0x1E*/ u16 unused1E;
     union
     {
         u32 raw[12];
         union PokemonSubstruct substructs[4];
     } secure;
-};
+}; /* size = 80 */
 
 struct Pokemon
 {
-    struct BoxPokemon box;
-    u32 status;
-    u8 level;
-    u8 mail;
-    u16 hp;
-    u16 maxHP;
-    u16 attack;
-    u16 defense;
-    u16 speed;
-    u16 spAttack;
-    u16 spDefense;
-};
+    /*0x00*/ struct BoxPokemon box;
+    /*0x50*/ u32 status;
+    /*0x54*/ u8 level;
+    /*0x55*/ u8 mail;
+    /*0x56*/ u16 hp;
+    /*0x58*/ u16 maxHP;
+    /*0x5A*/ u16 attack;
+    /*0x5C*/ u16 defense;
+    /*0x5E*/ u16 speed;
+    /*0x60*/ u16 spAttack;
+    /*0x62*/ u16 spDefense;
+}; /* size = 100 */
 
 struct Unknown_806F160_Struct
 {
