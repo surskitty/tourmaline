@@ -1362,7 +1362,7 @@ static const u8 sThickClubDesc[] = _(
 
 static const u8 sStickDesc[] = _(
     "A hold item that\n"
-    "raises FARFETCH'D's\n"
+    "raises Farfetch'd's\n"
     "critical-hit ratio.");
 
 static const u8 sRedScarfDesc[] = _(
@@ -1457,8 +1457,8 @@ static const u8 sAcroBikeDesc[] = _(
 
 static const u8 sPokeblockCaseDesc[] = _(
     "A case for holding\n"
-    "{POKEBLOCK}S made with\n"
-    "a BERRY BLENDER.");
+    "{POKEBLOCK}s made with\n"
+    "a Berry Blender.");
 
 static const u8 sLetterDesc[] = _(
     "A letter to STEVEN\n"
