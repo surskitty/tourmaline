@@ -341,7 +341,7 @@ Route117_Text_FriendlyWithOtherTrainersMon: @ 82921E5
 	.string "it seemed to be friendly with\l"
 	.string "{STR_VAR_2}'s {STR_VAR_3}.\p"
 	.string "I may even have seen it receiving\n"
-	.string "a piece of MAIL.$"
+	.string "a piece of Mail.$"
 
 @ Unused
 Route117_Text_SeeWifeIfYouWantToPickUpMon: @ 829225A
