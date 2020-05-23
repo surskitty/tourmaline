@@ -699,3 +699,4 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT_GEN7] =
     [ABILITY_PRISM_ARMOR] = sFilterDescription,
     [ABILITY_NEUROFORCE] = sNeuroforceDescription,
 };
+

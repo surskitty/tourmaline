@@ -912,3 +912,4 @@ const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {
     [SPECIES_DEOXYS_DEFENSE] = _("Deoxys"),
     [SPECIES_DEOXYS_SPEED] = _("Deoxys"),
 };
+

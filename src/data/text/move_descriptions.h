@@ -3486,3 +3486,4 @@ const u8 *const gMoveDescriptionPointers[MOVES_COUNT - 1] =
     [MOVE_ETERNABEAM - 1] = sETERNABEAMDescription,
     [MOVE_STEEL_BEAM - 1] = sSTEEL_BEAMDescription,
 };
+
