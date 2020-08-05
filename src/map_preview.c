@@ -462,9 +462,9 @@ void MapPreview_LoadGfx(u8 mapsec)
     idx = GetMapPreviewScreenIdx(mapsec);
     if (idx != MPS_COUNT)
     {
-       reset_temp_tile_data_buffers();
+       ResetTempTileDataBuffers();
        LoadPalette(sMapPreviewScreenData[idx].palptr, 0xD0, 0x60);
-       decompress_and_copy_tile_data_to_vram(0, sMapPreviewScreenData[idx].tilesptr, 0, 0, 0);
+       DecompressAndCopyTileDataToVram(0, sMapPreviewScreenData[idx].tilesptr, 0, 0, 0);
        if (GetBgTilemapBuffer(0) == NULL)
        {
            SetBgTilemapBuffer(0, Alloc(BG_SCREEN_SIZE));
@@ -490,7 +490,7 @@ static void MapPreview_Unload(s32 windowId)
 
 static bool32 MapPreview_IsGfxLoadFinished(void)
 {
-    return free_temp_tile_data_buffers_if_possible();
+    return FreeTempTileDataBuffersIfPossible();
 }
 
 void MapPreview_StartForestTransition(u8 mapsec)
@@ -520,7 +520,7 @@ static u16 MapPreview_CreateMapNameWindow(u8 mapsec)
 {
     u16 windowId;
     u32 xctr;
-    u8 color[0];
+    u8 color[3];
 
     windowId = AddWindow(&sMapNameWindow);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
