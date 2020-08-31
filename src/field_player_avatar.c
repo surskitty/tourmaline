@@ -141,6 +141,11 @@ static void AlignFishingAnimationFrames(void);
 
 static u8 sub_808D38C(struct ObjectEvent *object, s16 *a1);
 
+// GrindRun: Fuction declarations
+static u8 GetGrindRunDirection(u8 direction);
+static u8 CheckForCollision(s16 x, s16 y, u8 direction);
+static u8 CheckDiagonalFreeSpaceLength(s16 x, s16 y, u8 sideDirection, u8 forwardDirection);
+
 // .rodata
 
 static bool8 (*const sForcedMovementTestFuncs[])(u8) =
@@ -628,9 +633,43 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
         }
         else
         {
-            u8 adjustedCollision = collision - COLLISION_STOP_SURFING;
-            if (adjustedCollision > 3)
-                PlayerNotOnBikeCollide(direction);
+            //  GrindRun:  Most of this logic is to only allow grind running
+            //      while running and not walking normally.  If you plan to
+            //      change this, consider that GrindRun takes control away
+            //      from what the player expects and makes precise movements
+            //      more difficult.
+            if (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_UNDERWATER) && (heldKeys & B_BUTTON) && FlagGet(FLAG_SYS_B_DASH)
+            && IsRunningDisallowed(gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior) == 0)
+            {
+                //Check for empty spaces next to and diagonally from the player, otherwise actually collide
+                u8 grindRunDirection;
+                grindRunDirection = GetGrindRunDirection(direction);
+                if(grindRunDirection != DIR_NONE)
+                {
+
+                    PlayerRun(grindRunDirection);
+                    
+                    gPlayerAvatar.flags |= PLAYER_AVATAR_FLAG_DASH;
+                    return;
+                }
+                else
+                {
+                    //No grind running direction?
+                    //Collide normally
+                    u8 adjustedCollision = collision - COLLISION_STOP_SURFING;
+                    if (adjustedCollision > 3){
+                        PlayerNotOnBikeCollide(direction);
+                    }
+                    return;
+                }
+            }
+            else
+            {
+                u8 adjustedCollision = collision - COLLISION_STOP_SURFING;
+                if (adjustedCollision > 3){
+                    PlayerNotOnBikeCollide(direction);
+                }
+            }
             return;
         }
     }
@@ -2210,4 +2249,205 @@ static u8 sub_808D38C(struct ObjectEvent *object, s16 *a1)
     ObjectEventForceSetHeldMovement(object, GetFaceDirectionMovementAction(gUnknown_084975BC[object->facingDirection]));
     *a1 = 0;
     return gUnknown_084975BC[object->facingDirection];
+}
+
+// GrindRun:  Lookup for the relative left 
+//      and right directions of a given direction
+static const u8 GrindRunNeighboringDirectionLookup[][2] =
+{
+    [DIR_NORTH] =
+    {
+        DIR_WEST, DIR_EAST
+    },
+    [DIR_EAST] =
+    {
+        DIR_NORTH, DIR_SOUTH
+    },
+    [DIR_SOUTH] =
+    {
+        DIR_EAST, DIR_WEST
+    },
+    [DIR_WEST] =
+    {
+        DIR_SOUTH, DIR_NORTH
+    }
+};
+
+// GrindRun:  The distance to look left/right for a
+//      diagonal free space.  If none is found then
+//      the player will collide instead.
+static const u8 CheckDistance = 10;
+
+// GrindRun:  Gets which direction to grind run in.  Should
+//      be called after colliding into a wall.  Will follow
+//      the wall left and right from the player to find a
+//      diagonal free space and prefer the cloeset one.
+static u8 GetGrindRunDirection(u8 direction)
+{
+    s8 leftCheck, rightCheck;
+    s8 leftDirection, rightDirection;
+    s16 x, y;
+    struct ObjectEvent *playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    x = playerObjEvent->currentCoords.x;
+    y = playerObjEvent->currentCoords.y;
+
+    //I doubt this will ever happen in unmodified
+    //  pokeemerald code, but if some dev implements
+    //  diagonal movement somehow, this'll prevent bugs.
+    if(direction != DIR_NORTH && direction != DIR_EAST && direction != DIR_SOUTH &&  direction != DIR_WEST)
+    {
+        return DIR_NONE;
+    }
+
+    //Get relative left and right directions, or set to
+    //  DIR_NONE if there's a wall immediately to the side.
+    if(CheckForCollision(x, y, GrindRunNeighboringDirectionLookup[direction][0]) == FALSE)
+    {
+        leftDirection = GrindRunNeighboringDirectionLookup[direction][0];
+    }
+    else
+    {
+        leftDirection = DIR_NONE;
+    }
+    if(CheckForCollision(x, y, GrindRunNeighboringDirectionLookup[direction][1]) == FALSE)
+    {
+        rightDirection = GrindRunNeighboringDirectionLookup[direction][1];
+    }
+    else
+    {
+        rightDirection = DIR_NONE;
+    }
+
+    //No point going further if there's nowhere to go.
+    if(leftDirection == DIR_NONE && rightDirection == DIR_NONE){
+        return DIR_NONE;
+    }
+
+    //Check the for diagonal free spots..
+    if(leftDirection != DIR_NONE)
+    {
+        leftCheck = CheckDiagonalFreeSpaceLength(x, y, leftDirection, direction);
+    }
+    else
+    {
+        leftCheck = CheckDistance;
+    }
+    if(rightDirection != DIR_NONE)
+    {
+        rightCheck = CheckDiagonalFreeSpaceLength(x, y, rightDirection, direction);
+    }
+    else
+    {
+        rightCheck = CheckDistance;
+    }
+
+    //If left and right are both too 
+    //  far away, don't grind run
+    if(leftCheck == CheckDistance && rightCheck == CheckDistance)
+    {
+        return DIR_NONE;
+    }
+
+    //Return left or right based on which 
+    //diagonal free space is closest to the player
+    if(leftCheck < rightCheck)
+    {
+        return leftDirection;
+    }
+    else
+    {
+        return rightDirection;
+    }
+
+    //Should never get here...?
+    //  but I also dont trust the compiler *that* much...
+    //  <.<;
+    return DIR_NONE;
+}
+
+// GrindRun:  Looks along the sideDirection for collisions
+//      in forwardDirection and returns the distance to
+//      that non-blocking tile.
+static u8 CheckDiagonalFreeSpaceLength(s16 x, s16 y, u8 sideDirection, u8 forwardDirection)
+{
+    s8 check = 0;
+
+    while (check < CheckDistance)
+    {
+        //Check the side...
+        if(CheckForCollision(x, y, sideDirection) == FALSE)
+        {
+            MoveCoords(sideDirection, &x, &y);
+
+            //Check forward from that tille...
+            if(CheckForCollision(x, y, forwardDirection) == FALSE)
+            {
+                //Diagonal free spot, return early
+                return check;
+            }
+        }
+        else
+        {
+            //Hit early wall to the side, definitely
+            //no diagonal free spot
+            return CheckDistance;
+        }
+        check++;
+    }
+
+    return CheckDistance;
+}
+
+// GrindRun:  This is how GrindRun determines what is and is not a wall.
+//      This function will almost certainly need to be tailored for
+//      larger romhacks.  Especially ones with custom movement options.
+
+//Note:  this function is largely untested, there's probably edgecases...
+static u8 CheckForCollision(s16 x, s16 y, u8 direction)
+{
+    u8 collision;
+    struct ObjectEvent *playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+
+    MoveCoords(direction, &x, &y);
+    collision = CheckForObjectEventCollision(playerObjEvent, x, y, direction, MapGridGetMetatileBehaviorAt(x, y));
+
+    switch (collision)
+    {
+        case COLLISION_NONE:
+            return FALSE;
+        case COLLISION_OUTSIDE_RANGE:
+            return FALSE;
+        case COLLISION_IMPASSABLE:
+            return TRUE;
+        case COLLISION_ELEVATION_MISMATCH:
+            return TRUE;
+        case COLLISION_OBJECT_EVENT:
+            return FALSE;
+        //If using my Surfboard code, uncomment
+        //case COLLISION_START_SURFING:
+        //    return FALSE;
+        //case COLLISION_STOP_SURFING:
+        //    return FALSE;
+        case COLLISION_LEDGE_JUMP:
+            return FALSE;
+        case COLLISION_PUSHED_BOULDER:
+            return TRUE;
+        case COLLISION_ROTATING_GATE:
+            return TRUE;
+        case COLLISION_WHEELIE_HOP:
+            return TRUE;
+        case COLLISION_ISOLATED_VERTICAL_RAIL:
+            return TRUE;
+        case COLLISION_ISOLATED_HORIZONTAL_RAIL:
+            return TRUE;
+        case COLLISION_VERTICAL_RAIL:
+            return TRUE;
+        case COLLISION_HORIZONTAL_RAIL:
+            return TRUE;
+        //If using GhoulSlash's awesome sideways_stairs, uncomment
+        //case COLLISION_SIDEWAYS_STAIRS_TO_RIGHT:
+        //    return FALSE;
+        //case COLLISION_SIDEWAYS_STAIRS_TO_LEFT:
+        //    return FALSE;
+    }
 }
