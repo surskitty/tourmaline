@@ -2,6 +2,7 @@
 #include "string_util.h"
 #include "text.h"
 #include "strings.h"
+#include "malloc.h"
 
 EWRAM_DATA u8 gStringVar1[0x100] = {0};
 EWRAM_DATA u8 gStringVar2[0x100] = {0};
@@ -778,4 +779,33 @@ void StripExtCtrlCodes(u8 *str)
         }
     }
     str[destIndex] = EOS;
+}
+
+char *ConvertToAscii(const u8 *str)
+{
+    s32 i;
+    char * textBuffer = malloc(128);
+    for (i = 0; *str != EOS; i++, str++)
+    {
+        char modifiedCode = '?';
+		if(*str >= CHAR_a && *str <= CHAR_z)
+        {
+            modifiedCode = *str-(CHAR_A-'a'); // lower-case characters
+        }
+        else if(*str >= CHAR_A && *str <= CHAR_Z)
+        {
+            modifiedCode = *str-(CHAR_A-'A'); // upper-case characters
+        }
+        else if (*str >= CHAR_0 && *str <= CHAR_9)
+        {
+            modifiedCode = *str-(CHAR_0-'0'); // numbers
+        }
+        else if (*str == CHAR_SPACE)
+        {
+            modifiedCode = ' '; // space
+        }
+        textBuffer[i] = modifiedCode;
+    }
+    textBuffer[i] = 0;
+    return textBuffer;
 }
