@@ -89,8 +89,8 @@
           "fishing_mons": {
             "encounter_rate": 30,
             "mons": [
-              { "min_level": 5, "max_level": 10, "species": "SPECIES_MAGIKARP" },
-              { "min_level": 5, "max_level": 10, "species": "SPECIES_GOLDEEN" },
+              { "min_level":  5, "max_level": 10, "species": "SPECIES_MAGIKARP" },
+              { "min_level":  5, "max_level": 10, "species": "SPECIES_GOLDEEN" },
               { "min_level": 10, "max_level": 30, "species": "SPECIES_MAGIKARP" },
               { "min_level": 10, "max_level": 30, "species": "SPECIES_GOLDEEN" },
               { "min_level": 10, "max_level": 30, "species": "SPECIES_CORPHISH" },
@@ -125,25 +125,25 @@
           "water_mons": {
             "encounter_rate": 4,
             "mons": [
-              { "min_level": 5, "max_level": 35, "species": "SPECIES_TENTACOOL" },
-              { "min_level": 10, "max_level": 30, "species": "SPECIES_WINGULL" },
-              { "min_level": 15, "max_level": 25, "species": "SPECIES_WINGULL" },
-              { "min_level": 25, "max_level": 30, "species": "SPECIES_PELIPPER" },
-              { "min_level": 25, "max_level": 30, "species": "SPECIES_PELIPPER" }
+              { "min_level":  5, "max_level": 30, "species": "SPECIES_TENTACOOL" },
+              { "min_level":  5, "max_level": 30, "species": "SPECIES_SHELLOS" },
+              { "min_level":  5, "max_level": 30, "species": "SPECIES_WINGULL" },
+              { "min_level": 25, "max_level": 35, "species": "SPECIES_PELIPPER" },
+              { "min_level": 25, "max_level": 35, "species": "SPECIES_TENTACRUEL" }
             ]
           },
           "fishing_mons": {
             "encounter_rate": 30,
             "mons": [
-              { "min_level": 5, "max_level": 10, "species": "SPECIES_MAGIKARP" },
-              { "min_level": 5, "max_level": 10, "species": "SPECIES_TENTACOOL" },
+              { "min_level":  5, "max_level": 10, "species": "SPECIES_MAGIKARP" },
+              { "min_level":  5, "max_level": 10, "species": "SPECIES_TENTACOOL" },
               { "min_level": 10, "max_level": 30, "species": "SPECIES_MAGIKARP" },
               { "min_level": 10, "max_level": 30, "species": "SPECIES_TENTACOOL" },
               { "min_level": 10, "max_level": 30, "species": "SPECIES_WAILMER" },
-              { "min_level": 30, "max_level": 35, "species": "SPECIES_SHARPEDO" },
+              { "min_level": 30, "max_level": 35, "species": "SPECIES_TENTACOOL" },
               { "min_level": 30, "max_level": 35, "species": "SPECIES_WAILMER" },
-              { "min_level": 25, "max_level": 30, "species": "SPECIES_WAILMER" },
-              { "min_level": 35, "max_level": 40, "species": "SPECIES_WAILMER" },
+              { "min_level": 25, "max_level": 30, "species": "SPECIES_TENTACRUEL" },
+              { "min_level": 35, "max_level": 40, "species": "SPECIES_SHARPEDO" },
               { "min_level": 40, "max_level": 45, "species": "SPECIES_WAILMER" }
             ]
           }

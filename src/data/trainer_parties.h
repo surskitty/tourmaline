@@ -1628,7 +1628,10 @@ static const struct TrainerMonItemCustomMoves sParty_TateAndLiza1[] = {
 
 static const struct TrainerMonItemCustomMoves sParty_Juan1[] = {
     { .iv = 200, .lvl = 41, .species = SPECIES_LUVDISC, .heldItem = ITEM_NONE,
-    .moves = {MOVE_WATER_PULSE, MOVE_ATTRACT, MOVE_SWEET_KISS, MOVE_FLAIL}
+    .moves = {MOVE_WATER_PULSE, MOVE_DRAINING_KISS, MOVE_ICY_WIND, MOVE_ATTRACT}
+    },
+    { .iv = 200, .lvl = 41, .species = SPECIES_PELIPPER, .heldItem = ITEM_NONE,
+    .moves = {MOVE_WATER_PULSE, MOVE_HURRICANE, MOVE_ROOST, MOVE_AIR_CUTTER}
     },
     { .iv = 200, .lvl = 41, .species = SPECIES_WHISCASH, .heldItem = ITEM_NONE,
     .moves = {MOVE_RAIN_DANCE, MOVE_WATER_PULSE, MOVE_AMNESIA, MOVE_EARTHQUAKE}
