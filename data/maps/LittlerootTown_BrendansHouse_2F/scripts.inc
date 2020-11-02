@@ -298,14 +298,15 @@ PlayersHouse_2F_Text_HowDoYouLikeYourRoom: @ 81F869A
 	.string "downstairs, too.\p"
 	.string "POKéMON movers are so convenient!\p"
 	.string "Oh, you should make sure that\n"
-	.string "everything's all there on your desk.$"
+	.string "everything's all there on your desk.\p"
+	.string "Your DAD left you his welcome gift.$"
 
 PlayersHouse_2F_Text_Notebook: @ 81F877F
 	.string "{PLAYER} flipped open the notebook.\p"
 	.string "ADVENTURE RULE NO. 1\n"
-	.string "Open the MENU with START.\p"
+	.string "Always bring a Master Ball.\p"
 	.string "ADVENTURE RULE NO. 2\n"
-	.string "Record your progress with SAVE.\p"
+	.string "Never actually use it.\p"
 	.string "The remaining pages are blank…$"
 
 Common_Text_LookCloserAtMap: @ 81F8820
@@ -315,4 +316,4 @@ Common_Text_LookCloserAtMap: @ 81F8820
 PlayersHouse_2F_Text_ItsAGameCube: @ 81F884F
 	.string "It's a Nintendo GameCube.\p"
 	.string "A Game Boy Advance is connected to\n"
-	.string "serve as the Controller.$"
+	.string "serve as a Controller.$"
