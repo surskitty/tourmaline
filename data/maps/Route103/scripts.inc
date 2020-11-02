@@ -11,7 +11,7 @@ Route103_OnTransition: @ 81EC399
 	end
 
 Route103_OnLoad: @ 81EC3A4
-	call_if_set FLAG_SYS_GAME_CLEAR, Route103_EventScript_OpenAlteringCave
+	call Route103_EventScript_OpenAlteringCave
 	end
 
 Route103_EventScript_OpenAlteringCave:: @ 81EC3AE
@@ -69,7 +69,7 @@ Route103_EventScript_RivalBrendan:: @ 81EC434
 Route103_EventScript_RivalReceiveEevee::
 	msgbox Route103_Eevee_Text_ShouldntTravelJustOne, MSGBOX_DEFAULT
 	setvar VAR_TEMP_1, SPECIES_EEVEE
-	givemon SPECIES_EEVEE, 5, ITEM_NONE
+	givemon SPECIES_EEVEE, 5, ITEM_ORAN_BERRY
 	call Route103_Eevee_EventScript_ReceivedEeveeFanfare
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	call Common_EventScript_GetGiftMonPartySlot
@@ -327,9 +327,9 @@ Route103_Text_MayLetsBattle: @ 81EC7DE
 
 Route103_Text_MayLetsBattle2: @ 81EC7DE
 	.string "Since we're here, let's have a quick\n"
-	.string "battle!\p"
+	.string "Double Battle!\p"
 	.string "I'll give you a taste of what being\n"
-	.string "a Trainer is like.$"
+	.string "a Hoenn Trainer is like.$"
 
 Route103_Text_MayDefeated: @ 81EC881
 	.string "Wow! That's great!\n"
@@ -355,9 +355,9 @@ Route103_Text_BrendanLetsBattle: @ 81EC9CE
 
 Route103_Text_BrendanLetsBattle2: 
 	.string "Since we're here, how about a little\n"
-	.string "battle?\p"
-	.string "I'll teach you what being a Trainer's\n"
-	.string "about!$"
+	.string "Double Battle?\p"
+	.string "I'll teach you what being a Trainer\n"
+	.string "in Hoenn is all about!$"
 
 Route103_Text_BrendanDefeated: @ 81ECA59
 	.string "Huh, {PLAYER}, you're not too shabby.$"
@@ -387,9 +387,7 @@ Route103_Text_RouteSign: @ 81ECC1A
 
 Route103_Eevee_Text_ShouldntTravelJustOne:
 	.string "You know, you shouldn't travel\n"
-	.string "with just one.\p"
-	.string "Most trainers around here prefer\n"
-	.string "to Double Battle.$"
+	.string "with just one Pokémon.$"
 
 Route103_Eevee_Text_PlayerReceivedEevee:
 	.string "{PLAYER} received Eevee!$"
