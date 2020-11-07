@@ -1057,10 +1057,9 @@ Route104_Text_LikeFillingMouthWithSeedsTakeThis: @ 81ED838
 
 Route104_Text_TMsAreOneTimeUse: @ 81ED8E7
 	.string "A word of advice!\p"
-	.string "A Tm, Technical Machine, is good only\n"
-	.string "for one-time use.\p"
-	.string "Once you use it, it's gone.\n"
-	.string "Think twice before using it!$"
+	.string "You can use TMs, Technical Machines,\n"
+	.string "as many times as you like now.\p"
+	.string "Use them generously!$"
 
 Route104_Text_DontNeedThisTakeIt: @ 81ED96A
 	.string "This Flower Shop started selling\n"
@@ -1152,7 +1151,7 @@ Route104_Text_BrendanWeShouldRegister: @ 81EDF04
 	.string "Cool, you had Devon install the Match\n"
 	.string "Call system on your Pokénav!\p"
 	.string "Let's register each other in our\n"
-	.string "PokénavS so we can keep in touch.$"
+	.string "Pokénavs so we can keep in touch.$"
 
 Route104_Text_RegisteredBrendan: @ 81EDFA0
 	.string "{PLAYER} registered Brendan\n"

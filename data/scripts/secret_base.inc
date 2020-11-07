@@ -749,7 +749,7 @@ SecretBase_EventScript_CushionInteract:: @ 82766A6
 
 SecretBase_Text_AllDecorationsWillBeReturned: @ 82766AA
 	.string "All decorations and furniture in your\n"
-	.string "Secret Base will be returned to your Pc.\p"
+	.string "Secret Base will be returned to your PC.\p"
 	.string "Is that okay?$"
 
 SecretBase_Text_WantToRegisterSecretBase: @ 8276707
@@ -772,7 +772,7 @@ SecretBase_Text_DataUnregistered: @ 82767E9
 	.string "Data has been unregistered.$"
 
 SecretBase_Text_BootUpPC: @ 8276805
-	.string "{PLAYER} booted up the Pc.$"
+	.string "{PLAYER} booted up the PC.$"
 
 SecretBase_Text_WhatWouldYouLikeToDo: @ 827681A
 	.string "What would you like to do?$"

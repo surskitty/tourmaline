@@ -155,7 +155,7 @@ Route121_SafariZoneEntrance_Text_PleaseEnjoyYourself: @ 82A506F
 
 Route121_SafariZoneEntrance_Text_PCIsFull: @ 82A50E5
 	.string "Excuse me!\n"
-	.string "Your Pc Box is full.$"
+	.string "Your PC Box is full.$"
 
 Route121_SafariZoneEntrance_Text_YouNeedPokeblockCase: @ 82A5105
 	.string "Excuse me!\n"
@@ -176,8 +176,7 @@ SafariZone_South_Text_EnjoyTheRestOfYourAdventure: @ 82A521A
 
 SafariZone_South_Text_ExitEarlyThankYouForPlaying: @ 82A5248
 	.string "Okay.\p"
-	.string "I'll take back your remaining Safari\n"
-	.string "Balls.\p"
+	.string "Please return any leftover Safari Balls.\p"
 	.string "Thank you for playing.\n"
 	.string "We hope to see you again.$"
 

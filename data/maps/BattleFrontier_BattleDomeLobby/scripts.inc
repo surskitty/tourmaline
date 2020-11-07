@@ -620,7 +620,7 @@ BattleFrontier_BattleDomeLobby_Text_LastWinnerWasTough: @ 824AA76
 	.string "The winner, {STR_VAR_1}, was seriously\n"
 	.string "tough.\p"
 	.string "You should check out the results\n"
-	.string "on the monitor beside the Pc.$"
+	.string "on the monitor beside the PC.$"
 
 BattleFrontier_OutsideWest_Text_LongDreamedAboutBattleFrontier: @ 824AB06
 	.string "The Battle Frontier…\n"

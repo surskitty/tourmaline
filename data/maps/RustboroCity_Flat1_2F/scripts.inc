@@ -174,7 +174,7 @@ RustboroCity_Flat1_2F_Text_ThankYouIllGiveYouWallpaper: @ 8215792
 	.string "So, how about I do something in return\n"
 	.string "for you?\p"
 	.string "I know, I'll add some new wallpaper\n"
-	.string "patterns for the Boxes in the Pc\l"
+	.string "patterns for the Boxes in the PC\l"
 	.string "Pokémon Storage System.\p"
 	.string "In the wallpaper pattern menu,\n"
 	.string "select “Friends.”\p"
@@ -182,5 +182,5 @@ RustboroCity_Flat1_2F_Text_ThankYouIllGiveYouWallpaper: @ 8215792
 	.string "wallpaper patterns.$"
 
 RustboroCity_Flat1_2F_Text_ItsAPokemonPlushDoll: @ 8215923
-	.string "It's a Pokémon plush Doll!$"
+	.string "It's a Pokémon plush doll!$"
 

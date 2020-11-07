@@ -389,7 +389,7 @@ Route113_GlassWorkshop_Text_NoRoomInBag: @ 826F6B7
 
 Route113_GlassWorkshop_Text_NoRoomInPC: @ 826F715
 	.string "Oh?\n"
-	.string "You've no room in your Pc, huff-puff?\p"
+	.string "You've no room in your PC, huff-puff?\p"
 	.string "I'll hold on to it, so come back later,\n"
 	.string "huff-puff.$"
 
