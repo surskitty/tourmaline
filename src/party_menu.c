@@ -4734,6 +4734,8 @@ bool8 IsMoveHm(u16 move)
 {
     u8 i;
 
+    if (move == MOVE_FLASH) { return FALSE; }
+
     for (i = 0; i < NUM_HIDDEN_MACHINES; i++)
     {
         if (sTMHMMoves[i + NUM_TECHNICAL_MACHINES] == move)
