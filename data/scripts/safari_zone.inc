@@ -101,7 +101,7 @@ Route121_SafariZoneEntrance_Text_WelcomeToSafariZone: @ 82A4D12
 	.string "Welcome to the Safari Zone!\p"
 	.string "Here, you may witness many kinds of\n"
 	.string "Pokémon rarely seen in Hoenn.\p"
-	.string "And, you'll see them in their wild,\n"
+	.string "And you'll see them in their wild,\n"
 	.string "untamed state in natural habitats.\p"
 	.string "What's more, we've thrown open the\n"
 	.string "gates to Pokémon Trainers.\p"
@@ -121,8 +121,7 @@ Route121_SafariZoneEntrance_Text_FirstTimeInfo: @ 82A4EA1
 	.string "start with 30 Safari Balls for\l"
 	.string "catching Pokémon.\p"
 	.string "The Safari Game is over when you run\n"
-	.string "out of Safari Balls, or when you've\l"
-	.string "walked 500 steps.\p"
+	.string "out of Safari Balls.\p"
 	.string "Come in and enjoy the Safari Zone!$"
 
 Route121_SafariZoneEntrance_Text_WouldYouLikeToPlay: @ 82A4F74
@@ -148,9 +147,8 @@ Route121_SafariZoneEntrance_Text_Received30SafariBalls: @ 82A5052
 	.string "{PLAYER} received 30 Safari Balls.$"
 
 Route121_SafariZoneEntrance_Text_PleaseEnjoyYourself: @ 82A506F
-	.string "We'll let you know when your game\n"
-	.string "is over.\p"
-	.string "So, until then, enjoy yourself, please!\n"
+	.string "Your game ends when you're out of Balls.\p"
+	.string "Please enjoy yourself until then!\n"
 	.string "Off you go on your wild excursion!$"
 
 Route121_SafariZoneEntrance_Text_PCIsFull: @ 82A50E5
@@ -167,7 +165,7 @@ Route121_SafariZoneEntrance_Text_YouNeedPokeblockCase: @ 82A5105
 	.string "the Lilycove Contest Hall.$"
 
 SafariZone_South_Text_StillHaveTimeExit: @ 82A51D4
-	.string "You still have time left. Would you like\n"
+	.string "You still have Balls left. Would you like\n"
 	.string "to exit the Safari Zone now?$"
 
 SafariZone_South_Text_EnjoyTheRestOfYourAdventure: @ 82A521A
