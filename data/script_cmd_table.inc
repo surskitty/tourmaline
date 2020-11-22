@@ -229,6 +229,7 @@ gScriptCmdTable:: @ 81DB67C
 	.4byte ScrCmd_bufferitemnameplural      @ 0xe2
 	.4byte ScrCmd_showitemdesc              @ 0xe3
 	.4byte ScrCmd_hideitemdesc              @ 0xe4
+        .4byte ScrCmd_givecustommon
 
 gScriptCmdTableEnd:: @ 81DBA08
 	.4byte ScrCmd_nop

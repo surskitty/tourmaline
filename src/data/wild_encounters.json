@@ -3308,7 +3308,7 @@
               { "min_level":  1, "max_level": 99, "species": "SPECIES_SMEARGLE" },
               { "min_level":  1, "max_level": 99, "species": "SPECIES_SMEARGLE" },
               { "min_level":  1, "max_level": 99, "species": "SPECIES_SMEARGLE" },
-              { "min_level":  1, "max_level": 99, "species": "SPECIES_SMEARGLE" },
+              { "min_level":  1, "max_level": 99, "species": "SPECIES_SMEARGLE" }
             ]
           }
         },
@@ -3329,7 +3329,7 @@
               { "min_level":  1, "max_level": 99, "species": "SPECIES_SMEARGLE" },
               { "min_level":  1, "max_level": 99, "species": "SPECIES_SMEARGLE" },
               { "min_level":  1, "max_level": 99, "species": "SPECIES_SMEARGLE" },
-              { "min_level":  1, "max_level": 99, "species": "SPECIES_SMEARGLE" },
+              { "min_level":  1, "max_level": 99, "species": "SPECIES_SMEARGLE" }
             ]
           }
         },
