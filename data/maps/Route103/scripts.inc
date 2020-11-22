@@ -69,7 +69,7 @@ Route103_EventScript_RivalBrendan:: @ 81EC434
 Route103_EventScript_RivalReceiveEevee::
 	msgbox Route103_Eevee_Text_ShouldntTravelJustOne, MSGBOX_DEFAULT
 	setvar VAR_TEMP_1, SPECIES_EEVEE
-	givemon SPECIES_EEVEE, 5, ITEM_ORAN_BERRY
+	givecustommon SPECIES_EEVEE, 5, ITEM_ORAN_BERRY, ITEM_PREMIER_BALL, NATURE_NAIVE, 2
 	call Route103_Eevee_EventScript_ReceivedEeveeFanfare
 	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	call Common_EventScript_GetGiftMonPartySlot
