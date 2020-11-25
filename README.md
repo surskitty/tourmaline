@@ -19,3 +19,4 @@ This is a romhack based off of [PokeEmerald](https://github.com/pret/pokeemerald
 - [ghoulslash](https://github.com/ghoulslash/pokeemerald/wiki)'s wide array of feature branchs.
 - surskitty, as the person actually making this romhack.
 - Thousand Roads discord, for moral support and playtesting.
+

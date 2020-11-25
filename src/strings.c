@@ -282,13 +282,19 @@ const u8 gText_PokeBallsPocket[] = _("Poké Balls");
 const u8 gText_TMHMPocket[] = _("TMs & HMs");
 const u8 gText_BerriesPocket[] = _("Berries");
 const u8 gText_KeyItemsPocket[] = _("Key Items");
+const u8 gText_MedicinePocket[] = _("Medicine");
+const u8 gText_BattleItemsPocket[] = _("Battle Item");
+const u8 gText_PowerUpPocket[] = _("Power-Up");
 
 const u8 *const gPocketNamesStringsTable[] =
 {
     gText_ItemsPocket,
+    gText_MedicinePocket,
     gText_PokeBallsPocket,
-    gText_TMHMPocket,
+    gText_BattleItemsPocket,
     gText_BerriesPocket,
+    gText_PowerUpPocket,
+    gText_TMHMPocket,
     gText_KeyItemsPocket
 };
 
@@ -651,7 +657,7 @@ const u8 gText_HowToRide[] = _("How To Ride");
 const u8 gText_HowToTurn[] = _("How To Turn");
 const u8 gText_SandySlopes[] = _("Sandy Slopes");
 const u8 gText_Wheelies[] = _("Wheelies");
-const u8 gText_BunnyHops[] = _("Bunny-HOPS");
+const u8 gText_BunnyHops[] = _("Bunny-Hops");
 const u8 gText_Jump[] = _("Jump");
 const u8 gText_Satisfied[] = _("Satisfied");
 const u8 gText_Dissatisfied[] = _("Dissatisfied");
@@ -702,6 +708,9 @@ const u8 gText_Key_Items[] = _("Key Items");
 const u8 gText_Poke_Balls[] = _("Poké Balls");
 const u8 gText_TMs_HMs[] = _("TMs & HMs");
 const u8 gText_Berries2[] = _("Berries");
+const u8 gText_Medicine[] = _("Medicine");
+const u8 gText_BattleItems[] = _("Battle Item");
+const u8 gText_PowerUp[] = _("Power-Up");
 const u8 gText_SomeonesPC[] = _("Someone's PC");
 const u8 gText_LanettesPC[] = _("Lanette's PC");
 const u8 gText_PlayersPC[] = _("{PLAYER}'s PC");
