@@ -28,12 +28,12 @@ LavaridgeTown_HerbShop_EventScript_ExpertM:: @ 81FE4FC
 LavaridgeTown_HerbShop_EventScript_OldMan:: @ 81FE505
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_CHARCOAL, LavaridgeTown_HerbShop_EventScript_ExplainCharcoal
+	goto_if_set FLAG_RECEIVED_FLAME_PLATE, LavaridgeTown_HerbShop_EventScript_ExplainCharcoal
 	msgbox LavaridgeTown_HerbShop_Text_YouveComeToLookAtHerbalMedicine, MSGBOX_DEFAULT
-	giveitem ITEM_CHARCOAL
+	giveitem ITEM_FLAME_PLATE
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_CHARCOAL
+	setflag FLAG_RECEIVED_FLAME_PLATE
 	release
 	end
 
@@ -53,12 +53,9 @@ LavaridgeTown_HerbShop_Text_YouveComeToLookAtHerbalMedicine: @ 81FE584
 	.string "I like you! Take this!$"
 
 LavaridgeTown_HerbShop_Text_ExplainCharcoal: @ 81FE5EB
-	.string "That Charcoal I gave you, it's used\n"
-	.string "for making herbal medicine.\p"
-	.string "It also does wonders when held by\n"
-	.string "a Pokémon.\p"
-	.string "It intensifies the power of Fire-type\n"
-	.string "moves.$"
+	.string "That Plate I gave you, it's an antique.\p"
+	.string "It also does wonders for Pokémon.\n"
+	.string "It powers up Fire-type moves.$"
 
 LavaridgeTown_HerbShop_Text_HerbalMedicineWorksButMonWillDislike: @ 81FE685
 	.string "Herbal medicine works impressively well.\n"

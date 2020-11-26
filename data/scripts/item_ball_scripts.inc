@@ -559,7 +559,7 @@ ShoalCave_LowTideIceRoom_EventScript_ItemTM07:: @ 82913E7
 	end
 
 ShoalCave_LowTideIceRoom_EventScript_ItemNeverMeltIce:: @ 82913F4
-	finditem ITEM_NEVER_MELT_ICE
+	finditem ITEM_ICICLE_PLATE
 	end
 
 SeafloorCavern_Room9_EventScript_ItemTM26:: @ 8291401

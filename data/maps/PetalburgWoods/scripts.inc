@@ -252,17 +252,17 @@ PetalburgWoods_EventScript_Boy2:: @ 822E219
 PetalburgWoods_EventScript_Girl:: @ 822E222
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_MIRACLE_SEED, PetalburgWoods_EventScript_ExplainMiracleSeed
+	goto_if_set FLAG_RECEIVED_MEADOW_PLATE, PetalburgWoods_EventScript_ExplainPlates
 	msgbox PetalburgWoods_Text_TryUsingThisItem, MSGBOX_DEFAULT
-	giveitem ITEM_MIRACLE_SEED
+	giveitem ITEM_MEADOW_PLATE
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_MIRACLE_SEED
+	setflag FLAG_RECEIVED_MEADOW_PLATE
 	release
 	end
 
-PetalburgWoods_EventScript_ExplainMiracleSeed:: @ 822E251
-	msgbox PetalburgWoods_Text_MiracleSeedExplanation, MSGBOX_DEFAULT
+PetalburgWoods_EventScript_ExplainPlates:: @ 822E251
+	msgbox PetalburgWoods_Text_PlateExplanation, MSGBOX_DEFAULT
 	release
 	end
 
@@ -452,23 +452,20 @@ PetalburgWoods_Text_TryUsingThisItem: @ 822EAFE
 	.string "You must be a Trainer.\n"
 	.string "You should try using this item.$"
 
-PetalburgWoods_Text_MiracleSeedExplanation: @ 822EB63
-	.string "It's a Miracle Seed.\n"
-	.string "If a Pokémon holds that item, its\l"
+PetalburgWoods_Text_PlateExplanation: @ 822EB63
+	.string "It's a Meadow Plate.\p"
+	.string "If a Pokémon holds that item, its\n"
 	.string "Grass-type moves become stronger.\p"
-	.string "Besides Miracle Seed, I think there are\n"
-	.string "other convenient items for Pokémon\l"
-	.string "to hold.$"
+	.string "I heard it's connected to some\n"
+	.string "legendary Pokémon, but any Pokémon\l"
+	.string "can use it.$"
 
 PetalburgWoods_Text_TrainerTipsExperience: @ 822EC10
 	.string "Trainer Tips\p"
-	.string "Any Pokémon that appears even once\n"
-	.string "in a battle is awarded Exp Points.\p"
-	.string "To raise a weak Pokémon, put it at the\n"
-	.string "left of the team list.\p"
-	.string "As soon as a battle starts, switch it\n"
-	.string "out. It will earn Exp Points without\l"
-	.string "being exposed to any harm.$"
+	.string "All Pokémon with you receive Exp Points.\p"
+	.string "Bringing weak Pokémon with you to watch\n"
+	.string "the rest battle makes them stronger\l"
+	.string "without being exposed to any harm.$"
 
 PetalburgWoods_Text_TrainerTipsPP: @ 822ED07
 	.string "Trainer Tips\p"

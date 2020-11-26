@@ -331,15 +331,15 @@ Route109_EventScript_SoftSandGirl:: @ 81EE9B5
 	lock
 	faceplayer
 	special GetPlayerBigGuyGirlString
-	goto_if_set FLAG_RECEIVED_SOFT_SAND, Route109_EventScript_AlreadyReceivedSoftSand
+	goto_if_set FLAG_RECEIVED_EARTH_PLATE, Route109_EventScript_AlreadyReceivedSoftSand
 	msgbox Route109_Text_YouCanHaveThis, MSGBOX_DEFAULT
-	giveitem ITEM_SOFT_SAND
+	giveitem ITEM_EARTH_PLATE
 	compare VAR_RESULT, 0
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
 	waitmovement 0
-	setflag FLAG_RECEIVED_SOFT_SAND
+	setflag FLAG_RECEIVED_EARTH_PLATE
 	release
 	end
 
