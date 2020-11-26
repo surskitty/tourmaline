@@ -426,6 +426,7 @@ PetalburgCity_Gym_EventScript_NormanBattle:: @ 8204E3B
 	clearflag FLAG_HIDE_DEWFORD_HALL_SLUDGE_BOMB_MAN
 	call PetalburgCity_Gym_EventScript_UnlockAllDoors
 	special DrawWholeMapView
+	call PetalburgCity_Gym_EventScript_GiveMegaBracelet
 	call PetalburgCity_Gym_EventScript_GiveFacade
 	delay 30
 	msgbox PetalburgCity_Gym_Text_DadHappyAndSad, MSGBOX_DEFAULT
@@ -439,6 +440,14 @@ PetalburgCity_Gym_EventScript_NormanBattle:: @ 8204E3B
 	case DIR_WEST, PetalburgCity_Gym_EventScript_WallysDadArrivesWest
 	case DIR_EAST, PetalburgCity_Gym_EventScript_WallysDadArrivesEast
 	end
+
+PetalburgCity_Gym_EventScript_GiveMegaBracelet:: @ 8204ED2
+	giveitem ITEM_MEGA_BRACELET
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_BagIsFull
+	setflag FLAG_RECEIVED_MEGA_BRACELET
+	msgbox PetalburgCity_Gym_Text_ExplainMegas, MSGBOX_DEFAULT
+	return
 
 PetalburgCity_Gym_EventScript_GiveFacade:: @ 8204ED2
 	giveitem ITEM_TM42
@@ -1363,7 +1372,7 @@ PetalburgCity_Gym_Text_NormanDefeat: @ 8206107
 	.string "I… I can't…\p"
 	.string "I can't believe it. {PLAYER}…\p"
 	.string "I lost to {PLAYER}?\p"
-	.string "But, rules are rules!\n"
+	.string "But rules are rules!\n"
 	.string "Here, take this.$"
 
 PetalburgCity_Gym_Text_ReceivedBalanceBadge: @ 8206162
@@ -1378,11 +1387,16 @@ PetalburgCity_Gym_Text_ExplainBalanceBadgeTakeThis: @ 820618A
 	.string "This is my gift to you. {PLAYER}, I'm\n"
 	.string "sure you can use it correctly.$"
 
+PetalburgCity_Gym_Text_ExplainMegas: @ 8206254
+	.string "Dad: A Mega Bracelet permits you to\n"
+	.string "Mega Evolve a Pokémon in battle.\p"
+	.string "There's no reason not to, if you can.$"
+
 PetalburgCity_Gym_Text_ExplainFacade: @ 8206254
-	.string "Dad: TM42 contains Facade.\p"
+	.string "Dad: Take this TM, as well.\n"
+	.string "It contains Facade.\p"
 	.string "It doubles the power of moves if\n"
-	.string "the Pokémon is poisoned, paralyzed,\l"
-	.string "or burned.\p"
+	.string "the Pokémon has a status ailment.\p"
 	.string "It might be able to turn a bad\n"
 	.string "situation into an advantage.$"
 
@@ -1631,7 +1645,7 @@ PetalburgCity_Gym_Text_EnterOHKORoom: @ 82073A7
 	.string "Do you want to go through?$"
 
 PetalburgCity_Gym_Text_EnterGymLeadersRoom: @ 82073E4
-	.string "“Gym Leader'S Room\p"
+	.string "“Gym Leader's Room\p"
 	.string "“See for yourself what Pokémon await\n"
 	.string "you!” the sign says.\p"
 	.string "Do you want to go through?$"
