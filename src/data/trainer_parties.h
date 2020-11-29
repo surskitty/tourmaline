@@ -1531,7 +1531,7 @@ static const struct TrainerMonItemCustomMoves sParty_Roxanne1[] = {
     { .iv = 100, .lvl = 12, .species = SPECIES_GEODUDE, .heldItem = ITEM_RINDO_BERRY,
     .moves = {MOVE_STEALTH_ROCK, MOVE_DEFENSE_CURL, MOVE_MUD_SLAP, MOVE_ROCK_TOMB}
     },
-    { .iv = 100, .lvl = 13, .species = SPECIES_ALOLAN_GEODUDE, .heldItem = ITEM_NONE,
+    { .iv = 100, .lvl = 13, .species = SPECIES_GEODUDE_ALOLAN, .heldItem = ITEM_NONE,
     .moves = {MOVE_THUNDER_SHOCK, MOVE_DEFENSE_CURL, MOVE_WIDE_GUARD, MOVE_ROCK_TOMB}
     },
     { .iv = 100, .lvl = 14, .species = SPECIES_SHUCKLE, .heldItem = ITEM_NONE,
