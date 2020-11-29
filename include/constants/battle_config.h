@@ -3,7 +3,6 @@
 
 #define BATTLE_ENGINE
 
-
 #ifndef GEN_3
     #define GEN_3 0
     #define GEN_4 1
@@ -18,9 +17,9 @@
 #define B_CRIT_MULTIPLIER           GEN_6 // In Gen6+, critical hits multiply damage by 1.5 instead of 2.
 #define B_EXP_CATCH                 GEN_6 // In Gen6+, Pokémon get experience from catching.
 #define B_TRAINER_EXP_MULTIPLIER    GEN_6 // In Gen7+, trainer battles no longer give a 1.5 multiplier to exp gain.
-#define B_SPLIT_EXP                 GEN_5 // In Gen6+, all participating mon get full experience.
+#define B_SPLIT_EXP                 GEN_6 // In Gen6+, all participating mon get full experience.
 #define B_SCALED_EXP                GEN_6 // In Gen5 and Gen7+, experience is weighted by level difference.
-#define B_BURN_DAMAGE               GEN_6 // In Gen7+, burn damage is 1/16th of max HP instead of 1/8th.
+#define B_BURN_DAMAGE               GEN_7 // In Gen7+, burn damage is 1/16th of max HP instead of 1/8th.
 #define B_PARALYSIS_SPEED           GEN_6 // In Gen7+, speed is decreased by 50% instead of 75%.
 #define B_TERRAIN_TYPE_BOOST        GEN_6 // In Gen8+, damage is boosted by 30% instead of 50%.
 #define B_BINDING_DAMAGE            GEN_6 // In Gen6+, binding damage is 1/8 of max HP instead of 1/16. (With Binding Band, 1/6 and 1/8 respectively.)
@@ -33,7 +32,7 @@
 // Move data settings
 #define B_UPDATED_MOVE_DATA         GEN_7 // Updates move data in gBattleMoves, including Power, Accuracy, PP, stat changes, targets, chances of secondary effects, etc.
 #define B_PHYSICAL_SPECIAL_SPLIT    GEN_6 // In Gen3, the move's type determines if it will do physical or special damage. The split icon in the summary will reflect this.
-#define B_FELL_STINGER_STAT_RAISE   GEN_6 // In Gen7+, it raises Atk by 3 stages instead of 2 if it causes the target to faint.
+#define B_FELL_STINGER_STAT_RAISE   GEN_7 // In Gen7+, it raises Atk by 3 stages instead of 2 if it causes the target to faint.
 #define B_KINGS_SHIELD_LOWER_ATK    GEN_6 // In Gen7+, it lowers Atk by 1 stage instead of 2 of oponents that hit it.
 #define B_SPEED_BUFFING_RAPID_SPIN  GEN_8 // In Gen8, Rapid Spin raises the user's Speed by 1 stage.
 #define B_WATER_SHURIKEN_SPLIT      GEN_8 // In Gen7, Water Shuriken was changed from Physical to Special.
@@ -53,9 +52,10 @@
 #define B_GALE_WINGS                GEN_6 // In Gen7+ requires full HP to trigger.
 #define B_STANCE_CHANGE_FAIL        GEN_7 // In Gen7+, Aegislash's form change does not happen, if the Pokémon cannot use a move, because of confusion, paralysis, etc. In gen6, the form change occurs despite not being able to move.
 #define B_GHOSTS_ESCAPE             GEN_6 // In Gen6+, ghosts can escape even when blocked by abilities such as Shadow Tag.
-#define B_MOODY_ACC_EVASION         GEN_6 // In Gen8+, Moody CANNOT raise Accuray and Evasion any more.
+#define B_MOODY_ACC_EVASION         GEN_8 // In Gen8+, Moody CANNOT raise Accuray and Evasion any more.
 #define B_FLASH_FIRE_FROZEN         GEN_6 // In Gen5+, Flash Fire can trigger even when frozen, when it couldn't before.
-#define B_SYNCHRONIZE_NATURE        GEN_6 // In Gen8+, if the Pokémon with Synchronize is leading the party, it's 100% guaranteed that wild Pokémon will have the same ability, as opposed to 50% previously.
+#define B_SYNCHRONIZE_NATURE        GEN_8 // In Gen8+, if the Pokémon with Synchronize is leading the party, it's 100% guaranteed that wild Pokémon will have the same ability, as opposed to 50% previously.
+#define B_UPDATED_INTIMIDATE        GEN_8 // In Gen8, Intimidate doesn't work on opponents with the Inner Focus, Scrappy, Own Tempo or Oblivious abilities.
 
 // Item settings
 #define B_HP_BERRIES                GEN_6 // In Gen4+, berries which restore hp activate immediately after hp drops to half. In gen3, the effect occurs at the end of the turn.
@@ -72,11 +72,16 @@
 #define B_SHOW_TARGETS              TRUE  // If set to TRUE, all available targets, for moves hitting 2 or 3 Pokémon, will be shown before selecting a move.
 #define B_SHOW_SPLIT_ICON           TRUE  // If set to TRUE, it will show an icon in the summary showing the move's category split.
 
+// Critical Capture
+#define B_CRITICAL_CAPTURE          TRUE  // If set to TRUE, Critical Capture will be enabled.
+#define B_CATCHING_CHARM_BOOST      20    // % boost in Critical Capture odds if player has the Catching Charm.
+
 // Other
 #define B_DOUBLE_WILD_CHANCE        0     // % chance of encountering two Pokémon in a Wild Encounter.
 #define B_SLEEP_TURNS               GEN_6 // In Gen5+, sleep lasts for 1-3 turns instead of 2-5 turns.
-#define B_PARALYZE_ELECTRIC         GEN_6 // In Gen6+, Electric type Pokémon can't be paralyzed.
-#define B_POWDER_GRASS              GEN_6 // In Gen6+, Grass type Pokémon are immune to powder and spore moves.
+#define B_PARALYZE_ELECTRIC         GEN_6 // In Gen6+, Electric-type Pokémon can't be paralyzed.
+#define B_POWDER_GRASS              GEN_6 // In Gen6+, Grass-type Pokémon are immune to powder and spore moves.
+#define B_STEEL_RESISTANCES         GEN_6 // In Gen6+, Steel-type Pokémon are no longer resistant to Dark and Ghost moves.
 
 // Animation Settings
 #define B_NEW_SWORD_PARTICLE            TRUE    // If set to TRUE, it updates Swords Dance's particle.

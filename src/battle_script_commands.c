@@ -3434,7 +3434,7 @@ static void Cmd_jumpifability(void)
 {
     u32 battlerId;
     bool32 hasAbility = FALSE;
-    u32 ability = gBattlescriptCurrInstr[2];
+    u32 ability = T2_READ_16(gBattlescriptCurrInstr + 2);
 
     switch (gBattlescriptCurrInstr[1])
     {
@@ -3464,13 +3464,13 @@ static void Cmd_jumpifability(void)
     if (hasAbility)
     {
         gLastUsedAbility = ability;
-        gBattlescriptCurrInstr = T2_READ_PTR(gBattlescriptCurrInstr + 3);
+        gBattlescriptCurrInstr = T2_READ_PTR(gBattlescriptCurrInstr + 4);
         RecordAbilityBattle(battlerId, gLastUsedAbility);
         gBattlerAbility = battlerId;
     }
     else
     {
-        gBattlescriptCurrInstr += 7;
+        gBattlescriptCurrInstr += 8;
     }
 }
 
@@ -3955,8 +3955,9 @@ static void atk24(void)
             if ((gHitMarker & HITMARKER_FAINTED2(i)) && (!gSpecialStatuses[i].flag40))
                 foundPlayer++;
         }
-
+        
         foundOpponent = 0;
+
         for (i = 1; i < gBattlersCount; i += 2)
         {
             if ((gHitMarker & HITMARKER_FAINTED2(i)) && (!gSpecialStatuses[i].flag40))
@@ -3966,14 +3967,14 @@ static void atk24(void)
         if (gBattleTypeFlags & BATTLE_TYPE_MULTI)
         {
             if (foundOpponent + foundPlayer > 1)
-                gBattlescriptCurrInstr = (u8*) T2_READ_32(gBattlescriptCurrInstr + 1);
+                gBattlescriptCurrInstr = T2_READ_PTR(gBattlescriptCurrInstr + 1);
             else
                 gBattlescriptCurrInstr += 5;
         }
         else
         {
             if (foundOpponent != 0 && foundPlayer != 0)
-                gBattlescriptCurrInstr = (u8*) T2_READ_32(gBattlescriptCurrInstr + 1);
+                gBattlescriptCurrInstr = T2_READ_PTR(gBattlescriptCurrInstr + 1);
             else
                 gBattlescriptCurrInstr += 5;
         }
@@ -4383,10 +4384,10 @@ static void Cmd_setroost(void)
 
 static void Cmd_jumpifabilitypresent(void)
 {
-    if (IsAbilityOnField(gBattlescriptCurrInstr[1]))
-        gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 2);
+    if (IsAbilityOnField(T1_READ_16(gBattlescriptCurrInstr + 1)))
+        gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
     else
-        gBattlescriptCurrInstr += 6;
+        gBattlescriptCurrInstr += 7;
 }
 
 static void Cmd_endselectionscript(void)
@@ -6181,8 +6182,8 @@ static void Cmd_hitanimation(void)
 static u32 GetTrainerMoneyToGive(u16 trainerId)
 {
     u32 i = 0;
+    u32 lastMonLevel = 0;
     u32 moneyReward;
-    u8 lastMonLevel = 0;
 
     if (trainerId == TRAINER_SECRET_BASE)
     {
@@ -6682,7 +6683,7 @@ static void PutLevelAndGenderOnLvlUpBox(void)
     printerTemplate.currentY = 0;
     printerTemplate.letterSpacing = 0;
     printerTemplate.lineSpacing = 0;
-    printerTemplate.style = 0;
+    printerTemplate.unk = 0;
     printerTemplate.fgColor = TEXT_COLOR_WHITE;
     printerTemplate.bgColor = TEXT_COLOR_TRANSPARENT;
     printerTemplate.shadowColor = TEXT_COLOR_DARK_GREY;
@@ -7851,14 +7852,22 @@ static void Cmd_various(void)
         // Change species.
         if (gBattlescriptCurrInstr[3] == 0)
         {
+            u16 megaSpecies;
             gBattleStruct->mega.evolvedSpecies[gActiveBattler] = gBattleMons[gActiveBattler].species;
             if (GetBattlerPosition(gActiveBattler) == B_POSITION_PLAYER_LEFT
                 || (GetBattlerPosition(gActiveBattler) == B_POSITION_PLAYER_RIGHT && !(gBattleTypeFlags & (BATTLE_TYPE_MULTI | BATTLE_TYPE_INGAME_PARTNER))))
             {
                 gBattleStruct->mega.playerEvolvedSpecies = gBattleStruct->mega.evolvedSpecies[gActiveBattler];
             }
+            //Checks regular Mega Evolution
+            megaSpecies = GetMegaEvolutionSpecies(gBattleStruct->mega.evolvedSpecies[gActiveBattler], gBattleMons[gActiveBattler].item);
+            //Checks Wish Mega Evolution
+            if (megaSpecies == SPECIES_NONE)
+            {
+                megaSpecies = GetWishMegaEvolutionSpecies(gBattleStruct->mega.evolvedSpecies[gActiveBattler], gBattleMons[gActiveBattler].moves[0], gBattleMons[gActiveBattler].moves[1], gBattleMons[gActiveBattler].moves[2], gBattleMons[gActiveBattler].moves[3]);
+            }
 
-            gBattleMons[gActiveBattler].species = GetMegaEvolutionSpecies(gBattleStruct->mega.evolvedSpecies[gActiveBattler], gBattleMons[gActiveBattler].item);
+            gBattleMons[gActiveBattler].species = megaSpecies;
             PREPARE_SPECIES_BUFFER(gBattleTextBuff1, gBattleMons[gActiveBattler].species);
 
             BtlController_EmitSetMonData(0, REQUEST_SPECIES_BATTLE, gBitTable[gBattlerPartyIndexes[gActiveBattler]], 2, &gBattleMons[gActiveBattler].species);
@@ -9126,6 +9135,7 @@ static void Cmd_forcerandomswitch(void)
     s32 i;
     s32 battler1PartyId = 0;
     s32 battler2PartyId = 0;
+
     s32 firstMonId;
     s32 lastMonId = 0; // + 1
     s32 monsCount;
@@ -10270,7 +10280,7 @@ static void Cmd_healpartystatus(void)
 
             if (species != SPECIES_NONE && species != SPECIES_EGG)
             {
-                u8 ability;
+                u16 ability;
 
                 if (gBattlerPartyIndexes[gBattlerAttacker] == i)
                     ability = gBattleMons[gBattlerAttacker].ability;
@@ -11273,7 +11283,7 @@ static void Cmd_tryswapabilities(void) // skill swap
     }
     else
     {
-        u8 abilityAtk = gBattleMons[gBattlerAttacker].ability;
+        u16 abilityAtk = gBattleMons[gBattlerAttacker].ability;
         gBattleMons[gBattlerAttacker].ability = gBattleMons[gBattlerTarget].ability;
         gBattleMons[gBattlerTarget].ability = abilityAtk;
 
@@ -11528,7 +11538,7 @@ static void Cmd_pickup(void)
 {
     s32 i;
     u16 species, heldItem;
-    u8 ability;
+    u16 ability;
     u8 lvlDivBy10;
 
     if (InBattlePike())
@@ -12563,25 +12573,34 @@ static void Cmd_metalburstdamagecalculator(void)
 
 static bool32 CriticalCapture(u32 odds)
 {
-    u16 numCaught = GetNationalPokedexCount(FLAG_GET_CAUGHT);
+    #if B_CRITICAL_CAPTURE == TRUE
+        u32 numCaught = GetNationalPokedexCount(FLAG_GET_CAUGHT);
 
-    if (numCaught <= 30)
-        odds = 0;
-    else if (numCaught <= 150)
-        odds /= 2;
-    else if (numCaught <= 300)
-        ;
-    else if (numCaught <= 450)
-        odds = (odds * 150) / 100;
-    else if (numCaught <= 600)
-        odds *= 2;
-    else
-        odds = (odds * 250) / 100;
+        if (numCaught <= (NATIONAL_DEX_COUNT * 30) / 650)
+            odds = 0;
+        else if (numCaught <= (NATIONAL_DEX_COUNT * 150) / 650)
+            odds /= 2;
+        else if (numCaught <= (NATIONAL_DEX_COUNT * 300) / 650)
+            ;   // odds = (odds * 100) / 100;
+        else if (numCaught <= (NATIONAL_DEX_COUNT * 450) / 650)
+            odds = (odds * 150) / 100;
+        else if (numCaught <= (NATIONAL_DEX_COUNT * 600) / 650)
+            odds *= 2;
+        else
+            odds = (odds * 250) / 100;
 
-    odds /= 6;
-    if ((Random() % 255) < odds)
-        return TRUE;
+        #ifdef ITEM_CATCHING_CHARM
+        if (CheckBagHasItem(ITEM_CATCHING_CHARM, 1))
+            odds = (odds * (100 + B_CATCHING_CHARM_BOOST)) / 100;
+        #endif
 
-    return FALSE;
+        odds /= 6;
+        if ((Random() % 255) < odds)
+            return TRUE;
+
+        return FALSE;
+    #else
+        return FALSE;
+    #endif
 }
 
