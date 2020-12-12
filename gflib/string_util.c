@@ -822,7 +822,7 @@ char *ConvertToAscii(const u8 *str)
         }
         else if (*str == CHAR_SGL_QUOT_LEFT || *str == CHAR_SGL_QUOT_RIGHT)
         {
-            modifiedCode = '"'; // single quote
+            modifiedCode = '\''; // single quote
         }
         else if (*str == CHAR_CURRENCY)
         {
