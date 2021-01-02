@@ -55,9 +55,6 @@ RustboroCity_DevonCorp_3F_EventScript_MeetPresident:: @ 821246E
 	playfanfare MUS_OBTAIN_ITEM
 	message RustboroCity_DevonCorp_3F_Text_ReceivedPokenav
 	waitfanfare
-	giveitem ITEM_EXP_SHARE
-	compare VAR_RESULT, FALSE
-	setflag FLAG_RECEIVED_EXP_SHARE
 	setflag FLAG_SYS_POKENAV_GET
 	setflag FLAG_RECEIVED_POKENAV
 	setflag FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT
@@ -155,8 +152,8 @@ RustboroCity_DevonCorp_3F_Movement_PlayerApproachDesk: @ 8212566
 RustboroCity_DevonCorp_3F_EventScript_MrStone:: @ 821256C
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_MEGA_STONES_1, RustboroCity_DevonCorp_3F_EventScript_MrStoneAfterFavor
-	goto_if_set FLAG_DELIVERED_STEVEN_LETTER, RustboroCity_DevonCorp_3F_EventScript_DeliveredLetter
+	goto_if_set FLAG_RECEIVED_EXP_SHARE, RustboroCity_DevonCorp_3F_EventScript_MrStoneAfterFavor
+	goto_if_set FLAG_DELIVERED_STEVEN_LETTER, RustboroCity_DevonCorp_3F_EventScript_GiveExpShare
 	msgbox RustboroCity_DevonCorp_3F_Text_CountingOnYou, MSGBOX_DEFAULT
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
@@ -164,35 +161,13 @@ RustboroCity_DevonCorp_3F_EventScript_MrStone:: @ 821256C
 	release
 	end
 
-RustboroCity_DevonCorp_3F_EventScript_DeliveredLetter::
+RustboroCity_DevonCorp_3F_EventScript_GiveExpShare:: @ 8212595
 	msgbox RustboroCity_DevonCorp_3F_Text_ThankYouForDeliveringLetter, MSGBOX_DEFAULT
-	goto_if_set FLAG_RECEIVED_MEGA_BRACELET, RustboroCity_DevonCorp_3F_EventScript_GiveMegaStones
-	msgbox RustboroCity_DevonCorp_3F_Text_ComeBackLater, MSGBOX_DEFAULT
-	closemessage	
-	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
-	waitmovement 0
-	release
-	end
-
-RustboroCity_DevonCorp_3F_EventScript_GiveMegaStones:: @ 8212595
-	msgbox RustboroCity_DevonCorp_3F_Text_MyWayOfThankingYou, MSGBOX_DEFAULT
-	giveitem ITEM_SCEPTILITE
+	giveitem ITEM_EXP_SHARE
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowBagIsFull
-	giveitem ITEM_BLAZIKENITE
-	compare VAR_RESULT, FALSE
-	goto_if_eq Common_EventScript_ShowBagIsFull
-	giveitem ITEM_SWAMPERTITE
-	compare VAR_RESULT, FALSE
-	goto_if_eq Common_EventScript_ShowBagIsFull
-	giveitem ITEM_MAWILITE
-	compare VAR_RESULT, FALSE
-	goto_if_eq Common_EventScript_ShowBagIsFull
-	giveitem ITEM_SABLENITE
-	compare VAR_RESULT, FALSE
-	goto_if_eq Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_MEGA_STONES_1
-	msgbox RustboroCity_DevonCorp_3F_Text_ExplainMegaStones, MSGBOX_DEFAULT
+	setflag FLAG_RECEIVED_EXP_SHARE
+	msgbox RustboroCity_DevonCorp_3F_Text_ExplainExpShare, MSGBOX_DEFAULT
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
 	waitmovement 0
@@ -247,8 +222,7 @@ RustboroCity_DevonCorp_3F_Text_MrStoneWantYouToHaveThis: @ 821277C
 	.string "That's why I want you to have this!$"
 
 RustboroCity_DevonCorp_3F_Text_ReceivedPokenav: @ 8212820
-	.string "{PLAYER} received a Pokénav.\p"
-	.string "{PLAYER} also received the Exp Share!$"
+	.string "{PLAYER} received a Pokénav.$"
 
 RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp: @ 8212837
 	.string "Mr. Stone: That device…\p"
@@ -260,7 +234,7 @@ RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp: @ 8212837
 	.string "You can check the locations of\n"
 	.string "Dewford and Slateport easily!\p"
 	.string "By the way, I've heard that sinister\n"
-	.string "criminals--Magma and Aqua, I believe--\l"
+	.string "criminals--MAGMA and Aqua, I believe--\l"
 	.string "have been making trouble far and wide.\p"
 	.string "I think it would be best if you rested\n"
 	.string "up before you go on your way.$"
@@ -274,30 +248,18 @@ RustboroCity_DevonCorp_3F_Text_CountingOnYou: @ 8212A09
 
 RustboroCity_DevonCorp_3F_Text_ThankYouForDeliveringLetter: @ 8212A29
 	.string "Mr. Stone: You delivered my Letter?\n"
-	.string "Thank you kindly!$"
-
-RustboroCity_DevonCorp_3F_Text_MyWayOfThankingYou: @ 8212A29
+	.string "Thank you kindly!\p"
 	.string "This is my way of thanking you.\n"
 	.string "It should help you, a Trainer.$"
 
-RustboroCity_DevonCorp_3F_Text_ComeBackLater: @ 8212A29
-	.string "I would like to give you something\n"
-	.string "to help you as a Trainer.\p"
-	.string "But it wouldn't be appropriate just yet.\p"
-	.string "Please come back when you defeat\n"
-	.string "your father.$"
-
-RustboroCity_DevonCorp_3F_Text_ReceivedMegaStones: @ 8212820
-	.string "{PLAYER} received some Mega Stones.$"
-
-RustboroCity_DevonCorp_3F_Text_ExplainMegaStones: @ 8212820
-	.string "Mr. Stone: These should allow you to\n"
-	.string "Mega Evolve that Pokémon you received\l"
-	.string "from Prof. Birch.\p"
-	.string "I also included the ones for Pokémon\n"
-	.string "found on Dewford.\p"
-	.string "I hope this helps you build a proper\n" 
-	.string "collection as a Trainer.$"
+RustboroCity_DevonCorp_3F_Text_ExplainExpShare: @ 8212A9E
+	.string "Mr. Stone: A Pokémon holding that\n"
+	.string "Exp. Share will be given some of the\l"
+	.string "Exp Points from battle.\p"
+	.string "It will get Exp Points even if it didn't\n"
+	.string "actually battle.\p"
+	.string "I would say Exp. Share is quite useful\n"
+	.string "for raising weak Pokémon.$"
 
 RustboroCity_DevonCorp_3F_Text_NotFamiliarWithTrends: @ 8212B78
 	.string "Mr. Stone: Since my youth, I've immersed\n"
