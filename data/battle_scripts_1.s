@@ -1082,16 +1082,15 @@ BattleScript_EffectFinalGambit:
 	waitstate
 	healthbarupdate BS_TARGET
 	datahpupdate BS_TARGET
-	critmessage
-	waitmessage 0x40
 	resultmessage
 	waitmessage 0x40
-	seteffectwithchance
-	tryfaintmon BS_TARGET, FALSE, NULL
-	jumpifmovehadnoeffect BattleScript_MoveEnd
+	dmgtocurrattackerhp
 	healthbarupdate BS_ATTACKER
 	datahpupdate BS_ATTACKER
+	seteffectwithchance
 	tryfaintmon BS_ATTACKER, FALSE, NULL
+	tryfaintmon BS_TARGET, FALSE, NULL
+	jumpifmovehadnoeffect BattleScript_MoveEnd
 	goto BattleScript_MoveEnd
 
 BattleScript_EffectHitSwitchTarget:
@@ -5424,21 +5423,25 @@ BattleScript_MagicRoomEnds::
 BattleScript_ElectricTerrainEnds::
 	printstring STRINGID_ELECTRICTERRAINENDS
 	waitmessage 0x40
+	playanimation BS_ATTACKER, B_ANIM_RESTORE_BG, NULL
 	end2
 
 BattleScript_MistyTerrainEnds::
 	printstring STRINGID_MISTYTERRAINENDS
 	waitmessage 0x40
+	playanimation BS_ATTACKER, B_ANIM_RESTORE_BG, NULL
 	end2
 
 BattleScript_GrassyTerrainEnds::
 	printstring STRINGID_GRASSYTERRAINENDS
 	waitmessage 0x40
+	playanimation BS_ATTACKER, B_ANIM_RESTORE_BG, NULL
 	end2
 
 BattleScript_PsychicTerrainEnds::
 	printstring STRINGID_PSYCHICTERRAINENDS
 	waitmessage 0x40
+	playanimation BS_ATTACKER, B_ANIM_RESTORE_BG, NULL
 	end2
 
 BattleScript_MudSportEnds::
