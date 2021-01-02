@@ -55,6 +55,9 @@ RustboroCity_DevonCorp_3F_EventScript_MeetPresident:: @ 821246E
 	playfanfare MUS_OBTAIN_ITEM
 	message RustboroCity_DevonCorp_3F_Text_ReceivedPokenav
 	waitfanfare
+	giveitem ITEM_EXP_SHARE
+	compare VAR_RESULT, FALSE
+	setflag FLAG_RECEIVED_EXP_SHARE
 	setflag FLAG_SYS_POKENAV_GET
 	setflag FLAG_RECEIVED_POKENAV
 	setflag FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT
@@ -152,8 +155,8 @@ RustboroCity_DevonCorp_3F_Movement_PlayerApproachDesk: @ 8212566
 RustboroCity_DevonCorp_3F_EventScript_MrStone:: @ 821256C
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_EXP_SHARE, RustboroCity_DevonCorp_3F_EventScript_MrStoneAfterFavor
-	goto_if_set FLAG_DELIVERED_STEVEN_LETTER, RustboroCity_DevonCorp_3F_EventScript_GiveExpShare
+	goto_if_set FLAG_RECEIVED_GROWTH_ITEMS, RustboroCity_DevonCorp_3F_EventScript_MrStoneAfterFavor
+	goto_if_set FLAG_DELIVERED_STEVEN_LETTER, RustboroCity_DevonCorp_3F_EventScript_GiveGrowthItems
 	msgbox RustboroCity_DevonCorp_3F_Text_CountingOnYou, MSGBOX_DEFAULT
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
@@ -161,12 +164,30 @@ RustboroCity_DevonCorp_3F_EventScript_MrStone:: @ 821256C
 	release
 	end
 
-RustboroCity_DevonCorp_3F_EventScript_GiveExpShare:: @ 8212595
+RustboroCity_DevonCorp_3F_EventScript_GiveGrowthItems:: @ 8212595
 	msgbox RustboroCity_DevonCorp_3F_Text_ThankYouForDeliveringLetter, MSGBOX_DEFAULT
-	giveitem ITEM_EXP_SHARE
+	giveitem ITEM_LUCKY_EGG
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_EXP_SHARE
+	giveitem ITEM_POWER_WEIGHT
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	giveitem ITEM_POWER_BRACER
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	giveitem ITEM_POWER_BELT
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	giveitem ITEM_POWER_LENS
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	giveitem ITEM_POWER_BAND
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	giveitem ITEM_POWER_ANKLET
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	setflag FLAG_RECEIVED_GROWTH_ITEMS
 	msgbox RustboroCity_DevonCorp_3F_Text_ExplainExpShare, MSGBOX_DEFAULT
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
@@ -219,10 +240,11 @@ RustboroCity_DevonCorp_3F_Text_MrStoneWantYouToHaveThis: @ 821277C
 	.string "I am a great President.\p"
 	.string "So, I'd never be so cheap as to ask\n"
 	.string "a favor for nothing in return.\p"
-	.string "That's why I want you to have this!$"
+	.string "That's why I want you to have these!$"
 
 RustboroCity_DevonCorp_3F_Text_ReceivedPokenav: @ 8212820
-	.string "{PLAYER} received a Pokénav.$"
+	.string "{PLAYER} received a Pokénav.\p"
+	.string "{PLAYER} also received the Exp Share!$"
 
 RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp: @ 8212837
 	.string "Mr. Stone: That device…\p"
@@ -234,7 +256,7 @@ RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp: @ 8212837
 	.string "You can check the locations of\n"
 	.string "Dewford and Slateport easily!\p"
 	.string "By the way, I've heard that sinister\n"
-	.string "criminals--MAGMA and Aqua, I believe--\l"
+	.string "criminals--Magma and Aqua, I believe--\l"
 	.string "have been making trouble far and wide.\p"
 	.string "I think it would be best if you rested\n"
 	.string "up before you go on your way.$"
@@ -253,13 +275,10 @@ RustboroCity_DevonCorp_3F_Text_ThankYouForDeliveringLetter: @ 8212A29
 	.string "It should help you, a Trainer.$"
 
 RustboroCity_DevonCorp_3F_Text_ExplainExpShare: @ 8212A9E
-	.string "Mr. Stone: A Pokémon holding that\n"
-	.string "Exp. Share will be given some of the\l"
-	.string "Exp Points from battle.\p"
-	.string "It will get Exp Points even if it didn't\n"
-	.string "actually battle.\p"
-	.string "I would say Exp. Share is quite useful\n"
-	.string "for raising weak Pokémon.$"
+	.string "Mr. Stone: A Pokémon holding those\n"
+	.string "items will grow faster from battle.\p"
+	.string "They're quite useful for aspiring\n"
+	.string "Pokémon Trainers.$"
 
 RustboroCity_DevonCorp_3F_Text_NotFamiliarWithTrends: @ 8212B78
 	.string "Mr. Stone: Since my youth, I've immersed\n"
