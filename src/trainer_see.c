@@ -21,7 +21,7 @@
 #include "constants/trainer_types.h"
 
 extern const struct SpritePalette sEventObjectSpritePalettes[];
-extern const struct SpritePalette gFieldEffectObjectPaletteInfo0;
+extern const struct SpritePalette gSpritePalette_GeneralFieldEffect0;
 
 // this file's functions
 static u8 CheckTrainer(u8 objectEventId);
@@ -676,7 +676,7 @@ u8 FldEff_ExclamationMarkIcon(void)
 {
     u8 spriteId, paletteNum;
 
-    LoadEventObjectPalette(0x1100);
+    LoadObjectEventPalette(0x1100);
     UpdatePaletteGammaType(IndexOfSpritePaletteTag(0x1100), GAMMA_ALT);
     UpdateSpritePaletteWithWeather(IndexOfSpritePaletteTag(0x1100));
     spriteId = CreateSpriteAtEnd(&sSpriteTemplate_ExclamationQuestionMark, 0, 0, 0x53);
@@ -691,7 +691,7 @@ u8 FldEff_QuestionMarkIcon(void)
 {
     u8 spriteId;
 
-    LoadEventObjectPalette(0x1100);
+    LoadObjectEventPalette(0x1100);
     UpdatePaletteGammaType(IndexOfSpritePaletteTag(0x1100), GAMMA_ALT);
     UpdateSpritePaletteWithWeather(IndexOfSpritePaletteTag(0x1100));
     spriteId = CreateSpriteAtEnd(&sSpriteTemplate_ExclamationQuestionMark, 0, 0, 0x52);
@@ -706,7 +706,7 @@ u8 FldEff_HeartIcon(void)
 {
     u8 spriteId;
 
-    LoadSpritePalette(&gFieldEffectObjectPaletteInfo0);
+    LoadSpritePalette(&gSpritePalette_GeneralFieldEffect0);
     UpdatePaletteGammaType(IndexOfSpritePaletteTag(0x1004), GAMMA_ALT);
     UpdateSpritePaletteWithWeather(IndexOfSpritePaletteTag(0x1004));
     spriteId = CreateSpriteAtEnd(&sSpriteTemplate_HeartIcon, 0, 0, 0x52);

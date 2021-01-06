@@ -1600,7 +1600,7 @@ void LoadFieldEffectPalette(u8 fieldEffect)
     spriteTemplate = gFieldEffectObjectTemplatePointers[fieldEffect];
     if (spriteTemplate->paletteTag != 0xffff)
     {
-        LoadEventObjectPalette(spriteTemplate->paletteTag);
+        LoadObjectEventPalette(spriteTemplate->paletteTag);
         UpdatePaletteGammaType(IndexOfSpritePaletteTag(spriteTemplate->paletteTag), GAMMA_NORMAL);
     }
 }

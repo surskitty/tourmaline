@@ -62,7 +62,7 @@ extern const struct OamData gObjectEventBaseOam_32x8;
 extern const struct OamData gObjectEventBaseOam_32x32;
 extern const struct SpriteTemplate *const gFieldEffectObjectTemplatePointers[];
 
-extern const u16 *const gBerryTreeObjectEventGraphicsIdTablePointers[];
+extern const u8 *const gBerryTreeObjectEventGraphicsIdTablePointers[];
 extern const struct SpriteFrameImage *const gBerryTreePicTablePointers[];
 extern const u16 *const gBerryTreePaletteTagTablePointers[];
 

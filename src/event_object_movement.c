@@ -1362,7 +1362,7 @@ u8 CreateObjectSprite(u8 graphicsId, u8 a1, s16 x, s16 y, u8 z, u8 direction)
         sprite->data[1] = z;
         if (graphicsInfo->paletteSlot >= 16)
         {
-            sub_808EAB0(graphicsInfo->paletteTag1, graphicsInfo->paletteSlot | 0xf0);
+            sub_808EAB0(graphicsInfo->paletteTag, graphicsInfo->paletteSlot | 0xf0);
         }
         if (subspriteTables != NULL)
         {
@@ -1561,12 +1561,12 @@ void ObjectEventSetGraphicsId(struct ObjectEvent *objectEvent, u8 graphicsId)
     paletteSlot = graphicsInfo->paletteSlot;
     if (paletteSlot == 0)
     {
-        PatchObjectPalette(graphicsInfo->paletteTag1, graphicsInfo->paletteSlot);
+        PatchObjectPalette(graphicsInfo->paletteTag, graphicsInfo->paletteSlot);
     }
     else if (paletteSlot >= 16)
     {
         paletteSlot -= 16;
-        sub_808EAB0(graphicsInfo->paletteTag1, paletteSlot);
+        sub_808EAB0(graphicsInfo->paletteTag, paletteSlot);
     }
     sprite->oam.shape = graphicsInfo->oam->shape;
     sprite->oam.size = graphicsInfo->oam->size;
