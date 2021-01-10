@@ -699,18 +699,6 @@
 
 	NO_MUSIC = FALSE
 
-	@ Starts a single trainer battle, takes a trainer, intro text, loss text, and an optional event script
-	@ when used with an event script, you can also pass in an optional flag to disable music
-	.macro trainerbattle_single trainer:req, intro_text:req, lose_text:req, event_script=FALSE, music=TRUE
-	.if \event_script == FALSE
-	trainerbattle TRAINER_BATTLE_SINGLE, \trainer, 0, \intro_text, \lose_text
-	.elseif \music == TRUE
-	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT, \trainer, 0, \intro_text, \lose_text, \event_script
-	.else
-	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT_NO_MUSIC, \trainer, 0, \intro_text, \lose_text, \event_script
-	.endif
-	.endm
-
 	@ Starts a double trainer battle, takes a trainer, intro text, loss text, text for when you have too few pokemon
 	@ and an optional event script, when used with an event script you can pass in an optional flag to disable music
 	.macro trainerbattle_double trainer:req, intro_text:req, lose_text:req, not_enough_pkmn_text:req, event_script=FALSE, music=TRUE
@@ -723,14 +711,26 @@
 	.endif
 	.endm
 
-	@ Starts a rematch battle, takes a trainer, intro text and loss text
-	.macro trainerbattle_rematch trainer:req, intro_text:req, lose_text:req
-	trainerbattle TRAINER_BATTLE_REMATCH, \trainer, 0, \intro_text, \lose_text
+	@ Starts a trainer battle, takes a trainer, intro text, loss text, and an optional event script
+	@ when used with an event script, you can also pass in an optional flag to disable music
+	.macro trainerbattle_single trainer:req, intro_text:req, lose_text:req, event_script=FALSE, music=TRUE
+	.if \event_script == FALSE
+	trainerbattle TRAINER_BATTLE_DOUBLE, \trainer, 0, \intro_text, \lose_text, gText_NotEnoughPokemon
+	.elseif \music == TRUE
+	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE, \trainer, 0, \intro_text, \lose_text, gText_NotEnoughPokemon, \event_script
+	.else
+	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_NO_MUSIC, \trainer, 0, \intro_text, \lose_text, gText_NotEnoughPokemon, \event_script
+	.endif
 	.endm
 
 	@ Starts a rematch double battle, takes a trainer, intro text, loss text, and text for when you have too few pokemon
 	.macro trainerbattle_rematch_double trainer:req, intro_text:req, lose_text:req, not_enough_pkmn_text:req
 	trainerbattle TRAINER_BATTLE_REMATCH_DOUBLE, \trainer, 0, \intro_text, \lose_text, \not_enough_pkmn_text
+	.endm
+
+	@ Starts a rematch battle, takes a trainer, intro text and loss text
+	.macro trainerbattle_rematch trainer:req, intro_text:req, lose_text:req
+	trainerbattle TRAINER_BATTLE_REMATCH_DOUBLE, \trainer, 0, \intro_text, \lose_text, gText_NotEnoughPokemon
 	.endm
 
 	@ Starts a trainer battle, skipping intro text, takes a trainer and loss text
