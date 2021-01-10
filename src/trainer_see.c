@@ -177,6 +177,9 @@ bool8 CheckForTrainersWantingBattle(void)
 {
     u8 i;
 
+    if (FlagGet(FLAG_SYS_STEALTH_MODE))
+        return FALSE;
+
     gNoOfApproachingTrainers = 0;
     gApproachingTrainerId = 0;
 
