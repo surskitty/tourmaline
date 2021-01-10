@@ -43,3 +43,4 @@ porymap.project.cfg
 *.a
 .fuse_hidden*
 *.srm
+*.sna
