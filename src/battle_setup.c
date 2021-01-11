@@ -792,39 +792,8 @@ static u8 GetSumOfEnemyPartyLevel(u16 opponentId, u8 numMons)
                 sum += party[i].lvl;
         }
         break;
-    case F_TRAINER_PARTY_CUSTOM_ABILITY:
-        {
-            const struct TrainerMonNoItemDefaultMovesCustomAbility *party;
-            party = gTrainers[opponentId].party.NoItemDefaultMovesCustomAbility;
-            for (i = 0; i < count; i++)
-                sum += party[i].lvl;
-        }
-        break;
-    case F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_CUSTOM_ABILITY:
-        {
-            const struct TrainerMonNoItemCustomMovesCustomAbility *party;
-            party = gTrainers[opponentId].party.NoItemCustomMovesCustomAbility;
-            for (i = 0; i < count; i++)
-                sum += party[i].lvl;
-        }
-        break;
-    case F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_ABILITY:
-        {
-            const struct TrainerMonItemDefaultMovesCustomAbility *party;
-            party = gTrainers[opponentId].party.ItemDefaultMovesCustomAbility;
-            for (i = 0; i < count; i++)
-                sum += party[i].lvl;
-        }
-        break;
-    case F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_ABILITY:
-        {
-            const struct TrainerMonItemCustomMovesCustomAbility *party;
-            party = gTrainers[opponentId].party.ItemCustomMovesCustomAbility;
-            for (i = 0; i < count; i++)
-                sum += party[i].lvl;
-        }
-        break;
     }
+
     return sum;
 }
 
