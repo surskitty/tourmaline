@@ -4826,6 +4826,11 @@ u8 CalculatePlayerPartyCount(void)
         gPlayerPartyCount++;
     }
 
+    if (gPlayerPartyCount == 1)
+        FlagSet(FLAG_SYS_STEALTH_MODE);
+    else
+        FlagClear(FLAG_SYS_STEALTH_MODE);
+
     return gPlayerPartyCount;
 }
 
