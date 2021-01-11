@@ -7726,6 +7726,10 @@ bool32 CanMegaEvolve(u8 battlerId)
             return FALSE;
     }
 
+    // Prevent the player from Mega Evolving without a Mega Bracelet.
+    if ((GetBattlerSide(gActiveBattler) == B_SIDE_PLAYER) && !(FlagGet(FLAG_RECEIVED_MEGA_BRACELET)))
+        return FALSE;
+
     // Gets mon data.
     if (GetBattlerSide(battlerId) == B_SIDE_OPPONENT)
         mon = &gEnemyParty[gBattlerPartyIndexes[battlerId]];
