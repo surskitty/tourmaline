@@ -1633,7 +1633,7 @@ static bool32 UpdateRandomTrainerRematches(const struct RematchTrainer *table, u
                 ret = TRUE;
             }
             else if (FlagGet(FLAG_MATCH_CALL_REGISTERED + i)
-             && (Random() % 100) <= 30)  // 31% chance of getting a rematch.
+             && (Random() % 100) <= 74)  // 75% chance of getting a rematch.
             {
                 SetRematchIdForTrainer(table, i);
                 ret = TRUE;
