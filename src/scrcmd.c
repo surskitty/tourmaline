@@ -2328,18 +2328,6 @@ bool8 ScrCmd_warpsootopolislegend(struct ScriptContext *ctx)
     return TRUE;
 }
 
-bool8 ScrCmd_showitemdesc(struct ScriptContext *ctx)
-{
-    DrawHeaderBox();
-    return FALSE;
-}
-
-bool8 ScrCmd_hideitemdesc(struct ScriptContext *ctx)
-{
-    HideHeaderBox();
-    return FALSE;
-}
-
 bool8 ScrCmd_givecustommon(struct ScriptContext *ctx)
 {
     u16 species = ScriptReadHalfword(ctx);
@@ -2373,4 +2361,3 @@ bool8 ScrCmd_givecustommon(struct ScriptContext *ctx)
     gSpecialVar_Result = ScriptGiveCustomMon(species, level, item, ball, nature, abilityNum, evs, ivs, moves, isShiny);
     return FALSE;
 }
-

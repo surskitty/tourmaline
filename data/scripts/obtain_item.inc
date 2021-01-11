@@ -1,5 +1,4 @@
 Std_ObtainItem:: @ 8271AD3
-    copyvar VAR_0x8006, VAR_0x8000
 	additem VAR_0x8000, VAR_0x8001
 	copyvar VAR_0x8007, VAR_RESULT
 	call EventScript_ObtainItemMessage
@@ -76,17 +75,9 @@ EventScript_BufferPowerUpPocket::
 	return
 
 EventScript_ObtainedItem:: @ 8271B95
-	compare VAR_0x8001, 1
-	goto_if_eq EventScript_ObtainedItemMessage
-	buffernumberstring 0, VAR_0x8001
-	message gText_ObtainedTheItems
-	goto EventScript_ContinueObtainedItem
-EventScript_ObtainedItemMessage:
 	message gText_ObtainedTheItem
-EventScript_ContinueObtainedItem:
 	waitfanfare
 	msgbox gText_PutItemInPocket, MSGBOX_DEFAULT
-	hideitemdesc
 	setvar VAR_RESULT, 1
 	return
 
@@ -132,7 +123,6 @@ Std_FindItem:: @ 8271BFD
 	lock
 	faceplayer
 	waitse
-    copyvar VAR_0x8006, VAR_0x8000
 	copyvar VAR_0x8004, VAR_0x8000
 	copyvar VAR_0x8005, VAR_0x8001
 	checkitemspace VAR_0x8000, VAR_0x8001
@@ -150,15 +140,12 @@ Std_FindItem:: @ 8271BFD
 EventScript_PickUpItem:: @ 8271C3A
 	removeobject VAR_LAST_TALKED
 	additem VAR_0x8004, VAR_0x8005
-    copyvar VAR_0x8006 VAR_0x8004
 	specialvar VAR_RESULT, BufferTMHMMoveName
 	copyvar VAR_0x8008, VAR_RESULT
 	compare VAR_0x8008, 1
 	call_if_eq EventScript_FoundTMHM
 	compare VAR_0x8008, 0
 	call_if_eq EventScript_FoundItem
-    delay 10
-    showitemdesc
 	waitfanfare
 	waitmessage
 	bufferitemnameplural 1, VAR_0x8004, VAR_0x8005
@@ -166,7 +153,6 @@ EventScript_PickUpItem:: @ 8271C3A
 	compare VAR_RESULT, 1
 	goto_if_eq EventScript_PutBattlePyramidItemInBag
 	msgbox gText_PutItemInPocket, MSGBOX_DEFAULT
-    hideitemdesc
 	return
 
 EventScript_PutBattlePyramidItemInBag:: @ 8271C86
@@ -191,7 +177,6 @@ EventScript_NoRoomToPickUpItem:: @ 8271CA1
 EventScript_HiddenItemScript:: @ 8271CB7
 	lockall
 	waitse
-    copyvar VAR_0x8006, VAR_0x8005
 	additem VAR_0x8005
 	copyvar VAR_0x8007, VAR_RESULT
 	bufferitemnameplural 1, VAR_0x8005, 1
@@ -225,14 +210,11 @@ EventScript_FoundHiddenItem:: @ 8271D1F
 	end
 
 EventScript_PutHiddenItemInPocket:: @ 8271D2A
-    delay 10
-    showitemdesc
 	waitmessage
 	waitfanfare
 	bufferitemnameplural 1, VAR_0x8004, 1
 	copyvar VAR_0x8004, VAR_0x8008
 	msgbox gText_PutItemInPocket, MSGBOX_DEFAULT
-    hideitemdesc
 	special TryPutTreasureInvestigatorsOnAir
 	special SetHiddenItemFlag
 	releaseall
