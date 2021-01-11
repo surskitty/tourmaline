@@ -1,12 +1,11 @@
-gText_WouldYouLikeToRestYourPkmn:: @ 82726EB
+gText_RestYourPkmn:: @ 82726EB
     .string "Hello, and welcome to\n"
     .string "the Pokémon Center.\p"
     .string "We restore your tired Pokémon\n"
-    .string "to full health.\p"
-    .string "Would you like to rest your Pokémon?$"
+    .string "to full health.$"
 
 gText_IllTakeYourPkmn:: @ 8272768
-    .string "Okay, I'll take your Pokémon\n"
+    .string "I'll take your Pokémon\n"
     .string "for a few seconds.$"
 
 gText_RestoredPkmnToFullHealth:: @ 8272798
@@ -20,9 +19,7 @@ gText_WeHopeToSeeYouAgain:: @ 82727DB
 gText_WelcomeCutShort:: @ 82727F5
     .string "Hello, and welcome to\n"
     .string "the Pokémon Center.\p"
-    .string "We restore your tired Pokémon\n"
-    .string "to full health.\p"
-    .string "Would you like to…$"
+    .string "We restore your tired…$"
 
 gText_NoticesGoldCard:: @ 8272860
     .string "Th-that card…\n"
