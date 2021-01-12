@@ -1833,9 +1833,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 CreateMonWithGenderNatureLetter(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, partyData[i].gender, partyData[i].nature, 0, partyData[i].shiny ? OT_ID_SHINY : OT_ID_RANDOM_NO_SHINY);
             else
             {
-                if (gTrainers[trainerNum].doubleBattle == TRUE)
-                    personalityValue = 0x80;
-                else if (gTrainers[trainerNum].encounterMusic_gender & 0x80)
+                if (gTrainers[trainerNum].encounterMusic_gender & 0x80)
                     personalityValue = 0x78;
                 else
                     personalityValue = 0x88;
