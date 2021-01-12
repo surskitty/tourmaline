@@ -71,9 +71,7 @@ Route103_EventScript_RivalReceiveEevee::
 	setvar VAR_TEMP_1, SPECIES_EEVEE
 	givecustommon SPECIES_EEVEE, 5, ITEM_ORAN_BERRY, ITEM_PREMIER_BALL, NATURE_NAIVE, 2
 	call Route103_Eevee_EventScript_ReceivedEeveeFanfare
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
 	call Common_EventScript_GetGiftMonPartySlot
-	call Common_EventScript_NameReceivedPartyMon
 	setflag FLAG_RECEIVED_EEVEE
 	return
 

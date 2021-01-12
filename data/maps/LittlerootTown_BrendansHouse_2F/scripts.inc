@@ -299,7 +299,7 @@ PlayersHouse_2F_Text_HowDoYouLikeYourRoom: @ 81F869A
 	.string "Pokémon movers are so convenient!\p"
 	.string "Oh, you should make sure that\n"
 	.string "everything's all there on your desk.\p"
-	.string "Your DAD left you his welcome gift.$"
+	.string "Your Dad left you his welcome gift.$"
 
 PlayersHouse_2F_Text_Notebook: @ 81F877F
 	.string "{PLAYER} flipped open the notebook.\p"
