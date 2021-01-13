@@ -2383,7 +2383,7 @@
 #define HOENN_DEX_EXPLOUD       124
 #define HOENN_DEX_NOIBAT        125
 #define HOENN_DEX_NOIVERN       126
-#define HOENN_DEX_MIME_JR       127
+#define HOENN_DEX_MIMEJR        127
 #define HOENN_DEX_MR_MIME       128
 #define HOENN_DEX_JANGMO_O      129
 #define HOENN_DEX_HAKAMO_O      130

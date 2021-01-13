@@ -583,13 +583,13 @@
               { "min_level": 6, "max_level": 6, "species": "SPECIES_WHISMUR" },
               { "min_level": 7, "max_level": 7, "species": "SPECIES_WHISMUR" },
               { "min_level": 6, "max_level": 6, "species": "SPECIES_ABRA" },
-              { "min_level": 6, "max_level": 6, "species": "SPECIES_MIME_JR" },
+              { "min_level": 6, "max_level": 6, "species": "SPECIES_MIMEJR" },
               { "min_level": 7, "max_level": 7, "species": "SPECIES_MUNNA" },
               { "min_level": 7, "max_level": 7, "species": "SPECIES_WHISMUR" },
               { "min_level": 5, "max_level": 5, "species": "SPECIES_WHISMUR" },
               { "min_level": 8, "max_level": 8, "species": "SPECIES_RATTATA" },
               { "min_level": 5, "max_level": 5, "species": "SPECIES_NOIBAT" },
-              { "min_level": 8, "max_level": 8, "species": "SPECIES_JANGMO-O" },
+              { "min_level": 8, "max_level": 8, "species": "SPECIES_JANGMO_O" },
               { "min_level": 5, "max_level": 5, "species": "SPECIES_SNUBBULL" },
               { "min_level": 8, "max_level": 8, "species": "SPECIES_DUNSPARCE" }
             ]
