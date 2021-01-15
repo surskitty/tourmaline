@@ -35,6 +35,13 @@ LilycoveCity_PokemonCenter_1F_EventScript_Nurse:: @ 821C5E8
 	release
 	end
 
+LilycoveCity_PokemonCenter_1F_EventScript_MoveRelearner::
+	call Common_EventScript_MoveRelearner
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
 LilycoveCity_PokemonCenter_1F_EventScript_Boy:: @ 821C5F6
 	msgbox LilycoveCity_PokemonCenter_1F_Text_HowManyKindsOfPokemon, MSGBOX_NPC
 	end

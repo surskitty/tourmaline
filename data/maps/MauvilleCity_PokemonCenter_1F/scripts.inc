@@ -23,6 +23,13 @@ MauvilleCity_PokemonCenter_1F_EventScript_Nurse:: @ 8210E78
 	release
 	end
 
+MauvilleCity_PokemonCenter_1F_EventScript_MoveRelearner::
+	call Common_EventScript_MoveRelearner
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
 MauvilleCity_PokemonCenter_1F_EventScript_Woman1:: @ 8210E86
 	msgbox MauvilleCity_PokemonCenter_1F_Text_ManOverThereSaysWeirdThings, MSGBOX_NPC
 	end

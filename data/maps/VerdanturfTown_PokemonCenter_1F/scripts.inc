@@ -18,6 +18,13 @@ VerdanturfTown_PokemonCenter_1F_EventScript_Nurse:: @ 820273A
 	release
 	end
 
+VerdanturfTown_PokemonCenter_1F_EventScript_MoveRelearner:: 
+	call Common_EventScript_MoveRelearner
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
 VerdanturfTown_PokemonCenter_1F_EventScript_Gentleman:: @ 8202748
 	msgbox VerdanturfTown_PokemonCenter_1F_Text_FaithInYourPokemon, MSGBOX_NPC
 	end

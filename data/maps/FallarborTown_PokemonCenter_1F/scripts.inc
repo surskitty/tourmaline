@@ -19,6 +19,13 @@ FallarborTown_PokemonCenter_1F_EventScript_Nurse:: @ 8200BE1
 	release
 	end
 
+FallarborTown_PokemonCenter_1F_EventScript_MoveRelearner::
+	call Common_EventScript_MoveRelearner
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
 FallarborTown_PokemonCenter_1F_EventScript_Girl:: @ 8200BEF
 	msgbox FallarborTown_PokemonCenter_1F_Text_FossilManiacEdgeOfTown, MSGBOX_NPC
 	end

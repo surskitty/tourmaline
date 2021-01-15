@@ -17,6 +17,13 @@ FortreeCity_PokemonCenter_1F_EventScript_Nurse:: @ 82173E7
 	release
 	end
 
+FortreeCity_PokemonCenter_1F_EventScript_MoveRelearner::
+	call Common_EventScript_MoveRelearner
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
 FortreeCity_PokemonCenter_1F_EventScript_Gentleman:: @ 82173F5
 	msgbox FortreeCity_PokemonCenter_1F_Text_GoToSafariZone, MSGBOX_NPC
 	end

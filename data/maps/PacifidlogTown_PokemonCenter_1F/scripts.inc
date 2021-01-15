@@ -17,6 +17,13 @@ PacifidlogTown_PokemonCenter_1F_EventScript_Nurse:: @ 82034B6
 	release
 	end
 
+PacifidlogTown_PokemonCenter_1F_EventScript_MoveRelearner::
+	call Common_EventScript_MoveRelearner
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
 PacifidlogTown_PokemonCenter_1F_EventScript_Girl:: @ 82034C4
 	msgbox PacifidlogTown_PokemonCenter_1F_Text_WhatColorTrainerCard, MSGBOX_NPC
 	end

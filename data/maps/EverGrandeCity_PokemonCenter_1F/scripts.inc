@@ -24,6 +24,13 @@ EverGrandeCity_PokemonCenter_1F_EventScript_Nurse:: @ 8229A59
 	release
 	end
 
+EverGrandeCity_PokemonCenter_1F_EventScript_MoveRelearner::
+	call Common_EventScript_MoveRelearner
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
 EverGrandeCity_PokemonCenter_1F_EventScript_Woman:: @ 8229A67
 	msgbox EverGrandeCity_PokemonCenter_1F_Text_LeagueAfterVictoryRoad, MSGBOX_NPC
 	end

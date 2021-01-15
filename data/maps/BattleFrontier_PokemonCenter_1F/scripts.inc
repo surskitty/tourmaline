@@ -17,6 +17,13 @@ BattleFrontier_PokemonCenter_1F_EventScript_Nurse:: @ 8267908
 	release
 	end
 
+BattleFrontier_PokemonCenter_1F_EventScript_MoveRelearner::
+	call Common_EventScript_MoveRelearner
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
 BattleFrontier_PokemonCenter_1F_EventScript_SchoolKid:: @ 8267916
 	msgbox BattleFrontier_PokemonCenter_1F_Text_NeverSeenPokemon, MSGBOX_NPC
 	end

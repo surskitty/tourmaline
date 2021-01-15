@@ -18,6 +18,13 @@ RustboroCity_PokemonCenter_1F_EventScript_Nurse:: @ 8214D76
 	release
 	end
 
+RustboroCity_PokemonCenter_1F_EventScript_MoveRelearner::
+	call Common_EventScript_MoveRelearner
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
 RustboroCity_PokemonCenter_1F_EventScript_Man:: @ 8214D84
 	msgbox RustboroCity_PokemonCenter_1F_Text_PokemonHavePersonalities, MSGBOX_NPC
 	end

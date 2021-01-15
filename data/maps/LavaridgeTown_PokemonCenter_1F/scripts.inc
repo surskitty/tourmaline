@@ -18,6 +18,13 @@ LavaridgeTown_PokemonCenter_1F_EventScript_Nurse:: @ 81FFB0E
 	release
 	end
 
+LavaridgeTown_PokemonCenter_1F_EventScript_MoveRelearner::
+	call Common_EventScript_MoveRelearner
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
 LavaridgeTown_PokemonCenter_1F_EventScript_Youngster:: @ 81FFB1C
 	msgbox LavaridgeTown_PokemonCenter_1F_Text_HotSpringCanInvigorate, MSGBOX_NPC
 	end
@@ -28,6 +35,14 @@ LavaridgeTown_PokemonCenter_1F_EventScript_Woman:: @ 81FFB25
 
 LavaridgeTown_PokemonCenter_1F_EventScript_Gentleman:: @ 81FFB2E
 	msgbox LavaridgeTown_PokemonCenter_1F_Text_TrainersShouldRestToo, MSGBOX_NPC
+	end
+
+LavaridgeTown_PokemonCenter_1F_EventScript_MoveRelearner:: @ 81FFB0E
+	setvar VAR_0x800B, LOCALID_NURSE
+	call Common_EventScript_MoveRelearner
+	waitmessage
+	waitbuttonpress
+	release
 	end
 
 LavaridgeTown_PokemonCenter_1F_Text_TrainersPokemonSpendTimeTogether: @ 81FFB37

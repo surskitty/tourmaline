@@ -17,6 +17,13 @@ SootopolisCity_PokemonCenter_1F_EventScript_Nurse:: @ 8226500
 	release
 	end
 
+SootopolisCity_PokemonCenter_1F_EventScript_MoveRelearner:: 
+	call Common_EventScript_MoveRelearner
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
 SootopolisCity_PokemonCenter_1F_EventScript_Gentleman:: @ 822650E
 	lock
 	faceplayer

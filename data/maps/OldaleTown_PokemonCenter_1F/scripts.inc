@@ -18,6 +18,13 @@ OldaleTown_PokemonCenter_1F_EventScript_Nurse:: @ 81FC01A
 	release
 	end
 
+OldaleTown_PokemonCenter_1F_EventScript_MoveRelearner::
+	call Common_EventScript_MoveRelearner
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
 OldaleTown_PokemonCenter_1F_EventScript_Gentleman:: @ 81FC028
 	msgbox OldaleTown_PokemonCenter_1F_Text_TrainersCanUsePC, MSGBOX_NPC
 	end

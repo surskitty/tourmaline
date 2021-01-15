@@ -18,6 +18,13 @@ SlateportCity_PokemonCenter_1F_EventScript_Nurse:: @ 820DAD3
 	release
 	end
 
+SlateportCity_PokemonCenter_1F_EventScript_MoveRelearner:: 
+	call Common_EventScript_MoveRelearner
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
 SlateportCity_PokemonCenter_1F_EventScript_Sailor:: @ 820DAE1
 	msgbox SlateportCity_PokemonCenter_1F_Text_RaiseDifferentTypesOfPokemon, MSGBOX_NPC
 	end

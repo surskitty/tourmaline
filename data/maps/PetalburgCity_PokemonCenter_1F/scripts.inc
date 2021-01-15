@@ -18,6 +18,13 @@ PetalburgCity_PokemonCenter_1F_EventScript_Nurse:: @ 82079FC
 	release
 	end
 
+PetalburgCity_PokemonCenter_1F_EventScript_MoveRelearner::
+	call Common_EventScript_MoveRelearner
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
 PetalburgCity_PokemonCenter_1F_EventScript_FatMan:: @ 8207A0A
 	msgbox PetalburgCity_PokemonCenter_1F_Text_PCStorageSystem, MSGBOX_NPC
 	end

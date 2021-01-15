@@ -17,6 +17,13 @@ MossdeepCity_PokemonCenter_1F_EventScript_Nurse:: @ 822224E
 	release
 	end
 
+MossdeepCity_PokemonCenter_1F_EventScript_MoveRelearner::
+	call Common_EventScript_MoveRelearner
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
 MossdeepCity_PokemonCenter_1F_EventScript_Woman:: @ 822225C
 	msgbox MossdeepCity_PokemonCenter_1F_Text_GymLeaderDuoFormidable, MSGBOX_NPC
 	end
