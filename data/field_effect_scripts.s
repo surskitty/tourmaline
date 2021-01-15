@@ -343,3 +343,4 @@ gFieldEffectScript_DestroyDeoxysRock:: @ 82DBCF9
 gFieldEffectScript_MoveDeoxysRock:: @ 82DBCFF
 	field_eff_callnative FldEff_MoveDeoxysRock
 	field_eff_end
+
