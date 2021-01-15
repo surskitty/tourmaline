@@ -33,13 +33,6 @@ DewfordTown_PokemonCenter_1F_EventScript_Man:: @ 81FC54E
 	msgbox DewfordTown_PokemonCenter_1F_Text_FaintedMonCanUseHM, MSGBOX_NPC
 	end
 
-DewfordTown_PokemonCenter_1F_EventScript_MoveRelearner:: @ 81FC537
-	call Common_EventScript_MoveRelearner
-	waitmessage
-	waitbuttonpress
-	release
-	end
-
 DewfordTown_PokemonCenter_1F_Text_StoneCavern: @ 81FC557
 	.string "There's a stone cavern at the edge\n"
 	.string "of town.\p"

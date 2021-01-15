@@ -37,14 +37,6 @@ LavaridgeTown_PokemonCenter_1F_EventScript_Gentleman:: @ 81FFB2E
 	msgbox LavaridgeTown_PokemonCenter_1F_Text_TrainersShouldRestToo, MSGBOX_NPC
 	end
 
-LavaridgeTown_PokemonCenter_1F_EventScript_MoveRelearner:: @ 81FFB0E
-	setvar VAR_0x800B, LOCALID_NURSE
-	call Common_EventScript_MoveRelearner
-	waitmessage
-	waitbuttonpress
-	release
-	end
-
 LavaridgeTown_PokemonCenter_1F_Text_TrainersPokemonSpendTimeTogether: @ 81FFB37
 	.string "I think Pokémon get closer to their\n"
 	.string "Trainers if they spend time together.\p"
