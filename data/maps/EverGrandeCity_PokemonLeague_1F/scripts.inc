@@ -26,6 +26,13 @@ EverGrandeCity_PokemonLeague_1F_EventScript_Nurse:: @ 82295FC
 	release
 	end
 
+EverGrandeCity_PokemonLeague_1F_EventScript_MoveRelearner::
+	call Common_EventScript_MoveRelearner
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
 EverGrandeCity_PokemonLeague_1F_EventScript_Clerk:: @ 822960A
 	lock
 	faceplayer
