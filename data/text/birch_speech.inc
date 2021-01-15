@@ -1,10 +1,8 @@
 gText_Birch_Welcome:: @ 82C897B
 	.string "Hi! Sorry to keep you waiting!\p"
 	.string "Welcome to the world of Pokémon!\p"
-	.string "My name is Birch.\p"
-	.string "But everyone calls me the Pokémon\n"
-	.string "Professor.\p"
-	.string "$"
+	.string "My name is Birch.\n"
+	.string "I work as a Pokémon Professor.$"
 
 gText_Birch_Pokemon:: @ 82C89FB
 	.string "This is what we call a “Pokémon.”\p"
@@ -12,28 +10,22 @@ gText_Birch_Pokemon:: @ 82C89FB
 	.string "$"
 
 gText_Birch_MainSpeech:: @ 82C8A1F
-	.string "This world is widely inhabited by\n"
-	.string "creatures known as Pokémon.\p"
 	.string "We humans live alongside Pokémon,\n"
-	.string "at times as friendly playmates, and\l"
-	.string "at times as cooperative workmates.\p"
+	.string "sometimes as friends, and others\l"
+	.string "as work partners.\p"
 	.string "And sometimes, we band together\n"
 	.string "and battle others like us.\p"
 	.string "But despite our closeness, we don't\n"
 	.string "know everything about Pokémon.\p"
-	.string "In fact, there are many, many\n"
-	.string "secrets surrounding Pokémon.\p"
-	.string "To unravel Pokémon mysteries,\n"
-	.string "I've been undertaking research.\l"
-	.string "That's what I do.\p"
-	.string "$"
+	.string "My job is to unravel some of the\n"
+	.string "mysteries of Pokémon.$"
 
 gText_Birch_AndYouAre:: @ 82C8BD0
 	.string "And you are?$"
 
 gText_Birch_BoyOrGirl:: @ 82C8BDD
-	.string "Are you a boy?\n"
-	.string "Or are you a girl?$"
+	.string "Are you pants?\n"
+	.string "Or are you skirt?$"
 
 gText_Birch_WhatsYourName:: @ 82C8BFF
 	.string "All right.\n"
@@ -44,10 +36,8 @@ gText_Birch_SoItsPlayer:: @ 82C8C1C
 
 gText_Birch_YourePlayer:: @ 82C8C2A
 	.string "Ah, okay!\p"
-	.string "You're {PLAYER}{KUN} who's moving to my\n"
-	.string "hometown of Littleroot.\l"
-	.string "I get it now!\p"
-	.string "$"
+	.string "You're my new neighbor, {PLAYER}.\n"
+	.string "I get it now!$"
 
 gText_Birch_AreYouReady:: @ 82C8C7A
 	.string "All right, are you ready?\p"
