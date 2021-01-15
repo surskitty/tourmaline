@@ -110,6 +110,8 @@
 // gTileset_Building
 #define METATILE_Building_PC_Off  0x004
 #define METATILE_Building_PC_On   0x005
+#define METATILE_Building_TV_Off  0x002
+#define METATILE_Building_TV_On   0x003
 
 // gTileset_Cave
 #define METATILE_Cave_EntranceCover                      0x229
