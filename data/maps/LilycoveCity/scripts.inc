@@ -18,6 +18,11 @@ LilycoveCity_OnLoad: @ 81E2B61
 	call_if_unset FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, LilycoveCity_EventScript_SetWailmerMetatiles
 	end
 
+LilycoveCity_EventScript_Cabbie::
+	call Common_EventScript_FlyingTaxi
+	release
+	end
+
 LilycoveCity_EventScript_SetWailmerMetatiles:: @ 81E2B6B
 	setmetatile 76, 12, METATILE_Lilycove_Wailmer0, 1
 	setmetatile 77, 12, METATILE_Lilycove_Wailmer1, 1

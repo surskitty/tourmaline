@@ -20,6 +20,11 @@ RustboroCity_OnTransition: @ 81E06C8
 	goto_if_eq RustboroCity_EventScript_PositionScientistForExit
 	end
 
+RustboroCity_EventScript_Cabbie::
+	call Common_EventScript_FlyingTaxi
+	release
+	end
+
 RustboroCity_EventScript_PositionScientistForExit:: @ 81E06EC
 	compare VAR_TEMP_0, 11
 	goto_if_eq RustboroCity_EventScript_PositionScientistLeftExit

@@ -39,6 +39,11 @@ SlateportCity_EventScript_EnterSlateport:: @ 81DCC8D
 	setflag FLAG_HIDE_SLATEPORT_CITY_CONTEST_REPORTER
 	return
 
+SlateportCity_EventScript_Cabbie::
+	call Common_EventScript_FlyingTaxi
+	release
+	end
+
 SlateportCity_EventScript_MovePeopleForSternInterview:: @ 81DCC99
 	setobjectxyperm LOCALID_CAPT_STERN, 28, 13
 	setobjectxyperm LOCALID_OLD_WOMAN, 25, 13

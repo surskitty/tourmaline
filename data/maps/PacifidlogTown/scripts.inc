@@ -11,6 +11,11 @@ PacifidlogTown_OnResume: @ 81EBAC0
 	setstepcallback STEP_CB_PACIFIDLOG_BRIDGE
 	end
 
+PacifidlogTown_EventScript_Cabbie::
+	call Common_EventScript_FlyingTaxi
+	release
+	end
+
 PacifidlogTown_EventScript_NinjaBoy:: @ 81EBAC3
 	msgbox PacifidlogTown_Text_NeatHousesOnWater, MSGBOX_NPC
 	end

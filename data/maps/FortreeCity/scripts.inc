@@ -11,6 +11,11 @@ FortreeCity_OnResume: @ 81E25B3
 	setstepcallback STEP_CB_FORTREE_BRIDGE
 	end
 
+FortreeCity_EventScript_Cabbie::
+	call Common_EventScript_FlyingTaxi
+	release
+	end
+
 FortreeCity_EventScript_Man:: @ 81E25B6
 	msgbox FortreeCity_Text_SawGiganticPokemonInSky, MSGBOX_NPC
 	end

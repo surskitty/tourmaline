@@ -23,6 +23,11 @@ Route111_EventScript_CloseDesertRuins:: @ 81F0CD1
 	setmetatile 29, 87, METATILE_General_RockWall_SandBase, 1
 	return
 
+Route111_EventScript_Cabbie::
+	call Common_EventScript_FlyingTaxi
+	release
+	end
+
 @ Show Mirage Tower just prior to disintegration. Mirage Tower is otherwise handled by the map layout
 Route111_EventScript_ShowTemporaryMirageTower:: @ 81F0CE4
 	setmetatile 18, 53, METATILE_Mauville_MirageTower_Tile0, 0

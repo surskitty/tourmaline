@@ -22,6 +22,11 @@ MauvilleCity_EventScript_MoveWattsonBackToGym:: @ 81DF3A9
 	setflag FLAG_WATTSON_REMATCH_AVAILABLE
 	return
 
+MauvilleCity_EventScript_Cabbie::
+	call Common_EventScript_FlyingTaxi
+	release
+	end
+
 MauvilleCity_EventScript_Boy:: @ 81DF3B3
 	msgbox MauvilleCity_Text_NurseHurtMonBackToHealth, MSGBOX_NPC
 	end
