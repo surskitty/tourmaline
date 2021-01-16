@@ -77,13 +77,13 @@ RustboroCity_PokemonSchool_EventScript_StudentNotebook:: @ 8213F8C
 RustboroCity_PokemonSchool_EventScript_Teacher:: @ 8213F95
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_QUICK_CLAW, RustboroCity_PokemonSchool_EventScript_GaveQuickClaw
+	goto_if_set FLAG_RECEIVED_QUICK_CLAW, RustboroCity_PokemonSchool_EventScript_GaveEviolite
 	compare VAR_FACING, DIR_EAST
 	call_if_eq RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsEast
 	compare VAR_FACING, DIR_WEST
 	call_if_eq RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsWest
-	msgbox RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetQuickClaw, MSGBOX_DEFAULT
-	giveitem ITEM_QUICK_CLAW
+	msgbox RustboroCity_PokemonSchool_Text_StudentsWhoStudyGetEviolite, MSGBOX_DEFAULT
+	giveitem ITEM_EVIOLITE
 	compare VAR_RESULT, 0
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	closemessage
@@ -246,21 +246,18 @@ RustboroCity_PokemonSchool_Text_ExplainFreeze: @ 82143B8
 	.string "It will remain frozen after battle.\n"
 	.string "Thaw it out using an Ice Heal.$"
 
-RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetQuickClaw: @ 8214433
-	.string "Students who don't study get a little\n"
-	.string "taste of my Quick Claw.\p"
+RustboroCity_PokemonSchool_Text_StudentsWhoStudyGetEviolite: @ 8214433
+	.string "Students who study well can protect\n"
+	.string "themselves with Eviolite.\p"
 	.string "Whether or not you are a good student \n"
 	.string "will be evident from the way you use\l"
 	.string "this item.$"
 
-RustboroCity_PokemonSchool_Text_ExplainQuickClaw: @ 82144C8
-	.string "A Pokémon holding the Quick Claw will\n"
-	.string "occasionally speed up and get to move\l"
-	.string "before its opponent.\p"
-	.string "There are many other items that are\n"
-	.string "meant to be held by Pokémon.\p"
-	.string "Just those alone will give you many\n"
-	.string "topics to study!$"
+RustboroCity_PokemonSchool_Text_ExplainEviolite: @ 82144C8
+	.string "A Pokémon holding the Eviolite will\n"
+	.string "be much stronger defensively if\l"
+	.string "it doesn't have further to evolve.\p"
+	.string "I hope you find many ways to grow.$"
 
 RustboroCity_PokemonSchool_Text_TradingRightNow: @ 821459F
 	.string "I'm trading Pokémon with my friend\n"
