@@ -103,8 +103,8 @@ RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsWest:: @ 8213FF0
 	waitmovement 0
 	return
 
-RustboroCity_PokemonSchool_EventScript_GaveQuickClaw:: @ 8213FFB
-	msgbox RustboroCity_PokemonSchool_Text_ExplainQuickClaw, MSGBOX_DEFAULT
+RustboroCity_PokemonSchool_EventScript_GaveEviolite:: @ 8213FFB
+	msgbox RustboroCity_PokemonSchool_Text_ExplainEviolite, MSGBOX_DEFAULT
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0

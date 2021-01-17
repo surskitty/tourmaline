@@ -978,21 +978,21 @@ static const union AffineAnimCmd *const gSpriteAffineAnimTable_8338ECC[] =
 
 static const struct InGameTrade sIngameTrades[] =
 {
-    [INGAME_TRADE_SEEDOT] = 
+    [INGAME_TRADE_CLEFFA] = 
     {
-        .nickname = _("Dots"), 
-        .species = SPECIES_SEEDOT,
-        .ivs = {5, 4, 5, 4, 4, 4},
-        .abilityNum = 1, 
+        .nickname = _("Pippin"), 
+        .species = SPECIES_CLEFFA,
+        .ivs = BEST_IV_SPREAD_TRICK_ROOM,
+        .abilityNum = 3, 
         .otId = 38726,
         .conditions = {30, 5, 5, 5, 5},
         .personality = 0x84,
-        .heldItem = ITEM_CHESTO_BERRY, 
+        .heldItem = ITEM_DESTINY_KNOT, 
         .mailNum = -1,
         .otName = _("Kobe"), 
         .otGender = MALE, 
         .sheen = 10,
-        .requestedSpecies = SPECIES_RALTS
+        .requestedSpecies = SPECIES_AZURILL
     }, 
     [INGAME_TRADE_PLUSLE] = 
     {

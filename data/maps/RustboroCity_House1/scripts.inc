@@ -5,7 +5,7 @@ RustboroCity_House1_EventScript_Trader:: @ 821593F
 	lock
 	faceplayer
 	goto_if_set FLAG_RUSTBORO_NPC_TRADE_COMPLETED, RustboroCity_House1_EventScript_TradeCompleted
-	setvar VAR_0x8008, INGAME_TRADE_SEEDOT
+	setvar VAR_0x8008, INGAME_TRADE_CLEFFA
 	copyvar VAR_0x8004, VAR_0x8008
 	specialvar VAR_RESULT, GetInGameTradeSpeciesInfo
 	copyvar VAR_0x8009, VAR_RESULT
@@ -57,8 +57,8 @@ RustboroCity_House1_Text_IllTradeIfYouWant: @ 82159E8
 	.string "Sure, I knew that.\p"
 	.string "But if you really want, I'm willing\n"
 	.string "to trade it to you.\p"
-	.string "I'll trade you my {STR_VAR_2} for\n"
-	.string "a {STR_VAR_1} if you want.$"
+	.string "I'll trade you my lucky {STR_VAR_2}\n"
+	.string "for a {STR_VAR_1} if you want.$"
 
 RustboroCity_House1_Text_PleaseBeGoodToMyPokemon: @ 8215A77
 	.string "Eheheh…\n"
