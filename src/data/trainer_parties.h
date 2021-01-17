@@ -1430,7 +1430,7 @@ static const struct TrainerMon sParty_Phoebe[] = {
 
 static const struct TrainerMon sParty_Glacia[] = {
     { .ivs = BEST_IV_SPREAD_SPECIAL, .lvl = 50, .species = SPECIES_VANILLUXE,
-      .ability = ABILITY_SLOT_2, heldItem = ITEM_ICY_ROCK,
+      .ability = ABILITY_SLOT_2, .heldItem = ITEM_ICY_ROCK,
       .moves = {MOVE_BLIZZARD, MOVE_FLASH_CANNON, MOVE_AURORA_VEIL, MOVE_PROTECT} },
     { .ivs = BEST_IV_SPREAD_SPECIAL, .lvl = 50, .species = SPECIES_FROSLASS, 
       .ability = ABILITY_HIDDEN, .nature = NATURE_TIMID, .heldItem = ITEM_FOCUS_SASH,
@@ -1468,13 +1468,13 @@ static const struct TrainerMon sParty_Roxanne1[] = {
 };
 
 static const struct TrainerMon sParty_Brawly1[] = {
-    { .iv = BEST_IV_SPREAD, .lvl = 16, .species = SPECIES_MACHOP, .heldItem = ITEM_ORAN_BERRY, .ability = ABILITY_HIDDEN,
+    { .ivs = BEST_IV_SPREAD, .lvl = 16, .species = SPECIES_MACHOP, .heldItem = ITEM_ORAN_BERRY, .ability = ABILITY_HIDDEN,
       .moves = {MOVE_QUICK_GUARD, MOVE_LOW_SWEEP, MOVE_BULLET_PUNCH, MOVE_BULK_UP} },
-    { .iv = BEST_IV_SPREAD, .lvl = 17, .species = SPECIES_TIMBURR, .heldItem = ITEM_FOCUS_SASH,
+    { .ivs = BEST_IV_SPREAD, .lvl = 17, .species = SPECIES_TIMBURR, .heldItem = ITEM_FOCUS_SASH,
       .moves = {MOVE_WIDE_GUARD, MOVE_MACH_PUNCH, MOVE_ROCK_THROW, MOVE_BULK_UP} },
-    { .iv = BEST_IV_SPREAD, .lvl = 18, .species = SPECIES_JANGMO_O, .heldItem = ITEM_ROSELI_BERRY, 
+    { .ivs = BEST_IV_SPREAD, .lvl = 18, .species = SPECIES_JANGMO_O, .heldItem = ITEM_ROSELI_BERRY, 
       .moves = {MOVE_DRAGON_TAIL, MOVE_SCARY_FACE, MOVE_LOW_KICK, MOVE_BULK_UP} },
-    { .iv = BEST_IV_SPREAD, .lvl = 19, .species = SPECIES_MAKUHITA, .heldItem = ITEM_SITRUS_BERRY,
+    { .ivs = BEST_IV_SPREAD, .lvl = 19, .species = SPECIES_MAKUHITA, .heldItem = ITEM_SITRUS_BERRY,
       .moves = {MOVE_ARM_THRUST, MOVE_FORESIGHT, MOVE_FAKE_OUT, MOVE_BULK_UP} }
 };
 
@@ -3392,10 +3392,10 @@ static const struct TrainerMon sParty_Rick[] = {
 };
 
 static const struct TrainerMon sParty_Lyle[] = {
-    { .iv = 0, .lvl = 7, .species = SPECIES_CATERPIE, },
+    { .iv = 0, .lvl = 7, .species = SPECIES_SEWADDLE, },
     { .iv = 0, .lvl = 7, .species = SPECIES_WEEDLE, },
     { .iv = 0, .lvl = 7, .species = SPECIES_WURMPLE, },
-    { .iv = 0, .lvl = 7, .species = SPECIES_SEWADDLE, }
+    { .iv = 0, .lvl = 7, .species = SPECIES_VENIPEDE, }
 };
 
 static const struct TrainerMon sParty_Jose[] = {
