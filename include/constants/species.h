@@ -2372,9 +2372,9 @@
 #define HOENN_DEX_DELCATTY      113
 #define HOENN_DEX_BUNEARY       114
 #define HOENN_DEX_LOPUNNY       115
-#define HOENN_DEX_PIDOVE        116
-#define HOENN_DEX_TRANQUILL     117
-#define HOENN_DEX_UNFEZANT      118
+#define HOENN_DEX_PIDGEY        116
+#define HOENN_DEX_PIDGEOTTO     117
+#define HOENN_DEX_PIDGEOT       118
 #define HOENN_DEX_ABRA          119
 #define HOENN_DEX_KADABRA       120
 #define HOENN_DEX_ALAKAZAM      121

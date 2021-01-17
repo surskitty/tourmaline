@@ -409,7 +409,7 @@
           "land_mons": {
             "encounter_rate": 20,
             "mons": [
-              { "min_level": 6, "max_level": 6, "species": "SPECIES_PIDOVE" },
+              { "min_level": 6, "max_level": 6, "species": "SPECIES_PIDGEY" },
               { "min_level": 6, "max_level": 6, "species": "SPECIES_WHISMUR" },
               { "min_level": 6, "max_level": 6, "species": "SPECIES_NINCADA" },
               { "min_level": 7, "max_level": 7, "species": "SPECIES_ABRA" },
