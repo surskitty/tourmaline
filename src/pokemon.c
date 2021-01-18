@@ -3210,19 +3210,6 @@ static const u16 sHMMoves[] =
     MOVE_ROCK_SMASH, MOVE_WATERFALL, MOVE_DIVE, 0xFFFF
 };
 
-static const struct SpeciesItem sAlteringCaveWildMonHeldItems[] =
-{
-    {SPECIES_NONE,      ITEM_NONE},
-    {SPECIES_MAREEP,    ITEM_GANLON_BERRY},
-    {SPECIES_PINECO,    ITEM_APICOT_BERRY},
-    {SPECIES_HOUNDOUR,  ITEM_BIG_MUSHROOM},
-    {SPECIES_TEDDIURSA, ITEM_PETAYA_BERRY},
-    {SPECIES_AIPOM,     ITEM_BERRY_JUICE},
-    {SPECIES_SHUCKLE,   ITEM_BERRY_JUICE},
-    {SPECIES_STANTLER,  ITEM_PETAYA_BERRY},
-    {SPECIES_SMEARGLE,  ITEM_SALAC_BERRY},
-};
-
 static const struct OamData sOamData_8329F20 =
 {
     .y = 0,
@@ -7560,15 +7547,6 @@ void SetMonPreventsSwitchingString(void)
     BattleStringExpandPlaceholders(gText_PkmnsXPreventsSwitching, gStringVar4);
 }
 
-static s32 GetWildMonTableIdInAlteringCave(u16 species)
-{
-    s32 i;
-    for (i = 0; i < (s32) ARRAY_COUNT(sAlteringCaveWildMonHeldItems); i++)
-        if (sAlteringCaveWildMonHeldItems[i].species == species)
-            return i;
-    return 0;
-}
-
 void SetWildMonHeldItem(void)
 {
     u16 rnd, species, var1, var2, i, count;
@@ -7593,40 +7571,18 @@ void SetWildMonHeldItem(void)
     {
         rnd = Random() % 100;
         species = GetMonData(&gEnemyParty[i], MON_DATA_SPECIES, 0);
-        if (gMapHeader.mapLayoutId == LAYOUT_ALTERING_CAVE)
+        if (gBaseStats[species].item1 == gBaseStats[species].item2 && gBaseStats[species].item1 != 0)
         {
-            s32 alteringCaveId = GetWildMonTableIdInAlteringCave(species);
-            if (alteringCaveId != 0)
-            {
-                if (rnd < var2)
-                    continue;
-                SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &sAlteringCaveWildMonHeldItems[alteringCaveId].item);
-            }
-            else
-            {
-                if (rnd < var1)
-                    continue;
-                if (rnd < var2)
-                    SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gBaseStats[species].item1);
-                else
-                    SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gBaseStats[species].item2);
-            }
+            SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gBaseStats[species].item1);
         }
         else
         {
-            if (gBaseStats[species].item1 == gBaseStats[species].item2 && gBaseStats[species].item1 != 0)
-            {
+            if (rnd < var1)
+                continue;
+            if (rnd < var2)
                 SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gBaseStats[species].item1);
-            }
             else
-            {
-                if (rnd < var1)
-                    continue;
-                if (rnd < var2)
-                    SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gBaseStats[species].item1);
-                else
-                    SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gBaseStats[species].item2);
-            }
+                SetMonData(&gEnemyParty[i], MON_DATA_HELD_ITEM, &gBaseStats[species].item2);
         }
     }
 }
