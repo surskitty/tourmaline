@@ -14,6 +14,29 @@ GraniteCave_StevensRoom_EventScript_Steven:: @ 822DC7B
 	giveitem ITEM_TM47
 	compare VAR_RESULT, FALSE
 	call_if_eq GraniteCave_StevensRoom_EventScript_BagFull
+	msgbox GraniteCave_StevensRoom_Text_StoneCollector, MSGBOX_DEFAULT
+	giveitem ITEM_FIRE_STONE
+	compare VAR_RESULT, FALSE
+	call_if_eq GraniteCave_StevensRoom_EventScript_BagFull
+	giveitem ITEM_ICE_STONE
+	compare VAR_RESULT, FALSE
+	call_if_eq GraniteCave_StevensRoom_EventScript_BagFull
+	giveitem ITEM_LEAF_STONE
+	compare VAR_RESULT, FALSE
+	call_if_eq GraniteCave_StevensRoom_EventScript_BagFull
+	giveitem ITEM_MOON_STONE
+	compare VAR_RESULT, FALSE
+	call_if_eq GraniteCave_StevensRoom_EventScript_BagFull
+	giveitem ITEM_SUN_STONE
+	compare VAR_RESULT, FALSE
+	call_if_eq GraniteCave_StevensRoom_EventScript_BagFull
+	giveitem ITEM_THUNDER_STONE
+	compare VAR_RESULT, FALSE
+	call_if_eq GraniteCave_StevensRoom_EventScript_BagFull
+	giveitem ITEM_WATER_STONE
+	compare VAR_RESULT, FALSE
+	call_if_eq GraniteCave_StevensRoom_EventScript_BagFull
+	setflag FLAG_RECEIVED_STONES
 	msgbox GraniteCave_StevensRoom_Text_CouldBecomeChampionLetsRegister, MSGBOX_DEFAULT
 	closemessage
 	delay 30

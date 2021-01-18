@@ -87,8 +87,8 @@
 #define FLAG_UNUSED_0x04B    0x4B // Unused Flag
 #define FLAG_UNUSED_0x04C    0x4C // Unused Flag
 #define FLAG_UNUSED_0x04D    0x4D // Unused Flag
-#define FLAG_UNUSED_0x04E    0x4E // Unused Flag
-#define FLAG_RECEIVED_GROWTH_ITEMS           0x4F // Unused Flag
+#define FLAG_RECEIVED_STONES                 0x4E
+#define FLAG_RECEIVED_GROWTH_ITEMS           0x4F
 
 // Scripts
 #define FLAG_HIDE_RAYQUAZA_SKY_TOWER_SUMMIT  0x50

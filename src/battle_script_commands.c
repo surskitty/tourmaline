@@ -1038,7 +1038,6 @@ static const u16 sNaturePowerMoves[] =
 static const u16 sPickupItems[] =
 {
     ITEM_TINY_MUSHROOM,
-    ITEM_HONEY,
     ITEM_BIG_MUSHROOM,
     ITEM_OLD_GATEAU,
     ITEM_POKE_DOLL,
@@ -1055,26 +1054,27 @@ static const u16 sPickupItems[] =
     ITEM_MAX_REVIVE,
     ITEM_WEAKNESS_POLICY,
     ITEM_NUGGET,
+    ITEM_ABILITY_CAPSULE,
 };
 
 static const u16 sRarePickupItems[] =
 {
-    ITEM_NUGGET,
     ITEM_SUN_STONE,
     ITEM_DAWN_STONE,
     ITEM_SHINY_STONE,
     ITEM_DUSK_STONE,
+    ITEM_SUN_STONE,
+    ITEM_DAWN_STONE,
+    ITEM_SHINY_STONE,
+    ITEM_DUSK_STONE,
+    ITEM_SAIL_FOSSIL,
+    ITEM_JAW_FOSSIL,
     ITEM_OLD_AMBER,
-    ITEM_SUN_STONE,
-    ITEM_DAWN_STONE,
-    ITEM_SHINY_STONE,
-    ITEM_DUSK_STONE,
-    ITEM_ABILITY_CAPSULE,
 };
 
 static const u8 sPickupProbabilities[] =
 {
-    30, 40, 50, 60, 70, 80, 90, 94, 98
+    20, 30, 40, 50, 60, 70, 80, 90, 95,
 };
 
 static const u8 sTerrainToType[] =
