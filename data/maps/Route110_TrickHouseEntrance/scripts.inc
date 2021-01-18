@@ -55,50 +55,8 @@ Route110_TrickHouseEntrance_EventScript_EnterFromCorridor:: @ 8269AF3
 
 Route110_TrickHouseEntrance_EventScript_CheckReadyForNextPuzzle:: @ 8269B03
 	setvar VAR_TRICK_HOUSE_ENTRANCE_STATE, 0
-	compare VAR_TRICK_HOUSE_LEVEL, 1
-	call_if_eq Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle2
-	compare VAR_TRICK_HOUSE_LEVEL, 2
-	call_if_eq Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle3
-	compare VAR_TRICK_HOUSE_LEVEL, 3
-	call_if_eq Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle4
-	compare VAR_TRICK_HOUSE_LEVEL, 4
-	call_if_eq Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle5
-	compare VAR_TRICK_HOUSE_LEVEL, 5
-	call_if_eq Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle6
-	compare VAR_TRICK_HOUSE_LEVEL, 6
-	call_if_eq Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle7
-	compare VAR_TRICK_HOUSE_LEVEL, 7
-	call_if_eq Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle8
 	compare VAR_TRICK_HOUSE_LEVEL, 8
 	call_if_eq Route110_TrickHouseEntrance_EventScript_FinishedPuzzles
-	return
-
-Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle2:: @ 8269B61
-	call_if_unset FLAG_BADGE03_GET, Route110_TrickHouseEntrance_EventScript_NotReadyForPuzzle
-	return
-
-Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle3:: @ 8269B6B
-	call_if_unset FLAG_BADGE04_GET, Route110_TrickHouseEntrance_EventScript_NotReadyForPuzzle
-	return
-
-Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle4:: @ 8269B75
-	call_if_unset FLAG_BADGE05_GET, Route110_TrickHouseEntrance_EventScript_NotReadyForPuzzle
-	return
-
-Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle5:: @ 8269B7F
-	call_if_unset FLAG_BADGE06_GET, Route110_TrickHouseEntrance_EventScript_NotReadyForPuzzle
-	return
-
-Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle6:: @ 8269B89
-	call_if_unset FLAG_BADGE07_GET, Route110_TrickHouseEntrance_EventScript_NotReadyForPuzzle
-	return
-
-Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle7:: @ 8269B93
-	call_if_unset FLAG_BADGE08_GET, Route110_TrickHouseEntrance_EventScript_NotReadyForPuzzle
-	return
-
-Route110_TrickHouseEntrance_EventScript_CheckReadyForPuzzle8:: @ 8269B9D
-	call_if_unset FLAG_SYS_GAME_CLEAR, Route110_TrickHouseEntrance_EventScript_NotReadyForPuzzle
 	return
 
 Route110_TrickHouseEntrance_EventScript_FinishedPuzzles:: @ 8269BA7
@@ -369,7 +327,7 @@ Route110_TrickHouseEntrance_EventScript_GiveReward:: @ 8269E8F
 	end
 
 Route110_TrickHouseEntrance_EventScript_GivePuzzle1Reward:: @ 8269EEF
-	giveitem ITEM_RARE_CANDY
+	giveitem ITEM_TM12
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route110_TrickHouseEntrance_EventScript_GotReward
 	compare VAR_RESULT, FALSE
@@ -379,7 +337,7 @@ Route110_TrickHouseEntrance_EventScript_GivePuzzle1Reward:: @ 8269EEF
 	end
 
 Route110_TrickHouseEntrance_EventScript_GivePuzzle2Reward:: @ 8269F1B
-	giveitem ITEM_TIMER_BALL
+	giveitem ITEM_BIG_ROOT
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route110_TrickHouseEntrance_EventScript_GotReward
 	compare VAR_RESULT, FALSE
@@ -389,7 +347,7 @@ Route110_TrickHouseEntrance_EventScript_GivePuzzle2Reward:: @ 8269F1B
 	end
 
 Route110_TrickHouseEntrance_EventScript_GivePuzzle3Reward:: @ 8269F47
-	giveitem ITEM_HARD_STONE
+	giveitem ITEM_BRIGHT_POWDER
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route110_TrickHouseEntrance_EventScript_GotReward
 	compare VAR_RESULT, FALSE
@@ -409,7 +367,7 @@ Route110_TrickHouseEntrance_EventScript_GivePuzzle4Reward:: @ 8269F73
 	end
 
 Route110_TrickHouseEntrance_EventScript_GivePuzzle5Reward:: @ 8269F9F
-	giveitem ITEM_TM12
+	giveitem ITEM_FLAME_ORB
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route110_TrickHouseEntrance_EventScript_GotReward
 	compare VAR_RESULT, FALSE
@@ -419,7 +377,7 @@ Route110_TrickHouseEntrance_EventScript_GivePuzzle5Reward:: @ 8269F9F
 	end
 
 Route110_TrickHouseEntrance_EventScript_GivePuzzle6Reward:: @ 8269FCB
-	giveitem ITEM_MAGNET
+	giveitem ITEM_HEAT_ROCK
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route110_TrickHouseEntrance_EventScript_GotReward
 	compare VAR_RESULT, FALSE
@@ -429,7 +387,7 @@ Route110_TrickHouseEntrance_EventScript_GivePuzzle6Reward:: @ 8269FCB
 	end
 
 Route110_TrickHouseEntrance_EventScript_GivePuzzle7Reward:: @ 8269FF7
-	giveitem ITEM_PP_MAX
+	giveitem ITEM_PROTECTIVE_PADS
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route110_TrickHouseEntrance_EventScript_GotReward
 	compare VAR_RESULT, FALSE
