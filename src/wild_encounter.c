@@ -62,34 +62,9 @@ void DisableWildEncounters(bool8 disabled)
     sWildEncountersDisabled = disabled;
 }
 
-static u16 GetRoute119WaterTileNum(s16 x, s16 y, u8 section)
-{
-    u16 xCur;
-    u16 yCur;
-    u16 yMin = gRoute119WaterTileData[section * 3 + 0];
-    u16 yMax = gRoute119WaterTileData[section * 3 + 1];
-    u16 tileNum = gRoute119WaterTileData[section * 3 + 2];
-
-    for (yCur = yMin; yCur <= yMax; yCur++)
-    {
-        for (xCur = 0; xCur < gMapHeader.mapLayout->width; xCur++)
-        {
-            u8 tileBehaviorId = MapGridGetMetatileBehaviorAt(xCur + 7, yCur + 7);
-            if (MetatileBehavior_IsSurfableAndNotWaterfall(tileBehaviorId) == TRUE)
-            {
-                tileNum++;
-                if (x == xCur && y == yCur)
-                    return tileNum;
-            }
-        }
-    }
-    return tileNum + 1;
-}
-
 static bool8 CheckFeebas(void)
 {
     u8 i;
-    u16 feebasSpots[NUM_FEEBAS_SPOTS];
     s16 x;
     s16 y;
     u8 route119Section = 0;
@@ -99,47 +74,12 @@ static bool8 CheckFeebas(void)
      && gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE119))
     {
         GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
-        x -= 7;
-        y -= 7;
-
-        if (y >= gRoute119WaterTileData[3 * 0 + 0] && y <= gRoute119WaterTileData[3 * 0 + 1])
-            route119Section = 0;
-        if (y >= gRoute119WaterTileData[3 * 1 + 0] && y <= gRoute119WaterTileData[3 * 1 + 1])
-            route119Section = 1;
-        if (y >= gRoute119WaterTileData[3 * 2 + 0] && y <= gRoute119WaterTileData[3 * 2 + 1])
-            route119Section = 2;
-
-        if (Random() % 100 > 49) // 50% chance of encountering Feebas
-            return FALSE;
-
-        FeebasSeedRng(gSaveBlock1Ptr->easyChatPairs[0].unk2);
-        for (i = 0; i != NUM_FEEBAS_SPOTS;)
-        {
-            feebasSpots[i] = FeebasRandom() % 447;
-            if (feebasSpots[i] == 0)
-                feebasSpots[i] = 447;
-            if (feebasSpots[i] < 1 || feebasSpots[i] >= 4)
-                i++;
-        }
-        waterTileNum = GetRoute119WaterTileNum(x, y, route119Section);
-        for (i = 0; i < NUM_FEEBAS_SPOTS; i++)
-        {
-            if (waterTileNum == feebasSpots[i])
-                return TRUE;
-        }
+        if ((x >= 16) && (x <= 20) && (y >= 33) && ( y <= 36))
+            return TRUE;
+        else if ((x >= 20) && (x <= 23) && (y >= 105) && ( y <= 108))
+            return TRUE;
     }
     return FALSE;
-}
-
-static u16 FeebasRandom(void)
-{
-    sFeebasRngValue = ISO_RANDOMIZE2(sFeebasRngValue);
-    return sFeebasRngValue >> 16;
-}
-
-static void FeebasSeedRng(u16 seed)
-{
-    sFeebasRngValue = seed;
 }
 
 static u8 ChooseWildMonIndex_Land(void)
