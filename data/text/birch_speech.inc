@@ -2,7 +2,8 @@ gText_Birch_Welcome:: @ 82C897B
 	.string "Hi! Sorry to keep you waiting!\p"
 	.string "Welcome to the world of Pokémon!\p"
 	.string "My name is Birch.\n"
-	.string "I work as a Pokémon Professor.$"
+	.string "I work as a Pokémon Professor.\p"
+	.string "$"
 
 gText_Birch_Pokemon:: @ 82C89FB
 	.string "This is what we call a “Pokémon.”\p"
@@ -18,7 +19,8 @@ gText_Birch_MainSpeech:: @ 82C8A1F
 	.string "But despite our closeness, we don't\n"
 	.string "know everything about Pokémon.\p"
 	.string "My job is to unravel some of the\n"
-	.string "mysteries of Pokémon.$"
+	.string "mysteries of Pokémon.\p"
+	.string "$"
 
 gText_Birch_AndYouAre:: @ 82C8BD0
 	.string "And you are?$"
@@ -37,7 +39,8 @@ gText_Birch_SoItsPlayer:: @ 82C8C1C
 gText_Birch_YourePlayer:: @ 82C8C2A
 	.string "Ah, okay!\p"
 	.string "You're my new neighbor, {PLAYER}.\n"
-	.string "I get it now!$"
+	.string "I get it now!\p"
+	.string "$"
 
 gText_Birch_AreYouReady:: @ 82C8C7A
 	.string "All right, are you ready?\p"
