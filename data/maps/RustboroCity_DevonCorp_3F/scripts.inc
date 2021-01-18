@@ -57,6 +57,8 @@ RustboroCity_DevonCorp_3F_EventScript_MeetPresident:: @ 821246E
 	waitfanfare
 	giveitem ITEM_EXP_SHARE
 	compare VAR_RESULT, FALSE
+	giveitem ITEM_SHINY_CHARM
+	compare VAR_RESULT, FALSE
 	setflag FLAG_RECEIVED_EXP_SHARE
 	setflag FLAG_SYS_POKENAV_GET
 	setflag FLAG_RECEIVED_POKENAV
