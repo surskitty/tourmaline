@@ -57,7 +57,9 @@ AI_CBM_PowderMoves:
 	if_equal HOLD_EFFECT_SAFETY_GOOGLES Score_Minus10
 
 AI_CBM_CheckIfNegatesType:
-	if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus10
+	if_type_effectiveness AI_EFFECTIVENESS_x0, Score_Minus30
+	if_type_effectiveness AI_EFFECTIVENESS_x0_5, Score_Minus5
+	if_type_effectiveness AI_EFFECTIVENESS_x0_25, Score_Minus30
 	get_ability AI_USER
 	if_equal ABILITY_MOLD_BREAKER, AI_CheckBadMove_CheckEffect
 	if_equal ABILITY_TERAVOLT, AI_CheckBadMove_CheckEffect
