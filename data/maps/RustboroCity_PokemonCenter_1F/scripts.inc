@@ -1,4 +1,5 @@
 .set LOCALID_NURSE, 1
+.set LOCALID_MOVE_RELEARNER, 2
 
 RustboroCity_PokemonCenter_1F_MapScripts:: @ 8214D62
 	map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_PokemonCenter_1F_OnTransition
@@ -19,6 +20,7 @@ RustboroCity_PokemonCenter_1F_EventScript_Nurse:: @ 8214D76
 	end
 
 RustboroCity_PokemonCenter_1F_EventScript_MoveRelearner::
+	setvar VAR_0x800B, LOCALID_MOVE_RELEARNER
 	call Common_EventScript_MoveRelearner
 	waitmessage
 	waitbuttonpress

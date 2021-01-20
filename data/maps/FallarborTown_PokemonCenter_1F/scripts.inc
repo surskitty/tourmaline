@@ -1,5 +1,6 @@
 .set LOCALID_NURSE, 1
-.set LOCALID_LANETTE, 4
+.set LOCALID_MOVE_RELEARNER, 2
+.set LOCALID_LANETTE, 5
 
 FallarborTown_PokemonCenter_1F_MapScripts:: @ 8200BCD
 	map_script MAP_SCRIPT_ON_TRANSITION, FallarborTown_PokemonCenter_1F_OnTransition
@@ -20,6 +21,7 @@ FallarborTown_PokemonCenter_1F_EventScript_Nurse:: @ 8200BE1
 	end
 
 FallarborTown_PokemonCenter_1F_EventScript_MoveRelearner::
+	setvar VAR_0x800B, LOCALID_MOVE_RELEARNER
 	call Common_EventScript_MoveRelearner
 	waitmessage
 	waitbuttonpress

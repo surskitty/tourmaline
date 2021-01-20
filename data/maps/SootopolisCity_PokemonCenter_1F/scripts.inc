@@ -1,4 +1,5 @@
 .set LOCALID_NURSE, 1
+.set LOCALID_MOVE_RELEARNER, 2
 
 SootopolisCity_PokemonCenter_1F_MapScripts:: @ 82264F1
 	map_script MAP_SCRIPT_ON_TRANSITION, SootopolisCity_PokemonCenter_1F_OnTransition
@@ -18,6 +19,7 @@ SootopolisCity_PokemonCenter_1F_EventScript_Nurse:: @ 8226500
 	end
 
 SootopolisCity_PokemonCenter_1F_EventScript_MoveRelearner:: 
+	setvar VAR_0x800B, LOCALID_MOVE_RELEARNER
 	call Common_EventScript_MoveRelearner
 	waitmessage
 	waitbuttonpress

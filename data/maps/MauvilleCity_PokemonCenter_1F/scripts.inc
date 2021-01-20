@@ -1,4 +1,5 @@
 .set LOCALID_NURSE, 1
+.set LOCALID_MOVE_RELEARNER, 2
 
 MauvilleCity_PokemonCenter_1F_MapScripts:: @ 8210E5B
 	map_script MAP_SCRIPT_ON_TRANSITION, MauvilleCity_PokemonCenter_1F_OnTransition
@@ -24,6 +25,7 @@ MauvilleCity_PokemonCenter_1F_EventScript_Nurse:: @ 8210E78
 	end
 
 MauvilleCity_PokemonCenter_1F_EventScript_MoveRelearner::
+	setvar VAR_0x800B, LOCALID_MOVE_RELEARNER
 	call Common_EventScript_MoveRelearner
 	waitmessage
 	waitbuttonpress

@@ -1,4 +1,5 @@
 .set LOCALID_NURSE, 1
+.set LOCALID_MOVE_REMINDER, 2
 
 OldaleTown_PokemonCenter_1F_MapScripts:: @ 81FC006
 	map_script MAP_SCRIPT_ON_TRANSITION, OldaleTown_PokemonCenter_1F_OnTransition
@@ -19,6 +20,7 @@ OldaleTown_PokemonCenter_1F_EventScript_Nurse:: @ 81FC01A
 	end
 
 OldaleTown_PokemonCenter_1F_EventScript_MoveRelearner::
+	setvar VAR_0x800B, LOCALID_MOVE_REMINDER
 	call Common_EventScript_MoveRelearner
 	waitmessage
 	waitbuttonpress

@@ -1,5 +1,6 @@
 .set LOCALID_NURSE, 1
-.set LOCALID_SCOTT, 4
+.set LOCALID_MOVE_RELEARNER, 2
+.set LOCALID_SCOTT, 5
 
 EverGrandeCity_PokemonCenter_1F_MapScripts:: @ 8229A34
 	map_script MAP_SCRIPT_ON_TRANSITION, EverGrandeCity_PokemonCenter_1F_OnTransition
@@ -25,6 +26,7 @@ EverGrandeCity_PokemonCenter_1F_EventScript_Nurse:: @ 8229A59
 	end
 
 EverGrandeCity_PokemonCenter_1F_EventScript_MoveRelearner::
+	setvar VAR_0x800B, LOCALID_MOVE_RELEARNER
 	call Common_EventScript_MoveRelearner
 	waitmessage
 	waitbuttonpress

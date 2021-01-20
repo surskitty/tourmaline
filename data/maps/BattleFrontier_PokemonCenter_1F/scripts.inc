@@ -1,4 +1,5 @@
 .set LOCALID_NURSE, 1
+.set LOCALID_MOVE_REMINDER, 2
 
 BattleFrontier_PokemonCenter_1F_MapScripts:: @ 82678F9
 	map_script MAP_SCRIPT_ON_TRANSITION, BattleFrontier_PokemonCenter_1F_OnTransition
@@ -18,6 +19,7 @@ BattleFrontier_PokemonCenter_1F_EventScript_Nurse:: @ 8267908
 	end
 
 BattleFrontier_PokemonCenter_1F_EventScript_MoveRelearner::
+	setvar VAR_0x800B, LOCALID_MOVE_REMINDER
 	call Common_EventScript_MoveRelearner
 	waitmessage
 	waitbuttonpress
