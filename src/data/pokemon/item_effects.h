@@ -154,11 +154,6 @@ const u8 gItemEffect_BerryJuice[7] = {
     [6] = 20,
 };
 
-const u8 gItemEffect_SweetHeart[7] = {
-    [4] = ITEM4_HEAL_HP,
-    [6] = 20,
-};
-
 const u8 gItemEffect_BigMalasada[6] = {
     [3] = ITEM3_STATUS_ALL,
 };
@@ -517,7 +512,6 @@ const u8 *const gItemEffectTable[] =
     [ITEM_YELLOW_FLUTE - ITEM_POTION] = gItemEffect_YellowFlute,
     [ITEM_RED_FLUTE - ITEM_POTION] = gItemEffect_RedFlute,
     [ITEM_BERRY_JUICE - ITEM_POTION] = gItemEffect_BerryJuice,
-    [ITEM_SWEET_HEART - ITEM_POTION] = gItemEffect_SweetHeart,
     [ITEM_BIG_MALASADA - ITEM_POTION] = gItemEffect_BigMalasada,
     [ITEM_OLD_GATEAU - ITEM_POTION] = gItemEffect_OldGateau,
     [ITEM_SACRED_ASH - ITEM_POTION] = gItemEffect_SacredAsh,

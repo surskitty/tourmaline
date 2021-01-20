@@ -160,6 +160,7 @@ SlateportCity_Pokemart_EnergyGuru: @ 81DCDD4
 	.2byte ITEM_CALCIUM
 	.2byte ITEM_HP_UP
 	.2byte ITEM_ABILITY_CAPSULE
+	.2byte ITEM_ABILITY_PATCH
 	.2byte ITEM_NONE
 	release
 	end

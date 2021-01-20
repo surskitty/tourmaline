@@ -855,18 +855,16 @@ const struct Item gItems[] =
         .secondaryId = 0,
     },
 
-    [ITEM_SWEET_HEART] =
+    [ITEM_ABILITY_PATCH] =
     {
-        .name = _("Sweet Heart"),
-        .itemId = ITEM_SWEET_HEART,
-        .price = 3000,
-        .holdEffectParam = 20,
-        .description = sSweetHeartDesc,
-        .pocket = POCKET_MEDICINE,
+        .name = _("AbilityPatch"),
+        .itemId = ITEM_ABILITY_PATCH,
+        .price = 10000,
+        .holdEffectParam = 0,
+        .description = sAbilityPatchDesc,
+        .pocket = POCKET_ITEMS,
         .type = 1,
-        .fieldUseFunc = ItemUseOutOfBattle_Medicine,
-        .battleUsage = 1,
-        .battleUseFunc = ItemUseInBattle_Medicine,
+        .fieldUseFunc = ItemUseOutOfBattle_AbilityPatch,
         .secondaryId = 0,
     },
 
