@@ -64,7 +64,7 @@ PacifidlogTown_House3_Text_WillingToTradeIt: @ 8203CBE
 
 PacifidlogTown_House3_Text_ItsSubtlyDifferentThankYou: @ 8203D87
 	.string "Oh, so this is a {STR_VAR_1}?\p"
-	.string "It's sort of like a {STR_VAR_2},\n"
+	.string "It's strong like a {STR_VAR_2},\n"
 	.string "and yet it's subtly different.\p"
 	.string "Thank you!$"
 
