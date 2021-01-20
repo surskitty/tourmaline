@@ -9,46 +9,37 @@
 #include "script.h"
 #include "task.h"
 
-static u32 GetMirageRnd(void)
+static const u8 isPrime[] =
 {
-    u32 hi = VarGet(VAR_MIRAGE_RND_H);
-    u32 lo = VarGet(VAR_MIRAGE_RND_L);
-    return (hi << 16) | lo;
-}
-
-static void SetMirageRnd(u32 rnd)
-{
-    VarSet(VAR_MIRAGE_RND_H, rnd >> 16);
-    VarSet(VAR_MIRAGE_RND_L, rnd);
-}
-
-// unused
-void InitMirageRnd(void)
-{
-    SetMirageRnd((Random() << 16) | Random());
-}
-
-void UpdateMirageRnd(u16 days)
-{
-    s32 rnd = GetMirageRnd();
-    while (days)
-    {
-        rnd = ISO_RANDOMIZE2(rnd);
-        days--;
-    }
-    SetMirageRnd(rnd);
-}
+    0, // 00
+    0, // 01
+    1, // 02
+    1, // 03
+    0, // 04
+    1, // 05
+    0, // 06
+    1, // 07
+    0, // 08
+    0, // 09
+    0, // 10
+    1, // 11
+    0, // 12
+    1, // 13
+    0, // 14
+    0, // 15
+    0, // 16
+    1, // 17
+    0, // 18
+    1, // 19
+    0, // 20
+    0, // 21
+    0, // 22
+    1, // 23
+};
 
 bool8 IsMirageIslandPresent(void)
 {
-    u16 rnd = GetMirageRnd() >> 16;
-    int i;
-
-    for (i = 0; i < PARTY_SIZE; i++)
-        if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES) && (GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY) & 0xFFFF) == rnd)
-            return TRUE;
-
-    return FALSE;
+    return (isPrime[gLocalTime.hours]);
 }
 
 void UpdateShoalTideFlag(void)
