@@ -996,10 +996,10 @@ static const struct InGameTrade sIngameTrades[] =
     }, 
     [INGAME_TRADE_PLUSLE] = 
     {
-        .nickname = _("Pluses"), 
-        .species = SPECIES_PLUSLE,
-        .ivs = {4, 4, 4, 5, 5, 4},
-        .abilityNum = 0, 
+        .nickname = _("Chan"), 
+        .species = SPECIES_DARUMAKA,
+        .ivs = BEST_IV_SPREAD,
+        .abilityNum = 2, 
         .otId = 73996,
         .conditions = {5, 5, 30, 5, 5},
         .personality = 0x6F,
@@ -1008,7 +1008,7 @@ static const struct InGameTrade sIngameTrades[] =
         .otName = _("Roman"), 
         .otGender = MALE, 
         .sheen = 10,
-        .requestedSpecies = SPECIES_VOLBEAT
+        .requestedSpecies = SPECIES_TROPIUS
     }, 
     [INGAME_TRADE_HORSEA] = 
     {
@@ -1029,9 +1029,9 @@ static const struct InGameTrade sIngameTrades[] =
     [INGAME_TRADE_MEOWTH] = 
     {
         .nickname = _("Meowow"),
-        .species = SPECIES_MEOWTH,
-        .ivs = {4, 5, 4, 5, 4, 4},
-        .abilityNum = 0, 
+        .species = SPECIES_MEOWTH_ALOLAN,
+        .ivs = BEST_IV_SPREAD,
+        .abilityNum = 2, 
         .otId = 91481,
         .conditions = {5, 5, 5, 30, 5},
         .personality = 0x8B,
