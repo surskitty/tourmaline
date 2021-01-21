@@ -82,6 +82,11 @@ DewfordTown_EventScript_HallSign:: @ 81E95CC
 	msgbox DewfordTown_Text_HallSign, MSGBOX_SIGN
 	end
 
+DewfordTown_EventScript_Cabbie::
+	call Common_EventScript_FlyingTaxi
+	release
+	end
+
 DewfordTown_EventScript_OldRodFisherman:: @ 81E95D5
 	lock
 	faceplayer
