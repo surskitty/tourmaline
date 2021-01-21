@@ -11676,6 +11676,7 @@ static const struct LevelUpMove sGothitelleLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sSolosisLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_CONFUSION),
     LEVEL_UP_MOVE( 1, MOVE_PSYWAVE),
     LEVEL_UP_MOVE( 3, MOVE_REFLECT),
     LEVEL_UP_MOVE( 7, MOVE_ROLLOUT),
