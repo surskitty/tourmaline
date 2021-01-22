@@ -225,7 +225,13 @@ SootopolisCity_Gym_1F_Text_JuanIntro: @ 8225268
 @ the existence of that unused array of ints.
 SootopolisCity_Gym_1F_Text_JuanDefeat: @ 8225432
 	.string "Ahahaha, excellent!\n"
-	.string "Very well, you are the winner.\p"
+	.string "Very well, you are the winner.$"
+
+SootopolisCity_Gym_1F_Text_ReceivedRainBadge: @ 8225598
+	.string "{PLAYER} received the Rain Badge\n"
+	.string "from Juan.$"
+
+SootopolisCity_Gym_1F_Text_ExplainRainBadgeTakeThis: @ 82255BE
 	.string "From you, I sense the brilliant shine\n"
 	.string "of skill that will overcome all.\p"
 	.string "However, compared with me or even\n"
@@ -234,22 +240,15 @@ SootopolisCity_Gym_1F_Text_JuanDefeat: @ 8225432
 	.string "of my outfit?\p"
 	.string "… … … … … …\n"
 	.string "… … … … … …\p"
-	.string "Hahaha, I merely jest!\p"
-	.string "Rather than my clothes, I shall reward\n"
-	.string "you with this, the Rain Badge!$"
-
-SootopolisCity_Gym_1F_Text_ReceivedRainBadge: @ 8225598
-	.string "{PLAYER} received the Rain Badge\n"
-	.string "from Juan.$"
-
-SootopolisCity_Gym_1F_Text_ExplainRainBadgeTakeThis: @ 82255BE
+	.string "Hahaha, I merely jest!\n"
+	.string "I'm keeping my clothes.\p"
 	.string "Having the Rain Badge shall assure you\n"
 	.string "the full obedience of all your Pokémon\l"
 	.string "to your every command.\p"
 	.string "The Rain Badge also allows the use\n"
-	.string "of the Hm move Waterfall to scale\l"
+	.string "of the HM move Waterfall to scale\l"
 	.string "walls of cascading water.\p"
-	.string "And, so that you never forget the\n"
+	.string "And so that you never forget the\n"
 	.string "battle we shared, take this…$"
 
 SootopolisCity_Gym_1F_Text_ExplainWaterPulse: @ 82256C1

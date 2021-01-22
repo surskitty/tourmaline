@@ -1,6 +1,6 @@
 gText_FlyingTaxi_Intro::
     .string "Hello. I pilot one of the\n"
-    .string "FLYING TAXIS.\p"
+    .string "Flying Taxis.\p"
     .string "Do you need a lift?$"
 
 gText_FlyingTaxi_WhereDoYouWantToGo::

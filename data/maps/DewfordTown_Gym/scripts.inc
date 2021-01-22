@@ -418,7 +418,7 @@ DewfordTown_Gym_Text_KnuckleBadgeInfoTakeThis: @ 81FD0A8
 	.string "The Knuckle Badge makes all Pokémon\n"
 	.string "up to Level 30, even those you get in\l"
 	.string "trades, obey without question.\p"
-	.string "And you'll be able to use the Hm move\n"
+	.string "And you'll be able to use the HM move\n"
 	.string "Flash outside of battle.\p"
 	.string "If you'd like, use this Technical\n"
 	.string "Machine, too.$"
