@@ -610,8 +610,8 @@ LilycoveCity_Text_StrangeCaveInCove: @ 81E3E3C
 LilycoveCity_Text_GoingToMoveDeleterForHMs: @ 81E3E7D
 	.string "I'm going to teach my Pokémon some new\n"
 	.string "moves for entering a Contest.\p"
-	.string "So, I'm going to see the Move Deleter\n"
-	.string "and make it forget Hm moves.$"
+	.string "So I'm going to see the Move Deleter\n"
+	.string "and make it forget HM moves.$"
 
 LilycoveCity_Text_ImFromKanto: @ 81E3F05
 	.string "I came from Kanto.\p"
