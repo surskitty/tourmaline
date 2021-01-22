@@ -504,26 +504,26 @@ gCryTable:: @ 869DCF4
 	cry_not Cry_Oshawott
 	cry_not Cry_Dewott
 	cry_not Cry_Samurott
-	cry_not Cry_Patrat
-	cry_not Cry_Watchog
+	cry Cry_Rattata
+	cry Cry_Furret
 	cry_not Cry_Lillipup
 	cry_not Cry_Herdier
 	cry_not Cry_Stoutland
 	cry_not Cry_Purrloin
 	cry_not Cry_Liepard
-	cry_not Cry_Pansage
-	cry_not Cry_Simisage
-	cry_not Cry_Pansear
-	cry_not Cry_Simisear
-	cry_not Cry_Panpour
-	cry_not Cry_Simipour
+	cry Cry_Mankey
+	cry Cry_Primeape
+	cry Cry_Mankey
+	cry Cry_Primeape
+	cry Cry_Mankey
+	cry Cry_Primeape
 	cry_not Cry_Munna
 	cry_not Cry_Musharna
 	cry_not Cry_Pidove
 	cry_not Cry_Tranquill
 	cry_not Cry_Unfezant
-	cry_not Cry_Blitzle
-	cry_not Cry_Zebstrika
+	cry Cry_Ponyta
+	cry Cry_Rapidash
 	cry_not Cry_Roggenrola
 	cry_not Cry_Boldore
 	cry_not Cry_Gigalith
@@ -656,9 +656,9 @@ gCryTable:: @ 869DCF4
 	cry_not Cry_Fennekin
 	cry_not Cry_Braixen
 	cry_not Cry_Delphox
-	cry_not Cry_Froakie
-	cry_not Cry_Frogadier
-	cry_not Cry_Greninja
+	cry Cry_Poliwag
+	cry Cry_Poliwhirl
+	cry Cry_Politoed
 	cry_not Cry_Bunnelby
 	cry_not Cry_Diggersby
 	cry_not Cry_Fletchling
@@ -731,11 +731,11 @@ gCryTable:: @ 869DCF4
 	cry_not Cry_Popplio
 	cry_not Cry_Brionne
 	cry_not Cry_Primarina
-	cry_not Cry_Pikipek
-	cry_not Cry_Trumbeak
-	cry_not Cry_Toucannon
-	cry_not Cry_Yungoos
-	cry_not Cry_Gumshoos
+	cry Cry_Pidgey
+	cry Cry_Pidgeotto
+	cry Cry_Pidgeot
+	cry Cry_Rattata
+	cry Cry_Raticate
 	cry_not Cry_Grubbin
 	cry_not Cry_Charjabug
 	cry_not Cry_Vikavolt
@@ -819,8 +819,8 @@ gCryTable:: @ 869DCF4
 	cry_not Cry_Sobble
 	cry_not Cry_Drizzile
 	cry_not Cry_Inteleon
-	cry_not Cry_Skwovet
-	cry_not Cry_Greedent
+	cry Cry_Sentret
+	cry Cry_Furret
 	cry_not Cry_Rookidee
 	cry_not Cry_Corvisquire
 	cry_not Cry_Corviknight
@@ -835,8 +835,8 @@ gCryTable:: @ 869DCF4
 	cry_not Cry_Dubwool
 	cry_not Cry_Chewtle
 	cry_not Cry_Drednaw
-	cry_not Cry_Yamper
-	cry_not Cry_Boltund
+	cry Cry_Growlithe
+	cry Cry_Arcanine
 	cry_not Cry_Rolycoly
 	cry_not Cry_Carkol
 	cry_not Cry_Coalossal
@@ -863,7 +863,7 @@ gCryTable:: @ 869DCF4
 	cry_not Cry_Morgrem
 	cry_not Cry_Grimmsnarl
 	cry_not Cry_Obstagoon
-	cry_not Cry_Perrserker
+	cry Cry_Persian
 	cry_not Cry_Cursola
 	cry_not Cry_Sirfetchd
 	cry Cry_MrMime
@@ -1115,8 +1115,8 @@ gCryTable:: @ 869DCF4
 	cry_not Cry_Genesect
 	cry_not Cry_Genesect
 	@ Greninja
-	cry_not Cry_Greninja
-	cry_not Cry_Greninja
+	cry Cry_Politoed
+	cry Cry_Politoed
 	@ Vivillon
 	cry_not Cry_Vivillon
 	cry_not Cry_Vivillon
@@ -1778,26 +1778,26 @@ gCryTable2:: @ 869EF24
 	cry2_not Cry_Oshawott
 	cry2_not Cry_Dewott
 	cry2_not Cry_Samurott
-	cry2_not Cry_Patrat
-	cry2_not Cry_Watchog
+	cry2 Cry_Rattata
+	cry2 Cry_Furret
 	cry2_not Cry_Lillipup
 	cry2_not Cry_Herdier
 	cry2_not Cry_Stoutland
 	cry2_not Cry_Purrloin
 	cry2_not Cry_Liepard
-	cry2_not Cry_Pansage
-	cry2_not Cry_Simisage
-	cry2_not Cry_Pansear
-	cry2_not Cry_Simisear
-	cry2_not Cry_Panpour
-	cry2_not Cry_Simipour
+	cry2 Cry_Mankey
+	cry2 Cry_Primeape
+	cry2 Cry_Mankey
+	cry2 Cry_Primeape
+	cry2 Cry_Mankey
+	cry2 Cry_Primeape
 	cry2_not Cry_Munna
 	cry2_not Cry_Musharna
 	cry2_not Cry_Pidove
 	cry2_not Cry_Tranquill
 	cry2_not Cry_Unfezant
-	cry2_not Cry_Blitzle
-	cry2_not Cry_Zebstrika
+	cry2 Cry_Ponyta
+	cry2 Cry_Rapidash
 	cry2_not Cry_Roggenrola
 	cry2_not Cry_Boldore
 	cry2_not Cry_Gigalith
@@ -1930,9 +1930,9 @@ gCryTable2:: @ 869EF24
 	cry2_not Cry_Fennekin
 	cry2_not Cry_Braixen
 	cry2_not Cry_Delphox
-	cry2_not Cry_Froakie
-	cry2_not Cry_Frogadier
-	cry2_not Cry_Greninja
+	cry2 Cry_Poliwag
+	cry2 Cry_Poliwhirl
+	cry2 Cry_Politoed
 	cry2_not Cry_Bunnelby
 	cry2_not Cry_Diggersby
 	cry2_not Cry_Fletchling
@@ -2005,11 +2005,11 @@ gCryTable2:: @ 869EF24
 	cry2_not Cry_Popplio
 	cry2_not Cry_Brionne
 	cry2_not Cry_Primarina
-	cry2_not Cry_Pikipek
-	cry2_not Cry_Trumbeak
-	cry2_not Cry_Toucannon
-	cry2_not Cry_Yungoos
-	cry2_not Cry_Gumshoos
+	cry2 Cry_Pidgey
+	cry2 Cry_Pidgeotto
+	cry2 Cry_Pidgeot
+	cry2 Cry_Rattata
+	cry2 Cry_Raticate
 	cry2_not Cry_Grubbin
 	cry2_not Cry_Charjabug
 	cry2_not Cry_Vikavolt
@@ -2093,8 +2093,8 @@ gCryTable2:: @ 869EF24
 	cry2_not Cry_Sobble
 	cry2_not Cry_Drizzile
 	cry2_not Cry_Inteleon
-	cry2_not Cry_Skwovet
-	cry2_not Cry_Greedent
+	cry2 Cry_Sentret
+	cry2 Cry_Furret
 	cry2_not Cry_Rookidee
 	cry2_not Cry_Corvisquire
 	cry2_not Cry_Corviknight
@@ -2109,8 +2109,8 @@ gCryTable2:: @ 869EF24
 	cry2_not Cry_Dubwool
 	cry2_not Cry_Chewtle
 	cry2_not Cry_Drednaw
-	cry2_not Cry_Yamper
-	cry2_not Cry_Boltund
+	cry2 Cry_Growlithe
+	cry2 Cry_Arcanine
 	cry2_not Cry_Rolycoly
 	cry2_not Cry_Carkol
 	cry2_not Cry_Coalossal
@@ -2137,7 +2137,7 @@ gCryTable2:: @ 869EF24
 	cry2_not Cry_Morgrem
 	cry2_not Cry_Grimmsnarl
 	cry2_not Cry_Obstagoon
-	cry2_not Cry_Perrserker
+	cry2 Cry_Persian
 	cry2_not Cry_Cursola
 	cry2_not Cry_Sirfetchd
 	cry2 Cry_MrMime
@@ -2389,8 +2389,8 @@ gCryTable2:: @ 869EF24
 	cry2_not Cry_Genesect
 	cry2_not Cry_Genesect
 	@ Greninja
-	cry2_not Cry_Greninja
-	cry2_not Cry_Greninja
+	cry2 Cry_Politoed
+	cry2 Cry_Politoed
 	@ Vivillon
 	cry2_not Cry_Vivillon
 	cry2_not Cry_Vivillon
