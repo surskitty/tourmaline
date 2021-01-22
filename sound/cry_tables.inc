@@ -866,7 +866,7 @@ gCryTable:: @ 869DCF4
 	cry_not Cry_Perrserker
 	cry_not Cry_Cursola
 	cry_not Cry_Sirfetchd
-	cry_not Cry_MrRime
+	cry Cry_MrMime
 	cry_not Cry_Runerigus
 	cry_not Cry_Milcery
 	cry_not Cry_Alcremie
@@ -888,11 +888,11 @@ gCryTable:: @ 869DCF4
 	cry_not Cry_Dreepy
 	cry_not Cry_Drakloak
 	cry_not Cry_Dragapult
-	cry_not Cry_Zacian
-	cry_not Cry_Zamazenta
+	cry Cry_Arcanine
+	cry Cry_Houndoom
 	cry_not Cry_Eternatus
-	cry_not Cry_Kubfu
-	cry_not Cry_Urshifu
+	cry_not Cry_Teddiursa
+	cry Cry_Ursaring
 	cry_not Cry_Zarude
 	cry_not Cry_Regieleki
 	cry_not Cry_Regidrago
@@ -900,53 +900,53 @@ gCryTable:: @ 869DCF4
 	cry_not Cry_Spectrier
 	cry_not Cry_Calyrex
 	@ Megas
-	cry_not Cry_Venusaur_Mega
-	cry_not Cry_Charizard_Mega_X
-	cry_not Cry_Charizard_Mega_Y
-	cry_not Cry_Blastoise_Mega
-	cry_not Cry_Beedrill_Mega
-	cry_not Cry_Pidgeot_Mega
-	cry_not Cry_Alakazam_Mega
-	cry_not Cry_Slowbro_Mega
-	cry_not Cry_Gengar_Mega
-	cry_not Cry_Kangaskhan_Mega
-	cry_not Cry_Pinsir_Mega
-	cry_not Cry_Gyarados_Mega
-	cry_not Cry_Aerodactyl_Mega
-	cry_not Cry_Mewtwo_Mega_X
-	cry_not Cry_Mewtwo_Mega_Y
-	cry_not Cry_Ampharos_Mega
-	cry_not Cry_Steelix_Mega
-	cry_not Cry_Scizor_Mega
-	cry_not Cry_Heracross_Mega
-	cry_not Cry_Houndoom_Mega
-	cry_not Cry_Tyranitar_Mega
-	cry_not Cry_Sceptile_Mega
-	cry_not Cry_Blaziken_Mega
-	cry_not Cry_Swampert_Mega
-	cry_not Cry_Gardevoir_Mega
-	cry_not Cry_Sableye_Mega
-	cry_not Cry_Mawile_Mega
-	cry_not Cry_Aggron_Mega
-	cry_not Cry_Medicham_Mega
-	cry_not Cry_Manectric_Mega
-	cry_not Cry_Sharpedo_Mega
-	cry_not Cry_Camerupt_Mega
-	cry_not Cry_Altaria_Mega
-	cry_not Cry_Banette_Mega
-	cry_not Cry_Absol_Mega
-	cry_not Cry_Glalie_Mega
-	cry_not Cry_Salamence_Mega
-	cry_not Cry_Metagross_Mega
-	cry_not Cry_Latias_Mega
-	cry_not Cry_Latios_Mega
-	cry_not Cry_Lopunny_Mega
-	cry_not Cry_Garchomp_Mega
-	cry_not Cry_Lucario_Mega
-	cry_not Cry_Abomasnow_Mega
-	cry_not Cry_Gallade_Mega
-	cry_not Cry_Audino_Mega
-	cry_not Cry_Diancie_Mega
+	cry Cry_Venusaur
+	cry Cry_Charizard
+	cry Cry_Charizard
+	cry Cry_Blastoise
+	cry Cry_Beedrill
+	cry Cry_Pidgeot
+	cry Cry_Alakazam
+	cry Cry_Slowbro
+	cry Cry_Gengar
+	cry Cry_Kangaskhan
+	cry Cry_Pinsir
+	cry Cry_Gyarados
+	cry Cry_Aerodactyl
+	cry Cry_Mewtwo
+	cry Cry_Mewtwo
+	cry Cry_Ampharos
+	cry Cry_Steelix
+	cry Cry_Scizor
+	cry Cry_Heracross
+	cry Cry_Houndoom
+	cry Cry_Tyranitar
+	cry Cry_Sceptile
+	cry Cry_Blaziken
+	cry Cry_Swampert
+	cry Cry_Gardevoir
+	cry Cry_Sableye
+	cry Cry_Mawile
+	cry Cry_Aggron
+	cry Cry_Medicham
+	cry Cry_Manectric
+	cry Cry_Sharpedo
+	cry Cry_Camerupt
+	cry Cry_Altaria
+	cry Cry_Banette
+	cry Cry_Absol
+	cry Cry_Glalie
+	cry Cry_Salamence
+	cry Cry_Metagross
+	cry Cry_Latias
+	cry Cry_Latios
+	cry_not Cry_Lopunny
+	cry_not Cry_Garchomp
+	cry_not Cry_Lucario
+	cry_not Cry_Abomasnow
+	cry_not Cry_Gallade
+	cry_not Cry_Audino
+	cry_not Cry_Diancie
 	@ Special Mega + Primals
 	cry_not Cry_Rayquaza_Mega
 	cry_not Cry_Kyogre_Primal
@@ -1191,8 +1191,8 @@ gCryTable:: @ 869DCF4
 	@ Rockruff
 	cry_not Cry_Rockruff
 	@ Lycanroc
-	cry_not Cry_Lycanroc_Midnight
-	cry_not Cry_Lycanroc_Dusk
+	cry_not Cry_Lycanroc
+	cry_not Cry_Lycanroc
 	@ Wishiwashi
 	cry_not Cry_Wishiwashi_School
 	@ Silvally
@@ -1260,13 +1260,13 @@ gCryTable:: @ 869DCF4
 	@ Morpeko
 	cry_not Cry_Morpeko
 	@ Zacian
-	cry_not Cry_Zacian
+	cry Cry_Arcanine
 	@ Zamazenta
-	cry_not Cry_Zamazenta
+	cry Cry_Houndoom
 	@ Eternatus
 	cry_not Cry_Eternatus
 	@ Urshifu
-	cry_not Cry_Urshifu
+	cry Cry_Ursaring
 	@ Zarude
 	cry_not Cry_Zarude
 	@ Calyrex
@@ -2140,7 +2140,7 @@ gCryTable2:: @ 869EF24
 	cry2_not Cry_Perrserker
 	cry2_not Cry_Cursola
 	cry2_not Cry_Sirfetchd
-	cry2_not Cry_MrRime
+	cry2 Cry_MrMime
 	cry2_not Cry_Runerigus
 	cry2_not Cry_Milcery
 	cry2_not Cry_Alcremie
@@ -2162,11 +2162,11 @@ gCryTable2:: @ 869EF24
 	cry2_not Cry_Dreepy
 	cry2_not Cry_Drakloak
 	cry2_not Cry_Dragapult
-	cry2_not Cry_Zacian
-	cry2_not Cry_Zamazenta
+	cry2 Cry_Arcanine
+	cry2 Cry_Houndoom
 	cry2_not Cry_Eternatus
-	cry2_not Cry_Kubfu
-	cry2_not Cry_Urshifu
+	cry2 Cry_Teddiursa
+	cry2 Cry_Ursaring
 	cry2_not Cry_Zarude
 	cry2_not Cry_Regieleki
 	cry2_not Cry_Regidrago
@@ -2174,53 +2174,53 @@ gCryTable2:: @ 869EF24
 	cry2_not Cry_Spectrier
 	cry2_not Cry_Calyrex
 	@ Megas
-	cry2_not Cry_Venusaur_Mega
-	cry2_not Cry_Charizard_Mega_X
-	cry2_not Cry_Charizard_Mega_Y
-	cry2_not Cry_Blastoise_Mega
-	cry2_not Cry_Beedrill_Mega
-	cry2_not Cry_Pidgeot_Mega
-	cry2_not Cry_Alakazam_Mega
-	cry2_not Cry_Slowbro_Mega
-	cry2_not Cry_Gengar_Mega
-	cry2_not Cry_Kangaskhan_Mega
-	cry2_not Cry_Pinsir_Mega
-	cry2_not Cry_Gyarados_Mega
-	cry2_not Cry_Aerodactyl_Mega
-	cry2_not Cry_Mewtwo_Mega_X
-	cry2_not Cry_Mewtwo_Mega_Y
-	cry2_not Cry_Ampharos_Mega
-	cry2_not Cry_Steelix_Mega
-	cry2_not Cry_Scizor_Mega
-	cry2_not Cry_Heracross_Mega
-	cry2_not Cry_Houndoom_Mega
-	cry2_not Cry_Tyranitar_Mega
-	cry2_not Cry_Sceptile_Mega
-	cry2_not Cry_Blaziken_Mega
-	cry2_not Cry_Swampert_Mega
-	cry2_not Cry_Gardevoir_Mega
-	cry2_not Cry_Sableye_Mega
-	cry2_not Cry_Mawile_Mega
-	cry2_not Cry_Aggron_Mega
-	cry2_not Cry_Medicham_Mega
-	cry2_not Cry_Manectric_Mega
-	cry2_not Cry_Sharpedo_Mega
-	cry2_not Cry_Camerupt_Mega
-	cry2_not Cry_Altaria_Mega
-	cry2_not Cry_Banette_Mega
-	cry2_not Cry_Absol_Mega
-	cry2_not Cry_Glalie_Mega
-	cry2_not Cry_Salamence_Mega
-	cry2_not Cry_Metagross_Mega
-	cry2_not Cry_Latias_Mega
-	cry2_not Cry_Latios_Mega
-	cry2_not Cry_Lopunny_Mega
-	cry2_not Cry_Garchomp_Mega
-	cry2_not Cry_Lucario_Mega
-	cry2_not Cry_Abomasnow_Mega
-	cry2_not Cry_Gallade_Mega
-	cry2_not Cry_Audino_Mega
-	cry2_not Cry_Diancie_Mega
+	cry2 Cry_Venusaur
+	cry2 Cry_Charizard
+	cry2 Cry_Charizard
+	cry2 Cry_Blastoise
+	cry2 Cry_Beedrill
+	cry2 Cry_Pidgeot
+	cry2 Cry_Alakazam
+	cry2 Cry_Slowbro
+	cry2 Cry_Gengar
+	cry2 Cry_Kangaskhan
+	cry2 Cry_Pinsir
+	cry2 Cry_Gyarados
+	cry2 Cry_Aerodactyl
+	cry2 Cry_Mewtwo
+	cry2 Cry_Mewtwo
+	cry2 Cry_Ampharos
+	cry2 Cry_Steelix
+	cry2 Cry_Scizor
+	cry2 Cry_Heracross
+	cry2 Cry_Houndoom
+	cry2 Cry_Tyranitar
+	cry2 Cry_Sceptile
+	cry2 Cry_Blaziken
+	cry2 Cry_Swampert
+	cry2 Cry_Gardevoir
+	cry2 Cry_Sableye
+	cry2 Cry_Mawile
+	cry2 Cry_Aggron
+	cry2 Cry_Medicham
+	cry2 Cry_Manectric
+	cry2 Cry_Sharpedo
+	cry2 Cry_Camerupt
+	cry2 Cry_Altaria
+	cry2 Cry_Banette
+	cry2 Cry_Absol
+	cry2 Cry_Glalie
+	cry2 Cry_Salamence
+	cry2 Cry_Metagross
+	cry2 Cry_Latias
+	cry2 Cry_Latios
+	cry2_not Cry_Lopunny
+	cry2_not Cry_Garchomp
+	cry2_not Cry_Lucario
+	cry2_not Cry_Abomasnow
+	cry2_not Cry_Gallade
+	cry2_not Cry_Audino
+	cry2_not Cry_Diancie
 	@ Special Mega + Primals
 	cry2_not Cry_Rayquaza_Mega
 	cry2_not Cry_Kyogre_Primal
@@ -2465,8 +2465,8 @@ gCryTable2:: @ 869EF24
 	@ Rockruff
 	cry2_not Cry_Rockruff
 	@ Lycanroc
-	cry2_not Cry_Lycanroc_Midnight
-	cry2_not Cry_Lycanroc_Dusk
+	cry2_not Cry_Lycanroc
+	cry2_not Cry_Lycanroc
 	@ Wishiwashi
 	cry2_not Cry_Wishiwashi_School
 	@ Silvally
@@ -2534,13 +2534,13 @@ gCryTable2:: @ 869EF24
 	@ Morpeko
 	cry2_not Cry_Morpeko
 	@ Zacian
-	cry2_not Cry_Zacian
+	cry2 Cry_Arcanine
 	@ Zamazenta
-	cry2_not Cry_Zamazenta
+	cry2 Cry_Houndoom
 	@ Eternatus
 	cry2_not Cry_Eternatus
 	@ Urshifu
-	cry2_not Cry_Urshifu
+	cry2 Cry_Ursaring
 	@ Zarude
 	cry2_not Cry_Zarude
 	@ Calyrex
