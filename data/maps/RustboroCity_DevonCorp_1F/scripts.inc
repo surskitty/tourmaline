@@ -130,7 +130,7 @@ RustboroCity_DevonCorp_1F_Text_RocksMetalDisplay: @ 82115AC
 	.string "filings in the sand.\p"
 	.string "“From that humble start as a producer\n"
 	.string "of raw materials, Devon developed.\p"
-	.string "“DEVON is now a manufacturer of a wide\n"
+	.string "“Devon is now a manufacturer of a wide\n"
 	.string "range of industrial products.”$"
 
 RustboroCity_DevonCorp_1F_Text_ProductDisplay: @ 8211722
