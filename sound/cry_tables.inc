@@ -667,8 +667,8 @@ gCryTable:: @ 869DCF4
 	cry_not Cry_Scatterbug
 	cry_not Cry_Spewpa
 	cry_not Cry_Vivillon
-	cry_not Cry_Litleo
-	cry_not Cry_Pyroar
+	cry Cry_Meowth
+	cry Cry_Persian
 	cry_not Cry_Flabebe
 	cry_not Cry_Floette
 	cry_not Cry_Florges
@@ -1941,8 +1941,8 @@ gCryTable2:: @ 869EF24
 	cry2_not Cry_Scatterbug
 	cry2_not Cry_Spewpa
 	cry2_not Cry_Vivillon
-	cry2_not Cry_Litleo
-	cry2_not Cry_Pyroar
+	cry2 Cry_Meowth
+	cry2 Cry_Persian
 	cry2_not Cry_Flabebe
 	cry2_not Cry_Floette
 	cry2_not Cry_Florges

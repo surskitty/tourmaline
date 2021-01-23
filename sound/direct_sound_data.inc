@@ -2999,14 +2999,6 @@ Cry_Vivillon::
 	.incbin "sound/direct_sound_samples/cries/cry_not_vivillon.bin"
 
 	.align 2
-Cry_Litleo::
-	.incbin "sound/direct_sound_samples/cries/cry_not_litleo.bin"
-
-	.align 2
-Cry_Pyroar::
-	.incbin "sound/direct_sound_samples/cries/cry_not_pyroar.bin"
-
-	.align 2
 Cry_Flabebe::
 	.incbin "sound/direct_sound_samples/cries/cry_not_flabebe.bin"
 
