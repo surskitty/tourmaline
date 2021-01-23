@@ -7256,23 +7256,24 @@ u8 GetMoveTutorMoves(struct Pokemon *mon, u16 *moves, u8 moveTutorType)
         {
             u16 moveLevel;
 
-            if (gLevelUpLearnsets[species][i] == LEVEL_UP_END)
+
+            if (gLevelUpLearnsets[species][i].move == LEVEL_UP_END)
                 break;
 
-            moveLevel = gLevelUpLearnsets[species][i] & LEVEL_UP_MOVE_LV;
+            moveLevel = gLevelUpLearnsets[species][i].level;
 
-            if (moveLevel <= (level << 9))
+            if (moveLevel <= level)
             {
-                for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != (gLevelUpLearnsets[species][i] & LEVEL_UP_MOVE_ID); j++)
+                for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != gLevelUpLearnsets[species][i].move; j++)
                     ;
 
                 if (j == MAX_MON_MOVES)
                 {
-                    for (k = 0; k < numMoves && moves[k] != (gLevelUpLearnsets[species][i] & LEVEL_UP_MOVE_ID); k++)
+                    for (k = 0; k < numMoves && moves[k] != gLevelUpLearnsets[species][i].move; k++)
                         ;
 
                     if (k == numMoves)
-                       moves[numMoves++] = gLevelUpLearnsets[species][i] & LEVEL_UP_MOVE_ID;
+                        moves[numMoves++] = gLevelUpLearnsets[species][i].move;
                 }
             }
         }
