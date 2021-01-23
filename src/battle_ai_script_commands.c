@@ -515,6 +515,16 @@ static u8 ChooseMoveOrAction_Singles(void)
         && !(gBattleTypeFlags & (BATTLE_TYPE_ARENA | BATTLE_TYPE_PALACE))
         && AI_THINKING_STRUCT->aiFlags & (AI_SCRIPT_CHECK_VIABILITY | AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_PREFER_BATON_PASS))
     {
+        // Consider switching if current mon has been given Truant.
+        if ((GetBattlerAbility(sBattler_AI) != GetAbilityBySpecies(gBattleMons[sBattler_AI].species, gBattleMons[sBattler_AI].abilityNum)) && GetBattlerAbility(sBattler_AI) == ABILITY_TRUANT)
+        {
+            if (GetMostSuitableMonToSwitchInto() != PARTY_SIZE)
+            {
+                AI_THINKING_STRUCT->switchMon = TRUE;
+                return AI_CHOICE_SWITCH;
+            }
+        }
+                
         // Consider switching if all moves are worthless to use.
         if (GetTotalBaseStat(gBattleMons[sBattler_AI].species) >= 310 // Mon is not weak.
             && gBattleMons[sBattler_AI].hp >= gBattleMons[sBattler_AI].maxHP / 2)
