@@ -10,6 +10,7 @@
 #include "battle_setup.h"
 #include "battle_tower.h"
 #include "data.h"
+#include "daycare.h"
 #include "event_data.h"
 #include "evolution_scene.h"
 #include "field_specials.h"
@@ -7231,40 +7232,59 @@ u32 CanSpeciesLearnTMHM(u16 species, u8 tm)
     }
 }
 
-u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)
+u8 GetMoveTutorMoves(struct Pokemon *mon, u16 *moves, u8 moveTutorType)
 {
     u16 learnedMoves[4];
     u8 numMoves = 0;
     u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
     u8 level = GetMonData(mon, MON_DATA_LEVEL, 0);
+    u16 eggSpecies;
+    u16 eggMoves[EGG_MOVES_ARRAY_COUNT] = {0};
+    u8 numEggMoves = 0;
+
     int i, j, k;
+
+    if (moveTutorType & FLAG_LEARN_ALL_MOVES)
+        level = MAX_LEVEL;
 
     for (i = 0; i < MAX_MON_MOVES; i++)
         learnedMoves[i] = GetMonData(mon, MON_DATA_MOVE1 + i, 0);
 
-    for (i = 0; i < MAX_LEVEL_UP_MOVES; i++)
+    if (!(moveTutorType & FLAG_SKIP_LEVEL_UP_MOVES))
     {
-        u16 moveLevel;
-
-        if (gLevelUpLearnsets[species][i].move == LEVEL_UP_END)
-            break;
-
-        moveLevel = gLevelUpLearnsets[species][i].level;
-
-        if (moveLevel <= level)
+        for (i = 0; i < MAX_LEVEL_UP_MOVES; i++)
         {
-            for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != gLevelUpLearnsets[species][i].move; j++)
-                ;
+            u16 moveLevel;
 
-            if (j == MAX_MON_MOVES)
+            if (gLevelUpLearnsets[species][i] == LEVEL_UP_END)
+                break;
+
+            moveLevel = gLevelUpLearnsets[species][i] & LEVEL_UP_MOVE_LV;
+
+            if (moveLevel <= (level << 9))
             {
-                for (k = 0; k < numMoves && moves[k] != gLevelUpLearnsets[species][i].move; k++)
+                for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != (gLevelUpLearnsets[species][i] & LEVEL_UP_MOVE_ID); j++)
                     ;
 
-                if (k == numMoves)
-                    moves[numMoves++] = gLevelUpLearnsets[species][i].move;
+                if (j == MAX_MON_MOVES)
+                {
+                    for (k = 0; k < numMoves && moves[k] != (gLevelUpLearnsets[species][i] & LEVEL_UP_MOVE_ID); k++)
+                        ;
+
+                    if (k == numMoves)
+                       moves[numMoves++] = gLevelUpLearnsets[species][i] & LEVEL_UP_MOVE_ID;
+                }
             }
         }
+    }
+
+    if (moveTutorType & FLAG_LEARN_EGG_MOVES)
+    {
+        for (i = 0; i < EGG_MOVES_ARRAY_COUNT; i++)
+             eggMoves[i] = MOVE_NONE;
+
+        eggSpecies = GetEggSpecies(species);
+        numEggMoves = GetEggMoves(eggSpecies, eggMoves);
     }
 
     return numMoves;
