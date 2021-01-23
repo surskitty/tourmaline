@@ -374,9 +374,13 @@
 #define NUM_MALE_LINK_FACILITY_CLASSES   8
 #define NUM_FEMALE_LINK_FACILITY_CLASSES 8
 
-// Types of Move Tutor
+
+// Types of Move Relearner. Set to VAR_0x8002
 #define FLAG_LEARN_ALL_MOVES     (1 << 0) // Gen 7 behavior; Move Tutor returns all moves as if level 100
 #define FLAG_SKIP_LEVEL_UP_MOVES (1 << 1) 
 #define FLAG_LEARN_EGG_MOVES     (1 << 2) // Move Tutor returns egg moves
+
+#define MAX_RELEARNER_MOVES (MAX_LEVEL_UP_MOVES > 25 ? MAX_LEVEL_UP_MOVES : 25)
+
 
 #endif // GUARD_CONSTANTS_POKEMON_H

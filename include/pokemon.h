@@ -387,7 +387,7 @@ u32 CanMonLearnTMHM(struct Pokemon *mon, u8 tm);
 u32 CanSpeciesLearnTMHM(u16 species, u8 tm);
 u8 GetMoveTutorMoves(struct Pokemon *mon, u16 *moves, u8 moveTutorType);
 u8 GetLevelUpMovesBySpecies(u16 species, u16 *moves);
-u8 GetNumberOfRelearnableMoves(struct Pokemon *mon);
+u8 GetNumberOfRelearnableMoves(struct Pokemon *mon, u8 moveTutorType);
 u16 SpeciesToPokedexNum(u16 species);
 bool32 IsSpeciesInHoennDex(u16 species);
 void ClearBattleMonForms(void);

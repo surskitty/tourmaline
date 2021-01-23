@@ -179,7 +179,7 @@ static void DisplayPartyPokemonDataForMultiBattle(u8);
 static void LoadPartyBoxPalette(struct PartyMenuBox *, u8);
 static void DrawEmptySlot(u8 windowId);
 static void DrawEmptySlot_Equal(u8 windowId); //Custom party menu
-static void DisplayPartyPokemonDataForRelearner(u8);
+static void DisplayPartyPokemonDataForRelearner(u8, u8 moveTutorType);
 static void DisplayPartyPokemonDataForContest(u8);
 static void DisplayPartyPokemonDataForChooseHalf(u8);
 static void DisplayPartyPokemonDataForWirelessMinigame(u8);
@@ -776,7 +776,7 @@ static void RenderPartyMenuBox(u8 slot)
         else
         {
             if (gPartyMenu.menuType == PARTY_MENU_TYPE_MOVE_RELEARNER)
-                DisplayPartyPokemonDataForRelearner(slot);
+                DisplayPartyPokemonDataForRelearner(slot, gSpecialVar_0x8002);
             else if (gPartyMenu.menuType == PARTY_MENU_TYPE_CONTEST)
                 DisplayPartyPokemonDataForContest(slot);
             else if (gPartyMenu.menuType == PARTY_MENU_TYPE_CHOOSE_HALF)
@@ -874,9 +874,9 @@ static void DisplayPartyPokemonDataForContest(u8 slot)
     }
 }
 
-static void DisplayPartyPokemonDataForRelearner(u8 slot)
+static void DisplayPartyPokemonDataForRelearner(u8 slot, u8 moveTutorType)
 {
-    if (GetNumberOfRelearnableMoves(&gPlayerParty[slot]) == 0)
+    if (GetNumberOfRelearnableMoves(&gPlayerParty[slot], moveTutorType) == 0)
         DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_NOT_ABLE_2);
     else
         DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_ABLE_2);
@@ -6540,7 +6540,7 @@ static void CB2_ChooseMonForMoveRelearner(void)
     if (gSpecialVar_0x8004 >= PARTY_SIZE)
         gSpecialVar_0x8004 = 0xFF;
     else
-        gSpecialVar_0x8005 = GetNumberOfRelearnableMoves(&gPlayerParty[gSpecialVar_0x8004]);
+        gSpecialVar_0x8005 = GetNumberOfRelearnableMoves(&gPlayerParty[gSpecialVar_0x8004], gSpecialVar_0x8002);
     gFieldCallback2 = CB2_FadeFromPartyMenu;
     SetMainCallback2(CB2_ReturnToField);
 }

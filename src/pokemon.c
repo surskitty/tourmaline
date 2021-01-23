@@ -7284,7 +7284,26 @@ u8 GetMoveTutorMoves(struct Pokemon *mon, u16 *moves, u8 moveTutorType)
              eggMoves[i] = MOVE_NONE;
 
         eggSpecies = GetEggSpecies(species);
-        numEggMoves = GetEggMoves(eggSpecies, eggMoves);
+        numEggMoves = GetEggMoves(mon, eggMoves);
+
+
+// i is the number of egg moves we've iterated through
+// j is for checking that the move is not learned
+// k is for checking that the move is not in the list already
+        for (i = 0; i < EGG_MOVES_ARRAY_COUNT; i++)
+        {
+           for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != eggMoves[i]; j++)
+               ;
+
+           if (j == MAX_MON_MOVES)
+           {
+               for (k = 0; k < numMoves && moves[k] != eggMoves[i]; k++)
+                   ;
+
+               if (k == numMoves)
+                   moves[numMoves++] = eggMoves[i];
+            }
+        }
     }
 
     return numMoves;
@@ -7301,13 +7320,16 @@ u8 GetLevelUpMovesBySpecies(u16 species, u16 *moves)
      return numMoves;
 }
 
-u8 GetNumberOfRelearnableMoves(struct Pokemon *mon)
+u8 GetNumberOfRelearnableMoves(struct Pokemon *mon, u8 moveTutorType)
 {
     u16 learnedMoves[MAX_MON_MOVES];
     u16 moves[MAX_LEVEL_UP_MOVES];
     u8 numMoves = 0;
     u16 species = GetMonData(mon, MON_DATA_SPECIES2, 0);
     u8 level = GetMonData(mon, MON_DATA_LEVEL, 0);
+    u16 eggSpecies;
+    u16 eggMoves[EGG_MOVES_ARRAY_COUNT] = {0};
+    u8 numEggMoves = 0;
     int i, j, k;
 
     if (species == SPECIES_EGG)
@@ -7315,6 +7337,9 @@ u8 GetNumberOfRelearnableMoves(struct Pokemon *mon)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
         learnedMoves[i] = GetMonData(mon, MON_DATA_MOVE1 + i, 0);
+
+    if (moveTutorType & FLAG_LEARN_ALL_MOVES)
+        level = MAX_LEVEL;
 
     for (i = 0; i < MAX_LEVEL_UP_MOVES; i++)
     {
@@ -7337,6 +7362,30 @@ u8 GetNumberOfRelearnableMoves(struct Pokemon *mon)
 
                 if (k == numMoves)
                     moves[numMoves++] = gLevelUpLearnsets[species][i].move;
+            }
+        }
+    }
+
+    if (moveTutorType & FLAG_LEARN_EGG_MOVES)
+    {
+        for (i = 0; i < EGG_MOVES_ARRAY_COUNT; i++)
+             eggMoves[i] = MOVE_NONE;
+
+        eggSpecies = GetEggSpecies(species);
+        numEggMoves = GetEggMoves(mon, eggMoves);
+               
+        for (i = 0; i < EGG_MOVES_ARRAY_COUNT; i++)
+        {
+           for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != eggMoves[i]; j++)
+               ;
+
+           if (j == MAX_MON_MOVES)
+           {
+               for (k = 0; k < numMoves && moves[k] != eggMoves[i]; k++)
+                   ;
+
+               if (k == numMoves)
+                   moves[numMoves++] = eggMoves[i];
             }
         }
     }
