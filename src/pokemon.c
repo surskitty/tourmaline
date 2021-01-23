@@ -7285,7 +7285,7 @@ u8 GetMoveTutorMoves(struct Pokemon *mon, u16 *moves, u8 moveTutorType)
              eggMoves[i] = MOVE_NONE;
 
         eggSpecies = GetEggSpecies(species);
-        numEggMoves = GetEggMoves(mon, eggMoves);
+        numEggMoves = GetEggMoves(eggSpecies, eggMoves);
 
 
 // i is the number of egg moves we've iterated through
@@ -7373,7 +7373,7 @@ u8 GetNumberOfRelearnableMoves(struct Pokemon *mon, u8 moveTutorType)
              eggMoves[i] = MOVE_NONE;
 
         eggSpecies = GetEggSpecies(species);
-        numEggMoves = GetEggMoves(mon, eggMoves);
+        numEggMoves = GetEggMoves(eggSpecies, eggMoves);
                
         for (i = 0; i < EGG_MOVES_ARRAY_COUNT; i++)
         {
