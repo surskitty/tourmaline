@@ -1772,12 +1772,12 @@ static bool8 Fishing_InitDots(struct Task *task)
     task->tFrameCounter = 0;
     task->tNumDots = 0;
     randVal = Random();
-    randVal %= 10;
+    randVal %= 5;
     task->tDotsRequired = randVal + 1;
     if (task->tRoundsPlayed == 0)
         task->tDotsRequired = randVal + 4;
-    if (task->tDotsRequired >= 10)
-        task->tDotsRequired = 10;
+    if (task->tDotsRequired >= 5)
+        task->tDotsRequired = 5;
     return TRUE;
 }
 
@@ -1830,26 +1830,7 @@ static bool8 Fishing_CheckForBite(struct Task *task)
     }
     else
     {
-        if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
-        {
-            u16 ability = GetMonAbility(&gPlayerParty[0]);
-            if (ability == ABILITY_SUCTION_CUPS || ability  == ABILITY_STICKY_HOLD)
-            {
-                if (Random() % 100 > 14)
-                    bite = TRUE;
-            }
-        }
-
-        if (!bite)
-        {
-            if (Random() & 1)
-                task->tStep = FISHING_NO_BITE;
-            else
-                bite = TRUE;
-        }
-
-        if (bite == TRUE)
-            StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFishingBiteDirectionAnimNum(GetPlayerFacingDirection()));
+        StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFishingBiteDirectionAnimNum(GetPlayerFacingDirection()));
     }
     return TRUE;
 }
@@ -1867,9 +1848,9 @@ static bool8 Fishing_GotBite(struct Task *task)
 static bool8 Fishing_WaitForA(struct Task *task)
 {
     const s16 reelTimeouts[3] = {
-        [OLD_ROD]   = 36, 
-        [GOOD_ROD]  = 33, 
-        [SUPER_ROD] = 30
+        [OLD_ROD]   = 60, 
+        [GOOD_ROD]  = 60, 
+        [SUPER_ROD] = 60
     };
 
     AlignFishingAnimationFrames();
