@@ -30,7 +30,7 @@ AquaHideout_B1F_EventScript_ShowElectrode2:: @ 82339E7
 AquaHideout_B1F_EventScript_Electrode1:: @ 82339EB
 	lock
 	faceplayer
-	setwildbattle SPECIES_ELECTRODE, 30, ITEM_NONE
+	setwildbattle SPECIES_ELECTRODE, 50, ITEM_NONE
 	waitse
 	playmoncry SPECIES_ELECTRODE, 2
 	delay 40
@@ -57,7 +57,7 @@ AquaHideout_B1F_EventScript_DefeatedElectrode1:: @ 8233A2F
 AquaHideout_B1F_EventScript_Electrode2:: @ 8233A38
 	lock
 	faceplayer
-	setwildbattle SPECIES_ELECTRODE, 30, ITEM_NONE
+	setwildbattle SPECIES_ELECTRODE, 50, ITEM_NONE
 	waitse
 	playmoncry SPECIES_ELECTRODE, 2
 	delay 40
