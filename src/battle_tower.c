@@ -774,12 +774,12 @@ struct
 } const sStevenMons[MULTI_PARTY_SIZE] =
 {
     {
-        .species = SPECIES_METANG,
+        .species = SPECIES_METAGROSS,
         .fixedIV = MAX_PER_STAT_IVS,
-        .level = 42,
+        .level = 62,
         .nature = NATURE_BRAVE,
         .evs = {0, 252, 252, 0, 6, 0},
-        .moves = {MOVE_LIGHT_SCREEN, MOVE_PSYCHIC, MOVE_REFLECT, MOVE_METAL_CLAW}
+        .moves = {MOVE_METEOR_MASH, MOVE_ZEN_HEADBUTT, MOVE_BULLET_PUNCH, MOVE_THUNDER_PUNCH}
     },
     {
         .species = SPECIES_SKARMORY,
@@ -795,7 +795,7 @@ struct
         .level = 44,
         .nature = NATURE_ADAMANT,
         .evs = {0, 252, 0, 0, 252, 6},
-        .moves = {MOVE_THUNDER, MOVE_PROTECT, MOVE_SOLAR_BEAM, MOVE_DRAGON_CLAW}
+        .moves = {MOVE_HEAVY_SLAM, MOVE_PROTECT, MOVE_ROCK_SLIDE, MOVE_DRAGON_CLAW}
     }
 };
 
