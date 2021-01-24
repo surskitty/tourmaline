@@ -126,7 +126,7 @@ MossdeepCity_SpaceCenter_1F_EventScript_SunStoneMan:: @ 822308E
 	goto_if_eq MossdeepCity_SpaceCenter_1F_EventScript_SunStoneManMagma
 	goto_if_set FLAG_RECEIVED_SUN_STONE_MOSSDEEP, MossdeepCity_SpaceCenter_1F_EventScript_GaveSunStone
 	msgbox MossdeepCity_SpaceCenter_1F_Text_FoundThisYouCanHaveIt, MSGBOX_DEFAULT
-	giveitem ITEM_SUN_STONE
+	giveitem ITEM_BRIGHT_POWDER
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_SUN_STONE_MOSSDEEP
