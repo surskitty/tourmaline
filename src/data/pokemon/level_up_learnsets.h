@@ -6935,6 +6935,7 @@ static const struct LevelUpMove sSwabluLevelUpLearnset[] = {
 static const struct LevelUpMove sAltariaLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 0, MOVE_DRAGON_BREATH),
     LEVEL_UP_MOVE( 1, MOVE_DRAGON_BREATH),
+    LEVEL_UP_MOVE( 1, MOVE_HYPER_VOICE),
     LEVEL_UP_MOVE( 1, MOVE_SKY_ATTACK),
     LEVEL_UP_MOVE( 1, MOVE_PLUCK),
     LEVEL_UP_MOVE( 1, MOVE_PECK),
@@ -7671,13 +7672,12 @@ static const struct LevelUpMove sKirliaLevelUpLearnset[] = {
 
 static const struct LevelUpMove sGardevoirLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_MOONBLAST),
+    LEVEL_UP_MOVE( 1, MOVE_HYPER_VOICE),
+    LEVEL_UP_MOVE( 1, MOVE_PSYSHOCK),
     LEVEL_UP_MOVE( 1, MOVE_STORED_POWER),
     LEVEL_UP_MOVE( 1, MOVE_MISTY_TERRAIN),
     LEVEL_UP_MOVE( 1, MOVE_HEALING_WISH),
     LEVEL_UP_MOVE( 1, MOVE_GROWL),
-    LEVEL_UP_MOVE( 1, MOVE_CONFUSION),
-    LEVEL_UP_MOVE( 1, MOVE_DOUBLE_TEAM),
-    LEVEL_UP_MOVE( 1, MOVE_TELEPORT),
     LEVEL_UP_MOVE( 4, MOVE_CONFUSION),
     LEVEL_UP_MOVE( 6, MOVE_DOUBLE_TEAM),
     LEVEL_UP_MOVE( 9, MOVE_TELEPORT),

@@ -784,7 +784,7 @@ struct
     {
         .species = SPECIES_SKARMORY,
         .fixedIV = MAX_PER_STAT_IVS,
-        .level = 43,
+        .level = 63,
         .nature = NATURE_IMPISH,
         .evs = {252, 0, 0, 0, 6, 252},
         .moves = {MOVE_TOXIC, MOVE_AERIAL_ACE, MOVE_PROTECT, MOVE_STEEL_WING}
@@ -792,7 +792,7 @@ struct
     {
         .species = SPECIES_AGGRON,
         .fixedIV = MAX_PER_STAT_IVS,
-        .level = 44,
+        .level = 64,
         .nature = NATURE_ADAMANT,
         .evs = {0, 252, 0, 0, 252, 6},
         .moves = {MOVE_HEAVY_SLAM, MOVE_PROTECT, MOVE_ROCK_SLIDE, MOVE_DRAGON_CLAW}
