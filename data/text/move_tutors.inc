@@ -190,10 +190,10 @@ MoveTutor_Text_DoubleEdgeTeach: @ 82C7B8E
 	.string "lovably admirable.\p"
 	.string "But that also means I have many\n"
 	.string "rivals for his attention.\p"
-	.string "He's got appeal with a Double-EDGE.\n"
+	.string "He's got appeal with a Double-Edge.\n"
 	.string "I couldn't even catch his eye.\p"
 	.string "Please, let me teach your Pokémon\n"
-	.string "the move Double-EDGE!$"
+	.string "the move Double-Edge!$"
 
 MoveTutor_Text_DoubleEdgeDeclined: @ 82C7C7E
 	.string "Oh…\n"
@@ -201,7 +201,7 @@ MoveTutor_Text_DoubleEdgeDeclined: @ 82C7C7E
 
 MoveTutor_Text_DoubleEdgeWhichMon: @ 82C7C98
 	.string "Okay, which Pokémon should I teach\n"
-	.string "Double-EDGE?$"
+	.string "Double-Edge?$"
 
 MoveTutor_Text_DoubleEdgeTaught: @ 82C7CC8
 	.string "I won't live for love anymore!\n"
