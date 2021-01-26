@@ -501,7 +501,6 @@ const u16 gSpeciesToHoennPokedexNum[NUM_SPECIES] = // Assigns all species to the
     SPECIES_TO_HOENN(LUGIA),
     SPECIES_TO_HOENN(JIRACHI),
     SPECIES_TO_HOENN(DEOXYS),
-
 };
 
 const u16 gSpeciesToNationalPokedexNum[NUM_SPECIES] = // Assigns all species to the National Dex Index (Summary No. for National Dex)
@@ -2181,7 +2180,6 @@ const u16 gHoennToNationalOrder[HOENN_DEX_COUNT] = // Assigns Hoenn Dex Pokémon
     HOENN_TO_NATIONAL(LUGIA),
     HOENN_TO_NATIONAL(JIRACHI),
     HOENN_TO_NATIONAL(DEOXYS),
-
 };
 
 const struct SpindaSpot gSpindaSpotGraphics[] =
@@ -7302,7 +7300,9 @@ u8 GetMoveTutorMoves(struct Pokemon *mon, u16 *moves, u8 moveTutorType)
                    ;
 
                if (k == numMoves)
-                   moves[numMoves++] = eggMoves[i];
+                   if (moves[numMoves] != MOVE_NONE)
+                       numMoves++;
+                   moves[numMoves] = eggMoves[i];
             }
         }
     }
