@@ -47,18 +47,18 @@ static const struct TrainerMon sParty_GruntAquaHideout4[] = {
 };
 
 static const struct TrainerMon sParty_GruntSeafloorCavern1[] = {
-    { .iv = 0, .lvl = 50, .species = SPECIES_MIGHTYENA, },
-    { .iv = 0, .lvl = 50, .species = SPECIES_SLOWBRO, }
+    { .iv = 0, .lvl = 59, .species = SPECIES_MIGHTYENA, },
+    { .iv = 0, .lvl = 59, .species = SPECIES_SLOWBRO, }
 };
 
 static const struct TrainerMon sParty_GruntSeafloorCavern2[] = {
-    { .iv = 0, .lvl = 50, .species = SPECIES_CARVANHA, },
-    { .iv = 0, .lvl = 50, .species = SPECIES_GASTRODON, }
+    { .iv = 0, .lvl = 59, .species = SPECIES_CARVANHA, },
+    { .iv = 0, .lvl = 59, .species = SPECIES_GASTRODON, }
 };
 
 static const struct TrainerMon sParty_GruntSeafloorCavern3[] = {
-    { .iv = 0, .lvl = 36, .species = SPECIES_ZUBAT, },
-    { .iv = 0, .lvl = 36, .species = SPECIES_SHELLOS, }
+    { .iv = 0, .lvl = 59, .species = SPECIES_CROBAT, },
+    { .iv = 0, .lvl = 59, .species = SPECIES_GASTRODON, }
 };
 
 static const struct TrainerMon sParty_Gabrielle1[] = {
@@ -134,8 +134,8 @@ static const struct TrainerMon sParty_Ed[] = {
 };
 
 static const struct TrainerMon sParty_GruntSeafloorCavern4[] = {
-    { .iv = 0, .lvl = 36, .species = SPECIES_CARVANHA, },
-    { .iv = 0, .lvl = 36, .species = SPECIES_GASTRODON, }
+    { .iv = 0, .lvl = 60, .species = SPECIES_CARVANHA, },
+    { .iv = 0, .lvl = 60, .species = SPECIES_GASTRODON, }
 };
 
 static const struct TrainerMon sParty_Declan[] = {
@@ -231,17 +231,17 @@ static const struct TrainerMon sParty_ShellyWeatherInstitute[] = {
 };
 
 static const struct TrainerMon sParty_ShellySeafloorCavern[] = {
-    { .iv = 100, .lvl = 37, .species = SPECIES_SHARPEDO, .heldItem = ITEM_SHARPEDONITE, },
-    { .iv = 100, .lvl = 37, .species = SPECIES_MIGHTYENA, },
-    { .iv = 100, .lvl = 37, .species = SPECIES_MUK, }
+    { .iv = 100, .lvl = 62, .species = SPECIES_SHARPEDO, .heldItem = ITEM_SHARPEDONITE, },
+    { .iv = 100, .lvl = 62, .species = SPECIES_MIGHTYENA, },
+    { .iv = 100, .lvl = 62, .species = SPECIES_MUK, }
 
 };
 
 static const struct TrainerMon sParty_Archie[] = {
-    { .iv = 150, .lvl = 41, .species = SPECIES_MIGHTYENA, },
-    { .iv = 150, .lvl = 41, .species = SPECIES_CROBAT, },
-    { .iv = 150, .lvl = 43, .species = SPECIES_SHARPEDO, },
-    { .iv = 150, .lvl = 43, .species = SPECIES_GYARADOS, .heldItem = ITEM_GYARADOSITE, }
+    { .iv = 150, .lvl = 61, .species = SPECIES_MIGHTYENA, },
+    { .iv = 150, .lvl = 61, .species = SPECIES_CROBAT, },
+    { .iv = 150, .lvl = 61, .species = SPECIES_SHARPEDO, },
+    { .iv = 150, .lvl = 63, .species = SPECIES_GYARADOS, .heldItem = ITEM_GYARADOSITE, }
 };
 
 static const struct TrainerMon sParty_Leah[] = {
@@ -3852,8 +3852,8 @@ static const struct TrainerMon sParty_Julio[] = {
 };
 
 static const struct TrainerMon sParty_GruntSeafloorCavern5[] = {
-    { .iv = 50, .lvl = 35, .species = SPECIES_MIGHTYENA, },
-    { .iv = 50, .lvl = 35, .species = SPECIES_GOLBAT, }
+    { .iv = 50, .lvl = 60, .species = SPECIES_MIGHTYENA, },
+    { .iv = 50, .lvl = 60, .species = SPECIES_GOLBAT, }
 };
 
 static const struct TrainerMon sParty_GruntUnused[] = {
