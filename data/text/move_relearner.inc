@@ -5,6 +5,13 @@ gText_MoveRelearner_Introduction: @ 820145C
     .string "I can teach a move to a Pokémon\n"
     .string "of yours if you'd like.$"
 
+gText_MoveRelearner_FullTutorIntro: @ 820145C
+    .string "I'm a champion Move Reminder,\n"
+    .string "able to teach Pokémon moves they\l"
+    .string "never even learned.\p"
+    .string "I can teach a move to a Pokémon\n"
+    .string "of yours if you'd like.$"
+
 gText_MoveRelearner_TutorWhichMon: @ 82015A5
     .string "Which Pokémon needs reminding?$"
 

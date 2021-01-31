@@ -2,7 +2,16 @@ Common_EventScript_MoveRelearner:: @ 827191E
     lockall
     applymovement VAR_0x800B, Common_Movement_FacePlayer
     waitmovement 0
+    compare VAR_0x8002, FLAG_LEARN_ALL_MOVES | FLAG_LEARN_EGG_MOVES
+    goto_if_eq EventScript_MoveRelearner_FullTutorIntro
     msgbox gText_MoveRelearner_Introduction, MSGBOX_YESNO
+    switch VAR_RESULT
+    case NO, EventScript_MoveRelearner_ComeBack
+    goto EventScript_MoveRelearner_ChooseMon
+    end
+
+EventScript_MoveRelearner_FullTutorIntro::
+    msgbox gText_MoveRelearner_FullTutorIntro, MSGBOX_YESNO
     switch VAR_RESULT
     case NO, EventScript_MoveRelearner_ComeBack
     goto EventScript_MoveRelearner_ChooseMon
