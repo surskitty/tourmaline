@@ -5135,7 +5135,8 @@ static const struct TrainerMon sParty_Thalia5[] = {
 };
 
 static const struct TrainerMon sParty_Mariela[] = {
-    { .iv = 0, .lvl = 41, .species = SPECIES_CHIMECHO, }
+    { .iv = 0, .lvl = 41, .species = SPECIES_CHIMECHO, },
+    { .iv = 0, .lvl = 41, .species = SPECIES_AUDINO, }
 };
 
 static const struct TrainerMon sParty_Alvaro[] = {
@@ -5144,7 +5145,8 @@ static const struct TrainerMon sParty_Alvaro[] = {
 };
 
 static const struct TrainerMon sParty_Everett[] = {
-    { .iv = 0, .lvl = 41, .species = SPECIES_WOBBUFFET, }
+    { .iv = 0, .lvl = 41, .species = SPECIES_WOBBUFFET, },
+    { .iv = 0, .lvl = 41, .species = SPECIES_PYUKUMUKU, }
 };
 
 static const struct TrainerMon sParty_Red[] = {
