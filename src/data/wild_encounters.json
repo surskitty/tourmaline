@@ -2455,6 +2455,16 @@
         { "min_level": 50, "max_level": 55, "species": "SPECIES_GOLBAT" },
         { "min_level": 50, "max_level": 55, "species": "SPECIES_SNORUNT" }
       ]
+      },
+      "rock_smash_mons": {
+      "encounter_rate": 50,
+      "mons": [
+        { "min_level": 45, "max_level": 60, "species": "SPECIES_SWINUB" },
+        { "min_level": 45, "max_level": 60, "species": "SPECIES_CARBINK" },
+        { "min_level": 45, "max_level": 60, "species": "SPECIES_VANILLITE" },
+        { "min_level": 45, "max_level": 60, "species": "SPECIES_SNORUNT" },
+        { "min_level": 45, "max_level": 60, "species": "SPECIES_VANILLISH" }
+      ]
       }
     },
     {
