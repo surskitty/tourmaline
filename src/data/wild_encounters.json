@@ -187,6 +187,23 @@
         { "min_level": 25, "max_level": 30, "species": "SPECIES_PELIPPER" }
       ]
       },
+      "land_mons": {
+      "encounter_rate": 45,
+      "mons": [
+        { "min_level": 20, "max_level": 30, "species": "SPECIES_WINGULL" },
+        { "min_level": 20, "max_level": 30, "species": "SPECIES_SANDYGAST" },
+        { "min_level": 20, "max_level": 30, "species": "SPECIES_KRABBY" },
+        { "min_level": 20, "max_level": 30, "species": "SPECIES_WIMPOD" },
+        { "min_level": 20, "max_level": 30, "species": "SPECIES_TAILLOW" },
+        { "min_level": 20, "max_level": 30, "species": "SPECIES_CHATOT" },
+        { "min_level": 20, "max_level": 30, "species": "SPECIES_CLAUNCHER" },
+        { "min_level": 20, "max_level": 30, "species": "SPECIES_STARYU" },
+        { "min_level": 20, "max_level": 30, "species": "SPECIES_PYUKUMUKU" },
+        { "min_level": 20, "max_level": 30, "species": "SPECIES_PINCURCHIN" },
+        { "min_level": 20, "max_level": 30, "species": "SPECIES_PYUKUMUKU" },
+        { "min_level": 20, "max_level": 30, "species": "SPECIES_PINCURCHIN" }
+      ]
+      },
       "fishing_mons": {
       "encounter_rate": 75,
       "mons": [

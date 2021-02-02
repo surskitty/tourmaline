@@ -1749,3 +1749,43 @@ gTilesetPalettes_ShoalCave::
 	.align 2
 gTilesetTiles_ShoalCave::
 	.incbin "data/tilesets/secondary/shoalcave/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_Victory_Road::
+	.incbin "data/tilesets/secondary/victory_road/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/victory_road/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/victory_road/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/victory_road/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/victory_road/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/victory_road/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/victory_road/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/victory_road/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/victory_road/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/victory_road/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/victory_road/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/victory_road/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/victory_road/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_Victory_Road::
+	.incbin "data/tilesets/secondary/victory_road/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_Granite_Cave::
+	.incbin "data/tilesets/secondary/granite_cave/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/granite_cave/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/granite_cave/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/granite_cave/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/granite_cave/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/granite_cave/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/granite_cave/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/granite_cave/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/granite_cave/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/granite_cave/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/granite_cave/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/granite_cave/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/granite_cave/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_Granite_Cave::
+	.incbin "data/tilesets/secondary/granite_cave/tiles.4bpp.lz"

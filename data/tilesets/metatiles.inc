@@ -565,3 +565,17 @@ gMetatiles_ShoalCave::
 	.align 1
 gMetatileAttributes_ShoalCave::
 	.incbin "data/tilesets/secondary/shoalcave/metatile_attributes.bin"
+	.align 1
+gMetatiles_Victory_Road::
+	.incbin "data/tilesets/secondary/victory_road/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_Victory_Road::
+	.incbin "data/tilesets/secondary/victory_road/metatile_attributes.bin"
+	.align 1
+gMetatiles_Granite_Cave::
+	.incbin "data/tilesets/secondary/granite_cave/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_Granite_Cave::
+	.incbin "data/tilesets/secondary/granite_cave/metatile_attributes.bin"
