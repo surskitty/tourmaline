@@ -5868,6 +5868,7 @@ static const struct LevelUpMove sBreloomLevelUpLearnset[] = {
     LEVEL_UP_MOVE(39, MOVE_SKY_UPPERCUT),
     LEVEL_UP_MOVE(44, MOVE_SEED_BOMB),
     LEVEL_UP_MOVE(50, MOVE_DYNAMIC_PUNCH),
+    LEVEL_UP_MOVE(54, MOVE_SPORE),
     LEVEL_UP_END
 };
 
