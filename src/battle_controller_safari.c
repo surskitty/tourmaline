@@ -146,6 +146,7 @@ static void (*const sSafariBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
     [CONTROLLER_LINKSTANDBYMSG]           = SafariHandleLinkStandbyMsg,
     [CONTROLLER_RESETACTIONMOVESELECTION] = SafariHandleResetActionMoveSelection,
     [CONTROLLER_55]                       = SafariHandleCmd55,
+    [CONTROLLER_DEBUGMENU]                = SafariHandleBattleDebug,
     [CONTROLLER_TERMINATOR_NOP]           = SafariCmdEnd
 };
 
@@ -471,8 +472,6 @@ static void SafariHandleChooseMove(void)
 
 static void SafariHandleChooseItem(void)
 {
-    s32 i;
-
     BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
     gBattlerControllerFuncs[gActiveBattler] = SafariOpenPokeblockCase;
     gBattlerInMenuId = gActiveBattler;

@@ -161,6 +161,7 @@ static void (*const sLinkOpponentBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
     [CONTROLLER_LINKSTANDBYMSG]           = LinkOpponentHandleLinkStandbyMsg,
     [CONTROLLER_RESETACTIONMOVESELECTION] = LinkOpponentHandleResetActionMoveSelection,
     [CONTROLLER_55]                       = LinkOpponentHandleCmd55,
+    [CONTROLLER_DEBUGMENU]                = LinkOpponentHandleBattleDebug,
     [CONTROLLER_TERMINATOR_NOP]           = LinkOpponentCmdEnd
 };
 
@@ -1612,6 +1613,7 @@ static void LinkOpponentHandleClearUnkVar(void)
 
 static void LinkOpponentHandleSetUnkVar(void)
 {
+    gUnusedControllerStruct.unk = gBattleResources->bufferA[gActiveBattler][1];
     LinkOpponentBufferExecCompleted();
 }
 
@@ -1692,7 +1694,6 @@ static void LinkOpponentHandleIntroSlide(void)
 
 static void LinkOpponentHandleIntroTrainerBallThrow(void)
 {
-    u8 paletteNum;
     u8 taskId;
 
     SetSpritePrimaryCoordsFromSecondaryCoords(&gSprites[gBattlerSpriteIds[gActiveBattler]]);

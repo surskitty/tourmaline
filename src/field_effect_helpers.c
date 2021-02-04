@@ -35,6 +35,11 @@ void LoadSpecialReflectionPalette(struct Sprite *sprite);
 
 extern u16 gReflectionPaletteBuffer[];
 
+#define sReflectionObjEventId       data[0]
+#define sReflectionObjEventLocalId  data[1]
+#define sReflectionVerticalOffset   data[2] 
+#define sIsStillReflection          data[7]
+
 void SetUpReflection(struct ObjectEvent *objectEvent, struct Sprite *sprite, bool8 stillReflection)
 {
     struct Sprite *reflectionSprite;
@@ -48,9 +53,9 @@ void SetUpReflection(struct ObjectEvent *objectEvent, struct Sprite *sprite, boo
     reflectionSprite->affineAnims = gDummySpriteAffineAnimTable;
     reflectionSprite->affineAnimBeginning = TRUE;
     reflectionSprite->subspriteMode = SUBSPRITES_OFF;
-    reflectionSprite->data[0] = sprite->data[0];
-    reflectionSprite->data[1] = objectEvent->localId;
-    reflectionSprite->data[7] = stillReflection;
+    reflectionSprite->sReflectionObjEventId = sprite->data[0];
+    reflectionSprite->sReflectionObjEventLocalId = objectEvent->localId;
+    reflectionSprite->sIsStillReflection = stillReflection;
     LoadObjectReflectionPalette(objectEvent, reflectionSprite);
 
     if (!stillReflection)
@@ -113,9 +118,9 @@ static void UpdateObjectReflectionSprite(struct Sprite *reflectionSprite)
     struct ObjectEvent *objectEvent;
     struct Sprite *mainSprite;
 
-    objectEvent = &gObjectEvents[reflectionSprite->data[0]];
+    objectEvent = &gObjectEvents[reflectionSprite->sReflectionObjEventId];
     mainSprite = &gSprites[objectEvent->spriteId];
-    if (!objectEvent->active || !objectEvent->hasReflection || objectEvent->localId != reflectionSprite->data[1])
+    if (!objectEvent->active || !objectEvent->hasReflection || objectEvent->localId != reflectionSprite->sReflectionObjEventLocalId)
     {
         reflectionSprite->inUse = FALSE;
     }
@@ -129,8 +134,7 @@ static void UpdateObjectReflectionSprite(struct Sprite *reflectionSprite)
         reflectionSprite->subspriteTableNum = mainSprite->subspriteTableNum;
         reflectionSprite->invisible = mainSprite->invisible;
         reflectionSprite->pos1.x = mainSprite->pos1.x;
-        // reflectionSprite->data[2] holds an additional vertical offset, used by the high bridges on Route 120
-        reflectionSprite->pos1.y = mainSprite->pos1.y + GetReflectionVerticalOffset(objectEvent) + reflectionSprite->data[2];
+        reflectionSprite->pos1.y = mainSprite->pos1.y + GetReflectionVerticalOffset(objectEvent) + reflectionSprite->sReflectionVerticalOffset;
         reflectionSprite->centerToCornerVecX = mainSprite->centerToCornerVecX;
         reflectionSprite->centerToCornerVecY = mainSprite->centerToCornerVecY;
         reflectionSprite->pos2.x = mainSprite->pos2.x;
@@ -140,8 +144,7 @@ static void UpdateObjectReflectionSprite(struct Sprite *reflectionSprite)
         if (objectEvent->hideReflection == TRUE)
             reflectionSprite->invisible = TRUE;
 
-        // Check if the reflection is not still.
-        if (reflectionSprite->data[7] == FALSE)
+        if (reflectionSprite->sIsStillReflection == FALSE)
         {
             // Sets the reflection sprite's rot/scale matrix to the appropriate
             // matrix based on whether or not the main sprite is horizontally flipped.
@@ -152,6 +155,11 @@ static void UpdateObjectReflectionSprite(struct Sprite *reflectionSprite)
         }
     }
 }
+
+#undef sReflectionObjEventId
+#undef sReflectionObjEventLocalId
+#undef sReflectionVerticalOffset
+#undef sIsStillReflection
 
 extern const struct SpriteTemplate *const gFieldEffectObjectTemplatePointers[];
 

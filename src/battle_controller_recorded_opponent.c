@@ -161,6 +161,7 @@ static void (*const sRecordedOpponentBufferCommands[CONTROLLER_CMDS_COUNT])(void
     [CONTROLLER_LINKSTANDBYMSG]           = RecordedOpponentHandleLinkStandbyMsg,
     [CONTROLLER_RESETACTIONMOVESELECTION] = RecordedOpponentHandleResetActionMoveSelection,
     [CONTROLLER_55]                       = RecordedOpponentHandleCmd55,
+    [CONTROLLER_DEBUGMENU]                = RecordedOpponentHandleBattleDebug,
     [CONTROLLER_TERMINATOR_NOP]           = RecordedOpponentCmdEnd
 };
 
@@ -1236,7 +1237,7 @@ static void RecordedOpponentHandleDrawTrainerPic(void)
         }
         else
         {
-            trainerPicId = PlayerGenderToFrontTrainerPicId(gLinkPlayers[gUnknown_0203C7B4 ^ BIT_SIDE].gender);
+            trainerPicId = PlayerGenderToFrontTrainerPicId(gLinkPlayers[gRecordedBattleMultiplayerId ^ BIT_SIDE].gender);
         }
     }
 
@@ -1552,6 +1553,7 @@ static void RecordedOpponentHandleClearUnkVar(void)
 
 static void RecordedOpponentHandleSetUnkVar(void)
 {
+    gUnusedControllerStruct.unk = gBattleResources->bufferA[gActiveBattler][1];
     RecordedOpponentBufferExecCompleted();
 }
 
@@ -1632,7 +1634,6 @@ static void RecordedOpponentHandleIntroSlide(void)
 
 static void RecordedOpponentHandleIntroTrainerBallThrow(void)
 {
-    u8 paletteNum;
     u8 taskId;
 
     SetSpritePrimaryCoordsFromSecondaryCoords(&gSprites[gBattlerSpriteIds[gActiveBattler]]);

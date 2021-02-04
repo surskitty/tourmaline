@@ -158,6 +158,7 @@ static void (*const sLinkPartnerBufferCommands[CONTROLLER_CMDS_COUNT])(void) =
     [CONTROLLER_LINKSTANDBYMSG]           = LinkPartnerHandleLinkStandbyMsg,
     [CONTROLLER_RESETACTIONMOVESELECTION] = LinkPartnerHandleResetActionMoveSelection,
     [CONTROLLER_55]                       = LinkPartnerHandleCmd55,
+    [CONTROLLER_DEBUGMENU]                = LinkPartnerHandleBattleDebug,
     [CONTROLLER_TERMINATOR_NOP]           = LinkPartnerCmdEnd
 };
 
@@ -1436,6 +1437,7 @@ static void LinkPartnerHandleClearUnkVar(void)
 
 static void LinkPartnerHandleSetUnkVar(void)
 {
+    gUnusedControllerStruct.unk = gBattleResources->bufferA[gActiveBattler][1];
     LinkPartnerBufferExecCompleted();
 }
 

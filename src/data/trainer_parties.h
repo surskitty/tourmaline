@@ -2686,7 +2686,7 @@ static const struct TrainerMon sParty_Jasmine[] = {
 
 static const struct TrainerMon sParty_Abigail1[] = {
     { .iv = 0, .lvl = 19, .species = SPECIES_MAGNEMITE, },
-    { .iv = 0, .lvl = 19, .species = SPECIES_MIMEJR, }
+    { .iv = 0, .lvl = 19, .species = SPECIES_MIME_JR, }
 };
 
 static const struct TrainerMon sParty_Abigail2[] = {
