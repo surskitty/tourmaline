@@ -1,4 +1,5 @@
 .set LOCALID_NURSE, 1
+.set LOCALID_MOVE_REMINDER, 2
 
 BattleFrontier_PokemonCenter_1F_MapScripts:: @ 82678F9
 	map_script MAP_SCRIPT_ON_TRANSITION, BattleFrontier_PokemonCenter_1F_OnTransition
@@ -12,6 +13,14 @@ BattleFrontier_PokemonCenter_1F_OnTransition: @ 8267904
 BattleFrontier_PokemonCenter_1F_EventScript_Nurse:: @ 8267908
 	setvar VAR_0x800B, LOCALID_NURSE
 	call Common_EventScript_PkmnCenterNurse
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
+BattleFrontier_PokemonCenter_1F_EventScript_MoveRelearner::
+	setvar VAR_0x800B, LOCALID_MOVE_REMINDER
+	call Common_EventScript_MoveRelearner
 	waitmessage
 	waitbuttonpress
 	release
@@ -41,21 +50,21 @@ BattleFrontier_PokemonCenter_1F_EventScript_Skitty:: @ 8267931
 
 BattleFrontier_PokemonCenter_1F_Text_NeverSeenPokemon: @ 8267944
 	.string "There was someone here using a \n"
-	.string "POKéMON I've never seen before.\p"
+	.string "Pokémon I've never seen before.\p"
 	.string "I never learned about it at\n"
-	.string "TRAINER'S SCHOOL at least.\p"
-	.string "I wonder where you can catch POKéMON\n"
+	.string "Trainer'S School at least.\p"
+	.string "I wonder where you can catch Pokémon\n"
 	.string "like that.$"
 
 BattleFrontier_PokemonCenter_1F_Text_NextStopBattleArena: @ 82679EB
-	.string "Okay! Next stop, the BATTLE ARENA!\n"
-	.string "I'd better get the right POKéMON from\l"
-	.string "the PC Storage System.$"
+	.string "Okay! Next stop, the Battle Arena!\n"
+	.string "I'd better get the right Pokémon from\l"
+	.string "the Pc Storage System.$"
 
 BattleFrontier_PokemonCenter_1F_Text_GoingThroughEveryChallenge: @ 8267A4B
 	.string "Giggle… I'm going to go through every\n"
 	.string "challenge with just this baby!$"
 
 BattleFrontier_PokemonCenter_1F_Text_Skitty: @ 8267A90
-	.string "SKITTY: Mya myaaah!$"
+	.string "Skitty: Mya myaaah!$"
 

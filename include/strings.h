@@ -51,8 +51,11 @@ extern const u8 gText_Tough2[];
 extern const u8 gText_Items[];
 extern const u8 gText_Key_Items[];
 extern const u8 gText_Poke_Balls[];
-extern const u8 gText_TMs_Hms[];
+extern const u8 gText_TMs_HMs[];
 extern const u8 gText_Berries2[];
+extern const u8 gText_Medicine[];
+extern const u8 gText_BattleItems[];
+extern const u8 gText_PowerUp[];
 
 extern const u8 gText_Single2[];
 extern const u8 gText_Double2[];
@@ -517,6 +520,7 @@ extern const u8 gText_SpDef[];
 extern const u8 gText_Speed[];
 extern const u8 gText_Dash[];
 extern const u8 gText_Plus[];
+extern const u8 gText_Nickname[];
 
 //pokedex text
 extern const u8 gText_CryOf[];
@@ -1031,6 +1035,7 @@ extern const u8 gText_UsedVar2WildLured[];
 extern const u8 gText_UsedVar2WildRepelled[];
 extern const u8 gText_BoxFull[];
 extern const u8 gText_WontHaveEffect[];
+extern const u8 gText_NotEnoughPokemon[];
 
 extern const u8 gText_LevelSymbol[];
 extern const u8 gText_PkmnInfo[];
@@ -1105,10 +1110,12 @@ extern const u8 gText_InBagVar1[];
 extern const u8 gText_Var1AndYouWantedVar2[];
 extern const u8 gText_HereYouGoThankYou[];
 extern const u8 gText_NoMoreRoomForThis[];
+extern const u8 gText_YouAlreadyHaveThis[];
 extern const u8 gText_ThankYouIllSendItHome[];
 extern const u8 gText_ThanksIllSendItHome[];
 extern const u8 gText_SpaceForVar1Full[];
 extern const u8 gText_ThrowInPremierBall[];
+extern const u8 gText_ThrowInPremierBalls[];
 extern const u8 gText_ShopBuy[];
 extern const u8 gText_ShopSell[];
 extern const u8 gText_ShopQuit[];
@@ -2945,6 +2952,8 @@ extern const u8 gText_Lower[];
 extern const u8 gText_Symbols[];
 extern const u8 gText_Register2[];
 extern const u8 gText_Exit2[];
+extern const u8 gOtherText_ExpShareOn[];
+extern const u8 gOtherText_ExpShareOff[];
 
 // Dodrio Berry Picking
 extern const u8 gText_BerryPickingRecords[];
@@ -3085,5 +3094,32 @@ extern const u8 gText_Beauty3[];
 extern const u8 gText_SavingDontTurnOff2[];
 extern const u8 gText_BlenderMaxSpeedRecord[];
 extern const u8 gText_234Players[];
+
+// Battle Factory Screen
+extern const u8 gText_RentalPkmn2[];
+extern const u8 gText_SelectFirstPkmn[];
+extern const u8 gText_SelectSecondPkmn[];
+extern const u8 gText_SelectThirdPkmn[];
+extern const u8 gText_TheseThreePkmnOkay[];
+extern const u8 gText_CantSelectSamePkmn[];
+extern const u8 gText_Summary[];
+extern const u8 gText_Rechoose[];
+extern const u8 gText_Deselect[];
+extern const u8 gText_Rent[];
+extern const u8 gText_Others2[];
+extern const u8 gText_Yes2[];
+extern const u8 gText_Yes3[];
+extern const u8 gText_No2[];
+extern const u8 gText_No3[];
+extern const u8 gText_QuitSwapping[];
+extern const u8 gText_AcceptThisPkmn[];
+extern const u8 gText_SelectPkmnToAccept[];
+extern const u8 gText_SelectPkmnToSwap[];
+extern const u8 gText_PkmnSwap[];
+extern const u8 gText_Swap[];
+extern const u8 gText_Summary2[];
+extern const u8 gText_PkmnForSwap[];
+extern const u8 gText_SamePkmnInPartyAlready[];
+extern const u8 gText_Cancel3[];
 
 #endif // GUARD_STRINGS_H

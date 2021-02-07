@@ -32,7 +32,8 @@ static const struct BgTemplate sPartyMenuBgTemplates[] =
 enum
 {
     PARTY_BOX_LEFT_COLUMN,
-    PARTY_BOX_RIGHT_COLUMN
+    PARTY_BOX_RIGHT_COLUMN,
+    PARTY_BOX_EQUAL_COLUMN //Custom party menu
 };
 
 static const struct PartyMenuBoxInfoRects sPartyBoxInfoRects[] =
@@ -65,6 +66,20 @@ static const struct PartyMenuBoxInfoRects sPartyBoxInfoRects[] =
         }, 
         77, 4, 64, 16        // Description text
     },
+    [PARTY_BOX_EQUAL_COLUMN] = //Custom party menu
+    {
+        BlitBitmapToPartyWindow_Equal, 
+        {
+            //The below are the x, y, width, and height for each of the following info
+            33,  2, 40, 13, // Nickname
+             3, 25, 32,  8, // Level 85,  1, 32,  8,
+           100,  1,  8,  8, // Gender 79,  1,  8,  8, 
+            48, 23, 24,  8, // HP
+            63, 23, 24,  8, // Max HP
+            48, 18, 56,  3  // HP bar
+        }, 
+        33, 13, 64, 16      // Description text (e.g. NO USE)
+    },//
 };
 
 
@@ -75,12 +90,12 @@ static const u8 sPartyMenuSpriteCoords[PARTY_LAYOUT_COUNT][PARTY_SIZE][4 * 2] =
 {
     [PARTY_LAYOUT_SINGLE] = 
     {
-        { 16,  40,  20,  50,  50,  52,  16,  34},
-        {104,  18, 108,  28, 136,  27, 102,  25},
-        {104,  42, 108,  52, 136,  51, 102,  49},
-        {104,  66, 108,  76, 136,  75, 102,  73},
-        {104,  90, 108, 100, 136,  99, 102,  97},
-        {104, 114, 108, 124, 136, 123, 102, 121},
+        { 24,  14,  38,  33, 104,  31,  24,  18},
+        {136,  22, 150,  41, 216,  39, 136,  26},
+        { 24,  54,  38,  73, 104,  71,  24,  58},
+        {136,  62, 150,  81, 216,  79, 136,  66},
+        { 24,  94,  38, 113, 104, 111,  24,  98},
+        {136, 102, 150, 121, 216, 119, 136, 106},
     },
     [PARTY_LAYOUT_DOUBLE] = 
     {
@@ -193,6 +208,74 @@ static const struct WindowTemplate sSinglePartyMenuWindowTemplate[] =
     },
     DUMMY_WIN_TEMPLATE
 };
+
+static const struct WindowTemplate sSinglePartyMenuWindowTemplate_Equal[] = //Custom party menu
+{
+    {//Slot 0 left
+        .bg = 0,
+        .tilemapLeft = 1,
+        .tilemapTop = 0,
+        .width = 14,
+        .height = 5,
+        .paletteNum = 3,
+        .baseBlock = 0x63,
+    },
+    {//Slot 1 right
+        .bg = 0,
+        .tilemapLeft = 15,
+        .tilemapTop = 1,
+        .width = 14,
+        .height = 5,
+        .paletteNum = 4,
+        .baseBlock = 0xA9,
+    },
+    {//Slot 2 left
+        .bg = 0,
+        .tilemapLeft = 1,
+        .tilemapTop = 5,
+        .width = 14,
+        .height = 5,
+        .paletteNum = 5,
+        .baseBlock = 0xEF, //0xDF,
+    },
+    {//Slot 3 right
+        .bg = 0,
+        .tilemapLeft = 15,
+        .tilemapTop = 6,
+        .width = 14,
+        .height = 5,
+        .paletteNum = 6,
+        .baseBlock = 0x135, //0x115,
+    },
+    {//Slot 4 left
+        .bg = 0,
+        .tilemapLeft = 1,
+        .tilemapTop = 10,
+        .width = 14,
+        .height = 5,
+        .paletteNum = 7,
+        .baseBlock = 0x17B, //0x14B,
+    },
+    {//Slot 5 right
+        .bg = 0,
+        .tilemapLeft = 15,
+        .tilemapTop = 11,
+        .width = 14,
+        .height = 5,
+        .paletteNum = 8,
+        .baseBlock = 0x1C1, //0x181,
+    },
+    {
+        .bg = 2,
+        .tilemapLeft = 1,
+        .tilemapTop = 15,
+        .width = 28,
+        .height = 4,
+        .paletteNum = 14,
+        .baseBlock = 0x21F, //0x1DF,
+    },
+    DUMMY_WIN_TEMPLATE
+};//
 
 static const struct WindowTemplate sDoublePartyMenuWindowTemplate[] =
 {
@@ -399,6 +482,16 @@ static const struct WindowTemplate sCancelButtonWindowTemplate =
     .paletteNum = 3,
     .baseBlock = 0x1C7,
 };
+static const struct WindowTemplate sCancelButtonWindowTemplate_equal =
+{
+    .bg = 0,
+    .tilemapLeft = 24,
+    .tilemapTop = 17,
+    .width = 6,
+    .height = 2,
+    .paletteNum = 3,
+    .baseBlock = 0x207, //0x1C7,  //Custom party menu
+};
 
 static const struct WindowTemplate sMultiCancelButtonWindowTemplate =
 {
@@ -420,6 +513,16 @@ static const struct WindowTemplate sConfirmButtonWindowTemplate =
     .height = 2,
     .paletteNum = 3,
     .baseBlock = 0x1D3,
+};
+static const struct WindowTemplate sConfirmButtonWindowTemplate_equal =
+{
+    .bg = 0,
+    .tilemapLeft = 24,
+    .tilemapTop = 16,
+    .width = 6,
+    .height = 2,
+    .paletteNum = 3,
+    .baseBlock = 0x213, //0x1D3,  //Custom party menu
 };
 
 static const struct WindowTemplate sDefaultPartyMsgWindowTemplate =
@@ -594,6 +697,26 @@ static const u8 sEmptySlotTileNums[] = {21, 22, 22, 22, 22, 22, 22, 22, 22, 22, 
                                         30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31,
                                         37, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 39};
 
+
+ //Custom party menu
+static const u8 sEqualMainSlotTileNums[] =      {43, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 45,
+                                                 49, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 50,
+                                                 49, 33, 33, 33, 52, 53, 51, 51, 51, 51, 51, 51, 51, 54,
+                                                 49, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 50,
+                                                 55, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 57};
+
+static const u8 sEqualMainSlotTileNums_Egg[] =  {43, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 44, 45,
+                                                 49, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 50,
+                                                 49, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 50,
+                                                 49, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 50,
+                                                 55, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 57};
+
+static const u8 sEqualEmptySlotTileNums[] = {21, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 23,
+                                             30,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 31,
+                                             30,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 31,
+                                             30,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 31,
+                                             37, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 39};
+//
 // Palette offsets
 static const u8 sGenderPalOffsets[] = {11, 12};
 static const u8 sHPBarPalOffsets[] = {9, 10};
@@ -681,6 +804,7 @@ enum
 {
     MENU_SUMMARY,
     MENU_SWITCH,
+    MENU_NICKNAME,
     MENU_CANCEL1,
     MENU_ITEM,
     MENU_GIVE,
@@ -717,6 +841,7 @@ enum
     FIELD_MOVE_MILK_DRINK,
     FIELD_MOVE_SOFT_BOILED,
     FIELD_MOVE_SWEET_SCENT,
+    FIELD_MOVE_ROCK_CLIMB,
 };
 
 // What a weird choice of table termination;
@@ -730,6 +855,7 @@ struct
 {
     [MENU_SUMMARY] = {gText_Summary5, CursorCb_Summary},
     [MENU_SWITCH] = {gText_Switch2, CursorCb_Switch},
+    [MENU_NICKNAME] = {gText_Nickname, CursorCb_Nickname},
     [MENU_CANCEL1] = {gText_Cancel2, CursorCb_Cancel1},
     [MENU_ITEM] = {gText_Item, CursorCb_Item},
     [MENU_GIVE] = {gMenuText_Give, CursorCb_Give},
@@ -761,6 +887,7 @@ struct
     [MENU_FIELD_MOVES + FIELD_MOVE_MILK_DRINK] = {gMoveNames[MOVE_MILK_DRINK], CursorCb_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_SOFT_BOILED] = {gMoveNames[MOVE_SOFT_BOILED], CursorCb_FieldMove},
     [MENU_FIELD_MOVES + FIELD_MOVE_SWEET_SCENT] = {gMoveNames[MOVE_SWEET_SCENT], CursorCb_FieldMove},
+    [MENU_FIELD_MOVES + FIELD_MOVE_ROCK_CLIMB] = {gMoveNames[MOVE_ROCK_CLIMB], CursorCb_FieldMove},
 };
 
 static const u8 sPartyMenuAction_SummarySwitchCancel[] = {MENU_SUMMARY, MENU_SWITCH, MENU_CANCEL1};
@@ -835,7 +962,7 @@ static const u8 sPartyMenuActionCounts[] =
 static const u16 sFieldMoves[] =
 {
     MOVE_CUT, MOVE_FLASH, MOVE_ROCK_SMASH, MOVE_STRENGTH, MOVE_SURF, MOVE_FLY, MOVE_DIVE, MOVE_WATERFALL, MOVE_TELEPORT,
-    MOVE_DIG, MOVE_SECRET_POWER, MOVE_MILK_DRINK, MOVE_SOFT_BOILED, MOVE_SWEET_SCENT, FIELD_MOVE_TERMINATOR
+    MOVE_DIG, MOVE_SECRET_POWER, MOVE_MILK_DRINK, MOVE_SOFT_BOILED, MOVE_SWEET_SCENT, MOVE_ROCK_CLIMB, FIELD_MOVE_TERMINATOR
 };
 
 struct
@@ -858,6 +985,7 @@ struct
     [FIELD_MOVE_MILK_DRINK]   = {SetUpFieldMove_SoftBoiled,  PARTY_MSG_NOT_ENOUGH_HP},
     [FIELD_MOVE_SOFT_BOILED]  = {SetUpFieldMove_SoftBoiled,  PARTY_MSG_NOT_ENOUGH_HP},
     [FIELD_MOVE_SWEET_SCENT]  = {SetUpFieldMove_SweetScent,  PARTY_MSG_CANT_USE_HERE},
+    [FIELD_MOVE_ROCK_CLIMB]   = {SetUpFieldMove_RockClimb,   PARTY_MSG_CANT_USE_HERE},
 };
 
 static const u8 *const sUnionRoomTradeMessages[] =
@@ -1168,20 +1296,6 @@ static const struct SpriteTemplate sSpriteTemplate_StatusIcons =
     .callback = SpriteCallbackDummy,
 };
 
-// Mask for the partners party in a multi battle. TRUE if in the partners party, FALSE otherwise
-// The 7th slot is Cancel, and the 8th slot is unreachable
-// Used only to determine whether or not to show the Deoxys form icon sprite
-static const bool8 sMultiBattlePartnersPartyMask[PARTY_SIZE + 2] = 
-{
-    FALSE, 
-    TRUE, 
-    FALSE, 
-    FALSE, 
-    TRUE, 
-    TRUE, 
-    FALSE
-};
-
 static const u8 *const sUnused_StatStrings[] =
 {
     gText_HP4,
@@ -1194,62 +1308,62 @@ static const u8 *const sUnused_StatStrings[] =
 
 static const u16 sTMHMMoves[] =
 {
-    MOVE_FOCUS_PUNCH,
-    MOVE_DRAGON_CLAW,
-    MOVE_WATER_PULSE,
-    MOVE_CALM_MIND,
-    MOVE_ROAR,
-    MOVE_TOXIC,
-    MOVE_HAIL,
-    MOVE_BULK_UP,
-    MOVE_BULLET_SEED,
-    MOVE_HIDDEN_POWER,
-    MOVE_SUNNY_DAY,
-    MOVE_TAUNT,
-    MOVE_ICE_BEAM,
-    MOVE_BLIZZARD,
-    MOVE_HYPER_BEAM,
-    MOVE_LIGHT_SCREEN,
-    MOVE_PROTECT,
-    MOVE_RAIN_DANCE,
-    MOVE_GIGA_DRAIN,
-    MOVE_SAFEGUARD,
-    MOVE_FRUSTRATION,
-    MOVE_SOLAR_BEAM,
-    MOVE_IRON_TAIL,
-    MOVE_THUNDERBOLT,
-    MOVE_THUNDER,
-    MOVE_EARTHQUAKE,
-    MOVE_RETURN,
-    MOVE_DIG,
-    MOVE_PSYCHIC,
-    MOVE_SHADOW_BALL,
-    MOVE_BRICK_BREAK,
-    MOVE_DOUBLE_TEAM,
-    MOVE_REFLECT,
-    MOVE_SHOCK_WAVE,
-    MOVE_FLAMETHROWER,
-    MOVE_SLUDGE_BOMB,
-    MOVE_SANDSTORM,
-    MOVE_FIRE_BLAST,
-    MOVE_ROCK_TOMB,
-    MOVE_AERIAL_ACE,
-    MOVE_TORMENT,
-    MOVE_FACADE,
-    MOVE_SECRET_POWER,
-    MOVE_REST,
-    MOVE_ATTRACT,
-    MOVE_THIEF,
-    MOVE_STEEL_WING,
-    MOVE_SKILL_SWAP,
-    MOVE_SNATCH,
-    MOVE_OVERHEAT,
-    MOVE_CUT,
-    MOVE_FLY,
-    MOVE_SURF,
-    MOVE_STRENGTH,
-    MOVE_FLASH,
-    MOVE_ROCK_SMASH,
-    MOVE_WATERFALL,
-    MOVE_DIVE,
+    [ITEM_TM01 - ITEM_TM01] = MOVE_FOCUS_PUNCH,
+    [ITEM_TM02 - ITEM_TM01] = MOVE_DRAGON_CLAW,
+    [ITEM_TM03 - ITEM_TM01] = MOVE_WATER_PULSE,
+    [ITEM_TM04 - ITEM_TM01] = MOVE_CALM_MIND,
+    [ITEM_TM05 - ITEM_TM01] = MOVE_ROAR,
+    [ITEM_TM06 - ITEM_TM01] = MOVE_TOXIC,
+    [ITEM_TM07 - ITEM_TM01] = MOVE_HAIL,
+    [ITEM_TM08 - ITEM_TM01] = MOVE_BULK_UP,
+    [ITEM_TM09 - ITEM_TM01] = MOVE_BULLET_SEED,
+    [ITEM_TM10 - ITEM_TM01] = MOVE_HIDDEN_POWER,
+    [ITEM_TM11 - ITEM_TM01] = MOVE_SUNNY_DAY,
+    [ITEM_TM12 - ITEM_TM01] = MOVE_TAUNT,
+    [ITEM_TM13 - ITEM_TM01] = MOVE_ICE_BEAM,
+    [ITEM_TM14 - ITEM_TM01] = MOVE_BLIZZARD,
+    [ITEM_TM15 - ITEM_TM01] = MOVE_HYPER_BEAM,
+    [ITEM_TM16 - ITEM_TM01] = MOVE_LIGHT_SCREEN,
+    [ITEM_TM17 - ITEM_TM01] = MOVE_PROTECT,
+    [ITEM_TM18 - ITEM_TM01] = MOVE_RAIN_DANCE,
+    [ITEM_TM19 - ITEM_TM01] = MOVE_GIGA_DRAIN,
+    [ITEM_TM20 - ITEM_TM01] = MOVE_SAFEGUARD,
+    [ITEM_TM21 - ITEM_TM01] = MOVE_FRUSTRATION,
+    [ITEM_TM22 - ITEM_TM01] = MOVE_SOLAR_BEAM,
+    [ITEM_TM23 - ITEM_TM01] = MOVE_IRON_TAIL,
+    [ITEM_TM24 - ITEM_TM01] = MOVE_THUNDERBOLT,
+    [ITEM_TM25 - ITEM_TM01] = MOVE_THUNDER,
+    [ITEM_TM26 - ITEM_TM01] = MOVE_EARTHQUAKE,
+    [ITEM_TM27 - ITEM_TM01] = MOVE_RETURN,
+    [ITEM_TM28 - ITEM_TM01] = MOVE_DIG,
+    [ITEM_TM29 - ITEM_TM01] = MOVE_PSYCHIC,
+    [ITEM_TM30 - ITEM_TM01] = MOVE_SHADOW_BALL,
+    [ITEM_TM31 - ITEM_TM01] = MOVE_BRICK_BREAK,
+    [ITEM_TM32 - ITEM_TM01] = MOVE_DOUBLE_TEAM,
+    [ITEM_TM33 - ITEM_TM01] = MOVE_REFLECT,
+    [ITEM_TM34 - ITEM_TM01] = MOVE_SHOCK_WAVE,
+    [ITEM_TM35 - ITEM_TM01] = MOVE_FLAMETHROWER,
+    [ITEM_TM36 - ITEM_TM01] = MOVE_SLUDGE_BOMB,
+    [ITEM_TM37 - ITEM_TM01] = MOVE_SANDSTORM,
+    [ITEM_TM38 - ITEM_TM01] = MOVE_FIRE_BLAST,
+    [ITEM_TM39 - ITEM_TM01] = MOVE_ROCK_TOMB,
+    [ITEM_TM40 - ITEM_TM01] = MOVE_AERIAL_ACE,
+    [ITEM_TM41 - ITEM_TM01] = MOVE_TORMENT,
+    [ITEM_TM42 - ITEM_TM01] = MOVE_FACADE,
+    [ITEM_TM43 - ITEM_TM01] = MOVE_SECRET_POWER,
+    [ITEM_TM44 - ITEM_TM01] = MOVE_REST,
+    [ITEM_TM45 - ITEM_TM01] = MOVE_ATTRACT,
+    [ITEM_TM46 - ITEM_TM01] = MOVE_THIEF,
+    [ITEM_TM47 - ITEM_TM01] = MOVE_STEEL_WING,
+    [ITEM_TM48 - ITEM_TM01] = MOVE_SKILL_SWAP,
+    [ITEM_TM49 - ITEM_TM01] = MOVE_SNATCH,
+    [ITEM_TM50 - ITEM_TM01] = MOVE_OVERHEAT,
+    [ITEM_HM01 - ITEM_TM01] = MOVE_CUT,
+    [ITEM_HM02 - ITEM_TM01] = MOVE_FLY,
+    [ITEM_HM03 - ITEM_TM01] = MOVE_SURF,
+    [ITEM_HM04 - ITEM_TM01] = MOVE_STRENGTH,
+    [ITEM_HM05 - ITEM_TM01] = MOVE_FLASH,
+    [ITEM_HM06 - ITEM_TM01] = MOVE_ROCK_SMASH,
+    [ITEM_HM07 - ITEM_TM01] = MOVE_WATERFALL,
+    [ITEM_HM08 - ITEM_TM01] = MOVE_DIVE,
 };

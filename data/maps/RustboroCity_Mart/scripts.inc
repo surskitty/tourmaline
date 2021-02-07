@@ -26,7 +26,7 @@ RustboroCity_Mart_Pokemart_Basic: @ 8214F30
 	.2byte ITEM_REPEL
 	.2byte ITEM_X_SPEED
 	.2byte ITEM_X_ATTACK
-	.2byte ITEM_X_DEFEND
+	.2byte ITEM_X_DEFENSE
 	.2byte ITEM_NONE
 	release
 	end
@@ -40,8 +40,15 @@ RustboroCity_Mart_EventScript_PokemartExpanded:: @ 8214F48
 	.align 2
 RustboroCity_Mart_Pokemart_Expanded: @ 8214F58
 	.2byte ITEM_POKE_BALL
-	.2byte ITEM_TIMER_BALL
+	.2byte ITEM_DIVE_BALL
+	.2byte ITEM_DUSK_BALL
+	.2byte ITEM_HEAL_BALL
+	.2byte ITEM_LUXURY_BALL
+	.2byte ITEM_NEST_BALL
+	.2byte ITEM_NET_BALL
+	.2byte ITEM_QUICK_BALL
 	.2byte ITEM_REPEAT_BALL
+	.2byte ITEM_TIMER_BALL
 	.2byte ITEM_POTION
 	.2byte ITEM_SUPER_POTION
 	.2byte ITEM_ANTIDOTE
@@ -50,7 +57,7 @@ RustboroCity_Mart_Pokemart_Expanded: @ 8214F58
 	.2byte ITEM_REPEL
 	.2byte ITEM_X_SPEED
 	.2byte ITEM_X_ATTACK
-	.2byte ITEM_X_DEFEND
+	.2byte ITEM_X_DEFENSE
 	.2byte ITEM_NONE
 	release
 	end
@@ -68,20 +75,20 @@ RustboroCity_Mart_EventScript_BugCatcher:: @ 8214F86
 	end
 
 RustboroCity_Mart_Text_BuyingHealsInCaseOfShroomish: @ 8214F8F
-	.string "I'm buying some PARLYZ HEALS and\n"
-	.string "ANTIDOTES.\p"
-	.string "Just in case I run into SHROOMISH\n"
-	.string "in PETALBURG WOODS.$"
+	.string "I'm buying some Parlyz Heals and\n"
+	.string "Antidotes.\p"
+	.string "Just in case I run into Shroomish\n"
+	.string "in Petalburg Woods.$"
 
 RustboroCity_Mart_Text_ShouldBuySuperPotionsInstead: @ 8214FF1
-	.string "My POKéMON evolved.\n"
+	.string "My Pokémon evolved.\n"
 	.string "It has a lot of HP now.\p"
-	.string "I should buy SUPER POTIONS for it\n"
-	.string "instead of ordinary POTIONS.$"
+	.string "I should buy Super Potions for it\n"
+	.string "instead of ordinary Potions.$"
 
 RustboroCity_Mart_Text_GettingEscapeRopeJustInCase: @ 821505C
-	.string "I'm getting an ESCAPE ROPE just in\n"
-	.string "case I get lost in a cave.\p"
+	.string "I'm getting an Escape Rope just in\n"
+	.string "case I get tired of spelunking.\p"
 	.string "I just need to use it to get back to\n"
 	.string "the entrance.$"
 

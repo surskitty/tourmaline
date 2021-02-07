@@ -21,7 +21,7 @@ MauvilleCity_Mart_Pokemart: @ 8211100
 	.2byte ITEM_AWAKENING
 	.2byte ITEM_X_SPEED
 	.2byte ITEM_X_ATTACK
-	.2byte ITEM_X_DEFEND
+	.2byte ITEM_X_DEFENSE
 	.2byte ITEM_GUARD_SPEC
 	.2byte ITEM_DIRE_HIT
 	.2byte ITEM_X_ACCURACY
@@ -39,15 +39,15 @@ MauvilleCity_Mart_EventScript_Man:: @ 8211125
 
 MauvilleCity_Mart_Text_ItemsToTemporarilyElevateStats: @ 821112E
 	.string "There are items that temporarily\n"
-	.string "elevate the stats of POKéMON.\p"
+	.string "elevate the stats of Pokémon.\p"
 	.string "The ones I know you use in battle\n"
-	.string "are X ATTACK and X DEFEND…\p"
+	.string "are X Attack and X Defend…\p"
 	.string "I do believe that there are others\n"
 	.string "like them.$"
 
 MauvilleCity_Mart_Text_DecisionsDetermineBattle: @ 82111D8
 	.string "Use a certain move, or use an item\n"
 	.string "instead…\p"
-	.string "The TRAINER's decisions determine how\n"
+	.string "The Trainer's decisions determine how\n"
 	.string "battles turn out, I think.$"
 

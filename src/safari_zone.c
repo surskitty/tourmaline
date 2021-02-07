@@ -81,11 +81,6 @@ bool8 SafariZoneTakeStep(void)
 
     DecrementFeederStepCounters();
     sSafariZoneStepCounter--;
-    if (sSafariZoneStepCounter == 0)
-    {
-        ScriptContext1_SetupScript(SafariZone_EventScript_TimesUp);
-        return TRUE;
-    }
     return FALSE;
 }
 
@@ -107,7 +102,7 @@ void CB2_EndSafariBattle(void)
     {
         ScriptContext2_RunNewScript(SafariZone_EventScript_OutOfBallsMidBattle);
         WarpIntoMap();
-        gFieldCallback = sub_80AF6F0;
+        gFieldCallback = FieldCB_ReturnToFieldNoScriptCheckMusic;
         SetMainCallback2(CB2_LoadMap);
     }
     else if (gBattleOutcome == B_OUTCOME_CAUGHT)

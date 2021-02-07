@@ -1,5 +1,6 @@
 .set LOCALID_NURSE, 1
-.set LOCALID_SCOTT, 4
+.set LOCALID_MOVE_RELEARNER, 2
+.set LOCALID_SCOTT, 5
 
 EverGrandeCity_PokemonCenter_1F_MapScripts:: @ 8229A34
 	map_script MAP_SCRIPT_ON_TRANSITION, EverGrandeCity_PokemonCenter_1F_OnTransition
@@ -19,6 +20,14 @@ EverGrandeCity_PokemonCenter_1F_EventScript_TryShowScott:: @ 8229A4C
 EverGrandeCity_PokemonCenter_1F_EventScript_Nurse:: @ 8229A59
 	setvar VAR_0x800B, LOCALID_NURSE
 	call Common_EventScript_PkmnCenterNurse
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
+EverGrandeCity_PokemonCenter_1F_EventScript_MoveRelearner::
+	setvar VAR_0x800B, LOCALID_MOVE_RELEARNER
+	call Common_EventScript_MoveRelearner
 	waitmessage
 	waitbuttonpress
 	release
@@ -80,25 +89,25 @@ EverGrandeCity_PokemonCenter_1F_Movement_ScottExit: @ 8229AD3
 	step_end
 
 EverGrandeCity_PokemonCenter_1F_Text_LeagueAfterVictoryRoad: @ 8229ADA
-	.string "The POKéMON LEAGUE is only a short\n"
-	.string "distance after the VICTORY ROAD.\p"
+	.string "The Pokémon League is only a short\n"
+	.string "distance after the Victory Road.\p"
 	.string "If you've come this far, what choice\n"
 	.string "do you have but to keep going?$"
 
 EverGrandeCity_PokemonCenter_1F_Text_BelieveInYourPokemon: @ 8229B62
-	.string "The long and harrowing VICTORY ROAD…\p"
+	.string "The long and harrowing Victory Road…\p"
 	.string "It's like reliving the path one has\n"
 	.string "traveled in life…\p"
-	.string "Believe in your POKéMON and give it\n"
+	.string "Believe in your Pokémon and give it\n"
 	.string "your very best!$"
 
 EverGrandeCity_PokemonCenter_1F_Text_ScottHappyForYou: @ 8229BF1
-	.string "SCOTT: {PLAYER}{KUN}, you've clawed your\n"
-	.string "way up to face the POKéMON LEAGUE!\p"
+	.string "Scott: {PLAYER}{KUN}, you've clawed your\n"
+	.string "way up to face the Pokémon League!\p"
 	.string "I'm happy for you!\n"
 	.string "You made my cheering worthwhile!\p"
 	.string "{PLAYER}{KUN}, if you were to become\n"
-	.string "the POKéMON LEAGUE CHAMPION…\p"
+	.string "the Pokémon League Champion…\p"
 	.string "I'll get in touch with you then.\p"
 	.string "Okay, {PLAYER}{KUN}.\n"
 	.string "Go for greatness!$"

@@ -1,4 +1,5 @@
 .set LOCALID_NURSE, 1
+.set LOCALID_MOVE_REMINDER, 2
 
 OldaleTown_PokemonCenter_1F_MapScripts:: @ 81FC006
 	map_script MAP_SCRIPT_ON_TRANSITION, OldaleTown_PokemonCenter_1F_OnTransition
@@ -13,6 +14,14 @@ OldaleTown_PokemonCenter_1F_OnTransition: @ 81FC011
 OldaleTown_PokemonCenter_1F_EventScript_Nurse:: @ 81FC01A
 	setvar VAR_0x800B, LOCALID_NURSE
 	call Common_EventScript_PkmnCenterNurse
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
+OldaleTown_PokemonCenter_1F_EventScript_MoveRelearner::
+	setvar VAR_0x800B, LOCALID_MOVE_REMINDER
+	call Common_EventScript_MoveRelearner
 	waitmessage
 	waitbuttonpress
 	release
@@ -41,24 +50,24 @@ OldaleTown_PokemonCenter_1F_EventScript_WirelessClubAvailable:: @ 81FC04F
 
 OldaleTown_PokemonCenter_1F_Text_TrainersCanUsePC: @ 81FC059
 	.string "That PC in the corner there is\n"
-	.string "for any POKéMON TRAINER to use.\p"
+	.string "for any Pokémon Trainer to use.\p"
 	.string "Naturally, that means you're welcome\n"
 	.string "to use it, too.$"
 
 OldaleTown_PokemonCenter_1F_Text_PokemonCentersAreGreat: @ 81FC0CD
-	.string "POKéMON CENTERS are great!\p"
+	.string "Pokémon Centers are great!\p"
 	.string "You can use their services as much\n"
 	.string "as you like, and it's all for free.\l"
 	.string "You never have to worry!$"
 
 OldaleTown_PokemonCenter_1F_Text_WirelessClubNotAvailable: @ 81FC148
-	.string "The POKéMON WIRELESS CLUB on\n"
+	.string "The Pokémon Wireless Club on\n"
 	.string "the second floor was built recently.\p"
 	.string "But they say they're still making\n"
 	.string "adjustments.$"
 
 OldaleTown_PokemonCenter_1F_Text_TradedInWirelessClub: @ 81FC1B9
-	.string "The POKéMON WIRELESS CLUB on\n"
+	.string "The Pokémon Wireless Club on\n"
 	.string "the second floor was built recently.\p"
-	.string "I traded POKéMON right away.$"
+	.string "I traded Pokémon right away.$"
 

@@ -127,7 +127,7 @@ Route115_EventScript_ItemPPUp:: @ 8290E6B
 	end
 
 Route116_EventScript_ItemXSpecial:: @ 8290E78
-	finditem ITEM_X_SPECIAL
+	finditem ITEM_X_SP_ATK
 	end
 
 Route116_EventScript_ItemEther:: @ 8290E85
@@ -315,7 +315,7 @@ MauvilleCity_EventScript_ItemXSpeed:: @ 82910CE
 	end
 
 RustboroCity_EventScript_ItemXDefend:: @ 82910DB
-	finditem ITEM_X_DEFEND
+	finditem ITEM_X_DEFENSE
 	end
 
 LilycoveCity_EventScript_ItemMaxRepel:: @ 82910E8
@@ -559,7 +559,7 @@ ShoalCave_LowTideIceRoom_EventScript_ItemTM07:: @ 82913E7
 	end
 
 ShoalCave_LowTideIceRoom_EventScript_ItemNeverMeltIce:: @ 82913F4
-	finditem ITEM_NEVER_MELT_ICE
+	finditem ITEM_ICICLE_PLATE
 	end
 
 SeafloorCavern_Room9_EventScript_ItemTM26:: @ 8291401

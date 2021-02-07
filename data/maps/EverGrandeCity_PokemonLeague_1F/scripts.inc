@@ -1,6 +1,7 @@
 .set LOCALID_NURSE, 1
-.set LOCALID_GUARD_1, 3
-.set LOCALID_GUARD_2, 4
+.set LOCALID_MOVE_RELEARNER, 2
+.set LOCALID_GUARD_1, 4
+.set LOCALID_GUARD_2, 5
 
 EverGrandeCity_PokemonLeague_1F_MapScripts:: @ 82295D2
 	map_script MAP_SCRIPT_ON_TRANSITION, EverGrandeCity_PokemonLeague_1F_OnTransition
@@ -21,6 +22,14 @@ EverGrandeCity_PokemonLeague_1F_EventScript_GuardsBlockDoor:: @ 82295ED
 EverGrandeCity_PokemonLeague_1F_EventScript_Nurse:: @ 82295FC
 	setvar VAR_0x800B, LOCALID_NURSE
 	call Common_EventScript_PkmnCenterNurse
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
+EverGrandeCity_PokemonLeague_1F_EventScript_MoveRelearner::
+	setvar VAR_0x800B, LOCALID_MOVE_RELEARNER
+	call Common_EventScript_MoveRelearner
 	waitmessage
 	waitbuttonpress
 	release
@@ -128,18 +137,18 @@ EverGrandeCity_PokemonLeague_1F_Movement_RightGuardOutOfWay: @ 82296E5
 	step_end
 
 EverGrandeCity_PokemonLeague_1F_Text_MustHaveAllGymBadges: @ 82296E8
-	.string "Beyond this point, only those TRAINERS\n"
-	.string "who have collected all the GYM BADGES\l"
+	.string "Beyond this point, only those Trainers\n"
+	.string "who have collected all the Gym Badges\l"
 	.string "are permitted to enter.\p"
-	.string "TRAINER, let us confirm that you have\n"
-	.string "all the GYM BADGES.$"
+	.string "Trainer, let us confirm that you have\n"
+	.string "all the Gym Badges.$"
 
 EverGrandeCity_PokemonLeague_1F_Text_HaventObtainedAllBadges: @ 8229787
-	.string "You haven't obtained all the BADGES.\p"
-	.string "If you're bound for the POKéMON\n"
-	.string "LEAGUE, you must return with them.$"
+	.string "You haven't obtained all the Badges.\p"
+	.string "If you're bound for the Pokémon\n"
+	.string "League, you must return with them.$"
 
 EverGrandeCity_PokemonLeague_1F_Text_GoForth: @ 82297EF
-	.string "TRAINER! Believe in yourself and your\n"
-	.string "POKéMON, and go forth!$"
+	.string "Trainer! Believe in yourself and your\n"
+	.string "Pokémon, and go forth!$"
 

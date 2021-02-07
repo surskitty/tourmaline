@@ -830,3 +830,36 @@ gTileset_UnionRoom:: @ 83DFDFC
 	.4byte gMetatiles_UnionRoom
 	.4byte gMetatileAttributes_UnionRoom
 	.4byte NULL @ animation callback
+
+	.align 2
+gTileset_ShoalCave::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_ShoalCave
+	.4byte gTilesetPalettes_ShoalCave
+	.4byte gMetatiles_ShoalCave
+	.4byte gMetatileAttributes_ShoalCave
+	.4byte NULL
+
+	.align 2
+gTileset_Victory_Road::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_Victory_Road
+	.4byte gTilesetPalettes_Victory_Road
+	.4byte gMetatiles_Victory_Road
+	.4byte gMetatileAttributes_Victory_Road
+	.4byte NULL
+
+	.align 2
+gTileset_Granite_Cave::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_Granite_Cave
+	.4byte gTilesetPalettes_Granite_Cave
+	.4byte gMetatiles_Granite_Cave
+	.4byte gMetatileAttributes_Granite_Cave
+	.4byte NULL

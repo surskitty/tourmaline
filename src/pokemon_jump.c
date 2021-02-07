@@ -405,7 +405,7 @@ void StartPokemonJump(u16 partyIndex, MainCallback callback)
 
     if (gReceivedRemoteLinkPlayers)
     {
-        gUnknown_02022CFC = Alloc(sizeof(struct PokemonJump1));
+        gUnknown_02022CFC = Alloc(sizeof(*gUnknown_02022CFC));
         if (gUnknown_02022CFC)
         {
             ResetTasks();
@@ -2537,7 +2537,7 @@ static void sub_802C9D4(struct PokemonJump2 *arg0, struct PokemonJump1_MonInfo *
     if (buffer && unusedBuffer)
     {
         HandleLoadSpecialPokePic(
-            &gMonStillFrontPicTable[jumpMon->species],
+            &gMonFrontPicTable[jumpMon->species],
             buffer,
             jumpMon->species,
             jumpMon->personality);

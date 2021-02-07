@@ -11,7 +11,7 @@ Route103_OnTransition: @ 81EC399
 	end
 
 Route103_OnLoad: @ 81EC3A4
-	call_if_set FLAG_SYS_GAME_CLEAR, Route103_EventScript_OpenAlteringCave
+	call Route103_EventScript_OpenAlteringCave
 	end
 
 Route103_EventScript_OpenAlteringCave:: @ 81EC3AE
@@ -39,6 +39,8 @@ Route103_EventScript_RivalMay:: @ 81EC3DA
 	applymovement LOCALID_RIVAL, Common_Movement_Delay48
 	waitmovement 0
 	msgbox Route103_Text_MayLetsBattle, MSGBOX_DEFAULT
+	call_if_unset FLAG_RECEIVED_EEVEE, Route103_EventScript_RivalReceiveEevee
+	msgbox Route103_Text_MayLetsBattle2, MSGBOX_DEFAULT
 	switch VAR_STARTER_MON
 	case 0, Route103_EventScript_StartMayBattleTreecko
 	case 1, Route103_EventScript_StartMayBattleTorchic
@@ -56,11 +58,30 @@ Route103_EventScript_RivalBrendan:: @ 81EC434
 	applymovement LOCALID_RIVAL, Common_Movement_Delay48
 	waitmovement 0
 	msgbox Route103_Text_BrendanLetsBattle, MSGBOX_DEFAULT
+	call_if_unset FLAG_RECEIVED_EEVEE, Route103_EventScript_RivalReceiveEevee
+	msgbox Route103_Text_BrendanLetsBattle2, MSGBOX_DEFAULT
 	switch VAR_STARTER_MON
 	case 0, Route103_EventScript_StartBrendanBattleTreecko
 	case 1, Route103_EventScript_StartBrendanBattleTorchic
 	case 2, Route103_EventScript_StartBrendanBattleMudkip
 	end
+
+Route103_EventScript_RivalReceiveEevee::
+	msgbox Route103_Eevee_Text_ShouldntTravelJustOne, MSGBOX_DEFAULT
+	setvar VAR_TEMP_1, SPECIES_EEVEE
+	givecustommon SPECIES_EEVEE, 5, ITEM_ORAN_BERRY, ITEM_PREMIER_BALL, NATURE_NAIVE, 2
+	call Route103_Eevee_EventScript_ReceivedEeveeFanfare
+	call Common_EventScript_GetGiftMonPartySlot
+	setflag FLAG_RECEIVED_EEVEE
+	return
+
+Route103_Eevee_EventScript_ReceivedEeveeFanfare::
+	playfanfare MUS_OBTAIN_ITEM
+	message Route103_Eevee_Text_PlayerReceivedEevee
+	waitmessage
+	waitfanfare
+	bufferspeciesname 0, SPECIES_EEVEE
+	return
 
 Route103_EventScript_StartMayBattleTreecko:: @ 81EC48E
 	trainerbattle_no_intro TRAINER_MAY_ROUTE_103_TREECKO, Route103_Text_MayDefeated
@@ -294,67 +315,77 @@ Route103_EventScript_Isabelle:: @ 81EC78F
 	end
 
 Route103_Text_MayRoute103Pokemon: @ 81EC7A6
-	.string "MAY: Let's see… The POKéMON found\n"
-	.string "on ROUTE 103 include…$"
+	.string "May: Let's see… The Pokémon found\n"
+	.string "on Route 103 include…$"
 
 Route103_Text_MayLetsBattle: @ 81EC7DE
 	.string "Oh, hi, {PLAYER}{KUN}!\p"
 	.string "…Oh, I see, my dad gave you\n"
-	.string "a POKéMON as a gift.\p"
+	.string "a Pokémon as a gift.$"
+
+Route103_Text_MayLetsBattle2: @ 81EC7DE
 	.string "Since we're here, let's have a quick\n"
-	.string "battle!\p"
+	.string "Double Battle!\p"
 	.string "I'll give you a taste of what being\n"
-	.string "a TRAINER is like.$"
+	.string "a Hoenn Trainer is like.$"
 
 Route103_Text_MayDefeated: @ 81EC881
 	.string "Wow! That's great!\n"
 	.string "{PLAYER}{KUN}, you're pretty good!$"
 
 Route103_Text_MayTimeToHeadBack: @ 81EC8AE
-	.string "MAY: I think I know why my dad has\n"
+	.string "May: I think I know why my dad has\n"
 	.string "an eye out for you now.\p"
-	.string "I mean, you just got that POKéMON,\n"
-	.string "but it already likes you.\p"
+	.string "I mean, you just got those Pokémon,\n"
+	.string "but they already like you.\p"
 	.string "You might be able to befriend any\n"
-	.string "kind of POKéMON easily.\p"
+	.string "kind of Pokémon easily.\p"
 	.string "Well, it's time to head back to\n"
-	.string "the LAB.$"
+	.string "the Lab.$"
 
 Route103_Text_BrendanRoute103Pokemon: @ 81EC989
-	.string "BRENDAN: Okay, so it's this one and\n"
-	.string "that one that live on ROUTE 103…$"
+	.string "Brendan: Okay, so it's this one and\n"
+	.string "that one that live on Route 103…$"
 
 Route103_Text_BrendanLetsBattle: @ 81EC9CE
 	.string "Hey, it's {PLAYER}!\p"
-	.string "…Oh, yeah, Dad gave you a POKéMON.\p"
+	.string "…Oh, yeah, Dad gave you a Pokémon.$"
+
+Route103_Text_BrendanLetsBattle2: 
 	.string "Since we're here, how about a little\n"
-	.string "battle?\p"
-	.string "I'll teach you what being a TRAINER's\n"
-	.string "about!$"
+	.string "Double Battle?\p"
+	.string "I'll teach you what being a Trainer\n"
+	.string "in Hoenn is all about!$"
 
 Route103_Text_BrendanDefeated: @ 81ECA59
 	.string "Huh, {PLAYER}, you're not too shabby.$"
 
 Route103_Text_BrendanTimeToHeadBack: @ 81ECA79
-	.string "BRENDAN: I think I get it.\n"
+	.string "Brendan: I think I get it.\n"
 	.string "I think I know why my dad has his eye\l"
 	.string "out for you now.\p"
-	.string "Look, your POKéMON already likes you,\n"
-	.string "even though you just got it.\p"
+	.string "Look, your Pokémon already like you,\n"
+	.string "even though you just got them.\p"
 	.string "{PLAYER}, I get the feeling that you\n"
-	.string "could befriend any POKéMON with ease.\p"
-	.string "We should head back to the LAB.$"
+	.string "could befriend any Pokémon with ease.\p"
+	.string "We should head back to the Lab.$"
 
 Route103_Text_ShouldHaveBroughtPotion: @ 81ECB73
-	.string "My POKéMON is staggeringly tired…\n"
-	.string "I should have brought a POTION…$"
+	.string "My Pokémon are staggeringly tired…\n"
+	.string "I should have brought a Potion…$"
 
 Route103_Text_ShortcutToOldale: @ 81ECBB5
 	.string "If you cross the sea from here,\n"
-	.string "it'll be a shortcut to OLDALE TOWN.\p"
+	.string "it'll be a shortcut to Oldale Town.\p"
 	.string "Fufufu, that's useful, isn't it?$"
 
 Route103_Text_RouteSign: @ 81ECC1A
-	.string "ROUTE 103\n"
-	.string "{DOWN_ARROW} OLDALE TOWN$"
+	.string "Route 103\n"
+	.string "{DOWN_ARROW} Oldale Town$"
 
+Route103_Eevee_Text_ShouldntTravelJustOne:
+	.string "You know, you shouldn't travel\n"
+	.string "with just one Pokémon.$"
+
+Route103_Eevee_Text_PlayerReceivedEevee:
+	.string "{PLAYER} received Eevee!$"

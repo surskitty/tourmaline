@@ -1317,7 +1317,7 @@
       "width": 42,
       "height": 15,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
+      "secondary_tileset": "gTileset_Granite_Cave",
       "border_filepath": "data/layouts/GraniteCave_1F/border.bin",
       "blockdata_filepath": "data/layouts/GraniteCave_1F/map.bin"
     },
@@ -1327,7 +1327,7 @@
       "width": 32,
       "height": 26,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
+      "secondary_tileset": "gTileset_Granite_Cave",
       "border_filepath": "data/layouts/GraniteCave_B1F/border.bin",
       "blockdata_filepath": "data/layouts/GraniteCave_B1F/map.bin"
     },
@@ -1337,7 +1337,7 @@
       "width": 32,
       "height": 26,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
+      "secondary_tileset": "gTileset_Granite_Cave",
       "border_filepath": "data/layouts/GraniteCave_B2F/border.bin",
       "blockdata_filepath": "data/layouts/GraniteCave_B2F/map.bin"
     },
@@ -1627,7 +1627,7 @@
       "width": 46,
       "height": 45,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
+      "secondary_tileset": "gTileset_Victory_Road",
       "border_filepath": "data/layouts/VictoryRoad_1F/border.bin",
       "blockdata_filepath": "data/layouts/VictoryRoad_1F/map.bin"
     },
@@ -1637,7 +1637,7 @@
       "width": 35,
       "height": 35,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
+      "secondary_tileset": "gTileset_ShoalCave",
       "border_filepath": "data/layouts/ShoalCave_LowTideEntranceRoom/border.bin",
       "blockdata_filepath": "data/layouts/ShoalCave_LowTideEntranceRoom/map.bin"
     },
@@ -1647,7 +1647,7 @@
       "width": 46,
       "height": 38,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
+      "secondary_tileset": "gTileset_ShoalCave",
       "border_filepath": "data/layouts/ShoalCave_LowTideInnerRoom/border.bin",
       "blockdata_filepath": "data/layouts/ShoalCave_LowTideInnerRoom/map.bin"
     },
@@ -1657,7 +1657,7 @@
       "width": 21,
       "height": 15,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
+      "secondary_tileset": "gTileset_ShoalCave",
       "border_filepath": "data/layouts/ShoalCave_LowTideStairsRoom/border.bin",
       "blockdata_filepath": "data/layouts/ShoalCave_LowTideStairsRoom/map.bin"
     },
@@ -1667,7 +1667,7 @@
       "width": 31,
       "height": 14,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
+      "secondary_tileset": "gTileset_ShoalCave",
       "border_filepath": "data/layouts/ShoalCave_LowTideLowerRoom/border.bin",
       "blockdata_filepath": "data/layouts/ShoalCave_LowTideLowerRoom/map.bin"
     },
@@ -1677,7 +1677,7 @@
       "width": 35,
       "height": 35,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
+      "secondary_tileset": "gTileset_ShoalCave",
       "border_filepath": "data/layouts/ShoalCave_HighTideEntranceRoom/border.bin",
       "blockdata_filepath": "data/layouts/ShoalCave_HighTideEntranceRoom/map.bin"
     },
@@ -1687,7 +1687,7 @@
       "width": 46,
       "height": 38,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
+      "secondary_tileset": "gTileset_ShoalCave",
       "border_filepath": "data/layouts/ShoalCave_HighTideInnerRoom/border.bin",
       "blockdata_filepath": "data/layouts/ShoalCave_HighTideInnerRoom/map.bin"
     },
@@ -2847,7 +2847,7 @@
       "width": 46,
       "height": 31,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
+      "secondary_tileset": "gTileset_Victory_Road",
       "border_filepath": "data/layouts/VictoryRoad_B1F/border.bin",
       "blockdata_filepath": "data/layouts/VictoryRoad_B1F/map.bin"
     },
@@ -2857,7 +2857,7 @@
       "width": 46,
       "height": 31,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
+      "secondary_tileset": "gTileset_Victory_Road",
       "border_filepath": "data/layouts/VictoryRoad_B2F/border.bin",
       "blockdata_filepath": "data/layouts/VictoryRoad_B2F/map.bin"
     },
@@ -2877,7 +2877,7 @@
       "width": 15,
       "height": 14,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
+      "secondary_tileset": "gTileset_Granite_Cave",
       "border_filepath": "data/layouts/GraniteCave_StevensRoom/border.bin",
       "blockdata_filepath": "data/layouts/GraniteCave_StevensRoom/map.bin"
     },
@@ -3197,7 +3197,7 @@
       "width": 18,
       "height": 18,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
+      "secondary_tileset": "gTileset_ShoalCave",
       "border_filepath": "data/layouts/SkyPillar_Entrance/border.bin",
       "blockdata_filepath": "data/layouts/SkyPillar_Entrance/map.bin"
     },
@@ -3277,7 +3277,7 @@
       "width": 20,
       "height": 30,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cave",
+      "secondary_tileset": "gTileset_ShoalCave",
       "border_filepath": "data/layouts/ShoalCave_LowTideIceRoom/border.bin",
       "blockdata_filepath": "data/layouts/ShoalCave_LowTideIceRoom/map.bin"
     },

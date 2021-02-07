@@ -438,7 +438,6 @@ static u32 LoopedTask_SlideMenuHeaderDown(s32 a0)
         ChangeBgY(0, 0, 0);
         return LT_FINISH;
     }
-
     return LT_PAUSE;
 }
 
@@ -459,9 +458,11 @@ void Pokenav_AllocAndLoadPalettes(const struct SpritePalette *palettes)
         {
             break;
         }
-
-        index = (index * 16) + 0x100;
-        CopyPaletteIntoBufferUnfaded(current->data, index, 0x20);
+        else
+        {
+            index = (index * 16) + 0x100;
+            CopyPaletteIntoBufferUnfaded(current->data, index, 0x20);
+        }
     }
 }
 
@@ -495,7 +496,7 @@ void PokenavCopyPalette(const u16 *src, const u16 *dest, int size, int a3, int a
             g1 = ((((GET_G(*dest) << 8) - (g << 8)) / a3) * a4) >> 8;
             b1 = ((((GET_B(*dest) << 8) - (b << 8)) / a3) * a4) >> 8;
 
-            r = (r + r1) & 0x1F; //_RGB(r + r1, g + g1, b + b1); doesn't match; I have to assign the value of ((r + r1) & 0x1F) to r1
+            r = (r + r1) & 0x1F; //_RGB(r + r1, g + g1, b + b1); doesn't match; I have to assign the value of ((r + r1) & 0x1F) to r
             g = (g + g1) & 0x1F; //See above
             b = (b + b1) & 0x1F; //See above
 

@@ -168,17 +168,17 @@ BattleFrontier_Lounge1_EventScript_Boy2:: @ 825E956
 	end
 
 BattleFrontier_Lounge1_Text_PokemonBreederIntro: @ 825E95F
-	.string "For 70 years I have raised POKéMON!\n"
+	.string "For 70 years I have raised Pokémon!\n"
 	.string "I am the man they revere as\l"
-	.string "the legendary top POKéMON BREEDER!\p"
+	.string "the legendary top Pokémon Breeder!\p"
 	.string "If you ever become as seasoned as me,\n"
-	.string "you'll see the abilities of POKéMON\l"
+	.string "you'll see the abilities of Pokémon\l"
 	.string "at a glance.\p"
-	.string "You're a TRAINER. Doesn't it interest\n"
-	.string "you to know your own POKéMON's\l"
+	.string "You're a Trainer. Doesn't it interest\n"
+	.string "you to know your own Pokémon's\l"
 	.string "abilities?\p"
 	.string "Here!\n"
-	.string "Let's have a look at your POKéMON!$"
+	.string "Let's have a look at your Pokémon!$"
 
 BattleFrontier_Lounge1_Text_AverageAbility: @ 825EA92
 	.string "…Hmm…\p"
@@ -201,28 +201,28 @@ BattleFrontier_Lounge1_Text_OutstandingAbility: @ 825EB6F
 	.string "wonderfully outstanding in ability!$"
 
 BattleFrontier_Lounge1_Text_BestAspectHP: @ 825EBBB
-	.string "Incidentally, the best aspect of it,\n"
-	.string "I would say, is its HP…$"
+	.string "Incidentally, I would say its best\n"
+	.string "attribute is its HP…$"
 
 BattleFrontier_Lounge1_Text_BestAspectAtk: @ 825EBF8
-	.string "Incidentally, the best aspect of it,\n"
-	.string "I would say, is its ATTACK…$"
+	.string "Incidentally, I would say its best\n"
+	.string "attribute is its Attack…$"
 
 BattleFrontier_Lounge1_Text_BestAspectDef: @ 825EC39
-	.string "Incidentally, the best aspect of it,\n"
-	.string "I would say, is its DEFENSE…$"
+	.string "Incidentally, I would say its best\n"
+	.string "attribute is its Defense…$"
 
 BattleFrontier_Lounge1_Text_BestAspectSpAtk: @ 825EC7B
-	.string "Incidentally, the best aspect of it,\n"
-	.string "I would say, is its SPECIAL ATTACK…$"
+	.string "Incidentally, I would say its best\n"
+	.string "attribute is its Special Attack…$"
 
 BattleFrontier_Lounge1_Text_BestAspectSpDef: @ 825ECC4
-	.string "Incidentally, the best aspect of it,\n"
-	.string "I would say, is its SPECIAL DEFENSE…$"
+	.string "Incidentally, I would say its best\n"
+	.string "attribute is its Special Defense…$"
 
 BattleFrontier_Lounge1_Text_BestAspectSpeed: @ 825ED0E
-	.string "Incidentally, the best aspect of it,\n"
-	.string "I would say, is its SPEED…$"
+	.string "Incidentally, I would say its best\n"
+	.string "attribute is its Speed…$"
 
 BattleFrontier_Lounge1_Text_StatRelativelyGood: @ 825ED4E
 	.string "That stat is relatively good.\n"
@@ -253,23 +253,23 @@ BattleFrontier_Lounge1_Text_HaveBusinessNeedsTending: @ 825EEA6
 	.string "Save it for next time!$"
 
 BattleFrontier_Lounge1_Text_LetsLookAtYourPokemon: @ 825EEF6
-	.string "Ah, youngster! Do your POKéMON's\n"
+	.string "Ah, youngster! Do your Pokémon's\n"
 	.string "abilities intrigue you?\p"
 	.string "Here, here!\n"
-	.string "Let's have a look at your POKéMON!$"
+	.string "Let's have a look at your Pokémon!$"
 
 BattleFrontier_Lounge1_Text_EvenICantTell: @ 825EF5E
 	.string "An expert I am, but even I can't tell\n"
-	.string "anything about an unhatched POKéMON!\p"
-	.string "Show me a POKéMON!\n"
-	.string "A POKéMON is what I need to see!$"
+	.string "anything about an unhatched Pokémon!\p"
+	.string "Show me a Pokémon!\n"
+	.string "A Pokémon is what I need to see!$"
 
 BattleFrontier_Lounge1_Text_SaidMyMonIsOutstanding: @ 825EFDD
-	.string "He said my POKéMON is outstanding!\n"
+	.string "He said my Pokémon is outstanding!\n"
 	.string "I'm glad I raised it carefully!$"
 
 BattleFrontier_Lounge1_Text_DidntDoAnythingSpecialRaisingIt: @ 825F020
-	.string "He said my POKéMON is outstanding!\n"
+	.string "He said my Pokémon is outstanding!\n"
 	.string "But I didn't do anything special\l"
 	.string "raising it…$"
 

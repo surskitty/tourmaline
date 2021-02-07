@@ -1,36 +1,22 @@
-# Pokémon Emerald
+# Pok&eacute;mon Tourmaline
+This is a romhack based off of [PokeEmerald](https://github.com/pret/pokeemerald) and especially the [PokeEmerald Expansion](https://github.com/rh-hideout/pokeemerald-expansion) to focus on double battles in a semi-traditional Pokemon game.
+## Details
+- National Dex up through USUM!
+- All Pok&eacute;mon evolve without trading. Haunter and Dusknoir require a Dusk Stone; Magmar uses a Fire Stone; Alolan Exeggutor uses a Sun Stone; Electabuzz, Nosepass, and Magneton use Thunder Stones; Glaceon uses an Ice Stone; Leafeon uses a Leaf Stone.
+- The starting PC contains a Master Ball in the event of shinies.
+### QOL Improvements
+- Exp Share now has the Gen 6-7 effect. (Blurose & LOuroboros)
+- Surfing is faster while holding B. (ghoulslash)
+- You can change nicknames from the party menu. (shinny456)
+- Shuckle can ferment Oran Berries into Berry Juice. (AsparagusEduardo)
+- Repels prompt for automatic reuse. (DizzyEggg)
+- Item descriptions are displayed when first obtaining an item. (ghoulslash)
+- Nature effects are displayed on the status screen. (DizzyEggg)
+- Berry trees won't die. (BuffelSaft)
+### Credits
+- pret, for decomps.
+- RH Hideout, for the PokeEmerald Expansion, so that I don't have to reinvent the wheel adding more pok&eacute;mon.
+- [ghoulslash](https://github.com/ghoulslash/pokeemerald/wiki)'s wide array of feature branchs.
+- surskitty, as the person actually making this romhack.
+- Thousand Roads discord, for moral support and playtesting.
 
-[![Build Status][travis-badge]][travis]
-
-[travis]: https://travis-ci.org/pret/pokeemerald
-[travis-badge]: https://travis-ci.org/pret/pokeemerald.svg?branch=master
-
-This is a decompilation of Pokémon Emerald.
-
-It builds the following ROM:
-
-* [**pokeemerald.gba**](https://datomatic.no-intro.org/index.php?page=show_record&s=23&n=1961) `sha1: f3ae088181bf583e55daf962a92bb46f4f1d07b7`
-
-To set up the repository, see [INSTALL.md](INSTALL.md).
-
-
-## See also
-
-Other disassembly and/or decompilation projects:
-* [**Pokémon Red and Blue**](https://github.com/pret/pokered)
-* [**Pokémon Gold and Silver (Space World '97 demo)**](https://github.com/pret/pokegold-spaceworld)
-* [**Pokémon Yellow**](https://github.com/pret/pokeyellow)
-* [**Pokémon Trading Card Game**](https://github.com/pret/poketcg)
-* [**Pokémon Pinball**](https://github.com/pret/pokepinball)
-* [**Pokémon Stadium**](https://github.com/pret/pokestadium)
-* [**Pokémon Gold and Silver**](https://github.com/pret/pokegold)
-* [**Pokémon Crystal**](https://github.com/pret/pokecrystal)
-* [**Pokémon Ruby and Sapphire**](https://github.com/pret/pokeruby)
-* [**Pokémon Pinball: Ruby & Sapphire**](https://github.com/pret/pokepinballrs)
-* [**Pokémon FireRed and LeafGreen**](https://github.com/pret/pokefirered)
-* [**Pokémon Mystery Dungeon: Red Rescue Team**](https://github.com/pret/pmd-red)
-
-
-## Contacts
-
-You can find us on [Discord](https://discord.gg/d5dubZ3) and [IRC](https://kiwiirc.com/client/irc.freenode.net/?#pret).

@@ -170,6 +170,7 @@ static const struct MenuAction gPCText_ItemPCOptionsText[] =
 static const struct ItemSlot gNewGamePCItems[] =
 {
     { ITEM_POTION, 1 },
+    { ITEM_MASTER_BALL, 1 },
     { ITEM_NONE, 0 }
 };
 
@@ -327,7 +328,7 @@ void PlayerPC(void)
 
 static void InitPlayerPCMenu(u8 taskId)
 {
-    s16 *data;
+    u16 *data;
     struct WindowTemplate windowTemplate;
 
     data = gTasks[taskId].data;
@@ -346,7 +347,7 @@ static void InitPlayerPCMenu(u8 taskId)
 
 static void PlayerPCProcessMenuInput(u8 taskId)
 {
-    s16 *data;
+    u16 *data;
     s8 inputOptionId;
 
     data = gTasks[taskId].data;
@@ -435,7 +436,7 @@ static void PlayerPC_TurnOff(u8 taskId)
 
 static void InitItemStorageMenu(u8 taskId, u8 var)
 {
-    s16 *data;
+    u16 *data;
     struct WindowTemplate windowTemplate;
 
     data = gTasks[taskId].data;
@@ -443,7 +444,7 @@ static void InitItemStorageMenu(u8 taskId, u8 var)
     windowTemplate.width = GetMaxWidthInMenuTable(gPCText_ItemPCOptionsText, 4);
     data[4] = AddWindow(&windowTemplate);
     SetStandardWindowBorderStyle(data[4], 0);
-    PrintMenuTable(data[4], 4, gPCText_ItemPCOptionsText);
+    PrintMenuTable(data[4], ARRAY_COUNT(gPCText_ItemPCOptionsText), gPCText_ItemPCOptionsText);
     InitMenuInUpperLeftCornerPlaySoundWhenAPressed(data[4], 4, var);
     ScheduleBgCopyTilemapToVram(0);
     ItemStorageMenuPrint(gPCText_OptionDescList[var]);
@@ -548,7 +549,7 @@ static void ItemStorage_Toss(u8 taskId)
 
 static void ItemStorage_WithdrawToss_Helper(u8 taskId, bool8 toss)
 {
-    s16 *data = gTasks[taskId].data;
+    u16 *data = gTasks[taskId].data;
 
     data[3] = toss;
     sub_816B4DC(taskId);
@@ -581,9 +582,9 @@ static void ItemStorage_SetItemAndMailCount(u8 taskId)
 
 static void sub_816B4DC(u8 taskId)
 {
-    u16 *data = (u16 *)gTasks[taskId].data;
+    u16 *data = gTasks[taskId].data;
 
-    ClearStdWindowAndFrameToTransparent((u8)data[4], FALSE);
+    ClearStdWindowAndFrameToTransparent(data[4], FALSE);
     ClearWindowTilemap(data[4]);
     RemoveWindow(data[4]);
     ScheduleBgCopyTilemapToVram(0);
@@ -686,7 +687,7 @@ static void Mailbox_ReturnToPlayerPC(u8 taskId)
 static void Mailbox_PrintMailOptions(u8 taskId)
 {
     u8 r4 = sub_81D1C84(2);
-    PrintMenuTable(r4, 4, gMailboxMailOptions);
+    PrintMenuTable(r4, ARRAY_COUNT(gMailboxMailOptions), gMailboxMailOptions);
     InitMenuInUpperLeftCornerPlaySoundWhenAPressed(r4, 4, 0);
     ScheduleBgCopyTilemapToVram(0);
     gTasks[taskId].func = Mailbox_MailOptionsProcessInput;
@@ -1058,7 +1059,6 @@ static void ItemStorage_ProcessWithdrawTossInput(u8 taskId)
     s16 *data;
     bool32 toss;
     u32 i, x;
-    u8 windowId;
     const u8* text;
 
     data = gTasks[taskId].data;
@@ -1380,7 +1380,7 @@ static void ItemStorage_DoItemToss(u8 taskId)
 
     data = gTasks[taskId].data;
     b = (playerPCItemPageInfo.cursorPos + playerPCItemPageInfo.itemsAbove);
-    if (ItemId_GetImportance(gSaveBlock1Ptr->pcItems[b].itemId) == 0)
+    if (!ItemId_GetImportance(gSaveBlock1Ptr->pcItems[b].itemId))
     {
         CopyItemName(gSaveBlock1Ptr->pcItems[b].itemId, gStringVar1);
         ConvertIntToDecimalStringN(gStringVar2, data[2], STR_CONV_MODE_LEFT_ALIGN, 3);

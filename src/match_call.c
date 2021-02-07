@@ -1334,7 +1334,7 @@ static void InitMatchCallTextPrinter(int windowId, const u8 *str)
     printerTemplate.currentY = 1;
     printerTemplate.letterSpacing = 0;
     printerTemplate.lineSpacing = 0;
-    printerTemplate.style = 0;
+    printerTemplate.unk = 0;
     printerTemplate.fgColor = 10;
     printerTemplate.bgColor = 8;
     printerTemplate.shadowColor = 14;
@@ -1494,7 +1494,6 @@ static const struct MatchCallText *GetGeneralMatchCallText(int matchCallId, u8 *
     int count;
     u32 topic, id;
     u16 rand;
-    u16 var3;
 
     rand = Random();
     if (!(rand & 1))
@@ -1696,22 +1695,7 @@ static void PopulateSpeciesFromTrainerParty(int matchCallId, u8 *destStr)
     party = gTrainers[trainerId].party;
     monId = Random() % gTrainers[trainerId].partySize;
 
-    switch (gTrainers[trainerId].partyFlags)
-    {
-    case 0:
-    default:
-        speciesName = gSpeciesNames[party.NoItemDefaultMoves[monId].species];
-        break;
-    case F_TRAINER_PARTY_CUSTOM_MOVESET:
-        speciesName = gSpeciesNames[party.NoItemCustomMoves[monId].species];
-        break;
-    case F_TRAINER_PARTY_HELD_ITEM:
-        speciesName = gSpeciesNames[party.ItemDefaultMoves[monId].species];
-        break;
-    case F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM:
-        speciesName = gSpeciesNames[party.ItemCustomMoves[monId].species];
-        break;
-    }
+    speciesName = gSpeciesNames[party.TrainerMon[monId].species];
 
     StringCopy(destStr, speciesName);
 }
@@ -1773,7 +1757,7 @@ static int GetNumOwnedBadges(void)
 static bool32 sub_8196D74(int matchCallId)
 {
     int dayCount;
-    u32 otId;
+    int otId;
     u16 easyChatWord;
     int numRematchTrainersFought;
     int var0, var1, var2;
@@ -1817,10 +1801,13 @@ static u16 GetFrontierStreakInfo(u16 facilityId, u32 *topicTextId)
         }
         *topicTextId = 3;
         break;
+    #ifdef BUGFIX
+    case FRONTIER_FACILITY_PIKE:
+    #else
     case FRONTIER_FACILITY_FACTORY:
+    #endif
         for (i = 0; i < 2; i++)
         {
-            // BUG: should be looking at battle factory records.
             if (streak < gSaveBlock2Ptr->frontier.pikeRecordStreaks[i])
                 streak = gSaveBlock2Ptr->frontier.pikeRecordStreaks[i];
         }
@@ -1848,12 +1835,15 @@ static u16 GetFrontierStreakInfo(u16 facilityId, u32 *topicTextId)
         }
         *topicTextId = 2;
         break;
+    #ifdef BUGFIX
+    case FRONTIER_FACILITY_FACTORY:
+    #else
     case FRONTIER_FACILITY_PIKE:
+    #endif
         for (i = 0; i < 2; i++)
         {
             for (j = 0; j < 2; j++)
             {
-                // BUG: should be looking at battle pike records.
                 if (streak < gSaveBlock2Ptr->frontier.factoryRecordWinStreaks[i][j])
                     streak = gSaveBlock2Ptr->frontier.factoryRecordWinStreaks[i][j];
             }

@@ -1,5 +1,6 @@
 #include "global.h"
 #include "decompress.h"
+#include "event_data.h"
 #include "event_object_movement.h"
 #include "field_camera.h"
 #include "field_control_avatar.h"
@@ -27,6 +28,7 @@
 #include "trig.h"
 #include "util.h"
 #include "constants/field_effects.h"
+#include "constants/field_specials.h"
 #include "constants/event_object_movement.h"
 #include "constants/metatile_behaviors.h"
 #include "constants/rgb.h"
@@ -35,7 +37,7 @@
 #define subsprite_table(ptr) {.subsprites = ptr, .subspriteCount = (sizeof ptr) / (sizeof(struct Subsprite))}
 
 EWRAM_DATA s32 gFieldEffectArguments[8] = {0};
-
+EWRAM_DATA u16 gReflectionPaletteBuffer[0x10] = {0};
 // Static type declarations
 
 static void Task_PokecenterHeal(u8 taskId);
@@ -206,6 +208,8 @@ static void FlyOutFieldEffect_FlyOffWithBird(struct Task *);
 static void FlyOutFieldEffect_WaitFlyOff(struct Task *);
 static void FlyOutFieldEffect_End(struct Task *);
 
+static void FlyingTaxiFieldEffect_FlyNoises(struct Task *);
+
 static u8 CreateFlyBirdSprite(void);
 static u8 GetFlyBirdAnimCompleted(u8);
 static void StartFlyBirdSwoopDown(u8);
@@ -231,7 +235,23 @@ static void SpriteCB_DeoxysRockFragment(struct Sprite* sprite);
 
 static void Task_MoveDeoxysRock(u8 taskId);
 
+static void Task_UseRockClimb(u8);
+static bool8 RockClimb_Init(struct Task *, struct ObjectEvent *);
+static bool8 RockClimb_FieldMovePose(struct Task *, struct ObjectEvent *);
+static bool8 RockClimb_ShowMon(struct Task *, struct ObjectEvent *);
+static bool8 RockClimb_JumpOnRockClimbBlob(struct Task *task, struct ObjectEvent *objectEvent);
+static bool8 RockClimb_WaitJumpOnRockClimbBlob(struct Task *task, struct ObjectEvent *objectEvent);
+static bool8 RockClimb_Ride(struct Task *task, struct ObjectEvent *objectEvent);
+//static bool8 RockClimb_RideUp(struct Task *, struct ObjectEvent *);
+//static bool8 RockClimb_RideDown(struct Task *, struct ObjectEvent *);
+static bool8 RockClimb_ContinueRideOrEnd(struct Task *, struct ObjectEvent *);
+static bool8 RockClimb_WaitStopRockClimb(struct Task *task, struct ObjectEvent *objectEvent);
+static bool8 RockClimb_StopRockClimbInit(struct Task *task, struct ObjectEvent *objectEvent);
 // Static RAM declarations
+
+#if FOLLOW_ME_IMPLEMENTED
+static void TryAttachFollowerToPlayer(void);
+#endif
 
 static u8 sActiveList[32];
 
@@ -770,6 +790,7 @@ void FieldEffectScript_LoadFadedPalette(u8 **script)
 {
     struct SpritePalette *palette = (struct SpritePalette *)FieldEffectScript_ReadWord(script);
     LoadSpritePalette(palette);
+    UpdatePaletteGammaType(IndexOfSpritePaletteTag(palette->tag), GAMMA_NORMAL);
     UpdateSpritePaletteWithWeather(IndexOfSpritePaletteTag(palette->tag));
     (*script) += 4;
 }
@@ -902,7 +923,7 @@ u8 AddNewGameBirchObject(s16 x, s16 y, u8 subpriority)
 
 u8 CreateMonSprite_PicBox(u16 species, s16 x, s16 y, u8 subpriority)
 {
-    s32 spriteId = CreateMonPicSprite_HandleDeoxys(species, 0, 0x8000, 1, x, y, 0, gMonPaletteTable[species].tag);
+    s32 spriteId = CreateMonPicSprite(species, 0, 0x8000, 1, x, y, 0, gMonPaletteTable[species].tag);
     PreservePaletteInWeather(IndexOfSpritePaletteTag(gMonPaletteTable[species].tag) + 0x10);
     if (spriteId == 0xFFFF)
         return MAX_SPRITES;
@@ -913,7 +934,7 @@ u8 CreateMonSprite_PicBox(u16 species, s16 x, s16 y, u8 subpriority)
 u8 CreateMonSprite_FieldMove(u16 species, u32 otId, u32 personality, s16 x, s16 y, u8 subpriority)
 {
     const struct CompressedSpritePalette *spritePalette = GetMonSpritePalStructFromOtIdPersonality(species, otId, personality);
-    u16 spriteId = CreateMonPicSprite_HandleDeoxys(species, otId, personality, 1, x, y, 0, spritePalette->tag);
+    u16 spriteId = CreateMonPicSprite(species, otId, personality, 1, x, y, 0, spritePalette->tag);
     PreservePaletteInWeather(IndexOfSpritePaletteTag(spritePalette->tag) + 0x10);
     if (spriteId == 0xFFFF)
         return MAX_SPRITES;
@@ -934,43 +955,43 @@ void FreeResourcesAndDestroySprite(struct Sprite *sprite, u8 spriteId)
 // r, g, b are between 0 and 16
 void MultiplyInvertedPaletteRGBComponents(u16 i, u8 r, u8 g, u8 b)
 {
-    int curRed;
-    int curGreen;
-    int curBlue;
-    u16 outPal;
-
-    outPal = gPlttBufferUnfaded[i];
-    curRed = outPal & 0x1f;
-    curGreen = (outPal & (0x1f << 5)) >> 5;
-    curBlue = (outPal & (0x1f << 10)) >> 10;
-    curRed += (((0x1f - curRed) * r) >> 4);
-    curGreen += (((0x1f - curGreen) * g) >> 4);
-    curBlue += (((0x1f - curBlue) * b) >> 4);
-    outPal = curRed;
-    outPal |= curGreen << 5;
-    outPal |= curBlue << 10;
-    gPlttBufferFaded[i] = outPal;
+    int curRed, curGreen, curBlue;
+    u16 color = gPlttBufferUnfaded[i];
+    
+    curRed   = (color & RGB_RED);
+    curGreen = (color & RGB_GREEN) >>  5;
+    curBlue  = (color & RGB_BLUE)  >> 10;
+    
+    curRed   += (((0x1F - curRed)   * r) >> 4);
+    curGreen += (((0x1F - curGreen) * g) >> 4);
+    curBlue  += (((0x1F - curBlue)  * b) >> 4);
+    
+    color  = curRed;
+    color |= (curGreen <<  5);
+    color |= (curBlue  << 10);
+    
+    gPlttBufferFaded[i] = color;
 }
 
 // r, g, b are between 0 and 16
 void MultiplyPaletteRGBComponents(u16 i, u8 r, u8 g, u8 b)
 {
-    int curRed;
-    int curGreen;
-    int curBlue;
-    u16 outPal;
-
-    outPal = gPlttBufferUnfaded[i];
-    curRed = outPal & 0x1f;
-    curGreen = (outPal & (0x1f << 5)) >> 5;
-    curBlue = (outPal & (0x1f << 10)) >> 10;
-    curRed -= ((curRed * r) >> 4);
+    int curRed, curGreen, curBlue;
+    u16 color = gPlttBufferUnfaded[i];
+    
+    curRed   = (color & RGB_RED);
+    curGreen = (color & RGB_GREEN) >>  5;
+    curBlue  = (color & RGB_BLUE)  >> 10;
+    
+    curRed   -= ((curRed   * r) >> 4);
     curGreen -= ((curGreen * g) >> 4);
-    curBlue -= ((curBlue * b) >> 4);
-    outPal = curRed;
-    outPal |= curGreen << 5;
-    outPal |= curBlue << 10;
-    gPlttBufferFaded[i] = outPal;
+    curBlue  -= ((curBlue  * b) >> 4);
+    
+    color  = curRed;
+    color |= curGreen <<  5;
+    color |= curBlue  << 10;
+    
+    gPlttBufferFaded[i] = color;
 }
 
 // Task data for Task_PokecenterHeal and Task_HallOfFameRecord
@@ -1870,6 +1891,10 @@ static bool8 WaterfallFieldEffect_ContinueRideOrEnd(struct Task *task, struct Ob
 {
     if (!ObjectEventClearHeldMovementIfFinished(objectEvent))
         return FALSE;
+    
+    #if FOLLOW_ME_IMPLEMENTED
+        TryAttachFollowerToPlayer();
+    #endif
 
     if (MetatileBehavior_IsWaterfall(objectEvent->currentMetatileBehavior))
     {
@@ -2597,7 +2622,7 @@ static void FieldMoveShowMonOutdoorsEffect_Init(struct Task *task)
 {
     task->data[11] = REG_WININ;
     task->data[12] = REG_WINOUT;
-    StoreWordInTwoHalfwords((u16 *)&task->data[13], (u32)gMain.vblankCallback);
+    StoreWordInTwoHalfwords(&task->data[13], (u32)gMain.vblankCallback);
     task->tWinHoriz = WIN_RANGE(DISPLAY_WIDTH, DISPLAY_WIDTH + 1);
     task->tWinVert = WIN_RANGE(DISPLAY_HEIGHT / 2, DISPLAY_HEIGHT / 2 + 1);
     task->tWinIn = WININ_WIN0_BG_ALL | WININ_WIN0_OBJ | WININ_WIN0_CLR;
@@ -3104,10 +3129,13 @@ u8 FldEff_RayquazaSpotlight(void)
 
 u8 FldEff_NPCFlyOut(void)
 {
-    u8 spriteId = CreateSprite(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_BIRD], 0x78, 0, 1);
-    struct Sprite *sprite = &gSprites[spriteId];
+    u8 spriteId;
+    struct Sprite *sprite;
 
-    sprite->oam.paletteNum = 0;
+    LoadFieldEffectPalette(FLDEFFOBJ_BIRD);
+    spriteId = CreateSprite(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_BIRD], 0x78, 0, 1);
+    sprite = &gSprites[spriteId];
+
     sprite->oam.priority = 1;
     sprite->callback = SpriteCB_NPCFlyOut;
     sprite->data[1] = gFieldEffectArguments[0];
@@ -3166,9 +3194,30 @@ void (*const sFlyOutFieldEffectFuncs[])(struct Task *) = {
     FlyOutFieldEffect_End,
 };
 
+void (*const sFlyingTaxiFieldEffectFuncs[])(struct Task *) = {
+    FlyingTaxiFieldEffect_FlyNoises,
+    FlyOutFieldEffect_End,
+};
+
+static void FlyingTaxiFieldEffect_FlyNoises(struct Task *task)
+{
+    struct ObjectEvent *objectEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+    if ((task->tTimer == 0 || (--task->tTimer) == 0) && ObjectEventClearHeldMovementIfFinished(objectEvent))
+    {
+        task->tState++;
+        task->tTimer = 2;
+        PlaySE(SE_M_FLY);
+        StartFlyBirdSwoopDown(task->tBirdSpriteId);
+    }
+}
+
+
 static void Task_FlyOut(u8 taskId)
 {
-    sFlyOutFieldEffectFuncs[gTasks[taskId].tState](&gTasks[taskId]);
+    if (VarGet(VAR_0x800A) == LAST_TALKED_TO_FLYING_TAXI)
+        sFlyingTaxiFieldEffectFuncs[gTasks[taskId].tState](&gTasks[taskId]);
+    else
+        sFlyOutFieldEffectFuncs[gTasks[taskId].tState](&gTasks[taskId]);
 }
 
 static void FlyOutFieldEffect_FieldMovePose(struct Task *task)
@@ -3287,9 +3336,10 @@ static u8 CreateFlyBirdSprite(void)
 {
     u8 spriteId;
     struct Sprite *sprite;
+
+    LoadFieldEffectPalette(FLDEFFOBJ_BIRD);
     spriteId = CreateSprite(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_BIRD], 0xff, 0xb4, 0x1);
     sprite = &gSprites[spriteId];
-    sprite->oam.paletteNum = 0;
     sprite->oam.priority = 1;
     sprite->callback = SpriteCB_FlyBirdLeaveBall;
     return spriteId;
@@ -3846,7 +3896,6 @@ bool8 FldEff_MoveDeoxysRock(struct Sprite* sprite)
 
 static void Task_MoveDeoxysRock(u8 taskId)
 {
-    // BUG: Possible divide by zero
     s16 *data = gTasks[taskId].data;
     struct Sprite *sprite = &gSprites[data[1]];
     switch (data[0])
@@ -3854,8 +3903,16 @@ static void Task_MoveDeoxysRock(u8 taskId)
         case 0:
             data[4] = sprite->pos1.x << 4;
             data[5] = sprite->pos1.y << 4;
-            data[6] = (data[2] * 16 - data[4]) / data[8];
-            data[7] = (data[3] * 16 - data[5]) / data[8];
+
+            // UB: Possible divide by zero
+            #ifdef UBFIX
+            #define DIVISOR (data[8] ? data[8] : 1);
+            #else
+            #define DIVISOR (data[8])
+            #endif
+
+            data[6] = (data[2] * 16 - data[4]) / DIVISOR;
+            data[7] = (data[3] * 16 - data[5]) / DIVISOR;
             data[0]++;
         case 1:
             if (data[8] != 0)
@@ -3879,4 +3936,274 @@ static void Task_MoveDeoxysRock(u8 taskId)
             break;
     }
 }
+
+// ROCK CLIMB
+enum RockClimbState
+{
+    STATE_ROCK_CLIMB_INIT,
+    STATE_ROCK_CLIMB_POSE,
+    STATE_ROCK_CLIMB_SHOW_MON,
+    STATE_ROCK_CLIMB_JUMP_ON,
+    STATE_ROCK_CLIMB_WAIT_JUMP,
+    STATE_ROCK_CLIMB_RIDE,
+    STATE_ROCK_CLIMB_CONTINUE_RIDE,
+    STATE_ROCK_CLIMB_STOP_INIT,
+    STATE_ROCK_CLIMB_WAIT_STOP
+};
+
+#define tState       data[0]
+#define tDestX       data[1]
+#define tDestY       data[2]
+#define tMonId       data[15]
+
+static u8 CreateRockClimbBlob(void)
+{
+    u8 spriteId;
+    struct Sprite *sprite;
+    
+    SetSpritePosToOffsetMapCoords((s16 *)&gFieldEffectArguments[0], (s16 *)&gFieldEffectArguments[1], 8, 8);
+    spriteId = CreateSpriteAtEnd(gFieldEffectObjectTemplatePointers[FLDEFFOBJ_ROCK_CLIMB_BLOB], gFieldEffectArguments[0], gFieldEffectArguments[1], 0x96);
+    if (spriteId != MAX_SPRITES)
+    {
+        sprite = &gSprites[spriteId];
+        sprite->coordOffsetEnabled = TRUE;
+        sprite->oam.paletteNum = 0;
+        sprite->data[2] = gFieldEffectArguments[2];
+        sprite->data[3] = -1;
+        sprite->data[6] = -1;
+        sprite->data[7] = -1;
+    }
+    
+    return spriteId;
+}
+
+bool8 (*const sRockClimbFieldEffectFuncs[])(struct Task *, struct ObjectEvent *) =
+{
+    [STATE_ROCK_CLIMB_INIT]          = RockClimb_Init,
+    [STATE_ROCK_CLIMB_POSE]          = RockClimb_FieldMovePose,
+    [STATE_ROCK_CLIMB_SHOW_MON]      = RockClimb_ShowMon,
+    [STATE_ROCK_CLIMB_JUMP_ON]       = RockClimb_JumpOnRockClimbBlob,
+    [STATE_ROCK_CLIMB_WAIT_JUMP]     = RockClimb_WaitJumpOnRockClimbBlob,
+    [STATE_ROCK_CLIMB_RIDE]          = RockClimb_Ride,
+    [STATE_ROCK_CLIMB_CONTINUE_RIDE] = RockClimb_ContinueRideOrEnd,
+    [STATE_ROCK_CLIMB_STOP_INIT]     = RockClimb_StopRockClimbInit,
+    [STATE_ROCK_CLIMB_WAIT_STOP]     = RockClimb_WaitStopRockClimb
+};
+
+bool8 FldEff_UseRockClimb(void)
+{
+    u8 taskId;
+    taskId = CreateTask(Task_UseRockClimb, 0xff);
+    gTasks[taskId].tMonId = gFieldEffectArguments[0];
+    Task_UseRockClimb(taskId);
+    return FALSE;
+}
+
+static void Task_UseRockClimb(u8 taskId)
+{
+    while (sRockClimbFieldEffectFuncs[gTasks[taskId].tState](&gTasks[taskId], &gObjectEvents[gPlayerAvatar.objectEventId]));
+}
+
+static bool8 RockClimb_Init(struct Task *task, struct ObjectEvent *objectEvent)
+{
+    ScriptContext2_Enable();
+    FreezeObjectEvents();
+    gPlayerAvatar.preventStep = TRUE;
+    PlayerGetDestCoords(&task->tDestX, &task->tDestY);
+    MoveCoords(gObjectEvents[gPlayerAvatar.objectEventId].movementDirection, &task->tDestX, &task->tDestY);
+    task->tState++;
+    return FALSE;
+}
+
+static bool8 RockClimb_FieldMovePose(struct Task *task, struct ObjectEvent *objectEvent)
+{
+    if (!ObjectEventIsMovementOverridden(objectEvent) || ObjectEventClearHeldMovementIfFinished(objectEvent))
+    {
+        SetPlayerAvatarFieldMove();
+        ObjectEventSetHeldMovement(objectEvent, MOVEMENT_ACTION_START_ANIM_IN_DIRECTION);
+        task->tState++;
+    }
+    return FALSE;
+}
+
+static bool8 RockClimb_ShowMon(struct Task *task, struct ObjectEvent *objectEvent)
+{
+    if (ObjectEventCheckHeldMovementStatus(objectEvent))
+    {
+        gFieldEffectArguments[0] = task->tMonId | 0x80000000;
+        FieldEffectStart(FLDEFF_FIELD_MOVE_SHOW_MON_INIT);
+        task->tState++;
+        return TRUE;
+    }
+    return FALSE;
+}
+
+static bool8 RockClimb_JumpOnRockClimbBlob(struct Task *task, struct ObjectEvent *objectEvent)
+{
+    if (!FieldEffectActiveListContains(FLDEFF_FIELD_MOVE_SHOW_MON))
+    {
+        ObjectEventSetGraphicsId(objectEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_SURFING));
+        ObjectEventClearHeldMovementIfFinished(objectEvent);
+        ObjectEventSetHeldMovement(objectEvent, GetJumpSpecialMovementAction(objectEvent->movementDirection));
+        gFieldEffectArguments[0] = task->tDestX;
+        gFieldEffectArguments[1] = task->tDestY;
+        gFieldEffectArguments[2] = gPlayerAvatar.objectEventId;
+        objectEvent->fieldEffectSpriteId = CreateRockClimbBlob();
+        task->tState++;
+    }
+    
+    return FALSE;
+}
+
+static bool8 RockClimb_WaitJumpOnRockClimbBlob(struct Task *task, struct ObjectEvent *objectEvent)
+{
+    if (ObjectEventClearHeldMovementIfFinished(objectEvent))
+    {
+        SetSurfBobState(objectEvent->fieldEffectSpriteId, 1);
+        switch (objectEvent->facingDirection)
+        {
+        case DIR_EAST:
+            //check southeast then northeast
+            if (MetatileBehavior_IsRockClimbable(MapGridGetMetatileBehaviorAt(task->tDestX + 1, task->tDestY + 1)))
+                objectEvent->movementDirection = DIR_SOUTHEAST;
+            else if (MetatileBehavior_IsRockClimbable(MapGridGetMetatileBehaviorAt(task->tDestX + 1, task->tDestY - 1)))
+                objectEvent->movementDirection = DIR_NORTHEAST;
+            break;
+        case DIR_WEST:
+            //check northwest then southwest
+            if (MetatileBehavior_IsRockClimbable(MapGridGetMetatileBehaviorAt(task->tDestX - 1, task->tDestY - 1)))
+                objectEvent->movementDirection = DIR_NORTHWEST;
+            else if (MetatileBehavior_IsRockClimbable(MapGridGetMetatileBehaviorAt(task->tDestX - 1, task->tDestY + 1)))
+                objectEvent->movementDirection = DIR_SOUTHWEST;
+            break;
+        }
+        
+        task->tState = STATE_ROCK_CLIMB_CONTINUE_RIDE;
+    }
+    
+    return FALSE;
+}
+
+struct RockClimbRide
+{
+    u8 action;
+    s8 dx;
+    s8 dy;
+    u8 jumpDir;
+};
+static const struct RockClimbRide sRockClimbMovement[] = 
+{
+    [DIR_NONE] = {MOVEMENT_ACTION_WALK_FAST_DOWN, 0, 0, DIR_NONE},
+    [DIR_SOUTH] = {MOVEMENT_ACTION_WALK_FAST_DOWN, 0, -1, DIR_SOUTH},
+    [DIR_NORTH] = {MOVEMENT_ACTION_WALK_FAST_UP, 0, 1, DIR_NORTH},
+    [DIR_WEST] = {MOVEMENT_ACTION_WALK_FAST_LEFT, 1, 1, DIR_WEST},
+    [DIR_EAST] = {MOVEMENT_ACTION_WALK_FAST_RIGHT, -1, -1, DIR_EAST},
+    [DIR_SOUTHWEST] = {MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_LEFT, 1, -1, DIR_WEST},
+    [DIR_SOUTHEAST] = {MOVEMENT_ACTION_WALK_FAST_DIAGONAL_DOWN_RIGHT, -1, -1, DIR_EAST},
+    [DIR_NORTHWEST] = {MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_LEFT, 1, 1, DIR_WEST},
+    [DIR_NORTHEAST] = {MOVEMENT_ACTION_WALK_FAST_DIAGONAL_UP_RIGHT, -1, 1, DIR_EAST},
+};
+
+static void RockClimbDust(struct ObjectEvent *objectEvent, u8 direction)
+{
+    s8 dx = sRockClimbMovement[direction].dx;
+    s8 dy = sRockClimbMovement[direction].dy;
+    
+    gFieldEffectArguments[0] = objectEvent->currentCoords.x + dx;
+    gFieldEffectArguments[1] = objectEvent->currentCoords.y + dy;
+    gFieldEffectArguments[2] = objectEvent->previousElevation;
+    gFieldEffectArguments[3] = gSprites[objectEvent->spriteId].oam.priority;
+    FieldEffectStart(FLDEFF_ROCK_CLIMB_DUST);
+}
+
+static bool8 RockClimb_Ride(struct Task *task, struct ObjectEvent *objectEvent)
+{    
+    ObjectEventSetHeldMovement(objectEvent, sRockClimbMovement[objectEvent->movementDirection].action);
+    PlaySE(SE_M_ROCK_THROW);
+    RockClimbDust(objectEvent, objectEvent->movementDirection);
+    task->tState++;
+    return FALSE;
+}
+
+static bool8 RockClimb_ContinueRideOrEnd(struct Task *task, struct ObjectEvent *objectEvent)
+{
+    if (!ObjectEventClearHeldMovementIfFinished(objectEvent))
+        return FALSE;
+    
+    #if FOLLOW_ME_IMPLEMENTED
+        TryAttachFollowerToPlayer();
+    #endif
+    
+    PlayerGetDestCoords(&task->tDestX, &task->tDestY);
+    MoveCoords(objectEvent->movementDirection, &task->tDestX, &task->tDestY);
+    if (MetatileBehavior_IsRockClimbable(MapGridGetMetatileBehaviorAt(task->tDestX, task->tDestY)))
+    {        
+        task->tState = STATE_ROCK_CLIMB_RIDE;
+        return TRUE;
+    }
+
+    ScriptContext2_Enable();
+    gPlayerAvatar.flags &= ~PLAYER_AVATAR_FLAG_SURFING;
+    gPlayerAvatar.flags |= PLAYER_AVATAR_FLAG_ON_FOOT;
+    task->tState++;
+    return FALSE;
+}
+
+static bool8 RockClimb_StopRockClimbInit(struct Task *task, struct ObjectEvent *objectEvent)
+{
+    if (ObjectEventIsMovementOverridden(objectEvent))
+    {
+        if (!ObjectEventClearHeldMovementIfFinished(objectEvent))
+            return FALSE;
+    }
+    
+    RockClimbDust(objectEvent, DIR_NONE);   //dust on final spot
+    ObjectEventSetHeldMovement(objectEvent, GetJumpSpecialMovementAction(sRockClimbMovement[objectEvent->movementDirection].jumpDir));
+    SetSurfBobState(objectEvent->fieldEffectSpriteId, 0);
+    task->tState++;
+    return TRUE;
+}
+
+static bool8 RockClimb_WaitStopRockClimb(struct Task *task, struct ObjectEvent *objectEvent)
+{
+    if (ObjectEventClearHeldMovementIfFinished(objectEvent))
+    {
+        ObjectEventSetGraphicsId(objectEvent, GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_NORMAL));
+        ObjectEventSetHeldMovement(objectEvent, GetFaceDirectionMovementAction(objectEvent->facingDirection));
+        gPlayerAvatar.preventStep = FALSE;
+        ScriptContext2_Disable();
+        DestroySprite(&gSprites[objectEvent->fieldEffectSpriteId]);
+        FieldEffectActiveListRemove(FLDEFF_USE_ROCK_CLIMB);
+        DestroyTask(FindTaskIdByFunc(Task_UseRockClimb));
+    }
+    
+    return FALSE;
+}
+
+bool8 IsRockClimbActive(void)
+{
+    if (FieldEffectActiveListContains(FLDEFF_USE_ROCK_CLIMB))
+        return TRUE;
+    else
+        return FALSE;
+}
+
+
+#if FOLLOW_ME_IMPLEMENTED
+static void TryAttachFollowerToPlayer(void)
+{
+    if (PlayerHasFollower())
+    {
+        //Keep the follow close by while its hidden to prevent it from going too far out of view
+        struct ObjectEvent* player = &gObjectEvents[gPlayerAvatar.objectEventId];
+        struct ObjectEvent* follower = &gObjectEvents[GetFollowerMapObjId()];
+        MoveObjectEventToMapCoords(follower, player->currentCoords.x, player->currentCoords.y);
+    }
+}
+#endif
+
+#undef tState
+#undef tDestX
+#undef tDestY
+#undef tMonId
 
