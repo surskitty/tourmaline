@@ -3299,8 +3299,8 @@ static const struct TrainerMon sParty_Diana1[] = {
 };
 
 static const struct TrainerMon sParty_Cedric[] = {
-    { .iv = 0, .lvl = 32, .species = SPECIES_WOBBUFFET,
-      .moves = {MOVE_DESTINY_BOND, MOVE_SAFEGUARD, MOVE_COUNTER, MOVE_MIRROR_COAT} }
+    { .iv = 0, .lvl = 42, .species = SPECIES_WOBBUFFET, },
+    { .iv = 0, .lvl = 42, .species = SPECIES_GOTHITELLE, }
 };
 
 static const struct TrainerMon sParty_Irene[] = {
