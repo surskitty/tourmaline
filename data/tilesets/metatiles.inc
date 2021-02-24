@@ -579,3 +579,46 @@ gMetatiles_Granite_Cave::
 	.align 1
 gMetatileAttributes_Granite_Cave::
 	.incbin "data/tilesets/secondary/granite_cave/metatile_attributes.bin"
+	.align 1
+gMetatiles_FRLG_CeruleanCave::
+	.incbin "data/tilesets/secondary/frlg_ceruleancave/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_FRLG_CeruleanCave::
+	.incbin "data/tilesets/secondary/frlg_ceruleancave/metatile_attributes.bin"
+	.align 1
+gMetatiles_FRLG_RockTunnel::
+	.incbin "data/tilesets/secondary/frlg_rocktunnel/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_FRLG_RockTunnel::
+	.incbin "data/tilesets/secondary/frlg_rocktunnel/metatile_attributes.bin"
+	.align 1
+gMetatiles_unown::
+	.incbin "data/tilesets/secondary/unown/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_unown::
+	.incbin "data/tilesets/secondary/unown/metatile_attributes.bin"
+	.align 1
+gMetatiles_FRLG_Cave::
+	.incbin "data/tilesets/secondary/frlg_cave/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_FRLG_Cave::
+	.incbin "data/tilesets/secondary/frlg_cave/metatile_attributes.bin"
+
+	.align 1
+gMetatiles_FRLG_ViridianForest::
+	.incbin "data/tilesets/secondary/frlg_viridian_forest/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_FRLG_ViridianForest::
+	.incbin "data/tilesets/secondary/frlg_viridian_forest/metatile_attributes.bin"
+	.align 1
+gMetatiles_FRLG_SeafoamIslands::
+	.incbin "data/tilesets/secondary/frlg_seafoam_islands/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_FRLG_SeafoamIslands::
+	.incbin "data/tilesets/secondary/frlg_seafoam_islands/metatile_attributes.bin"

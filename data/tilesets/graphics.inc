@@ -1789,3 +1789,123 @@ gTilesetPalettes_Granite_Cave::
 	.align 2
 gTilesetTiles_Granite_Cave::
 	.incbin "data/tilesets/secondary/granite_cave/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_FRLG_CeruleanCave::
+	.incbin "data/tilesets/secondary/frlg_ceruleancave/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/frlg_ceruleancave/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/frlg_ceruleancave/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/frlg_ceruleancave/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/frlg_ceruleancave/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/frlg_ceruleancave/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/frlg_ceruleancave/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/frlg_ceruleancave/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/frlg_ceruleancave/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/frlg_ceruleancave/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/frlg_ceruleancave/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/frlg_ceruleancave/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/frlg_ceruleancave/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_FRLG_CeruleanCave::
+	.incbin "data/tilesets/secondary/frlg_ceruleancave/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_FRLG_RockTunnel::
+	.incbin "data/tilesets/secondary/frlg_rocktunnel/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/frlg_rocktunnel/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/frlg_rocktunnel/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/frlg_rocktunnel/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/frlg_rocktunnel/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/frlg_rocktunnel/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/frlg_rocktunnel/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/frlg_rocktunnel/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/frlg_rocktunnel/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/frlg_rocktunnel/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/frlg_rocktunnel/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/frlg_rocktunnel/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/frlg_rocktunnel/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_FRLG_RockTunnel::
+	.incbin "data/tilesets/secondary/frlg_rocktunnel/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_unown::
+	.incbin "data/tilesets/secondary/unown/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/unown/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/unown/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/unown/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/unown/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/unown/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/unown/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/unown/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/unown/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/unown/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/unown/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/unown/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/unown/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_unown::
+	.incbin "data/tilesets/secondary/unown/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_FRLG_Cave::
+	.incbin "data/tilesets/secondary/frlg_cave/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/frlg_cave/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/frlg_cave/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/frlg_cave/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/frlg_cave/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/frlg_cave/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/frlg_cave/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/frlg_cave/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/frlg_cave/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/frlg_cave/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/frlg_cave/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/frlg_cave/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/frlg_cave/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_FRLG_Cave::
+	.incbin "data/tilesets/secondary/frlg_cave/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_FRLG_ViridianForest::
+	.incbin "data/tilesets/secondary/frlg_viridian_forest/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/frlg_viridian_forest/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/frlg_viridian_forest/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/frlg_viridian_forest/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/frlg_viridian_forest/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/frlg_viridian_forest/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/frlg_viridian_forest/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/frlg_viridian_forest/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/frlg_viridian_forest/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/frlg_viridian_forest/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/frlg_viridian_forest/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/frlg_viridian_forest/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/frlg_viridian_forest/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_FRLG_ViridianForest::
+	.incbin "data/tilesets/secondary/frlg_viridian_forest/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_FRLG_SeafoamIslands::
+	.incbin "data/tilesets/secondary/frlg_seafoam_islands/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/frlg_seafoam_islands/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/frlg_seafoam_islands/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/frlg_seafoam_islands/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/frlg_seafoam_islands/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/frlg_seafoam_islands/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/frlg_seafoam_islands/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/frlg_seafoam_islands/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/frlg_seafoam_islands/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/frlg_seafoam_islands/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/frlg_seafoam_islands/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/frlg_seafoam_islands/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/frlg_seafoam_islands/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_FRLG_SeafoamIslands::
+	.incbin "data/tilesets/secondary/frlg_seafoam_islands/tiles.4bpp.lz"

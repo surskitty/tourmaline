@@ -863,3 +863,69 @@ gTileset_Granite_Cave::
 	.4byte gMetatiles_Granite_Cave
 	.4byte gMetatileAttributes_Granite_Cave
 	.4byte NULL
+
+	.align 2
+gTileset_FRLG_CeruleanCave::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_FRLG_CeruleanCave
+	.4byte gTilesetPalettes_FRLG_CeruleanCave
+	.4byte gMetatiles_FRLG_CeruleanCave
+	.4byte gMetatileAttributes_FRLG_CeruleanCave
+	.4byte NULL
+
+	.align 2
+gTileset_FRLG_RockTunnel::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_FRLG_RockTunnel
+	.4byte gTilesetPalettes_FRLG_RockTunnel
+	.4byte gMetatiles_FRLG_RockTunnel
+	.4byte gMetatileAttributes_FRLG_RockTunnel
+	.4byte NULL
+
+	.align 2
+gTileset_unown::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_unown
+	.4byte gTilesetPalettes_unown
+	.4byte gMetatiles_unown
+	.4byte gMetatileAttributes_unown
+	.4byte NULL
+
+	.align 2
+gTileset_FRLG_Cave::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_FRLG_Cave
+	.4byte gTilesetPalettes_FRLG_Cave
+	.4byte gMetatiles_FRLG_Cave
+	.4byte gMetatileAttributes_FRLG_Cave
+	.4byte NULL
+
+	.align 2
+gTileset_FRLG_ViridianForest::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_FRLG_ViridianForest
+	.4byte gTilesetPalettes_FRLG_ViridianForest
+	.4byte gMetatiles_FRLG_ViridianForest
+	.4byte gMetatileAttributes_FRLG_ViridianForest
+	.4byte NULL
+
+	.align 2
+gTileset_FRLG_SeafoamIslands::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_FRLG_SeafoamIslands
+	.4byte gTilesetPalettes_FRLG_SeafoamIslands
+	.4byte gMetatiles_FRLG_SeafoamIslands
+	.4byte gMetatileAttributes_FRLG_SeafoamIslands
+	.4byte NULL
