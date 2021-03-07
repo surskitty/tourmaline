@@ -6,7 +6,7 @@ script BattleFrontier_BattleTowerLobby_EventScript_Apprentice {
     apprentice_gavelvlmode
     if (!var(VAR_RESULT)) {
         apprentice_buff(0, APPRENTICE_BUFF_NAME)
-	    apprentice_msg(FALSE, APPRENTICE_MSG_PLEASE_TEACH)
+        apprentice_msg(FALSE, APPRENTICE_MSG_PLEASE_TEACH)
         // It's impossible to fully reject an Apprentice, they just keep asking for you to teach them.
         apprentice_menu(APPRENTICE_ASK_YES_NO)
         while (var(VAR_RESULT) == 1) {
@@ -109,7 +109,7 @@ script BattleFrontier_BattleTowerLobby_EventScript_Apprentice {
                 }
             } while(var(VAR_RESULT) == 0)
             apprentice_msg(TRUE, APPRENTICE_MSG_THANKS_NO_HELD_ITEM)
-	        apprentice_answeredquestion
+            apprentice_answeredquestion
             call(Apprentice_EventScript_SetHideFlags)
             release
             releaseall
@@ -189,29 +189,29 @@ script BattleFrontier_BattleTowerLobby_EventScript_Apprentice {
 }
 
 script Apprentice_EventScript_SetHideFlags {
-	setflag(FLAG_HIDE_APPRENTICE)
-	setflag(FLAG_DAILY_APPRENTICE_LEAVES)
+    setflag(FLAG_HIDE_APPRENTICE)
+    setflag(FLAG_DAILY_APPRENTICE_LEAVES)
 }
 
 script Apprentice_EventScript_LeaveNorth {
     applymovement(LOCALID_APPRENTICE, Apprentice_Movement_LeaveNorth)
-	waitmovement(0)
-	applymovement(LOCALID_APPRENTICE, Apprentice_Movement_Leave)
-	waitmovement(0)
+    waitmovement(0)
+    applymovement(LOCALID_APPRENTICE, Apprentice_Movement_Leave)
+    waitmovement(0)
 }
 
 script Apprentice_EventScript_Leave {
-	applymovement(LOCALID_APPRENTICE, Apprentice_Movement_Leave)
-	waitmovement(0)
+    applymovement(LOCALID_APPRENTICE, Apprentice_Movement_Leave)
+    waitmovement(0)
 }
 
 movement Apprentice_Movement_LeaveNorth {
-	walk_fast_right
+    walk_fast_right
 }
 
 movement Apprentice_Movement_Leave {
-	walk_fast_down * 2
-	walk_fast_right * 9
-	set_invisible
-	slide_down * 3
+    walk_fast_down * 2
+    walk_fast_right * 9
+    set_invisible
+    slide_down * 3
 }
