@@ -1,0 +1,296 @@
+// Interact with cuttable tree
+script EventScript_CutTree {
+    lockall
+    checkpartymove(MOVE_CUT)
+    if (!flag(FLAG_BADGE01_GET) || var(VAR_RESULT) == PARTY_SIZE) {
+        msgbox(Text_CantCut)
+        releaseall
+        return
+    }
+    setfieldeffectargument(0, VAR_RESULT)
+    bufferpartymonnick(0, VAR_RESULT)
+    buffermovename(1, MOVE_CUT)
+    msgbox(Text_WantToCut, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        closemessage
+        releaseall
+        return
+    }
+    msgbox(Text_MonUsedFieldMove)
+    closemessage
+    dofieldeffect(FLDEFF_USE_CUT_ON_TREE)
+    waitstate
+    applymovement(VAR_LAST_TALKED, Movement_CutTreeDown)
+    waitmovement(0)
+    removeobject(VAR_LAST_TALKED)
+    releaseall
+}
+
+// Use cut from party menu
+script EventScript_UseCut {
+    lockall
+    dofieldeffect(FLDEFF_USE_CUT_ON_TREE)
+    waitstate
+    applymovement(VAR_LAST_TALKED, Movement_CutTreeDown)
+    waitmovement(0)
+    removeobject(VAR_LAST_TALKED)
+    releaseall
+}
+
+movement Movement_CutTreeDown {
+    cut_tree
+}
+
+text Text_WantToCut {
+    "This tree looks like it can be\n"
+    "CUT down!\p"
+    "Would you like to CUT it?"
+}
+
+text Text_MonUsedFieldMove {
+    "{STR_VAR_1} used {STR_VAR_2}!"
+}
+
+text Text_CantCut {
+    "This tree looks like it can be\n"
+    "CUT down!"
+}
+
+// Interact with smashable rock
+script EventScript_RockSmash {
+    lockall
+    checkpartymove(MOVE_ROCK_SMASH)
+    if (!flag(FLAG_BADGE03_GET) || var(VAR_RESULT) == PARTY_SIZE) {
+        msgbox(Text_CantSmash)
+        releaseall
+        return
+    }
+    setfieldeffectargument(0, VAR_RESULT)
+    bufferpartymonnick(0, VAR_RESULT)
+    buffermovename(1, MOVE_ROCK_SMASH)
+    msgbox(Text_WantToSmash, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        closemessage
+        releaseall
+        return
+    }
+    msgbox(Text_MonUsedFieldMove)
+    closemessage
+    dofieldeffect(FLDEFF_USE_ROCK_SMASH)
+    waitstate
+    call(EventScript_SmashRock)
+    releaseall
+}
+
+// Use rock smash from party menu
+script EventScript_UseRockSmash {
+    lockall
+    dofieldeffect(FLDEFF_USE_ROCK_SMASH)
+    waitstate
+    call(EventScript_SmashRock)
+    releaseall
+}
+
+script EventScript_SmashRock {
+    applymovement(VAR_LAST_TALKED, Movement_SmashRock)
+    waitmovement(0)
+    removeobject(VAR_LAST_TALKED)
+    specialvar(VAR_RESULT, TryUpdateRusturfTunnelState)
+    if (var(VAR_RESULT) == FALSE) {
+        special(RockSmashWildEncounter)
+        if (var(VAR_RESULT) == TRUE) {
+            waitstate
+        }
+    }
+}
+
+movement Movement_SmashRock {
+    rock_smash_break
+}
+
+text Text_WantToSmash {
+    "This rock appears to be breakable.\n"
+    "Would you like to use ROCK SMASH?"
+}
+
+text Text_CantSmash {
+    "It's a rugged rock, but a POKéMON\n"
+    "may be able to smash it."
+}
+
+script EventScript_StrengthBoulder {
+    lockall
+    if (!flag(FLAG_BADGE04_GET)) {
+        msgbox(Text_CantStrength)
+        releaseall
+        return
+    }
+    if (flag(FLAG_SYS_USE_STRENGTH)) {
+        msgbox(Text_StrengthActivated)
+        releaseall
+        return
+    }
+    checkpartymove(MOVE_STRENGTH)
+    if (var(VAR_RESULT) == PARTY_SIZE) {
+        msgbox(Text_CantStrength)
+        releaseall
+        return
+    }
+    setfieldeffectargument(0, VAR_RESULT)
+    msgbox(Text_WantToStrength, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        closemessage
+        releaseall
+        return
+    }
+    closemessage
+    dofieldeffect(FLDEFF_USE_STRENGTH)
+    waitstate
+    setflag(FLAG_SYS_USE_STRENGTH)
+    msgbox(Text_MonUsedStrength)
+    releaseall
+}
+
+script EventScript_UseStrength {
+    lockall
+    dofieldeffect(FLDEFF_USE_STRENGTH)
+    waitstate
+    setflag(FLAG_SYS_USE_STRENGTH)
+    msgbox(Text_MonUsedStrength)
+    releaseall
+}
+
+text Text_WantToStrength {
+    "It's a big boulder, but a POKéMON\n"
+    "may be able to push it aside.\p"
+    "Would you like to use STRENGTH?"
+}
+
+text Text_MonUsedStrength {
+    "{STR_VAR_1} used STRENGTH!\p"
+    "{STR_VAR_1}'s STRENGTH made it\n"
+    "possible to move boulders around!"
+}
+
+text Text_CantStrength {
+    "It's a big boulder, but a POKéMON\n"
+    "may be able to push it aside."
+}
+
+text Text_StrengthActivated {
+    "STRENGTH made it possible to move\n"
+    "boulders around."
+}
+
+script EventScript_UseWaterfall {
+    lockall
+    checkpartymove(MOVE_WATERFALL)
+    if (var(VAR_RESULT) == PARTY_SIZE) {
+        msgbox(Text_CantWaterfall)
+        releaseall
+        return
+    }
+    bufferpartymonnick(0, VAR_RESULT)
+    setfieldeffectargument(0, VAR_RESULT)
+    msgbox(Text_WantToWaterfall, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        msgbox(Text_MonUsedWaterfall)
+        dofieldeffect(FLDEFF_USE_WATERFALL)
+    }
+    releaseall
+}
+
+script EventScript_CannotUseWaterfall {
+    lockall
+    msgbox(Text_CantWaterfall)
+    releaseall
+}
+
+text Text_CantWaterfall {
+    "A wall of water is crashing down with\n"
+    "a mighty roar."
+}
+
+text Text_WantToWaterfall {
+    "It's a large waterfall.\n"
+    "Would you like to use WATERFALL?"
+}
+
+text Text_MonUsedWaterfall {
+    "{STR_VAR_1} used WATERFALL."
+}
+
+script EventScript_UseDive {
+    lockall
+    checkpartymove(MOVE_DIVE)
+    if (var(VAR_RESULT) == PARTY_SIZE) {
+        msgbox(Text_CantDive)
+        releaseall
+        return
+    }
+    bufferpartymonnick(0, VAR_RESULT)
+    setfieldeffectargument(0, VAR_RESULT)
+    setfieldeffectargument(1, 1)
+    msgbox(Text_WantToDive, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        msgbox(Text_MonUsedDive)
+        dofieldeffect(FLDEFF_USE_DIVE)
+    }
+    releaseall
+}
+
+script EventScript_CantDive {
+    msgbox(Text_CantDive)
+    releaseall
+}
+
+script EventScript_UseDiveUnderwater {
+    lockall
+    checkpartymove(MOVE_DIVE)
+    if (var(VAR_RESULT) == PARTY_SIZE) {
+        msgbox(Text_CantSurface)
+        releaseall
+        return
+    }
+    bufferpartymonnick(0, VAR_RESULT)
+    setfieldeffectargument(0, VAR_RESULT)
+    setfieldeffectargument(1, 1)
+    msgbox(Text_WantToSurface, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        msgbox(Text_MonUsedDive)
+        dofieldeffect(FLDEFF_USE_DIVE)
+    }
+    releaseall
+}
+
+text Text_CantDive {
+    "The sea is deep here. A POKéMON\n"
+    "may be able to go underwater."
+}
+
+text Text_WantToDive {
+    "The sea is deep here.\n"
+    "Would you like to use DIVE?"
+}
+
+text Text_MonUsedDive {
+    "{STR_VAR_1} used DIVE."
+}
+
+text Text_CantSurface {
+    "Light is filtering down from above.\n"
+    "A POKéMON may be able to surface."
+}
+
+text Text_WantToSurface {
+    "Light is filtering down from above.\n"
+    "Would you like to use DIVE?"
+}
+
+script EventScript_FailSweetScent {
+    msgbox(Text_FailSweetScent, MSGBOX_SIGN)
+}
+
+text Text_FailSweetScent {
+    "Looks like there's nothing here…"
+}
