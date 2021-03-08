@@ -291,7 +291,7 @@ text BerryBlender_Text_DontHaveAnyBerriesNoneToSpare {
 }
 
 script BerryBlender_EventScript_BerryBlender1 {
-	lockall
+    lockall
     if (!flag(FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER)) {
         lockall
         setvar(NUM_OPPONENTS, 1)
@@ -361,29 +361,29 @@ script BerryBlender_EventScript_BerryBlender1 {
 }
 
 script BerryBlender_EventScript_UseBerryBlender1 {
-	msgbox(BerryBlender_Text_KnowHowToMakePokeblocks, MSGBOX_YESNO)
+    msgbox(BerryBlender_Text_KnowHowToMakePokeblocks, MSGBOX_YESNO)
     if (var(VAR_RESULT) == NO) {
         msgbox(BerryBlender_Text_ExplainBerryBlending)
     }
-	msgbox(BerryBlender_Text_LetsBerryBlender)
+    msgbox(BerryBlender_Text_LetsBerryBlender)
     goto(BerryBlender_EventScript_DoBerryBlending)
 }
 
 script BerryBlender_EventScript_DoBerryBlending {
-	copyvar(VAR_0x8004, NUM_OPPONENTS)
-	fadescreen(FADE_TO_BLACK)
-	special(DoBerryBlending)
-	waitstate
-	releaseall
+    copyvar(VAR_0x8004, NUM_OPPONENTS)
+    fadescreen(FADE_TO_BLACK)
+    special(DoBerryBlending)
+    waitstate
+    releaseall
 }
 
 script BerryBlender_EventScript_BerryBlender2 {
-	lockall
-	setvar(NUM_OPPONENTS, 2)
-	applymovement(LOCALID_TWIN, Common_Movement_FaceOriginalDirection)
-	applymovement(LOCALID_MAN, BerryBlender_Movement_BlendLeaderWalkInPlace)
-	waitmovement(0)
-	msgbox(BerryBlender_Text_WantToBlendPokeblocksWithUs, MSGBOX_YESNO)
+    lockall
+    setvar(NUM_OPPONENTS, 2)
+    applymovement(LOCALID_TWIN, Common_Movement_FaceOriginalDirection)
+    applymovement(LOCALID_MAN, BerryBlender_Movement_BlendLeaderWalkInPlace)
+    waitmovement(0)
+    msgbox(BerryBlender_Text_WantToBlendPokeblocksWithUs, MSGBOX_YESNO)
     if (var(VAR_RESULT) == YES) {
         specialvar(VAR_RESULT, PlayerHasBerries)
         if (var(VAR_RESULT) == FALSE) {
@@ -414,14 +414,14 @@ script BerryBlender_EventScript_BerryBlender2 {
 }
 
 script BerryBlender_EventScript_BerryBlender3 {
-	lockall
-	setvar(VAR_0x8008, LOCALID_POKEFAN_F)
-	setvar(NUM_OPPONENTS, 3)
-	applymovement(LOCALID_BOY, Common_Movement_FaceOriginalDirection)
-	applymovement(LOCALID_GIRL, Common_Movement_FaceOriginalDirection)
-	applymovement(VAR_0x8008, BerryBlender_Movement_BlendLeaderWalkInPlace)
-	waitmovement(0)
-	msgbox(BerryBlender_Text_LookGoodAtBlendingJoinUs, MSGBOX_YESNO)
+    lockall
+    setvar(VAR_0x8008, LOCALID_POKEFAN_F)
+    setvar(NUM_OPPONENTS, 3)
+    applymovement(LOCALID_BOY, Common_Movement_FaceOriginalDirection)
+    applymovement(LOCALID_GIRL, Common_Movement_FaceOriginalDirection)
+    applymovement(VAR_0x8008, BerryBlender_Movement_BlendLeaderWalkInPlace)
+    waitmovement(0)
+    msgbox(BerryBlender_Text_LookGoodAtBlendingJoinUs, MSGBOX_YESNO)
     if (var(VAR_RESULT) == YES) {
         specialvar(VAR_RESULT, PlayerHasBerries)
         if (var(VAR_RESULT) == FALSE) {
@@ -452,23 +452,23 @@ script BerryBlender_EventScript_BerryBlender3 {
 }
 
 script BerryBlender_EventScript_Blender2Man {
-	msgbox(BerryBlender_Text_SetNewBlenderRecord, MSGBOX_NPC)
+    msgbox(BerryBlender_Text_SetNewBlenderRecord, MSGBOX_NPC)
 }
 
 script BerryBlender_EventScript_Blender3PokefanF {
-	msgbox(BerryBlender_Text_LookGoodAtBlendingJoinUs, MSGBOX_NPC)
+    msgbox(BerryBlender_Text_LookGoodAtBlendingJoinUs, MSGBOX_NPC)
 }
 
 script BerryBlender_EventScript_Blender2Twin {
-	msgbox(BerryBlender_Text_MakeDeliciousPokeblocks, MSGBOX_NPC)
+    msgbox(BerryBlender_Text_MakeDeliciousPokeblocks, MSGBOX_NPC)
 }
 
 script BerryBlender_EventScript_Blender1ExpertM {
-	setvar(VAR_0x8008, 15)
-	lock
-	faceplayer
-	msgbox(BerryBlender_Text_LoveMakingPokeblocks)
-	specialvar(VAR_RESULT, PlayerHasBerries)
+    setvar(VAR_0x8008, 15)
+    lock
+    faceplayer
+    msgbox(BerryBlender_Text_LoveMakingPokeblocks)
+    specialvar(VAR_RESULT, PlayerHasBerries)
     if (var(VAR_RESULT) == TRUE) {
         msgbox(BerryBlender_Text_MakePokeblocksUsingBerryBlender)
     } else {
@@ -496,12 +496,12 @@ script BerryBlender_EventScript_Blender1ExpertM {
 }
 
 movement BerryBlender_Movement_BlendLeaderWalkInPlace {
-	walk_in_place_fastest_right
+    walk_in_place_fastest_right
 }
 
 script BerryBlender_EventScript_BerryBlenderLink {
-	lockall
-	specialvar(VAR_RESULT, PlayerHasBerries)
+    lockall
+    specialvar(VAR_RESULT, PlayerHasBerries)
     if (var(VAR_RESULT) == FALSE) {
         msgbox(BerryBlender_Text_NoBerriesLink)
     } else {
@@ -551,13 +551,13 @@ script BerryBlender_EventScript_BerryBlenderLink {
 }
 
 script BerryBlender_EventScript_SpawnLinkPartners {
-	fadescreen(FADE_TO_BLACK)
-	specialvar(VAR_RESULT, GetLinkPartnerNames)
-	copyvar(VAR_0x8008, VAR_RESULT)
-	copyvar(VAR_0x8004, VAR_0x8008)
-	special(SpawnLinkPartnerObjectEvent)
-	fadescreen(FADE_FROM_BLACK)
-	switch (var(VAR_0x8008)) {
+    fadescreen(FADE_TO_BLACK)
+    specialvar(VAR_RESULT, GetLinkPartnerNames)
+    copyvar(VAR_0x8008, VAR_RESULT)
+    copyvar(VAR_0x8004, VAR_0x8008)
+    special(SpawnLinkPartnerObjectEvent)
+    fadescreen(FADE_FROM_BLACK)
+    switch (var(VAR_0x8008)) {
         case 2:
             msgbox(BerryBlender_Text_Player1Arrived)
         case 3:
@@ -566,21 +566,21 @@ script BerryBlender_EventScript_SpawnLinkPartners {
             msgbox(BerryBlender_Text_AllPlayersArrived)
     }
     setvar(VAR_0x8004, 0) // number of opponents, 0 indicates Link
-	fadescreen(FADE_TO_BLACK)
-	removeobject(240) // Unclear where these local IDs come from,
-	removeobject(239) // but presumably they'd be the 4 link players
-	removeobject(238) 
-	removeobject(237)
-	special(DoBerryBlending)
-	waitstate
-	releaseall
+    fadescreen(FADE_TO_BLACK)
+    removeobject(240) // Unclear where these local IDs come from,
+    removeobject(239) // but presumably they'd be the 4 link players
+    removeobject(238) 
+    removeobject(237)
+    special(DoBerryBlending)
+    waitstate
+    releaseall
 }
 
 script BerryBlender_EventScript_DecideLinkLeader {
-	message(LilycoveCity_ContestLobby_Text_PleaseDecideLinkLeader)
-	waitmessage
-	multichoice(16, 6, MULTI_LINK_LEADER, 0)
-	switch (var(VAR_RESULT)) {
+    message(LilycoveCity_ContestLobby_Text_PleaseDecideLinkLeader)
+    waitmessage
+    multichoice(16, 6, MULTI_LINK_LEADER, 0)
+    switch (var(VAR_RESULT)) {
         case 0:
             goto(BerryBlender_EventScript_TryJoinGroup)
         case 1:
@@ -607,8 +607,8 @@ script BerryBlender_EventScript_TryJoinGroup {
 }
 
 script BerryBlender_EventScript_TryLeadGroup {
-	special(TryBecomeLinkLeader)
-	waitstate
+    special(TryBecomeLinkLeader)
+    waitstate
     if (var(VAR_RESULT) == LINKUP_SUCCESS) {
         goto(BerryBlender_EventScript_SpawnLinkPartners)
     } elif (var(VAR_RESULT) == LINKUP_FAILED) {
@@ -616,5 +616,5 @@ script BerryBlender_EventScript_TryLeadGroup {
     } elif (var(VAR_RESULT) == LINKUP_RETRY_ROLE_ASSIGN) {
         goto(BerryBlender_EventScript_TryLeadGroup)
     }
-	release
+    release
 }
