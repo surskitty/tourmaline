@@ -1,0 +1,250 @@
+script Interview_EventScript_EndInterview {
+    special(InterviewAfter)
+    incrementgamestat(GAME_STAT_GOT_INTERVIEWED)
+    release
+}
+
+script SlateportCity_OceanicMuseum_1F_EventScript_Reporter {
+    lock
+    faceplayer
+    setvar(VAR_0x8005, TVSHOW_RECENT_HAPPENINGS)
+    special(InterviewBefore)
+    if (var(VAR_RESULT) == TRUE) {
+        msgbox(SlateportCity_OceanicMuseum_1F_Text_BetterWriteUpStory)
+        release
+        return
+    }
+    copyvar(VAR_0x8009, VAR_0x8006)
+    if (flag(FLAG_OCEANIC_MUSEUM_MET_REPORTER)) {
+        msgbox(SlateportCity_OceanicMuseum_1F_Text_InterviewRequestShort, MSGBOX_YESNO)
+    } else {
+        setflag(FLAG_OCEANIC_MUSEUM_MET_REPORTER)
+        msgbox(SlateportCity_OceanicMuseum_1F_Text_InterviewRequest, MSGBOX_YESNO)
+    }
+    if (var(VAR_RESULT) == YES) {
+        msgbox(SlateportCity_OceanicMuseum_1F_Text_TellMeExperienceInvolvingPokemon)
+        setvar(VAR_0x8004, EASY_CHAT_TYPE_INTERVIEW)
+        copyvar(VAR_0x8005, VAR_0x8009)
+        setvar(VAR_0x8006, EASY_CHAT_PERSON_REPORTER_MALE)
+        call(Common_ShowEasyChatScreen)
+        lock
+        faceplayer
+        if (var(VAR_RESULT) == 1) {
+            msgbox(SlateportCity_OceanicMuseum_1F_Text_ThatsAllForInterview)
+            setvar(VAR_0x8005, TVSHOW_RECENT_HAPPENINGS)
+            goto(Interview_EventScript_EndInterview)
+        }
+    }
+    msgbox(SlateportCity_OceanicMuseum_1F_Text_LetMeKnowIfYouHaveStory)
+    release
+}
+
+script SlateportCity_PokemonFanClub_EventScript_Reporter {
+    lock
+    faceplayer
+    specialvar(VAR_RESULT, IsLeadMonNicknamedOrNotEnglish)
+    if (var(VAR_RESULT) == FALSE) {
+        // Shares reporter object with TVSHOW_PKMN_FAN_CLUB_OPINIONS
+        setvar(VAR_0x8005, TVSHOW_FAN_CLUB_LETTER)
+        special(InterviewBefore)
+        if (var(VAR_RESULT) == TRUE) {
+            msgbox(SlateportCity_PokemonFanClub_Text_EnjoyDoingInterviews)
+            release
+            return
+        }
+        copyvar(VAR_0x8009, VAR_0x8006)
+        msgbox(SlateportCity_PokemonFanClub_Text_InterviewRequest, MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES) {
+            msgbox(SlateportCity_PokemonFanClub_Text_TellMeAnythingAboutYourMon)
+            setvar(VAR_0x8004, EASY_CHAT_TYPE_INTERVIEW)
+            copyvar(VAR_0x8005, VAR_0x8009)
+            setvar(VAR_0x8006, EASY_CHAT_PERSON_REPORTER_FEMALE)
+            call(Common_ShowEasyChatScreen)
+            lock
+            faceplayer
+            if (var(VAR_RESULT) == 1) {
+                msgbox(SlateportCity_PokemonFanClub_Text_ThatsAllForInterview2)
+                setvar(VAR_0x8005, TVSHOW_FAN_CLUB_LETTER)
+                goto(Interview_EventScript_EndInterview)
+            }
+        }
+        msgbox(SlateportCity_PokemonFanClub_Text_HereIfYouGetUrgeToTellMe)
+        release
+    } else {
+        setvar(VAR_0x8005, TVSHOW_PKMN_FAN_CLUB_OPINIONS)
+        special(InterviewBefore)
+        if (var(VAR_RESULT) == TRUE) {
+            msgbox(SlateportCity_PokemonFanClub_Text_EnjoyDoingInterviews)
+            release
+            return
+        }
+        copyvar(VAR_0x8009, VAR_0x8006)
+        msgbox(SlateportCity_PokemonFanClub_Text_InterviewRequestHasName, MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES) {
+            msgbox(SlateportCity_PokemonFanClub_Text_HereGoesQuickAnswers)
+            random(3)
+            copyvar(VAR_0x800A, VAR_RESULT)
+            switch (var(VAR_RESULT)) {
+                case 0:
+                    msgbox(SlateportCity_PokemonFanClub_Text_DescribeFeelingsFirstMetMon)
+                case 1:
+                    msgbox(SlateportCity_PokemonFanClub_Text_LikenMonToSomethingYouLike)
+                case 2:
+                    msgbox(SlateportCity_PokemonFanClub_Text_WhatAttractedYouAboutMon)
+            }
+            setvar(VAR_0x8004, EASY_CHAT_TYPE_FAN_CLUB)
+            copyvar(VAR_0x8005, VAR_0x8009)
+            setvar(VAR_0x8006, 0)
+            call(Common_ShowEasyChatScreen)
+            lock
+            faceplayer
+            if (var(VAR_RESULT) == 0) {
+                msgbox(SlateportCity_PokemonFanClub_Text_HereIfYouGetUrgeToTellMe)
+                release
+                return
+            }
+            msgbox(SlateportCity_PokemonFanClub_Text_WhatDoPokemonMeanToYou)
+            setvar(VAR_0x8006, 1)
+            call(Common_ShowEasyChatScreen)
+            lock
+            faceplayer
+            if (var(VAR_RESULT) == 0) {
+                msgbox(SlateportCity_PokemonFanClub_Text_HereIfYouGetUrgeToTellMe)
+                release
+                return
+            }
+            msgbox(SlateportCity_PokemonFanClub_Text_ThatsAllForInterview)
+            copyvar(VAR_0x8007, VAR_0x800A)
+            setvar(VAR_0x8005, TVSHOW_PKMN_FAN_CLUB_OPINIONS)
+            goto(Interview_EventScript_EndInterview)
+        } else {
+            msgbox(SlateportCity_PokemonFanClub_Text_HereIfYouGetUrgeToTellMe)
+            release
+        }
+    }
+}
+
+script LilycoveCity_ContestLobby_EventScript_Reporter {
+    lock
+    faceplayer
+    if (flag(FLAG_TEMP_2)) {
+        msgbox(LilycoveCity_ContestLobby_Text_LookingForwardToNextContest)
+        release
+        return
+    }
+    setvar(VAR_0x8005, TVSHOW_BRAVO_TRAINER_POKEMON_PROFILE)
+    special(InterviewBefore)
+    if (var(VAR_RESULT) == TRUE) {
+        msgbox(LilycoveCity_ContestLobby_Text_LookingForwardToNextContest)
+        release
+        return
+    }
+    copyvar(VAR_0x8009, VAR_0x8006)
+    msgbox(LilycoveCity_ContestLobby_Text_InterviewRequest, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        msgbox(LilycoveCity_ContestLobby_Text_DescribeContest)
+        setvar(VAR_0x8004, EASY_CHAT_TYPE_CONTEST_INTERVIEW)
+        copyvar(VAR_0x8005, VAR_0x8009)
+        setvar(VAR_0x8006, 0)
+        call(Common_ShowEasyChatScreen)
+        lock
+        faceplayer
+        if (var(VAR_RESULT) == 1) {
+            setvar(VAR_0x8004, 24)
+            special(SetContestCategoryStringVarForInterview)
+            msgbox(LilycoveCity_ContestLobby_Text_WhatImageWhenYouHearX)
+            setvar(VAR_0x8004, EASY_CHAT_TYPE_CONTEST_INTERVIEW)
+            copyvar(VAR_0x8005, VAR_0x8009)
+            setvar(VAR_0x8006, 1)
+            call(Common_ShowEasyChatScreen)
+            lock
+            faceplayer
+            if (var(VAR_RESULT) != 0) {
+                msgbox(LilycoveCity_ContestLobby_Text_ThatsAllForInterview)
+                setflag(FLAG_TEMP_2)
+                setvar(VAR_0x8005, TVSHOW_BRAVO_TRAINER_POKEMON_PROFILE)
+                goto(Interview_EventScript_EndInterview)
+            }
+        }
+    }
+    msgbox(LilycoveCity_ContestLobby_Text_PleaseDoShareStoryWithMe)
+    release
+}
+
+script LilycoveCity_ContestLobby_EventScript_TryShowContestReporter {
+    if (var(VAR_CONTEST_HALL_STATE) == 2) {
+        setvar(VAR_0x8005, TVSHOW_BRAVO_TRAINER_POKEMON_PROFILE)
+        special(InterviewBefore)
+        if (var(VAR_RESULT) != TRUE) {
+            switch (var(VAR_CONTEST_TYPE)) {
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    clearflag(FLAG_HIDE_LILYCOVE_CONTEST_HALL_REPORTER)
+            }
+        }
+    }
+}
+
+script BattleFrontier_BattleTowerLobby_EventScript_Reporter {
+    lock
+    faceplayer
+    if (flag(FLAG_TEMP_2)) {
+        msgbox(BattleFrontier_BattleTowerLobby_Text_LookingForwardToNextBattle)
+        release
+        return
+    }
+    setvar(VAR_0x8005, TVSHOW_BRAVO_TRAINER_BATTLE_TOWER_PROFILE)
+    special(InterviewBefore)
+    if (var(VAR_RESULT) == TRUE) {
+        msgbox(BattleFrontier_BattleTowerLobby_Text_LookingForwardToNextBattle)
+        release
+        return
+    }
+    copyvar(VAR_0x8009, VAR_0x8006)
+    msgbox(BattleFrontier_BattleTowerLobby_Text_InterviewRequest, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        message(BattleFrontier_BattleTowerLobby_Text_HowDidBattleTowerTurnOut)
+        waitmessage
+        multichoice(20, 8, MULTI_SATISFACTION, 1)
+        copyvar(VAR_0x8008, VAR_RESULT)
+        if (var(VAR_RESULT) == 0) {
+            msgbox(BattleFrontier_BattleTowerLobby_Text_ObviousYouHadGreatBattle)
+        } else {
+            msgbox(BattleFrontier_BattleTowerLobby_Text_DifficultToMakeBattleTurnOutAsPlanned)
+        }
+        msgbox(BattleFrontier_BattleTowerLobby_Text_DescribeYourBattle)
+        setvar(VAR_0x8004, EASY_CHAT_TYPE_BATTLE_TOWER_INTERVIEW)
+        copyvar(VAR_0x8005, VAR_0x8009)
+        call(Common_ShowEasyChatScreen)
+        lock
+        faceplayer
+        if (var(VAR_RESULT) == 1) {
+            msgbox(BattleFrontier_BattleTowerLobby_Text_ThatsGreatLine)
+            setflag(FLAG_TEMP_2)
+            copyvar(VAR_0x8004, VAR_0x8008)
+            setvar(VAR_0x8005, TVSHOW_BRAVO_TRAINER_BATTLE_TOWER_PROFILE)
+            goto(Interview_EventScript_EndInterview)
+        } else {
+            msgbox(BattleFrontier_BattleTowerLobby_Text_SilentType)
+        }
+    } else {
+        msgbox(BattleFrontier_BattleTowerLobby_Text_SorryWeDisturbedYou)
+    }
+    release
+}
+
+script BattleFrontier_BattleTowerLobby_EventScript_ShowOrHideReporter {
+    if (var(VAR_BRAVO_TRAINER_BATTLE_TOWER_ON) == 0) {
+        setflag(FLAG_HIDE_BATTLE_TOWER_REPORTER)
+        return
+    }
+    setvar(VAR_0x8005, TVSHOW_BRAVO_TRAINER_BATTLE_TOWER_PROFILE)
+    special(InterviewBefore)
+    if (var(VAR_RESULT) == TRUE) {
+        setflag(FLAG_HIDE_BATTLE_TOWER_REPORTER)
+        return
+    }
+    clearflag(FLAG_HIDE_BATTLE_TOWER_REPORTER)
+}
