@@ -1,0 +1,83 @@
+movement Common_Movement_QuestionMark {
+    emote_question_mark
+}
+
+movement Common_Movement_ExclamationMark {
+    emote_exclamation_mark
+}
+
+movement Common_Movement_Delay48 {
+    delay_16 * 3
+}
+
+movement Common_Movement_FacePlayer {
+    face_player
+}
+
+movement Common_Movement_FaceAwayPlayer {
+    face_away_player
+}
+
+movement Common_Movement_FaceOriginalDirection {
+    face_original_direction
+}
+
+movement Common_Movement_WalkInPlaceFastestLeft {
+    walk_in_place_fastest_left
+}
+
+movement Common_Movement_WalkInPlaceFastestUp {
+    walk_in_place_fastest_up
+}
+
+movement Common_Movement_WalkInPlaceFastestRight {
+    walk_in_place_fastest_right
+}
+
+movement Common_Movement_WalkInPlaceFastestDown {
+    walk_in_place_fastest_down
+}
+
+movement Common_Movement_FaceRight {
+    face_right
+}
+
+movement Common_Movement_FaceLeft {
+    face_left
+}
+
+movement Common_Movement_FaceDown {
+    face_down
+}
+
+movement Common_Movement_FaceUp {
+    face_up
+}
+
+movement Common_Movement_WalkInPlaceDown {
+    walk_in_place_down
+}
+
+movement Common_Movement_WalkInPlaceLeft {
+    walk_in_place_left
+}
+
+movement Common_Movement_WalkInPlaceRight {
+    walk_in_place_right
+}
+
+movement Common_Movement_WalkUp6 {
+    walk_up * 6
+}
+
+movement Common_Movement_WalkUp4 {
+    walk_up * 4
+}
+
+movement Common_Movement_Delay32 {
+    delay_16 * 2
+}
+
+movement Common_Movement_WalkUp {
+    walk_up
+}

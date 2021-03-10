@@ -1,0 +1,102 @@
+script Route120_EventScript_Kecleon1 {
+    lock
+    faceplayer
+    setvar(VAR_0x8009, 1)
+    goto(EventScript_Kecleon)
+}
+
+script Route120_EventScript_Kecleon2 {
+    lock
+    faceplayer
+    setvar(VAR_0x8009, 2)
+    goto(EventScript_Kecleon)
+}
+
+script Route120_EventScript_Kecleon3 {
+    lock
+    faceplayer
+    setvar(VAR_0x8009, 3)
+    goto(EventScript_Kecleon)
+}
+
+script Route120_EventScript_Kecleon4 {
+    lock
+    faceplayer
+    setvar(VAR_0x8009, 4)
+    goto(EventScript_Kecleon)
+}
+
+script Route120_EventScript_Kecleon5 {
+    lock
+    faceplayer
+    setvar(VAR_0x8009, 5)
+    goto(EventScript_Kecleon)
+}
+
+script Route119_EventScript_Kecleon1 {
+    lock
+    faceplayer
+    setvar(VAR_0x8009, 6)
+    goto(EventScript_Kecleon)
+}
+
+script Route119_EventScript_Kecleon2 {
+    lock
+    faceplayer
+    setvar(VAR_0x8009, 7)
+    goto(EventScript_Kecleon)
+}
+
+script EventScript_Kecleon {
+    checkitem(ITEM_DEVON_SCOPE, 1)
+    if (var(VAR_RESULT) == 1) {
+        msgbox(Kecleon_Text_WantToUseDevonScope, MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES) {
+            msgbox(Kecleon_Text_UseDevonScopeMonAttacked)
+            closemessage
+            applymovement(VAR_LAST_TALKED, Common_Movement_FacePlayer)
+            waitmovement(0)
+            applymovement(VAR_LAST_TALKED, Movement_KecleonAppears)
+            waitmovement(0)
+            waitse
+            playmoncry(SPECIES_KECLEON, 2)
+            delay(40)
+            waitmoncry
+            setwildbattle(SPECIES_KECLEON, 30, ITEM_NONE)
+            setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+            dowildbattle
+            clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+            specialvar(VAR_RESULT, GetBattleOutcome)
+            if (var(VAR_RESULT) == B_OUTCOME_WON || var(VAR_RESULT) == B_OUTCOME_RAN || var(VAR_RESULT) == B_OUTCOME_PLAYER_TELEPORTED) {
+                goto(Common_EventScript_RemoveStaticPokemon)
+            }
+        }
+    } else {
+        msgbox(Kecleon_Text_SomethingUnseeable)
+    }
+    release
+}
+
+movement Movement_KecleonAppears {
+    set_visible
+    delay_4
+    set_invisible
+    delay_4
+    set_visible
+    delay_4
+    set_invisible
+    delay_4
+    set_visible
+    delay_8
+    set_invisible
+    delay_8
+    set_visible
+    delay_8
+    set_invisible
+    delay_8
+    set_visible
+    delay_16
+    set_invisible
+    delay_16
+    set_visible
+}
