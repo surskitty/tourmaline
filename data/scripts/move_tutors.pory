@@ -1,0 +1,336 @@
+script SlateportCity_PokemonFanClub_EventScript_SwaggerTutor {
+    lock
+    faceplayer
+    if (flag(FLAG_MOVE_TUTOR_TAUGHT_SWAGGER)) {
+        msgbox(MoveTutor_Text_SwaggerTaught)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_SwaggerTeach, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox(MoveTutor_Text_SwaggerDeclined)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox(MoveTutor_Text_SwaggerDeclined)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_SwaggerWhichMon)
+    setvar(VAR_0x8005, TUTOR_MOVE_SWAGGER)
+    call(MoveTutor_EventScript_OpenPartyMenu)
+    if (var(VAR_RESULT) == 0) {
+        msgbox(MoveTutor_Text_SwaggerDeclined)
+        release
+        return
+    }
+    setflag(FLAG_MOVE_TUTOR_TAUGHT_SWAGGER)
+    msgbox(MoveTutor_Text_SwaggerTaught)
+    release
+}
+
+script MauvilleCity_EventScript_RolloutTutor {
+    lock
+    faceplayer
+    if (flag(FLAG_MOVE_TUTOR_TAUGHT_ROLLOUT)) {
+        msgbox(MoveTutor_Text_RolloutTaught)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_RolloutTeach, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox(MoveTutor_Text_RolloutDeclined)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox(MoveTutor_Text_RolloutDeclined)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_RolloutWhichMon)
+    setvar(VAR_0x8005, TUTOR_MOVE_ROLLOUT)
+    call(MoveTutor_EventScript_OpenPartyMenu)
+    if (var(VAR_RESULT) == 0) {
+        msgbox(MoveTutor_Text_RolloutDeclined)
+        release
+        return
+    }
+    setflag(FLAG_MOVE_TUTOR_TAUGHT_ROLLOUT)
+    msgbox(MoveTutor_Text_RolloutTaught)
+    release
+}
+
+script VerdanturfTown_PokemonCenter_1F_EventScript_FuryCutterTutor {
+    lock
+    faceplayer
+    if (flag(FLAG_MOVE_TUTOR_TAUGHT_FURY_CUTTER)) {
+        msgbox(MoveTutor_Text_FuryCutterTaught)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_FuryCutterTeach, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox(MoveTutor_Text_FuryCutterDeclined)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox(MoveTutor_Text_FuryCutterDeclined)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_FuryCutterWhichMon)
+    setvar(VAR_0x8005, TUTOR_MOVE_FURY_CUTTER)
+    call(MoveTutor_EventScript_OpenPartyMenu)
+    if (var(VAR_RESULT) == 0) {
+        msgbox(MoveTutor_Text_FuryCutterDeclined)
+        release
+        return
+    }
+    setflag(FLAG_MOVE_TUTOR_TAUGHT_FURY_CUTTER)
+    msgbox(MoveTutor_Text_FuryCutterTaught)
+    release
+}
+
+script LavaridgeTown_House_EventScript_MimicTutor {
+    lock
+    faceplayer
+    if (flag(FLAG_MOVE_TUTOR_TAUGHT_MIMIC)) {
+        msgbox(MoveTutor_Text_MimicTaught)
+        release
+        return
+    }
+    msgbox(MoveTutor_MimicTeach, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox(MoveTutor_MimicDeclined)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox(MoveTutor_MimicDeclined)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_MimicWhichMon)
+    setvar(VAR_0x8005, TUTOR_MOVE_MIMIC)
+    call(MoveTutor_EventScript_OpenPartyMenu)
+    if (var(VAR_RESULT) == 0) {
+        msgbox(MoveTutor_MimicDeclined)
+        release
+        return
+    }
+    setflag(FLAG_MOVE_TUTOR_TAUGHT_MIMIC)
+    msgbox(MoveTutor_Text_MimicTaught)
+    release
+}
+
+script FallarborTown_Mart_EventScript_MetronomeTutor {
+    lock
+    faceplayer
+    if (flag(FLAG_MOVE_TUTOR_TAUGHT_METRONOME)) {
+        msgbox(MoveTutor_Text_MetronomeTaught)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_MetronomeTeach, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox(MoveTutor_Text_MetronomeDeclined)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox(MoveTutor_Text_MetronomeDeclined)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_MetronomeWhichMon)
+    setvar(VAR_0x8005, TUTOR_MOVE_METRONOME)
+    call(MoveTutor_EventScript_OpenPartyMenu)
+    if (var(VAR_RESULT) == 0) {
+        msgbox(MoveTutor_Text_MetronomeDeclined)
+        release
+        return
+    }
+    setflag(FLAG_MOVE_TUTOR_TAUGHT_METRONOME)
+    msgbox(MoveTutor_Text_MetronomeTaught)
+    release
+}
+
+script FortreeCity_House2_EventScript_SleepTalkTutor {
+    lock
+    faceplayer
+    if (flag(FLAG_MOVE_TUTOR_TAUGHT_SLEEP_TALK)) {
+        msgbox(MoveTutor_Text_SleepTalkTaught)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_SleepTalkTeach, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox(MoveTutor_Text_SleepTalkDeclined)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox(MoveTutor_Text_SleepTalkDeclined)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_SleepTalkWhichMon)
+    setvar(VAR_0x8005, TUTOR_MOVE_SLEEP_TALK)
+    call(MoveTutor_EventScript_OpenPartyMenu)
+    if (var(VAR_RESULT) == 0) {
+        msgbox(MoveTutor_Text_SleepTalkDeclined)
+        release
+        return
+    }
+    setflag(FLAG_MOVE_TUTOR_TAUGHT_SLEEP_TALK)
+    msgbox(MoveTutor_Text_SleepTalkTaught)
+    release
+}
+
+script LilycoveCity_DepartmentStoreRooftop_EventScript_SubstituteTutor {
+    lock
+    faceplayer
+    if (flag(FLAG_MOVE_TUTOR_TAUGHT_SUBSTITUTE)) {
+        msgbox(MoveTutor_Text_SubstituteTaught)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_SubstituteTeach, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox(MoveTutor_Text_SubstituteDeclined)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox(MoveTutor_Text_SubstituteDeclined)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_SubstituteWhichMon)
+    setvar(VAR_0x8005, TUTOR_MOVE_SUBSTITUTE)
+    call(MoveTutor_EventScript_OpenPartyMenu)
+    if (var(VAR_RESULT) == 0) {
+        msgbox(MoveTutor_Text_SubstituteDeclined)
+        release
+        return
+    }
+    setflag(FLAG_MOVE_TUTOR_TAUGHT_SUBSTITUTE)
+    msgbox(MoveTutor_Text_SubstituteTaught)
+    release
+}
+
+script MossdeepCity_EventScript_DynamicPunchTutor {
+    lock
+    faceplayer
+    if (flag(FLAG_MOVE_TUTOR_TAUGHT_DYNAMICPUNCH)) {
+        msgbox(MoveTutor_Text_DynamicPunchTaught)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_DynamicPunchTeach, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox(MoveTutor_Text_DynamicPunchDeclined)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox(MoveTutor_Text_DynamicPunchDeclined)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_DynamicPunchWhichMon)
+    setvar(VAR_0x8005, TUTOR_MOVE_DYNAMIC_PUNCH)
+    call(MoveTutor_EventScript_OpenPartyMenu)
+    if (var(VAR_RESULT) == 0) {
+        msgbox(MoveTutor_Text_DynamicPunchDeclined)
+        release
+        return
+    }
+    setflag(FLAG_MOVE_TUTOR_TAUGHT_DYNAMICPUNCH)
+    msgbox(MoveTutor_Text_DynamicPunchTaught)
+    release
+}
+
+script SootopolisCity_PokemonCenter_1F_EventScript_DoubleEdgeTutor {
+    lock
+    faceplayer
+    if (flag(FLAG_MOVE_TUTOR_TAUGHT_DOUBLE_EDGE)) {
+        msgbox(MoveTutor_Text_DoubleEdgeTaught)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_DoubleEdgeTeach, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox(MoveTutor_Text_DoubleEdgeDeclined)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox(MoveTutor_Text_DoubleEdgeDeclined)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_DoubleEdgeWhichMon)
+    setvar(VAR_0x8005, TUTOR_MOVE_DOUBLE_EDGE)
+    call(MoveTutor_EventScript_OpenPartyMenu)
+    if (var(VAR_RESULT) == 0) {
+        msgbox(MoveTutor_Text_DoubleEdgeDeclined)
+        release
+        return
+    }
+    setflag(FLAG_MOVE_TUTOR_TAUGHT_DOUBLE_EDGE)
+    msgbox(MoveTutor_Text_DoubleEdgeTaught)
+    release
+}
+
+script PacifidlogTown_PokemonCenter_1F_EventScript_ExplosionTutor {
+    lock
+    faceplayer
+    if (flag(FLAG_MOVE_TUTOR_TAUGHT_EXPLOSION)) {
+        msgbox(MoveTutor_Text_ExplosionTaught)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_ExplosionTeach, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox(MoveTutor_Text_ExplosionDeclined)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox(MoveTutor_Text_ExplosionDeclined)
+        release
+        return
+    }
+    msgbox(MoveTutor_Text_ExplosionWhichMon)
+    setvar(VAR_0x8005, TUTOR_MOVE_EXPLOSION)
+    call(MoveTutor_EventScript_OpenPartyMenu)
+    if (var(VAR_RESULT) == 0) {
+        msgbox(MoveTutor_Text_ExplosionDeclined)
+        release
+        return
+    }
+    setflag(FLAG_MOVE_TUTOR_TAUGHT_EXPLOSION)
+    msgbox(MoveTutor_Text_ExplosionTaught)
+    release
+}
+
+script MoveTutor_EventScript_OpenPartyMenu {
+    special(ChooseMonForMoveTutor)
+    waitstate
+    lock
+    faceplayer
+}
