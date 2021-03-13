@@ -1,0 +1,29 @@
+mapscripts AbandonedShip_CaptainsOffice_MapScripts {}
+
+script AbandonedShip_CaptainsOffice_EventScript_CaptSternAide {
+    lock
+    faceplayer
+    if (flag(FLAG_EXCHANGED_SCANNER)) {
+        msgbox("This ship is called S.S. CACTUS.\n"
+               "It seems to be from an earlier era.")
+        release
+        return
+    }
+    checkitem(ITEM_SCANNER, 1)
+    if (var(VAR_RESULT) == TRUE) {
+        msgbox("Oh! That's a SCANNER!\p"
+               "Listen, can I get you to deliver that\n"
+               "to CAPT. STERN?\p"
+               "I want to investigate this ship a\n"
+               "little more.")
+    } elif (flag(FLAG_ITEM_ABANDONED_SHIP_HIDDEN_FLOOR_ROOM_4_SCANNER)) {
+        msgbox("This ship is called S.S. CACTUS.\n"
+               "It seems to be from an earlier era.")
+    } else {
+        msgbox("I'm investigating this ship on behalf\n"
+               "of CAPT. STERN.\p"
+               "He also asked me to find a SCANNER,\n"
+               "but I haven't had any success…")
+    }
+    release
+}

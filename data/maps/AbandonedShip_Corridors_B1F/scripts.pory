@@ -1,0 +1,73 @@
+mapscripts AbandonedShip_Corridors_B1F_MapScripts {
+    MAP_SCRIPT_ON_RESUME {
+        setdivewarp(MAP_ABANDONED_SHIP_UNDERWATER1, 255, 5, 4)
+    }
+    MAP_SCRIPT_ON_LOAD {
+        if (flag(FLAG_USED_STORAGE_KEY)) {
+            call(AbandonedShip_Corridors_B1F_EventScript_UnlockStorageRoom)
+        } else {
+            setmetatile(11, 4, METATILE_InsideShip_IntactDoor_Bottom_Locked, 1)
+        }
+    }
+}
+
+script AbandonedShip_Corridors_B1F_EventScript_UnlockStorageRoom {
+    setmetatile(11, 4, METATILE_InsideShip_IntactDoor_Bottom_Unlocked, 1)
+}
+
+script AbandonedShip_Corridors_B1F_EventScript_TuberM {
+    msgbox("Yay!\n"
+           "It's a ship!", MSGBOX_NPC)
+}
+
+script AbandonedShip_Corridors_B1F_EventScript_StorageRoomDoor {
+    lockall
+    if (flag(FLAG_USED_STORAGE_KEY)) {
+        msgbox(AbandonedShip_Text_TheDoorIsOpen)
+        releaseall
+        return
+    }
+    checkitem(ITEM_STORAGE_KEY, 1)
+    if (var(VAR_RESULT) == FALSE) {
+        msgbox("The door is locked.\p"
+               "“STORAGE” is painted on the door.")
+        releaseall
+        return
+    }
+    msgbox("{PLAYER} inserted and turned the\n"
+           "STORAGE KEY.\p"
+           "The inserted KEY stuck fast,\n"
+           "but the door opened.")
+    playse(SE_PIN)
+    removeitem(ITEM_STORAGE_KEY)
+    setflag(FLAG_USED_STORAGE_KEY)
+    call(AbandonedShip_Corridors_B1F_EventScript_UnlockStorageRoom)
+    special(DrawWholeMapView)
+    releaseall
+}
+
+script AbandonedShip_Corridors_B1F_EventScript_Duncan {
+    trainerbattle_single(TRAINER_DUNCAN, AbandonedShip_Corridors_B1F_Text_DuncanIntro, AbandonedShip_Corridors_B1F_Text_DuncanDefeat)
+    msgbox(AbandonedShip_Corridors_B1F_Text_DuncanPostBattle, MSGBOX_AUTOCLOSE)
+}
+
+text AbandonedShip_Corridors_B1F_Text_DuncanIntro {
+    "When we go out to sea, we SAILORS\n"
+    "always bring our POKéMON.\l"
+    "How about a quick battle?"
+}
+
+text AbandonedShip_Corridors_B1F_Text_DuncanDefeat {
+    "Whoops, I'm sunk!"
+}
+
+text AbandonedShip_Corridors_B1F_Text_DuncanPostBattle {
+    "The ship's bottom has sunk into the\n"
+    "depths.\p"
+    "If a POKéMON knew how to go underwater,\n"
+    "we might make some progress…"
+}
+
+text AbandonedShip_Text_TheDoorIsOpen {
+    "The door is open."
+}
