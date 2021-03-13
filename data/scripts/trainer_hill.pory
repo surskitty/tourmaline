@@ -1,0 +1,60 @@
+script TrainerHill_OnResume {
+    setvar(VAR_TEMP_2, 0)
+    trainerhill_resumetimer
+    frontier_get(FRONTIER_DATA_BATTLE_OUTCOME)
+    if (var(VAR_RESULT) == B_OUTCOME_LOST || var(VAR_RESULT) == B_OUTCOME_DREW || var(VAR_RESULT) == B_OUTCOME_FORFEITED) {
+        goto(TrainerHill_1F_EventScript_Lost)
+    }
+}
+
+script TrainerHill_1F_EventScript_Lost {
+    trainerhill_settrainerflags
+    trainerhill_lost
+    setvar(VAR_TEMP_1, 1)
+}
+
+raw `
+TrainerHill_OnWarp:
+	map_script_2 VAR_TEMP_3, 0, TrainerHill_1F_EventScript_DummyOnWarp
+	.2byte 0
+
+TrainerHill_1F_EventScript_DummyOnWarp::
+	setvar VAR_TEMP_3, 1
+    end
+
+TrainerHill_OnFrame:
+	map_script_2 VAR_TEMP_2, 0, TrainerHill_1F_EventScript_DummyWarpToEntranceCounter
+	map_script_2 VAR_TEMP_1, 1, TrainerHill_EventScript_WarpToEntranceCounter
+	.2byte 0
+`
+
+script EventScript_TrainerHillTimer {
+    lockall
+    trainerhill_gettime
+    msgbox(TrainerHill_Entrance_Text_ChallengeTime)
+    releaseall
+}
+
+script TrainerHill_1F_EventScript_DummyWarpToEntranceCounter {
+    setvar(VAR_TEMP_2, 1)
+    trainerhill_getusingereader // VAR_RESULT always FALSE here
+    if (var(VAR_RESULT) == TRUE) {
+        warpsilent(MAP_TRAINER_HILL_ENTRANCE, 255, 9, 6)
+        waitstate
+    }
+}
+
+script TrainerHill_EventScript_WarpToEntranceCounter {
+    setvar(VAR_TEMP_1, 0)
+    warp(MAP_TRAINER_HILL_ENTRANCE, 255, 9, 6)
+    waitstate
+}
+
+// TRAINER_PHILLIP is an actual Trainer on the SS Tidal, but is used as a placeholder here
+script TrainerHill_EventScript_TrainerBattle {
+    trainerbattle(TRAINER_BATTLE_HILL, TRAINER_PHILLIP, 0, BattleFacility_TrainerBattle_PlaceholderText, BattleFacility_TrainerBattle_PlaceholderText)
+    trainerhill_postbattletext
+    waitmessage
+    waitbuttonpress
+    closemessage
+}

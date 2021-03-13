@@ -1,0 +1,72 @@
+script EventScript_TV {
+    lockall
+    incrementgamestat(GAME_STAT_WATCHED_TV)
+    special(ResetTVShowState)
+    specialvar(VAR_RESULT, CheckForBigMovieOrEmergencyNewsOnTV)
+    if (var(VAR_RESULT) == 2) {
+        msgbox(PlayersHouse_1F_Text_TheresAMovieOnTV)
+        releaseall
+    } elif (var(VAR_RESULT) == 1) {
+        // special InitRoamer is a junk call. Its input var (VAR_0x8004) hasn't been set, and
+        // It's called again when Mom actually asks for the color, overwriting
+        // whatever it does here.
+        msgbox(PlayersHouse_1F_Text_LatiEmergencyNewsFlash)
+        special(InitRoamer)
+        clearflag(FLAG_SYS_TV_LATIAS_LATIOS)
+        setflag(FLAG_LATIOS_OR_LATIAS_ROAMING)
+        special(TurnOffTVScreen)
+        releaseall
+    } elif (!flag(FLAG_SYS_TV_START) || flag(FLAG_SYS_TV_WATCH)) {
+        special(GetMomOrDadStringForTVMessage)
+        msgbox(gText_MomOrDadMightLikeThisProgram)
+        special(TurnOffTVScreen)
+        releaseall
+    } else {
+        specialvar(VAR_RESULT, IsTVShowInSearchOfTrainersAiring)
+        if (var(VAR_RESULT) == TRUE) {
+            do {
+                special(DoTVShowInSearchOfTrainers)
+                waitmessage
+                waitbuttonpress
+            } while (var(VAR_RESULT) == 0)
+            goto(EventScript_TurnOffTV)
+        } else {
+            special(DoPokeNews)
+            if (var(VAR_RESULT) == FALSE) {
+                specialvar(VAR_0x8004, GetRandomActiveShowIdx)
+                if (var(VAR_0x8004) == 255) {
+                    special(GetMomOrDadStringForTVMessage)
+                    msgbox(gText_MomOrDadMightLikeThisProgram)
+                    goto(EventScript_TurnOffTV)
+                }
+                specialvar(VAR_RESULT, GetNextActiveShowIfMassOutbreak)
+                if (var(VAR_RESULT) == 255) {
+                    special(GetMomOrDadStringForTVMessage)
+                    msgbox(gText_MomOrDadMightLikeThisProgram)
+                    goto(EventScript_TurnOffTV)
+                }
+                copyvar(VAR_0x8004, VAR_RESULT)
+                specialvar(VAR_RESULT, GetSelectedTVShow)
+                if (var(VAR_RESULT) != 0) {
+                    do {
+                        special(DoTVShow)
+                        waitmessage
+                        waitbuttonpress
+                    } while (var(VAR_RESULT) != 1)
+                    goto(EventScript_TurnOffTV)
+                }
+            } else {
+                waitmessage
+                waitbuttonpress
+                goto(EventScript_TurnOffTV)
+            }
+        }
+    }
+    releaseall
+}
+
+script EventScript_TurnOffTV {
+    special(TurnOffTVScreen)
+    setflag(FLAG_SYS_TV_WATCH)
+    releaseall
+}
