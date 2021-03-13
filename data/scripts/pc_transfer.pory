@@ -1,0 +1,43 @@
+// VAR_0x8004 here is used by ChangePokemonNickname
+script Common_EventScript_GetGiftMonPartySlot {
+    getpartysize
+    subvar(VAR_RESULT, 1)
+    copyvar(VAR_0x8004, VAR_RESULT)
+}
+
+script Common_EventScript_NameReceivedBoxMon {
+    fadescreen(FADE_TO_BLACK)
+    special(ChangeBoxPokemonNickname)
+    waitstate
+    lock
+    faceplayer
+}
+
+script Common_EventScript_TransferredToPC {
+    bufferboxname(0, VAR_PC_BOX_TO_SEND_MON)
+    bufferspeciesname(1, VAR_TEMP_1)
+    if (flag(FLAG_SYS_PC_LANETTE)) {
+        specialvar(VAR_RESULT, ShouldShowBoxWasFullMessage)
+        if (var(VAR_RESULT) == TRUE) {
+            specialvar(VAR_RESULT, GetPCBoxToSendMon)
+            bufferboxname(2, VAR_RESULT)
+            msgbox(gText_PkmnTransferredLanettesPCBoxFull)
+        } else {
+            msgbox(gText_PkmnTransferredLanettesPC)
+        }
+    } else {
+        specialvar(VAR_RESULT, ShouldShowBoxWasFullMessage)
+        if (var(VAR_RESULT) == TRUE) {
+            specialvar(VAR_RESULT, GetPCBoxToSendMon)
+            bufferboxname(2, VAR_RESULT)
+            msgbox(gText_PkmnTransferredSomeonesPCBoxFull)
+        } else {
+            msgbox(gText_PkmnTransferredSomeonesPC)
+        }
+    }
+}
+
+script Common_EventScript_NoMoreRoomForPokemon {
+    msgbox(gText_NoMoreRoomForPokemon)
+    release
+}

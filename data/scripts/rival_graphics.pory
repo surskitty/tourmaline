@@ -1,0 +1,17 @@
+script Common_EventScript_SetupRivalGfxId {
+    checkplayergender
+    if (var(VAR_RESULT) == MALE) {
+        setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_MAY_NORMAL)
+    } else {
+        setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL)
+    }
+}
+
+script Common_EventScript_SetupRivalOnBikeGfxId {
+    checkplayergender
+    if (var(VAR_RESULT) == MALE) {
+        setvar(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_RIVAL_MAY_MACH_BIKE)
+    } else {
+        setvar(VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_RIVAL_BRENDAN_MACH_BIKE)
+    }
+}

@@ -1,0 +1,132 @@
+script Std_ObtainItem {
+    additem(VAR_0x8000, VAR_0x8001)
+    copyvar(VAR_0x8007, VAR_RESULT)
+    bufferitemnameplural(1, VAR_0x8000, VAR_0x8001)
+    checkitemtype(VAR_0x8000)
+    call(EventScript_BufferPocketNameAndTryFanfare)
+    if (var(VAR_0x8007) == 1) {
+        message(gText_ObtainedTheItem)
+        waitfanfare
+        msgbox(gText_PutItemInPocket)
+        setvar(VAR_RESULT, 1)
+    } else {
+        setvar(VAR_RESULT, 0)
+    }
+}
+
+script EventScript_BufferPocketNameAndTryFanfare {
+    switch (var(VAR_RESULT)) {
+        case POCKET_ITEMS:
+            bufferstdstring(2, STDSTRING_ITEMS)
+            if (var(VAR_0x8007) == 1) {
+                playfanfare(MUS_OBTAIN_ITEM)
+            }
+        case POCKET_KEY_ITEMS:
+            bufferstdstring(2, STDSTRING_KEYITEMS)
+            if (var(VAR_0x8007) == 1) {
+                playfanfare(MUS_OBTAIN_ITEM)
+            }
+        case POCKET_POKE_BALLS:
+            bufferstdstring(2, STDSTRING_POKEBALLS)
+            if (var(VAR_0x8007) == 1) {
+                playfanfare(MUS_OBTAIN_ITEM)
+            }
+        case POCKET_TM_HM:
+            bufferstdstring(2, STDSTRING_TMHMS)
+            if (var(VAR_0x8007) == 1) {
+                playfanfare(MUS_OBTAIN_TMHM)
+            }
+        case POCKET_BERRIES:
+            bufferstdstring(2, STDSTRING_BERRIES)
+            if (var(VAR_0x8007) == 1) {
+                playfanfare(MUS_OBTAIN_ITEM)
+            }
+    }
+}
+
+script Std_ObtainDecoration {
+    adddecoration(VAR_0x8000)
+    copyvar(VAR_0x8007, VAR_RESULT)
+    bufferdecorationname(1, VAR_0x8000)
+    if (var(VAR_0x8007) == 1) {
+        playfanfare(MUS_OBTAIN_ITEM)
+        message(gText_ObtainedTheDecor)
+        waitfanfare
+        msgbox(gText_TheDecorWasTransferredToThePC)
+        setvar(VAR_RESULT, 1)
+    } else {
+        setvar(VAR_RESULT, 0)
+    }
+}
+
+script Std_FindItem {
+    lock
+    faceplayer
+    waitse
+    copyvar(VAR_0x8004, VAR_0x8000)
+    copyvar(VAR_0x8005, VAR_0x8001)
+    checkitemspace(VAR_0x8000, VAR_0x8001)
+    copyvar(VAR_0x8007, VAR_RESULT)
+    bufferitemnameplural(1, VAR_0x8000, VAR_0x8001)
+    checkitemtype(VAR_0x8000)
+    call(EventScript_BufferPocketNameAndTryFanfare)
+    if (var(VAR_0x8007) == 1) {
+        removeobject(VAR_LAST_TALKED)
+        additem(VAR_0x8004, VAR_0x8005)
+        specialvar(VAR_RESULT, BufferTMHMMoveName)
+        copyvar(VAR_0x8008, VAR_RESULT)
+        if (var(VAR_0x8008) == 1) {
+            bufferitemnameplural(0, VAR_0x8004, VAR_0x8005)
+            message(gText_PlayerFoundOneTMHM)
+        } else {
+            message(gText_PlayerFoundOneItem)
+        }
+        waitfanfare
+        waitmessage
+        bufferitemnameplural(1, VAR_0x8004, VAR_0x8005)
+        pyramid_inchallenge
+        if (var(VAR_RESULT) == 1) {
+            msgbox(gText_PlayerPutItemInBag)
+        } else {
+            msgbox(gText_PutItemInPocket)
+        }
+    } else {
+        msgbox(gText_ObtainedTheItem)
+        msgbox(gText_TooBadBagIsFull)
+        setvar(VAR_RESULT, 0)
+    }
+    release
+}
+
+script EventScript_HiddenItemScript {
+    lockall
+    waitse
+    additem(VAR_0x8005)
+    copyvar(VAR_0x8007, VAR_RESULT)
+    bufferitemnameplural(1, VAR_0x8005, 1)
+    checkitemtype(VAR_0x8005)
+    call(EventScript_BufferPocketNameAndTryFanfare)
+    if (var(VAR_0x8007) == 1) {
+        copyvar(VAR_0x8008, VAR_0x8004)
+        copyvar(VAR_0x8004, VAR_0x8005)
+        specialvar(VAR_RESULT, BufferTMHMMoveName)
+        if (var(VAR_RESULT) == 1) {
+            bufferitemnameplural(0, VAR_0x8004, 1)
+            message(gText_PlayerFoundOneTMHM)
+        } else {
+            message(gText_PlayerFoundOneItem)
+        }
+        waitmessage
+        waitfanfare
+        bufferitemnameplural(1, VAR_0x8004, 1)
+        copyvar(VAR_0x8004, VAR_0x8008)
+        msgbox(gText_PutItemInPocket)
+        special(TryPutTreasureInvestigatorsOnAir)
+        special(SetHiddenItemFlag)
+    } else {
+        msgbox(gText_PlayerFoundOneItem)
+        msgbox(gText_TooBadBagIsFull)
+        setvar(VAR_RESULT, 0)
+    }
+    releaseall
+}

@@ -1,0 +1,4 @@
+script EventScript_TestSignpostMsg {
+    msgbox("This is a test message.\n"
+           "This is a signpost.", MSGBOX_SIGN)
+}

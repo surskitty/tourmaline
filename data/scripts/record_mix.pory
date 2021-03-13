@@ -1,0 +1,16 @@
+// Seems this was superseded by the Record Center, and the below script is now unused
+script EventScript_MixRecordsPrompt {
+    lock
+    faceplayer
+    msgbox(Text_WouldYouLikeToMixRecords, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        special(RecordMixingPlayerSpotTriggered)
+        waitstate
+        lock
+        faceplayer
+    }
+    message(Text_WeHopeToSeeYouAgain)
+    waitmessage
+    waitbuttonpress
+    release
+}
