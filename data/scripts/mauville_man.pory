@@ -1,0 +1,1053 @@
+script MauvilleCity_PokemonCenter_1F_EventScript_MauvilleOldMan {
+    special(ScrSpecial_GetCurrentMauvilleMan)
+    switch (var(VAR_RESULT)) {
+        case MAUVILLE_MAN_BARD:
+            lock
+            faceplayer
+            msgbox(MauvilleCity_PokemonCenter_1F_Text_WouldYouLikeToHearMySong, MSGBOX_YESNO)
+            if (var(VAR_RESULT) == YES) {
+                setvar(VAR_0x8004, 0)
+                special(ScrSpecial_PlayBardSong)
+                delay(60)
+                special(ScrSpecial_HasBardSongBeenChanged)
+                if (var(VAR_RESULT) == FALSE) {
+                    msgbox(MauvilleCity_PokemonCenter_1F_Text_WouldYouLikeToWriteSomeLyrics, MSGBOX_YESNO)
+                    if (var(VAR_RESULT) == YES) {
+                        do {
+                            setvar(VAR_0x8004, EASY_CHAT_TYPE_BARD_SONG)
+                            call(Common_ShowEasyChatScreen)
+                            lock
+                            faceplayer
+                            if (var(VAR_RESULT) == 0) {
+                                msgbox(MauvilleCity_PokemonCenter_1F_Text_BardFeelingTheBlues2)
+                                release
+                                return
+                            }
+                            msgbox(MauvilleCity_PokemonCenter_1F_Text_LetMeSingItForYou)
+                            setvar(VAR_0x8004, 1)
+                            special(ScrSpecial_PlayBardSong)
+                            delay(60)
+                            msgbox(MauvilleCity_PokemonCenter_1F_Text_ThatHowYouWantedSongToGo, MSGBOX_YESNO)
+                        } while (var(VAR_RESULT) == NO)
+                        special(ScrSpecial_SaveBardSongLyrics)
+                        msgbox(MauvilleCity_PokemonCenter_1F_Text_IllSingThisSongForAWhile)
+                    } else {
+                        msgbox(MauvilleCity_PokemonCenter_1F_Text_BardFeelingTheBlues2)
+                    }
+                } else {
+                    msgbox(MauvilleCity_PokemonCenter_1F_Text_WishICouldPlaySongForOthers)
+                }
+            } else {
+                msgbox(MauvilleCity_PokemonCenter_1F_Text_BardFeelingTheBlues1)
+            }
+            release
+        case MAUVILLE_MAN_HIPSTER:
+            lock
+            faceplayer
+            setflag(FLAG_SYS_HIPSTER_MEET)
+            msgbox(MauvilleCity_PokemonCenter_1F_Text_TeachWhatsHipAndHappening)
+            special(ScrSpecial_GetHipsterSpokenFlag)
+            if (var(VAR_RESULT) == FALSE) {
+                special(ScrSpecial_HipsterTeachWord)
+                if (var(VAR_RESULT) == TRUE) {
+                    msgbox(MauvilleCity_PokemonCenter_1F_Text_HaveYouHeardOfPhrase)
+                    special(ScrSpecial_SetHipsterSpokenFlag)
+                } else {
+                    msgbox(MauvilleCity_PokemonCenter_1F_Text_IveGotNothingNewToTeach)
+                }
+            } else {
+                msgbox(MauvilleCity_PokemonCenter_1F_Text_IAlreadyTaughtYou)
+            }
+            release
+        case MAUVILLE_MAN_TRADER:
+            lock
+            faceplayer
+            msgbox(MauvilleCity_PokemonCenter_1F_Text_WantToTradeDecor, MSGBOX_YESNO)
+            if (var(VAR_RESULT) == NO) {
+                msgbox(MauvilleCity_PokemonCenter_1F_Text_TraderFeelingTheBlues)
+                release
+                return
+            }
+            special(ScrSpecial_GetTraderTradedFlag)
+            if (var(VAR_RESULT) == TRUE) {
+                msgbox(MauvilleCity_PokemonCenter_1F_Text_WeveAlreadyTraded)
+                release
+                return
+            }
+            message(MauvilleCity_PokemonCenter_1F_Text_PickADecorItem)
+            waitmessage
+            goto(MauvilleCity_PokemonCenter_1F_EventScript_PickDecorToReceive)
+        case MAUVILLE_MAN_STORYTELLER:
+            lock
+            faceplayer
+            setvar(VAR_0x8008, 0)
+            setvar(VAR_0x8009, 0)
+            setvar(VAR_0x800A, 0)
+            setvar(VAR_0x800B, 0)
+            msgbox(MauvilleCity_PokemonCenter_1F_Text_WillYouHearMyTale, MSGBOX_YESNO)
+            if (var(VAR_RESULT) == NO) {
+                msgbox(MauvilleCity_PokemonCenter_1F_Text_StorytellerFeelingTheBlues)
+                release
+                return
+            }
+            specialvar(VAR_RESULT, ScrSpecial_StorytellerGetFreeStorySlot)
+            if (var(VAR_RESULT) == 0) {
+                msgbox(MauvilleCity_PokemonCenter_1F_Text_IKnowNoTales)
+                goto(MauvilleCity_PokemonCenter_1F_EventScript_DoYouHaveAnyTales)
+            }
+            message(MauvilleCity_PokemonCenter_1F_Text_WhichTaleToTell)
+            waitmessage
+            special(ScrSpecial_StorytellerStoryListMenu)
+            waitstate
+            if (var(VAR_RESULT) == 0) {
+                msgbox(MauvilleCity_PokemonCenter_1F_Text_StorytellerFeelingTheBlues)
+                release
+                return
+            }
+            setvar(VAR_0x8008, 1)
+            special(ScrSpecial_StorytellerDisplayStory)
+            waitmessage
+            waitbuttonpress
+            specialvar(VAR_RESULT, ScrSpecial_StorytellerUpdateStat)
+            if (var(VAR_RESULT) == 0) {
+                msgbox(MauvilleCity_PokemonCenter_1F_Text_CouldThereBeOtherLegends)
+                specialvar(VAR_RESULT, ScrSpecial_HasStorytellerAlreadyRecorded)
+                if (var(VAR_RESULT) == TRUE) {
+                    release
+                    return
+                }
+                goto(MauvilleCity_PokemonCenter_1F_EventScript_DoYouHaveAnyTales)
+            } else {
+                msgbox(MauvilleCity_PokemonCenter_1F_Text_YouDidStatXTimes)
+                release
+            }
+        case MAUVILLE_MAN_GIDDY:
+            lock
+            faceplayer
+            msgbox(MauvilleCity_PokemonCenter_1F_Text_HearMyStory, MSGBOX_YESNO)
+            if (var(VAR_RESULT) == YES) {
+                // Regardless of whether yes or no is selected below, Giddy will continue to tell stories until he's told 10
+                special(ScrSpecial_GiddyShouldTellAnotherTale)
+                while (var(VAR_RESULT) == TRUE) {
+                    special(ScrSpecial_GenerateGiddyLine)
+                    special(ShowFieldMessageStringVar4)
+                    waitmessage
+                    yesnobox(20, 8)
+                    special(ScrSpecial_GiddyShouldTellAnotherTale)
+                }
+                msgbox(MauvilleCity_PokemonCenter_1F_Text_WeShouldChatAgain)
+            } else {
+                msgbox(MauvilleCity_PokemonCenter_1F_Text_GiddyFeelingTheBlues)
+            }
+            release
+    }
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_WantToTradeDecor {
+    "Hi, I'm the TRADER.\n"
+    "Want to trade decorations with me?"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_TraderFeelingTheBlues {
+    "Oh…\n"
+    "You've left me feeling the blues…"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_WeveAlreadyTraded {
+    "But we've traded decorations already,\n"
+    "you and I."
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_PickADecorItem {
+    "If you see any decorative item that\n"
+    "you want of mine, speak up."
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_YouDontWantAnything {
+    "You don't want anything?\n"
+    "I feel unwanted…"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_OnceBelongedToPlayerDoYouWantIt {
+    "That decorative item once belonged\n"
+    "to {STR_VAR_1}.\p"
+    "Do you want it?"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_YouDontHaveAnyDecor {
+    "Uh… Wait a second. You don't have a\n"
+    "single piece of decoration!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_PickTheDecorToTrade {
+    "Okay, pick the decoration that you'll\n"
+    "trade to me."
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_YouDontWantToTrade {
+    "You won't trade with me?\n"
+    "I feel unwanted…"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_YouveNoRoomForThis {
+    "You've got all the {STR_VAR_2}S that can\n"
+    "be stored. You've no room for this."
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_SoWellTradeTheseDecor {
+    "Okay, so we'll trade my {STR_VAR_3}\n"
+    "for your {STR_VAR_2}?"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_ThatDecorIsInUse {
+    "That piece of decoration is in use.\n"
+    "You can't trade it."
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_SendDecorToYourPC {
+    "Then we'll trade!\n"
+    "I'll send my decoration to your PC."
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_CantTradeThatOne {
+    "Oops! Sorry! That's a really rare\n"
+    "piece of decoration.\l"
+    "I can't trade that one away!\p"
+    "Can I interest you in something else?"
+}
+
+script MauvilleCity_PokemonCenter_1F_EventScript_PickDecorToReceive {
+    special(ScrSpecial_TraderMenuGetDecoration)
+    waitstate
+    if (var(VAR_0x8004) == 0) {
+        msgbox(MauvilleCity_PokemonCenter_1F_Text_YouDontWantAnything)
+        release
+        return
+    }
+    if (var(VAR_0x8004) == 0xFFFF) {
+        message(MauvilleCity_PokemonCenter_1F_Text_CantTradeThatOne)
+        waitmessage
+        goto(MauvilleCity_PokemonCenter_1F_EventScript_PickDecorToReceive)
+    }
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_OnceBelongedToPlayerDoYouWantIt, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        message(MauvilleCity_PokemonCenter_1F_Text_PickADecorItem)
+        waitmessage
+        goto(MauvilleCity_PokemonCenter_1F_EventScript_PickDecorToReceive)
+    }
+    special(ScrSpecial_DoesPlayerHaveNoDecorations)
+    if (var(VAR_RESULT) == TRUE) {
+        msgbox(MauvilleCity_PokemonCenter_1F_Text_YouDontHaveAnyDecor)
+        release
+        return
+    }
+    goto(MauvilleCity_PokemonCenter_1F_EventScript_PickDecorToGive)
+}
+
+script MauvilleCity_PokemonCenter_1F_EventScript_PickDecorToGive {
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_PickTheDecorToTrade)
+    special(ScrSpecial_TraderMenuGiveDecoration)
+    waitstate
+    if (var(VAR_0x8006) == 0) {
+        msgbox(MauvilleCity_PokemonCenter_1F_Text_YouDontWantToTrade)
+        release
+        return
+    }
+    if (var(VAR_0x8006) == 0xFFFF) {
+        msgbox(MauvilleCity_PokemonCenter_1F_Text_ThatDecorIsInUse)
+        goto(MauvilleCity_PokemonCenter_1F_EventScript_PickDecorToGive)
+    }
+    special(ScrSpecial_IsDecorationFull)
+    if (var(VAR_RESULT) == TRUE) {
+        msgbox(MauvilleCity_PokemonCenter_1F_Text_YouveNoRoomForThis)
+        release
+        return
+    }
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_SoWellTradeTheseDecor, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        goto(MauvilleCity_PokemonCenter_1F_EventScript_PickDecorToGive)
+    }
+    special(ScrSpecial_TraderDoDecorationTrade)
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_SendDecorToYourPC)
+    release
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_WillYouHearMyTale {
+    "I'm the STORYTELLER.\n"
+    "I'll tell you tales of legendary\l"
+    "TRAINERS.\p"
+    "Will you hear my tale?"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_StorytellerFeelingTheBlues {
+    "Oh…\n"
+    "You've left me feeling the blues…"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_WhichTaleToTell {
+    "I know of these legends.\n"
+    "Which tale will you have me tell?"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_IKnowNoTales {
+    "But, I know of no legendary TRAINERS.\n"
+    "Hence, I know no tales.\p"
+    "Where does one find a TRAINER worthy\n"
+    "of a legendary tale?"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_YouDidStatXTimes {
+    "What's that?!\n"
+    "You… You…\p"
+    "{STR_VAR_2}\n"
+    "{STR_VAR_1} time(s)?!\p"
+    "That is indeed magnificent!\n"
+    "It's the birth of a new legend!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_CouldThereBeOtherLegends {
+    "It gets me thinking, could there be\n"
+    "other TRAINERS with more impressive\l"
+    "legends awaiting discovery?"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_HaveYouAnyLegendaryTales {
+    "Are you a TRAINER?\p"
+    "Then tell me, have you any tales that\n"
+    "are even remotely legendary?"
+}
+
+// Unused
+text MauvilleCity_PokemonCenter_1F_Text_HearAnotherLegendaryTale {
+    "Incidentally… Would you care to hear\n"
+    "another legendary tale?"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_NotWorthyOfLegend {
+    "Hmm…\n"
+    "I'm not satisfied…\p"
+    "I wish you would bring me news worthy\n"
+    "of being called a legend."
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_IWishMorePeopleWereInterested {
+    "I wish more people would be interested\n"
+    "in hearing my epic tales of legendary\l"
+    "TRAINERS."
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_SavedGameTitle {
+    "The Save-Happy TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_SavedGameAction {
+    "Saved the game"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_SavedGameStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER saved the game\n"
+    "{STR_VAR_1} times!\p"
+    "A more cautious TRAINER than\n"
+    "{STR_VAR_3} one will never find!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_TrendsStartedTitle {
+    "The Trendsetter TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_TrendsStartedAction {
+    "Started trends"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_TrendsStartedStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER started new trends\n"
+    "{STR_VAR_1} times!\p"
+    "{STR_VAR_3} is setting trends for all\n"
+    "the HOENN region!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_BerriesPlantedTitle {
+    "The BERRY-Planting TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_BerriesPlantedAction {
+    "Planted BERRIES"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_BerriesPlantedStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER planted BERRIES\n"
+    "{STR_VAR_1} times!\p"
+    "{STR_VAR_3} is a legendary lover of\n"
+    "BERRIES!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_BikeTradesTitle {
+    "The BIKE-Loving TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_BikeTradesAction {
+    "Traded BIKES"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_BikeTradesStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER swapped BIKES\n"
+    "{STR_VAR_1} times!\p"
+    "{STR_VAR_3} must love BIKES deeply\n"
+    "and passionately!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_InterviewsTitle {
+    "The Interviewed TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_InterviewsAction {
+    "Got interviewed"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_InterviewsStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER got interviewed\n"
+    "{STR_VAR_1} times!\p"
+    "{STR_VAR_3} must be a TRAINER who's\n"
+    "attracting much attention!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_TrainerBattlesTitle {
+    "The Battle-Happy TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_TrainerBattlesAction {
+    "Battled"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_TrainerBattlesStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER battled {STR_VAR_1} times!\p"
+    "{STR_VAR_3} must be a TRAINER who can\n"
+    "never refuse a chance to battle!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_PokemonCaughtTitle {
+    "The POKéMON-Catching TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_PokemonCaughtAction {
+    "Caught POKéMON"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_PokemonCaughtStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER caught\n"
+    "{STR_VAR_1} POKéMON!\p"
+    "{STR_VAR_3} is a legendary catcher of\n"
+    "wild POKéMON!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_FishingPokemonCaughtTitle {
+    "The Fishing TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_FishingPokemonCaughtAction {
+    "Caught POKéMON with a ROD"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_FishingPokemonCaughtStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER caught\n"
+    "{STR_VAR_1} POKéMON while fishing!\p"
+    "{STR_VAR_3} is a legendary fishing\n"
+    "expert!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_EggsHatchedTitle {
+    "The EGG-Warming TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_EggsHatchedAction {
+    "Hatched EGGS"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_EggsHatchedStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER hatched {STR_VAR_1} POKéMON\n"
+    "from EGGS!\p"
+    "{STR_VAR_3} is a legendary warmer\n"
+    "of EGGS!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_PokemonEvolvedTitle {
+    "The Evolver TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_PokemonEvolvedAction {
+    "Evolved POKéMON"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_PokemonEvolvedStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER made {STR_VAR_1} POKéMON\n"
+    "evolve!\p"
+    "{STR_VAR_3} is the ultimate evolver\n"
+    "of POKéMON!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_UsedPokemonCenterTitle {
+    "The POKéMON CENTER-Loving TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_UsedPokemonCenterAction {
+    "Used POKéMON CENTERS"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_UsedPokemonCenterStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER healed POKéMON\n"
+    "{STR_VAR_1} times at POKéMON CENTERS!\p"
+    "There could be no greater lover of\n"
+    "POKéMON CENTERS than {STR_VAR_3}!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_RestedAtHomeTitle {
+    "The Homebody TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_RestedAtHomeAction {
+    "Rested POKéMON at home"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_RestedAtHomeStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER healed POKéMON\n"
+    "{STR_VAR_1} times at home!\p"
+    "There could be no more of a homebody\n"
+    "than {STR_VAR_3}!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_SafariGamesTitle {
+    "The SAFARI-Loving TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_SafariGamesAction {
+    "Entered the SAFARI ZONE"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_SafariGamesStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER went into the SAFARI ZONE\n"
+    "{STR_VAR_1} times!\p"
+    "{STR_VAR_3} is a TRAINER whose wild side\n"
+    "must come out in the SAFARI ZONE!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_UsedCutTitle {
+    "The CUT-Frenzy TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_UsedCutAction {
+    "Used CUT"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_UsedCutStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER used CUT\n"
+    "{STR_VAR_1} times!\p"
+    "{STR_VAR_3} is a TRAINER who just must\n"
+    "love to CUT!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_UsedRockSmashTitle {
+    "The ROCK-SMASHING TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_UsedRockSmashAction {
+    "Smashed rocks"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_UsedRockSmashStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER used ROCK SMASH\n"
+    "{STR_VAR_1} times!\p"
+    "{STR_VAR_3} must be a TRAINER who\n"
+    "can't leave a stone unsmashed!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_MovedBasesTitle {
+    "The Move-Loving TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_MovedBasesAction {
+    "Moved the SECRET BASE"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_MovedBasesStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER moved the SECRET BASE\n"
+    "{STR_VAR_1} times!\p"
+    "{STR_VAR_3} is a TRAINER who loves\n"
+    "to move houses often!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_UsedSplashTitle {
+    "The SPLASH-Happy TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_UsedSplashAction {
+    "Used SPLASH"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_UsedSplashStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER used SPLASH\n"
+    "{STR_VAR_1} times!\p"
+    "{STR_VAR_3} is a TRAINER who must love\n"
+    "SPLASHING around!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_UsedStruggleTitle {
+    "The Tenacious TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_UsedStruggleAction {
+    "Resorted to using STRUGGLE"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_UsedStruggleStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER had to rely on STRUGGLE\n"
+    "{STR_VAR_1} times!\p"
+    "{STR_VAR_3} is a tenacious TRAINER\n"
+    "who never gives in to adversity!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_SlotJackpotsTitle {
+    "The SLOT Champ"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_SlotJackpotsAction {
+    "Won the jackpot on the SLOTS"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_SlotJackpotsStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER won the jackpot on\n"
+    "the SLOTS {STR_VAR_1} times.\p"
+    "{STR_VAR_3} is a TRAINER who was lucky\n"
+    "on the SLOTS!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_RouletteWinsTitle {
+    "The ROULETTE Champ"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_RouletteWinsAction {
+    "Had consecutive ROULETTE wins of"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_RouletteWinsStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER won in ROULETTE\n"
+    "{STR_VAR_1} times in a row.\p"
+    "{STR_VAR_3} was lucky when the ball\n"
+    "bounced in ROULETTE!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_BattleTowerChallengesTitle {
+    "The BATTLE TOWER Challenger"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_BattleTowerChallengesAction {
+    "Took the BATTLE TOWER challenge"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_BattleTowerChallengesStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER took the BATTLE TOWER\n"
+    "challenge {STR_VAR_1} times!\p"
+    "{STR_VAR_3} is a TRAINER who aspires\n"
+    "for excellence in the BATTLE TOWER!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_MadePokeblocksTitle {
+    "The Blend-Loving TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_MadePokeblocksAction {
+    "Made {POKEBLOCK}S"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_MadePokeblocksStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER made {POKEBLOCK}S\n"
+    "{STR_VAR_1} times!\p"
+    "There is none better at using a BERRY\n"
+    "BLENDER than {STR_VAR_3}!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_EnteredContestsTitle {
+    "The CONTEST-Loving TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_EnteredContestsAction {
+    "Entered CONTESTS"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_EnteredContestsStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER entered CONTESTS\n"
+    "{STR_VAR_1} times!\p"
+    "{STR_VAR_3} must love showing off\n"
+    "POKéMON to others!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_WonContestsTitle {
+    "The CONTEST Master"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_WonContestsAction {
+    "Won CONTESTS"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_WonContestsStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER won CONTESTS\n"
+    "{STR_VAR_1} times!\p"
+    "{STR_VAR_3} must be an incredible\n"
+    "CONTEST master!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_TimesShoppedTitle {
+    "The Happy Shopper"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_TimesShoppedAction {
+    "Shopped"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_TimesShoppedStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER bought items in shops\n"
+    "{STR_VAR_1} times!\p"
+    "{STR_VAR_3} must be one of those\n"
+    "people who are born to shop."
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_UsedItemFinderTitle {
+    "The Item-Finding TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_UsedItemFinderAction {
+    "Used an ITEMFINDER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_UsedItemFinderStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER used an ITEMFINDER\n"
+    "{STR_VAR_1} times!\p"
+    "{STR_VAR_3} must enjoy scouring the\n"
+    "ground for hidden items!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_TimesRainedTitle {
+    "The Rain-Soaked TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_TimesRainedAction {
+    "Got rained on"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_TimesRainedStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER got soaked by rain\n"
+    "{STR_VAR_1} times!\p"
+    "{STR_VAR_3}'s charisma must even\n"
+    "attract rain!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_CheckedPokedexTitle {
+    "The Avid POKéDEX Reader"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_CheckedPokedexAction {
+    "Checked a POKéDEX"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_CheckedPokedexStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER checked a POKéDEX\n"
+    "{STR_VAR_1} times!\p"
+    "{STR_VAR_3} must love inspecting\n"
+    "POKéMON in a POKéDEX!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_ReceivedRibbonsTitle {
+    "The RIBBON Collector"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_ReceivedRibbonsAction {
+    "Received RIBBONS"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_ReceivedRibbonsStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER received RIBBONS\n"
+    "{STR_VAR_1} times!\p"
+    "{STR_VAR_3} must be a TRAINER who\n"
+    "loves to collect RIBBONS!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_LedgesJumpedTitle {
+    "The Ledge-Jumping TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_LedgesJumpedAction {
+    "Jumped down ledges"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_LedgesJumpedStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER jumped down ledges\n"
+    "{STR_VAR_1} times!\p"
+    "If there's a ledge to be jumped,\n"
+    "{STR_VAR_3} can't ignore it!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_TVWatchedTitle {
+    "The Legendary TV Viewer"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_TVWatchedAction {
+    "Watched TV"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_TVWatchedStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER watched TV\n"
+    "{STR_VAR_1} times!\p"
+    "{STR_VAR_3} must love watching TV!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_CheckedClockTitle {
+    "The Time-Conscious TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_CheckedClockAction {
+    "Checked the time"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_CheckedClockStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER checked the time\n"
+    "{STR_VAR_1} times!\p"
+    "{STR_VAR_3} must be a punctual TRAINER\n"
+    "who's conscious of the time."
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_WonLotteryTitle {
+    "The POKéMON LOTTERY Wizard"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_WonLotteryAction {
+    "Won POKéMON LOTTERIES"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_WonLotteryStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER won POKéMON LOTTERIES\n"
+    "{STR_VAR_1} times!\p"
+    "{STR_VAR_3} must have many friends\n"
+    "to trade POKéMON with!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_UsedDaycareTitle {
+    "The DAY CARE-Using Trainer"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_UsedDaycareAction {
+    "Left POKéMON at the DAY CARE"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_UsedDaycareStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER left POKéMON with the\n"
+    "DAY CARE {STR_VAR_1} times!\p"
+    "{STR_VAR_3} must be a real go-getter\n"
+    "who raises POKéMON aggressively!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_RodeCableCarTitle {
+    "The CABLE CAR-Loving TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_RodeCableCarAction {
+    "Rode the CABLE CAR"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_RodeCableCarStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER rode the CABLE CAR\n"
+    "{STR_VAR_1} times!\p"
+    "{STR_VAR_3} must be a busy TRAINER\n"
+    "who's up and down all the time!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_HotSpringsTitle {
+    "The Hot Spring-Loving TRAINER"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_HotSpringsAction {
+    "Bathed in hot springs"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_HotSpringsStory {
+    "This is a tale of a TRAINER\n"
+    "named {STR_VAR_3}.\p"
+    "This TRAINER bathed in hot springs\n"
+    "{STR_VAR_1} times!\p"
+    "{STR_VAR_3} must be a TRAINER with\n"
+    "baby-smooth skin!"
+}
+
+script MauvilleCity_PokemonCenter_1F_EventScript_DoYouHaveAnyTales {
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_HaveYouAnyLegendaryTales, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == NO) {
+        msgbox(MauvilleCity_PokemonCenter_1F_Text_StorytellerFeelingTheBlues)
+        release
+        return
+    }
+    specialvar(VAR_RESULT, ScrSpecial_StorytellerInitializeRandomStat)
+    if (var(VAR_RESULT) == 1) {
+        msgbox(MauvilleCity_PokemonCenter_1F_Text_YouDidStatXTimes)
+    } else {
+        msgbox(MauvilleCity_PokemonCenter_1F_Text_NotWorthyOfLegend)
+    }
+    release
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_HearMyStory {
+    "I'm GIDDY!\n"
+    "I have a scintillating story for you!\p"
+    "Would you like to hear my story?"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_GiddyFeelingTheBlues {
+    "Oh…\n"
+    "You've left me feeling the blues…"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_AlsoIWasThinking {
+    "Also, I was thinking…"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_WeShouldChatAgain {
+    "That's about it, I think…\p"
+    "We should chat again!\n"
+    "Bye-bye!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_WouldYouLikeToHearMySong {
+    "Hi, I'm the BARD.\n"
+    "Would you like to hear my song?"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_BardFeelingTheBlues1 {
+    "Oh…\n"
+    "You've left me feeling the blues…"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_WishICouldPlaySongForOthers {
+    "Oh, what a moving song…\n"
+    "I wish I could play it for others…"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_WouldYouLikeToWriteSomeLyrics {
+    "So?\n"
+    "How do you like my song?\p"
+    "But I'm none too happy about\n"
+    "the lyrics.\p"
+    "How would you like to write some\n"
+    "new lyrics for me?"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_BardFeelingTheBlues2 {
+    "Oh…\n"
+    "You've left me feeling the blues…"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_LetMeSingItForYou {
+    "Thank you kindly!\n"
+    "Let me sing it for you."
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_ThatHowYouWantedSongToGo {
+    "Was that how you wanted your song\n"
+    "to go?"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_IllSingThisSongForAWhile {
+    "Okay! That's it, then.\n"
+    "I'll sing this song for a while."
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_TeachWhatsHipAndHappening {
+    "Hey, yo! They call me the HIPSTER.\n"
+    "I'll teach you what's hip and happening."
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_IAlreadyTaughtYou {
+    "But, hey, I taught you what's hip and\n"
+    "happening already.\p"
+    "I'd like to spread the good word to\n"
+    "other folks."
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_IveGotNothingNewToTeach {
+    "But, hey, you already know a lot about\n"
+    "what's hip and happening.\p"
+    "I've got nothing new to teach you!"
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_HaveYouHeardOfPhrase {
+    "Hey, have you heard about\n"
+    "“{STR_VAR_1}”?\p"
+    "What's it mean? Well…\n"
+    "Ask your daddy or mommy, okay?"
+}
