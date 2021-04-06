@@ -114,6 +114,8 @@
 #define METATILE_Building_TV_On   0x003
 
 // gTileset_Cave
+#define METATILE_Cave_CrackedFloor                       0x22F
+#define METATILE_Cave_CrackedFloor_Hole                  0x206
 #define METATILE_Cave_EntranceCover                      0x229
 #define METATILE_Cave_SealedChamberBraille_Mid           0x235
 #define METATILE_Cave_SealedChamberEntrance_BottomLeft   0x232
@@ -370,6 +372,7 @@
 #define METATILE_Pacifidlog_HalfSubmergedLogs_Horizontal1  0x253
 #define METATILE_Pacifidlog_HalfSubmergedLogs_Vertical0    0x259
 #define METATILE_Pacifidlog_HalfSubmergedLogs_Vertical1    0x261
+#define METATILE_Pacifidlog_SkyPillar_CrackedFloor_Hole    0x237
 #define METATILE_Pacifidlog_SkyPillar_DoorOpen_Bottom      0x2B2
 #define METATILE_Pacifidlog_SkyPillar_DoorOpen_Top         0x2AA
 #define METATILE_Pacifidlog_SubmergedLogs_Horizontal0      0x254
@@ -704,6 +707,12 @@
 #define METATILE_SecretBase_YellowBalloon               0x340
 #define METATILE_SecretBase_YellowBrick_Bottom          0x22E
 #define METATILE_SecretBase_YellowBrick_Top             0x226
+
+// gTileset_ShoalCave
+#define METATILE_ShoalCave_BlueStone_Large  0x359
+#define METATILE_ShoalCave_BlueStone_Small  0x35B
+#define METATILE_ShoalCave_DirtPile_Large   0x358
+#define METATILE_ShoalCave_DirtPile_Small   0x35A
 
 // gTileset_Shop
 #define METATILE_Shop_Door_Elevator   0x285

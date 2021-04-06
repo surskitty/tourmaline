@@ -8,7 +8,7 @@ ShoalCave_LowTideStairsRoom_OnLoad: @ 8237100
 
 ShoalCave_LowTideStairsRoom_EventScript_SetShoalItemMetatiles:: @ 8237106
 	goto_if_set FLAG_RECEIVED_SHOAL_SALT_3, ShoalCave_LowTideStairsRoom_EventScript_SetShoalItemMetatilesEnd
-	setmetatile 11, 11, METATILE_Cave_ShoalCave_DirtPile_Large, 1
+	setmetatile 11, 11, METATILE_ShoalCave_DirtPile_Large, 1
 	return
 
 ShoalCave_LowTideStairsRoom_EventScript_SetShoalItemMetatilesEnd:: @ 8237119
@@ -20,7 +20,7 @@ ShoalCave_LowTideStairsRoom_EventScript_ShoalSalt3:: @ 823711A
 	giveitem ITEM_SHOAL_SALT
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowBagIsFull
-	setmetatile 11, 11, METATILE_Cave_ShoalCave_DirtPile_Small, 0
+	setmetatile 11, 11, METATILE_ShoalCave_DirtPile_Small, 0
 	special DrawWholeMapView
 	setflag FLAG_RECEIVED_SHOAL_SALT_3
 	releaseall

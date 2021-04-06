@@ -30,8 +30,6 @@ extern const u8 EventScript_RepelWoreOff[];
 #define NUM_FEEBAS_SPOTS    6
 
 // this file's functions
-static u16 FeebasRandom(void);
-static void FeebasSeedRng(u16 seed);
 static bool8 IsWildLevelAllowedByRepel(u8 level);
 static void ApplyFluteEncounterRateMod(u32 *encRate);
 static void ApplyCleanseTagEncounterRateMod(u32 *encRate);
@@ -42,7 +40,6 @@ static bool8 IsAbilityAllowingEncounter(u8 level);
 EWRAM_DATA static u8 sWildEncountersDisabled = 0;
 EWRAM_DATA bool8 gIsFishingEncounter = 0;
 EWRAM_DATA bool8 gIsSurfingEncounter = 0;
-EWRAM_DATA static u32 sFeebasRngValue = 0;
 
 #include "data/wild_encounters.h"
 
@@ -73,11 +70,8 @@ static bool8 CheckFeebas(void)
     if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE119)
      && gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE119))
     {
-        GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
-        if ((x >= 16) && (x <= 20) && (y >= 33) && ( y <= 36))
-            return TRUE;
-        else if ((x >= 20) && (x <= 23) && (y >= 105) && ( y <= 108))
-            return TRUE;
+// TODO feebas; possibly with a metatile behavior?
+        return FALSE;
     }
     return FALSE;
 }
