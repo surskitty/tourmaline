@@ -1,0 +1,218 @@
+// Note: LOCALIDs and map scripts shared with BattleFrontier_BattlePikeRoomNormal
+
+mapscripts BattleFrontier_BattlePikeRoom_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION: BattleFrontier_BattlePikeRoom_OnTransition
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
+        VAR_TEMP_4, 0: BattleFrontier_BattlePikeRoomNormal_EventScript_InitRoomObjects
+    ]
+}
+
+script BattleFrontier_BattlePikeRoom_OnTransition {
+    pike_setroomobjects
+    pike_getroomtype
+    switch (var(VAR_RESULT)) {
+        case PIKE_ROOM_SINGLE_BATTLE:
+        case PIKE_ROOM_HEAL_FULL:
+        case PIKE_ROOM_HEAL_PART:
+            setobjectxyperm(LOCALID_OBJ_0, 4, 4)
+            setobjectxyperm(LOCALID_OBJ_1, 0, 0)
+        case PIKE_ROOM_NPC:
+            setobjectxyperm(LOCALID_OBJ_0, 5, 5)
+            setobjectxyperm(LOCALID_OBJ_1, 0, 0)
+        case PIKE_ROOM_STATUS:
+        case PIKE_ROOM_HARD_BATTLE:
+            setobjectxyperm(LOCALID_OBJ_0, 4, 4)
+            setobjectxyperm(LOCALID_OBJ_1, 3, 4)
+        case PIKE_ROOM_DOUBLE_BATTLE:
+            setobjectxyperm(LOCALID_OBJ_0, 2, 5)
+            setobjectxyperm(LOCALID_OBJ_1, 6, 5)
+        case PIKE_ROOM_BRAIN:
+            setobjectxyperm(LOCALID_OBJ_0, 4, 3)
+            setobjectxyperm(LOCALID_OBJ_1, 4, 4)
+    }
+}
+
+script BattleFrontier_BattlePikeRoomNormal_EventScript_InitRoomObjects {
+    setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_LINK_RECEPTIONIST)
+    setvar(VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_LINK_RECEPTIONIST)
+    pike_getroomtype
+    switch (var(VAR_RESULT)) {
+        case PIKE_ROOM_STATUS:
+        case PIKE_ROOM_HARD_BATTLE:
+        case PIKE_ROOM_DOUBLE_BATTLE:
+            setvar(VAR_TEMP_4, 1)
+            turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+        case PIKE_ROOM_BRAIN:
+            setvar(VAR_TEMP_4, 1)
+            turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+            // Pike Queen is hidden initially.
+            hideobjectat(LOCALID_OBJ_0, MAP_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_NORMAL) 
+        default:
+            hideobjectat(LOCALID_OBJ_1, MAP_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_NORMAL)
+            setvar(VAR_TEMP_4, 1)
+            turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH)
+    }
+}
+
+script BattleFrontier_BattlePikeThreePathRoom_EventScript_LeftRoomWarp {
+    setvar(VAR_0x8007, PIKE_ROOM_LEFT)
+    goto(BattleFrontier_BattlePikeThreePathRoom_EventScript_RoomWarp)
+}
+
+script BattleFrontier_BattlePikeThreePathRoom_EventScript_CenterRoomWarp {
+    setvar(VAR_0x8007, PIKE_ROOM_CENTER)
+    goto(BattleFrontier_BattlePikeThreePathRoom_EventScript_RoomWarp)
+}
+
+script BattleFrontier_BattlePikeThreePathRoom_EventScript_RightRoomWarp {
+    setvar(VAR_0x8007, PIKE_ROOM_RIGHT)
+    goto(BattleFrontier_BattlePikeThreePathRoom_EventScript_RoomWarp)
+}
+
+script BattleFrontier_BattlePikeThreePathRoom_EventScript_RoomWarp {
+    pike_get(PIKE_DATA_WIN_STREAK)
+    addvar(VAR_RESULT, 1)
+    pike_set(PIKE_DATA_WIN_STREAK, VAR_RESULT)
+    frontier_get(FRONTIER_DATA_BATTLE_NUM)
+    addvar(VAR_RESULT, 1)
+    frontier_set(FRONTIER_DATA_BATTLE_NUM, VAR_RESULT)
+    pike_setnextroom
+    pike_getroomtype
+    switch (var(VAR_RESULT)) {
+        case PIKE_ROOM_SINGLE_BATTLE:
+        case PIKE_ROOM_HEAL_FULL:
+        case PIKE_ROOM_NPC:
+        case PIKE_ROOM_STATUS:
+        case PIKE_ROOM_HEAL_PART:
+        case PIKE_ROOM_HARD_BATTLE:
+        case PIKE_ROOM_DOUBLE_BATTLE:
+        case PIKE_ROOM_BRAIN:
+            applymovement(OBJ_EVENT_ID_PLAYER, BattleFrontier_BattlePikeRoom_Movement_HidePlayer)
+            waitmovement(0)
+            call(BattleFrontier_BattlePike_EventScript_CloseCurtain)
+            warpsilent(MAP_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_NORMAL, 255, 4, 7)
+        case PIKE_ROOM_WILD_MONS:
+            applymovement(OBJ_EVENT_ID_PLAYER, BattleFrontier_BattlePikeRoom_Movement_HidePlayer)
+            waitmovement(0)
+            call(BattleFrontier_BattlePike_EventScript_CloseCurtain)
+            warpsilent(MAP_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS, 255, 4, 19)
+    }
+    waitstate
+}
+
+script BattleFrontier_BattlePikeThreePathRoom_EventScript_SetEnteredRoom {
+    setvar(VAR_TEMP_3, 1)
+    setvar(VAR_TEMP_2, 1)
+}
+
+script BattleFrontier_BattlePikeThreePathRoom_EventScript_NoTurningBack {
+    setvar(VAR_TEMP_3, 0)
+    setvar(VAR_TEMP_2, 0)
+    lockall
+    msgbox(BattleFrontier_BattlePike_Text_PathBlockedNoTurningBack)
+    closemessage
+}
+
+script BattleFrontier_BattlePikeRoomNormal_EventScript_SetEnteredRoom {
+    setvar(VAR_TEMP_3, 1)
+    setvar(VAR_TEMP_2, 1)
+}
+
+script BattleFrontier_BattlePikeRoomNormal_EventScript_NoTurningBack {
+    setvar(VAR_TEMP_3, 0)
+    setvar(VAR_TEMP_2, 0)
+    lockall
+    msgbox(BattleFrontier_BattlePike_Text_PathBlockedNoTurningBack)
+    closemessage
+}
+
+script BattleFrontier_BattlePikeRoomNormal_EventScript_Exit {
+    pike_ispartyfullhealth
+    if (var(VAR_RESULT) == TRUE) {
+        pike_nohealing(TRUE)
+    } else {
+        pike_nohealing(FALSE)
+    }
+    pike_get(PIKE_DATA_WIN_STREAK)
+    addvar(VAR_RESULT, 1)
+    pike_set(PIKE_DATA_WIN_STREAK, VAR_RESULT)
+    frontier_get(FRONTIER_DATA_BATTLE_NUM)
+    addvar(VAR_RESULT, 1)
+    frontier_set(FRONTIER_DATA_BATTLE_NUM, VAR_RESULT)
+    pike_isfinalroom
+    if (var(VAR_RESULT) == TRUE) {
+        call(BattleFrontier_BattlePikeRoom_EventScript_WarpToFinalRoom)
+    } else {
+        call(BattleFrontier_BattlePikeRoom_EventScript_WarpToThreePathRoom)
+    }
+    waitstate
+}
+
+script BattleFrontier_BattlePikeRoom_EventScript_WarpToFinalRoom {
+    applymovement(OBJ_EVENT_ID_PLAYER, BattleFrontier_BattlePikeRoom_Movement_HidePlayer)
+    waitmovement(0)
+    call(BattleFrontier_BattlePike_EventScript_CloseCurtain)
+    warpsilent(MAP_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_FINAL, 255, 2, 7)
+}
+
+script BattleFrontier_BattlePikeRoom_EventScript_WarpToThreePathRoom {
+    applymovement(OBJ_EVENT_ID_PLAYER, BattleFrontier_BattlePikeRoom_Movement_HidePlayer)
+    waitmovement(0)
+    call(BattleFrontier_BattlePike_EventScript_CloseCurtain)
+    warpsilent(MAP_BATTLE_FRONTIER_BATTLE_PIKE_THREE_PATH_ROOM, 255, 6, 10)
+}
+
+script BattleFrontier_BattlePikeRoomWildMons_EventScript_Exit {
+    pike_exitwildmonroom
+    pike_ispartyfullhealth
+    if (var(VAR_RESULT) == TRUE) {
+        pike_nohealing(TRUE)
+    } else {
+        pike_nohealing(FALSE)
+    }
+    pike_get(PIKE_DATA_WIN_STREAK)
+    addvar(VAR_RESULT, 1)
+    pike_set(PIKE_DATA_WIN_STREAK, VAR_RESULT)
+    frontier_get(FRONTIER_DATA_BATTLE_NUM)
+    addvar(VAR_RESULT, 1)
+    frontier_set(FRONTIER_DATA_BATTLE_NUM, VAR_RESULT)
+    pike_isfinalroom
+    if (var(VAR_RESULT) == TRUE) {
+        call(BattleFrontier_BattlePikeRoom_EventScript_WarpToFinalRoom)
+    } else {
+        call(BattleFrontier_BattlePikeRoom_EventScript_WarpToThreePathRoom)
+    }
+    waitstate
+}
+
+script BattleFrontier_BattlePikeRoomWildMons_EventScript_SetEnteredRoom {
+    setvar(VAR_TEMP_3, 1)
+    setvar(VAR_TEMP_2, 1)
+}
+
+script BattleFrontier_BattlePikeRoomWildMons_EventScript_NoTurningBack {
+    setvar(VAR_TEMP_3, 0)
+    setvar(VAR_TEMP_2, 0)
+    lockall
+    msgbox(BattleFrontier_BattlePike_Text_PathBlockedNoTurningBack)
+    closemessage
+}
+
+script BattleFrontier_BattlePike_EventScript_Retire {
+    frontier_set(FRONTIER_DATA_CHALLENGE_STATUS CHALLENGE_STATUS_LOST)
+    warp(MAP_BATTLE_FRONTIER_BATTLE_PIKE_LOBBY, 255, 5, 6)
+    waitstate
+}
+
+script BattleFrontier_BattlePikeRoom_OnResume {
+    setorcopyvar(VAR_0x8006, VAR_RESULT) // Save VAR_RESULT from being overwritten
+    frontier_get(FRONTIER_DATA_CHALLENGE_STATUS)
+    if (var(VAR_RESULT) != CHALLENGE_STATUS_PAUSED && var(VAR_RESULT) != CHALLENGE_STATUS_SAVING) {
+        frontier_resetsketch
+    }
+    setorcopyvar(VAR_RESULT, VAR_0x8006)
+}
+
+movement BattleFrontier_BattlePikeRoom_Movement_HidePlayer {
+    set_invisible
+}

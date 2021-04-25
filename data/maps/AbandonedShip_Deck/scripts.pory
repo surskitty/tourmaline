@@ -1,0 +1,5 @@
+mapscripts AbandonedShip_Deck_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_LANDMARK_ABANDONED_SHIP)
+    }
+}

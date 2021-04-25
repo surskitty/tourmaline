@@ -1,0 +1,45 @@
+script Std_MsgboxNPC {
+    lock
+    faceplayer
+    message(0x0)
+    waitmessage
+    waitbuttonpress
+    release
+}
+
+script Std_MsgboxSign {
+    lockall
+    message(0x0)
+    waitmessage
+    waitbuttonpress
+    releaseall
+}
+
+script Std_MsgboxDefault {
+    message(0x0)
+    waitmessage
+    waitbuttonpress
+}
+
+script Std_MsgboxYesNo {
+    message(0x0)
+    waitmessage
+    yesnobox(20, 8)
+}
+
+script Std_MsgboxGetPoints {
+    message(0x0)
+    playfanfare(MUS_OBTAIN_B_POINTS)
+    waitfanfare
+    waitmessage
+}
+
+script Std_10 {
+    pokenavcall(0x0)
+    waitmessage
+}
+
+script Common_EventScript_SaveGame {
+    special(SaveGame)
+    waitstate
+}

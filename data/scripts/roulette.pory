@@ -1,0 +1,83 @@
+script Roulette_EventScript_Table1 {
+    checkitem(ITEM_COIN_CASE, 1)
+    if (var(VAR_RESULT) == FALSE) {
+        goto(MauvilleCity_GameCorner_EventScript_NoCoinCase)
+    }
+    setvar(VAR_0x8004, 0)
+    getpricereduction(POKENEWS_GAME_CORNER)
+    if (var(VAR_RESULT) == TRUE) {
+        addvar(VAR_0x8004, ROULETTE_SPECIAL_RATE)
+    }
+    special(PlayRoulette)
+    waitstate
+}
+
+script Roulette_EventScript_Table2 {
+    checkitem(ITEM_COIN_CASE, 1)
+    if (var(VAR_RESULT) == FALSE) {
+        goto(MauvilleCity_GameCorner_EventScript_NoCoinCase)
+    }
+    setvar(VAR_0x8004, 1)
+    getpricereduction(POKENEWS_GAME_CORNER)
+    if (var(VAR_RESULT) == TRUE) {
+        addvar(VAR_0x8004, ROULETTE_SPECIAL_RATE)
+    }
+    special(PlayRoulette)
+    waitstate
+}
+
+text Roulette_Text_PlayMinimumWagerIsX {
+    "The minimum wager at this table\n"
+    "is {STR_VAR_1}. Do you want to play?"
+}
+
+text Roulette_Text_NotEnoughCoins {
+    "You don't have enough Coins."
+}
+
+text Roulette_Text_SpecialRateTable {
+    "Special rate table right now!"
+}
+
+text Roulette_Text_ControlsInstruction {
+    "Place your wager with the + Control\n"
+    "Pad, then press the A Button."
+}
+
+text Roulette_Text_ItsAHit {
+    "It's a hit!"
+}
+
+text Roulette_Text_Jackpot {
+    "Jackpot!"
+}
+
+text Roulette_Text_NothingDoing {
+    "Nothing doing!"
+}
+
+text Roulette_Text_YouveWonXCoins {
+    "You've won {STR_VAR_1} Coins!"
+}
+
+text Roulette_Text_NoCoinsLeft {
+    "No Coins left…"
+}
+
+text Roulette_Text_KeepPlaying {
+    "Keep playing?"
+}
+
+text Roulette_Text_BoardWillBeCleared {
+    "The Roulette board will be cleared."
+}
+
+// Unused
+text Roulette_Text_YouDontHaveACoinCase {
+    "You don't have a Coin Case."
+}
+
+text Roulette_Text_CoinCaseIsFull {
+    "Your Coin Case is full!\n"
+    "Coins can be exchanged for prizes."
+}

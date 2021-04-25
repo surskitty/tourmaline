@@ -10,6 +10,10 @@ BattleFrontier_BattlePikeRoomNormal_MapScripts:: @ 825D152
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, BattleFrontier_BattlePikeRoom_OnWarp
 	.byte 0
 
+BattleFrontier_BattlePikeRoom_OnWarp: @ 82C3EDE
+	map_script_2 VAR_TEMP_4, 0, BattleFrontier_BattlePikeRoomNormal_EventScript_InitRoomObjects
+	.2byte 0
+
 BattleFrontier_BattlePikeRoomNormal_OnFrame: @ 825D167
 	map_script_2 VAR_TEMP_0, 0, BattleFrontier_BattlePikeRoomNormal_EventScript_EnterRoom
 	.2byte 0

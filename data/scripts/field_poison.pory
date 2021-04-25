@@ -1,0 +1,41 @@
+script EventScript_FieldPoison {
+    lockall
+    special(TryFieldPoisonWhiteOut)
+    waitstate
+    if (var(VAR_RESULT) == FLDPSN_WHITEOUT) {
+        message(gText_PlayerWhitedOut)
+        waitmessage
+        waitbuttonpress
+        special(Script_FadeOutMapMusic)
+        waitstate
+        fadescreen(FADE_TO_BLACK)
+        if (flag(FLAG_WHITEOUT_TO_LAVARIDGE)) {
+            setrespawn(HEAL_LOCATION_LAVARIDGE_TOWN)
+        }
+        special(SetCB2WhiteOut)
+        waitstate
+    } elif (var(VAR_RESULT) == FLDPSN_FRONTIER_WHITEOUT) {
+        message(gText_PlayerWhitedOut)
+        waitmessage
+        waitbuttonpress
+        pike_inchallenge
+        if (var(VAR_RESULT) == TRUE) {
+            goto(BattleFrontier_BattlePike_EventScript_Retire)
+        }
+        pyramid_inchallenge
+        if (var(VAR_RESULT) == 1 || var(VAR_RESULT) == 2) {
+            goto(BattleFrontier_BattlePyramid_EventScript_WarpToLobbyLost)
+        }
+        trainerhill_inchallenge
+        if (var(VAR_RESULT) == TRUE) {
+            goto(TrainerHill_1F_EventScript_Lost)
+        }
+        special(Script_FadeOutMapMusic)
+        waitstate
+        fadescreen(FADE_TO_BLACK)
+        special(SetCB2WhiteOut)
+        waitstate
+    } else {
+        releaseall
+    }
+}

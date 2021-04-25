@@ -1,0 +1,3 @@
+script EventScript_RepelWoreOff {
+    msgbox("REPEL's effect wore off…", MSGBOX_SIGN)
+}

@@ -24,7 +24,7 @@ Route118_OnLoad: @ 81F3DF3
 	end
 
 Route118_OnFrame: @ 81F3E0A
-	map_script_2 VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_EndEventAndCleanup_1
+	map_script_2 VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_EndEventAndCleanup
 	.2byte 0
 
 Route118_EventScript_GoodRodFisherman:: @ 81F3E14

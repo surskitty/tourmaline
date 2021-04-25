@@ -1,0 +1,414 @@
+const LOCALID_DAYCARE_LADY = 1
+
+script Route117_EventScript_DaycareMan {
+    lock
+    faceplayer
+    special(GetDaycareMonNicknames)
+    specialvar(VAR_RESULT, GetDaycareState)
+    switch (var(VAR_RESULT)) {
+        case DAYCARE_EGG_WAITING:
+            msgbox(Route117_Text_DoYouWantEgg, MSGBOX_YESNO)
+            if (var(VAR_RESULT) == YES) {
+                call(Route117_EventScript_DaycareAcceptEgg)
+            } else {
+                msgbox(Route117_Text_IWillKeepDoYouWantIt, MSGBOX_YESNO)
+                if (var(VAR_RESULT) == YES) {
+                    call(Route117_EventScript_DaycareAcceptEgg)
+                } else {
+                    msgbox(Route117_Text_IllKeepIt)
+                    clearflag(FLAG_PENDING_DAYCARE_EGG)
+                    special(RejectEggFromDayCare)
+                }
+            }
+        case DAYCARE_ONE_MON:
+            special(GetDaycareMonNicknames)
+            msgbox(Route117_Text_YourMonIsDoingFine)
+            setvar(VAR_0x8004, 0)
+            call(Route117_EventScript_CheckMonReceivedMail)
+        case DAYCARE_TWO_MONS:
+            special(GetDaycareMonNicknames)
+            msgbox(Route117_Text_YourMonsAreDoingFine)
+            special(SetDaycareCompatibilityString)
+            special(ShowFieldMessageStringVar4)
+            waitmessage
+            waitbuttonpress
+            setvar(VAR_0x8004, 0)
+            call(Route117_EventScript_CheckMonReceivedMail)
+            setvar(VAR_0x8004, 1)
+            call(Route117_EventScript_CheckMonReceivedMail)
+        default:
+            msgbox(Route117_Text_SeeWifeIfYoudLikeMeToRaiseMon)
+    }
+    release
+}
+
+script Route117_EventScript_DaycareAcceptEgg {
+    specialvar(VAR_RESULT, CalculatePlayerPartyCount)
+    if (var(VAR_RESULT) == PARTY_SIZE) {
+        msgbox(Route117_Text_YouHaveNoRoomForIt)
+    } else {
+        message(Route117_Text_ReceivedEgg)
+        playfanfare(MUS_LEVEL_UP)
+        waitfanfare
+        waitbuttonpress
+        msgbox(Route117_Text_TakeGoodCareOfIt)
+        special(GiveEggFromDaycare)
+        clearflag(FLAG_PENDING_DAYCARE_EGG)
+    }
+}
+
+script Route117_EventScript_CheckMonReceivedMail {
+    specialvar(VAR_RESULT, CheckDaycareMonReceivedMail)
+    if (var(VAR_RESULT) == TRUE) {
+        msgbox(Route117_Text_FriendlyWithOtherTrainersMon)
+    }
+}
+
+script Route117_PokemonDayCare_EventScript_DaycareWoman {
+    lock
+    faceplayer
+    specialvar(VAR_RESULT, GetDaycareState)
+    switch (var(VAR_RESULT)) {
+        case DAYCARE_EGG_WAITING:
+            msgbox(Route117_PokemonDayCare_Text_HusbandWasLookingForYou)
+        case DAYCARE_ONE_MON:
+            msgbox(Route117_PokemonDayCare_Text_GoodToSeeYou)
+            setvar(VAR_0x8004, 0)
+            call(Route117_PokemonDayCare_EventScript_DisplayLevelsGained)
+            msgbox(Route117_PokemonDayCare_Text_WeCanRaiseOneMore, MSGBOX_YESNO)
+            if (var(VAR_RESULT) == YES) {
+                call(Route117_PokemonDayCare_EventScript_GiveMonToRaise)
+            } else {
+                msgbox(Route117_PokemonDayCare_Text_TakeYourMonBack, MSGBOX_YESNO)
+                if (var(VAR_RESULT) == YES) {
+                    call(Route117_PokemonDayCare_EventScript_TryRetrieveMon)
+                } else {
+                    msgbox(Route117_PokemonDayCare_Text_FineThenComeAgain)
+                }
+            }
+        case DAYCARE_TWO_MONS:
+            msgbox(Route117_PokemonDayCare_Text_GoodToSeeYou)
+            setvar(VAR_0x8004, 0)
+            call(Route117_PokemonDayCare_EventScript_DisplayLevelsGained)
+            setvar(VAR_0x8004, 1)
+            call(Route117_PokemonDayCare_EventScript_DisplayLevelsGained)
+            msgbox(Route117_PokemonDayCare_Text_TakeYourMonBack, MSGBOX_YESNO)
+            if (var(VAR_RESULT) == YES) {
+                call(Route117_PokemonDayCare_EventScript_TryRetrieveMon)
+            } else {
+                msgbox(Route117_PokemonDayCare_Text_ComeAgain)
+            }
+        default:
+            msgbox(Route117_PokemonDayCare_Text_WouldYouLikeUsToRaiseAMon, MSGBOX_YESNO)
+            if (var(VAR_RESULT) == YES) {
+                call(Route117_PokemonDayCare_EventScript_GiveMonToRaise)
+            } else {
+                msgbox(Route117_PokemonDayCare_Text_FineThenComeAgain)
+            }
+    }
+    release
+}
+
+script Route117_PokemonDayCare_EventScript_GiveMonToRaise {
+    specialvar(VAR_RESULT, CountPartyNonEggMons)
+    if (var(VAR_RESULT) == 1) {
+        msgbox(Route117_PokemonDayCare_Text_YouHaveJustOneMon)
+        return
+    }
+    specialvar(VAR_RESULT, CountPartyAliveNonEggMons)
+    if (var(VAR_RESULT) == 2) {
+        msgbox(Route117_PokemonDayCare_Text_YoullBeLeftWithJustOne)
+        return
+    }
+    msgbox(Route117_PokemonDayCare_Text_WhichMonShouldWeRaise)
+    fadescreen(FADE_TO_BLACK)
+    special(ChooseSendDaycareMon)
+    waitstate
+    if (var(VAR_0x8004) == 255) {
+        msgbox(Route117_PokemonDayCare_Text_ComeAgain)
+        return
+    }
+    specialvar(VAR_RESULT, CountPartyAliveNonEggMons_IgnoreVar0x8004Slot)
+    if (var(VAR_RESULT) == 0) {
+        msgbox(Route117_PokemonDayCare_Text_WhatWillYouBattleWith)
+        return
+    }
+    specialvar(VAR_0x8005, GetSelectedMonNicknameAndSpecies)
+    waitse
+    playmoncry(VAR_0x8005, 0)
+    msgbox(Route117_PokemonDayCare_Text_WellRaiseYourMon)
+    waitmoncry
+    special(StoreSelectedPokemonInDaycare)
+    incrementgamestat(GAME_STAT_USED_DAYCARE)
+    specialvar(VAR_RESULT, GetDaycareState)
+    if (var(VAR_RESULT) == DAYCARE_ONE_MON) {
+        msgbox(Route117_PokemonDayCare_Text_WeCanRaiseOneMore, MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES) {
+            goto(Route117_PokemonDayCare_EventScript_GiveMonToRaise)
+        } else {
+            msgbox(Route117_PokemonDayCare_Text_ComeAgain)
+        }
+    }
+}
+
+script Route117_PokemonDayCare_EventScript_DisplayLevelsGained {
+    specialvar(VAR_RESULT, GetNumLevelsGainedFromDaycare)
+    if (var(VAR_RESULT) != 0) {
+        msgbox(Route117_PokemonDayCare_Text_YourMonHasGrownXLevels)
+    }
+}
+
+script Route117_PokemonDayCare_EventScript_TryRetrieveMon {
+    specialvar(VAR_RESULT, CalculatePlayerPartyCount)
+    if (var(VAR_RESULT) == PARTY_SIZE) {
+        msgbox(Route117_PokemonDayCare_Text_YourTeamIsFull)
+        return
+    }
+    specialvar(VAR_RESULT, GetDaycareState)
+    setvar(VAR_0x8004, 0)
+    if (var(VAR_RESULT) == DAYCARE_ONE_MON) {
+        call(Route117_PokemonDayCare_EventScript_CostPrompt)
+        return
+    }
+    special(ShowDaycareLevelMenu)
+    waitstate
+    copyvar(VAR_0x8004, VAR_RESULT)
+    if (var(VAR_RESULT) == DAYCARE_EXITED_LEVEL_MENU) {
+        msgbox(Route117_PokemonDayCare_Text_ComeAgain)
+    } else {
+        call(Route117_PokemonDayCare_EventScript_CostPrompt)
+    }
+}
+
+script Route117_PokemonDayCare_EventScript_CostPrompt {
+    special(GetDaycareCost)
+    msgbox(Route117_PokemonDayCare_Text_ItWillCostX, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        specialvar(VAR_RESULT, IsEnoughForCostInVar0x8005)
+        if (var(VAR_RESULT) == 1) {
+            applymovement(LOCALID_DAYCARE_LADY, Route117_PokemonDayCare_Movement_RetrieveDaycareMon)
+            waitmovement(0)
+            specialvar(VAR_RESULT, TakePokemonFromDaycare)
+            special(SubtractMoneyFromVar0x8005)
+            playse(SE_SHOP)
+            msgbox(Route117_PokemonDayCare_Text_HeresYourMon)
+            waitse
+            playmoncry(VAR_RESULT, 0)
+            msgbox(Route117_PokemonDayCare_Text_TookBackMon)
+            waitmoncry
+            specialvar(VAR_RESULT, GetDaycareState)
+            if (var(VAR_RESULT) == DAYCARE_ONE_MON) {
+                msgbox(Route117_PokemonDayCare_Text_TakeOtherOneBackToo, MSGBOX_YESNO)
+                if (var(VAR_RESULT) == YES) {
+                    goto(Route117_PokemonDayCare_EventScript_TryRetrieveMon)
+                } else {
+                    msgbox(Route117_PokemonDayCare_Text_ComeAgain)
+                }
+            } else {
+                msgbox(Route117_PokemonDayCare_Text_ComeAgain)
+            }
+        } else {
+            msgbox(Route117_PokemonDayCare_Text_NotEnoughMoney)
+        }
+    } else {
+        msgbox(Route117_PokemonDayCare_Text_ComeAgain)
+    }
+}
+
+movement Route117_PokemonDayCare_Movement_RetrieveDaycareMon {
+    delay_16 * 2
+    face_left
+    delay_16 * 2
+    face_right
+    delay_16 * 2
+    face_up
+    walk_slow_up
+    set_invisible
+    delay_16 * 5
+    face_down
+    set_visible
+    walk_slow_down
+}
+
+script EventScript_EggHatch {
+    lockall
+    msgbox(Text_EggHatchHuh)
+    special(EggHatch)
+    waitstate
+    releaseall
+}
+
+text Route117_Text_SeeWifeIfYoudLikeMeToRaiseMon {
+    "I'm the Daycare Man.\p"
+    "I help take care of the precious\n"
+    "Pokémon of Trainers.\p"
+    "If you'd like me to raise your Pokémon,\n"
+    "have a word with my wife."
+}
+
+text Route117_Text_DoYouWantEgg {
+    "Ah, it's you!\p"
+    "We were raising your Pokémon,\n"
+    "and my goodness, were we surprised!\p"
+    "Your Pokémon had an Egg!\p"
+    "We don't know how it got there,\n"
+    "but your Pokémon had it.\p"
+    "You do want it, yes?"
+}
+
+text Route117_Text_YourMonIsDoingFine {
+    "Ah, it's you! Good to see you.\n"
+    "Your {STR_VAR_1}'s doing fine."
+}
+
+text Route117_Text_IllKeepIt {
+    "Well then, I'll keep it.\n"
+    "Thanks!"
+}
+
+text Route117_Text_YouHaveNoRoomForIt {
+    "You have no room for it…\n"
+    "Come back when you've made room."
+}
+
+text Route117_Text_ReceivedEgg {
+    "{PLAYER} received the Egg from\n"
+    "the Daycare Man."
+}
+
+text Route117_Text_TakeGoodCareOfIt {
+    "Take good care of it."
+}
+
+text Route117_Text_FriendlyWithOtherTrainersMon {
+    "By the way, about your {STR_VAR_1},\n"
+    "it seemed to be friendly with\l"
+    "{STR_VAR_2}'s {STR_VAR_3}.\p"
+    "I may even have seen it receiving\n"
+    "a piece of Mail."
+}
+
+// Unused
+text Route117_Text_SeeWifeIfYouWantToPickUpMon {
+    "If you want to pick up your Pokémon,\n"
+    "have a word with my wife."
+}
+
+text Route117_Text_YourMonsAreDoingFine {
+    "Ah, it's you! Your {STR_VAR_1} and\n"
+    "{STR_VAR_2} are doing fine."
+}
+
+text Route117_Text_IWillKeepDoYouWantIt {
+    "I really will keep it.\n"
+    "You do want this, yes?"
+}
+
+text Route117_PokemonDayCare_Text_WouldYouLikeUsToRaiseAMon {
+    "I'm the DAY-CARE LADY.\p"
+    "We can raise Pokémon for you.\p"
+    "Would you like us to raise one?"
+}
+
+text Route117_PokemonDayCare_Text_WhichMonShouldWeRaise {
+    "Which Pokémon should we raise for\n"
+    "you?"
+}
+
+text Route117_PokemonDayCare_Text_WellRaiseYourMon {
+    "Fine, we'll raise your {STR_VAR_1}\n"
+    "for a while.\p"
+    "Come back for it later."
+}
+
+text Route117_PokemonDayCare_Text_WeCanRaiseOneMore {
+    "We can raise two of your Pokémon.\n"
+    "Would you like us to raise one more?"
+}
+
+text Route117_PokemonDayCare_Text_HusbandWasLookingForYou {
+    "My husband was looking for you."
+}
+
+text Route117_PokemonDayCare_Text_FineThenComeAgain {
+    "Oh, fine, then.\n"
+    "Come again."
+}
+
+text Route117_PokemonDayCare_Text_NotEnoughMoney {
+    "You don't have enough money…"
+}
+
+text Route117_PokemonDayCare_Text_TakeOtherOneBackToo {
+    "Will you take back the other one,\n"
+    "too?"
+}
+
+text Route117_PokemonDayCare_Text_ComeAgain {
+    "Fine.\n"
+    "Come again."
+}
+
+text Route117_PokemonDayCare_Text_GoodToSeeYou {
+    "Ah, it's you! Good to see you.\n"
+    "Your Pokémon can only be doing good!"
+}
+
+text Route117_PokemonDayCare_Text_YourMonHasGrownXLevels {
+    "By level, your {STR_VAR_1} has\n"
+    "grown by {STR_VAR_2}."
+}
+
+text Route117_PokemonDayCare_Text_YourTeamIsFull {
+    "Your Pokémon team is full.\n"
+    "Make room, then come see me."
+}
+
+// Unused
+text Route117_PokemonDayCare_Text_TakeBackWhichMon {
+    "Which Pokémon will you take back?"
+}
+
+text Route117_PokemonDayCare_Text_ItWillCostX {
+    "If you want your {STR_VAR_1} back,\n"
+    "it will cost ¥{STR_VAR_2}."
+}
+
+text Route117_PokemonDayCare_Text_HeresYourMon {
+    "Perfect!\n"
+    "Here's your Pokémon."
+}
+
+text Route117_PokemonDayCare_Text_TookBackMon {
+    "{PLAYER} took back {STR_VAR_1} from\n"
+    "the Daycare Lady."
+}
+
+text Route117_PokemonDayCare_Text_YouHaveJustOneMon {
+    "Oh? But you have just one\n"
+    "Pokémon.\p"
+    "Come back another time."
+}
+
+text Route117_PokemonDayCare_Text_TakeYourMonBack {
+    "Will you take your Pokémon back?"
+}
+
+text Route117_PokemonDayCare_Text_WhatWillYouBattleWith {
+    "If you leave me that Pokémon,\n"
+    "what will you battle with?\p"
+    "Come back another time."
+}
+
+text Text_EggHatchHuh {
+    "Huh?"
+}
+
+text Route117_PokemonDayCare_Text_YoullBeLeftWithJustOne {
+    "Huh?\n"
+    "Now, now.\p"
+    "If you leave that Pokémon with\n"
+    "me, you'll be left with just one.\p"
+    "You will be better off if you catch\n"
+    "some more, I dare say."
+}

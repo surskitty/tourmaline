@@ -1,0 +1,209 @@
+// Gabby and Ty always move to the same spots for the first 5 battles
+// From the 6th battle onwards, they move randomly between locations 6-8
+// Note: The local IDs of Gabby and Ty are hard-coded in GabbyAndTySetScriptVarsToObjectEventLocalIds
+script GabbyAndTy_EventScript_UpdateLocation {
+    cleartrainerflag(TRAINER_GABBY_AND_TY_6)
+    specialvar(VAR_RESULT, GabbyAndTyGetBattleNum)
+    switch (var(VAR_RESULT)) {
+        case 0:
+            clearflag(FLAG_HIDE_ROUTE_111_GABBY_AND_TY_1)
+        case 1:
+            clearflag(FLAG_HIDE_ROUTE_118_GABBY_AND_TY_1)
+            setflag(FLAG_HIDE_ROUTE_111_GABBY_AND_TY_1)
+        case 2:
+            clearflag(FLAG_HIDE_ROUTE_120_GABBY_AND_TY_1)
+            setflag(FLAG_HIDE_ROUTE_118_GABBY_AND_TY_1)
+        case 3:
+            clearflag(FLAG_HIDE_ROUTE_111_GABBY_AND_TY_3)
+            setflag(FLAG_HIDE_ROUTE_120_GABBY_AND_TY_1)
+        case 4:
+            clearflag(FLAG_HIDE_ROUTE_118_GABBY_AND_TY_2)
+            setflag(FLAG_HIDE_ROUTE_111_GABBY_AND_TY_3)
+        case 5:
+            clearflag(FLAG_HIDE_ROUTE_120_GABBY_AND_TY_2)
+            setflag(FLAG_HIDE_ROUTE_118_GABBY_AND_TY_2)
+        case 6:
+            clearflag(FLAG_HIDE_ROUTE_111_GABBY_AND_TY_2)
+            setflag(FLAG_HIDE_ROUTE_120_GABBY_AND_TY_2)
+        case 7:
+            clearflag(FLAG_HIDE_ROUTE_118_GABBY_AND_TY_3)
+            setflag(FLAG_HIDE_ROUTE_111_GABBY_AND_TY_2)
+        case 8:
+            clearflag(FLAG_HIDE_ROUTE_120_GABBY_AND_TY_2)
+            setflag(FLAG_HIDE_ROUTE_118_GABBY_AND_TY_3)
+    }
+}
+
+script GabbyAndTy_EventScript_GabbyBattle1 {
+    trainerbattle_double(TRAINER_GABBY_AND_TY_1, GabbyAndTy_Text_GabbyPreFirstBattle, GabbyAndTy_Text_GabbyDefeatFirstTime, GabbyAndTy_Text_GabbyNotEnoughMons, GabbyAndTy_EventScript_FirstInterview)
+    msgbox(GabbyAndTy_Text_KeepingAnEyeOutForYou)
+    release
+}
+
+script GabbyAndTy_EventScript_TyBattle1 {
+    trainerbattle_double(TRAINER_GABBY_AND_TY_1, GabbyAndTy_Text_TyPreFirstBattle, GabbyAndTy_Text_TyDefeatFirstTime, GabbyAndTy_Text_TyNotEnoughMons, GabbyAndTy_EventScript_FirstInterview)
+    msgbox(GabbyAndTy_Text_TyPostBattle)
+    release
+}
+
+script GabbyAndTy_EventScript_GabbyBattle2 {
+    trainerbattle_double(TRAINER_GABBY_AND_TY_2, GabbyAndTy_Text_GabbyIntro, GabbyAndTy_Text_GabbyDefeat, GabbyAndTy_Text_GabbyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview)
+    msgbox(GabbyAndTy_Text_KeepingAnEyeOutForYou)
+    release
+}
+
+script GabbyAndTy_EventScript_TyBattle2 {
+    trainerbattle_double(TRAINER_GABBY_AND_TY_2, GabbyAndTy_Text_TyIntro, GabbyAndTy_Text_TyDefeat, GabbyAndTy_Text_TyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview)
+    msgbox(GabbyAndTy_Text_TyPostBattle)
+    release
+}
+
+script GabbyAndTy_EventScript_GabbyBattle3 {
+    trainerbattle_double(TRAINER_GABBY_AND_TY_3, GabbyAndTy_Text_GabbyIntro, GabbyAndTy_Text_GabbyDefeat, GabbyAndTy_Text_GabbyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview)
+    msgbox(GabbyAndTy_Text_KeepingAnEyeOutForYou)
+    release
+}
+
+script GabbyAndTy_EventScript_TyBattle3 {
+    trainerbattle_double(TRAINER_GABBY_AND_TY_3, GabbyAndTy_Text_TyIntro, GabbyAndTy_Text_TyDefeat, GabbyAndTy_Text_TyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview)
+    msgbox(GabbyAndTy_Text_TyPostBattle)
+    release
+}
+
+script GabbyAndTy_EventScript_GabbyBattle4 {
+    trainerbattle_double(TRAINER_GABBY_AND_TY_4, GabbyAndTy_Text_GabbyIntro, GabbyAndTy_Text_GabbyDefeat, GabbyAndTy_Text_GabbyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview)
+    msgbox(GabbyAndTy_Text_KeepingAnEyeOutForYou)
+    release
+}
+
+script GabbyAndTy_EventScript_TyBattle4 {
+    trainerbattle_double(TRAINER_GABBY_AND_TY_4, GabbyAndTy_Text_TyIntro, GabbyAndTy_Text_TyDefeat, GabbyAndTy_Text_TyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview)
+    msgbox(GabbyAndTy_Text_TyPostBattle)
+    release
+}
+
+script GabbyAndTy_EventScript_GabbyBattle5 {
+    trainerbattle_double(TRAINER_GABBY_AND_TY_5, GabbyAndTy_Text_GabbyIntro, GabbyAndTy_Text_GabbyDefeat, GabbyAndTy_Text_GabbyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview)
+    msgbox(GabbyAndTy_Text_KeepingAnEyeOutForYou)
+    release
+}
+
+script GabbyAndTy_EventScript_TyBattle5 {
+    trainerbattle_double(TRAINER_GABBY_AND_TY_5, GabbyAndTy_Text_TyIntro, GabbyAndTy_Text_TyDefeat, GabbyAndTy_Text_TyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview)
+    msgbox(GabbyAndTy_Text_TyPostBattle)
+    release
+}
+
+script GabbyAndTy_EventScript_GabbyBattle6 {
+    trainerbattle_double(TRAINER_GABBY_AND_TY_6, GabbyAndTy_Text_GabbyIntro, GabbyAndTy_Text_GabbyDefeat, GabbyAndTy_Text_GabbyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview)
+    msgbox(GabbyAndTy_Text_KeepingAnEyeOutForYou)
+    release
+}
+
+script GabbyAndTy_EventScript_TyBattle6 {
+    trainerbattle_double(TRAINER_GABBY_AND_TY_6, GabbyAndTy_Text_TyIntro, GabbyAndTy_Text_TyDefeat, GabbyAndTy_Text_TyNotEnoughMons, GabbyAndTy_EventScript_RequestInterview)
+    msgbox(GabbyAndTy_Text_TyPostBattle)
+    release
+}
+
+script GabbyAndTy_EventScript_FirstInterview {
+    special(GabbyAndTyBeforeInterview)
+    special(GabbyAndTySetScriptVarsToObjectEventLocalIds)
+    switch (var(VAR_FACING)) {
+        case DIR_NORTH:
+            applymovement(VAR_0x8004, GabbyAndTy_Movement_WalkInPlaceDown)
+            waitmovement(0)
+        case DIR_SOUTH:
+            applymovement(VAR_0x8004, GabbyAndTy_Movement_WalkInPlaceUp)
+            applymovement(VAR_0x8005, Common_Movement_WalkInPlaceFastestUp)
+            waitmovement(0)
+        case DIR_EAST:
+            applymovement(VAR_0x8004, GabbyAndTy_Movement_WalkInPlaceLeft)
+            applymovement(VAR_0x8005, Common_Movement_WalkInPlaceFastestLeft)
+            waitmovement(0)
+    }
+    if (flag(FLAG_TEMP_1)) {
+        msgbox(GabbyAndTy_Text_KeepingAnEyeOutForYou)
+        release
+    } else {
+        msgbox(GabbyAndTy_Text_WhoAreYouInterview, MSGBOX_YESNO)
+        goto(GabbyAndTy_EventScript_Interview)
+    }
+}
+
+script GabbyAndTy_EventScript_RequestInterview {
+    special(GabbyAndTyBeforeInterview)
+    special(GabbyAndTySetScriptVarsToObjectEventLocalIds)
+    switch (var(VAR_FACING)) {
+        case DIR_NORTH:
+            applymovement(VAR_0x8004, GabbyAndTy_Movement_WalkInPlaceDown)
+            waitmovement(0)
+        case DIR_SOUTH:
+            applymovement(VAR_0x8004, GabbyAndTy_Movement_WalkInPlaceUp)
+            applymovement(VAR_0x8005, Common_Movement_WalkInPlaceFastestUp)
+            waitmovement(0)
+        case DIR_EAST:
+            applymovement(VAR_0x8004, GabbyAndTy_Movement_WalkInPlaceLeft)
+            applymovement(VAR_0x8005, Common_Movement_WalkInPlaceFastestLeft)
+            waitmovement(0)
+    }
+    if (flag(FLAG_TEMP_1)) {
+        msgbox(GabbyAndTy_Text_KeepingAnEyeOutForYou)
+        release
+    } else {
+        specialvar(VAR_RESULT, GabbyAndTyGetLastQuote)
+        if (var(VAR_RESULT) == 0) {
+            msgbox(GabbyAndTy_Text_GiveUsAnInterviewThisTime, MSGBOX_YESNO)
+            goto(GabbyAndTy_EventScript_Interview)
+        }
+        msgbox(GabbyAndTy_Text_QuoteFromLastInterview)
+        specialvar(VAR_RESULT, GabbyAndTyGetLastBattleTrivia)
+        switch (var(VAR_RESULT)) {
+            case 0:
+                msgbox(GabbyAndTy_Text_InterviewAgain, MSGBOX_YESNO)
+            case 1:
+                msgbox(GabbyAndTy_Text_YouStompedUsInterviewAgain, MSGBOX_YESNO)
+            case 2:
+                msgbox(GabbyAndTy_Text_YouThrewABallAtUsInterviewAgain, MSGBOX_YESNO)
+            case 3:
+                msgbox(GabbyAndTy_Text_CleverItemSkillsInterviewAgain, MSGBOX_YESNO)
+            case 4:
+                msgbox(GabbyAndTy_Text_WeLookedRespectableInterviewAgain, MSGBOX_YESNO)
+        }
+        goto(GabbyAndTy_EventScript_Interview)
+    }
+}
+
+movement GabbyAndTy_Movement_WalkInPlaceDown {
+    walk_in_place_down
+}
+
+movement GabbyAndTy_Movement_WalkInPlaceUp {
+    walk_in_place_up
+}
+
+movement GabbyAndTy_Movement_WalkInPlaceLeft {
+    walk_in_place_left
+}
+
+script GabbyAndTy_EventScript_Interview {
+    if (var(VAR_RESULT) == NO) {
+        msgbox(GabbyAndTy_Text_DontGiveUpKeepingEyeOut)
+        setflag(FLAG_TEMP_1)
+    } else {
+        msgbox(GabbyAndTy_Text_DescribeYourFeelings)
+        setvar(VAR_0x8004, EASY_CHAT_TYPE_GABBY_AND_TY)
+        call(Common_ShowEasyChatScreen)
+        lock
+        faceplayer
+        if (var(VAR_RESULT) == 0) {
+            msgbox(GabbyAndTy_Text_DontGiveUpKeepingEyeOut)
+            setflag(FLAG_TEMP_1)
+        } else {
+            msgbox(GabbyAndTy_Text_PerfectWellBeSeeingYou)
+            special(GabbyAndTyAfterInterview)
+            setflag(FLAG_TEMP_1)
+        }
+    }
+    release
+}

@@ -1,0 +1,544 @@
+// Local IDs are the same for both players houses
+const LOCALID_MOM = 1
+const LOCALID_DAD = 5
+const LOCALID_MOM_2F = 14
+
+script PlayersHouse_2F_EventScript_BlockStairsUntilClockIsSet {
+    setvar(VAR_LITTLEROOT_INTRO_STATE, 5)
+}
+
+script PlayersHouse_1F_EventScript_EnterHouseMovingIn {
+    msgbox(PlayersHouse_1F_Text_IsntItNiceInHere)
+    applymovement(VAR_0x8004, Common_Movement_FacePlayer)
+    waitmovement(0)
+    if (var(VAR_0x8005) == MALE) {
+        applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight)
+    } else {
+        applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft)
+    }
+    waitmovement(0)
+    msgbox(PlayersHouse_1F_Text_MoversPokemonGoSetClock)
+    closemessage
+    setvar(VAR_LITTLEROOT_INTRO_STATE, 4)
+    applymovement(OBJ_EVENT_ID_PLAYER, PlayersHouse_1F_Movement_PlayerWalkIn)
+    applymovement(VAR_0x8004, Common_Movement_WalkInPlaceFastestUp)
+    waitmovement(0)
+    releaseall
+}
+
+movement PlayersHouse_1F_Movement_PlayerWalkIn {
+    walk_up
+}
+
+script PlayersHouse_1F_EventScript_MomGoSeeRoom {
+    msgbox(PlayersHouse_1F_Text_ArentYouInterestedInRoom)
+    closemessage
+    applymovement(VAR_0x8004, Common_Movement_WalkInPlaceFastestUp)
+    applymovement(OBJ_EVENT_ID_PLAYER, PlayersHouse_1F_Movement_MovePlayerAwayFromDoor)
+    waitmovement(0)
+    releaseall
+}
+
+script LittlerootTown_BrendansHouse_2F_EventScript_WallClock {
+    lockall
+    setvar(VAR_0x8004, MALE)
+    goto(PlayersHouse_2F_EventScript_WallClock)
+}
+
+script LittlerootTown_MaysHouse_2F_EventScript_WallClock {
+    lockall
+    setvar(VAR_0x8004, FEMALE)
+    goto(PlayersHouse_2F_EventScript_WallClock)
+}
+
+script PlayersHouse_2F_EventScript_WallClock {
+    if (flag(FLAG_SET_WALL_CLOCK)) {
+        incrementgamestat(GAME_STAT_CHECKED_CLOCK)
+        fadescreen(FADE_TO_BLACK)
+        special(Special_ViewWallClock)
+        waitstate
+    } else {
+        msgbox(PlayersHouse_2F_Text_ClockIsStopped)
+        fadescreen(FADE_TO_BLACK)
+        special(StartWallClock)
+        waitstate
+        delay(30)
+        setvar(VAR_LITTLEROOT_INTRO_STATE, 6)
+        setflag(FLAG_SET_WALL_CLOCK)
+        setflag(FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_1)
+        setflag(FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_2)
+        setvar(VAR_0x8008, LOCALID_MOM_2F)
+        addobject(VAR_0x8008)
+        checkplayergender
+        if (var(VAR_RESULT) == MALE) {
+            applymovement(VAR_0x8008, PlayersHouse_2F_Movement_MomEntersMale)
+            waitmovement(0)
+            applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight)
+        } else {
+            applymovement(VAR_0x8008, PlayersHouse_2F_Movement_MomEntersFemale)
+            waitmovement(0)
+            applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft)
+        }
+        waitmovement(0)
+        msgbox(PlayersHouse_2F_Text_HowDoYouLikeYourRoom)
+        closemessage
+        if (var(VAR_RESULT) == MALE) {
+            applymovement(VAR_0x8008, PlayersHouse_2F_Movement_MomExitsMale)
+        } else {
+            applymovement(VAR_0x8008, PlayersHouse_2F_Movement_MomExitsFemale)
+        }
+        waitmovement(0)
+        playse(SE_EXIT)
+        removeobject(VAR_0x8008)
+    }
+    releaseall
+}
+
+movement PlayersHouse_2F_Movement_MomEntersMale {
+    delay_8
+    walk_down
+    walk_in_place_fastest_left
+    delay_16
+    delay_8
+    walk_left
+}
+
+movement PlayersHouse_2F_Movement_MomExitsMale {
+    walk_right
+    walk_up
+    delay_8
+}
+
+movement PlayersHouse_2F_Movement_MomEntersFemale {
+    delay_8
+    walk_down
+    walk_in_place_fastest_right
+    delay_16
+    delay_8
+    walk_right
+}
+
+movement PlayersHouse_2F_Movement_MomExitsFemale {
+    walk_left
+    walk_up
+    delay_8
+}
+
+script PlayersHouse_1F_EventScript_PetalburgGymReportMale {
+    applymovement(VAR_0x8005, Common_Movement_WalkInPlaceFastestRight)
+    waitmovement(0)
+    call(PlayersHouse_1F_EventScript_MomNoticeGymBroadcast)
+    applymovement(OBJ_EVENT_ID_PLAYER, PlayersHouse_1F_Movement_PlayerApproachTVForGymMale)
+    waitmovement(0)
+    playbgm(MUS_ENCOUNTER_INTERVIEWER, 0)
+    msgbox(PlayersHouse_1F_Text_MaybeDadWillBeOn)
+    closemessage
+    applymovement(VAR_0x8005, PlayersHouse_1F_Movement_MomMakeRoomToSeeTVMale)
+    waitmovement(0)
+    applymovement(OBJ_EVENT_ID_PLAYER, PlayersHouse_1F_Movement_PlayerMoveToTVMale)
+    waitmovement(0)
+    call(PlayersHouse_1F_EventScript_WatchGymBroadcast)
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft)
+    waitmovement(0)
+    msgbox(PlayersHouse_1F_Text_ItsOverWeMissedHim)
+    msgbox(PlayersHouse_1F_Text_GoIntroduceYourselfNextDoor)
+    closemessage
+    setvar(VAR_TEMP_1, 1)
+    applymovement(VAR_0x8005, PlayersHouse_1F_Movement_MomReturnToSeatMale)
+    waitmovement(0)
+    setvar(VAR_LITTLEROOT_INTRO_STATE, 7)
+    releaseall
+}
+
+script PlayersHouse_1F_EventScript_PetalburgGymReportFemale {
+    applymovement(VAR_0x8005, Common_Movement_WalkInPlaceFastestLeft)
+    waitmovement(0)
+    call(PlayersHouse_1F_EventScript_MomNoticeGymBroadcast)
+    applymovement(OBJ_EVENT_ID_PLAYER, PlayersHouse_1F_Movement_PlayerApproachTVForGymFemale)
+    waitmovement(0)
+    playbgm(MUS_ENCOUNTER_INTERVIEWER, 0)
+    msgbox(PlayersHouse_1F_Text_MaybeDadWillBeOn)
+    closemessage
+    applymovement(VAR_0x8005, PlayersHouse_1F_Movement_MomMakeRoomToSeeTVFemale)
+    waitmovement(0)
+    applymovement(OBJ_EVENT_ID_PLAYER, PlayersHouse_1F_Movement_PlayerMoveToTVFemale)
+    waitmovement(0)
+    call(PlayersHouse_1F_EventScript_WatchGymBroadcast)
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight)
+    waitmovement(0)
+    msgbox(PlayersHouse_1F_Text_ItsOverWeMissedHim)
+    msgbox(PlayersHouse_1F_Text_GoIntroduceYourselfNextDoor)
+    closemessage
+    setvar(VAR_TEMP_1, 1)
+    applymovement(VAR_0x8005, PlayersHouse_1F_Movement_MomReturnToSeatFemale)
+    waitmovement(0)
+    setvar(VAR_LITTLEROOT_INTRO_STATE, 7)
+    releaseall
+}
+
+script PlayersHouse_1F_EventScript_MomNoticeGymBroadcast {
+    playse(SE_PIN)
+    applymovement(VAR_0x8005, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    applymovement(VAR_0x8005, Common_Movement_Delay48)
+    waitmovement(0)
+    msgbox(PlayersHouse_1F_Text_OhComeQuickly)
+    closemessage
+}
+
+script PlayersHouse_1F_EventScript_WatchGymBroadcast {
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp)
+    waitmovement(0)
+    msgbox(PlayersHouse_1F_Text_ReportFromPetalburgGym)
+    fadedefaultbgm
+    special(TurnOffTVScreen)
+    setflag(FLAG_SYS_TV_HOME)
+    delay(35)
+}
+
+movement PlayersHouse_1F_Movement_MomApproachDadMale {
+    walk_up
+    walk_right * 4
+    walk_down
+    walk_in_place_fastest_right
+}
+
+movement PlayersHouse_1F_Movement_MomApproachDadFemale {
+    walk_up
+    walk_left * 4
+    walk_down
+    walk_in_place_fastest_left
+}
+
+movement PlayersHouse_1F_Movement_MomApproachPlayerMale {
+    walk_right
+}
+
+movement PlayersHouse_1F_Movement_MomApproachPlayerFemale {
+    walk_left
+}
+
+movement PlayersHouse_1F_Movement_MomNoticesLatiBroadcastMale {
+    walk_in_place_fastest_left
+    delay_16 * 4
+    walk_in_place_fastest_right
+    delay_16 * 2
+}
+
+movement PlayersHouse_1F_Movement_MomNoticesLatiBroadcastFemale {
+    walk_in_place_fastest_right
+    delay_16 * 4
+    walk_in_place_fastest_left
+    delay_16 * 2
+}
+
+movement PlayersHouse_1F_Movement_MomApproachPlayerAfterTVMale {
+    walk_up
+    walk_left * 2
+}
+
+movement PlayersHouse_1F_Movement_MomApproachPlayerAfterTVFemale {
+    walk_up
+    walk_right * 2
+}
+
+movement PlayersHouse_1F_Movement_MomMakeRoomToSeeTVMale {
+    walk_left
+    walk_in_place_fastest_right
+}
+
+movement PlayersHouse_1F_Movement_MomMakeRoomToSeeTVFemale {
+    walk_right
+    walk_in_place_fastest_left
+}
+
+movement PlayersHouse_1F_Movement_MomReturnToSeatMale {
+    walk_left
+    walk_down
+    walk_in_place_fastest_right
+}
+
+movement PlayersHouse_1F_Movement_MomReturnToSeatFemale {
+    walk_right
+    walk_down
+    walk_in_place_fastest_left
+}
+
+script PlayersHouse_1F_EventScript_Mom {
+    lock
+    faceplayer
+    if (var(VAR_LITTLEROOT_HOUSES_STATE_MAY) == 4 || var(VAR_LITTLEROOT_HOUSES_STATE_BRENDAN) == 4) {
+        msgbox(PlayersHouse_1F_Text_DontPushYourselfTooHard)
+    } elif (flag(FLAG_HAS_MATCH_CALL)) {
+        if (flag(FLAG_ENABLE_MOM_MATCH_CALL)) {
+            if (flag(FLAG_BADGE05_GET) && !flag(FLAG_RECEIVED_AMULET_COIN)) {
+                msgbox(PlayersHouse_1F_Text_GotDadsBadgeHeresSomethingFromMom)
+                giveitem(ITEM_AMULET_COIN)
+                if (var(VAR_RESULT) == FALSE) {
+                    goto(Common_EventScript_ShowBagIsFull)
+                } else {
+                    msgbox(PlayersHouse_1F_Text_DontPushYourselfTooHard)
+                    setflag(FLAG_RECEIVED_AMULET_COIN)
+                }
+            } else {
+                call(PlayersHouse_1F_EventScript_MomHealsParty)
+            }
+        } else {
+            msgbox(PlayersHouse_1F_Text_IsThatAPokenav)
+            closemessage
+            delay(30)
+            playfanfare(MUS_REGISTER_MATCH_CALL)
+            msgbox(PlayersHouse_1F_Text_RegisteredMom)
+            waitfanfare
+            closemessage
+            delay(30)
+            setflag(FLAG_ENABLE_MOM_MATCH_CALL)
+            release
+        }
+    } elif (flag(FLAG_RESCUED_BIRCH)) {
+        call(PlayersHouse_1F_EventScript_MomHealsParty)
+    } elif (var(VAR_TEMP_1) == 1) {
+        msgbox(PlayersHouse_1F_Text_SeeYouHoney)
+    } elif (var(VAR_LITTLEROOT_INTRO_STATE) == 7) {
+        msgbox(PlayersHouse_1F_Text_DidYouMeetProfBirch)
+    } else {
+        msgbox(PlayersHouse_1F_Text_IsntItNiceInHere)
+    }
+    release
+}
+
+script PlayersHouse_1F_EventScript_MomHealsParty {
+    msgbox(PlayersHouse_1F_Text_YouShouldRestABit)
+    closemessage
+    call(Common_EventScript_OutOfCenterPartyHeal)
+    incrementgamestat(GAME_STAT_RESTED_AT_HOME)
+    msgbox(PlayersHouse_1F_Text_TakeCareHoney)
+}
+
+script PlayersHouse_1F_EventScript_Vigoroth1 {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_VIGOROTH, 0)
+    msgbox(PlayersHouse_1F_Text_Vigoroth1)
+    waitmoncry
+    release
+}
+
+script PlayersHouse_1F_EventScript_Vigoroth2 {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_VIGOROTH, 0)
+    msgbox(PlayersHouse_1F_Text_Vigoroth2)
+    waitmoncry
+    release
+}
+
+movement PlayersHouse_1F_Movement_PlayerApproachTVForGymMale {
+    walk_down * 2
+    walk_left * 3
+}
+
+movement PlayersHouse_1F_Movement_PlayerMoveToTVMale {
+    walk_left
+}
+
+movement PlayersHouse_1F_Movement_PlayerApproachTVForGymFemale {
+    walk_down * 2
+    walk_right * 3
+}
+
+movement PlayersHouse_1F_Movement_PlayerMoveToTVFemale {
+    walk_right
+}
+
+movement PlayersHouse_1F_Movement_MovePlayerAwayFromDoor {
+    walk_up
+}
+
+script PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV {
+    lockall
+    checkplayergender
+    if (var(VAR_RESULT) == MALE) {
+        setvar(VAR_0x8008, MALE)
+    } else {
+        setvar(VAR_0x8008, FEMALE)
+    }
+    setvar(VAR_0x8009, LOCALID_DAD)
+    setvar(VAR_0x800A, LOCALID_MOM)
+    if (var(VAR_0x8008) == MALE) {
+        applymovement(OBJ_EVENT_ID_PLAYER, PlayersHouse_1F_Movement_PlayerEnterRoomMale)
+    } else {
+        applymovement(OBJ_EVENT_ID_PLAYER, PlayersHouse_1F_Movement_PlayerEnterRoomFemale)
+    }
+    waitmovement(0)
+    applymovement(VAR_0x8009, Common_Movement_FacePlayer)
+    waitmovement(0)
+    playse(SE_PIN)
+    applymovement(VAR_0x8009, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    applymovement(VAR_0x8009, Common_Movement_Delay48)
+    waitmovement(0)
+    delay(20)
+    if (var(VAR_0x8008) == MALE) {
+        applymovement(VAR_0x8009, PlayersHouse_1F_Movement_DadApproachPlayerMale)
+    } else {
+        applymovement(VAR_0x8009, PlayersHouse_1F_Movement_DadApproachPlayerFemale)
+    }
+    waitmovement(0)
+    msgbox(PlayersHouse_1F_Text_TicketFromBrineyCameForYou)
+    giveitem(ITEM_SS_TICKET)
+    msgbox(PlayersHouse_1F_Text_PortsInSlateportLilycove)
+    closemessage
+    delay(20)
+    if (var(VAR_0x8008) == MALE) {
+        applymovement(VAR_0x800A, PlayersHouse_1F_Movement_MomApproachDadMale)
+        waitmovement(0)
+        applymovement(VAR_0x8009, PlayersHouse_1F_Movement_DadFaceMomMale)
+    } else {
+        applymovement(VAR_0x800A, PlayersHouse_1F_Movement_MomApproachDadFemale)
+        waitmovement(0)
+        applymovement(VAR_0x8009, PlayersHouse_1F_Movement_DadFaceMomFemale)
+    }
+    waitmovement(0)
+    msgbox(PlayersHouse_1F_Text_BetterGetBackToGym)
+    closemessage
+    if (var(VAR_0x8008) == MALE) {
+        applymovement(OBJ_EVENT_ID_PLAYER, PlayersHouse_1F_Movement_MomAndPlayerWatchDadExit)
+        applymovement(VAR_0x800A, PlayersHouse_1F_Movement_MomAndPlayerWatchDadExit)
+        applymovement(VAR_0x8009, PlayersHouse_1F_Movement_DadExitsMale)
+    } else {
+        applymovement(OBJ_EVENT_ID_PLAYER, PlayersHouse_1F_Movement_MomAndPlayerWatchDadExit)
+        applymovement(VAR_0x800A, PlayersHouse_1F_Movement_MomAndPlayerWatchDadExit)
+        applymovement(VAR_0x8009, PlayersHouse_1F_Movement_DadExitsFemale)
+    }
+    waitmovement(0)
+    playse(SE_DOOR)
+    removeobject(VAR_0x8009)
+    setflag(FLAG_RECEIVED_SS_TICKET)
+    delay(30)
+    if (var(VAR_0x8008) == MALE) {
+        applymovement(VAR_0x800A, PlayersHouse_1F_Movement_MomApproachPlayerMale)
+        waitmovement(0)
+        applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft)
+    } else {
+        applymovement(VAR_0x800A, PlayersHouse_1F_Movement_MomApproachPlayerFemale)
+        waitmovement(0)
+        applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight)
+    }
+    waitmovement(0)
+    delay(20)
+    msgbox(PlayersHouse_1F_Text_DadShouldStayLonger)
+    closemessage
+    setflag(FLAG_SYS_TV_LATIAS_LATIOS)
+    special(TurnOnTVScreen)
+    delay(60)
+    if (var(VAR_0x8008) == MALE) {
+        applymovement(VAR_0x800A, PlayersHouse_1F_Movement_MomNoticesLatiBroadcastMale)
+    } else {
+        applymovement(VAR_0x800A, PlayersHouse_1F_Movement_MomNoticesLatiBroadcastFemale)
+    }
+    waitmovement(0)
+    msgbox(PlayersHouse_1F_Text_IsThatABreakingStory)
+    closemessage
+    if (var(VAR_0x8008) == MALE) {
+        applymovement(OBJ_EVENT_ID_PLAYER, PlayersHouse_1F_Movement_PlayerApproachTVForLatiMale)
+        waitmovement(0)
+        applymovement(VAR_0x800A, Common_Movement_WalkInPlaceFastestLeft)
+    } else {
+        applymovement(OBJ_EVENT_ID_PLAYER, PlayersHouse_1F_Movement_PlayerApproachTVForLatiFemale)
+        waitmovement(0)
+        applymovement(VAR_0x800A, Common_Movement_WalkInPlaceFastestRight)
+    }
+    waitmovement(0)
+    msgbox(PlayersHouse_1F_Text_LatiEmergencyNewsFlash)
+    closemessage
+    clearflag(FLAG_SYS_TV_LATIAS_LATIOS)
+    setflag(FLAG_LATIOS_OR_LATIAS_ROAMING)
+    special(TurnOffTVScreen)
+    if (var(VAR_0x8008) == MALE) {
+        applymovement(VAR_0x800A, PlayersHouse_1F_Movement_MomApproachPlayerAfterTVMale)
+        waitmovement(0)
+        applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight)
+    } else {
+        applymovement(VAR_0x800A, PlayersHouse_1F_Movement_MomApproachPlayerAfterTVFemale)
+        waitmovement(0)
+        applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft)
+    }
+    waitmovement(0)
+    msgbox(PlayersHouse_1F_Text_WhatColorDidTheySay)
+    multichoice(22, 8, MULTI_TV_LATI, 1)
+    copyvar(VAR_0x8004, VAR_RESULT)
+    special(InitRoamer)
+    copyvar(VAR_ROAMER_POKEMON, VAR_RESULT)
+    msgbox(PlayersHouse_1F_Text_StillUnknownPokemon)
+    closemessage
+    setvar(VAR_LITTLEROOT_HOUSES_STATE_MAY, 4)
+    setvar(VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 4)
+    releaseall
+}
+
+movement PlayersHouse_1F_Movement_DadApproachPlayerMale {
+    walk_right * 2
+}
+
+movement PlayersHouse_1F_Movement_DadApproachPlayerFemale {
+    walk_left * 2
+}
+
+movement PlayersHouse_1F_Movement_DadFaceMomMale {
+    face_left
+}
+
+movement PlayersHouse_1F_Movement_DadFaceMomFemale {
+    face_right
+}
+
+movement PlayersHouse_1F_Movement_DadExitsMale {
+    walk_down
+    walk_right
+    walk_down
+    delay_8
+}
+
+movement PlayersHouse_1F_Movement_DadExitsFemale {
+    walk_down
+    walk_left
+    walk_down
+    delay_8
+}
+
+movement PlayersHouse_1F_Movement_PlayerEnterRoomMale {
+    delay_16
+    walk_down * 3
+    walk_in_place_fastest_left
+}
+
+movement PlayersHouse_1F_Movement_MomAndPlayerWatchDadExit {
+    delay_8
+    delay_16 * 2
+    walk_in_place_fastest_down
+}
+
+movement PlayersHouse_1F_Movement_PlayerEnterRoomFemale {
+    delay_16
+    walk_down * 3
+    walk_in_place_fastest_right
+}
+
+movement PlayersHouse_1F_Movement_PlayerApproachTVForLatiMale {
+    walk_up
+    walk_left * 4
+    walk_in_place_fastest_up
+}
+
+movement PlayersHouse_1F_Movement_PlayerApproachTVForLatiFemale {
+    walk_up
+    walk_right * 4
+    walk_in_place_fastest_up
+}
+
+script EventScript_RunningShoesManual {
+    msgbox(PlayersHouse_1F_Text_RunningShoesManual, MSGBOX_SIGN)
+}

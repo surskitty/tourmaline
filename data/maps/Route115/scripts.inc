@@ -21,7 +21,7 @@ Route115_OnTransition: @ 81F2947
 	end
 
 Route115_OnFrame: @ 81F2969
-	map_script_2 VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_EndEventAndCleanup_1
+	map_script_2 VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_EndEventAndCleanup
 	.2byte 0
 
 Route115_EventScript_Woman:: @ 81F2973

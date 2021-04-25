@@ -120,6 +120,11 @@ LavaridgeTown_Gym_EventScript_CheckTrainerScript:: @ 81FE89A
 	goto_if_eq EventScript_GotoTrainerScript
 	end
 
+EventScript_GotoTrainerScript:: @ 82742F6
+	gotobeatenscript
+	releaseall
+	end
+
 LavaridgeTown_Gym_1F_EventScript_Axle:: @ 81FE8AF
 	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT, TRAINER_AXLE, LOCALID_AXLE, LavaridgeTown_Gym_1F_Text_AxleIntro, LavaridgeTown_Gym_1F_Text_AxleDefeat, LavaridgeTown_Gym_EventScript_CheckTrainerScript
 	msgbox LavaridgeTown_Gym_1F_Text_AxlePostBattle, MSGBOX_AUTOCLOSE

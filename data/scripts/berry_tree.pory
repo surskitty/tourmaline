@@ -1,0 +1,230 @@
+script BerryTreeScript {
+    special(ObjectEventInteractionGetBerryTreeData)
+    switch (var(VAR_0x8004)) {
+        case BERRY_STAGE_SPARKLING:
+            lockall
+            message(BerryTree_Text_ExclamationPoint)
+            waitmessage
+            waitbuttonpress
+            releaseall
+        case BERRY_STAGE_NO_BERRY:
+            lock
+            faceplayer
+            specialvar(VAR_RESULT, PlayerHasBerries)
+            if (var(VAR_RESULT) == TRUE) {
+                msgbox(BerryTree_Text_WantToPlant, MSGBOX_YESNO)
+                if (var(VAR_RESULT) == YES) {
+                    fadescreen(FADE_TO_BLACK)
+                    closemessage
+                    special(Bag_ChooseBerry)
+                    waitstate
+                    if (var(VAR_ITEM_ID) != ITEM_NONE) {
+                        removeitem(VAR_ITEM_ID)
+                        call(BerryTree_EventScript_PlantBerry)
+                    }
+                }
+            } else {
+                message(BerryTree_Text_ItsSoftLoamySoil)
+                waitmessage
+                waitbuttonpress
+            }
+            release
+        case BERRY_STAGE_PLANTED:
+            lockall
+            special(ObjectEventInteractionGetBerryCountString)
+            message(BerryTree_Text_BerryGrowthStage1)
+            waitmessage
+            waitbuttonpress
+            goto(BerryTree_EventScript_WantToWater)
+        case BERRY_STAGE_SPROUTED:
+            lockall
+            special(ObjectEventInteractionGetBerryName)
+            message(BerryTree_Text_BerryGrowthStage2)
+            waitmessage
+            waitbuttonpress
+            goto(BerryTree_EventScript_WantToWater)
+        case BERRY_STAGE_TALLER:
+            lockall
+            special(ObjectEventInteractionGetBerryName)
+            message(BerryTree_Text_BerryGrowthStage3)
+            waitmessage
+            waitbuttonpress
+            goto(BerryTree_EventScript_WantToWater)
+        case BERRY_STAGE_FLOWERING:
+            if (var(VAR_0x8005) == 0) {
+                bufferstring(1, BerryTree_Text_CareAdverbPoor)
+            } elif (var(VAR_0x8005) == 4) {
+                bufferstring(1, BerryTree_Text_CareAdverbGreat)
+            } else {
+                bufferstring(1, BerryTree_Text_CareAdverbGood)
+            }
+            lockall
+            special(ObjectEventInteractionGetBerryName)
+            message(BerryTree_Text_BerryGrowthStage4)
+            waitmessage
+            waitbuttonpress
+            goto(BerryTree_EventScript_WantToWater)
+        case BERRY_STAGE_BERRIES:
+            // VAR_0x8006 here is the number of berries
+            buffernumberstring(1, VAR_0x8006)
+            lock
+            faceplayer
+            special(ObjectEventInteractionGetBerryCountString)
+            msgbox(BerryTree_Text_WantToPick, MSGBOX_YESNO)
+            if (var(VAR_RESULT) == YES) {
+                special(ObjectEventInteractionPickBerryTree)
+                if (var(VAR_0x8004) == 0) {
+                    message(BerryTree_Text_BerryPocketFull)
+                } else {
+                    special(IncrementDailyPickedBerries)
+                    special(ObjectEventInteractionRemoveBerryTree)
+                    message(BerryTree_Text_PickedTheBerry)
+                    playfanfare(MUS_OBTAIN_BERRY)
+                    waitmessage
+                    waitfanfare
+                    waitbuttonpress
+                    message(BerryTree_Text_PutAwayBerry)
+                }
+            } else {
+                message(BerryTree_Text_BerryLeftUnpicked)
+            }
+            waitmessage
+            waitbuttonpress
+            release
+    }
+}
+
+script BerryTree_EventScript_ItemUsePlantBerry {
+    lockall
+    special(ObjectEventInteractionGetBerryTreeData)
+    call(BerryTree_EventScript_PlantBerry)
+    releaseall
+}
+
+script BerryTree_EventScript_WantToWater {
+    checkitem(ITEM_WAILMER_PAIL, 1)
+    if (var(VAR_RESULT) != 0) {
+        special(ObjectEventInteractionGetBerryName)
+        msgbox(BerryTree_Text_WantToWater, MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES) {
+            goto(BerryTree_EventScript_WaterBerry)
+        }
+    }
+    releaseall
+}
+
+script BerryTree_EventScript_ItemUseWailmerPail {
+    special(ObjectEventInteractionGetBerryTreeData)
+    lockall
+    goto(BerryTree_EventScript_WaterBerry)
+}
+
+script BerryTree_EventScript_WaterBerry {
+    special(ObjectEventInteractionGetBerryName)
+    message(BerryTree_Text_WateredTheBerry)
+    waitmessage
+    special(ObjectEventInteractionWaterBerryTree)
+    special(DoWateringBerryTreeAnim)
+    waitstate
+    message(BerryTree_Text_PlantIsDelighted)
+    waitmessage
+    waitbuttonpress
+    releaseall
+}
+
+script BerryTree_EventScript_PlantBerry {
+    special(ObjectEventInteractionPlantBerryTree)
+    incrementgamestat(GAME_STAT_PLANTED_BERRIES)
+    special(IncrementDailyPlantedBerries)
+    special(ObjectEventInteractionGetBerryCountString)
+    message(BerryTree_Text_PlantedOneBerry)
+    waitmessage
+    waitbuttonpress
+}
+
+text BerryTree_Text_ItsSoftLoamySoil {
+    "It's soft, loamy soil."
+}
+
+text BerryTree_Text_WantToPlant {
+    "It's soft, loamy soil.\n"
+    "Want to plant a Berry?"
+}
+
+text BerryTree_Text_PlantedOneBerry {
+    "{PLAYER} planted one {STR_VAR_1} in\n"
+    "the soft, loamy soil."
+}
+
+text BerryTree_Text_BerryGrowthStage1 {
+    "One {STR_VAR_1} was planted here."
+}
+
+text BerryTree_Text_BerryGrowthStage2 {
+    "{STR_VAR_1} has sprouted."
+}
+
+text BerryTree_Text_BerryGrowthStage3 {
+    "This {STR_VAR_1} plant is growing taller."
+}
+
+text BerryTree_Text_BerryGrowthStage4 {
+    "These {STR_VAR_1} flowers are blooming\n"
+    "{STR_VAR_2}."
+}
+
+text BerryTree_Text_CareAdverbGreat {
+    "very beautifully"
+}
+
+text BerryTree_Text_CareAdverbPoor {
+    "cutely"
+}
+
+text BerryTree_Text_CareAdverbGood {
+    "prettily"
+}
+
+text BerryTree_Text_WantToPick {
+    "You found {STR_VAR_2} {STR_VAR_1}!\p"
+    "Do you want to pick the\n"
+    "{STR_VAR_1}?"
+}
+
+text BerryTree_Text_PickedTheBerry {
+    "{PLAYER} picked the {STR_VAR_2} {STR_VAR_1}."
+}
+
+text BerryTree_Text_PutAwayBerry {
+    "{PLAYER} put away the {STR_VAR_1}\n"
+    "in the Bag's Berries Pocket.\p"
+    "The soil returned to its soft and\n"
+    "loamy state."
+}
+
+text BerryTree_Text_BerryPocketFull {
+    "The Bag's Berries Pocket is full.\p"
+    "The {STR_VAR_1} couldn't be taken."
+}
+
+text BerryTree_Text_BerryLeftUnpicked {
+    "{PLAYER} left the {STR_VAR_1}\n"
+    "unpicked."
+}
+
+text BerryTree_Text_WantToWater {
+    "Want to water the {STR_VAR_1} with the\n"
+    "Wailmer Pail?"
+}
+
+text BerryTree_Text_WateredTheBerry {
+    "{PLAYER} watered the {STR_VAR_1}."
+}
+
+text BerryTree_Text_PlantIsDelighted {
+    "The plant seems to be delighted."
+}
+
+text BerryTree_Text_ExclamationPoint {
+    "!"
+}

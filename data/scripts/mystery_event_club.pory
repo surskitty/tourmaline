@@ -1,0 +1,152 @@
+script MysteryEventClub_EventScript_Man {
+    lock
+    faceplayer
+    if (flag(FLAG_SYS_CHAT_USED)) {
+        msgbox(MysteryEventClub_Text_YouHaveWonderfulSmile)
+        do {
+            msgbox(MysteryEventClub_Text_MayISeeYourNewProfile)
+            multichoice(17, 6, MULTI_YESNOINFO_2, 0)
+            switch (var(VAR_RESULT)) {
+                case 0:
+                    msgbox(MysteryEventClub_Text_EvenBetterThanLastProfile)
+                    closemessage
+                    setvar(VAR_0x8004, EASY_CHAT_TYPE_PROFILE)
+                    call(Common_ShowEasyChatScreen)
+                    lock
+                    faceplayer
+                    if (var(VAR_RESULT) == 0) {
+                        msgbox(MysteryEventClub_Text_NotIntoItRightNow)
+                    } else {
+                        setvar(VAR_0x8004, 0)
+                        special(ShowEasyChatProfile)
+                        waitmessage
+                        delay(80)
+                        msgbox(MysteryEventClub_Text_FantasticProfile)
+                    }
+                case 1:
+                case MULTI_B_PRESSED:
+                    msgbox(MysteryEventClub_Text_LikeProfileWayItIs)
+                case 2:
+                    msgbox(MysteryEventClub_Text_EasyChatExplanation)
+            }
+        } while (var(VAR_RESULT) == 2)
+    } else {
+        msgbox(MysteryEventClub_Text_CollectTrainerProfiles)
+        do {
+            msgbox(MysteryEventClub_Text_MayISeeYourProfile)
+            multichoice(17, 6, MULTI_YESNOINFO_2, 0)
+            switch (var(VAR_RESULT)) {
+                case 0:
+                    msgbox(MysteryEventClub_Text_LetsSeeItThen)
+                    closemessage
+                    setvar(VAR_0x8004, EASY_CHAT_TYPE_PROFILE)
+                    call(Common_ShowEasyChatScreen)
+                    lock
+                    faceplayer
+                    if (var(VAR_RESULT) == 0) {
+                        msgbox(MysteryEventClub_Text_NotIntoItRightNow)
+                    } else {
+                        setvar(VAR_0x8004, 0)
+                        special(ShowEasyChatProfile)
+                        waitmessage
+                        delay(80)
+                        msgbox(MysteryEventClub_Text_FantasticProfile)
+                    }
+                    break
+                case 1:
+                case MULTI_B_PRESSED:
+                    msgbox(MysteryEventClub_Text_ImagineYouWouldHaveWonderfulProfile)
+                    break
+                case 2:
+                    msgbox(MysteryEventClub_Text_EasyChatExplanation)
+            }
+        } while (var(VAR_RESULT) == 2)
+    }
+    release
+}
+
+text MysteryEventClub_Text_CollectTrainerProfiles {
+    "Hello there, Trainer!\n"
+    "You've got a wonderful smile, there.\p"
+    "I have a hobby--collecting the profiles\n"
+    "of Pokémon Trainers."
+}
+
+text MysteryEventClub_Text_MayISeeYourProfile {
+    "So, how about it?\n"
+    "May I see your profile?"
+}
+
+text MysteryEventClub_Text_EasyChatExplanation {
+    "You make your own profile by putting\n"
+    "together four words or phrases.\p"
+    "Here, I'll show you an example of a\n"
+    "profile using four pieces of text.\p"
+    "You can switch those four pieces with\n"
+    "other text pieces any which way you\l"
+    "like to make your own profile.\p"
+    "There are a lot of text pieces that\n"
+    "you can use.\p"
+    "They are arranged in groups like\n"
+    "Pokémon, lifestyles, and hobbies so\l"
+    "it is easier to look them up.\p"
+    "So, first, choose the group of text\n"
+    "pieces to display a list of choices.\p"
+    "Then, pick the choice you want.\p"
+    "Repeat for the remaining text choices,\n"
+    "and you'll have your very own profile."
+}
+
+text MysteryEventClub_Text_LetsSeeItThen {
+    "Yes! Thank you!\n"
+    "So, let's see it, then."
+}
+
+text MysteryEventClub_Text_ImagineYouWouldHaveWonderfulProfile {
+    "Oh, no, really?\p"
+    "I imagine someone like you would have\n"
+    "a wonderful profile…"
+}
+
+text MysteryEventClub_Text_NotIntoItRightNow {
+    "Oh? You're not into it right now?\p"
+    "Well, anytime is good by me!"
+}
+
+text MysteryEventClub_Text_YouHaveWonderfulSmile {
+    "Hello there, Trainer!\n"
+    "You've got a wonderful smile."
+}
+
+text MysteryEventClub_Text_MayISeeYourNewProfile {
+    "May I see your new profile?"
+}
+
+text MysteryEventClub_Text_EvenBetterThanLastProfile {
+    "Yes! Thank you!\p"
+    "I hope it's even better than the profile\n"
+    "you showed me before."
+}
+
+text MysteryEventClub_Text_LikeProfileWayItIs {
+    "Oh, you like your profile the way it is.\p"
+    "I don't blame you--it's a wonderful\n"
+    "profile the way it is now."
+}
+
+text MysteryEventClub_Text_FantasticProfile {
+    "F-fantastic!\p"
+    "Your profile, it's wonderful!\n"
+    "It really says what you're about.\p"
+    "Why, anyone hearing this profile would\n"
+    "be captivated by you!\p"
+    "Thank you!"
+}
+
+// Unused
+text MysteryEventClub_Text_YouKnowSecretSaying {
+    "Oh?\n"
+    "You know the secret saying!\p"
+    "That means you're now a fellow member\n"
+    "of the Mystery Event Club!"
+}

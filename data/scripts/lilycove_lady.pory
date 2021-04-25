@@ -1,0 +1,696 @@
+const LOCALID_LILYCOVE_LADY = 4
+const LOCALID_LADYS_MON = 5
+
+script LilycoveCity_PokemonCenter_1F_EventScript_LilycoveLady {
+    special(Script_GetLilycoveLadyId)
+    switch (var(VAR_RESULT)) {
+        case LILYCOVE_LADY_QUIZ:
+            goto(LilycoveCity_PokemonCenter_1F_EventScript_QuizLady)
+        case LILYCOVE_LADY_FAVOR:
+            goto(LilycoveCity_PokemonCenter_1F_EventScript_FavorLady)
+        case LILYCOVE_LADY_CONTEST:
+            goto(LilycoveCity_PokemonCenter_1F_EventScript_ContestLady)
+    }
+}
+
+script LilycoveCity_PokemonCenter_1F_EventScript_FavorLady {
+    lock
+    faceplayer
+    msgbox(LilycoveCity_PokemonCenter_1F_Text_ImTheFavorLady)
+    specialvar(VAR_RESULT, GetFavorLadyState)
+    switch (var(VAR_RESULT)) {
+        case LILYCOVE_LADY_STATE_READY:
+            special(BufferFavorLadyRequest)
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_ObsessedWithThing)
+            specialvar(VAR_RESULT, HasAnotherPlayerGivenFavorLadyItem)
+            if (var(VAR_RESULT) == TRUE) {
+                special(BufferFavorLadyItemName)
+                special(BufferFavorLadyPlayerName)
+                specialvar(VAR_RESULT, DidFavorLadyLikeItem)
+                if (var(VAR_RESULT) == FALSE) {
+                    msgbox(LilycoveCity_PokemonCenter_1F_Text_PlayerGaveMeBadThing)
+                } else {
+                    msgbox(LilycoveCity_PokemonCenter_1F_Text_PlayerGaveMeGreatThing)
+                }
+            }
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_WillYouShareThing, MSGBOX_YESNO)
+            if (var(VAR_RESULT) == NO) {
+                msgbox(LilycoveCity_PokemonCenter_1F_Text_IsThatSoGoodbye)
+                release
+                return
+            }
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_WhatWillYouGiveMe)
+            goto(LilycoveCity_PokemonCenter_1F_EventScript_ChooseFavorItem)
+        case LILYCOVE_LADY_STATE_COMPLETED:
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_ThankYouForLastTime)
+            release
+        case LILYCOVE_LADY_STATE_PRIZE:
+            goto(LilycoveCity_PokemonCenter_1F_EventScript_FavorLadyPrize)
+    }
+}
+
+script LilycoveCity_PokemonCenter_1F_EventScript_ChooseFavorItem {
+    fadescreen(FADE_TO_BLACK)
+    setvar(VAR_RESULT, 0)
+    special(Script_FavorLadyOpenBagMenu)
+    waitstate
+    if (var(VAR_RESULT) == 0) {
+        msgbox(LilycoveCity_PokemonCenter_1F_Text_NotWillingToShare, MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES) {
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_IsThatSoGoodbye)
+            release
+            return
+        }
+        goto(LilycoveCity_PokemonCenter_1F_EventScript_ChooseFavorItem)
+    }
+    specialvar(VAR_RESULT, Script_DoesFavorLadyLikeItem)
+    if (var(VAR_RESULT) == FALSE) {
+        special(BufferFavorLadyRequest)
+        msgbox(LilycoveCity_PokemonCenter_1F_Text_IllTryToCherishIt)
+        release
+    } else {
+        specialvar(VAR_RESULT, IsFavorLadyThresholdMet)
+        if (var(VAR_RESULT) == FALSE) {
+            special(BufferFavorLadyRequest)
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_IWillCherishThis)
+            release
+        } else {
+            special(BufferFavorLadyRequest)
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_IWillTreasureThis)
+            goto(LilycoveCity_PokemonCenter_1F_EventScript_FavorLadyPrize)
+        }
+    }
+}
+
+script LilycoveCity_PokemonCenter_1F_EventScript_FavorLadyPrize {
+    setvar(VAR_0x8004, 0)
+    specialvar(VAR_0x8004, FavorLadyGetPrize)
+    msgbox(LilycoveCity_PokemonCenter_1F_Text_IllGiveYouThisInReturn)
+    giveitem(VAR_0x8004)
+    if (var(VAR_RESULT) == 0) {
+        msgbox(LilycoveCity_PokemonCenter_1F_Text_YouDontHaveSpaceForIt)
+        release
+        return
+    }
+    special(SetFavorLadyState_Complete)
+    release
+}
+
+script LilycoveCity_PokemonCenter_1F_EventScript_QuizLady {
+    lock
+    faceplayer
+    msgbox(LilycoveCity_PokemonCenter_1F_Text_ImTheQuizLady)
+    specialvar(VAR_RESULT, GetQuizLadyState)
+    switch (var(VAR_RESULT)) {
+        case LILYCOVE_LADY_STATE_READY:
+            specialvar(VAR_RESULT, GetQuizAuthor)
+            switch (var(VAR_RESULT)) {
+                case QUIZ_AUTHOR_PLAYER:
+                    msgbox(LilycoveCity_PokemonCenter_1F_Text_WaitingToTakeYourQuiz)
+                    release
+                    return
+                case QUIZ_AUTHOR_OTHER_PLAYER:
+                case QUIZ_AUTHOR_LADY:
+                    msgbox(LilycoveCity_PokemonCenter_1F_Text_WaitingForChallenger)
+                    setvar(VAR_0x8004, 0)
+                    msgbox(LilycoveCity_PokemonCenter_1F_Text_TakeQuizChallenge, MSGBOX_YESNO)
+                    if (var(VAR_RESULT) == NO) {
+                        msgbox(LilycoveCity_PokemonCenter_1F_Text_HowBoringBye)
+                        release
+                        return
+                    }
+                    goto(LilycoveCity_PokemonCenter_1F_EventScript_TakeQuiz)
+            }
+        case LILYCOVE_LADY_STATE_COMPLETED:
+            specialvar(VAR_RESULT, IsQuizLadyWaitingForChallenger)
+            if (var(VAR_RESULT) == FALSE) {
+                goto(LilycoveCity_PokemonCenter_1F_EventScript_AskMakeQuiz)
+            } else {
+                msgbox(LilycoveCity_PokemonCenter_1F_Text_WaitingToTakeYourQuiz)
+                release
+            }
+        case LILYCOVE_LADY_STATE_PRIZE:
+            goto(LilycoveCity_PokemonCenter_1F_EventScript_ReadyGivePrize)
+    }
+}
+
+script LilycoveCity_PokemonCenter_1F_EventScript_TakeQuiz {
+    special(ClearQuizLadyPlayerAnswer)
+    if (var(VAR_0x8004) == 0) {
+        special(QuizLadyShowQuizQuestion)
+        waitstate
+    } elif (var(VAR_0x8004) == EASY_CHAT_TYPE_QUIZ_ANSWER) {
+        special(QuizLadyGetPlayerAnswer)
+        waitstate
+    }
+    if (var(VAR_RESULT) == 0) {
+        msgbox(LilycoveCity_PokemonCenter_1F_Text_YoureGoingToQuit, MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES) {
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_TakeTheQuizAnotherTime)
+            release
+            return
+        }
+        goto(LilycoveCity_PokemonCenter_1F_EventScript_TakeQuiz)
+    } else {
+        special(SetQuizLadyState_Complete)
+        msgbox(LilycoveCity_PokemonCenter_1F_Text_WaitForAnswer)
+        specialvar(VAR_RESULT, IsQuizAnswerCorrect)
+        if (var(VAR_RESULT) == FALSE) {
+            special(BufferQuizCorrectAnswer)
+            special(BufferQuizPrizeName)
+            playse(SE_FAILURE)
+            delay(10)
+            playse(SE_FAILURE)
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_WrongTheCorrectAnswerIs)
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_IGetToKeepPrize)
+            goto(LilycoveCity_PokemonCenter_1F_EventScript_AskMakeQuiz)
+        } else {
+            playse(SE_SUCCESS)
+            delay(10)
+            playse(SE_SUCCESS)
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_YouGotItRight)
+            goto(LilycoveCity_PokemonCenter_1F_EventScript_ReadyGivePrize)
+        }
+    }
+}
+
+// VAR_RESULT is essentially ignored, both jumps are identical
+script LilycoveCity_PokemonCenter_1F_EventScript_ReadyGivePrize {
+    specialvar(VAR_RESULT, BufferQuizAuthorNameAndCheckIfLady)
+    msgbox(LilycoveCity_PokemonCenter_1F_Text_YouGotItRightYouveWonPersonsPrize)
+    setvar(VAR_0x8005, 0)
+    special(BufferQuizPrizeItem)
+    special(SetQuizLadyState_Complete)
+    giveitem(VAR_0x8005)
+    if (var(VAR_RESULT) == FALSE) {
+        msgbox(LilycoveCity_PokemonCenter_1F_Text_YourBagIsFilledUp)
+        special(SetQuizLadyState_GivePrize)
+        release
+        return
+    }
+    goto(LilycoveCity_PokemonCenter_1F_EventScript_AskMakeQuiz)
+}
+
+script LilycoveCity_PokemonCenter_1F_EventScript_AskMakeQuiz {
+    msgbox(LilycoveCity_PokemonCenter_1F_Text_MakeYourOwnQuiz, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        msgbox(LilycoveCity_PokemonCenter_1F_Text_PickYourPrize)
+        goto(LilycoveCity_PokemonCenter_1F_EventScript_PickPrize)
+    } else {
+        special(QuizLadyPickNewQuestion)
+        msgbox(LilycoveCity_PokemonCenter_1F_Text_MaybeNextTime)
+        release
+    }
+}
+
+script LilycoveCity_PokemonCenter_1F_EventScript_PickPrize {
+    fadescreen(FADE_TO_BLACK)
+    setvar(VAR_RESULT, 0)
+    special(Script_QuizLadyOpenBagMenu)
+    waitstate
+    if (var(VAR_RESULT) == 0) {
+        goto(LilycoveCity_PokemonCenter_1F_EventScript_AskQuitChoosingPrize)
+    } else {
+        goto(LilycoveCity_PokemonCenter_1F_EventScript_WriteQuiz)
+    }
+}
+
+script LilycoveCity_PokemonCenter_1F_EventScript_AskQuitChoosingPrize {
+    msgbox(LilycoveCity_PokemonCenter_1F_Text_QuitChoosingPrize, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        special(QuizLadyPickNewQuestion)
+        msgbox(LilycoveCity_PokemonCenter_1F_Text_MaybeNextTime)
+        release
+    } else {
+        goto(LilycoveCity_PokemonCenter_1F_EventScript_PickPrize)
+    }
+}
+
+script LilycoveCity_PokemonCenter_1F_EventScript_WriteQuiz {
+    msgbox(LilycoveCity_PokemonCenter_1F_Text_WriteYourQuiz)
+    special(ClearQuizLadyQuestionAndAnswer)
+    special(ClearQuizLadyPlayerAnswer)
+    setvar(VAR_0x8004, EASY_CHAT_TYPE_QUIZ_QUESTION)
+    goto(LilycoveCity_PokemonCenter_1F_EventScript_WriteQuizQuestion)
+}
+
+script LilycoveCity_PokemonCenter_1F_EventScript_WriteQuizQuestion {
+    fadescreen(FADE_TO_BLACK)
+    special(QuizLadySetCustomQuestion)
+    waitstate
+    if (var(VAR_RESULT) == 0) {
+        msgbox(LilycoveCity_PokemonCenter_1F_Text_QuitWritingQuizQuestion, MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES) {
+            special(QuizLadyPickNewQuestion)
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_MaybeNextTime)
+            release
+        } else {
+            goto(LilycoveCity_PokemonCenter_1F_EventScript_WriteQuizQuestion)
+        }
+    } else {
+        special(QuizLadyTakePrizeForCustomQuiz)
+        special(QuizLadyRecordCustomQuizData)
+        special(QuizLadySetWaitingForChallenger)
+        msgbox(LilycoveCity_PokemonCenter_1F_Text_IllLookForAChallenger)
+        release
+    }
+}
+
+script LilycoveCity_PokemonCenter_1F_EventScript_ContestLady {
+    lock
+    faceplayer
+    msgbox(LilycoveCity_PokemonCenter_1F_Text_ImTheContestLady)
+    specialvar(VAR_RESULT, HasPlayerGivenContestLadyPokeblock)
+    if (var(VAR_RESULT) == FALSE) {
+        specialvar(VAR_RESULT, ShouldContestLadyShowGoOnAir)
+        if (var(VAR_RESULT) == FALSE) {
+            special(Script_BufferContestLadyCategoryAndMonName)
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_MyFriendDisplaysQuality)
+            checkitem(ITEM_POKEBLOCK_CASE, 1)
+            if (var(VAR_RESULT) == FALSE) {
+                msgbox(LilycoveCity_PokemonCenter_1F_Text_DontHaveAPokeblockCase)
+                release
+                return
+            }
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_AskingForOnePokeblock, MSGBOX_YESNO)
+            if (var(VAR_RESULT) == NO) {
+                msgbox(LilycoveCity_PokemonCenter_1F_Text_WhatACheapskate)
+                release
+                return
+            }
+            goto(LilycoveCity_PokemonCenter_1F_EventScript_ChoosePokeblock)
+        } else {
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_ThankForPokeblock)
+            release
+        }
+    } else {
+        msgbox(LilycoveCity_PokemonCenter_1F_Text_ThankForPokeblock)
+        release
+    }
+}
+
+script LilycoveCity_PokemonCenter_1F_EventScript_ChoosePokeblock {
+    fadescreen(FADE_TO_BLACK)
+    special(OpenPokeblockCaseForContestLady)
+    waitstate
+    if (var(VAR_RESULT) == 0xFFFF) {
+        msgbox(LilycoveCity_PokemonCenter_1F_Text_ICantHaveOnePokeblock, MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES) {
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_WhatACheapskate)
+            release
+            return
+        }
+        goto(LilycoveCity_PokemonCenter_1F_EventScript_ChoosePokeblock)
+    } else {
+        msgbox(LilycoveCity_PokemonCenter_1F_Text_IllUseYourPokeblock)
+        special(SetContestLadyGivenPokeblock)
+        special(GetContestLadyMonSpecies)
+        applymovement(LOCALID_LILYCOVE_LADY, LilycoveCity_PokemonCenter_1F_Movement_LadyFaceMon)
+        waitmovement(0)
+        delay(60)
+        applymovement(LOCALID_LADYS_MON, LilycoveCity_PokemonCenter_1F_Movement_MonFaceLady)
+        waitmovement(0)
+        delay(60)
+        waitse
+        playmoncry(VAR_0x8005, 0)
+        delay(120)
+        waitmoncry
+        if (var(VAR_0x8004) == 1) {
+            applymovement(LOCALID_LADYS_MON, LilycoveCity_PokemonCenter_1F_Movement_MonJump)
+            waitmovement(0)
+            delay(60)
+        }
+        applymovement(LOCALID_LILYCOVE_LADY, LilycoveCity_PokemonCenter_1F_Movement_LadyFacePlayer)
+        waitmovement(0)
+        delay(60)
+        if (var(VAR_0x8004) == 0) {
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_NoChangeThanks)
+        } else {
+            special(Script_BufferContestLadyCategoryAndMonName)
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_ReallyImprovedThanks)
+        }
+        specialvar(VAR_RESULT, ShouldContestLadyShowGoOnAir)
+        if (var(VAR_RESULT) == 1) {
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_ReadyToEnterContests)
+            special(PutLilycoveContestLadyShowOnTheAir)
+        }
+        release
+    }
+}
+
+movement LilycoveCity_PokemonCenter_1F_Movement_LadyFaceMon {
+    face_right
+    delay_8
+}
+
+movement LilycoveCity_PokemonCenter_1F_Movement_MonFaceLady {
+    face_left
+    delay_8
+}
+
+movement LilycoveCity_PokemonCenter_1F_Movement_LadyFacePlayer {
+    face_player
+}
+
+movement LilycoveCity_PokemonCenter_1F_Movement_MonJump {
+    disable_jump_landing_ground_effect
+    jump_in_place_left
+    disable_jump_landing_ground_effect
+    jump_in_place_left
+}
+
+script LilycoveCity_PokemonCenter_1F_EventScript_ContestLadyMon {
+    specialvar(VAR_RESULT, GetContestLadyCategory)
+    special(Script_BufferContestLadyCategoryAndMonName)
+    special(GetContestLadyMonSpecies)
+    lock
+    faceplayer
+    waitse
+    playmoncry(VAR_0x8005, 0)
+    switch (var(VAR_RESULT)) {
+        case CONTEST_CATEGORY_COOL:
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_Zigzagoon)
+        case CONTEST_CATEGORY_BEAUTY:
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_Skitty)
+        case CONTEST_CATEGORY_CUTE:
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_Poochyena)
+        case CONTEST_CATEGORY_SMART:
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_Kecleon)
+        case CONTEST_CATEGORY_TOUGH:
+            msgbox(LilycoveCity_PokemonCenter_1F_Text_Pikachu)
+    }
+    waitmoncry
+    release
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_ImTheFavorLady {
+    "I'm the Favor Lady…"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_ObsessedWithThing {
+    "I've recently developed an obsession\n"
+    "for {STR_VAR_1} things…"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_ThankYouForLastTime {
+    "Oh…\n"
+    "Thank you for last time…"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_PlayerGaveMeBadThing {
+    "Before, I think it was {STR_VAR_3}…\p"
+    "{STR_VAR_3} gave me one {STR_VAR_2},\n"
+    "saying it was {STR_VAR_1}.\p"
+    "But it wasn't {STR_VAR_1}.\n"
+    "Not in the least bit."
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_PlayerGaveMeGreatThing {
+    "Before, {STR_VAR_3} gave me a very\n"
+    "{STR_VAR_1} {STR_VAR_2}.\p"
+    "I cherish it now."
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_WillYouShareThing {
+    "Listen, if you have anything that\n"
+    "is {STR_VAR_1}, will you share it\l"
+    "with me?"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_WhatWillYouGiveMe {
+    "…Really?\n"
+    "What will you give me?"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_IsThatSoGoodbye {
+    "Is that so?\n"
+    "Then, it's good-bye…"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_NotWillingToShare {
+    "Oh…\n"
+    "You're not willing to share?"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_IllTryToCherishIt {
+    "Oh?\n"
+    "That {STR_VAR_2} is {STR_VAR_1}?\p"
+    "…Oh, is that right?\p"
+    "Well, I owe you a thanks anyway.\n"
+    "I'll try to cherish it…"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_IWillCherishThis {
+    "Oh…\p"
+    "That's a quite {STR_VAR_1}\n"
+    "{STR_VAR_2}…\p"
+    "Isn't it nice?\n"
+    "It's so dreamy…\p"
+    "Thank you…\n"
+    "I will cherish this…"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_IWillTreasureThis {
+    "…Oh, oh, oh…\p"
+    "This is amazing!\n"
+    "This really is {STR_VAR_1}!\p"
+    "I never knew that one {STR_VAR_2}\n"
+    "could be this {STR_VAR_1}!\p"
+    "Thank you!\p"
+    "I will treasure this for the rest\n"
+    "of my life!"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_IllGiveYouThisInReturn {
+    "I'll give you this wonderful item in\n"
+    "return for your fabulous gift.\p"
+    "I hope you will cherish it…"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_YouDontHaveSpaceForIt {
+    "Oh, you can't have it if you don't have\n"
+    "the space for it.\p"
+    "Please come see me when you get\n"
+    "your Bag organized…"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_ImTheQuizLady {
+    "I'm the Quiz Lady!\n"
+    "I love quizzes!"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_WaitingToTakeYourQuiz {
+    "Oh?\p"
+    "I'm waiting for a challenger to answer\n"
+    "the quiz you made.\p"
+    "We can chat another time, okay?"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_WaitingForChallenger {
+    "I'm waiting for someone to challenge\n"
+    "a quiz this {STR_VAR_1} thought up!"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_TakeQuizChallenge {
+    "If you answer correctly, you can win\n"
+    "fabulous prizes!\p"
+    "Would you like to take the quiz\n"
+    "challenge?"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_WaitForAnswer {
+    "… … … … … …\n"
+    "… … … … … …"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_HowBoringBye {
+    "Oh, how boring!\n"
+    "Bye-bye!"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_YoureGoingToQuit {
+    "Awww!\n"
+    "You're going to quit?"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_TakeTheQuizAnotherTime {
+    "Please take the quiz challenge\n"
+    "another time!"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_YouGotItRight {
+    "You're amazing! You've got it right!\n"
+    "You're one sharp customer!"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_YouGotItRightYouveWonPersonsPrize {
+    "Congratulations!\n"
+    "You've got the quiz right!\p"
+    "You've won a prize provided by\n"
+    "{STR_VAR_1}!"
+}
+
+// Unused
+text LilycoveCity_PokemonCenter_1F_Text_XReceivedOneY {
+    "{STR_VAR_1} received\n"
+    "one {STR_VAR_2}!"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_YourBagIsFilledUp {
+    "Oh? Your Bag is filled up!\n"
+    "Come see me when you have room."
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_WrongTheCorrectAnswerIs {
+    "Hmm… Wrong!\n"
+    "The correct answer is “{STR_VAR_3}”!"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_IGetToKeepPrize {
+    "Too bad!\p"
+    "I get to keep the quiz prize\n"
+    "{STR_VAR_1} now!"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_MakeYourOwnQuiz {
+    "Listen, listen!\n"
+    "Would you like to make your own quiz?"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_MaybeNextTime {
+    "Oh, I see…\n"
+    "Well, maybe next time!"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_PickYourPrize {
+    "Okay, the first thing you have to do\n"
+    "is pick the prize for the person that\l"
+    "answers your quiz correctly.\p"
+    "But beware, if the person taking\n"
+    "the quiz can't get it right, I get to\l"
+    "keep the prize!"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_QuitChoosingPrize {
+    "If you don't choose a prize,\n"
+    "your quiz can't be made.\p"
+    "Are you going to quit making\n"
+    "your quiz?"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_WriteYourQuiz {
+    "Oh, how nice!\n"
+    "That's a wonderful prize!\p"
+    "Next, you need to write your quiz\n"
+    "question and its answer."
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_QuitWritingQuizQuestion {
+    "Are you going to quit writing\n"
+    "your quiz question?"
+}
+
+// Unused
+text LilycoveCity_PokemonCenter_1F_Text_QuitWritingQuizAnswer {
+    "Are you going to quit choosing\n"
+    "your quiz answer?"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_IllLookForAChallenger {
+    "Thank you!\n"
+    "You've put together a nice quiz.\p"
+    "I'll go look for someone who'll take\n"
+    "your quiz challenge right away."
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_ImTheContestLady {
+    "I'm the Contest Lady!\n"
+    "I sure do love Contests!"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_ThankForPokeblock {
+    "Thanks for your {POKEBLOCK} before!"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_MyFriendDisplaysQuality {
+    "This is my friend {STR_VAR_1}!\n"
+    "It's the epitome of {STR_VAR_2}!\p"
+    "But I think that it will display\n"
+    "even more {STR_VAR_2}!"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_DontHaveAPokeblockCase {
+    "So, I need your help!\p"
+    "Please, may I have one {POKEBLOCK}?\n"
+    "All I'm asking for is one!\p"
+    "…Oh, but…\n"
+    "Don't you have a {POKEBLOCK} Case?\l"
+    "That's no good. Next time, then!"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_AskingForOnePokeblock {
+    "So, I need your help!\p"
+    "Please, may I have one {POKEBLOCK}?\n"
+    "All I'm asking for is one!"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_ICantHaveOnePokeblock {
+    "Awww!\n"
+    "I can't have one {POKEBLOCK}?!"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_WhatACheapskate {
+    "Sheesh!\n"
+    "What a cheapskate!"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_IllUseYourPokeblock {
+    "Yay!\n"
+    "Thank you!\p"
+    "I'll feed my Pokémon your {POKEBLOCK}\n"
+    "right away."
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_NoChangeThanks {
+    "…It doesn't seem to have changed\n"
+    "in any way at all…\p"
+    "Hmm…\p"
+    "Oh, well!\n"
+    "Thank you very much!"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_ReallyImprovedThanks {
+    "Oh, yay!\n"
+    "It's really delighted!\p"
+    "I think it really improved {STR_VAR_1}'s\n"
+    "{STR_VAR_2} quality, too.\p"
+    "Thank you so much!"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_ReadyToEnterContests {
+    "Hmm…\p"
+    "I think we may be ready to enter\n"
+    "some Contests.\p"
+    "If you see us in one somewhere,\n"
+    "I hope you'll cheer for us."
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_Zigzagoon {
+    "{STR_VAR_1}: Guguuh!"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_Kecleon {
+    "{STR_VAR_1}: Igigigiiih!"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_Poochyena {
+    "{STR_VAR_1}: Baaarun…"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_Pikachu {
+    "{STR_VAR_1}: Pikka!"
+}
+
+text LilycoveCity_PokemonCenter_1F_Text_Skitty {
+    "{STR_VAR_1}: Umyaaaan!"
+}

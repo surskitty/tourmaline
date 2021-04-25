@@ -27,7 +27,7 @@ Route129_EventScript_CheckSetAbnormalWeather:: @ 81F72D8
 	return
 
 Route129_OnFrame: @ 81F72E2
-	map_script_2 VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_EndEventAndCleanup_1
+	map_script_2 VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_EndEventAndCleanup
 	.2byte 0
 
 Route129_EventScript_Chase:: @ 81F72EC

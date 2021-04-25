@@ -1,0 +1,329 @@
+script SafariZone_EventScript_OutOfBallsMidBattle {
+    setvar(VAR_SAFARI_ZONE_STATE, 1)
+    special(ExitSafariMode)
+    setwarp(MAP_ROUTE121_SAFARI_ZONE_ENTRANCE, 255, 2, 5)
+}
+
+script SafariZone_EventScript_Exit {
+    setvar(VAR_SAFARI_ZONE_STATE, 1)
+    special(ExitSafariMode)
+    warp(MAP_ROUTE121_SAFARI_ZONE_ENTRANCE, 255, 2, 5)
+    waitstate
+}
+
+script SafariZone_EventScript_RetirePrompt {
+    lockall
+    msgbox(SafariZone_Text_WouldYouLikeToExit, MSGBOX_YESNO)
+    if (var(VAR_RESULT) == YES) {
+        goto(SafariZone_EventScript_Exit)
+    } else {
+        releaseall
+    }
+}
+
+script SafariZone_EventScript_TimesUp {
+    lockall
+    playse(SE_DING_DONG)
+    message(SafariZone_Text_TimesUp)
+    waitmessage
+    waitbuttonpress
+    releaseall
+    goto(SafariZone_EventScript_Exit)
+}
+
+script SafariZone_EventScript_OutOfBalls {
+    lockall
+    playse(SE_DING_DONG)
+    message(SafariZone_Text_OutOfBalls)
+    waitmessage
+    waitbuttonpress
+    releaseall
+    goto(SafariZone_EventScript_Exit)
+}
+
+script EventScript_PokeBlockFeeder {
+    lockall
+    special(GetPokeblockFeederInFront)
+    if (var(VAR_RESULT) != 0xFFFF) {
+        message(SafariZone_Text_PokeblockStillHere)
+        waitmessage
+        waitbuttonpress
+    } else {
+        msgbox(SafariZone_Text_PlacePokeblockOnFeeder, MSGBOX_YESNO)
+        if (var(VAR_RESULT) == YES) {
+            fadescreen(FADE_TO_BLACK)
+            special(OpenPokeblockCaseOnFeeder)
+            waitstate
+            if (var(VAR_RESULT) != 0xFFFF) {
+                message(SafariZone_Text_PokeblockWasPlaced)
+                waitmessage
+                waitbuttonpress
+            }
+        }
+    }
+    releaseall
+}
+
+text SafariZone_Text_WouldYouLikeToExit {
+    "Would you like to exit the Safari\n"
+    "Zone right now?"
+}
+
+text SafariZone_Text_TimesUp {
+    "Ding-dong! Time's up!\n"
+    "Your Safari Game is over."
+}
+
+text SafariZone_Text_OutOfBalls {
+    "You've run out of Safari Balls.\n"
+    "Your Safari Game is over."
+}
+
+text SafariZone_Text_PlacePokeblockOnFeeder {
+    "Would you like to place a {POKEBLOCK}\n"
+    "on the {POKEBLOCK} FEEDER?"
+}
+
+text SafariZone_Text_PokeblockStillHere {
+    "The {STR_VAR_1} you left\n"
+    "before is still here."
+}
+
+text SafariZone_Text_PokeblockWasPlaced {
+    "The {STR_VAR_1} was placed\n"
+    "on the {POKEBLOCK} Feeder."
+}
+
+text Route121_SafariZoneEntrance_Text_WelcomeToSafariZone {
+    "Welcome to the Safari Zone!\p"
+    "Here, you may witness many kinds of\n"
+    "Pokémon rarely seen in Hoenn.\p"
+    "And you'll see them in their wild,\n"
+    "untamed state in natural habitats.\p"
+    "What's more, we've thrown open the\n"
+    "gates to Pokémon Trainers.\p"
+    "You're encouraged to catch Pokémon\n"
+    "for keeps!\p"
+    "Come in and enjoy the Safari Zone!"
+}
+
+text Route121_SafariZoneEntrance_Text_WelcomeFirstTime {
+    "Welcome to the Safari Zone!\n"
+    "Is it your first time here?"
+}
+
+text Route121_SafariZoneEntrance_Text_ComeInAndEnjoy {
+    "Come in and enjoy the Safari Zone!"
+}
+
+text Route121_SafariZoneEntrance_Text_FirstTimeInfo {
+    "When you enter the Safari Zone, you\n"
+    "start with 30 Safari Balls for\l"
+    "catching Pokémon.\p"
+    "The Safari Game is over when you run\n"
+    "out of Safari Balls.\p"
+    "Come in and enjoy the Safari Zone!"
+}
+
+text Route121_SafariZoneEntrance_Text_WouldYouLikeToPlay {
+    "Welcome to the Safari Zone!\p"
+    "All you can catch for just ¥500!\n"
+    "Would you like to play a Safari Game?"
+}
+
+text Route121_SafariZoneEntrance_Text_PlayAnotherTime {
+    "Okay.\n"
+    "Please play another time!"
+}
+
+text Route121_SafariZoneEntrance_Text_NotEnoughMoney {
+    "You don't have enough money.\n"
+    "Sorry."
+}
+
+text Route121_SafariZoneEntrance_Text_ThatWillBe500Please {
+    "That will be ¥500, please."
+}
+
+text Route121_SafariZoneEntrance_Text_HereAreYourSafariBalls {
+    "Here are your Safari Balls."
+}
+
+text Route121_SafariZoneEntrance_Text_Received30SafariBalls {
+    "{PLAYER} received 30 Safari Balls."
+}
+
+text Route121_SafariZoneEntrance_Text_PleaseEnjoyYourself {
+    "We'll let you know when your game\n"
+    "is over.\p"
+    "So, until then, enjoy yourself, please!\n"
+    "Off you go on your wild excursion!"
+}
+
+text Route121_SafariZoneEntrance_Text_PCIsFull {
+    "Excuse me!\n"
+    "Your PC Box is full."
+}
+
+text Route121_SafariZoneEntrance_Text_YouNeedPokeblockCase {
+    "Excuse me!\n"
+    "You seem to be without a {POKEBLOCK} Case.\p"
+    "Your Safari Game will be much more\n"
+    "fruitful if you use {POKEBLOCK}s.\p"
+    "Please come back with a {POKEBLOCK} Case.\p"
+    "You may obtain a {POKEBLOCK} Case from\n"
+    "the Lilycove Contest Hall."
+}
+
+text SafariZone_South_Text_StillHaveTimeExit {
+    "You still have balls left. Would you\n"
+    "like to exit the Safari Zone now?"
+}
+
+text SafariZone_South_Text_EnjoyTheRestOfYourAdventure {
+    "Please enjoy the rest of your wild\n"
+    "adventure!"
+}
+
+text SafariZone_South_Text_ExitEarlyThankYouForPlaying {
+    "Okay.\p"
+    "I'll take back your remaining Safari\n"
+    "Balls.\p"
+    "Thank you for playing.\n"
+    "We hope to see you again."
+}
+
+text SafariZone_South_Text_GoodLuck {
+    "Good luck!\p"
+    "If you need anything, don't hesitate\n"
+    "to tell me, please!"
+}
+
+text SafariZone_South_Text_Boy {
+    "Did you know?\p"
+    "If you put a {POKEBLOCK} in that square box,\n"
+    "Pokémon gather around."
+}
+
+text SafariZone_South_Text_Man {
+    "I want to keep going deeper, but I\n"
+    "forgot to bring a Bike.\p"
+    "Something tells me that rare Pokémon\n"
+    "live in the outlying areas."
+}
+
+text SafariZone_Southwest_Text_Woman {
+    "Sometimes, when I toss a {POKEBLOCK} at \n"
+    "Pokémon, it gets ignored.\p"
+    "Do Pokémon have likes and dislikes\n"
+    "about what they eat?"
+}
+
+text SafariZone_Northwest_Text_Man {
+    "Gasp… Gasp…\n"
+    "I…made it out here…but…\p"
+    "I'm exhausted… I don't have the\n"
+    "energy to catch Pokémon…"
+}
+
+text SafariZone_North_Text_Fisherman {
+    "I'm on a mission to find Water Pokémon\n"
+    "you don't see in Hoenn.\p"
+    "Do you have any idea where the lake is?"
+}
+
+text SafariZone_North_Text_Man {
+    "I'm going to catch a lot of rare Pokémon\n"
+    "here and trade them with my friends!"
+}
+
+text SafariZone_South_Text_Youngster {
+    "I put a {POKEBLOCK} on the {POKEBLOCK} Feeder.\n"
+    "But it seems to have disappeared.\p"
+    "I guess Pokémon must have eaten it\n"
+    "without me noticing."
+}
+
+text Route121_SafariZoneEntrance_Text_TrainerTip {
+    "Safari Zone Trainer Tip!\p"
+    "Throw {POKEBLOCK}s at wild Pokémon to make\n"
+    "them less likely to flee."
+}
+
+text SafariZone_Southwest_Text_RestHouseSign {
+    "“Relieve your tired feet.”\n"
+    "Rest House"
+}
+
+text SafariZone_RestHouse_Text_Youngster {
+    "I don't have any {POKEBLOCK}s, but I caught\n"
+    "a good number of Pokémon.\p"
+    "You can improve your chances of making\n"
+    "a catch by getting closer to them\l"
+    "before throwing a Safari Ball."
+}
+
+text SafariZone_RestHouse_Text_PsychicM {
+    "If you use {POKEBLOCK}s, wild Pokémon won't\n"
+    "be so quick to run away.\p"
+    "It's not much use to give {POKEBLOCK}s to\n"
+    "Pokémon that don't flee easily."
+}
+
+text SafariZone_RestHouse_Text_FatMan {
+    "If you put a {POKEBLOCK} on the Feeder,\n"
+    "Pokémon are attracted to it.\p"
+    "I think Pokémon with the same sort of\n"
+    "nature are drawn by a certain {POKEBLOCK}."
+}
+
+text SafariZone_South_Text_AreaOffLimits1 {
+    "This area is still under construction.\n"
+    "It's off-limits, sorry!"
+}
+
+text SafariZone_Southeast_Text_ExpansionIsFinished {
+    "The Safari Zone's expansion project\n"
+    "is finished now.\p"
+    "We hope you will enjoy the new area."
+}
+
+text SafariZone_South_Text_AreaOffLimits2 {
+    "This area is still under construction.\n"
+    "It's off-limits, sorry!"
+}
+
+text SafariZone_Southeast_Text_LittleGirl {
+    "Wow! Whee! I haven't seen any of\n"
+    "these Pokémon before!"
+}
+
+text SafariZone_Southeast_Text_FatMan {
+    "The Pokémon in this area are all\n"
+    "new to me.\p"
+    "And I'm allowed to catch these rare\n"
+    "Pokémon! Too cool!"
+}
+
+text SafariZone_Southeast_Text_RichBoy {
+    "The Pokémon around here seem to be\n"
+    "from somewhere other than Hoenn."
+}
+
+text SafariZone_Northeast_Text_Boy {
+    "I only have a couple Safari Balls left.\p"
+    "I'm having a hard time trying to\n"
+    "decide what I should catch."
+}
+
+text SafariZone_Northeast_Text_Woman {
+    "I heard that you can see Pikachu here.\n"
+    "Where might one be?"
+}
+
+text SafariZone_Northeast_Text_Girl {
+    "Oh, boo!\n"
+    "I can't seem to catch anything!\p"
+    "I'll end up wasting the admission\n"
+    "price if I don't catch something!"
+}

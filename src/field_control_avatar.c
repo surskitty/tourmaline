@@ -563,7 +563,7 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
         }
         if (AbnormalWeatherHasExpired() == TRUE)
         {
-            ScriptContext1_SetupScript(AbnormalWeather_EventScript_EndEventAndCleanup_1);
+            ScriptContext1_SetupScript(AbnormalWeather_EventScript_EndEventAndCleanup);
             return TRUE;
         }
         if (ShouldDoBrailleRegicePuzzle() == TRUE)
