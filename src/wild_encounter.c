@@ -44,14 +44,7 @@ EWRAM_DATA bool8 gIsSurfingEncounter = 0;
 #include "data/wild_encounters.h"
 
 //Special Feebas-related data.
-const struct WildPokemon gWildFeebasRoute119Data = {20, 25, SPECIES_FEEBAS};
-
-const u16 gRoute119WaterTileData[] =
-{
-    0, 0x2D, 0,
-    0x2E, 0x5B, 0x83,
-    0x5C, 0x8B, 0x12A,
-};
+const struct WildPokemon gWildFeebasRoute119Data = {20, 35, SPECIES_FEEBAS};
 
 // code
 void DisableWildEncounters(bool8 disabled)
@@ -61,17 +54,13 @@ void DisableWildEncounters(bool8 disabled)
 
 static bool8 CheckFeebas(void)
 {
-    u8 i;
-    s16 x;
-    s16 y;
-    u8 route119Section = 0;
-    u16 waterTileNum;
+    s16 x, y;
 
-    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(ROUTE119)
-     && gSaveBlock1Ptr->location.mapNum == MAP_NUM(ROUTE119))
+    PlayerGetDestCoords(&x, &y);
+
+    if (MetatileBehavior_HasFeebas(MapGridGetMetatileBehaviorAt(x, y)) == TRUE)
     {
-// TODO feebas; possibly with a metatile behavior?
-        return FALSE;
+        return TRUE;
     }
     return FALSE;
 }
