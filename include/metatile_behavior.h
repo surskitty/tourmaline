@@ -146,5 +146,10 @@ bool8 MetatileBehavior_IsLongGrass_Duplicate(u8);
 bool8 MetatileBehavior_IsLongGrassSouthEdge(u8);
 bool8 MetatileBehavior_IsTrainerHillTimer(u8);
 bool8 MetatileBehavior_IsRockClimbable(u8 metatileBehavior);
+bool8 MetatileBehavior_IsDirectionalUpRightStairWarp(u8 metatileBehavior);
+bool8 MetatileBehavior_IsDirectionalUpLeftStairWarp(u8 metatileBehavior);
+bool8 MetatileBehavior_IsDirectionalDownRightStairWarp(u8 metatileBehavior);
+bool8 MetatileBehavior_IsDirectionalDownLeftStairWarp(u8 metatileBehavior);
+bool8 MetatileBehavior_IsDirectionalStairWarp(u8 metatileBehavior);
 
 #endif // GUARD_METATILE_BEHAVIOR_H

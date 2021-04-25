@@ -44,5 +44,7 @@ void WriteFlashScanlineEffectBuffer(u8 flashLevel);
 bool8 IsPlayerStandingStill(void);
 void FillPalBufferBlack(void);
 bool32 WaitForWeatherFadeIn(void);
+void DoStairWarp(u16 metatileBehavior, u16 delay);
+bool8 IsDirectionalStairWarpMetatileBehavior(u16 metatileBehavior, u8 playerDirection);
 
 #endif // GUARD_FIELD_SCREEN_EFFECT_H
