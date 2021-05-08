@@ -23,6 +23,7 @@ static u8 CalcBerryYieldInternal(u16 max, u16 min, u8 water);
 static u8 CalcBerryYield(struct BerryTree *tree);
 static u8 GetBerryCountByBerryTreeId(u8 id);
 static u16 GetStageDurationByBerryType(u8);
+static bool8 IsMapRainy(u16 currentMap);
 
 //.rodata
 static const u8 sBerryDescriptionPart1_Cheri[] = _("Blooms with delicate pretty flowers.");
@@ -1563,6 +1564,8 @@ static u8 GetNumStagesWateredByBerryTreeId(u8 id)
     return BerryTreeGetNumStagesWatered(GetBerryTreeInfo(id));
 }
 
+
+
 // Berries can be watered at 4 stages of growth. This function is likely meant
 // to divide the berry yield range equally into quartiles. If you watered the
 // tree n times, your yield is a random number in the nth quartile.
@@ -1578,6 +1581,11 @@ static u8 CalcBerryYieldInternal(u16 max, u16 min, u8 water)
     u32 randMax;
     u32 rand;
     u32 extraYield;
+    u16 currentMap = ((gSaveBlock1Ptr->location.mapGroup) << 8 | gSaveBlock1Ptr->location.mapNum);
+
+// rainy maps
+    if (IsMapRainy(currentMap) == TRUE)
+        return max;
 
     if (water == 0)
         return min;
@@ -1594,6 +1602,19 @@ static u8 CalcBerryYieldInternal(u16 max, u16 min, u8 water)
             extraYield = rand / NUM_WATER_STAGES;
         return extraYield + min;
     }
+}
+
+static bool8 IsMapRainy(u16 currentMap)
+{
+    if (currentMap == MAP_ROUTE119 || currentMap == MAP_ROUTE120 || currentMap == MAP_ROUTE123)
+        return TRUE;
+
+    if (FlagGet(FLAG_DEFEATED_KYOGRE) == TRUE)
+        return FALSE;
+
+// TODO: have it determine if the current map is Kyogre's current location
+
+    return FALSE;
 }
 
 static u8 CalcBerryYield(struct BerryTree *tree)
