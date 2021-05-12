@@ -29,6 +29,7 @@ struct TrainerMon
     u8 ball;
     bool32 shiny;
     u8 friendship;
+    s8 scale;
 };
 
 union TrainerMonPtr

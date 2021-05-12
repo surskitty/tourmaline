@@ -1797,6 +1797,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     u32 nameHash = 0;
     u32 personalityValue;
     u8 level;
+    u8 curvedLevel;
     s32 i, j;
     u16 ev;
     u8 monsCount;
@@ -1804,6 +1805,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     u8 friendship;
     u8 nickname[POKEMON_NAME_LENGTH + 1];
     u8 trainerName[(PLAYER_NAME_LENGTH * 3) + 1];
+
+    curvedLevel = GetPartyMonCurvedLevel();
 
     if (trainerNum == TRAINER_SECRET_BASE)
         return 0;
@@ -1831,6 +1834,10 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
         {
             const struct TrainerMon *partyData = gTrainers[trainerNum].party.TrainerMon;
             u8 fixedIV = partyData[i].iv + TRAINER_IV_MODIFIER;
+            
+            level = partyData[i].lvl;
+            if ((partyData[i].scale != 0) && (level < (curvedLevel + partyData[i].scale)))
+                level = curvedLevel + partyData[i].scale;
 
             fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
 
@@ -1840,7 +1847,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 // MON_MALE and NATURE_HARDY share the default values. If one is set, assume the other is also meant to be set.
 // Enforced male pokemon cannot be Hardy. All pokemon with set natures will be male unless otherwise stated.
             if ((partyData[i].nature > 0) || (partyData[i].gender > 0))
-                CreateMonWithGenderNatureLetter(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, partyData[i].gender, partyData[i].nature, 0, partyData[i].shiny ? OT_ID_SHINY : OT_ID_RANDOM_NO_SHINY);
+                CreateMonWithGenderNatureLetter(&party[i], partyData[i].species, level, fixedIV, partyData[i].gender, 
+                    partyData[i].nature, 0, partyData[i].shiny ? OT_ID_SHINY : OT_ID_RANDOM_NO_SHINY);
             else
             {
                 if (gTrainers[trainerNum].encounterMusic_gender & 0x80)
