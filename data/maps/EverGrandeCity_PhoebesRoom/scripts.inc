@@ -43,6 +43,8 @@ EverGrandeCity_PhoebesRoom_EventScript_Phoebe:: @ 82281CB
 	goto_if_set FLAG_DEFEATED_ELITE_4_PHOEBE, EverGrandeCity_PhoebesRoom_EventScript_PostBattleSpeech
 	playbgm MUS_ENCOUNTER_ELITE_FOUR, 0
 	msgbox EverGrandeCity_PhoebesRoom_Text_IntroSpeech, MSGBOX_DEFAULT
+	call Common_EventScript_OutOfCenterPartyHeal
+	msgbox EverGrandeCity_PhoebesRoom_Text_PreBattle, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_PHOEBE, EverGrandeCity_PhoebesRoom_Text_Defeat
 	goto EverGrandeCity_PhoebesRoom_EventScript_Defeated
 	end
@@ -59,9 +61,11 @@ EverGrandeCity_PhoebesRoom_EventScript_Defeated:: @ 82281FC
 	release
 	end
 
-EverGrandeCity_PhoebesRoom_Text_IntroSpeech: @ 822820E
+EverGrandeCity_PhoebesRoom_Text_IntroSpeech:
 	.string "Ahahaha!\p"
-	.string "I'm Phoebe of the Elite Four.\n"
+	.string "I'm Phoebe of the Elite Four.$"
+
+EverGrandeCity_PhoebesRoom_Text_PreBattle:
 	.string "I did my training on Mt. Pyre.\p"
 	.string "While I trained, I gained the ability\n"
 	.string "to commune with Ghost-type Pokémon.\p"

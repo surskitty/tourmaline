@@ -33,8 +33,8 @@ EverGrandeCity_ChampionsRoom_EventScript_EnterRoom:: @ 8228A1E
 	waitmovement 0
 	setvar VAR_TEMP_1, 1
 	goto EverGrandeCity_ChampionsRoom_EventScript_Wallace
-    releaseall
-    end
+	releaseall
+	end
 
 EverGrandeCity_ChampionsRoom_Movement_PlayerApproachWallace: @ 8228A42
 	walk_up
@@ -44,6 +44,8 @@ EverGrandeCity_ChampionsRoom_Movement_PlayerApproachWallace: @ 8228A42
 EverGrandeCity_ChampionsRoom_EventScript_Wallace:: @ 8228A45
 	playbgm MUS_ENCOUNTER_CHAMPION, 0
 	msgbox EverGrandeCity_ChampionsRoom_Text_IntroSpeech, MSGBOX_DEFAULT
+	call Common_EventScript_OutOfCenterPartyHeal
+	msgbox EverGrandeCity_ChampionsRoom_Text_PreBattle, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_WALLACE, EverGrandeCity_ChampionsRoom_Text_Defeat
 	goto EverGrandeCity_ChampionsRoom_EventScript_Defeated
 	end
@@ -229,12 +231,14 @@ EverGrandeCity_ChampionsRoom_Movement_BirchArrives: @ 8228C43
 	walk_in_place_fastest_left
 	step_end
 
-EverGrandeCity_ChampionsRoom_Text_IntroSpeech: @ 8228C4C
+EverGrandeCity_ChampionsRoom_Text_IntroSpeech: 
 	.string "Wallace: Welcome, {PLAYER}{KUN}.\p"
 	.string "That incident in Sootopolis City…\n"
 	.string "That was superb work, putting an end\l"
 	.string "to that crisis all by yourself.\p"
-	.string "Oops!\p"
+	.string "Oops!$"
+
+EverGrandeCity_ChampionsRoom_Text_PreBattle: 
 	.string "It wouldn't be fair to say that you\n"
 	.string "alone ended the crisis.\p"
 	.string "You overcame that difficult situation\n"

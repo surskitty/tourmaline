@@ -49,9 +49,22 @@ EverGrandeCity_SidneysRoom_EventScript_Sidney:: @ 8227F64
 	goto_if_set FLAG_DEFEATED_ELITE_4_SIDNEY, EverGrandeCity_SidneysRoom_EventScript_PostBattleSpeech
 	playbgm MUS_ENCOUNTER_ELITE_FOUR, 0
 	msgbox EverGrandeCity_SidneysRoom_Text_IntroSpeech, MSGBOX_DEFAULT
+        call Common_EventScript_OutOfCenterPartyHeal
+	special HasEnoughMonsForDoubleBattle
+	compare VAR_RESULT, PLAYER_HAS_TWO_USABLE_MONS
+	goto_if_ne EverGrandeCity_SidneysRoom_EventScript_ComeBackWithTwoMons
+	msgbox EverGrandeCity_SidneysRoom_Text_PreBattle, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_SIDNEY, EverGrandeCity_SidneysRoom_Text_Defeat
 	goto EverGrandeCity_SidneysRoom_EventScript_Defeated
 	end
+
+EverGrandeCity_SidneysRoom_EventScript_ComeBackWithTwoMons::
+        msgbox EverGrandeCity_SidneysRoom_Text_NeedTwoMons, MSGBOX_DEFAULT
+        fadescreen FADE_TO_BLACK
+        setrespawn HEAL_LOCATION_EVER_GRANDE_CITY_POKEMON_LEAGUE
+        special SetCB2WhiteOut
+        release
+        end
 
 EverGrandeCity_SidneysRoom_EventScript_PostBattleSpeech:: @ 8227F8B
 	msgbox EverGrandeCity_SidneysRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
@@ -67,13 +80,22 @@ EverGrandeCity_SidneysRoom_EventScript_Defeated:: @ 8227F95
 
 EverGrandeCity_SidneysRoom_Text_IntroSpeech: @ 8227FA7
 	.string "Welcome, challenger!\n"
-	.string "I'm Sidney of the Elite Four.\p"
+	.string "I'm Sidney of the Elite Four.$"
+
+EverGrandeCity_SidneysRoom_Text_PreBattle:
 	.string "I like that look you're giving me.\n"
 	.string "I guess you'll give me a good match.\l"
 	.string "That's good! Looking real good!\p"
 	.string "All right! You and me, let's enjoy\n"
 	.string "a battle that can only be staged\l"
 	.string "here in the Pokémon League!$"
+
+EverGrandeCity_SidneysRoom_Text_NeedTwoMons:
+	.string "… … … … … … … …\n"
+	.string "… … … … … … … …\p"
+	.string "Did you think you can enter\n"
+	.string "the Pokémon League without Pokémon?\p"
+	.string "Go get ready, then come back!$"
 
 EverGrandeCity_SidneysRoom_Text_Defeat: @ 82280A2
 	.string "Well, how do you like that? I lost!\n"

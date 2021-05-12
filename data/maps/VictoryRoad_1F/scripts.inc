@@ -42,6 +42,7 @@ VictoryRoad_1F_EventScript_WallyBattleTrigger2:: @ 8235DC8
 VictoryRoad_1F_EventScript_WallyEntranceBattle:: @ 8235DE1
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
+	special HealPlayerParty
 	msgbox VictoryRoad_1F_Text_WallyNotGoingToLoseAnymore, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_WALLY_VR_1, VictoryRoad_1F_Text_WallyEntranceDefeat
 	msgbox VictoryRoad_1F_Text_WallyPostEntranceBattle, MSGBOX_DEFAULT

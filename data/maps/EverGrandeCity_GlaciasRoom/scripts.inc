@@ -43,6 +43,8 @@ EverGrandeCity_GlaciasRoom_EventScript_Glacia:: @ 8228469
 	goto_if_set FLAG_DEFEATED_ELITE_4_GLACIA, EverGrandeCity_GlaciasRoom_EventScript_PostBattleSpeech
 	playbgm MUS_ENCOUNTER_ELITE_FOUR, 0
 	msgbox EverGrandeCity_GlaciasRoom_Text_IntroSpeech, MSGBOX_DEFAULT
+        call Common_EventScript_OutOfCenterPartyHeal
+	msgbox EverGrandeCity_GlaciasRoom_Text_PreBattle, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_GLACIA, EverGrandeCity_GlaciasRoom_Text_Defeat
 	goto EverGrandeCity_GlaciasRoom_EventScript_Defeated
 	end
@@ -59,9 +61,11 @@ EverGrandeCity_GlaciasRoom_EventScript_Defeated:: @ 822849A
 	release
 	end
 
-EverGrandeCity_GlaciasRoom_Text_IntroSpeech: @ 82284AC
+EverGrandeCity_GlaciasRoom_Text_IntroSpeech: 
 	.string "Welcome, my name is Glacia\n"
-	.string "of the Elite Four.\p"
+	.string "of the Elite Four.$"
+
+EverGrandeCity_GlaciasRoom_Text_PreBattle: 
 	.string "I've traveled from afar to Hoenn\n"
 	.string "so that I may hone my ice skills.\p"
 	.string "But all I have seen are challenges by\n"

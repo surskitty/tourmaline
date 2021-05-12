@@ -44,6 +44,8 @@ EverGrandeCity_DrakesRoom_EventScript_Drake:: @ 82286F3
 	goto_if_set FLAG_DEFEATED_ELITE_4_DRAKE, EverGrandeCity_DrakesRoom_EventScript_PostBattleSpeech
 	playbgm MUS_ENCOUNTER_ELITE_FOUR, 0
 	msgbox EverGrandeCity_DrakesRoom_Text_IntroSpeech, MSGBOX_DEFAULT
+	call Common_EventScript_OutOfCenterPartyHeal
+	msgbox EverGrandeCity_DrakesRoom_Text_PreBattle, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_DRAKE, EverGrandeCity_DrakesRoom_Text_Defeat
 	goto EverGrandeCity_DrakesRoom_EventScript_Defeated
 	end
@@ -62,9 +64,11 @@ EverGrandeCity_DrakesRoom_EventScript_Defeated:: @ 8228724
 	release
 	end
 
-EverGrandeCity_DrakesRoom_Text_IntroSpeech: @ 822873E
+EverGrandeCity_DrakesRoom_Text_IntroSpeech:
 	.string "I am the last of the Pokémon League\n"
-	.string "Elite Four, Drake the Dragon master!\p"
+	.string "Elite Four, Drake the Dragon master!$"
+
+EverGrandeCity_DrakesRoom_Text_PreBattle:
 	.string "In their natural state, Pokémon are\n"
 	.string "wild living things. They are free.\p"
 	.string "At times, they hinder us.\n"
