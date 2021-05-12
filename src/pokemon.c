@@ -46,6 +46,7 @@
 #include "constants/items.h"
 #include "constants/layouts.h"
 #include "constants/moves.h"
+#include "constants/party_menu.h"
 #include "constants/songs.h"
 #include "constants/trainers.h"
 #include "constants/weather.h"
@@ -8161,4 +8162,43 @@ u8 GetFormIdFromFormSpeciesId(u16 formSpeciesId)
         }
     }
     return targetFormId;
+}
+
+u8 GetPartyMonCurvedLevel(void)
+{
+    u8 adjustedLevel, currentLevel, monCount, partyMon, badgeModifier, firstMon;
+    u16 i, totalLevel;
+    
+    for (i = FLAG_BADGE01_GET; i < FLAG_BADGE01_GET + NUM_BADGES; i++)
+    {
+        if (FlagGet(i))
+            badgeModifier += 5;
+    }
+    adjustedLevel = badgeModifier;
+    
+    for (partyMon = 0; partyMon < PARTY_SIZE; partyMon++)
+    {
+        if ((GetMonData(&gPlayerParty[partyMon], MON_DATA_SPECIES, NULL) != SPECIES_NONE) && 
+            !(GetAilmentFromStatus(GetMonData(&gPlayerParty[partyMon], MON_DATA_STATUS, NULL)) == AILMENT_FNT) &&
+            !(GetMonData(&gPlayerParty[partyMon], MON_DATA_IS_EGG, NULL) || GetMonData(&gPlayerParty[partyMon], MON_DATA_SANITY_IS_BAD_EGG, NULL)))
+        {
+            currentLevel = GetMonData(&gPlayerParty[partyMon], MON_DATA_LEVEL, NULL);
+            totalLevel += currentLevel;
+            monCount++;
+
+            if (monCount == 1)
+                firstMon = currentLevel;
+
+            if (adjustedLevel < currentLevel)
+                adjustedLevel = (adjustedLevel + currentLevel) / 2;
+        }
+    }
+    
+    if (adjustedLevel < (totalLevel / PARTY_SIZE))
+        adjustedLevel = (totalLevel + badgeModifier) / PARTY_SIZE;
+    
+    if (adjustedLevel > firstMon)
+        adjustedLevel = firstMon;
+
+    return adjustedLevel;
 }
