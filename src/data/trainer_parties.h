@@ -1546,62 +1546,63 @@ static const struct TrainerMon sParty_Walter5[] = {
 };
 
 static const struct TrainerMon sParty_Sidney[] = {
-    { .iv = 250, .lvl = 65, .species = SPECIES_ZOROARK, 
+    { .iv = 250, .lvl = 65, .species = SPECIES_ZOROARK, .scale = -3,
       .moves = {MOVE_U_TURN, MOVE_SNARL, MOVE_FLAMETHROWER, MOVE_CRUNCH} },
-    { .iv = 250, .lvl = 65, .species = SPECIES_MIGHTYENA, .ability = ABILITY_SLOT_2,
+    { .iv = 250, .lvl = 65, .species = SPECIES_MIGHTYENA, .ability = ABILITY_SLOT_2, .scale = -3,
       .moves = {MOVE_PLAY_ROUGH, MOVE_SNARL, MOVE_POISON_FANG, MOVE_CRUNCH} },
-    { .iv = 250, .lvl = 65, .species = SPECIES_HONCHKROW, .ability = ABILITY_HIDDEN,
-      .moves = {MOVE_TAILWIND, MOVE_SUCKER_PUNCH, MOVE_BRAVE_BIRD, MOVE_ROOST} },
-    { .iv = 250, .lvl = 65, .species = SPECIES_CACTURNE, .ability = ABILITY_HIDDEN,
+    { .iv = 250, .lvl = 65, .species = SPECIES_HONCHKROW, .ability = ABILITY_HIDDEN, .scale = -3,
+      .moves = {MOVE_TAILWIND, MOVE_SUCKER_PUNCH, MOVE_BRAVE_BIRD, MOVE_ROOST} }, 
+    { .iv = 250, .lvl = 65, .species = SPECIES_CACTURNE, .ability = ABILITY_HIDDEN, .scale = -3,
       .moves = {MOVE_SPIKY_SHIELD, MOVE_FEINT_ATTACK, MOVE_NEEDLE_ARM, MOVE_FELL_STINGER} },
-    { .iv = 250, .lvl = 66, .species = SPECIES_CRAWDAUNT, .ability = ABILITY_HIDDEN,
+    { .iv = 250, .lvl = 66, .species = SPECIES_CRAWDAUNT, .ability = ABILITY_HIDDEN, .scale = -2,
       .moves = {MOVE_WATERFALL, MOVE_SWORDS_DANCE, MOVE_KNOCK_OFF, MOVE_FACADE} },
-    { .iv = 255, .lvl = 67, .species = SPECIES_ABSOL, .heldItem = ITEM_ABSOLITE, .ability = ABILITY_HIDDEN,
+    { .iv = 255, .lvl = 67, .species = SPECIES_ABSOL, .heldItem = ITEM_ABSOLITE, .ability = ABILITY_HIDDEN, .scale = -1,
       .moves = {MOVE_NIGHT_SLASH, MOVE_PSYCHO_CUT, MOVE_SWORDS_DANCE, MOVE_MEGAHORN} }
 };
 
 static const struct TrainerMon sParty_Phoebe[] = {
-    { .ivs = BEST_IV_SPREAD_SPECIAL_TRICK_ROOM, .lvl = 66, .species = SPECIES_DUSCLOPS, .heldItem = ITEM_EVIOLITE,
-      .moves = {MOVE_TRICK_ROOM, MOVE_CONFUSE_RAY, MOVE_WILL_O_WISP, MOVE_PROTECT} },
-    { .iv = 255, .lvl = 67, .species = SPECIES_ROTOM, .heldItem = ITEM_SITRUS_BERRY,
+    { .ivs = BEST_IV_SPREAD_SPECIAL_TRICK_ROOM, .lvl = 66, .species = SPECIES_DUSCLOPS, .heldItem = ITEM_EVIOLITE, .scale = -2,
+      .moves = {MOVE_TRICK_ROOM, MOVE_CONFUSE_RAY, MOVE_WILL_O_WISP, MOVE_PAIN_SPLIT} },
+    { .ivs = BEST_IV_SPREAD, .lvl = 66, .species = SPECIES_MAROWAK_ALOLAN, .heldItem = ITEM_THICK_CLUB, .ability = ABILITY_SLOT_1, .scale = -2,
+      .moves = {MOVE_SHADOW_BONE, MOVE_BONEMERANG, MOVE_FIRE_PUNCH, MOVE_PROTECT} },
+    { .ivs = BEST_IV_SPREAD_SPECIAL, .lvl = 67, .species = SPECIES_ROTOM, .heldItem = ITEM_SITRUS_BERRY, .scale = -1,
       .moves = {MOVE_OMINOUS_WIND, MOVE_HELPING_HAND, MOVE_VOLT_SWITCH, MOVE_SNATCH} },
-    { .iv = 255, .lvl = 66, .species = SPECIES_BANETTE, .heldItem = ITEM_BANETTITE, .ability = ABILITY_HIDDEN,
+    { .iv = 255, .lvl = 66, .species = SPECIES_BANETTE, .heldItem = ITEM_BANETTITE, .ability = ABILITY_HIDDEN, .scale = -2,
       .moves = {MOVE_SHADOW_SNEAK, MOVE_SPITE, MOVE_WILL_O_WISP, MOVE_PURSUIT} },
-    { .ivs = BEST_IV_SPREAD_SPECIAL_TRICK_ROOM, .lvl = 66, .species = SPECIES_SABLEYE, .ability = ABILITY_HIDDEN, 
+    { .ivs = BEST_IV_SPREAD_SPECIAL_TRICK_ROOM, .lvl = 66, .species = SPECIES_SABLEYE, .ability = ABILITY_HIDDEN, .scale = -2, 
       .moves = {MOVE_FOUL_PLAY, MOVE_SPITE, MOVE_RECOVER, MOVE_WILL_O_WISP} },
-    { .ivs = BEST_IV_SPREAD, .lvl = 66, .species = SPECIES_MAROWAK_ALOLAN, .heldItem = ITEM_THICK_CLUB, .ability = ABILITY_SLOT_1,
-      .moves = {MOVE_SHADOW_BONE, MOVE_BONEMERANG, MOVE_FIRE_PUNCH, MOVE_BODY_SLAM} },
-    { .iv = 255, .lvl = 68, .species = SPECIES_DUSKNOIR, .heldItem = ITEM_SITRUS_BERRY, .nature = NATURE_ADAMANT, .gender = MON_FEMALE,
+    { .ivs = BEST_IV_SPREAD_TRICK_ROOM, .lvl = 68, .species = SPECIES_DUSKNOIR, .scale = 1,
+      .heldItem = ITEM_SITRUS_BERRY, .nature = NATURE_ADAMANT, .gender = MON_FEMALE,
       .moves = {MOVE_SHADOW_SNEAK, MOVE_PAIN_SPLIT, MOVE_ICE_PUNCH, MOVE_THUNDER_PUNCH} }
 };
 
 static const struct TrainerMon sParty_Glacia[] = {
-    { .ivs = BEST_IV_SPREAD_SPECIAL, .lvl = 67, .species = SPECIES_VANILLUXE, .ability = ABILITY_SLOT_2, 
+    { .ivs = BEST_IV_SPREAD_SPECIAL, .lvl = 67, .species = SPECIES_VANILLUXE, .ability = ABILITY_SLOT_2, .scale = -1, 
       .moves = {MOVE_BLIZZARD, MOVE_FLASH_CANNON, MOVE_AURORA_VEIL, MOVE_PROTECT} },
     { .ivs = BEST_IV_SPREAD_SPECIAL, .lvl = 67, .species = SPECIES_FROSLASS, 
-      .ability = ABILITY_HIDDEN, .nature = NATURE_TIMID, .heldItem = ITEM_FOCUS_SASH,
+      .ability = ABILITY_HIDDEN, .nature = NATURE_TIMID, .heldItem = ITEM_FOCUS_SASH, .scale = -1,
       .moves = {MOVE_DRAINING_KISS, MOVE_SPIKES, MOVE_SHADOW_BALL, MOVE_ICY_WIND} },
-    { .ivs = BEST_IV_SPREAD, .lvl = 67, .species = SPECIES_GLALIE, .heldItem = ITEM_GLALITITE,
+    { .ivs = BEST_IV_SPREAD, .lvl = 67, .species = SPECIES_GLALIE, .heldItem = ITEM_GLALITITE, .scale = -1,
       .moves = {MOVE_EXPLOSION, MOVE_CRUNCH, MOVE_SIGNAL_BEAM, MOVE_HEADBUTT} },
-    { .ivs = BEST_IV_SPREAD, .lvl = 68, .species = SPECIES_GLALIE, .ability = ABILITY_HIDDEN,
+    { .ivs = BEST_IV_SPREAD, .lvl = 68, .species = SPECIES_GLALIE, .ability = ABILITY_HIDDEN, .scale = 1,
       .moves = {MOVE_SHADOW_BALL, MOVE_PROTECT, MOVE_HAIL, MOVE_WEATHER_BALL} },
-    { .ivs = BEST_IV_SPREAD, .lvl = 69, .species = SPECIES_WALREIN, .heldItem = ITEM_SITRUS_BERRY,
+    { .ivs = BEST_IV_SPREAD, .lvl = 69, .species = SPECIES_WALREIN, .heldItem = ITEM_SITRUS_BERRY, .scale = 2,
       .moves = {MOVE_SURF, MOVE_BODY_SLAM, MOVE_ICE_BEAM, MOVE_SHEER_COLD} }
 };
 
 static const struct TrainerMon sParty_Drake[] = {
-    { .iv = 250, .lvl = 68, .species = SPECIES_DRUDDIGON, .ability = ABILITY_SLOT_2,
+    { .iv = 250, .lvl = 69, .species = SPECIES_DRUDDIGON, .ability = ABILITY_SLOT_2, .scale = 2,
       .nature = NATURE_ADAMANT, .gender = MON_MALE, .heldItem = ITEM_LIFE_ORB,
       .moves = {MOVE_CRUNCH, MOVE_IRON_HEAD, MOVE_POISON_TAIL, MOVE_BREAKING_SWIPE} },
-    { .iv = 250, .lvl = 68, .species = SPECIES_ALTARIA, .heldItem = ITEM_ALTARIANITE,
+    { .iv = 250, .lvl = 68, .species = SPECIES_ALTARIA, .heldItem = ITEM_ALTARIANITE, .scale = 1,
       .moves = {MOVE_MOONBLAST, MOVE_DRAGON_PULSE, MOVE_COTTON_GUARD, MOVE_TAILWIND} },
-    { .iv = 250, .lvl = 68, .species = SPECIES_KINGDRA, .ability = ABILITY_SLOT_2, 
+    { .iv = 250, .lvl = 68, .species = SPECIES_KINGDRA, .ability = ABILITY_SLOT_2, .scale = 1,
       .moves = {MOVE_LASER_FOCUS, MOVE_DRAGON_DANCE, MOVE_WATERFALL, MOVE_BREAKING_SWIPE} },
-    { .iv = 255, .lvl = 68, .species = SPECIES_HYDREIGON, .heldItem = ITEM_ROSELI_BERRY,
+    { .iv = 255, .lvl = 68, .species = SPECIES_HYDREIGON, .heldItem = ITEM_ROSELI_BERRY, .scale = 1,
       .moves = {MOVE_CHARGE_BEAM, MOVE_DRAGON_PULSE, MOVE_DARK_PULSE, MOVE_HEAT_WAVE} },
-    { .iv = 250, .lvl = 69, .species = SPECIES_FLYGON, .heldItem = ITEM_YACHE_BERRY,
+    { .iv = 250, .lvl = 69, .species = SPECIES_FLYGON, .heldItem = ITEM_YACHE_BERRY, .scale = 1,
       .moves = {MOVE_BUG_BUZZ, MOVE_CRUNCH, MOVE_DRAGON_BREATH, MOVE_EARTHQUAKE} },
-    { .iv = 255, .lvl = 70, .species = SPECIES_SALAMENCE, 
+    { .iv = 255, .lvl = 70, .species = SPECIES_SALAMENCE, .scale = 3,
       .heldItem = ITEM_YACHE_BERRY, .ability = ABILITY_HIDDEN,
       .moves = {MOVE_FLAMETHROWER, MOVE_OUTRAGE, MOVE_ROCK_SLIDE, MOVE_CRUNCH} }
 };
@@ -1618,15 +1619,15 @@ static const struct TrainerMon sParty_Roxanne1[] = {
 };
 
 static const struct TrainerMon sParty_Roxanne2[] = {
-    { .ivs = BEST_IV_SPREAD, .lvl = 32, .species = SPECIES_GOLEM, .heldItem = ITEM_RINDO_BERRY, .ability = ABILITY_SLOT_2,
+    { .ivs = BEST_IV_SPREAD, .lvl = 32, .species = SPECIES_GOLEM, .heldItem = ITEM_RINDO_BERRY, .ability = ABILITY_SLOT_2, .scale = 1,
       .moves = {MOVE_STEALTH_ROCK, MOVE_MAGNITUDE, MOVE_PROTECT, MOVE_EXPLOSION} },
-    { .ivs = BEST_IV_SPREAD, .lvl = 35, .species = SPECIES_GIGALITH, .ability = ABILITY_SLOT_2,
+    { .ivs = BEST_IV_SPREAD, .lvl = 35, .species = SPECIES_GIGALITH, .ability = ABILITY_SLOT_2, .scale = 1,
       .moves = {MOVE_PROTECT, MOVE_SANDSTORM, MOVE_STONE_EDGE, MOVE_EXPLOSION} },
-    { .ivs = BEST_IV_SPREAD, .lvl = 35, .species = SPECIES_LAIRON, .ability = ABILITY_SLOT_1, .heldItem = ITEM_CHOPLE_BERRY,
+    { .ivs = BEST_IV_SPREAD, .lvl = 35, .species = SPECIES_LAIRON, .ability = ABILITY_SLOT_1, .heldItem = ITEM_CHOPLE_BERRY, .scale = 1,
       .moves = {MOVE_METAL_CLAW, MOVE_CURSE, MOVE_BULLDOZE, MOVE_ROCK_SLIDE} },
-    { .ivs = BEST_IV_SPREAD_TRICK_ROOM, .lvl = 35, .species = SPECIES_SHUCKLE, .heldItem = ITEM_BERRY_JUICE, .ability = ABILITY_HIDDEN,
+    { .ivs = BEST_IV_SPREAD_TRICK_ROOM, .lvl = 35, .species = SPECIES_SHUCKLE, .heldItem = ITEM_BERRY_JUICE, .ability = ABILITY_HIDDEN, .scale = 2,
       .moves = {MOVE_ENCORE, MOVE_STRUGGLE_BUG, MOVE_STICKY_WEB, MOVE_TOXIC} },
-    { .ivs = BEST_IV_SPREAD, .lvl = 37, .species = SPECIES_PROBOPASS, .heldItem = ITEM_SHUCA_BERRY,
+    { .ivs = BEST_IV_SPREAD, .lvl = 37, .species = SPECIES_PROBOPASS, .heldItem = ITEM_SHUCA_BERRY, .scale = 3,
       .moves = {MOVE_WIDE_GUARD, MOVE_STONE_EDGE, MOVE_SPARK, MOVE_MAGNET_BOMB} }
 };
 

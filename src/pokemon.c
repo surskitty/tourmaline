@@ -8166,7 +8166,7 @@ u8 GetFormIdFromFormSpeciesId(u16 formSpeciesId)
 
 u8 GetPartyMonCurvedLevel(void)
 {
-    u8 adjustedLevel, currentLevel, monCount, partyMon, badgeModifier, firstMon;
+    u8 adjustedLevel, currentLevel, monCount, partyMon, badgeModifier;
     u16 i, totalLevel;
     
     for (i = FLAG_BADGE01_GET; i < FLAG_BADGE01_GET + NUM_BADGES; i++)
@@ -8186,9 +8186,6 @@ u8 GetPartyMonCurvedLevel(void)
             totalLevel += currentLevel;
             monCount++;
 
-            if (monCount == 1)
-                firstMon = currentLevel;
-
             if (adjustedLevel < currentLevel)
                 adjustedLevel = (adjustedLevel + currentLevel) / 2;
         }
@@ -8197,8 +8194,5 @@ u8 GetPartyMonCurvedLevel(void)
     if (adjustedLevel < (totalLevel / PARTY_SIZE))
         adjustedLevel = (totalLevel + badgeModifier) / PARTY_SIZE;
     
-    if (adjustedLevel > firstMon)
-        adjustedLevel = firstMon;
-
     return adjustedLevel;
 }

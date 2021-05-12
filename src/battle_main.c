@@ -1806,8 +1806,6 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     u8 nickname[POKEMON_NAME_LENGTH + 1];
     u8 trainerName[(PLAYER_NAME_LENGTH * 3) + 1];
 
-    curvedLevel = GetPartyMonCurvedLevel();
-
     if (trainerNum == TRAINER_SECRET_BASE)
         return 0;
 
@@ -1833,13 +1831,16 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
         for (i = 0; i < monsCount; i++)
         {
             const struct TrainerMon *partyData = gTrainers[trainerNum].party.TrainerMon;
-            u8 fixedIV = partyData[i].iv + TRAINER_IV_MODIFIER;
+            u8 fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
             
+            curvedLevel = GetPartyMonCurvedLevel();
+
             level = partyData[i].lvl;
             if ((partyData[i].scale != 0) && (level < (curvedLevel + partyData[i].scale)))
                 level = curvedLevel + partyData[i].scale;
 
-            fixedIV = partyData[i].iv * MAX_PER_STAT_IVS / 255;
+            if (level > 100)
+                level = 100;
 
             for (j = 0; gTrainers[trainerNum].trainerName[j] != EOS; j++)
                 nameHash += gTrainers[trainerNum].trainerName[j];
