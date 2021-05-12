@@ -20,4 +20,5 @@ Most important things for players are over on [the wiki](https://github.com/surs
 - [Slawter666](https://github.com/Slawter666/pokeemerald)
 - [Pyredid](https://github.com/Pyredid/pokeemerald)
 - [shinny456](https://github.com/shinny456/pokeemerald)
-- [TheXaman](https://github.com/TheXaman/pokeemerald)
+- [TheXaman](https://github.com/TheXaman/pokeemerald) - especially the Pokedex
+- [citrusbolt](https://github.com/citrusbolt/pokeheliodor) - Summary Screen changes
