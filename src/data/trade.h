@@ -982,7 +982,7 @@ static const struct InGameTrade sIngameTrades[] =
     {
         .nickname = _("Pippin"), 
         .species = SPECIES_CLEFFA,
-        .ivs = BEST_IV_SPREAD_TRICK_ROOM,
+        .ivs = {31, 31, 31, 0, 31, 31},
         .abilityNum = 3, 
         .otId = 38726,
         .conditions = {30, 5, 5, 5, 5},
@@ -998,7 +998,7 @@ static const struct InGameTrade sIngameTrades[] =
     {
         .nickname = _("Chan"), 
         .species = SPECIES_DARUMAKA,
-        .ivs = BEST_IV_SPREAD,
+        .ivs = {31, 31, 31, 31, 31, 31},
         .abilityNum = 2, 
         .otId = 73996,
         .conditions = {5, 5, 30, 5, 5},
@@ -1014,7 +1014,7 @@ static const struct InGameTrade sIngameTrades[] =
     {
         .nickname = _("Machina"),
         .species = SPECIES_BELDUM,
-        .ivs = BEST_IV_SPREAD,
+        .ivs = {31, 31, 31, 31, 31, 31},
         .abilityNum = 0, 
         .otId = 46285,
         .conditions = {5, 5, 5, 5, 30},
@@ -1030,7 +1030,7 @@ static const struct InGameTrade sIngameTrades[] =
     {
         .nickname = _("Meowow"),
         .species = SPECIES_MEOWTH_ALOLAN,
-        .ivs = BEST_IV_SPREAD,
+        .ivs = {31, 31, 31, 31, 31, 31},
         .abilityNum = 2, 
         .otId = 91481,
         .conditions = {5, 5, 5, 30, 5},
@@ -1050,9 +1050,9 @@ static const u16 sIngameTradeMail[][MAIL_WORDS_COUNT + 1] =
         EC_WORD_BE,
         EC_WORD_NICE,
         EC_WORD_TO,
-        EC_POKEMON(PLUSLE),
+        EC_POKEMON(DARUMAKA),
         EC_WORD_EXCL,
-        EC_POKEMON(VOLBEAT),
+        EC_POKEMON(TROPIUS),
         EC_WORD_WILL,
         EC_WORD_BE,
         EC_WORD_FANTASTIC
@@ -1064,7 +1064,7 @@ static const u16 sIngameTradeMail[][MAIL_WORDS_COUNT + 1] =
         EC_WORD_TOUGH,
         EC_WORD_PLEASE,
         EC_WORD_TRAIN,
-        EC_POKEMON(HORSEA),
+        EC_POKEMON(BELDUM),
         EC_WORD_WELL
     }, {
         EC_WORD_THANK_YOU,
