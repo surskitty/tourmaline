@@ -364,6 +364,8 @@ PetalburgCity_Gym_EventScript_NormanPostBattle:: @ 8204D80
 	compare VAR_RESULT, TRUE
 	goto_if_eq PetalburgCity_Gym_EventScript_GiveEnigmaBerry
 	goto_if_unset FLAG_RECEIVED_TM42, PetalburgCity_Gym_EventScript_GiveFacade2
+	goto_if_unset FLAG_RECEIVED_MEGA_BRACELET, PetalburgCity_Gym_EventScript_GiveMegaBracelet
+	goto_if_unset FLAG_RECEIVED_MEGA_STONES, PetalburgCity_Gym_EventScript_GiveMegaStones
 	goto_if_set FLAG_SYS_GAME_CLEAR, PetalburgCity_Gym_EventScript_NoAmountOfTrainingIsEnough
 	msgbox PetalburgCity_Gym_Text_DadGoingToKeepTraining, MSGBOX_DEFAULT
 	release
@@ -427,6 +429,7 @@ PetalburgCity_Gym_EventScript_NormanBattle:: @ 8204E3B
 	call PetalburgCity_Gym_EventScript_UnlockAllDoors
 	special DrawWholeMapView
 	call PetalburgCity_Gym_EventScript_GiveMegaBracelet
+	call PetalburgCity_Gym_EventScript_GiveMegaStones
 	call PetalburgCity_Gym_EventScript_GiveFacade
 	delay 30
 	msgbox PetalburgCity_Gym_Text_DadHappyAndSad, MSGBOX_DEFAULT
@@ -446,6 +449,14 @@ PetalburgCity_Gym_EventScript_GiveMegaBracelet:: @ 8204ED2
 	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_BagIsFull
 	setflag FLAG_RECEIVED_MEGA_BRACELET
+	msgbox PetalburgCity_Gym_Text_ExplainMegas, MSGBOX_DEFAULT
+	return
+
+PetalburgCity_Gym_EventScript_GiveMegaStones:: @ 8204ED2
+	giveitem ITEM_MEGA_STONE, 5
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_BagIsFull
+	setflag FLAG_RECEIVED_MEGA_STONES
 	msgbox PetalburgCity_Gym_Text_ExplainMegas, MSGBOX_DEFAULT
 	return
 

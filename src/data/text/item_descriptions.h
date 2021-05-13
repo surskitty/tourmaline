@@ -2553,9 +2553,9 @@ static const u8 sMewtwoniteDesc[] = _(
     "Mewtwo to Mega\n"
     "Evolve in battle.");
 
-static const u8 sBlazikeniteDesc[] = _(
+static const u8 sMegaStoneDesc[] = _(
     "This stone enables\n"
-    "Blaziken to Mega\n"
+    "Pokémon to Mega\n"
     "Evolve in battle.");
 
 static const u8 sMedichamiteDesc[] = _(
@@ -2708,10 +2708,10 @@ static const u8 sSteelixiteDesc[] = _(
     "Steelix to Mega\n"
     "Evolve in battle.");
 
-static const u8 sPidgeotiteDesc[] = _(
+static const u8 sMegaStoneYDesc[] = _(
     "This stone enables\n"
-    "Pidgeot to Mega\n"
-    "Evolve in battle.");
+    "Charizard & Mewtwo\n"
+    "to Mega Evolve.");
 
 static const u8 sGlalititeDesc[] = _(
     "This stone enables\n"

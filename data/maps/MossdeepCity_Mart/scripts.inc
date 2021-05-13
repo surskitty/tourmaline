@@ -22,6 +22,9 @@ MossdeepCity_Mart_Pokemart: @ 82223E0
 	.2byte ITEM_MAX_REPEL
 	.2byte ITEM_X_ATTACK
 	.2byte ITEM_X_DEFENSE
+	.2byte ITEM_MEGA_STONE
+	.2byte ITEM_MEGA_STONE_X
+	.2byte ITEM_MEGA_STONE_Y
 	.2byte ITEM_NONE
 	release
 	end

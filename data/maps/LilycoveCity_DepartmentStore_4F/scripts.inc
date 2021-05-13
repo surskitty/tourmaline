@@ -18,17 +18,21 @@ LilycoveCity_DepartmentStore_4F_EventScript_ClerkLeft:: @ 821FE06
 	faceplayer
 	message gText_HowMayIServeYou
 	waitmessage
-	pokemart LilycoveCity_DepartmentStore_4F_Pokemart_AttackTMs
+	pokemart LilycoveCity_DepartmentStore_4F_Pokemart_TMs
 	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
 
 	.align 2
-LilycoveCity_DepartmentStore_4F_Pokemart_AttackTMs: @ 821FE20
+LilycoveCity_DepartmentStore_4F_Pokemart_TMs: @ 821FE20
 	.2byte ITEM_TM38  @ Fire Blast
 	.2byte ITEM_TM25  @ Thunder
 	.2byte ITEM_TM14  @ Blizzard
 	.2byte ITEM_TM15  @ Hyper Beam
+	.2byte ITEM_TM17  @ Protect
+	.2byte ITEM_TM20  @ Safeguard
+	.2byte ITEM_TM33  @ Reflect
+	.2byte ITEM_TM16  @ Light Screen
 	.2byte ITEM_NONE
 	release
 	end
@@ -38,27 +42,27 @@ LilycoveCity_DepartmentStore_4F_EventScript_ClerkRight:: @ 821FE2C
 	faceplayer
 	message gText_HowMayIServeYou
 	waitmessage
-	pokemart LilycoveCity_DepartmentStore_4F_Pokemart_DefenseTMs
+	pokemart LilycoveCity_DepartmentStore_4F_Pokemart_PowerUp
 	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
 
 	.align 2
-LilycoveCity_DepartmentStore_4F_Pokemart_DefenseTMs: @ 821FE44
-	.2byte ITEM_TM17  @ Protect
-	.2byte ITEM_TM20  @ Safeguard
-	.2byte ITEM_TM33  @ Reflect
-	.2byte ITEM_TM16  @ Light Screen
+LilycoveCity_DepartmentStore_4F_Pokemart_PowerUp: @ 821FE44
+	.2byte ITEM_MEGA_STONE
+	.2byte ITEM_MEGA_STONE_X
+	.2byte ITEM_MEGA_STONE_Y
 	.2byte ITEM_NONE
 	release
 	end
 
 LilycoveCity_DepartmentStore_4F_Text_AttackOrDefenseTM: @ 821FE50
-	.string "Hmm…\p"
-	.string "An attacking move…\n"
-	.string "Or a defensive move…\p"
-	.string "It's no easy matter to decide which TM\n"
-	.string "moves should be taught to Pokémon…$"
+	.string "I hear a Stone Collector in Mossdeep\n"
+	.string "is why we can buy Mega Stones here.\p"
+	.string "In some regions, each Pokémon needs\n"
+	.string "a separate stone for a Mega Ring.\p"
+	.string "Can you imagine how much room that\n"
+	.string "would take?$"
 
 LilycoveCity_DepartmentStore_4F_Text_FiftyDifferentTMs: @ 821FEC7
 	.string "There are so many different kinds of\n"
