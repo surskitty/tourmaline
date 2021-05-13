@@ -36,19 +36,30 @@
 #define MOVE_POWER_WEAK         3 // Significantly lower than best and good.
 
 // script's table id to bit
-#define AI_SCRIPT_CHECK_BAD_MOVE (1 << 0)
-#define AI_SCRIPT_TRY_TO_FAINT (1 << 1)
-#define AI_SCRIPT_CHECK_VIABILITY (1 << 2)
-#define AI_SCRIPT_SETUP_FIRST_TURN (1 << 3)
-#define AI_SCRIPT_RISKY (1 << 4)
+#define AI_SCRIPT_CHECK_BAD_MOVE        (1 << 0)
+#define AI_SCRIPT_TRY_TO_FAINT          (1 << 1)
+#define AI_SCRIPT_CHECK_VIABILITY       (1 << 2)
+#define AI_SCRIPT_SETUP_FIRST_TURN      (1 << 3)
+#define AI_SCRIPT_RISKY                 (1 << 4)
 #define AI_SCRIPT_PREFER_STRONGEST_MOVE (1 << 5)
-#define AI_SCRIPT_PREFER_BATON_PASS (1 << 6)
-#define AI_SCRIPT_DOUBLE_BATTLE (1 << 7)
-#define AI_SCRIPT_HP_AWARE (1 << 8)
-#define AI_SCRIPT_UNKNOWN (1 << 9)
-// 10 - 28 are not used
-#define AI_SCRIPT_ROAMING (1 << 29)
-#define AI_SCRIPT_SAFARI (1 << 30)
-#define AI_SCRIPT_FIRST_BATTLE (1 << 31)
+#define AI_SCRIPT_PREFER_BATON_PASS     (1 << 6)
+#define AI_SCRIPT_DOUBLE_BATTLE         (1 << 7)
+#define AI_SCRIPT_HP_AWARE              (1 << 8)
+#define AI_SCRIPT_UNKNOWN               (1 << 9)
+// TODO: implement these.
+#define AI_SCRIPT_RAIN                  (1 << 10)
+#define AI_SCRIPT_SUN                   (1 << 11)
+#define AI_SCRIPT_HAIL                  (1 << 12)
+#define AI_SCRIPT_SAND                  (1 << 13)
+#define AI_SCRIPT_TRICK_ROOM            (1 << 14)
+#define AI_SCRIPT_GRAVITY               (1 << 15)
+#define AI_SCRIPT_MISTY_TERRAIN         (1 << 16)
+#define AI_SCRIPT_ELECTRIC_TERRAIN      (1 << 17)
+#define AI_SCRIPT_GRASSY_TERRAIN        (1 << 18)
+#define AI_SCRIPT_PSYCHIC_TERRAIN       (1 << 19)
+
+#define AI_SCRIPT_ROAMING               (1 << 29)
+#define AI_SCRIPT_SAFARI                (1 << 30)
+#define AI_SCRIPT_FIRST_BATTLE          (1 << 31)
 
 #endif // GUARD_CONSTANTS_BATTLE_AI_H
