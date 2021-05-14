@@ -1801,7 +1801,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     u8 curvedLevel;
     s32 i, j;
     u8 monsCount;
-    u8 nickname[POKEMON_NAME_LENGTH + 1];
+//    u8 nickname[POKEMON_NAME_LENGTH + 1];
     u8 trainerName[(PLAYER_NAME_LENGTH * 3) + 1];
     u8 ability, gender, friendship, ball;
     u8 difficulty, amount, build;
@@ -1867,8 +1867,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 SetMonData(&party[i], MON_DATA_FRIENDSHIP, &friendship);
             }
 
-            if (partyData[i].nickname[0] != '\0')
-                SetMonData(&party[i], MON_DATA_NICKNAME, &partyData[i].nickname);
+//            if (partyData[i].nickname[0] != '\0')
+//                SetMonData(&party[i], MON_DATA_NICKNAME, &partyData[i].nickname);
 
 // Should take only constants of ABILITY_SLOT_1, ABILITY_SLOT_2, or ABILITY_HIDDEN.
 // If desired, implement else where undefined abilities are chosen between slots 1 and 2, a la gen IV.

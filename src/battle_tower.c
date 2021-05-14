@@ -3044,8 +3044,8 @@ static void FillPartnerParty(u16 trainerId)
                 SetMonData(&gPlayerParty[i + 3], MON_DATA_FRIENDSHIP, &friendship);
             }
 
-            if (partyData[i].nickname[0] != '\0')
-                SetMonData(&gPlayerParty[i + 3], MON_DATA_NICKNAME, &partyData[i].nickname);
+//            if (partyData[i].nickname[0] != '\0')
+//                SetMonData(&gPlayerParty[i + 3], MON_DATA_NICKNAME, &partyData[i].nickname);
 
 // Should take only constants of ABILITY_SLOT_1, ABILITY_SLOT_2, or ABILITY_HIDDEN.
 // If desired, implement else where undefined abilities are chosen between slots 1 and 2, a la gen IV.
