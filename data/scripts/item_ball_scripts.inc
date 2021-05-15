@@ -371,7 +371,7 @@ JaggedPass_EventScript_ItemBurnHeal:: @ 8291184
 	end
 
 FieryPath_EventScript_ItemFireStone:: @ 8291191
-	finditem ITEM_FIRE_STONE
+	finditem ITEM_OLD_AMBER
 	end
 
 FieryPath_EventScript_ItemTM06:: @ 829119E
