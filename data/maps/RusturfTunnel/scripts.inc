@@ -431,7 +431,7 @@ RusturfTunnel_Movement_PeekoExit: @ 822D1A7
 	step_end
 
 RusturfTunnel_EventScript_Mike:: @ 822D1B1
-	trainerbattle_single TRAINER_MIKE_2, RusturfTunnel_Text_MikeIntro, RusturfTunnel_Text_MikeDefeat
+	trainerbattle_single TRAINER_MIKE, RusturfTunnel_Text_MikeIntro, RusturfTunnel_Text_MikeDefeat
 	msgbox RusturfTunnel_Text_MikePostBattle, MSGBOX_AUTOCLOSE
 	end
 
