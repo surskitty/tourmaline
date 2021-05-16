@@ -1798,7 +1798,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     u32 nameHash = 0;
     u32 personalityValue;
     u8 level;
-    u8 curvedLevel;
+    u8 curvedLevel, curveAmount;
     s32 i, j;
     u8 monsCount;
 //    u8 nickname[POKEMON_NAME_LENGTH + 1];
@@ -1829,6 +1829,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
             monsCount = gTrainers[trainerNum].partySize;
         }
 
+        curvedLevel = GetPartyMonCurvedLevel();
+
         for (i = 0; i < monsCount; i++)
         {
             const struct TrainerMon *partyData = gTrainers[trainerNum].party.TrainerMon;
@@ -1839,6 +1841,20 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 
 //            if (gTrainers[trainerNum].doubleBattle == TRUE)
 //                personalityValue = 0x80;
+
+            level = partyData[i].lvl;
+            curveAmount = 0;
+
+            if (curvedLevel > (level + 10))
+            {
+                curveAmount -= level;
+                curveAmount -= (level % 5);
+            }
+
+            if (!(FlagGet(FLAG_SYS_GAME_CLEAR)))
+                curveAmount = curveAmount / 2;
+
+            level = level + curveAmount;
 
             if ((gTrainers[trainerNum].encounterMusic_gender & 0x80) || (partyData[i].gender == TRAINER_MON_MALE))
             {
@@ -1852,10 +1868,10 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
             }
 
             if (partyData[i].nature > 0)
-                CreateMonWithGenderNatureLetter(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, gender, partyData[i].nature, 0, partyData[i].shiny ? OT_ID_SHINY : OT_ID_RANDOM_NO_SHINY);
+                CreateMonWithGenderNatureLetter(&party[i], partyData[i].species, level, fixedIV, gender, partyData[i].nature, 0, partyData[i].shiny ? OT_ID_SHINY : OT_ID_RANDOM_NO_SHINY);
             else
             {
-                CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, partyData[i].shiny ? OT_ID_SHINY : OT_ID_RANDOM_NO_SHINY, 0);
+                CreateMon(&party[i], partyData[i].species, level, fixedIV, TRUE, personalityValue, partyData[i].shiny ? OT_ID_SHINY : OT_ID_RANDOM_NO_SHINY, 0);
             }
 
             if (partyData[i].friendship > 0)

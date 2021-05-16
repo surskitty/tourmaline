@@ -537,4 +537,4 @@ gSpecials:: @ 81DBA64
 	def_special TrySetBattleTowerLinkType
 	def_special FieldLoadFlyMap
 	def_special SetTotemBoost
-
+	def_special CreateWonderTradePokemon

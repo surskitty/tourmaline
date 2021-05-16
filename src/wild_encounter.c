@@ -155,8 +155,7 @@ static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon)
     u8 max;
     u8 range;
     u8 rand;
-    u8 curvedLevel;
-    u8 curveAmount;
+    u8 curvedLevel, curveAmount, finalLevel;
 
     // Make sure minimum level is less than maximum level
     if (wildPokemon->maxLevel >= wildPokemon->minLevel)
@@ -172,14 +171,19 @@ static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon)
     
     curvedLevel = GetPartyMonCurvedLevel();
     if (max < curvedLevel)
-        curveAmount = (((2 * curvedLevel) + max) / 3) - max;
-    
+        curveAmount = (curvedLevel - max) / 2;
+
     range = max - min + 1;
     
-    if (range < (curveAmount * 3))
-        range = curveAmount / 3; 
-    
+    if (range < curveAmount)
+        range = (curveAmount + range) / 2; 
+
     rand = Random() % range;
+
+    if (!(FlagGet(FLAG_SYS_GAME_CLEAR)))
+        curveAmount = curveAmount / 2;
+
+    finalLevel = min + rand + curveAmount;
 
     // check ability for max level mon
     if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
@@ -188,14 +192,14 @@ static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon)
         if (ability == ABILITY_HUSTLE || ability == ABILITY_VITAL_SPIRIT || ability == ABILITY_PRESSURE)
         {
             if (Random() % 2 == 0)
-                return max + curveAmount;
-
-            if (rand != 0)
-                rand--;
+                finalLevel = max + curveAmount;
         }
     }
 
-    return min + rand + curveAmount;
+    if (finalLevel > (MAX_LEVEL - 5))
+        finalLevel = MAX_LEVEL - 5;
+
+    return finalLevel;
 }
 
 static u16 GetCurrentMapWildMonHeaderId(void)
