@@ -13,9 +13,9 @@ Most important things for players are over on [the wiki](https://github.com/surs
 - [Buffelsaft](https://github.com/BuffelSaft/pokeemerald)
 - [Demonheadge](https://github.com/Demonheadge/pokeemerald)
 - [DizzyEggg](https://github.com/DizzyEggg/pokeemerald)
-- [ghoulslash](https://github.com/ghoulslash/pokeemerald)
+- [ghoulslash](https://github.com/ghoulslash/pokeemerald) - SO MANY FEATURE BRANCHES &hearts;
 - [lightgod87](https://github.com/lightgod87/pokeemerald)
-- [LOuroboros](https://github.com/LOuroboros/pokeemerald)
+- [LOuroboros](https://github.com/LOuroboros/pokeemerald) - of note, Wonder Trade
 - [NotToDisturb](https://github.com/NotToDisturb/pokeemerald)
 - [Slawter666](https://github.com/Slawter666/pokeemerald)
 - [Pyredid](https://github.com/Pyredid/pokeemerald)
