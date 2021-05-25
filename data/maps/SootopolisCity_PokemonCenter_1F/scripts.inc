@@ -19,8 +19,9 @@ SootopolisCity_PokemonCenter_1F_EventScript_Nurse:: @ 8226500
 	end
 
 SootopolisCity_PokemonCenter_1F_EventScript_MoveRelearner:: 
+	setvar VAR_MOVE_MANAGER, MOVE_REMINDER_LEARN_ALL_MOVES
 	setvar VAR_0x800B, LOCALID_MOVE_RELEARNER
-	call Common_EventScript_MoveRelearner
+	call Common_EventScript_MoveManager
 	waitmessage
 	waitbuttonpress
 	release
