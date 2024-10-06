@@ -1425,6 +1425,11 @@ u8 GetLastUsedWarpMapSectionId(void)
     return Overworld_GetMapHeaderByGroupAndId(gLastUsedWarp.mapGroup, gLastUsedWarp.mapNum)->regionMapSectionId;
 }
 
+u8 GetDestinationWarpMapSectionId(void)
+{
+    return Overworld_GetMapHeaderByGroupAndId(sWarpDestination.mapGroup, sWarpDestination.mapNum)->regionMapSectionId;
+}
+
 bool8 IsMapTypeOutdoors(u8 mapType)
 {
     if (mapType == MAP_TYPE_ROUTE
@@ -2026,7 +2031,7 @@ static bool32 LoadMapInStepsLocal(u8 *state, bool32 a2)
         (*state)++;
         break;
     case 11:
-        if (GetLastUsedWarpMapSectionId() != gMapHeader.regionMapSectionId && MapHasPreviewScreen_HandleQLState2(gMapHeader.regionMapSectionId, MPS_TYPE_NON_CAVE) == TRUE)
+        if (GetLastUsedWarpMapSectionId() != gMapHeader.regionMapSectionId && MapHasPreviewScreen_HandleQLState2(gMapHeader.regionMapSectionId, MPS_TYPE_FADE_IN) == TRUE)
         {
             MapPreview_LoadGfx(gMapHeader.regionMapSectionId);
             MapPreview_StartForestTransition(gMapHeader.regionMapSectionId);

@@ -156,6 +156,7 @@ bool32 Overworld_SendKeysToLinkIsRunning(void);
 bool32 IsSendingKeysOverCable(void);
 void ClearLinkPlayerObjectEvents(void);
 u8 GetLastUsedWarpMapSectionId(void);
+u8 GetDestinationWarpMapSectionId(void);
 
 // Item Description Headers
 enum ItemObtainFlags
