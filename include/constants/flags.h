@@ -1506,27 +1506,29 @@
 
 #define FLAG_RECEIVED_POKEDEX_FROM_BIRCH            (SYSTEM_FLAGS + 0x84)
 
-#define FLAG_UNUSED_0x8E5                           (SYSTEM_FLAGS + 0x85) // Unused Flag
-#define FLAG_UNUSED_0x8E6                           (SYSTEM_FLAGS + 0x86) // Unused Flag
-#define FLAG_UNUSED_0x8E7                           (SYSTEM_FLAGS + 0x87) // Unused Flag
-#define FLAG_UNUSED_0x8E8                           (SYSTEM_FLAGS + 0x88) // Unused Flag
-#define FLAG_UNUSED_0x8E9                           (SYSTEM_FLAGS + 0x89) // Unused Flag
-#define FLAG_UNUSED_0x8EA                           (SYSTEM_FLAGS + 0x8A) // Unused Flag
-#define FLAG_UNUSED_0x8EB                           (SYSTEM_FLAGS + 0x8B) // Unused Flag
-#define FLAG_UNUSED_0x8EC                           (SYSTEM_FLAGS + 0x8C) // Unused Flag
-#define FLAG_UNUSED_0x8ED                           (SYSTEM_FLAGS + 0x8D) // Unused Flag
-#define FLAG_UNUSED_0x8EE                           (SYSTEM_FLAGS + 0x8E) // Unused Flag
-#define FLAG_UNUSED_0x8EF                           (SYSTEM_FLAGS + 0x8F) // Unused Flag
-#define FLAG_UNUSED_0x8F0                           (SYSTEM_FLAGS + 0x90) // Unused Flag
-#define FLAG_UNUSED_0x8F1                           (SYSTEM_FLAGS + 0x91) // Unused Flag
-#define FLAG_UNUSED_0x8F2                           (SYSTEM_FLAGS + 0x92) // Unused Flag
-#define FLAG_UNUSED_0x8F3                           (SYSTEM_FLAGS + 0x93) // Unused Flag
-#define FLAG_UNUSED_0x8F4                           (SYSTEM_FLAGS + 0x94) // Unused Flag
-#define FLAG_UNUSED_0x8F5                           (SYSTEM_FLAGS + 0x95) // Unused Flag
-#define FLAG_UNUSED_0x8F6                           (SYSTEM_FLAGS + 0x96) // Unused Flag
-#define FLAG_UNUSED_0x8F7                           (SYSTEM_FLAGS + 0x97) // Unused Flag
-#define FLAG_UNUSED_0x8F8                           (SYSTEM_FLAGS + 0x98) // Unused Flag
-#define FLAG_UNUSED_0x8F9                           (SYSTEM_FLAGS + 0x99) // Unused Flag
+// World Map Flags for FRLG map previews
+#define FLAG_WORLD_MAP_VIRIDIAN_FOREST                              (SYSTEM_FLAGS + 0x85)
+#define FLAG_WORLD_MAP_MT_MOON_1F                                   (SYSTEM_FLAGS + 0x86)
+#define FLAG_WORLD_MAP_DIGLETTS_CAVE_B1F                            (SYSTEM_FLAGS + 0x87)
+#define FLAG_WORLD_MAP_ROCK_TUNNEL_1F                               (SYSTEM_FLAGS + 0x88)
+#define FLAG_WORLD_MAP_POKEMON_TOWER_1F                             (SYSTEM_FLAGS + 0x89)
+#define FLAG_WORLD_MAP_SAFARI_ZONE_CENTER                           (SYSTEM_FLAGS + 0x8A)
+#define FLAG_WORLD_MAP_SEAFOAM_ISLANDS_1F                           (SYSTEM_FLAGS + 0x8B)
+#define FLAG_WORLD_MAP_POKEMON_MANSION_1F                           (SYSTEM_FLAGS + 0x8C)
+#define FLAG_WORLD_MAP_ROCKET_HIDEOUT_B1F                           (SYSTEM_FLAGS + 0x8D)
+#define FLAG_WORLD_MAP_SILPH_CO_1F                                  (SYSTEM_FLAGS + 0x8E)
+#define FLAG_WORLD_MAP_VICTORY_ROAD_1F                              (SYSTEM_FLAGS + 0x8F)
+#define FLAG_WORLD_MAP_CERULEAN_CAVE_1F                             (SYSTEM_FLAGS + 0x90)
+#define FLAG_WORLD_MAP_POWER_PLANT                                  (SYSTEM_FLAGS + 0x91)
+#define FLAG_WORLD_MAP_MT_EMBER_EXTERIOR                            (SYSTEM_FLAGS + 0x92)
+#define FLAG_WORLD_MAP_SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER     (SYSTEM_FLAGS + 0x93)
+#define FLAG_WORLD_MAP_SIX_ISLAND_DOTTED_HOLE_1F                    (SYSTEM_FLAGS + 0x94)
+#define FLAG_WORLD_MAP_THREE_ISLAND_BERRY_FOREST                    (SYSTEM_FLAGS + 0x95)
+#define FLAG_WORLD_MAP_FOUR_ISLAND_ICEFALL_CAVE_ENTRANCE            (SYSTEM_FLAGS + 0x96)
+#define FLAG_WORLD_MAP_FIVE_ISLAND_LOST_CAVE_ENTRANCE               (SYSTEM_FLAGS + 0x97)
+#define FLAG_WORLD_MAP_SIX_ISLAND_ALTERING_CAVE                     (SYSTEM_FLAGS + 0x98)
+#define FLAG_WORLD_MAP_SIX_ISLAND_PATTERN_BUSH                      (SYSTEM_FLAGS + 0x99)
+
 #define FLAG_UNUSED_0x8FA                           (SYSTEM_FLAGS + 0x9A) // Unused Flag
 #define FLAG_UNUSED_0x8FB                           (SYSTEM_FLAGS + 0x9B) // Unused Flag
 #define FLAG_UNUSED_0x8FC                           (SYSTEM_FLAGS + 0x9C) // Unused Flag
