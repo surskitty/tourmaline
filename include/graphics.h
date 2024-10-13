@@ -3371,4 +3371,8 @@ extern const u8 gMailTilemap_Retro[];
 extern const u8 gMonMarkingsMenu_Gfx[];
 extern const u16 gMonMarkingsMenu_Pal[];
 
+//New Summary Pages
+extern const u32 gSummaryPage_Abilities_Tilemap[];
+extern const u32 gSummaryPage_Memos_Tilemap[];
+
 #endif //GUARD_GRAPHICS_H
