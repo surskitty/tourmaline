@@ -3047,7 +3047,7 @@ extern const u8 gText_AM[];
 extern const u8 gText_PM[];
 
 //New Summary Pages
-extern const u8 gText_PkmnAbilities[];
+extern const u8 gText_PkmnTraits[];
 extern const u8 gText_PkmnMemos[];
 
 #endif // GUARD_STRINGS_H

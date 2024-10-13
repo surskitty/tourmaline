@@ -2062,5 +2062,5 @@ const u32 gBerryCrush_Crusher_Gfx[] = INCBIN_U32("graphics/berry_crush/crusher.4
 const u32 gBerryCrush_TextWindows_Tilemap[] = INCBIN_U32("graphics/berry_crush/text_windows.bin.lz");
 
 //New Summary Pages
-const u32 gSummaryPage_Abilities_Tilemap[]      = INCBIN_U32("graphics/summary_screen/page_abilities.bin.lz");
+const u32 gSummaryPage_Traits_Tilemap[]      = INCBIN_U32("graphics/summary_screen/page_traits.bin.lz");
 const u32 gSummaryPage_Memos_Tilemap[]          = INCBIN_U32("graphics/summary_screen/page_memos.bin.lz");

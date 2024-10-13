@@ -52,7 +52,7 @@
 
 enum {
     PSS_PAGE_INFO,
-    PSS_PAGE_ABILITIES,
+    PSS_PAGE_TRAITS,
     PSS_PAGE_SKILLS,
     PSS_PAGE_BATTLE_MOVES,
     PSS_PAGE_CONTEST_MOVES,
@@ -62,7 +62,7 @@ enum {
 
 // Screen titles (upper left)
 #define PSS_LABEL_WINDOW_POKEMON_INFO_TITLE 0
-#define PSS_LABEL_WINDOW_POKEMON_ABILITIES_TITLE 1
+#define PSS_LABEL_WINDOW_POKEMON_TRAITS_TITLE 1
 #define PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE 2
 #define PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE 3
 #define PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE 4
@@ -324,8 +324,8 @@ static void DestroyMoveSelectorSprites(u8);
 static void SetMainMoveSelectorColor(u8);
 static void KeepMoveSelectorVisible(u8);
 static void SummaryScreen_DestroyAnimDelayTask(void);
-static void PrintAbilityAndInnates(void);
-static void Task_PrintAbilityAndInnates(u8);
+static void PrintTraits(void);
+static void Task_PrintTraits(u8);
 static void PrintMemos(void);
 static void Task_PrintMemos(u8);
 
@@ -408,7 +408,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .paletteNum = 6,
         .baseBlock = 1,
     },
-    [PSS_LABEL_WINDOW_POKEMON_ABILITIES_TITLE] = {
+    [PSS_LABEL_WINDOW_POKEMON_TRAITS_TITLE] = {
         .bg = 0,
         .tilemapLeft = 0,
         .tilemapTop = 0,
@@ -749,7 +749,7 @@ static const u8 sButtons_Gfx[][4 * TILE_SIZE_4BPP] = {
 static void (*const sTextPrinterFunctions[])(void) =
 {
     [PSS_PAGE_INFO] = PrintInfoPageText,
-    [PSS_PAGE_ABILITIES] = PrintAbilityAndInnates,
+    [PSS_PAGE_TRAITS] = PrintTraits,
     [PSS_PAGE_SKILLS] = PrintSkillsPageText,
     [PSS_PAGE_BATTLE_MOVES] = PrintBattleMoves,
     [PSS_PAGE_MEMOS] = PrintMemos,
@@ -759,7 +759,7 @@ static void (*const sTextPrinterFunctions[])(void) =
 static void (*const sTextPrinterTasks[])(u8 taskId) =
 {
     [PSS_PAGE_INFO] = Task_PrintInfoPage,
-    [PSS_PAGE_ABILITIES] = Task_PrintAbilityAndInnates,
+    [PSS_PAGE_TRAITS] = Task_PrintTraits,
     [PSS_PAGE_SKILLS] = Task_PrintSkillsPage,
     [PSS_PAGE_BATTLE_MOVES] = Task_PrintBattleMoves,
     [PSS_PAGE_MEMOS] = Task_PrintMemos,
@@ -1405,7 +1405,7 @@ static void InitBGs(void)
     InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
     SetBgTilemapBuffer(1, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_BATTLE_MOVES][0]);
     //SetBgTilemapBuffer(2, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_MEMOS][0]);
-    //SetBgTilemapBuffer(2, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_ABILITIES][0]);
+    //SetBgTilemapBuffer(2, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_TRAITS][0]);
     SetBgTilemapBuffer(2, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_SKILLS][0]);
     SetBgTilemapBuffer(3, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_INFO][0]);
     ResetAllBgsCoordinates();
@@ -1441,7 +1441,7 @@ static bool8 DecompressGraphics(void)
         sMonSummaryScreen->switchCounter++;
         break;
     case 3:
-        LZDecompressWram(gSummaryPage_Abilities_Tilemap, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_ABILITIES][1]);
+        LZDecompressWram(gSummaryPage_Traits_Tilemap, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_TRAITS][1]);
         sMonSummaryScreen->switchCounter++;
         break;
     case 4:
@@ -2971,7 +2971,7 @@ static void PrintPageNamesAndStats(void)
     int statsXPos;
 
     PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_INFO_TITLE, gText_PkmnInfo, 2, 1, 0, 1);
-    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_ABILITIES_TITLE, gText_PkmnAbilities, 2, 1, 0, 1);
+    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_TRAITS_TITLE, gText_PkmnTraits, 2, 1, 0, 1);
     PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE, gText_PkmnSkills, 2, 1, 0, 1);
     PrintTextOnWindow(PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE, gText_BattleMoves, 2, 1, 0, 1);
     PrintTextOnWindow(PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE, gText_ContestMoves, 2, 1, 0, 1);
@@ -3026,7 +3026,7 @@ static void PutPageWindowTilemaps(u8 page)
     u8 i;
 
     ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_TITLE);
-    ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_ABILITIES_TITLE);
+    ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_TRAITS_TITLE);
     ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE);
     ClearWindowTilemap(PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE);
     ClearWindowTilemap(PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE);
@@ -3041,8 +3041,8 @@ static void PutPageWindowTilemaps(u8 page)
             PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL);
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_TYPE);
         break;
-    case PSS_PAGE_ABILITIES:
-        PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_ABILITIES_TITLE);
+    case PSS_PAGE_TRAITS:
+        PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_TRAITS_TITLE);
         break;
     case PSS_PAGE_SKILLS:
         PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE);
@@ -3097,7 +3097,7 @@ static void ClearPageWindowTilemaps(u8 page)
             ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL);
         ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_INFO_TYPE);
         break;
-    case PSS_PAGE_ABILITIES:
+    case PSS_PAGE_TRAITS:
       //  ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT);
       //  ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT);
         break;
@@ -3454,7 +3454,7 @@ static void PrintEggMemo(void)
     PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_MEMO), text, 0, 1, 0, 0);
 }
 
-static void PrintAbilityAndInnates(void)
+static void PrintTraits(void)
 {
     PrintHeldItemName();
     PrintRibbonCount();
@@ -3462,7 +3462,7 @@ static void PrintAbilityAndInnates(void)
     PrintLeftColumnStats();
 }
 
-static void Task_PrintAbilityAndInnates(u8 taskId)
+static void Task_PrintTraits(u8 taskId)
 {
     s16* data = gTasks[taskId].data;
 
