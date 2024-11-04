@@ -101,6 +101,9 @@ enum {
 #define PSS_DATA_WINDOW_INFO_ABILITY 2
 #define PSS_DATA_WINDOW_INFO_MEMO 3
 
+//Dynamic fields for the Pokemon Traits page
+#define PSS_DATA_WINDOW_TRAITS 0
+
 // Dynamic fields for the Pokémon Skills page
 #define PSS_DATA_WINDOW_SKILLS_HELD_ITEM 0
 #define PSS_DATA_WINDOW_SKILLS_RIBBON_COUNT 1
@@ -176,6 +179,7 @@ static EWRAM_DATA struct PokemonSummaryScreenData
         u32 OTID; // 0x48
         u8 teraType;
         u8 mintNature;
+        u8 innates[MAX_MON_INNATES];
     } summary;
     u16 bgTilemapBuffers[PSS_PAGE_COUNT][2][0x400];
     u8 mode;
@@ -269,6 +273,7 @@ static void PrintMonOTName(void);
 static void PrintMonOTID(void);
 static void PrintMonAbilityName(void);
 static void PrintMonAbilityDescription(void);
+static void PrintMonTraits(u8);
 static void BufferMonTrainerMemo(void);
 static void PrintMonTrainerMemo(void);
 static void BufferNatureString(void);
@@ -328,6 +333,7 @@ static void PrintTraits(void);
 static void Task_PrintTraits(u8);
 static void PrintMemos(void);
 static void Task_PrintMemos(u8);
+
 
 static const struct BgTemplate sBgTemplates[] =
 {
@@ -599,7 +605,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
     },
     [PSS_LABEL_WINDOW_END] = DUMMY_WIN_TEMPLATE
 };
-static const int TempOffset = ((459) - 459);
+static const int TempOffset = ((459) - 459); //offest to make template calculations easier
 
 static const struct WindowTemplate sPageInfoTemplate[] =
 {
@@ -639,6 +645,18 @@ static const struct WindowTemplate sPageInfoTemplate[] =
         .paletteNum = 6,
         .baseBlock = 603 + TempOffset,
     },
+};
+static const struct WindowTemplate sPageTraitsTemplate[] =
+{
+	[PSS_DATA_WINDOW_TRAITS] = {
+		.bg = 0,
+		.tilemapLeft = 11,
+		.tilemapTop = 4,
+		.width = 18,
+		.height = 16,
+		.paletteNum = 6,
+		.baseBlock = 495 + TempOffset,
+	},
 };
 static const struct WindowTemplate sPageSkillsTemplate[] =
 {
@@ -718,10 +736,6 @@ static const struct WindowTemplate sPageMovesTemplate[] = // This is used for bo
         .baseBlock = 645 + TempOffset,
     },
 };
-const u8 sText_MainAbility[] = _("Ability");
-const u8 sText_Innate1[] = _("Innate");
-const u8 sText_Innate2[] = _("Innate 2");
-const u8 sText_Innate3[] = _("Innate 3");
 
 
 static const u8 sTextColors[][3] =
@@ -1576,6 +1590,12 @@ static bool8 ExtractMonDataToSummaryStruct(struct Pokemon *mon)
         sum->metLevel = GetMonData(mon, MON_DATA_MET_LEVEL);
         sum->metGame = GetMonData(mon, MON_DATA_MET_GAME);
         sum->friendship = GetMonData(mon, MON_DATA_FRIENDSHIP);
+        break;
+    case 4:
+        for (i = 0; i < MAX_MON_INNATES; i++)
+        {
+            sum->innates[i] = GetMonData(mon, MON_DATA_INNATE1 + i);
+        }
         break;
     default:
         sum->ribbonCount = GetMonData(mon, MON_DATA_RIBBON_COUNT);
@@ -3212,7 +3232,7 @@ static void Task_PrintInfoPage(u8 taskId)
     case 2:
         PrintMonOTID();
         break;
-    case 3:
+    case 3:        
         PrintMonAbilityName();
         break;
     case 4:
@@ -3435,6 +3455,7 @@ static void PrintEggMemo(void)
     const u8 *text;
     struct PokeSummary *sum = &sMonSummaryScreen->summary;
 
+
     if (sMonSummaryScreen->summary.sanity != 1)
     {
         if (sum->metLocation == METLOC_FATEFUL_ENCOUNTER)
@@ -3456,10 +3477,10 @@ static void PrintEggMemo(void)
 
 static void PrintTraits(void)
 {
-    PrintHeldItemName();
-    PrintRibbonCount();
-    BufferLeftColumnStats();
-    PrintLeftColumnStats();
+    PrintMonTraits(0);
+    PrintMonTraits(1);
+    PrintMonTraits(2);
+    PrintMonTraits(3);
 }
 
 static void Task_PrintTraits(u8 taskId)
@@ -3469,14 +3490,42 @@ static void Task_PrintTraits(u8 taskId)
     switch (data[0])
     {
     case 1:
-        PrintRibbonCount();
+        PrintMonTraits(0);
         break;
     case 2:
+        PrintMonTraits(1);
+        break;
+    case 3:
+        PrintMonTraits(2);
+        break;
+    case 4:
+        PrintMonTraits(3);
+        break;
+    case 5:
         DestroyTask(taskId);
         return;
     }
     data[0]++;
 }
+
+static void PrintMonTraits(u8 innateIndex)
+{
+    u16 trait = 0;
+    struct PokeSummary* sum = &sMonSummaryScreen->summary;
+
+    if (innateIndex == 0)
+        trait = GetAbilityBySpecies(sMonSummaryScreen->summary.species, sMonSummaryScreen->summary.abilityNum);
+    else if (innateIndex <= MAX_MON_INNATES)
+        trait = gSpeciesInfo[sum->species].innates[innateIndex-1];
+    
+    int x = GetStringRightAlignXOffset(FONT_NORMAL, gAbilitiesInfo[trait].name, 18*8);
+    int y = innateIndex * 32;
+    PrintTextOnWindow(AddWindowFromTemplateList(sPageTraitsTemplate, PSS_DATA_WINDOW_TRAITS), gAbilitiesInfo[trait].name, x, y, 0, 1);
+    y += 16;
+    if (trait != 0)
+    PrintTextOnWindow(AddWindowFromTemplateList(sPageTraitsTemplate, PSS_DATA_WINDOW_TRAITS), gAbilitiesInfo[trait].description, 0, y, 0, 0);
+}
+
 
 static void PrintMemos(void)
 {
@@ -3497,7 +3546,7 @@ static void Task_PrintMemos(u8 taskId)
         break;
     case 2:
         DestroyTask(taskId);
-        break;
+        return;
     }
     data[0]++;
 }

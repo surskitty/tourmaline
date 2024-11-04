@@ -328,9 +328,9 @@ bool32 IsTruantMonVulnerable(u32 battlerAI, u32 opposingBattler)
 }
 
 // move checks
-bool32 IsAffectedByPowder(u32 battler, u32 ability, u32 holdEffect)
+bool32 IsAffectedByPowder(u32 battler, u32 holdEffect)
 {
-    if (ability == ABILITY_OVERCOAT
+    if (BattlerHasTrait(battler, ABILITY_OVERCOAT)
         || (B_POWDER_GRASS >= GEN_6 && IS_BATTLER_OF_TYPE(battler, TYPE_GRASS))
         || holdEffect == HOLD_EFFECT_SAFETY_GOGGLES)
         return FALSE;
@@ -1258,9 +1258,9 @@ bool32 CanTargetFaintAiWithMod(u32 battlerDef, u32 battlerAtk, s32 hpMod, s32 dm
 
 bool32 AI_IsAbilityOnSide(u32 battlerId, u32 ability)
 {
-    if (IsBattlerAlive(battlerId) && AI_DATA->abilities[battlerId] == ability)
+    if (IsBattlerAlive(battlerId) && BattlerHasTrait(battlerId, ability))
         return TRUE;
-    else if (IsBattlerAlive(BATTLE_PARTNER(battlerId)) && AI_DATA->abilities[BATTLE_PARTNER(battlerId)] == ability)
+    else if (IsBattlerAlive(BATTLE_PARTNER(battlerId)) && BattlerHasTrait(BATTLE_PARTNER(battlerId), ability))
         return TRUE;
     else
         return FALSE;

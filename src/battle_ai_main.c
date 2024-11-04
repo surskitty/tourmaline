@@ -828,7 +828,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     SetTypeBeforeUsingMove(move, battlerAtk);
     GET_MOVE_TYPE(move, moveType);
 
-    if (gMovesInfo[move].powderMove && !IsAffectedByPowder(battlerDef, aiData->abilities[battlerDef], aiData->holdEffects[battlerDef]))
+    if (gMovesInfo[move].powderMove && !IsAffectedByPowder(battlerDef, aiData->holdEffects[battlerDef]))
         RETURN_SCORE_MINUS(10);
 
     if (IsSemiInvulnerable(battlerDef, move) && moveEffect != EFFECT_SEMI_INVULNERABLE && AI_IsFaster(battlerAtk, battlerDef, move))
@@ -3987,7 +3987,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         if (isDoubleBattle
           && move != MOVE_SPOTLIGHT
           && !IsBattlerIncapacitated(battlerDef, aiData->abilities[battlerDef])
-          && (move != MOVE_RAGE_POWDER || IsAffectedByPowder(battlerDef, aiData->abilities[battlerDef], aiData->holdEffects[battlerDef])) // Rage Powder doesn't affect powder immunities
+          && (move != MOVE_RAGE_POWDER || IsAffectedByPowder(battlerDef, aiData->holdEffects[battlerDef])) // Rage Powder doesn't affect powder immunities
           && IsBattlerAlive(BATTLE_PARTNER(battlerAtk)))
         {
             u32 predictedMoveOnPartner = gLastMoves[BATTLE_PARTNER(battlerAtk)];
@@ -5420,4 +5420,28 @@ void ScriptSetDynamicAiFunc(struct ScriptContext *ctx)
 void ResetDynamicAiFunc(void)
 {
     sDynamicAiFunc = NULL;
+}
+
+//Returns if given battler has the given Innate
+bool8 BattlerHasInnate(u8 battlerId, u16 ability) {
+    bool8 isEnemyMon = GetBattlerSide(battlerId) == B_SIDE_OPPONENT;
+
+    /*if (BattlerIgnoresAbility(gBattlerAttacker, battlerId, ability) && B_MOLD_BREAKER_WORKS_ON_INNATES == TRUE)
+        return FALSE;
+    else if (BattlerAbilityWasRemoved(battlerId, ability) && B_NEUTRALIZING_GAS_WORKS_ON_INNATES == TRUE)
+        return FALSE;
+    else*/ 
+        return SpeciesHasInnate(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].personality, isEnemyMon, isEnemyMon); 
+}
+
+//Returns Innate number for selecting specific Innate slots
+/* bool8 GetBattlerInnateNum(u8 battlerId, u16 ability) {
+    bool8 isEnemyMon = GetBattlerSide(battlerId) == B_SIDE_OPPONENT;
+
+    return GetSpeciesInnateNum(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].personality, isEnemyMon);
+} */
+
+//Returns true if battler has given ability as either main Ability or an Innate
+bool8 BattlerHasTrait(u8 battlerId, u16 ability) {
+    return (GetBattlerAbility(battlerId) == ability || BattlerHasInnate(battlerId, ability));
 }

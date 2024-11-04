@@ -3440,16 +3440,16 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 }
                 break;
             case B_TXT_LAST_ABILITY: // last used ability
-                toCpy = gAbilitiesInfo[gLastUsedAbility].name;
+                toCpy = gAbilitiesInfo[GetBattlerTrait(gLastUsedAbility, gBattleStruct->traitCount)].name;
                 break;
             case B_TXT_ATK_ABILITY: // attacker ability
-                toCpy = gAbilitiesInfo[sBattlerAbilities[gBattlerAttacker]].name;
+                toCpy = gAbilitiesInfo[GetBattlerTrait(gBattlerAttacker, gBattleStruct->traitCount)].name;
                 break;
             case B_TXT_DEF_ABILITY: // target ability
-                toCpy = gAbilitiesInfo[sBattlerAbilities[gBattlerTarget]].name;
+                toCpy = gAbilitiesInfo[GetBattlerTrait(gBattlerTarget, gBattleStruct->traitCount)].name;
                 break;
             case B_TXT_SCR_ACTIVE_ABILITY: // scripting active ability
-                toCpy = gAbilitiesInfo[sBattlerAbilities[gBattleScripting.battler]].name;
+                toCpy = gAbilitiesInfo[GetBattlerTrait(gBattleScripting.battler, gBattleStruct->traitCount)].name;
                 break;
             case B_TXT_EFF_ABILITY: // effect battler ability
                 toCpy = gAbilitiesInfo[sBattlerAbilities[gEffectBattler]].name;

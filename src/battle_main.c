@@ -3769,6 +3769,7 @@ static void DoBattleIntro(void)
                 gBattleStruct->startingStatus = VarGet(B_VAR_STARTING_STATUS);
                 gBattleStruct->startingStatusTimer = VarGet(B_VAR_STARTING_STATUS_TIMER);
             }
+            gBattleStruct->traitCount = 0;
             gBattleMainFunc = TryDoEventsBeforeFirstTurn;
         }
         break;
@@ -3874,12 +3875,17 @@ static void TryDoEventsBeforeFirstTurn(void)
     case FIRST_TURN_EVENTS_SWITCH_IN_ABILITIES:
         while (gBattleStruct->switchInBattlerCounter < gBattlersCount) // From fastest to slowest
         {
-            gBattlerAttacker = gBattlerByTurnOrder[gBattleStruct->switchInBattlerCounter++];
-
+            gBattlerAttacker = gBattlerByTurnOrder[gBattleStruct->switchInBattlerCounter];
+            
             if (TryPrimalReversion(gBattlerAttacker))
                 return;
-            if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, gBattlerAttacker, 0, 0, 0) != 0)
-                return;
+            for ( ; gBattleStruct->traitCount <= MAX_MON_INNATES; gBattleStruct->traitCount++)
+            {
+                if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, gBattlerAttacker, GetBattlerTrait(gBattlerAttacker, gBattleStruct->traitCount), 0, 0) != 0)
+                    return;
+            }  
+            gBattleStruct->traitCount = 0; // reset traitCount for next use
+            gBattleStruct->switchInBattlerCounter++;
         }
         gBattleStruct->switchInBattlerCounter = 0;
         gBattleStruct->eventsBeforeFirstTurnState++;

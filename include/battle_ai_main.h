@@ -12,6 +12,8 @@ typedef s32 (*AiScoreFunc)(u32, u32, u32, s32);
 #define AI_CHOICE_WATCH 5
 #define AI_CHOICE_SWITCH 7
 
+#define AI_BATTLER_HAS_TRAIT(battlerId, abilityToCheck) ((AI_DATA->abilities[battlerId] == abilityToCheck || BattlerHasInnate(battlerId, abilityToCheck))) //Useful to make calculations faster, used only for AI stuff
+
 // for AI_WhoStrikesFirst
 #define AI_IS_FASTER   1
 #define AI_IS_SLOWER   -1
@@ -108,5 +110,11 @@ void SetAiLogicDataForTurn(struct AiLogicData *aiData);
 void ResetDynamicAiFunc(void);
 
 extern u8 sBattler_AI;
+
+bool8 BattlerHasInnate(u8 battlerId, u16 ability);
+bool8 GetBattlerInnateNum(u8 battlerId, u16 ability); //Used for ability checks to itterate through Innates
+
+u16 GetBattlerInnate(u8 battlerId, u8 traitNum); //Used for ability checks to itterate through Innates
+bool8 BattlerHasTrait(u8 battlerId, u16 ability);
 
 #endif // GUARD_BATTLE_AI_MAIN_H

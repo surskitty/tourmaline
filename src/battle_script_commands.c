@@ -2535,7 +2535,7 @@ static void Cmd_resultmessage(void)
     if (gMoveResultFlags & MOVE_RESULT_MISSED && (!(gMoveResultFlags & MOVE_RESULT_DOESNT_AFFECT_FOE) || gBattleCommunication[MISS_TYPE] > B_MSG_AVOIDED_ATK))
     {
         if (gBattleCommunication[MISS_TYPE] > B_MSG_AVOIDED_ATK) // Wonder Guard or Levitate - show the ability pop-up
-            CreateAbilityPopUp(gBattlerTarget, gBattleMons[gBattlerTarget].ability, (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) != 0);
+            CreateAbilityPopUp(gBattlerTarget, gLastUsedAbility, (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) != 0);
         stringId = gMissStringIds[gBattleCommunication[MISS_TYPE]];
         gBattleCommunication[MSG_DISPLAY] = 1;
     }
@@ -4116,7 +4116,7 @@ static void Cmd_jumpifability(void)
     {
     default:
         battler = GetBattlerForBattleScript(cmd->battler);
-        if (GetBattlerAbility(battler) == ability)
+        if (BattlerHasTrait(battler, ability))
             hasAbility = TRUE;
         break;
     case BS_ATTACKER_SIDE:
@@ -5625,9 +5625,13 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_ABILITIES: // Such as abilities activating on contact(Poison Spore, Rough Skin, etc.).
-            if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END, gBattlerTarget, 0, 0, 0))
-                effect = TRUE;
-            gBattleScripting.moveendState++;
+            for ( ; gBattleStruct->traitCount <= MAX_MON_INNATES; gBattleStruct->traitCount++)
+            {
+                if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END, gBattlerTarget, GetBattlerTrait(gBattlerTarget, gBattleStruct->traitCount), 0, 0))
+                    effect = TRUE;
+                gBattleScripting.moveendState++;
+            } 
+            gBattleStruct->traitCount = 0; // reset traitCount for next use
             break;
         case MOVEEND_ABILITIES_ATTACKER: // Poison Touch, possibly other in the future
             if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END_ATTACKER, gBattlerAttacker, 0, 0, 0))
@@ -9344,6 +9348,9 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS();
         gSpecialStatuses[battler].switchInAbilityDone = FALSE;
+        
+        for(i=0; i<=MAX_MON_INNATES; i++)
+            gSpecialStatuses[battler].switchInTraitDone[i] = FALSE;
         break;
     }
     case VARIOUS_UPDATE_CHOICE_MOVE_ON_LVL_UP:
@@ -9574,8 +9581,11 @@ static void Cmd_various(void)
         VARIOUS_ARGS();
         gBattlescriptCurrInstr = cmd->nextInstr;
         AbilityBattleEffects(ABILITYEFFECT_NEUTRALIZINGGAS, battler, 0, 0, 0);
-        AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, battler, 0, 0, 0);
-        AbilityBattleEffects(ABILITYEFFECT_OPPORTUNIST, battler, 0, 0, 0);
+        for (i = MAX_MON_INNATES; i >= 0; i--)
+        {
+            AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, battler, GetBattlerTrait(battler, i), 0, 0);  
+        }
+    AbilityBattleEffects(ABILITYEFFECT_OPPORTUNIST, battler, 0, 0, 0);
         return;
     }
     case VARIOUS_INSTANT_HP_DROP:
@@ -10020,7 +10030,7 @@ static void Cmd_various(void)
     case VARIOUS_ABILITY_POPUP:
     {
         VARIOUS_ARGS();
-        CreateAbilityPopUp(battler, gBattleMons[battler].ability, (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) != 0);
+        CreateAbilityPopUp(battler, gLastUsedAbility, (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) != 0);
         break;
     }
     case VARIOUS_UPDATE_ABILITY_POPUP:
