@@ -3440,7 +3440,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 }
                 break;
             case B_TXT_LAST_ABILITY: // last used ability
-                toCpy = gAbilitiesInfo[GetBattlerTrait(gLastUsedAbility, gBattleStruct->traitCount)].name;
+                toCpy = gAbilitiesInfo[gLastUsedAbility].name;
                 break;
             case B_TXT_ATK_ABILITY: // attacker ability
                 toCpy = gAbilitiesInfo[GetBattlerTrait(gBattlerAttacker, gBattleStruct->traitCount)].name;
