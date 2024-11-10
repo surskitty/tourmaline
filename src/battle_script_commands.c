@@ -5625,13 +5625,13 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_ABILITIES: // Such as abilities activating on contact(Poison Spore, Rough Skin, etc.).
-            for ( ; gBattleStruct->traitCount <= MAX_MON_INNATES; gBattleStruct->traitCount++)
+          //  for ( ; gBattleStruct->traitCount <= MAX_MON_INNATES; gBattleStruct->traitCount++)
             {
                 if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END, gBattlerTarget, GetBattlerTrait(gBattlerTarget, gBattleStruct->traitCount), 0, 0))
                     effect = TRUE;
-                gBattleScripting.moveendState++;
             } 
             gBattleStruct->traitCount = 0; // reset traitCount for next use
+            gBattleScripting.moveendState++;
             break;
         case MOVEEND_ABILITIES_ATTACKER: // Poison Touch, possibly other in the future
             if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END_ATTACKER, gBattlerAttacker, 0, 0, 0))
@@ -9581,9 +9581,9 @@ static void Cmd_various(void)
         VARIOUS_ARGS();
         gBattlescriptCurrInstr = cmd->nextInstr;
         AbilityBattleEffects(ABILITYEFFECT_NEUTRALIZINGGAS, battler, 0, 0, 0);
-        for (i = MAX_MON_INNATES; i >= 0; i--)
+     //   for (i = MAX_MON_INNATES; i >= 0; i--)
         {
-            AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, battler, GetBattlerTrait(battler, i), 0, 0);  
+            AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, battler, 0, 0, 0);  
         }
     AbilityBattleEffects(ABILITYEFFECT_OPPORTUNIST, battler, 0, 0, 0);
         return;

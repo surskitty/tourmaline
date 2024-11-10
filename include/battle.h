@@ -1056,6 +1056,7 @@ extern s32 gHpDealt;
 extern s32 gBideDmg[MAX_BATTLERS_COUNT];
 extern u16 gLastUsedItem;
 extern u16 gLastUsedAbility;
+extern u16 gLastUsedBattlerAbility[MAX_BATTLERS_COUNT];
 extern u8 gBattlerAttacker;
 extern u8 gBattlerTarget;
 extern u8 gBattlerFainted;

@@ -165,6 +165,7 @@ EWRAM_DATA s32 gHpDealt = 0;
 EWRAM_DATA s32 gBideDmg[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u16 gLastUsedItem = 0;
 EWRAM_DATA u16 gLastUsedAbility = 0;
+EWRAM_DATA u16 gLastUsedBattlerAbility[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u8 gBattlerAttacker = 0;
 EWRAM_DATA u8 gBattlerTarget = 0;
 EWRAM_DATA u8 gBattlerFainted = 0;
@@ -3769,7 +3770,7 @@ static void DoBattleIntro(void)
                 gBattleStruct->startingStatus = VarGet(B_VAR_STARTING_STATUS);
                 gBattleStruct->startingStatusTimer = VarGet(B_VAR_STARTING_STATUS_TIMER);
             }
-            gBattleStruct->traitCount = 0;
+            gBattleStruct->traitCount = MAX_MON_TRAITS;
             gBattleMainFunc = TryDoEventsBeforeFirstTurn;
         }
         break;
@@ -3879,10 +3880,12 @@ static void TryDoEventsBeforeFirstTurn(void)
             
             if (TryPrimalReversion(gBattlerAttacker))
                 return;
-            for ( ; gBattleStruct->traitCount <= MAX_MON_INNATES; gBattleStruct->traitCount++)
+            for ( ; gBattleStruct->traitCount > 0 ; )
             {
-                if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, gBattlerAttacker, GetBattlerTrait(gBattlerAttacker, gBattleStruct->traitCount), 0, 0) != 0)
-                    return;
+                gBattleStruct->traitCount--;
+                if (GetBattlerTrait(gBattlerAttacker, gBattleStruct->traitCount) != ABILITY_NONE)
+                    if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, gBattlerAttacker, GetBattlerTrait(gBattlerAttacker, gBattleStruct->traitCount), 0, 0) != 0)
+                        return;
             }  
             gBattleStruct->traitCount = 0; // reset traitCount for next use
             gBattleStruct->switchInBattlerCounter++;

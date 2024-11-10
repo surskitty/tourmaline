@@ -4120,11 +4120,14 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         gBattlerAttacker = battler;
 
     if (special)
-        gLastUsedAbility = special;
+        {gLastUsedAbility = special;
+        gLastUsedBattlerAbility[battler] = special;}
     else if (ability)
-        gLastUsedAbility = ability;
+        {gLastUsedAbility = ability;
+        gLastUsedBattlerAbility[battler] = ability;}
     else
-        gLastUsedAbility = GetBattlerAbility(battler); //default to vanilla code
+        {gLastUsedAbility = GetBattlerAbility(battler); //default to vanilla code
+        gLastUsedBattlerAbility[battler] = GetBattlerAbility(battler);}
 
     if (moveArg)
         move = moveArg;
