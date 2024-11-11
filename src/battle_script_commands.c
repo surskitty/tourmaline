@@ -5630,7 +5630,7 @@ static void Cmd_moveend(void)
                 if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END, gBattlerTarget, GetBattlerTrait(gBattlerTarget, gBattleStruct->traitCount), 0, 0))
                     effect = TRUE;
             } 
-            gBattleStruct->traitCount = 0; // reset traitCount for next use
+           // gBattleStruct->traitCount = 0; // reset traitCount for next use
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_ABILITIES_ATTACKER: // Poison Touch, possibly other in the future

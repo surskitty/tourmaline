@@ -3887,9 +3887,10 @@ static void TryDoEventsBeforeFirstTurn(void)
                     if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, gBattlerAttacker, GetBattlerTrait(gBattlerAttacker, gBattleStruct->traitCount), 0, 0) != 0)
                         return;
             }  
-            gBattleStruct->traitCount = 0; // reset traitCount for next use
+            gBattleStruct->traitCount = MAX_MON_TRAITS; // reset traitCount for next use
             gBattleStruct->switchInBattlerCounter++;
         }
+        gBattleStruct->traitCount = 0; // set TraitCuont to default for future calls
         gBattleStruct->switchInBattlerCounter = 0;
         gBattleStruct->eventsBeforeFirstTurnState++;
         break;
