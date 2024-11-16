@@ -3770,7 +3770,6 @@ static void DoBattleIntro(void)
                 gBattleStruct->startingStatus = VarGet(B_VAR_STARTING_STATUS);
                 gBattleStruct->startingStatusTimer = VarGet(B_VAR_STARTING_STATUS_TIMER);
             }
-            gBattleStruct->traitCount = 0; //Needs to be defined outside of TryDoEventsBeforeFirstTurn
             gBattleMainFunc = TryDoEventsBeforeFirstTurn;
         }
         break;
@@ -3814,7 +3813,8 @@ static void TryDoEventsBeforeFirstTurn(void)
         #endif // TESTING
 
         gBattleStruct->speedTieBreaks = RandomUniform(RNG_SPEED_TIE, 0, Factorial(MAX_BATTLERS_COUNT) - 1);
-
+    if (gBattleStruct->switchInAbilitiesCounter == 0)
+    {
         for (i = 0; i < gBattlersCount; i++)
             gBattlerByTurnOrder[i] = i;
         for (i = 0; i < gBattlersCount - 1; i++)
@@ -3825,6 +3825,7 @@ static void TryDoEventsBeforeFirstTurn(void)
                     SwapTurnOrder(i, j);
             }
         }
+    }
         gBattleStruct->eventsBeforeFirstTurnState++;
         break;
     case FIRST_TURN_EVENTS_OVERWORLD_WEATHER:
@@ -3876,43 +3877,16 @@ static void TryDoEventsBeforeFirstTurn(void)
     case FIRST_TURN_EVENTS_SWITCH_IN_ABILITIES:
         while (gBattleStruct->switchInBattlerCounter < gBattlersCount) // From fastest to slowest
         {
-            gBattlerAttacker = gBattlerByTurnOrder[gBattleStruct->switchInBattlerCounter];
-            
+            gBattlerAttacker = gBattlerByTurnOrder[gBattleStruct->switchInBattlerCounter++];
+
             if (TryPrimalReversion(gBattlerAttacker))
                 return;
-            for ( ; gBattleStruct->traitCount < MAX_MON_TRAITS ; gBattleStruct->traitCount++)
-            {
-                if (GetBattlerTrait(gBattlerAttacker, gBattleStruct->traitCount) != ABILITY_NONE)
-                    if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, gBattlerAttacker, GetBattlerTrait(gBattlerAttacker, gBattleStruct->traitCount), 0, 0) != 0)
-                        return;
-            }  
-            gBattleStruct->traitCount = 0; // reset traitCount for next use
-            gBattleStruct->switchInBattlerCounter++;
+            if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, gBattlerAttacker, 0, 0, 0) != 0)
+                return;
         }
         gBattleStruct->switchInBattlerCounter = 0;
         gBattleStruct->eventsBeforeFirstTurnState++;
         break;
-        /*case FIRST_TURN_EVENTS_SWITCH_IN_ABILITIES:  // Example Code to reverse Trait activation order
-        while (gBattleStruct->switchInBattlerCounter < gBattlersCount) // From fastest to slowest
-        {
-            gBattlerAttacker = gBattlerByTurnOrder[gBattleStruct->switchInBattlerCounter];
-            
-            if (TryPrimalReversion(gBattlerAttacker))
-                return;
-            for ( ; gBattleStruct->traitCount > 0 ; )
-            {
-                gBattleStruct->traitCount--;
-                if (GetBattlerTrait(gBattlerAttacker, gBattleStruct->traitCount) != ABILITY_NONE)
-                    if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, gBattlerAttacker, GetBattlerTrait(gBattlerAttacker, gBattleStruct->traitCount), 0, 0) != 0)
-                        return;
-            }  
-            gBattleStruct->traitCount = MAX_MON_TRAITS; // reset traitCount for next use
-            gBattleStruct->switchInBattlerCounter++;
-        }
-        //gBattleStruct->traitCount = 0; // Use to reset TraitCount if you need a different default value for other calls
-        gBattleStruct->switchInBattlerCounter = 0;
-        gBattleStruct->eventsBeforeFirstTurnState++;
-        break; */   
     case FIRST_TURN_EVENTS_OPPORTUNIST_1:
         if (AbilityBattleEffects(ABILITYEFFECT_OPPORTUNIST, 0, 0, 0, 0))
             return;

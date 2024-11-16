@@ -5422,26 +5422,26 @@ void ResetDynamicAiFunc(void)
     sDynamicAiFunc = NULL;
 }
 
-//Returns if given battler has the given Innate
-bool8 BattlerHasInnate(u8 battlerId, u16 ability) {
+//Returns the slot the Innate is found in accouting for randomization and ability disabling. Assumes the Ability is already slot 1.  Returns 0 if not found.
+u8 BattlerHasInnate(u8 battlerId, u16 ability) {
     bool8 isEnemyMon = GetBattlerSide(battlerId) == B_SIDE_OPPONENT;
 
     /*if (BattlerIgnoresAbility(gBattlerAttacker, battlerId, ability) && B_MOLD_BREAKER_WORKS_ON_INNATES == TRUE)
-        return FALSE;
+        return 0;
     else if (BattlerAbilityWasRemoved(battlerId, ability) && B_NEUTRALIZING_GAS_WORKS_ON_INNATES == TRUE)
-        return FALSE;
+        return 0;
     else*/ 
-        return SpeciesHasInnate(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].personality, isEnemyMon, isEnemyMon); 
+        return SpeciesHasInnate(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].personality, isEnemyMon); 
 }
 
-//Returns Innate number for selecting specific Innate slots
-/* bool8 GetBattlerInnateNum(u8 battlerId, u16 ability) {
-    bool8 isEnemyMon = GetBattlerSide(battlerId) == B_SIDE_OPPONENT;
-
-    return GetSpeciesInnateNum(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].personality, isEnemyMon);
-} */
-
-//Returns true if battler has given ability as either main Ability or an Innate
-bool8 BattlerHasTrait(u8 battlerId, u16 ability) {
-    return (GetBattlerAbility(battlerId) == ability || BattlerHasInnate(battlerId, ability));
+//Returns the trait slot number of the given ability. Starts at 1 for the primary Ability and returns 0 if the ability is not found. 
+u8 BattlerHasTrait(u8 battlerId, u16 ability) {
+    u8 traitNum = 0;
+    
+    if (GetBattlerAbility(battlerId) == ability)
+        traitNum = 1;
+    else 
+        traitNum = BattlerHasInnate(battlerId, ability);
+         
+    return traitNum;
 }

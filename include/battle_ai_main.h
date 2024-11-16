@@ -114,7 +114,7 @@ extern u8 sBattler_AI;
 bool8 BattlerHasInnate(u8 battlerId, u16 ability);
 bool8 GetBattlerInnateNum(u8 battlerId, u16 ability); //Used for ability checks to itterate through Innates
 
-u16 GetBattlerInnate(u8 battlerId, u8 traitNum); //Used for ability checks to itterate through Innates
-bool8 BattlerHasTrait(u8 battlerId, u16 ability);
+u8 GetBattlerInnate(u8 battlerId, u8 traitNum); //Used for ability checks to itterate through Innates
+u8 BattlerHasTrait(u8 battlerId, u16 ability);
 
 #endif // GUARD_BATTLE_AI_MAIN_H

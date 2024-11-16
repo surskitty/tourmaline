@@ -226,7 +226,8 @@ struct SpecialStatus
     u8 sturdied:1;
     u8 stormDrainRedirected:1;
     u8 switchInAbilityDone:1;
-    bool8 switchInTraitDone[MAX_MON_INNATES + 1];
+    bool8 switchInTraitDone[MAX_MON_TRAITS + 1];
+    u8 traced:1;
     u8 switchInItemDone:1;
     u8 instructedChosenTarget:3;
     u8 berryReduced:1;
@@ -634,6 +635,7 @@ struct BattleStruct
     u8 moneyMultiplierMove:1;
     u8 savedTurnActionNumber;
     u8 eventsBeforeFirstTurnState;
+    u8 switchInAbilitiesCounter;
     u8 faintedActionsState;
     u8 faintedActionsBattlerId;
     u8 scriptPartyIdx; // for printing the nickname

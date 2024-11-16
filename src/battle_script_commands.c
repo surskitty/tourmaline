@@ -5627,7 +5627,7 @@ static void Cmd_moveend(void)
         case MOVEEND_ABILITIES: // Such as abilities activating on contact(Poison Spore, Rough Skin, etc.).
           //  for ( ; gBattleStruct->traitCount <= MAX_MON_INNATES; gBattleStruct->traitCount++)
             {
-                if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END, gBattlerTarget, GetBattlerTrait(gBattlerTarget, gBattleStruct->traitCount), 0, 0))
+                if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END, gBattlerTarget, 0, 0, 0))
                     effect = TRUE;
             } 
            // gBattleStruct->traitCount = 0; // reset traitCount for next use
@@ -9349,7 +9349,7 @@ static void Cmd_various(void)
         VARIOUS_ARGS();
         gSpecialStatuses[battler].switchInAbilityDone = FALSE;
         
-        for(i=0; i<=MAX_MON_INNATES; i++)
+        for(i=0; i<=MAX_MON_INNATES+1; i++)
             gSpecialStatuses[battler].switchInTraitDone[i] = FALSE;
         break;
     }

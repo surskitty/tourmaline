@@ -885,8 +885,8 @@ const u8 *GetMoveAnimationScript(u16 moveId);
 void UpdateDaysPassedSinceFormChange(u16 days);
 void TrySetDayLimitToFormChange(struct Pokemon *mon);
 
-bool8 SpeciesHasInnate(u16 species, u16 ability, u32 personality, bool8 disablerandomizer, bool8 isEnemyMon);
-u16 GetSpeciesInnate(u16 species, u8 traitNum, u32 personality, bool8 disablerandomizer, bool8 isEnemyMon);
+u8 SpeciesHasInnate(u16 species, u16 ability, u32 personality, bool8 disablerandomizer);
+u16 GetSpeciesInnate(u16 species, u8 traitNum, u32 personality, bool8 disablerandomizer);
 //u8 GetSpeciesInnateNum(u16 species, u16 ability, u32 personality, bool8 disableRandomizer);
 bool8 BoxMonHasInnate(struct BoxPokemon* boxmon, u16 ability, bool8 disableRandomizer);
 bool8 MonHasInnate(struct Pokemon* mon, u16 ability, bool8 disableRandomizer);

@@ -6943,13 +6943,15 @@ void UpdateDaysPassedSinceFormChange(u16 days)
 }
 
 
-//Returns if the species has a given Innate
-bool8 SpeciesHasInnate(u16 species, u16 ability, u32 personality, bool8 disablerandomizer, bool8 isEnemyMon) {
+//Returns the slot the Innate is found in, assuming the Ability is already slot 1.  Returns 0 if not found.
+u8 SpeciesHasInnate(u16 species, u16 ability, u32 personality, bool8 disablerandomizer) {
     u8 i;
+    u8 innateNum = 0;
+
     for (i = 0; i < MAX_MON_INNATES; i++)
     {
         if (gSpeciesInfo[species].innates[i] == ability)
-            return TRUE;
+            innateNum = innateNum + 2 + i;
     }
     
     //if (!disablerandomizer) {
@@ -6957,48 +6959,24 @@ bool8 SpeciesHasInnate(u16 species, u16 ability, u32 personality, bool8 disabler
     //    innate2 = RandomizeInnate(gBaseStats[species].innates[1], species, personality);
     //    innate3 = RandomizeInnate(gBaseStats[species].innates[2], species, personality);
     //}
-
-        return FALSE;
+        return innateNum;
 }
 
 bool8 MonHasInnate(struct Pokemon *mon, u16 ability, bool8 disableRandomizer) {
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     u32 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
 
-    return SpeciesHasInnate(species, ability, personality, disableRandomizer, disableRandomizer);
+    return SpeciesHasInnate(species, ability, personality, disableRandomizer);
 }
 
 bool8 BoxMonHasInnate(struct BoxPokemon *boxmon, u16 ability, bool8 disableRandomizer) {
     u16 species = GetBoxMonData(boxmon, MON_DATA_SPECIES, NULL);
     u32 personality = GetBoxMonData(boxmon, MON_DATA_PERSONALITY, NULL);
 
-    return SpeciesHasInnate(species, ability, personality, disableRandomizer, disableRandomizer);
+    return SpeciesHasInnate(species, ability, personality, disableRandomizer);
 }
 
-//Returns which of the species' three innates is the given ability
-/* u8 GetSpeciesInnateNum(u16 species, u16 ability, u32 personality, bool8 disablerandomizer) {
-    //u8 i;
-    u16 innate1 = gSpeciesInfo[species].innates[0];
-    u16 innate2 = gSpeciesInfo[species].innates[1];
-    u16 innate3 = gSpeciesInfo[species].innates[2];
-
-    //if (!disablerandomizer) {
-    //    innate1 = RandomizeInnate(gBaseStats[species].innates[0], species, personality);
-    //    innate2 = RandomizeInnate(gBaseStats[species].innates[1], species, personality);
-    //    innate3 = RandomizeInnate(gBaseStats[species].innates[2], species, personality);
-    //}
-
-    if (innate1 == ability)
-        return 0;
-    else if (innate2 == ability)
-        return 1;
-    else if (innate3 == ability)
-        return 2;
-    else
-        return 3;
-}*/
-
-u16 GetSpeciesInnate(u16 species, u8 traitNum, u32 personality, bool8 disablerandomizer, bool8 isEnemyMon) {
+u16 GetSpeciesInnate(u16 species, u8 traitNum, u32 personality, bool8 disablerandomizer) {
     //u8 i;
 
     //if (!disablerandomizer) {
