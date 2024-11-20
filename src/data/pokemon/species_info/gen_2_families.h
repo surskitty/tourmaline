@@ -1999,7 +1999,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #endif
         .bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Ampharos"),
+        #if P_USE_EXTRA_MEGA_CRY
         .cryId = CRY_AMPHAROS_MEGA,
+        #else
+        .cryId = CRY_AMPHAROS,
+        #endif //P_USE_EXTRA_MEGA_CRY
         .natDexNum = NATIONAL_DEX_AMPHAROS,
         .categoryName = _("Light"),
         .height = 14,
@@ -5106,7 +5110,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #endif
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Heracross"),
+        #if P_USE_EXTRA_MEGA_CRY
         .cryId = CRY_HERACROSS_MEGA,
+        #else
+        .cryId = CRY_HERACROSS,
+        #endif //P_USE_EXTRA_MEGA_CRY
         .natDexNum = NATIONAL_DEX_HERACROSS,
         .categoryName = _("Single Horn"),
         .height = 17,
@@ -6951,7 +6959,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #endif
         .bodyColor = BODY_COLOR_BLACK,
         .speciesName = _("Houndoom"),
+        #if P_USE_EXTRA_MEGA_CRY
         .cryId = CRY_HOUNDOOM_MEGA,
+        #else
+        .cryId = CRY_HOUNDOOM,
+        #endif //P_USE_EXTRA_MEGA_CRY
         .natDexNum = NATIONAL_DEX_HOUNDOOM,
         .categoryName = _("Dark"),
         .height = 19,
@@ -7880,7 +7892,11 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
 #endif
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Tyranitar"),
+        #if P_USE_EXTRA_MEGA_CRY
         .cryId = CRY_TYRANITAR_MEGA,
+        #else
+        .cryId = CRY_TYRANITAR,
+        #endif //P_USE_EXTRA_MEGA_CRY
         .natDexNum = NATIONAL_DEX_TYRANITAR,
         .categoryName = _("Armor"),
         .height = 25,

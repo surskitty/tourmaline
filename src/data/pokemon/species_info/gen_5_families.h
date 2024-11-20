@@ -2641,7 +2641,11 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
 #endif
         .bodyColor = BODY_COLOR_WHITE,
         .speciesName = _("Audino"),
+        #if P_USE_EXTRA_MEGA_CRY
         .cryId = CRY_AUDINO_MEGA,
+        #else
+        .cryId = CRY_AUDINO,
+        #endif //P_USE_EXTRA_MEGA_CRY
         .natDexNum = NATIONAL_DEX_AUDINO,
         .categoryName = _("Hearing"),
         .height = 15,

@@ -234,7 +234,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .abilities = { ABILITY_THICK_FAT, ABILITY_THICK_FAT, ABILITY_THICK_FAT },
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Venusaur"),
+        #if P_USE_EXTRA_MEGA_CRY
         .cryId = CRY_VENUSAUR_MEGA,
+        #else
+        .cryId = CRY_VENUSAUR,
+        #endif //P_USE_EXTRA_MEGA_CRY
         .natDexNum = NATIONAL_DEX_VENUSAUR,
         .categoryName = _("Seed"),
         .height = 24,
@@ -547,7 +551,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .abilities = { ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS },
         .bodyColor = BODY_COLOR_BLACK,
         .speciesName = _("Charizard"),
+        #if P_USE_EXTRA_MEGA_CRY    
         .cryId = CRY_CHARIZARD_MEGA_X,
+        #else
+        .cryId = CRY_CHARIZARD,
+        #endif //P_USE_EXTRA_MEGA_CRY
         .natDexNum = NATIONAL_DEX_CHARIZARD,
         .categoryName = _("Flame"),
         .height = 17,
@@ -602,7 +610,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .abilities = { ABILITY_DROUGHT, ABILITY_DROUGHT, ABILITY_DROUGHT },
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Charizard"),
+        #if P_USE_EXTRA_MEGA_CRY
         .cryId = CRY_CHARIZARD_MEGA_Y,
+        #else
+        .cryId = CRY_CHARIZARD,
+        #endif //P_USE_EXTRA_MEGA_CRY
         .natDexNum = NATIONAL_DEX_CHARIZARD,
         .categoryName = _("Flame"),
         .height = 17,
@@ -916,7 +928,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .abilities = { ABILITY_MEGA_LAUNCHER, ABILITY_MEGA_LAUNCHER, ABILITY_MEGA_LAUNCHER },
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Blastoise"),
+        #if P_USE_EXTRA_MEGA_CRY
         .cryId = CRY_BLASTOISE_MEGA,
+        #else
+        .cryId = CRY_BLASTOISE,
+        #endif //P_USE_EXTRA_MEGA_CRY
         .natDexNum = NATIONAL_DEX_BLASTOISE,
         .categoryName = _("Shellfish"),
         .height = 16,
@@ -1517,7 +1533,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .abilities = { ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY },
         .bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Beedrill"),
+        #if P_USE_EXTRA_MEGA_CRY
         .cryId = CRY_BEEDRILL_MEGA,
+        #else
+        .cryId = CRY_BEEDRILL,
+        #endif //P_USE_EXTRA_MEGA_CRY
         .natDexNum = NATIONAL_DEX_BEEDRILL,
         .categoryName = _("Poison Bee"),
         .height = 14,
@@ -1799,7 +1819,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #endif
         .bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Pidgeot"),
+        #if P_USE_EXTRA_MEGA_CRY
         .cryId = CRY_PIDGEOT_MEGA,
+        #else
+        .cryId = CRY_PIDGEOT,
+        #endif //P_USE_EXTRA_MEGA_CRY
         .natDexNum = NATIONAL_DEX_PIDGEOT,
         .categoryName = _("Bird"),
         .height = 22,
@@ -7968,7 +7992,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #endif
         .bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Alakazam"),
+        #if P_USE_EXTRA_MEGA_CRY
         .cryId = CRY_ALAKAZAM_MEGA,
+        #else
+        .cryId = CRY_ALAKAZAM,
+        #endif //P_USE_EXTRA_MEGA_CRY
         .natDexNum = NATIONAL_DEX_ALAKAZAM,
         .categoryName = _("Psi"),
         .height = 12,
@@ -9608,7 +9636,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #endif
         .bodyColor = BODY_COLOR_PINK,
         .speciesName = _("Slowbro"),
+        #if P_USE_EXTRA_MEGA_CRY
         .cryId = CRY_SLOWBRO,
+        #else
+        .cryId = CRY_SLOWBRO,
+        #endif //P_USE_EXTRA_MEGA_CRY
         .natDexNum = NATIONAL_DEX_SLOWBRO,
         .categoryName = _("Hermit Crab"),
         .height = 20,
@@ -11270,7 +11302,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #endif
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Gengar"),
+        #if P_USE_EXTRA_MEGA_CRY
         .cryId = CRY_GENGAR_MEGA,
+        #else
+        .cryId = CRY_GENGAR,
+        #endif //P_USE_EXTRA_MEGA_CRY
         .natDexNum = NATIONAL_DEX_GENGAR,
         .categoryName = _("Shadow"),
         .height = 14,
@@ -11546,7 +11582,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #endif
         .bodyColor = BODY_COLOR_GRAY,
         .speciesName = _("Steelix"),
+        #if P_USE_EXTRA_MEGA_CRY
         .cryId = CRY_STEELIX_MEGA,
+        #else
+        .cryId = CRY_STEELIX,
+        #endif //P_USE_EXTRA_MEGA_CRY
         .natDexNum = NATIONAL_DEX_STEELIX,
         .categoryName = _("Iron Snake"),
         .height = 105,
@@ -14049,7 +14089,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #endif
         .bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Kangaskhan"),
+        #if P_USE_EXTRA_MEGA_CRY
         .cryId = CRY_KANGASKHAN_MEGA,
+        #else
+        .cryId = CRY_KANGASKHAN,
+        #endif //P_USE_EXTRA_MEGA_CRY
         .natDexNum = NATIONAL_DEX_KANGASKHAN,
         .categoryName = _("Parent"),
         .height = 22,
@@ -15082,7 +15126,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #endif
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Scizor"),
+        #if P_USE_EXTRA_MEGA_CRY
         .cryId = CRY_SCIZOR_MEGA,
+        #else
+        .cryId = CRY_SCIZOR,
+        #endif //P_USE_EXTRA_MEGA_CRY
         .natDexNum = NATIONAL_DEX_SCIZOR,
         .categoryName = _("Pincer"),
         .height = 20,
@@ -15862,7 +15910,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #endif
         .bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Pinsir"),
+        #if P_USE_EXTRA_MEGA_CRY
         .cryId = CRY_PINSIR_MEGA,
+        #else
+        .cryId = CRY_PINSIR,
+        #endif //P_USE_EXTRA_MEGA_CRY
         .natDexNum = NATIONAL_DEX_PINSIR,
         .categoryName = _("Stag Beetle"),
         .height = 17,
@@ -16354,7 +16406,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #endif
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Gyarados"),
+        #if P_USE_EXTRA_MEGA_CRY
         .cryId = CRY_GYARADOS_MEGA,
+        #else
+        .cryId = CRY_GYARADOS,
+        #endif //P_USE_EXTRA_MEGA_CRY
         .natDexNum = NATIONAL_DEX_GYARADOS,
         .categoryName = _("Atrocious"),
         .height = 65,
@@ -17927,7 +17983,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .abilities = { ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS, ABILITY_TOUGH_CLAWS },
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Aerodactyl"),
+        #if P_USE_EXTRA_MEGA_CRY
         .cryId = CRY_AERODACTYL_MEGA,
+        #else
+        .cryId = CRY_AERODACTYL,
+        #endif //P_USE_EXTRA_MEGA_CRY
         .natDexNum = NATIONAL_DEX_AERODACTYL,
         .categoryName = _("Fossil"),
         .height = 21,
@@ -18879,7 +18939,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .abilities = { ABILITY_STEADFAST, ABILITY_STEADFAST, ABILITY_STEADFAST },
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Mewtwo"),
+        #if P_USE_EXTRA_MEGA_CRY
         .cryId = CRY_MEWTWO_MEGA_X,
+        #else
+        .cryId = CRY_MEWTWO,
+        #endif //P_USE_EXTRA_MEGA_CRY
         .natDexNum = NATIONAL_DEX_MEWTWO,
         .categoryName = _("Genetic"),
         .height = 23,
@@ -18938,7 +19002,11 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .abilities = { ABILITY_INSOMNIA, ABILITY_INSOMNIA, ABILITY_INSOMNIA },
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Mewtwo"),
+        #if P_USE_EXTRA_MEGA_CRY
         .cryId = CRY_MEWTWO_MEGA_Y,
+        #else
+        .cryId = CRY_MEWTWO,
+        #endif //P_USE_EXTRA_MEGA_CRY
         .natDexNum = NATIONAL_DEX_MEWTWO,
         .categoryName = _("Genetic"),
         .height = 15,
