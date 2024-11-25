@@ -2517,6 +2517,12 @@ static void Cmd_resultmessage(void)
 
     u32 stringId = 0;
 
+        u16 lastAbility;
+        if (gLastUsedBattlerAbility[gBattlerTarget] != ABILITY_NONE)
+            lastAbility = gLastUsedBattlerAbility[gBattlerTarget];
+        else
+            lastAbility = gBattleMons[gBattlerTarget].ability;
+
     if (gBattleControllerExecFlags)
         return;
 
@@ -2535,7 +2541,7 @@ static void Cmd_resultmessage(void)
     if (gMoveResultFlags & MOVE_RESULT_MISSED && (!(gMoveResultFlags & MOVE_RESULT_DOESNT_AFFECT_FOE) || gBattleCommunication[MISS_TYPE] > B_MSG_AVOIDED_ATK))
     {
         if (gBattleCommunication[MISS_TYPE] > B_MSG_AVOIDED_ATK) // Wonder Guard or Levitate - show the ability pop-up
-            CreateAbilityPopUp(gBattlerTarget, gBattleMons[gBattlerTarget].ability, (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) != 0);
+            CreateAbilityPopUp(gBattlerTarget, lastAbility, (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) != 0);
         stringId = gMissStringIds[gBattleCommunication[MISS_TYPE]];
         gBattleCommunication[MSG_DISPLAY] = 1;
     }
@@ -7309,6 +7315,15 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
         gBattleScripting.battler = battler;
         SET_STATCHANGER(STAT_SPEED, 1, TRUE);
         BattleScriptPushCursor();
+        // Update ability popups for abilities that react to Sticky Web
+        if (BattlerHasTrait(battler, ABILITY_MIRROR_ARMOR))
+            gLastUsedBattlerAbility[battler] = ABILITY_MIRROR_ARMOR;
+        if (BattlerHasTrait(battler, ABILITY_CLEAR_BODY))
+            gLastUsedBattlerAbility[battler] = ABILITY_CLEAR_BODY;
+        if (BattlerHasTrait(battler, ABILITY_FULL_METAL_BODY))
+            gLastUsedBattlerAbility[battler] = ABILITY_FULL_METAL_BODY;
+        if (BattlerHasTrait(battler, ABILITY_WHITE_SMOKE))
+            gLastUsedBattlerAbility[battler] = ABILITY_WHITE_SMOKE;
         gBattlescriptCurrInstr = BattleScript_StickyWebOnSwitchIn;
     }
     else if (!(gDisableStructs[battler].steelSurgeDone)
@@ -9581,11 +9596,8 @@ static void Cmd_various(void)
         VARIOUS_ARGS();
         gBattlescriptCurrInstr = cmd->nextInstr;
         AbilityBattleEffects(ABILITYEFFECT_NEUTRALIZINGGAS, battler, 0, 0, 0);
-     //   for (i = MAX_MON_INNATES; i >= 0; i--)
-        {
-            AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, battler, 0, 0, 0);  
-        }
-    AbilityBattleEffects(ABILITYEFFECT_OPPORTUNIST, battler, 0, 0, 0);
+        AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, battler, 0, 0, 0);  
+        AbilityBattleEffects(ABILITYEFFECT_OPPORTUNIST, battler, 0, 0, 0);
         return;
     }
     case VARIOUS_INSTANT_HP_DROP:
@@ -9655,9 +9667,7 @@ static void Cmd_various(void)
             SET_STATCHANGER(STAT_SPATK, 1, FALSE);
             PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_SPATK);
             BattleScriptPush(cmd->nextInstr);
-            gLastUsedAbility = battlerAbility;
-            if (battlerAbility == ABILITY_AS_ONE_SHADOW_RIDER)
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_GRIM_NEIGH;
+                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = gLastUsedBattlerAbility[battler] = ABILITY_GRIM_NEIGH;
             gBattlescriptCurrInstr = BattleScript_RaiseStatOnFaintingTarget;
             return;
         }
@@ -10029,8 +10039,14 @@ static void Cmd_various(void)
     }
     case VARIOUS_ABILITY_POPUP:
     {
+        u16 lastAbility;
+        if (gLastUsedBattlerAbility[battler] != ABILITY_NONE)
+            lastAbility = gLastUsedBattlerAbility[battler];
+        else
+            lastAbility = gBattleMons[battler].ability;
+
         VARIOUS_ARGS();
-        CreateAbilityPopUp(battler, gBattleMons[battler].ability, (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) != 0);
+        CreateAbilityPopUp(battler, lastAbility, (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) != 0);
         break;
     }
     case VARIOUS_UPDATE_ABILITY_POPUP:
@@ -11712,6 +11728,7 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
 
     if (battlerAbility == ABILITY_CONTRARY)
     {
+        gLastUsedBattlerAbility[battler] = ABILITY_CONTRARY;
         statValue ^= STAT_BUFF_NEGATIVE;
         gBattleScripting.statChanger ^= STAT_BUFF_NEGATIVE;
         RecordAbilityBattle(battler, battlerAbility);
@@ -11821,6 +11838,7 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
                 gBattlerAbility = battler;
                 gBattlescriptCurrInstr = BattleScript_AbilityNoSpecificStatLoss;
                 gLastUsedAbility = battlerAbility;
+                gLastUsedBattlerAbility[battler] = battlerAbility;
                 RecordAbilityBattle(battler, gLastUsedAbility);
             }
             return STAT_CHANGE_DIDNT_WORK;
@@ -11833,6 +11851,7 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
                 BattleScriptPush(BS_ptr);
                 gBattleScripting.battler = battler;
                 gBattlerAbility = battler;
+                //gLastUsedBattlerAbility[battler] = ABILITY_MIRROR_ARMOR;
                 gBattlescriptCurrInstr = BattleScript_MirrorArmorReflect;
                 RecordAbilityBattle(battler, gBattleMons[battler].ability);
             }

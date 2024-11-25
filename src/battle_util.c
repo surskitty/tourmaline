@@ -1139,7 +1139,8 @@ void PrepareStringBattle(u16 stringId, u32 battler)
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_AbilityRaisesDefenderStat;
         if (targetAbility == ABILITY_DEFIANT)
-            SET_STATCHANGER(STAT_ATK, 2, FALSE);
+            {gLastUsedBattlerAbility[gBattlerTarget] = ABILITY_DEFIANT;
+            SET_STATCHANGER(STAT_ATK, 2, FALSE);}
         else
             SET_STATCHANGER(STAT_SPATK, 2, FALSE);
     }
@@ -1147,6 +1148,7 @@ void PrepareStringBattle(u16 stringId, u32 battler)
             && CompareStat(gBattlerTarget, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN))
     {
         gBattlerAbility = gBattlerTarget;
+        gLastUsedBattlerAbility[gBattlerTarget] = ABILITY_RATTLED;
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_AbilityRaisesDefenderStat;
         SET_STATCHANGER(STAT_SPEED, 1, FALSE);
@@ -4372,7 +4374,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         gBattleScripting.battler = battler;
         switch (gLastUsedAbility)
         {
-        case ABILITY_TRACE:
+        case ABILITY_TRACE: // Trace should only be an Ability and interact with other Abilities, not an Innate.
             {
                 u32 chosenTarget;
                 u32 target1;
@@ -4480,7 +4482,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             }
             break;
             
-        case ABILITY_INTIMIDATE:
+      /*  case ABILITY_INTIMIDATE:
             if (!gSpecialStatuses[battler].switchInTraitDone[1])
             {
                 gBattlerAttacker = battler;
@@ -4489,7 +4491,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 BattleScriptPushCursorAndCallback(BattleScript_IntimidateActivates);
                 effect++;
             }
-            break; 
+            break; */
 
 
 
@@ -4502,7 +4504,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         {
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
                 gBattlerAttacker = battler;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DRIZZLE;
+                gLastUsedBattlerAbility[battler] = ABILITY_DRIZZLE;
 
                 if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN, TRUE))
                 {
@@ -4522,7 +4524,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         {
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
                 gBattlerAttacker = battler;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SAND_STREAM;
+                gLastUsedBattlerAbility[battler] = ABILITY_SAND_STREAM;
 
                 if (TryChangeBattleWeather(battler, ENUM_WEATHER_SANDSTORM, TRUE))
                 {
@@ -4541,7 +4543,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         {
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
                 gBattlerAttacker = battler;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DROUGHT;
+                gLastUsedBattlerAbility[battler] = ABILITY_DROUGHT;
 
                 if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN, TRUE))
                 {
@@ -4559,7 +4561,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         {
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
                 gBattlerAttacker = battler;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SNOW_WARNING;
+                gLastUsedBattlerAbility[battler] = ABILITY_SNOW_WARNING;
 
             if (B_SNOW_WARNING >= GEN_9 && TryChangeBattleWeather(battler, ENUM_WEATHER_SNOW, TRUE))
                 {
@@ -4582,7 +4584,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         {
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
                 gBattlerAttacker = battler;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ELECTRIC_SURGE;
+                gLastUsedBattlerAbility[battler] = ABILITY_ELECTRIC_SURGE;
                 
                     if(TryChangeBattleTerrain(battler, STATUS_FIELD_ELECTRIC_TERRAIN, &gFieldTimers.terrainTimer)){
                         BattleScriptPushCursorAndCallback(BattleScript_ElectricSurgeActivates);
@@ -4594,7 +4596,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         {
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
                 gBattlerAttacker = battler;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_HADRON_ENGINE;
+                gLastUsedBattlerAbility[battler] = ABILITY_HADRON_ENGINE;
                 
                     if(TryChangeBattleTerrain(battler, STATUS_FIELD_ELECTRIC_TERRAIN, &gFieldTimers.terrainTimer)){
                         BattleScriptPushCursorAndCallback(BattleScript_ElectricSurgeActivates);
@@ -4606,7 +4608,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         {
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
                 gBattlerAttacker = battler;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_GRASSY_SURGE;
+                gLastUsedBattlerAbility[battler] = ABILITY_GRASSY_SURGE;
                 
                     if(TryChangeBattleTerrain(battler, STATUS_FIELD_GRASSY_TERRAIN, &gFieldTimers.terrainTimer)){
                         BattleScriptPushCursorAndCallback(BattleScript_GrassySurgeActivates);
@@ -4618,7 +4620,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         {
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
                 gBattlerAttacker = battler;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_MISTY_SURGE;
+                gLastUsedBattlerAbility[battler] = ABILITY_MISTY_SURGE;
                 
                     if(TryChangeBattleTerrain(battler, STATUS_FIELD_MISTY_TERRAIN, &gFieldTimers.terrainTimer)){
                         BattleScriptPushCursorAndCallback(BattleScript_MistySurgeActivates);
@@ -4630,7 +4632,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         {
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
                 gBattlerAttacker = battler;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_PSYCHIC_SURGE;
+                gLastUsedBattlerAbility[battler] = ABILITY_PSYCHIC_SURGE;
                 
                     if(TryChangeBattleTerrain(battler, STATUS_FIELD_PSYCHIC_TERRAIN, &gFieldTimers.terrainTimer)){
                         BattleScriptPushCursorAndCallback(BattleScript_PsychicSurgeActivates);
@@ -4641,7 +4643,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         traitCheck = BattlerHasTrait(battler, ABILITY_SCREEN_CLEANER);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SCREEN_CLEANER;
+                gLastUsedBattlerAbility[battler] = ABILITY_SCREEN_CLEANER;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_SCREENCLEANER;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
                 effect++;
@@ -4649,7 +4651,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         traitCheck = BattlerHasTrait(battler, ABILITY_PRESSURE);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_PRESSURE;
+                gLastUsedBattlerAbility[battler] = ABILITY_PRESSURE;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_PRESSURE;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
                 effect++;
@@ -4657,7 +4659,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         traitCheck = BattlerHasTrait(battler, ABILITY_DARK_AURA);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DARK_AURA;
+                gLastUsedBattlerAbility[battler] = ABILITY_DARK_AURA;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_DARKAURA;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
                 effect++;
@@ -4665,7 +4667,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         traitCheck = BattlerHasTrait(battler, ABILITY_FAIRY_AURA);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FAIRY_AURA;
+                gLastUsedBattlerAbility[battler] = ABILITY_FAIRY_AURA;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_FAIRYAURA;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
                 effect++;
@@ -4673,7 +4675,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         traitCheck = BattlerHasTrait(battler, ABILITY_AURA_BREAK);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_AURA_BREAK;
+                gLastUsedBattlerAbility[battler] = ABILITY_AURA_BREAK;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_AURABREAK;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
                 effect++;
@@ -4681,7 +4683,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         traitCheck = BattlerHasTrait(battler, ABILITY_MOLD_BREAKER);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_MOLD_BREAKER;
+                gLastUsedBattlerAbility[battler] = ABILITY_MOLD_BREAKER;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_MOLDBREAKER;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
                 effect++;
@@ -4690,7 +4692,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
                 gBattlerAttacker = battler;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TERAVOLT;
+                gLastUsedBattlerAbility[battler] = ABILITY_TERAVOLT;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_TERAVOLT;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
                 effect++;
@@ -4699,7 +4701,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
                 gBattlerAttacker = battler;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TURBOBLAZE;
+                gLastUsedBattlerAbility[battler] = ABILITY_TURBOBLAZE;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_TURBOBLAZE;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
                 effect++;
@@ -4708,7 +4710,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
                 gDisableStructs[battler].slowStartTimer = 5;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SLOW_START;
+                gLastUsedBattlerAbility[battler] = ABILITY_SLOW_START;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_SLOWSTART;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
                 effect++;
@@ -4716,7 +4718,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         traitCheck = BattlerHasTrait(battler, ABILITY_UNNERVE);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){                  
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_UNNERVE;
+                gLastUsedBattlerAbility[battler] = ABILITY_UNNERVE;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_UNNERVE;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
                 effect++;
@@ -4730,7 +4732,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             && !(gStatuses3[BATTLE_OPPOSITE(battler)] & STATUS3_SEMI_INVULNERABLE))
             {
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_IMPOSTER;
+                gLastUsedBattlerAbility[battler] = ABILITY_IMPOSTER;
                 gBattlerAttacker = battler;
                 gBattlerTarget = BATTLE_OPPOSITE(battler);
                 BattleScriptPushCursorAndCallback(BattleScript_ImposterActivates);
@@ -4739,7 +4741,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         traitCheck = BattlerHasTrait(battler, ABILITY_AS_ONE_ICE_RIDER);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){  
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_AS_ONE_ICE_RIDER;
+                gLastUsedBattlerAbility[battler] = ABILITY_AS_ONE_ICE_RIDER;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_ASONE;
                 BattleScriptPushCursorAndCallback(BattleScript_ActivateAsOne);
                 effect++;
@@ -4747,7 +4749,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         traitCheck = BattlerHasTrait(battler, ABILITY_AS_ONE_SHADOW_RIDER);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){  
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_AS_ONE_SHADOW_RIDER;
+                gLastUsedBattlerAbility[battler] = ABILITY_AS_ONE_SHADOW_RIDER;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_ASONE;
                 BattleScriptPushCursorAndCallback(BattleScript_ActivateAsOne);
                 effect++;
@@ -4757,7 +4759,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             && IsBattlerAlive(BATTLE_PARTNER(battler)) && TryResetBattlerStatChanges(BATTLE_PARTNER(battler)))
             {
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CURIOUS_MEDICINE;  
+                gLastUsedBattlerAbility[battler] = ABILITY_CURIOUS_MEDICINE;  
                 gEffectBattler = BATTLE_PARTNER(battler);
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_CURIOUS_MEDICINE;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
@@ -4766,7 +4768,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         traitCheck = BattlerHasTrait(battler, ABILITY_PASTEL_VEIL);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){  
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_PASTEL_VEIL;  
+                gLastUsedBattlerAbility[battler] = ABILITY_PASTEL_VEIL;  
                 gBattlerTarget = battler;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_PASTEL_VEIL;
                 BattleScriptPushCursorAndCallback(BattleScript_PastelVeilActivates);
@@ -4776,7 +4778,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         if (traitCheck){
             if(!gSpecialStatuses[battler].switchInTraitDone[traitCheck]){  
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FRISK;  
+                gLastUsedBattlerAbility[battler] = ABILITY_FRISK;  
                 gBattlerTarget = battler;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_PASTEL_VEIL;
                 BattleScriptPushCursorAndCallback(BattleScript_FriskActivates);
@@ -4787,7 +4789,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         traitCheck = BattlerHasTrait(battler, ABILITY_FOREWARN);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){  
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_FOREWARN; 
+                gLastUsedBattlerAbility[battler] = ABILITY_FOREWARN; 
                 ForewarnChooseMove(battler); 
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_FOREWARN;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
@@ -4796,20 +4798,40 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         traitCheck = BattlerHasTrait(battler, ABILITY_COMATOSE);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){  
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_COMATOSE; 
+                gLastUsedBattlerAbility[battler] = ABILITY_COMATOSE; 
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_COMATOSE;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
                 effect++;
             }
-  /*      traitCheck = BattlerHasTrait(battler, ABILITY_INTIMIDATE);
+        traitCheck = BattlerHasTrait(battler, ABILITY_INTIMIDATE);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){  
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_INTIMIDATE;
+                gLastUsedBattlerAbility[battler] = ABILITY_INTIMIDATE;
+
+
+                u32 side = GetBattlerSide(battler);
+
+                // Update the last used ability for all battlers with abilities that block Intimidate for the ability popup.
+                for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+                {
+                    if (IsBattlerAlive(i) && side != GetBattlerSide(i))
+                    {
+                        if (BattlerHasTrait(i, ABILITY_INNER_FOCUS))
+                            gLastUsedBattlerAbility[i] = ABILITY_INNER_FOCUS;
+                        if (BattlerHasTrait(i, ABILITY_SCRAPPY))
+                            gLastUsedBattlerAbility[i] = ABILITY_SCRAPPY;
+                        if (BattlerHasTrait(i, ABILITY_OWN_TEMPO))
+                            gLastUsedBattlerAbility[i] = ABILITY_OWN_TEMPO;
+                        if (BattlerHasTrait(i, ABILITY_OBLIVIOUS))
+                            gLastUsedBattlerAbility[i] = ABILITY_OBLIVIOUS;
+                    }
+                }
+
                 gBattlerAttacker = battler;
                 SET_STATCHANGER(STAT_ATK, 1, TRUE);
                 BattleScriptPushCursorAndCallback(BattleScript_IntimidateActivates);
                 effect++;
-            } */
+            } 
 
      /*   case ABILITY_INTIMIDATE:
             if (!gSpecialStatuses[battler].switchInTraitDone[1])
@@ -4827,7 +4849,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             && !(gBattleStruct->supersweetSyrup[GetBattlerSide(battler)] & gBitTable[gBattlerPartyIndexes[battler]]))
         {  
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SUPERSWEET_SYRUP;
+                gLastUsedBattlerAbility[battler] = ABILITY_SUPERSWEET_SYRUP;
                 gBattlerAttacker = battler;
                 gBattleStruct->supersweetSyrup[GetBattlerSide(battler)] |= gBitTable[gBattlerPartyIndexes[battler]];
                 BattleScriptPushCursorAndCallback(BattleScript_SupersweetSyrupActivates);
@@ -4837,7 +4859,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {  
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_CLOUD_NINE;
+            gLastUsedBattlerAbility[battler] = ABILITY_CLOUD_NINE;
             BattleScriptPushCursorAndCallback(BattleScript_AnnounceAirLockCloudNine);
             effect++;
         }
@@ -4845,7 +4867,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {  
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_AIR_LOCK;
+            gLastUsedBattlerAbility[battler] = ABILITY_AIR_LOCK;
             BattleScriptPushCursorAndCallback(BattleScript_AnnounceAirLockCloudNine);
             effect++;
         }
@@ -4854,7 +4876,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             && gBattleMons[battler].species == SPECIES_TERAPAGOS_STELLAR)
         {  
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TERAFORM_ZERO;
+            gLastUsedBattlerAbility[battler] = ABILITY_TERAFORM_ZERO;
             BattleScriptPushCursorAndCallback(BattleScript_ActivateTeraformZero);
             effect++;
         }
@@ -4863,7 +4885,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             && gBattleMons[battler].level >= 20 && TryBattleFormChange(battler, FORM_CHANGE_BATTLE_HP_PERCENT))
         {  
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SCHOOLING;
+            gLastUsedBattlerAbility[battler] = ABILITY_SCHOOLING;
             gBattlerAttacker = battler;
             BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
             effect++;
@@ -4873,7 +4895,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             && gBattleMons[battler].level >= 20 && TryBattleFormChange(battler, FORM_CHANGE_BATTLE_HP_PERCENT))
         {  
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SCHOOLING;
+            gLastUsedBattlerAbility[battler] = ABILITY_SCHOOLING;
             gBattlerAttacker = battler;
             BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
             effect++;
@@ -4883,7 +4905,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             && TryBattleFormChange(battler, FORM_CHANGE_BATTLE_HP_PERCENT))
         {  
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ZEN_MODE;
+            gLastUsedBattlerAbility[battler] = ABILITY_ZEN_MODE;
             gBattlerAttacker = battler;
             BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
             effect++;
@@ -4893,7 +4915,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             && TryBattleFormChange(battler, FORM_CHANGE_BATTLE_HP_PERCENT))
         {  
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SHIELDS_DOWN;
+            gLastUsedBattlerAbility[battler] = ABILITY_SHIELDS_DOWN;
             gBattlerAttacker = battler;
             BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
             effect++;
@@ -4903,7 +4925,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             && !(gBattleStruct->intrepidSwordBoost[GetBattlerSide(battler)] & gBitTable[gBattlerPartyIndexes[battler]]))
         {  
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_INTREPID_SWORD;
+            gLastUsedBattlerAbility[battler] = ABILITY_INTREPID_SWORD;
             gBattleScripting.savedBattler = gBattlerAttacker;
             gBattlerAttacker = battler;
             if (B_INTREPID_SWORD == GEN_9)
@@ -4917,7 +4939,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             && !(gBattleStruct->dauntlessShieldBoost[GetBattlerSide(battler)] & gBitTable[gBattlerPartyIndexes[battler]]))
         {  
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DAUNTLESS_SHIELD;
+            gLastUsedBattlerAbility[battler] = ABILITY_DAUNTLESS_SHIELD;
             gBattleScripting.savedBattler = gBattlerAttacker;
             gBattlerAttacker = battler;
             if (B_DAUNTLESS_SHIELD == GEN_9)
@@ -4932,7 +4954,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             && gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_TAILWIND)
         {  
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_WIND_RIDER;
+            gLastUsedBattlerAbility[battler] = ABILITY_WIND_RIDER;
             gBattleScripting.savedBattler = gBattlerAttacker;
             gBattlerAttacker = battler;
             SET_STATCHANGER(STAT_ATK, 1, FALSE);
@@ -4941,7 +4963,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         }
         if (BattlerHasTrait(battler, ABILITY_DESOLATE_LAND))
         {  
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DESOLATE_LAND;
+            gLastUsedBattlerAbility[battler] = ABILITY_DESOLATE_LAND;
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN_PRIMAL, TRUE))
             {
             BattleScriptPushCursorAndCallback(BattleScript_DesolateLandActivates);
@@ -4950,7 +4972,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         }
         if (BattlerHasTrait(battler, ABILITY_PRIMORDIAL_SEA))
         {  
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_PRIMORDIAL_SEA;
+            gLastUsedBattlerAbility[battler] = ABILITY_PRIMORDIAL_SEA;
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN_PRIMAL, TRUE))
             {
             BattleScriptPushCursorAndCallback(BattleScript_PrimordialSeaActivates);
@@ -4959,7 +4981,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         }
         if (BattlerHasTrait(battler, ABILITY_DELTA_STREAM))
         {  
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_DELTA_STREAM;
+            gLastUsedBattlerAbility[battler] = ABILITY_DELTA_STREAM;
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_STRONG_WINDS, TRUE))
             {
             BattleScriptPushCursorAndCallback(BattleScript_DeltaStreamActivates);
@@ -4970,7 +4992,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {  
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_VESSEL_OF_RUIN;
+            gLastUsedBattlerAbility[battler] = ABILITY_VESSEL_OF_RUIN;
             PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_SPATK);
             BattleScriptPushCursorAndCallback(BattleScript_RuinAbilityActivates);
             effect++;
@@ -4979,7 +5001,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {  
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SWORD_OF_RUIN;
+            gLastUsedBattlerAbility[battler] = ABILITY_SWORD_OF_RUIN;
             PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_DEF);
             BattleScriptPushCursorAndCallback(BattleScript_RuinAbilityActivates);
             effect++;
@@ -4988,7 +5010,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {  
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TABLETS_OF_RUIN;
+            gLastUsedBattlerAbility[battler] = ABILITY_TABLETS_OF_RUIN;
             PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_ATK);
             BattleScriptPushCursorAndCallback(BattleScript_RuinAbilityActivates);
             effect++;
@@ -4997,7 +5019,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {  
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_BEADS_OF_RUIN;
+            gLastUsedBattlerAbility[battler] = ABILITY_BEADS_OF_RUIN;
             PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_SPDEF);
             BattleScriptPushCursorAndCallback(BattleScript_RuinAbilityActivates);
             effect++;
@@ -5006,7 +5028,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {  
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ORICHALCUM_PULSE;
+            gLastUsedBattlerAbility[battler] = ABILITY_ORICHALCUM_PULSE;
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN, TRUE))
             {
             BattleScriptPushCursorAndCallback(BattleScript_DroughtActivates);
@@ -5017,7 +5039,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {  
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_SUPREME_OVERLORD;
+            gLastUsedBattlerAbility[battler] = ABILITY_SUPREME_OVERLORD;
             gBattleStruct->supremeOverlordCounter[battler] = min(5, GetBattlerSideFaintCounter(battler));
             if (gBattleStruct->supremeOverlordCounter[battler] > 0)
             {
@@ -5031,7 +5053,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             && CountBattlerStatIncreases(BATTLE_PARTNER(battler), FALSE))
         {  
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_COSTAR;
+            gLastUsedBattlerAbility[battler] = ABILITY_COSTAR;
             gBattlerAttacker = battler;
             for (i = 0; i < NUM_BATTLE_STATS; i++)
                 gBattleMons[battler].statStages[i] = gBattleMons[BATTLE_PARTNER(battler)].statStages[i];
@@ -5049,7 +5071,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 && !(gBattleStruct->transformZeroToHero[side] & gBitTable[gBattlerPartyIndexes[battler]]))
             {
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ZERO_TO_HERO;
+                gLastUsedBattlerAbility[battler] = ABILITY_ZERO_TO_HERO;
                 gBattlerAttacker = battler;
                 gBattleStruct->transformZeroToHero[side] |= gBitTable[gBattlerPartyIndexes[battler]];
                 BattleScriptPushCursorAndCallback(BattleScript_ZeroToHeroActivates);
@@ -5067,7 +5089,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 gBattlerTarget = partner;
                 gBattlerAttacker = battler;  
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_HOSPITALITY;
+                gLastUsedBattlerAbility[battler] = ABILITY_HOSPITALITY;
                 gBattlerAttacker = battler;
                 gBattleMoveDamage = (GetNonDynamaxMaxHP(partner) / 4) * -1;
                 BattleScriptPushCursorAndCallback(BattleScript_HospitalityActivates);
@@ -5083,7 +5105,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                     break;
 
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_EMBODY_ASPECT_TEAL_MASK;
+            gLastUsedBattlerAbility[battler] = ABILITY_EMBODY_ASPECT_TEAL_MASK;
             gBattleScripting.savedBattler = gBattlerAttacker;
             gBattlerAttacker = battler;
             SET_STATCHANGER(stat, 1, FALSE);
@@ -5099,7 +5121,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                     break;
 
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_EMBODY_ASPECT_HEARTHFLAME_MASK;
+            gLastUsedBattlerAbility[battler] = ABILITY_EMBODY_ASPECT_HEARTHFLAME_MASK;
             gBattleScripting.savedBattler = gBattlerAttacker;
             gBattlerAttacker = battler;
             SET_STATCHANGER(stat, 1, FALSE);
@@ -5115,7 +5137,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                     break;
 
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_EMBODY_ASPECT_WELLSPRING_MASK;
+            gLastUsedBattlerAbility[battler] = ABILITY_EMBODY_ASPECT_WELLSPRING_MASK;
             gBattleScripting.savedBattler = gBattlerAttacker;
             gBattlerAttacker = battler;
             SET_STATCHANGER(stat, 1, FALSE);
@@ -5131,7 +5153,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                     break;
 
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_EMBODY_ASPECT_CORNERSTONE_MASK;
+            gLastUsedBattlerAbility[battler] = ABILITY_EMBODY_ASPECT_CORNERSTONE_MASK;
             gBattleScripting.savedBattler = gBattlerAttacker;
             gBattlerAttacker = battler;
             SET_STATCHANGER(stat, 1, FALSE);
@@ -5144,7 +5166,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             && TryBattleFormChange(battler, FORM_CHANGE_BATTLE_SWITCH))
         {  
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_TERA_SHIFT;
+            gLastUsedBattlerAbility[battler] = ABILITY_TERA_SHIFT;
             gBattlerAttacker = battler;
             BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeWithStringEnd3);
             effect++;
@@ -5154,7 +5176,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              && gBattleMons[battler].species == SPECIES_EISCUE_NOICE_FACE
              && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED))
         {  
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = ABILITY_ICE_FACE;
+            gLastUsedBattlerAbility[battler] = ABILITY_ICE_FACE;
                 gBattleMons[battler].species = SPECIES_EISCUE_ICE_FACE;
                 BattleScriptPushCursorAndCallback(BattleScript_BattlerFormChangeWithStringEnd3);
                 effect++;
@@ -6454,6 +6476,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             {
                 gBattleResources->flags->flags[i] |= RESOURCE_FLAG_NEUTRALIZING_GAS;
                 gBattlerAbility = i;
+                gLastUsedBattlerAbility[gBattlerAbility] = ABILITY_NEUTRALIZING_GAS;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_NEUTRALIZING_GAS;
                 BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
                 effect++;
