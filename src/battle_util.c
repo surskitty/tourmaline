@@ -4372,356 +4372,356 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         break;
     case ABILITYEFFECT_ON_SWITCHIN:
         gBattleScripting.battler = battler;
-        switch (gLastUsedAbility)
+
+        u8 traitCheck = ABILITY_NONE;
+        
+        // Trace replaces your main Ability, so it generally should not be an Innate.
+        traitCheck = BattlerHasTrait(battler, ABILITY_TRACE);
+        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {
-        case ABILITY_TRACE: // Trace should only be an Ability and interact with other Abilities, not an Innate.
+            u32 chosenTarget = 0;
+            u32 target1;
+            u32 target2;
+
+            side = (BATTLE_OPPOSITE(GetBattlerPosition(battler))) & BIT_SIDE;
+            target1 = GetBattlerAtPosition(side);
+            target2 = GetBattlerAtPosition(side + BIT_FLANK);
+            if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
             {
-                u32 chosenTarget;
-                u32 target1;
-                u32 target2;
-
-                if (gSpecialStatuses[battler].switchInTraitDone[1])
-                    break;
-
-                side = (BATTLE_OPPOSITE(GetBattlerPosition(battler))) & BIT_SIDE;
-                target1 = GetBattlerAtPosition(side);
-                target2 = GetBattlerAtPosition(side + BIT_FLANK);
-                if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-                {
-                    if (!gAbilitiesInfo[gBattleMons[target1].ability].cantBeTraced && gBattleMons[target1].hp != 0
-                        && !gAbilitiesInfo[gBattleMons[target2].ability].cantBeTraced && gBattleMons[target2].hp != 0)
-                        chosenTarget = GetBattlerAtPosition((RandomPercentage(RNG_TRACE, 50) * 2) | side), effect++;
-                    else if (!gAbilitiesInfo[gBattleMons[target1].ability].cantBeTraced && gBattleMons[target1].hp != 0)
-                        chosenTarget = target1, effect++;
-                    else if (!gAbilitiesInfo[gBattleMons[target2].ability].cantBeTraced && gBattleMons[target2].hp != 0)
-                        chosenTarget = target2, effect++;
-                }
-                else
-                {
-                    if (!gAbilitiesInfo[gBattleMons[target1].ability].cantBeTraced && gBattleMons[target1].hp != 0)
-                        chosenTarget = target1, effect++;
-                }
-
-                if (effect != 0)
-                {
-                    BattleScriptPushCursorAndCallback(BattleScript_TraceActivates);
-                    gBattleStruct->tracedAbility[battler] = gLastUsedAbility = gBattleMons[chosenTarget].ability;
-                    RecordAbilityBattle(chosenTarget, gLastUsedAbility); // Record the opposing battler has this ability
-                    gBattlerAbility = battler;
-
-                    PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, chosenTarget, gBattlerPartyIndexes[chosenTarget])
-                    PREPARE_ABILITY_BUFFER(gBattleTextBuff2, gLastUsedAbility)
-                }
+                if (!gAbilitiesInfo[gBattleMons[target1].ability].cantBeTraced && gBattleMons[target1].hp != 0
+                    && !gAbilitiesInfo[gBattleMons[target2].ability].cantBeTraced && gBattleMons[target2].hp != 0)
+                    chosenTarget = GetBattlerAtPosition((RandomPercentage(RNG_TRACE, 50) * 2) | side), effect++;
+                else if (!gAbilitiesInfo[gBattleMons[target1].ability].cantBeTraced && gBattleMons[target1].hp != 0)
+                    chosenTarget = target1, effect++;
+                else if (!gAbilitiesInfo[gBattleMons[target2].ability].cantBeTraced && gBattleMons[target2].hp != 0)
+                    chosenTarget = target2, effect++;
             }
-            break;
-        case ABILITY_ANTICIPATION:
-            if (!gSpecialStatuses[battler].switchInTraitDone[1])
+            else
             {
-                u32 side = GetBattlerSide(battler);
+                if (!gAbilitiesInfo[gBattleMons[target1].ability].cantBeTraced && gBattleMons[target1].hp != 0)
+                    chosenTarget = target1, effect++;
+            }
 
-                for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+             if (chosenTarget != 0)
+            {
+                //SwitchinTraitDone not set to True so that Traced switchin abilities like Intimidate can still activate
+                BattleScriptPushCursorAndCallback(BattleScript_TraceActivates);
+                gBattleStruct->tracedAbility[battler] = gLastUsedBattlerAbility[chosenTarget] = gBattleMons[chosenTarget].ability;
+                RecordAbilityBattle(chosenTarget, gLastUsedBattlerAbility[chosenTarget]); // Record the opposing battler has this ability
+                gBattlerAbility = battler;
+
+                PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, chosenTarget, gBattlerPartyIndexes[chosenTarget])
+                PREPARE_ABILITY_BUFFER(gBattleTextBuff2, gLastUsedBattlerAbility[chosenTarget])
+            }
+        }
+        traitCheck = BattlerHasTrait(battler, ABILITY_ANTICIPATION);
+        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
+        {
+            u32 side = GetBattlerSide(battler);
+
+            for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+            {
+                if (IsBattlerAlive(i) && side != GetBattlerSide(i))
                 {
-                    if (IsBattlerAlive(i) && side != GetBattlerSide(i))
+                    for (j = 0; j < MAX_MON_MOVES; j++)
                     {
-                        for (j = 0; j < MAX_MON_MOVES; j++)
+                        move = gBattleMons[i].moves[j];
+                        GET_MOVE_TYPE(move, moveType);
+                        if (CalcTypeEffectivenessMultiplier(move, moveType, i, battler, ABILITY_ANTICIPATION, FALSE) >= UQ_4_12(2.0))
                         {
-                            move = gBattleMons[i].moves[j];
-                            GET_MOVE_TYPE(move, moveType);
-                            if (CalcTypeEffectivenessMultiplier(move, moveType, i, battler, ABILITY_ANTICIPATION, FALSE) >= UQ_4_12(2.0))
-                            {
-                                effect++;
-                                break;
-                            }
+                            effect++;
+                            break;
                         }
                     }
                 }
-
-                if (effect)
-                {
-                    gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_ANTICIPATION;
-                    gSpecialStatuses[battler].switchInTraitDone[1] = TRUE;
-                    BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
-                }
             }
-            break;
-        case ABILITY_DOWNLOAD:
-            if (!gSpecialStatuses[battler].switchInTraitDone[1])
+
+            if (effect)
             {
-                u32 statId, opposingBattler;
-                u32 opposingDef = 0, opposingSpDef = 0;
-
-                opposingBattler = BATTLE_OPPOSITE(battler);
-                for (i = 0; i < 2; opposingBattler ^= BIT_FLANK, i++)
-                {
-                    if (IsBattlerAlive(opposingBattler))
-                    {
-                        opposingDef += gBattleMons[opposingBattler].defense
-                                    * gStatStageRatios[gBattleMons[opposingBattler].statStages[STAT_DEF]][0]
-                                    / gStatStageRatios[gBattleMons[opposingBattler].statStages[STAT_DEF]][1];
-                        opposingSpDef += gBattleMons[opposingBattler].spDefense
-                                      * gStatStageRatios[gBattleMons[opposingBattler].statStages[STAT_SPDEF]][0]
-                                      / gStatStageRatios[gBattleMons[opposingBattler].statStages[STAT_SPDEF]][1];
-                    }
-                }
-
-                if (opposingDef < opposingSpDef)
-                    statId = STAT_ATK;
-                else
-                    statId = STAT_SPATK;
-
-                gSpecialStatuses[battler].switchInTraitDone[1] = TRUE;
-
-                if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
-                {
-                    SET_STATCHANGER(statId, 1, FALSE);
-                    gBattlerAttacker = battler;
-                    PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
-                    BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
-                    effect++;
-                }
+                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+                gLastUsedBattlerAbility[battler] = ABILITY_ANTICIPATION;
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_ANTICIPATION;
+                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
             }
-            break;
-            
-      /*  case ABILITY_INTIMIDATE:
-            if (!gSpecialStatuses[battler].switchInTraitDone[1])
-            {
-                gBattlerAttacker = battler;
-                gSpecialStatuses[battler].switchInTraitDone[1] = TRUE;
-                SET_STATCHANGER(STAT_ATK, 1, TRUE);
-                BattleScriptPushCursorAndCallback(BattleScript_IntimidateActivates);
-                effect++;
-            }
-            break; */
-
-
-
         }
 
-        u8 traitCheck = 0;
+        traitCheck = BattlerHasTrait(battler, ABILITY_DOWNLOAD);
+        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
+        {
+            u32 statId, opposingBattler;
+            u32 opposingDef = 0, opposingSpDef = 0;
+
+            opposingBattler = BATTLE_OPPOSITE(battler);
+            for (i = 0; i < 2; opposingBattler ^= BIT_FLANK, i++)
+            {
+                if (IsBattlerAlive(opposingBattler))
+                {
+                    opposingDef += gBattleMons[opposingBattler].defense
+                                * gStatStageRatios[gBattleMons[opposingBattler].statStages[STAT_DEF]][0]
+                                / gStatStageRatios[gBattleMons[opposingBattler].statStages[STAT_DEF]][1];
+                    opposingSpDef += gBattleMons[opposingBattler].spDefense
+                                  * gStatStageRatios[gBattleMons[opposingBattler].statStages[STAT_SPDEF]][0]
+                                  / gStatStageRatios[gBattleMons[opposingBattler].statStages[STAT_SPDEF]][1];
+                }
+            }
+
+            if (opposingDef < opposingSpDef)
+                statId = STAT_ATK;
+            else
+                statId = STAT_SPATK;
+
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+
+            if (CompareStat(battler, statId, MAX_STAT_STAGE, CMP_LESS_THAN))
+            {
+                gLastUsedBattlerAbility[battler] = ABILITY_DOWNLOAD;
+                SET_STATCHANGER(statId, 1, FALSE);
+                gBattlerAttacker = battler;
+                PREPARE_STAT_BUFFER(gBattleTextBuff1, statId);
+                BattleScriptPushCursorAndCallback(BattleScript_AttackerAbilityStatRaiseEnd3);
+                effect++;
+            }
+        }
+
 // Weather Abilities --------------------------------------------------------------------------------------------------
         traitCheck = BattlerHasTrait(battler, ABILITY_DRIZZLE);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattlerAttacker = battler;
-                gLastUsedBattlerAbility[battler] = ABILITY_DRIZZLE;
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gBattlerAttacker = battler;
+            gLastUsedBattlerAbility[battler] = ABILITY_DRIZZLE;
 
-                if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN, TRUE))
-                {
-                    BattleScriptPushCursorAndCallback(BattleScript_DrizzleActivates);
-                            effect++;
-                }
-                else if (gBattleWeather & B_WEATHER_PRIMAL_ANY && WEATHER_HAS_EFFECT)
-                {
-                    gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                    BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
-                            effect++;
-                }
+            if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN, TRUE))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_DrizzleActivates);
+                effect++;
+            }
+            else if (gBattleWeather & B_WEATHER_PRIMAL_ANY && WEATHER_HAS_EFFECT)
+            {
+                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+                BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
+                effect++;
+            }
         }
 
         traitCheck = BattlerHasTrait(battler, ABILITY_SAND_STREAM);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattlerAttacker = battler;
-                gLastUsedBattlerAbility[battler] = ABILITY_SAND_STREAM;
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gBattlerAttacker = battler;
+            gLastUsedBattlerAbility[battler] = ABILITY_SAND_STREAM;
 
-                if (TryChangeBattleWeather(battler, ENUM_WEATHER_SANDSTORM, TRUE))
-                {
-                    BattleScriptPushCursorAndCallback(BattleScript_SandstreamActivates);
-                    effect++;
-                }
-                else if (gBattleWeather & B_WEATHER_PRIMAL_ANY && WEATHER_HAS_EFFECT)
-                {
-                    BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
-                    effect++;
-                }
+            if (TryChangeBattleWeather(battler, ENUM_WEATHER_SANDSTORM, TRUE))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_SandstreamActivates);
+                effect++;
+            }
+            else if (gBattleWeather & B_WEATHER_PRIMAL_ANY && WEATHER_HAS_EFFECT)
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
+                effect++;
+            }
         }
 
         traitCheck = BattlerHasTrait(battler, ABILITY_DROUGHT);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattlerAttacker = battler;
-                gLastUsedBattlerAbility[battler] = ABILITY_DROUGHT;
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gBattlerAttacker = battler;
+            gLastUsedBattlerAbility[battler] = ABILITY_DROUGHT;
 
-                if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN, TRUE))
-                {
-                    BattleScriptPushCursorAndCallback(BattleScript_DroughtActivates);
-                    effect++;
-                }
-                else if (gBattleWeather & B_WEATHER_PRIMAL_ANY && WEATHER_HAS_EFFECT)
-                {
-                    BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
-                    effect++;
-             }
+            if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN, TRUE))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_DroughtActivates);
+                effect++;
+            }
+            else if (gBattleWeather & B_WEATHER_PRIMAL_ANY && WEATHER_HAS_EFFECT)
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
+                effect++;
+            }
         }
         traitCheck = BattlerHasTrait(battler, ABILITY_SNOW_WARNING);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattlerAttacker = battler;
-                gLastUsedBattlerAbility[battler] = ABILITY_SNOW_WARNING;
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gBattlerAttacker = battler;
+            gLastUsedBattlerAbility[battler] = ABILITY_SNOW_WARNING;
 
             if (B_SNOW_WARNING >= GEN_9 && TryChangeBattleWeather(battler, ENUM_WEATHER_SNOW, TRUE))
-                {
-                    BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivatesSnow);
-                    effect++;
-                }
-            else if (B_SNOW_WARNING < GEN_9 && TryChangeBattleWeather(battler, ENUM_WEATHER_HAIL, TRUE))
-                {
-                    BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivatesHail);
-                    effect++;
-                }
-                    else if (gBattleWeather & B_WEATHER_PRIMAL_ANY && WEATHER_HAS_EFFECT)
-                    {
-                        BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
-                        effect++;
-                    }
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivatesSnow);
+                effect++;
             }
+            else if (B_SNOW_WARNING < GEN_9 && TryChangeBattleWeather(battler, ENUM_WEATHER_HAIL, TRUE))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivatesHail);
+                effect++;
+            }
+            else if (gBattleWeather & B_WEATHER_PRIMAL_ANY && WEATHER_HAS_EFFECT)
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_BlockedByPrimalWeatherEnd3);
+                effect++;
+            }
+        }
         traitCheck = BattlerHasTrait(battler, ABILITY_ELECTRIC_SURGE);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattlerAttacker = battler;
-                gLastUsedBattlerAbility[battler] = ABILITY_ELECTRIC_SURGE;
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gBattlerAttacker = battler;
+            gLastUsedBattlerAbility[battler] = ABILITY_ELECTRIC_SURGE;
                 
-                    if(TryChangeBattleTerrain(battler, STATUS_FIELD_ELECTRIC_TERRAIN, &gFieldTimers.terrainTimer)){
-                        BattleScriptPushCursorAndCallback(BattleScript_ElectricSurgeActivates);
-                        effect++;
-                    }
-            }
+                if(TryChangeBattleTerrain(battler, STATUS_FIELD_ELECTRIC_TERRAIN, &gFieldTimers.terrainTimer))
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_ElectricSurgeActivates);
+                    effect++;
+                }
+        }
         traitCheck = BattlerHasTrait(battler, ABILITY_HADRON_ENGINE);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattlerAttacker = battler;
-                gLastUsedBattlerAbility[battler] = ABILITY_HADRON_ENGINE;
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gBattlerAttacker = battler;
+            gLastUsedBattlerAbility[battler] = ABILITY_HADRON_ENGINE;
                 
-                    if(TryChangeBattleTerrain(battler, STATUS_FIELD_ELECTRIC_TERRAIN, &gFieldTimers.terrainTimer)){
-                        BattleScriptPushCursorAndCallback(BattleScript_ElectricSurgeActivates);
-                        effect++;
-                    }
-            }
+                if(TryChangeBattleTerrain(battler, STATUS_FIELD_ELECTRIC_TERRAIN, &gFieldTimers.terrainTimer))
+                {
+                    BattleScriptPushCursorAndCallback(BattleScript_ElectricSurgeActivates);
+                    effect++;
+                }
+        }
         traitCheck = BattlerHasTrait(battler, ABILITY_GRASSY_SURGE);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattlerAttacker = battler;
-                gLastUsedBattlerAbility[battler] = ABILITY_GRASSY_SURGE;
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gBattlerAttacker = battler;
+            gLastUsedBattlerAbility[battler] = ABILITY_GRASSY_SURGE;
                 
-                    if(TryChangeBattleTerrain(battler, STATUS_FIELD_GRASSY_TERRAIN, &gFieldTimers.terrainTimer)){
-                        BattleScriptPushCursorAndCallback(BattleScript_GrassySurgeActivates);
-                        effect++;
-                    }
+            if(TryChangeBattleTerrain(battler, STATUS_FIELD_GRASSY_TERRAIN, &gFieldTimers.terrainTimer))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_GrassySurgeActivates);
+                effect++;
             }
+        }
         traitCheck = BattlerHasTrait(battler, ABILITY_MISTY_SURGE);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattlerAttacker = battler;
-                gLastUsedBattlerAbility[battler] = ABILITY_MISTY_SURGE;
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gBattlerAttacker = battler;
+            gLastUsedBattlerAbility[battler] = ABILITY_MISTY_SURGE;
                 
-                    if(TryChangeBattleTerrain(battler, STATUS_FIELD_MISTY_TERRAIN, &gFieldTimers.terrainTimer)){
-                        BattleScriptPushCursorAndCallback(BattleScript_MistySurgeActivates);
-                        effect++;
-                    }
+            if(TryChangeBattleTerrain(battler, STATUS_FIELD_MISTY_TERRAIN, &gFieldTimers.terrainTimer))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_MistySurgeActivates);
+                effect++;
             }
+        }
         traitCheck = BattlerHasTrait(battler, ABILITY_PSYCHIC_SURGE);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattlerAttacker = battler;
-                gLastUsedBattlerAbility[battler] = ABILITY_PSYCHIC_SURGE;
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gBattlerAttacker = battler;
+            gLastUsedBattlerAbility[battler] = ABILITY_PSYCHIC_SURGE;
                 
-                    if(TryChangeBattleTerrain(battler, STATUS_FIELD_PSYCHIC_TERRAIN, &gFieldTimers.terrainTimer)){
-                        BattleScriptPushCursorAndCallback(BattleScript_PsychicSurgeActivates);
-                        effect++;
-                    }
+            if(TryChangeBattleTerrain(battler, STATUS_FIELD_PSYCHIC_TERRAIN, &gFieldTimers.terrainTimer))
+            {
+                BattleScriptPushCursorAndCallback(BattleScript_PsychicSurgeActivates);
+                effect++;
             }
+        }
 // Innates on Switch-----------------------------------------------------------------------------------
         traitCheck = BattlerHasTrait(battler, ABILITY_SCREEN_CLEANER);
-        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gLastUsedBattlerAbility[battler] = ABILITY_SCREEN_CLEANER;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_SCREENCLEANER;
-                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
-                effect++;
+        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
+        {
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gLastUsedBattlerAbility[battler] = ABILITY_SCREEN_CLEANER;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_SCREENCLEANER;
+            BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+            effect++;
         }
         traitCheck = BattlerHasTrait(battler, ABILITY_PRESSURE);
-        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gLastUsedBattlerAbility[battler] = ABILITY_PRESSURE;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_PRESSURE;
-                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
-                effect++;
+        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
+        {
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gLastUsedBattlerAbility[battler] = ABILITY_PRESSURE;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_PRESSURE;
+            BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+            effect++;
         }
         traitCheck = BattlerHasTrait(battler, ABILITY_DARK_AURA);
-        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gLastUsedBattlerAbility[battler] = ABILITY_DARK_AURA;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_DARKAURA;
-                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
-                effect++;
+        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
+        {
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gLastUsedBattlerAbility[battler] = ABILITY_DARK_AURA;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_DARKAURA;
+            BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+            effect++;
         }
         traitCheck = BattlerHasTrait(battler, ABILITY_FAIRY_AURA);
-        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gLastUsedBattlerAbility[battler] = ABILITY_FAIRY_AURA;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_FAIRYAURA;
-                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
-                effect++;
+        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
+        {
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gLastUsedBattlerAbility[battler] = ABILITY_FAIRY_AURA;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_FAIRYAURA;
+            BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+            effect++;
         }
         traitCheck = BattlerHasTrait(battler, ABILITY_AURA_BREAK);
-        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gLastUsedBattlerAbility[battler] = ABILITY_AURA_BREAK;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_AURABREAK;
-                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
-                effect++;
+        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
+        {
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gLastUsedBattlerAbility[battler] = ABILITY_AURA_BREAK;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_AURABREAK;
+            BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+            effect++;
         }
         traitCheck = BattlerHasTrait(battler, ABILITY_MOLD_BREAKER);
-        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gLastUsedBattlerAbility[battler] = ABILITY_MOLD_BREAKER;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_MOLDBREAKER;
-                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
-                effect++;
+        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
+        {
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gLastUsedBattlerAbility[battler] = ABILITY_MOLD_BREAKER;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_MOLDBREAKER;
+            BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+            effect++;
         }
         traitCheck = BattlerHasTrait(battler, ABILITY_TERAVOLT);
-        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattlerAttacker = battler;
-                gLastUsedBattlerAbility[battler] = ABILITY_TERAVOLT;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_TERAVOLT;
-                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
-                effect++;
+        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
+        {
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gBattlerAttacker = battler;
+            gLastUsedBattlerAbility[battler] = ABILITY_TERAVOLT;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_TERAVOLT;
+            BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+            effect++;
         }
         traitCheck = BattlerHasTrait(battler, ABILITY_TURBOBLAZE);
-        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gBattlerAttacker = battler;
-                gLastUsedBattlerAbility[battler] = ABILITY_TURBOBLAZE;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_TURBOBLAZE;
-                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
-                effect++;
+        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
+        {
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gBattlerAttacker = battler;
+            gLastUsedBattlerAbility[battler] = ABILITY_TURBOBLAZE;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_TURBOBLAZE;
+            BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+            effect++;
         }
         traitCheck = BattlerHasTrait(battler, ABILITY_SLOW_START);
-        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gDisableStructs[battler].slowStartTimer = 5;
-                gLastUsedBattlerAbility[battler] = ABILITY_SLOW_START;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_SLOWSTART;
-                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
-                effect++;
+        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
+        {
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gDisableStructs[battler].slowStartTimer = 5;
+            gLastUsedBattlerAbility[battler] = ABILITY_SLOW_START;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_SLOWSTART;
+            BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+            effect++;
         }
         traitCheck = BattlerHasTrait(battler, ABILITY_UNNERVE);
-        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){                  
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gLastUsedBattlerAbility[battler] = ABILITY_UNNERVE;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_UNNERVE;
-                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
-                effect++;
+        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
+        {                  
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gLastUsedBattlerAbility[battler] = ABILITY_UNNERVE;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_UNNERVE;
+            BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+            effect++;
         }
         traitCheck = BattlerHasTrait(battler, ABILITY_IMPOSTER);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck] 
@@ -4730,53 +4730,58 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED)
             && !(gBattleStruct->illusion[BATTLE_OPPOSITE(battler)].on)
             && !(gStatuses3[BATTLE_OPPOSITE(battler)] & STATUS3_SEMI_INVULNERABLE))
-            {
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gLastUsedBattlerAbility[battler] = ABILITY_IMPOSTER;
-                gBattlerAttacker = battler;
-                gBattlerTarget = BATTLE_OPPOSITE(battler);
-                BattleScriptPushCursorAndCallback(BattleScript_ImposterActivates);
-                effect++;
-            }
+        {
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gLastUsedBattlerAbility[battler] = ABILITY_IMPOSTER;
+            gBattlerAttacker = battler;
+            gBattlerTarget = BATTLE_OPPOSITE(battler);
+            BattleScriptPushCursorAndCallback(BattleScript_ImposterActivates);
+            effect++;
+        }
         traitCheck = BattlerHasTrait(battler, ABILITY_AS_ONE_ICE_RIDER);
-        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){  
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gLastUsedBattlerAbility[battler] = ABILITY_AS_ONE_ICE_RIDER;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_ASONE;
-                BattleScriptPushCursorAndCallback(BattleScript_ActivateAsOne);
-                effect++;
-            }
+        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
+        {  
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gLastUsedBattlerAbility[battler] = ABILITY_AS_ONE_ICE_RIDER;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_ASONE;
+            BattleScriptPushCursorAndCallback(BattleScript_ActivateAsOne);
+            effect++;
+        }
         traitCheck = BattlerHasTrait(battler, ABILITY_AS_ONE_SHADOW_RIDER);
-        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){  
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gLastUsedBattlerAbility[battler] = ABILITY_AS_ONE_SHADOW_RIDER;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_ASONE;
-                BattleScriptPushCursorAndCallback(BattleScript_ActivateAsOne);
-                effect++;
-            }
+        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
+        {  
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gLastUsedBattlerAbility[battler] = ABILITY_AS_ONE_SHADOW_RIDER;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_ASONE;
+            BattleScriptPushCursorAndCallback(BattleScript_ActivateAsOne);
+            effect++;
+        }
         traitCheck = BattlerHasTrait(battler, ABILITY_CURIOUS_MEDICINE);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck] && IsDoubleBattle() 
             && IsBattlerAlive(BATTLE_PARTNER(battler)) && TryResetBattlerStatChanges(BATTLE_PARTNER(battler)))
-            {
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gLastUsedBattlerAbility[battler] = ABILITY_CURIOUS_MEDICINE;  
-                gEffectBattler = BATTLE_PARTNER(battler);
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_CURIOUS_MEDICINE;
-                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
-                effect++;
-            }
+        {
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gLastUsedBattlerAbility[battler] = ABILITY_CURIOUS_MEDICINE;  
+            gEffectBattler = BATTLE_PARTNER(battler);
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_CURIOUS_MEDICINE;
+            BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+            effect++;
+        }
         traitCheck = BattlerHasTrait(battler, ABILITY_PASTEL_VEIL);
-        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){  
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gLastUsedBattlerAbility[battler] = ABILITY_PASTEL_VEIL;  
-                gBattlerTarget = battler;
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_PASTEL_VEIL;
-                BattleScriptPushCursorAndCallback(BattleScript_PastelVeilActivates);
-                effect++;
-            }
+        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
+        {  
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gLastUsedBattlerAbility[battler] = ABILITY_PASTEL_VEIL;  
+            gBattlerTarget = battler;
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_PASTEL_VEIL;
+            BattleScriptPushCursorAndCallback(BattleScript_PastelVeilActivates);
+            effect++;
+        }
         traitCheck = BattlerHasTrait(battler, ABILITY_FRISK);
-        if (traitCheck){
-            if(!gSpecialStatuses[battler].switchInTraitDone[traitCheck]){  
+        if (traitCheck)
+        {
+            if(!gSpecialStatuses[battler].switchInTraitDone[traitCheck])
+            {  
                 gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
                 gLastUsedBattlerAbility[battler] = ABILITY_FRISK;  
                 gBattlerTarget = battler;
@@ -4787,74 +4792,62 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             return effect; // Note: It returns effect as to not record the ability if Frisk does not activate.
         }
         traitCheck = BattlerHasTrait(battler, ABILITY_FOREWARN);
-        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){  
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gLastUsedBattlerAbility[battler] = ABILITY_FOREWARN; 
-                ForewarnChooseMove(battler); 
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_FOREWARN;
-                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
-                effect++;
-            }
+        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
+        {  
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gLastUsedBattlerAbility[battler] = ABILITY_FOREWARN; 
+            ForewarnChooseMove(battler); 
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_FOREWARN;
+            BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+            effect++;
+        }
         traitCheck = BattlerHasTrait(battler, ABILITY_COMATOSE);
-        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){  
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gLastUsedBattlerAbility[battler] = ABILITY_COMATOSE; 
-                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_COMATOSE;
-                BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
-                effect++;
-            }
+        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
+        {  
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gLastUsedBattlerAbility[battler] = ABILITY_COMATOSE; 
+            gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_COMATOSE;
+            BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
+            effect++;
+        }
         traitCheck = BattlerHasTrait(battler, ABILITY_INTIMIDATE);
-        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]){  
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gLastUsedBattlerAbility[battler] = ABILITY_INTIMIDATE;
+        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
+        {  
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gLastUsedBattlerAbility[battler] = ABILITY_INTIMIDATE;
 
-
-                u32 side = GetBattlerSide(battler);
-
-                // Update the last used ability for all battlers with abilities that block Intimidate for the ability popup.
-                for (i = 0; i < MAX_BATTLERS_COUNT; i++)
-                {
-                    if (IsBattlerAlive(i) && side != GetBattlerSide(i))
-                    {
-                        if (BattlerHasTrait(i, ABILITY_INNER_FOCUS))
-                            gLastUsedBattlerAbility[i] = ABILITY_INNER_FOCUS;
-                        if (BattlerHasTrait(i, ABILITY_SCRAPPY))
-                            gLastUsedBattlerAbility[i] = ABILITY_SCRAPPY;
-                        if (BattlerHasTrait(i, ABILITY_OWN_TEMPO))
-                            gLastUsedBattlerAbility[i] = ABILITY_OWN_TEMPO;
-                        if (BattlerHasTrait(i, ABILITY_OBLIVIOUS))
-                            gLastUsedBattlerAbility[i] = ABILITY_OBLIVIOUS;
-                    }
-                }
-
-                gBattlerAttacker = battler;
-                SET_STATCHANGER(STAT_ATK, 1, TRUE);
-                BattleScriptPushCursorAndCallback(BattleScript_IntimidateActivates);
-                effect++;
-            } 
-
-     /*   case ABILITY_INTIMIDATE:
-            if (!gSpecialStatuses[battler].switchInTraitDone[1])
+            u32 side = GetBattlerSide(battler);
+            // Update the last used ability for all battlers with abilities that block Intimidate for the ability popup.
+            for (i = 0; i < MAX_BATTLERS_COUNT; i++)
             {
-                gBattlerAttacker = battler;
-                gSpecialStatuses[battler].switchInTraitDone[1] = TRUE;
-                SET_STATCHANGER(STAT_ATK, 1, TRUE);
-                BattleScriptPushCursorAndCallback(BattleScript_IntimidateActivates);
-                effect++;
+                if (IsBattlerAlive(i) && side != GetBattlerSide(i))
+                {
+                    if (BattlerHasTrait(i, ABILITY_INNER_FOCUS))
+                        gLastUsedBattlerAbility[i] = ABILITY_INNER_FOCUS;
+                    if (BattlerHasTrait(i, ABILITY_SCRAPPY))
+                        gLastUsedBattlerAbility[i] = ABILITY_SCRAPPY;
+                    if (BattlerHasTrait(i, ABILITY_OWN_TEMPO))
+                        gLastUsedBattlerAbility[i] = ABILITY_OWN_TEMPO;
+                    if (BattlerHasTrait(i, ABILITY_OBLIVIOUS))
+                        gLastUsedBattlerAbility[i] = ABILITY_OBLIVIOUS;
+                }
             }
-            break; */
-            
+            gBattlerAttacker = battler;
+            SET_STATCHANGER(STAT_ATK, 1, TRUE);
+            BattleScriptPushCursorAndCallback(BattleScript_IntimidateActivates);
+            effect++;
+        } 
         traitCheck = BattlerHasTrait(battler, ABILITY_SUPERSWEET_SYRUP);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]
             && !(gBattleStruct->supersweetSyrup[GetBattlerSide(battler)] & gBitTable[gBattlerPartyIndexes[battler]]))
         {  
-                gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-                gLastUsedBattlerAbility[battler] = ABILITY_SUPERSWEET_SYRUP;
-                gBattlerAttacker = battler;
-                gBattleStruct->supersweetSyrup[GetBattlerSide(battler)] |= gBitTable[gBattlerPartyIndexes[battler]];
-                BattleScriptPushCursorAndCallback(BattleScript_SupersweetSyrupActivates);
-                effect++;
-            }
+            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
+            gLastUsedBattlerAbility[battler] = ABILITY_SUPERSWEET_SYRUP;
+            gBattlerAttacker = battler;
+            gBattleStruct->supersweetSyrup[GetBattlerSide(battler)] |= gBitTable[gBattlerPartyIndexes[battler]];
+            BattleScriptPushCursorAndCallback(BattleScript_SupersweetSyrupActivates);
+            effect++;
+        }
         traitCheck = BattlerHasTrait(battler, ABILITY_CLOUD_NINE);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {  
@@ -4882,17 +4875,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         }
         traitCheck = BattlerHasTrait(battler, ABILITY_SCHOOLING);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]
-            && gBattleMons[battler].level >= 20 && TryBattleFormChange(battler, FORM_CHANGE_BATTLE_HP_PERCENT))
-        {  
-            gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gLastUsedBattlerAbility[battler] = ABILITY_SCHOOLING;
-            gBattlerAttacker = battler;
-            BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
-            effect++;
-        }
-        traitCheck = BattlerHasTrait(battler, ABILITY_SCHOOLING);
-        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]
-            && gBattleMons[battler].level >= 20 && TryBattleFormChange(battler, FORM_CHANGE_BATTLE_HP_PERCENT))
+            && gBattleMons[battler].level >= 20 
+            && TryBattleFormChange(battler, FORM_CHANGE_BATTLE_HP_PERCENT))
         {  
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
             gLastUsedBattlerAbility[battler] = ABILITY_SCHOOLING;
@@ -4966,8 +4950,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             gLastUsedBattlerAbility[battler] = ABILITY_DESOLATE_LAND;
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN_PRIMAL, TRUE))
             {
-            BattleScriptPushCursorAndCallback(BattleScript_DesolateLandActivates);
-            effect++;
+                BattleScriptPushCursorAndCallback(BattleScript_DesolateLandActivates);
+                effect++;
             }
         }
         if (BattlerHasTrait(battler, ABILITY_PRIMORDIAL_SEA))
@@ -4975,8 +4959,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             gLastUsedBattlerAbility[battler] = ABILITY_PRIMORDIAL_SEA;
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN_PRIMAL, TRUE))
             {
-            BattleScriptPushCursorAndCallback(BattleScript_PrimordialSeaActivates);
-            effect++;
+                BattleScriptPushCursorAndCallback(BattleScript_PrimordialSeaActivates);
+                effect++;
             }
         }
         if (BattlerHasTrait(battler, ABILITY_DELTA_STREAM))
@@ -4984,8 +4968,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             gLastUsedBattlerAbility[battler] = ABILITY_DELTA_STREAM;
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_STRONG_WINDS, TRUE))
             {
-            BattleScriptPushCursorAndCallback(BattleScript_DeltaStreamActivates);
-            effect++;
+                BattleScriptPushCursorAndCallback(BattleScript_DeltaStreamActivates);
+                effect++;
             }
         }
         traitCheck = BattlerHasTrait(battler, ABILITY_VESSEL_OF_RUIN);
@@ -5031,8 +5015,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             gLastUsedBattlerAbility[battler] = ABILITY_ORICHALCUM_PULSE;
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN, TRUE))
             {
-            BattleScriptPushCursorAndCallback(BattleScript_DroughtActivates);
-            effect++;
+                BattleScriptPushCursorAndCallback(BattleScript_DroughtActivates);
+                effect++;
             }
         }
         traitCheck = BattlerHasTrait(battler, ABILITY_SUPREME_OVERLORD);
@@ -5177,24 +5161,10 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              && !(gBattleMons[battler].status2 & STATUS2_TRANSFORMED))
         {  
             gLastUsedBattlerAbility[battler] = ABILITY_ICE_FACE;
-                gBattleMons[battler].species = SPECIES_EISCUE_ICE_FACE;
-                BattleScriptPushCursorAndCallback(BattleScript_BattlerFormChangeWithStringEnd3);
-                effect++;
+            gBattleMons[battler].species = SPECIES_EISCUE_ICE_FACE;
+            BattleScriptPushCursorAndCallback(BattleScript_BattlerFormChangeWithStringEnd3);
+            effect++;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         break;
     case ABILITYEFFECT_ENDTURN:
         if (IsBattlerAlive(battler))
