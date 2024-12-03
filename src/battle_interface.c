@@ -2777,11 +2777,11 @@ void CreateAbilityPopUp(u8 battlerId, u32 ability, bool32 isDoubleBattle)
 void UpdateAbilityPopup(u8 battlerId)
 {
 
-        u16 lastAbility;
-        if (gLastUsedBattlerAbility[battlerId] != 0)
-            lastAbility = gLastUsedBattlerAbility[battlerId];
-        else
-            lastAbility = gBattleMons[battlerId].ability;
+    u16 lastAbility;
+    if (gLastUsedBattlerAbility[battlerId] != 0)
+        lastAbility = gLastUsedBattlerAbility[battlerId];
+    else
+        lastAbility = gBattleMons[battlerId].ability;
 
     u8 spriteId1 = gBattleStruct->abilityPopUpSpriteIds[battlerId][0];
     u8 spriteId2 = gBattleStruct->abilityPopUpSpriteIds[battlerId][1];

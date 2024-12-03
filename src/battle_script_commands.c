@@ -2517,11 +2517,11 @@ static void Cmd_resultmessage(void)
 
     u32 stringId = 0;
 
-        u16 lastAbility;
-        if (gLastUsedBattlerAbility[gBattlerTarget] != ABILITY_NONE)
-            lastAbility = gLastUsedBattlerAbility[gBattlerTarget];
-        else
-            lastAbility = gBattleMons[gBattlerTarget].ability;
+    u16 lastAbility;
+    if (gLastUsedBattlerAbility[gBattlerTarget] != ABILITY_NONE)
+        lastAbility = gLastUsedBattlerAbility[gBattlerTarget];
+    else
+        lastAbility = gBattleMons[gBattlerTarget].ability;
 
     if (gBattleControllerExecFlags)
         return;
