@@ -1903,7 +1903,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 ADJUST_SCORE(-10);
             break;
         case EFFECT_REST:
-            if (!CanBeSlept(battlerAtk, aiData->abilities[battlerAtk]))
+            if (!CanBeSlept(battlerAtk))
                 ADJUST_SCORE(-10);
             //fallthrough
         case EFFECT_RESTORE_HP:
@@ -3541,7 +3541,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
         }
         break;
     case EFFECT_REST:
-        if (!(CanBeSlept(battlerAtk, aiData->abilities[battlerAtk])))
+        if (!(CanBeSlept(battlerAtk)))
         {
             break;
         }
@@ -4027,7 +4027,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
                 ADJUST_SCORE(DECENT_EFFECT);
             break;
         case HOLD_EFFECT_FLAME_ORB:
-            if (!ShouldBurnSelf(battlerAtk, aiData->abilities[battlerAtk]) && CanBeBurned(battlerAtk, aiData->abilities[battlerDef]))
+            if (!ShouldBurnSelf(battlerAtk, aiData->abilities[battlerAtk]) && CanBeBurned(battlerAtk))
                 ADJUST_SCORE(DECENT_EFFECT);
             break;
         case HOLD_EFFECT_BLACK_SLUDGE:
@@ -5435,10 +5435,24 @@ u8 BattlerHasInnate(u8 battlerId, u16 ability) {
 }
 
 //Returns the trait slot number of the given ability. Starts at 1 for the primary Ability and returns 0 if the ability is not found. 
-u8 BattlerHasTrait(u8 battlerId, u16 ability) {
+u8 BattlerHasTrait(u8 battlerId, u16 ability) 
+{
     u8 traitNum = 0;
     
     if (GetBattlerAbility(battlerId) == ability)
+        traitNum = 1;
+    else 
+        traitNum = BattlerHasInnate(battlerId, ability);
+         
+    return traitNum;
+}
+
+//Used to search abilities for functions already under GetBattlerAbility to avoid infinite loops.
+u8 BattlerHasTraitPlain(u8 battlerId, u16 ability)
+{
+    u8 traitNum = 0;
+    
+    if (gBattleMons[battlerId].ability == ability)
         traitNum = 1;
     else 
         traitNum = BattlerHasInnate(battlerId, ability);
