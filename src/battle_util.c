@@ -108,6 +108,8 @@ static u8 CalcBeatUpPower(void)
 
 bool32 IsAffectedByFollowMe(u32 battlerAtk, u32 defSide, u32 move)
 {
+    u32 ability = GetBattlerAbility(battlerAtk);
+
     if (gSideTimers[defSide].followmeTimer == 0
         || !IsBattlerAlive(gSideTimers[defSide].followmeTarget)
         || gMovesInfo[move].effect == EFFECT_SNIPE_SHOT
@@ -115,7 +117,7 @@ bool32 IsAffectedByFollowMe(u32 battlerAtk, u32 defSide, u32 move)
         || BattlerHasTrait(battlerAtk, ABILITY_PROPELLER_TAIL) || BattlerHasTrait(battlerAtk, ABILITY_STALWART))
         return FALSE;
 
-    if (gSideTimers[defSide].followmePowder && !IsAffectedByPowder(battlerAtk, GetBattlerHoldEffect(battlerAtk, TRUE)))
+    if (gSideTimers[defSide].followmePowder && !IsAffectedByPowder(battlerAtk, ability, GetBattlerHoldEffect(battlerAtk, TRUE)))
         return FALSE;
 
     return TRUE;
@@ -293,7 +295,9 @@ void HandleAction_UseMove(void)
         }
         else
         {
+            u16 battlerAbility;
             battler = gBattlerByTurnOrder[var];
+            battlerAbility = GetBattlerAbility(battler);
 
             RecordAbilityBattle(battler, gBattleMons[battler].ability);
             if (BattlerHasTrait(battler, ABILITY_LIGHTNING_ROD) && gCurrentMove != MOVE_TEATIME)
@@ -734,6 +738,8 @@ void HandleAction_ActionFinished(void)
     gMoveResultFlags = 0;
     gBattleScripting.animTurn = 0;
     gBattleScripting.animTargetsHit = 0;
+    gLastLandedMoves[gBattlerAttacker] = 0;
+    gLastHitByType[gBattlerAttacker] = 0;
     gBattleStruct->dynamicMoveType = 0;
     gBattleScripting.moveendState = 0;
     gBattleCommunication[3] = 0;
@@ -1110,6 +1116,8 @@ bool32 WasUnableToUseMove(u32 battler)
 void PrepareStringBattle(u16 stringId, u32 battler)
 {
     u32 targetSide = GetBattlerSide(gBattlerTarget);
+    u16 battlerAbility = GetBattlerAbility(battler);
+    u16 targetAbility = GetBattlerAbility(gBattlerTarget);
     // Support for Contrary ability.
     // If a move attempted to raise stat - print "won't increase".
     // If a move attempted to lower stat - print "won't decrease".
@@ -2341,7 +2349,7 @@ if (BattlerHasTrait(battler, ABILITY_MAGIC_GUARD)) \
 
 u8 DoBattlerEndTurnEffects(void)
 {
-    u32 battler, i, effect = 0;
+    u32 battler, ability, i, effect = 0;
 
     gHitMarker |= (HITMARKER_GRUDGE | HITMARKER_IGNORE_BIDE);
     while (gBattleStruct->turnEffectsBattlerId < gBattlersCount && gBattleStruct->turnEffectsTracker <= ENDTURN_BATTLER_COUNT)
@@ -2353,9 +2361,11 @@ u8 DoBattlerEndTurnEffects(void)
             continue;
         }
 
+        ability = GetBattlerAbility(battler);
         switch (gBattleStruct->turnEffectsTracker)
         {
         case ENDTURN_WEATHER_DAMAGE:
+            ability = GetBattlerAbility(battler);
             if (!IsBattlerAlive(battler) || !WEATHER_HAS_EFFECT || BattlerHasTrait(battler, ABILITY_MAGIC_GUARD))
             {
                 gBattleStruct->turnEffectsTracker++;
@@ -2785,6 +2795,7 @@ u8 DoBattlerEndTurnEffects(void)
         case ENDTURN_YAWN:  // yawn
             if (gStatuses3[battler] & STATUS3_YAWN)
             {
+                u16 battlerAbility = GetBattlerAbility(battler);
                 gStatuses3[battler] -= STATUS3_YAWN_TURN(1);
                 if (!(gStatuses3[battler] & STATUS3_YAWN) && !(gBattleMons[battler].status1 & STATUS1_ANY)
                  && !BattlerHasTrait(battler, ABILITY_VITAL_SPIRIT)
@@ -3637,6 +3648,8 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
         case CANCELLER_MULTIHIT_MOVES:
             if (gMovesInfo[gCurrentMove].effect == EFFECT_MULTI_HIT)
             {
+                u32 ability = GetBattlerAbility(gBattlerAttacker);
+
                 if (BattlerHasTrait(gBattlerAttacker, ABILITY_SKILL_LINK))
                 {
                     gMultiHitCounter = 5;
@@ -3902,6 +3915,7 @@ static const u16 sWeatherFlagsInfo[][3] =
 
 bool32 TryChangeBattleWeather(u32 battler, u32 weatherEnumId, bool32 viaAbility)
 {
+    u16 battlerAbility = GetBattlerAbility(battler);
     if (gBattleWeather & B_WEATHER_PRIMAL_ANY
         && BattlerHasTrait(battler, ABILITY_DESOLATE_LAND)
         && BattlerHasTrait(battler, ABILITY_PRIMORDIAL_SEA)
@@ -6048,7 +6062,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              && IsBattlerAlive(gBattlerAttacker)
              && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
              && TARGET_TURN_DAMAGED
-             && CanBeSlept(gBattlerAttacker)
+             && CanBeSlept(gBattlerAttacker, ability)
              && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_PROTECTIVE_PADS
              && IsMoveMakingContact(move, gBattlerAttacker))
             {
@@ -6070,7 +6084,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                      && IsBattlerAlive(gBattlerAttacker)
                      && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
                      && TARGET_TURN_DAMAGED
-                     && CanBePoisoned(gBattlerTarget, gBattlerAttacker)
+                     && CanBePoisoned(gBattlerTarget, gBattlerAttacker, GetBattlerAbility(gBattlerAttacker))
                      && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_PROTECTIVE_PADS
                      && IsMoveMakingContact(move, gBattlerAttacker))
                     {
@@ -6093,7 +6107,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                      && IsBattlerAlive(gBattlerAttacker)
                      && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
                      && TARGET_TURN_DAMAGED
-                     && CanBeParalyzed(gBattlerAttacker)
+                     && CanBeParalyzed(gBattlerAttacker, GetBattlerAbility(gBattlerAttacker))
                      && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_PROTECTIVE_PADS
                      && IsMoveMakingContact(move, gBattlerAttacker))
                     {
@@ -6113,7 +6127,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
          && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_PROTECTIVE_PADS
          && (IsMoveMakingContact(move, gBattlerAttacker))
          && TARGET_TURN_DAMAGED
-         && CanBeBurned(gBattlerAttacker)
+         && CanBeBurned(gBattlerAttacker, GetBattlerAbility(gBattlerAttacker))
          && (B_ABILITY_TRIGGER_CHANCE >= GEN_4 ? RandomPercentage(RNG_FLAME_BODY, 30) : RandomChance(RNG_FLAME_BODY, 1, 3)))
         {
             gLastUsedBattlerAbility[battler] = ABILITY_FLAME_BODY;
@@ -6351,7 +6365,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
          && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
          && IsBattlerAlive(gBattlerTarget)
          && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-         && CanBePoisoned(gBattlerAttacker, gBattlerTarget)
+         && CanBePoisoned(gBattlerAttacker, gBattlerTarget, GetBattlerAbility(gBattlerAttacker))
          && GetBattlerHoldEffect(gBattlerAttacker, TRUE) != HOLD_EFFECT_PROTECTIVE_PADS
          && IsMoveMakingContact(move, gBattlerAttacker)
          && TARGET_TURN_DAMAGED // Need to actually hit the target
@@ -6369,7 +6383,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
          && !(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
          && IsBattlerAlive(gBattlerTarget)
          && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
-         && CanBePoisoned(gBattlerAttacker, gBattlerTarget)
+         && CanBePoisoned(gBattlerAttacker, gBattlerTarget, GetBattlerAbility(gBattlerAttacker))
          && TARGET_TURN_DAMAGED // Need to actually hit the target
          && RandomWeighted(RNG_TOXIC_CHAIN, 7, 3))
         {
@@ -6722,6 +6736,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         }
         break;
     case ABILITYEFFECT_ON_TERRAIN:  // For ability effects that activate when the field terrain changes.
+        gLastUsedAbility = GetBattlerAbility(battler);
         if (BattlerHasTrait(battler, ABILITY_MIMICRY)
          && !gDisableStructs[battler].terrainAbilityDone && ChangeTypeBasedOnTerrain(battler))
         {
@@ -6979,7 +6994,7 @@ bool32 IsBattlerTerrainAffected(u32 battler, u32 terrainFlag)
     return IsBattlerGrounded(battler);
 }
 
-bool32 CanBeSlept(u32 battler)
+bool32 CanBeSlept(u32 battler, u32 ability)
 {
     if (BattlerHasTrait(battler, ABILITY_INSOMNIA)
      || BattlerHasTrait(battler, ABILITY_VITAL_SPIRIT)
@@ -6994,7 +7009,7 @@ bool32 CanBeSlept(u32 battler)
     return TRUE;
 }
 
-bool32 CanBePoisoned(u32 battlerAtk, u32 battlerDef)
+bool32 CanBePoisoned(u32 battlerAtk, u32 battlerDef, u32 defAbility)
 {
     if (!(CanPoisonType(battlerAtk, battlerDef))
      || gSideStatuses[GetBattlerSide(battlerDef)] & SIDE_STATUS_SAFEGUARD
@@ -7009,7 +7024,7 @@ bool32 CanBePoisoned(u32 battlerAtk, u32 battlerDef)
     return TRUE;
 }
 
-bool32 CanBeBurned(u32 battler)
+bool32 CanBeBurned(u32 battler, u32 ability)
 {
     if (IS_BATTLER_OF_TYPE(battler, TYPE_FIRE)
      || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD
@@ -7025,7 +7040,7 @@ bool32 CanBeBurned(u32 battler)
     return TRUE;
 }
 
-bool32 CanBeParalyzed(u32 battler)
+bool32 CanBeParalyzed(u32 battler, u32 ability)
 {
     if ((B_PARALYZE_ELECTRIC >= GEN_6 && IS_BATTLER_OF_TYPE(battler, TYPE_ELECTRIC))
       || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD
@@ -7041,6 +7056,7 @@ bool32 CanBeParalyzed(u32 battler)
 
 bool32 CanBeFrozen(u32 battler)
 {
+    u16 ability = GetBattlerAbility(battler);
     if (IS_BATTLER_OF_TYPE(battler, TYPE_ICE)
      || IsBattlerWeatherAffected(battler, B_WEATHER_SUN)
      || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD
@@ -7056,6 +7072,7 @@ bool32 CanBeFrozen(u32 battler)
 
 bool32 CanGetFrostbite(u32 battler)
 {
+    u16 ability = GetBattlerAbility(battler);
     if (IS_BATTLER_OF_TYPE(battler, TYPE_ICE)
       || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD
       || BattlerHasTrait(battler, ABILITY_MAGMA_ARMOR)
@@ -7181,6 +7198,7 @@ static u8 RandomStatRaiseBerry(u32 battler, u32 itemId, bool32 end2)
     }
     if (i != NUM_STATS - 1 && HasEnoughHpToEatBerry(battler, GetBattlerItemHoldEffectParam(battler, itemId), itemId))
     {
+        u16 battlerAbility = GetBattlerAbility(battler);
         do
         {
             i = Random() % (NUM_STATS - 1);
@@ -8328,6 +8346,7 @@ u8 ItemBattleEffects(u8 caseID, u32 battler, bool32 moveTurn)
         {
         case HOLD_EFFECT_FLINCH:
             {
+                u16 ability = GetBattlerAbility(gBattlerAttacker);
                 if (B_SERENE_GRACE_BOOST >= GEN_5 && BattlerHasTrait(gBattlerAttacker, ABILITY_SERENE_GRACE))
                     atkHoldEffectParam *= 2;
                 if (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_RAINBOW && gCurrentMove != MOVE_SECRET_POWER)
@@ -8588,10 +8607,11 @@ u8 ItemBattleEffects(u8 caseID, u32 battler, bool32 moveTurn)
         break;
     case ITEMEFFECT_ORBS:
     {
+        u16 battlerAbility = GetBattlerAbility(battler);
         switch (battlerHoldEffect)
         {
         case HOLD_EFFECT_TOXIC_ORB:
-            if (CanBePoisoned(battler, battler))
+            if (CanBePoisoned(battler, battler, GetBattlerAbility(battler)))
             {
                 effect = ITEM_STATUS_CHANGE;
                 gBattleMons[battler].status1 = STATUS1_TOXIC_POISON;
@@ -8600,7 +8620,7 @@ u8 ItemBattleEffects(u8 caseID, u32 battler, bool32 moveTurn)
             }
             break;
         case HOLD_EFFECT_FLAME_ORB:
-            if (CanBeBurned(battler))
+            if (CanBeBurned(battler, battlerAbility))
             {
                 effect = ITEM_STATUS_CHANGE;
                 gBattleMons[battler].status1 = STATUS1_BURN;
@@ -8850,7 +8870,7 @@ u8 GetAttackerObedienceForAction()
         obedienceLevel = levelReferenced - obedienceLevel;
 
         calc = ((rnd >> 16) & 255);
-        if (calc < obedienceLevel && CanBeSlept(gBattlerAttacker))
+        if (calc < obedienceLevel && CanBeSlept(gBattlerAttacker, GetBattlerAbility(gBattlerAttacker)))
         {
             // try putting asleep
             int i;
@@ -9056,6 +9076,7 @@ u32 GetBattlerWeight(u32 battler)
 {
     u32 i;
     u32 weight = GetSpeciesWeight(gBattleMons[battler].species);
+    u32 ability = GetBattlerAbility(battler);
     u32 holdEffect = GetBattlerHoldEffect(battler, TRUE);
 
     if (BattlerHasTrait(battler, ABILITY_HEAVY_METAL))
@@ -10486,7 +10507,7 @@ static inline uq4_12_t GetDefenderItemsModifier(u32 moveType, u32 battlerDef, uq
     return UQ_4_12(1.0);
 }
 
-#define DAMAGE_MULTIPLY_MODIFIER(modifier) do {                   \
+#define DAMAGE_MULTIPLY_MODIFIER(modifier) do {                     \
     finalModifier = uq4_12_multiply_half_down(modifier, finalModifier); \
 } while (0)
 
@@ -10532,7 +10553,7 @@ static inline uq4_12_t GetOtherModifiers(u32 move, u32 moveType, u32 battlerAtk,
 
 #undef DAMAGE_ACCUMULATE_MULTIPLIER
 
-#define DAMAGE_APPLY_MODIFIER(modifier) do {             \
+#define DAMAGE_APPLY_MODIFIER(modifier) do {               \
     dmg = uq4_12_multiply_by_int_half_down(modifier, dmg); \
 } while (0)
 
@@ -10807,6 +10828,7 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(u32 move, u32 mov
         modifier = UQ_4_12(0.0);
         if (recordAbilities && BattlerHasTrait(battlerDef, ABILITY_LEVITATE))
         {
+            gLastUsedAbility = ABILITY_LEVITATE;
             gLastUsedBattlerAbility[battlerDef] = ABILITY_LEVITATE;
             gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
             gLastLandedMoves[battlerDef] = 0;
