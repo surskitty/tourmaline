@@ -29,7 +29,7 @@ static bool32 AiExpectsToFaintPlayer(u32 battler);
 static bool32 AI_ShouldHeal(u32 battler, u32 healAmount);
 static bool32 AI_OpponentCanFaintAiWithMod(u32 battler, u32 healAmount);
 static u32 GetSwitchinHazardsDamage(u32 battler, struct BattlePokemon *battleMon);
-static bool32 CanAbilityTrapOpponent(u16 ability, u32 opponent);
+static bool32 CanAbilityTrapOpponent(u16 ability, u32 opponent, u32 species, u32 personality);
 
 static void InitializeSwitchinCandidate(struct Pokemon *mon)
 {
@@ -176,7 +176,7 @@ static bool32 HasBadOdds(u32 battler, bool32 emitResult)
     if (((getsOneShot && gBattleMons[opposingBattler].speed > gBattleMons[battler].speed) // If the player OHKOs and outspeeds OR OHKOs, doesn't outspeed but isn't 2HKO'd
             || (getsOneShot && gBattleMons[opposingBattler].speed <= gBattleMons[battler].speed && maxDamageDealt < gBattleMons[opposingBattler].hp / 2))
         && (gBattleMons[battler].hp >= gBattleMons[battler].maxHP / 2 // And the current mon has at least 1/2 their HP, or 1/4 HP and Regenerator
-            || (aiAbility == ABILITY_REGENERATOR
+            || (AI_BATTLER_HAS_TRAIT(battler, ABILITY_REGENERATOR)
             && gBattleMons[battler].hp >= gBattleMons[battler].maxHP / 4)))
     {
         // 50% chance to stay in regardless
@@ -195,7 +195,7 @@ static bool32 HasBadOdds(u32 battler, bool32 emitResult)
     {
         if (!hasSuperEffectiveMove // If the AI doesn't have a super effective move
         && (gBattleMons[battler].hp >= gBattleMons[battler].maxHP / 2 // And the current mon has at least 1/2 their HP, or 1/4 HP and Regenerator
-            || (aiAbility == ABILITY_REGENERATOR
+            || (AI_BATTLER_HAS_TRAIT(battler, ABILITY_REGENERATOR)
             && gBattleMons[battler].hp >= gBattleMons[battler].maxHP / 4)))
         {
             // Then check if they have an important status move, which is worth using even in a bad matchup
@@ -247,7 +247,7 @@ static bool32 ShouldSwitchIfWonderGuard(u32 battler, bool32 emitResult)
 
     opposingPosition = BATTLE_OPPOSITE(GetBattlerPosition(battler));
 
-    if (AI_DATA->abilities[GetBattlerAtPosition(opposingPosition)] != ABILITY_WONDER_GUARD)
+    if (!AI_BATTLER_HAS_TRAIT(GetBattlerAtPosition(opposingPosition), ABILITY_WONDER_GUARD))
         return FALSE;
 
     // Check if Pokémon has a super effective move.
@@ -419,6 +419,7 @@ static bool32 FindMonThatTrapsOpponent(u32 battler, bool32 emitResult)
     struct Pokemon *party;
     s32 i;
     u16 monAbility;
+    u16 species, personality;
     s32 opposingBattler =  GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
 
     // Only use this if AI_FLAG_SMART_SWITCHING is set for the trainer
@@ -426,7 +427,7 @@ static bool32 FindMonThatTrapsOpponent(u32 battler, bool32 emitResult)
         return FALSE;
 
     // Check if current mon has an ability that traps opponent
-    if (CanAbilityTrapOpponent(gBattleMons[battler].ability, opposingBattler))
+    if (CanAbilityTrapOpponent(gBattleMons[battler].ability, opposingBattler, gBattleMons[battler].species, gBattleMons[battler].personality))
         return FALSE;
 
     // Check party for mon with ability that traps opponent
@@ -440,7 +441,9 @@ static bool32 FindMonThatTrapsOpponent(u32 battler, bool32 emitResult)
     for (i = firstId; i < lastId; i++)
     {
         monAbility = GetMonAbility(&party[i]);
-        if (CanAbilityTrapOpponent(monAbility, opposingBattler))
+        species = GetMonData(&party[i], MON_DATA_SPECIES);
+        personality = GetMonData(&party[i], MON_DATA_PERSONALITY);
+        if (CanAbilityTrapOpponent(monAbility, opposingBattler, species, personality))
         {
             if (i == AI_DATA->mostSuitableMonId[battler]) // If mon in slot i is the most suitable switchin candidate, then it's a trapper than wins 1v1
             {
@@ -475,7 +478,7 @@ static bool32 ShouldSwitchIfGameStatePrompt(u32 battler, bool32 emitResult)
     //Perish Song
     if (gStatuses3[battler] & STATUS3_PERISH_SONG
         && gDisableStructs[battler].perishSongTimer == 0
-        && monAbility != ABILITY_SOUNDPROOF)
+        && !AI_BATTLER_HAS_TRAIT(battler, ABILITY_SOUNDPROOF))
         switchMon = TRUE;
 
     if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_SWITCHING)
@@ -520,8 +523,8 @@ static bool32 ShouldSwitchIfGameStatePrompt(u32 battler, bool32 emitResult)
                                 && i != gBattlerPartyIndexes[battler]
                                 && i != gBattlerPartyIndexes[BATTLE_PARTNER(battler)]
                                 && IsBattlerGrounded(battler)
-                                && (GetMonAbility(&party[i]) == ABILITY_MISTY_SURGE
-                                    || GetMonAbility(&party[i]) == ABILITY_ELECTRIC_SURGE)) //Ally has Misty or Electric Surge
+                                && ((GetMonAbility(&party[i]) == ABILITY_MISTY_SURGE || SpeciesHasInnate(GetMonData(&party[i], MON_DATA_SPECIES), ABILITY_MISTY_SURGE, GetMonData(&party[i], MON_DATA_PERSONALITY), TRUE))
+                                    || GetMonAbility(&party[i]) == ABILITY_ELECTRIC_SURGE || SpeciesHasInnate(GetMonData(&party[i], MON_DATA_SPECIES), ABILITY_ELECTRIC_SURGE, GetMonData(&party[i], MON_DATA_PERSONALITY), TRUE))) //Ally has Misty or Electric Surge
                                 {
                                     *(gBattleStruct->AI_monToSwitchIntoId + BATTLE_PARTNER(battler)) = i;
                                     if (emitResult)
@@ -539,9 +542,9 @@ static bool32 ShouldSwitchIfGameStatePrompt(u32 battler, bool32 emitResult)
                 switchMon = FALSE;
 
             //Checks to see if active Pokemon can do something against sleep
-            if ((monAbility == ABILITY_NATURAL_CURE
-                || monAbility == ABILITY_SHED_SKIN
-                || monAbility == ABILITY_EARLY_BIRD)
+            if ((AI_BATTLER_HAS_TRAIT(battler, ABILITY_NATURAL_CURE)
+                || AI_BATTLER_HAS_TRAIT(battler, ABILITY_SHED_SKIN)
+                || AI_BATTLER_HAS_TRAIT(battler, ABILITY_EARLY_BIRD))
                 || holdEffect == (HOLD_EFFECT_CURE_SLP | HOLD_EFFECT_CURE_STATUS)
                 || HasMove(battler, MOVE_SLEEP_TALK)
                 || (HasMoveEffect(battler, MOVE_SNORE) && AI_GetTypeEffectiveness(MOVE_SNORE, battler, opposingBattler) >= UQ_4_12(1.0))
@@ -552,9 +555,9 @@ static bool32 ShouldSwitchIfGameStatePrompt(u32 battler, bool32 emitResult)
 
             //Check if Active Pokemon evasion boosted and might be able to dodge until awake
             if (gBattleMons[battler].statStages[STAT_EVASION] > (DEFAULT_STAT_STAGE + 3)
-                && AI_DATA->abilities[opposingBattler] != ABILITY_UNAWARE
-                && AI_DATA->abilities[opposingBattler] != ABILITY_KEEN_EYE
-                && AI_DATA->abilities[opposingBattler] != ABILITY_MINDS_EYE
+                && AI_BATTLER_HAS_TRAIT(opposingBattler, ABILITY_UNAWARE)
+                && AI_BATTLER_HAS_TRAIT(opposingBattler, ABILITY_KEEN_EYE)
+                && AI_BATTLER_HAS_TRAIT(opposingBattler, ABILITY_MINDS_EYE)
                 && (B_ILLUMINATE_EFFECT >= GEN_9 && AI_DATA->abilities[opposingBattler] != ABILITY_ILLUMINATE)
                 && !(gBattleMons[battler].status2 & STATUS2_FORESIGHT)
                 && !(gStatuses3[battler] & STATUS3_MIRACLE_EYED))
@@ -563,7 +566,7 @@ static bool32 ShouldSwitchIfGameStatePrompt(u32 battler, bool32 emitResult)
         }
 
         //Secondary Damage
-        if (monAbility != ABILITY_MAGIC_GUARD
+        if (!AI_BATTLER_HAS_TRAIT(battler, ABILITY_MAGIC_GUARD)
             && !AiExpectsToFaintPlayer(battler))
         {
             //Toxic
@@ -642,38 +645,33 @@ static bool32 ShouldSwitchIfAbilityBenefit(u32 battler, bool32 emitResult)
         ||IsNeutralizingGasOnField())
         return FALSE;
 
-    switch(AI_DATA->abilities[battler])
+    if (AI_BATTLER_HAS_TRAIT(battler, ABILITY_NATURAL_CURE))
     {
-        case ABILITY_NATURAL_CURE:
-            moduloChance = 4; //25%
-            //Attempt to cure bad ailment
-            if (gBattleMons[battler].status1 & (STATUS1_SLEEP | STATUS1_FREEZE | STATUS1_TOXIC_POISON)
-                && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
-                break;
-            //Attempt to cure lesser ailment
-            if ((gBattleMons[battler].status1 & STATUS1_ANY)
-                && (gBattleMons[battler].hp >= gBattleMons[battler].maxHP / 2)
-                && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE
-                && Random() % (moduloChance*chanceReducer) == 0)
-                break;
-
-            return FALSE;
-
-        case ABILITY_REGENERATOR:
-            moduloChance = 2; //50%
-            //Don't switch if ailment
-            if (gBattleMons[battler].status1 & STATUS1_ANY)
-                return FALSE;
-            if ((gBattleMons[battler].hp <= ((gBattleMons[battler].maxHP * 2) / 3))
-                 && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE
-                 && Random() % (moduloChance*chanceReducer) == 0)
-                break;
-
-            return FALSE;
-
-        default:
+        moduloChance = 4; //25%
+        //Attempt to cure bad ailment
+        if ((gBattleMons[battler].status1 & (STATUS1_SLEEP | STATUS1_FREEZE | STATUS1_TOXIC_POISON)
+         && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE)
+        //Attempt to cure lesser ailment
+         && ((gBattleMons[battler].status1 & STATUS1_ANY)
+         && (gBattleMons[battler].hp >= gBattleMons[battler].maxHP / 2)
+         && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE
+         && Random() % (moduloChance*chanceReducer) == 0))
             return FALSE;
     }
+    else if (AI_BATTLER_HAS_TRAIT(battler, ABILITY_REGENERATOR))
+    {
+        moduloChance = 2; //50%
+        //Don't switch if ailment
+        if (gBattleMons[battler].status1 & STATUS1_ANY)
+            return FALSE;
+        if (!((gBattleMons[battler].hp <= ((gBattleMons[battler].maxHP * 2) / 3))
+         && AI_DATA->mostSuitableMonId[battler] != PARTY_SIZE
+         && Random() % (moduloChance*chanceReducer) == 0))
+            return FALSE;
+    }
+    else
+        return FALSE;
+
 
     gBattleStruct->AI_monToSwitchIntoId[battler] = PARTY_SIZE;
     if (emitResult)
@@ -838,7 +836,7 @@ static bool32 CanMonSurviveHazardSwitchin(u32 battler)
     s32 firstId, lastId, i, j;
     struct Pokemon *party;
 
-    if (ability == ABILITY_REGENERATOR)
+    if (AI_BATTLER_HAS_TRAIT(battler, ABILITY_REGENERATOR))
         battlerHp = (battlerHp * 133) / 100; // Account for Regenerator healing
 
     hazardDamage = GetSwitchinHazardsDamage(battler, &gBattleMons[battler]);
@@ -920,7 +918,7 @@ static bool32 ShouldSwitchIfBadChoiceLock(u32 battler, bool32 emitResult)
 {
     u32 holdEffect = GetBattlerHoldEffect(battler, FALSE);
 
-    if (HOLD_EFFECT_CHOICE(holdEffect) && gBattleMons[battler].ability != ABILITY_KLUTZ)
+    if (HOLD_EFFECT_CHOICE(holdEffect) && !AI_BATTLER_HAS_TRAIT(battler, ABILITY_KLUTZ))
     {
         if (gMovesInfo[gLastUsedMove].category == DAMAGE_CATEGORY_STATUS)
         {
@@ -1318,14 +1316,14 @@ static u32 GetBestMonDmg(struct Pokemon *party, int firstId, int lastId, u8 inva
     return bestMonId;
 }
 
-static bool32 IsMonGrounded(u16 heldItemEffect, u32 ability, u8 type1, u8 type2)
+static bool32 IsMonGrounded(u16 heldItemEffect, u32 ability, u8 type1, u8 type2, u16 species, u32 personality)
 {
     // List that makes mon not grounded
-    if (type1 == TYPE_FLYING || type2 == TYPE_FLYING || ability == ABILITY_LEVITATE
-         || (heldItemEffect == HOLD_EFFECT_AIR_BALLOON && ability != ABILITY_KLUTZ))
+    if (type1 == TYPE_FLYING || type2 == TYPE_FLYING || (ability == ABILITY_LEVITATE || SpeciesHasInnate(species, ABILITY_LEVITATE, personality, TRUE))
+         || (heldItemEffect == HOLD_EFFECT_AIR_BALLOON && (ability != ABILITY_KLUTZ && !SpeciesHasInnate(species, ABILITY_KLUTZ, personality, TRUE))))
     {
         // List that overrides being off the ground
-        if ((heldItemEffect == HOLD_EFFECT_IRON_BALL && ability != ABILITY_KLUTZ) || (gFieldStatuses & STATUS_FIELD_GRAVITY) || (gFieldStatuses & STATUS_FIELD_MAGIC_ROOM))
+        if ((heldItemEffect == HOLD_EFFECT_IRON_BALL && (ability != ABILITY_KLUTZ && !SpeciesHasInnate(species, ABILITY_KLUTZ, personality, TRUE))) || (gFieldStatuses & STATUS_FIELD_GRAVITY) || (gFieldStatuses & STATUS_FIELD_MAGIC_ROOM))
             return TRUE;
         else
             return FALSE;
@@ -1339,13 +1337,13 @@ static u32 GetSwitchinHazardsDamage(u32 battler, struct BattlePokemon *battleMon
 {
     u8 defType1 = battleMon->types[0], defType2 = battleMon->types[1], tSpikesLayers;
     u16 heldItemEffect = ItemId_GetHoldEffect(battleMon->item);
-    u32 maxHP = battleMon->maxHP, ability = battleMon->ability, status = battleMon->status1;
+    u32 maxHP = battleMon->maxHP, ability = battleMon->ability, status = battleMon->status1, species = battleMon->species, personality = battleMon->personality;
     u32 spikesDamage = 0, tSpikesDamage = 0, hazardDamage = 0;
     u32 hazardFlags = gSideStatuses[GetBattlerSide(battler)] & (SIDE_STATUS_SPIKES | SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_STICKY_WEB | SIDE_STATUS_TOXIC_SPIKES | SIDE_STATUS_SAFEGUARD);
 
     // Check ways mon might avoid all hazards
-    if (ability != ABILITY_MAGIC_GUARD || (heldItemEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS &&
-        !((gFieldStatuses & STATUS_FIELD_MAGIC_ROOM) || ability == ABILITY_KLUTZ)))
+    if ((ability != ABILITY_MAGIC_GUARD && !SpeciesHasInnate(species, ABILITY_MAGIC_GUARD, personality, TRUE)) || (heldItemEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS &&
+        !((gFieldStatuses & STATUS_FIELD_MAGIC_ROOM) || (ability == ABILITY_LEVITATE || SpeciesHasInnate(species, ABILITY_LEVITATE, personality, TRUE)))))
     {
         // Stealth Rock
         if ((hazardFlags & SIDE_STATUS_STEALTH_ROCK) && heldItemEffect != HOLD_EFFECT_HEAVY_DUTY_BOOTS)
@@ -1354,7 +1352,7 @@ static u32 GetSwitchinHazardsDamage(u32 battler, struct BattlePokemon *battleMon
         if ((hazardFlags & SIDE_STATUS_STEELSURGE) && heldItemEffect != HOLD_EFFECT_HEAVY_DUTY_BOOTS)
             hazardDamage += GetStealthHazardDamageByTypesAndHP(gMovesInfo[MOVE_G_MAX_STEELSURGE].type, defType1, defType2, battleMon->maxHP);
         // Spikes
-        if ((hazardFlags & SIDE_STATUS_SPIKES) && IsMonGrounded(heldItemEffect, ability, defType1, defType2))
+        if ((hazardFlags & SIDE_STATUS_SPIKES) && IsMonGrounded(heldItemEffect, ability, defType1, defType2, species, personality))
         {
             spikesDamage = maxHP / ((5 - gSideTimers[GetBattlerSide(battler)].spikesAmount) * 2);
             if (spikesDamage == 0)
@@ -1364,14 +1362,14 @@ static u32 GetSwitchinHazardsDamage(u32 battler, struct BattlePokemon *battleMon
 
         if ((hazardFlags & SIDE_STATUS_TOXIC_SPIKES) && (defType1 != TYPE_POISON && defType2 != TYPE_POISON
             && defType1 != TYPE_STEEL && defType2 != TYPE_STEEL
-            && ability != ABILITY_IMMUNITY && ability != ABILITY_POISON_HEAL && ability != ABILITY_COMATOSE
+            && (ability != ABILITY_IMMUNITY && !SpeciesHasInnate(species, ABILITY_IMMUNITY, personality, TRUE)) && (ability != ABILITY_POISON_HEAL && !SpeciesHasInnate(species, ABILITY_POISON_HEAL, personality, TRUE)) && (ability != ABILITY_COMATOSE && !SpeciesHasInnate(species, ABILITY_COMATOSE, personality, TRUE))
             && status == 0
             && !(hazardFlags & SIDE_STATUS_SAFEGUARD)
             && !(IsAbilityOnSide(battler, ABILITY_PASTEL_VEIL))
             && !(IsBattlerTerrainAffected(battler, STATUS_FIELD_MISTY_TERRAIN))
             && !(IsAbilityStatusProtected(battler))
             && heldItemEffect != HOLD_EFFECT_CURE_PSN && heldItemEffect != HOLD_EFFECT_CURE_STATUS
-            && IsMonGrounded(heldItemEffect, ability, defType1, defType2)))
+            && IsMonGrounded(heldItemEffect, ability, defType1, defType2, species, personality)))
         {
             tSpikesLayers = gSideTimers[GetBattlerSide(battler)].toxicSpikesAmount;
             if (tSpikesLayers == 1)
@@ -1395,17 +1393,18 @@ static u32 GetSwitchinHazardsDamage(u32 battler, struct BattlePokemon *battleMon
 // Gets damage / healing from weather
 static s32 GetSwitchinWeatherImpact(void)
 {
-    s32 weatherImpact = 0, maxHP = AI_DATA->switchinCandidate.battleMon.maxHP, ability = AI_DATA->switchinCandidate.battleMon.ability;
+    s32 weatherImpact = 0, maxHP = AI_DATA->switchinCandidate.battleMon.maxHP, ability = AI_DATA->switchinCandidate.battleMon.ability, species = AI_DATA->switchinCandidate.battleMon.species, personality = AI_DATA->switchinCandidate.battleMon.personality;
     u32 holdEffect = ItemId_GetHoldEffect(AI_DATA->switchinCandidate.battleMon.item);
 
     if (WEATHER_HAS_EFFECT)
     {
         // Damage
-        if (holdEffect != HOLD_EFFECT_SAFETY_GOGGLES && ability != ABILITY_MAGIC_GUARD && ability != ABILITY_OVERCOAT)
+        if (holdEffect != HOLD_EFFECT_SAFETY_GOGGLES && (ability != ABILITY_MAGIC_GUARD && !SpeciesHasInnate(species, ABILITY_MAGIC_GUARD, personality, TRUE)) && (ability != ABILITY_OVERCOAT && !SpeciesHasInnate(species, ABILITY_OVERCOAT, personality, TRUE)))
         {
             if ((gBattleWeather & B_WEATHER_HAIL)
              && (AI_DATA->switchinCandidate.battleMon.types[0] != TYPE_ICE || AI_DATA->switchinCandidate.battleMon.types[1] != TYPE_ICE)
-             && ability != ABILITY_SNOW_CLOAK && ability != ABILITY_ICE_BODY)
+             && (ability != ABILITY_SNOW_CLOAK && !SpeciesHasInnate(species, ABILITY_SNOW_CLOAK, personality, TRUE))
+             && (ability != ABILITY_ICE_BODY && !SpeciesHasInnate(species, ABILITY_ICE_BODY, personality, TRUE)))
             {
                 weatherImpact = maxHP / 16;
                 if (weatherImpact == 0)
@@ -1415,7 +1414,9 @@ static s32 GetSwitchinWeatherImpact(void)
                 && (AI_DATA->switchinCandidate.battleMon.types[0] != TYPE_GROUND && AI_DATA->switchinCandidate.battleMon.types[1] != TYPE_GROUND
                 && AI_DATA->switchinCandidate.battleMon.types[0] != TYPE_ROCK && AI_DATA->switchinCandidate.battleMon.types[1] != TYPE_ROCK
                 && AI_DATA->switchinCandidate.battleMon.types[0] != TYPE_STEEL && AI_DATA->switchinCandidate.battleMon.types[1] != TYPE_STEEL
-                && ability != ABILITY_SAND_VEIL && ability != ABILITY_SAND_RUSH && ability != ABILITY_SAND_FORCE))
+                && (ability != ABILITY_SAND_VEIL && !SpeciesHasInnate(species, ABILITY_SAND_VEIL, personality, TRUE))
+                && (ability != ABILITY_SAND_RUSH && !SpeciesHasInnate(species, ABILITY_SAND_RUSH, personality, TRUE))
+                && (ability != ABILITY_SAND_FORCE && !SpeciesHasInnate(species, ABILITY_SAND_FORCE, personality, TRUE))))
             {
                 weatherImpact = maxHP / 16;
                 if (weatherImpact == 0)
@@ -1423,7 +1424,8 @@ static s32 GetSwitchinWeatherImpact(void)
             }
         }
         if ((gBattleWeather & B_WEATHER_SUN) && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA
-         && (ability == ABILITY_SOLAR_POWER || ability == ABILITY_DRY_SKIN))
+         && ((ability == ABILITY_SOLAR_POWER || SpeciesHasInnate(species, ABILITY_SOLAR_POWER, personality, TRUE))
+         || (ability == ABILITY_DRY_SKIN || SpeciesHasInnate(species, ABILITY_DRY_SKIN, personality, TRUE))))
         {
             weatherImpact = maxHP / 8;
             if (weatherImpact == 0)
@@ -1433,20 +1435,20 @@ static s32 GetSwitchinWeatherImpact(void)
         // Healing
         if (gBattleWeather & B_WEATHER_RAIN && holdEffect != HOLD_EFFECT_UTILITY_UMBRELLA)
         {
-            if (ability == ABILITY_DRY_SKIN)
+            if (ability == ABILITY_DRY_SKIN || SpeciesHasInnate(species, ABILITY_DRY_SKIN, personality, TRUE))
             {
                 weatherImpact = -(maxHP / 8);
                 if (weatherImpact == 0)
                     weatherImpact = -1;
             }
-            else if (ability == ABILITY_RAIN_DISH)
+            else if (ability == ABILITY_RAIN_DISH || SpeciesHasInnate(species, ABILITY_RAIN_DISH, personality, TRUE))
             {
                 weatherImpact = -(maxHP / 16);
                 if (weatherImpact == 0)
                     weatherImpact = -1;
             }
         }
-        if (((gBattleWeather & B_WEATHER_HAIL) || (gBattleWeather & B_WEATHER_SNOW)) && ability == ABILITY_ICE_BODY)
+        if (((gBattleWeather & B_WEATHER_HAIL) || (gBattleWeather & B_WEATHER_SNOW)) && (ability == ABILITY_ICE_BODY || SpeciesHasInnate(species, ABILITY_ICE_BODY, personality, TRUE)))
         {
             weatherImpact = -(maxHP / 16);
             if (weatherImpact == 0)
@@ -1459,11 +1461,11 @@ static s32 GetSwitchinWeatherImpact(void)
 // Gets one turn of recurring healing
 static u32 GetSwitchinRecurringHealing(void)
 {
-    u32 recurringHealing = 0, maxHP = AI_DATA->switchinCandidate.battleMon.maxHP, ability = AI_DATA->switchinCandidate.battleMon.ability;
+    u32 recurringHealing = 0, maxHP = AI_DATA->switchinCandidate.battleMon.maxHP, ability = AI_DATA->switchinCandidate.battleMon.ability, species = AI_DATA->switchinCandidate.battleMon.species, personality = AI_DATA->switchinCandidate.battleMon.personality;
     u32 holdEffect = ItemId_GetHoldEffect(AI_DATA->switchinCandidate.battleMon.item);
 
     // Items
-    if (ability != ABILITY_KLUTZ)
+    if (ability != ABILITY_KLUTZ && !SpeciesHasInnate(species, ABILITY_KLUTZ, personality, TRUE))
     {
         if (holdEffect == HOLD_EFFECT_BLACK_SLUDGE && (AI_DATA->switchinCandidate.battleMon.types[0] == TYPE_POISON || AI_DATA->switchinCandidate.battleMon.types[1] == TYPE_POISON))
         {
@@ -1480,7 +1482,7 @@ static u32 GetSwitchinRecurringHealing(void)
     } // Intentionally omitting Shell Bell for its inconsistency
 
     // Abilities
-    if (ability == ABILITY_POISON_HEAL && (AI_DATA->switchinCandidate.battleMon.status1 & STATUS1_POISON))
+    if ((ability != ABILITY_POISON_HEAL && !SpeciesHasInnate(species, ABILITY_POISON_HEAL, personality, TRUE)) && (AI_DATA->switchinCandidate.battleMon.status1 & STATUS1_POISON))
     {
         u32 healing = maxHP / 8;
         if (healing == 0)
@@ -1493,11 +1495,11 @@ static u32 GetSwitchinRecurringHealing(void)
 // Gets one turn of recurring damage
 static u32 GetSwitchinRecurringDamage(void)
 {
-    u32 passiveDamage = 0, maxHP = AI_DATA->switchinCandidate.battleMon.maxHP, ability = AI_DATA->switchinCandidate.battleMon.ability;
+    u32 passiveDamage = 0, maxHP = AI_DATA->switchinCandidate.battleMon.maxHP, ability = AI_DATA->switchinCandidate.battleMon.ability, species = AI_DATA->switchinCandidate.battleMon.species, personality = AI_DATA->switchinCandidate.battleMon.personality;
     u32 holdEffect = ItemId_GetHoldEffect(AI_DATA->switchinCandidate.battleMon.item);
 
     // Items
-    if (ability != ABILITY_MAGIC_GUARD && ability != ABILITY_KLUTZ)
+    if ((ability != ABILITY_MAGIC_GUARD && !SpeciesHasInnate(species, ABILITY_MAGIC_GUARD, personality, TRUE)) && (ability != ABILITY_KLUTZ && !SpeciesHasInnate(species, ABILITY_KLUTZ, personality, TRUE)))
     {
         if (holdEffect == HOLD_EFFECT_BLACK_SLUDGE && AI_DATA->switchinCandidate.battleMon.types[0] != TYPE_POISON && AI_DATA->switchinCandidate.battleMon.types[1] != TYPE_POISON)
         {
@@ -1505,7 +1507,7 @@ static u32 GetSwitchinRecurringDamage(void)
             if (passiveDamage == 0)
                 passiveDamage = 1;
         }
-        else if (holdEffect == HOLD_EFFECT_LIFE_ORB && ability != ABILITY_SHEER_FORCE)
+        else if (holdEffect == HOLD_EFFECT_LIFE_ORB && (ability != ABILITY_SHEER_FORCE && !SpeciesHasInnate(species, ABILITY_SHEER_FORCE, personality, TRUE)))
         {
             passiveDamage = maxHP / 10;
             if (passiveDamage == 0)
@@ -1527,11 +1529,11 @@ static u32 GetSwitchinStatusDamage(u32 battler)
     u8 defType1 = AI_DATA->switchinCandidate.battleMon.types[0], defType2 = AI_DATA->switchinCandidate.battleMon.types[1];
     u8 tSpikesLayers = gSideTimers[GetBattlerSide(battler)].toxicSpikesAmount;
     u16 heldItemEffect = ItemId_GetHoldEffect(AI_DATA->switchinCandidate.battleMon.item);
-    u32 status = AI_DATA->switchinCandidate.battleMon.status1, ability = AI_DATA->switchinCandidate.battleMon.ability, maxHP = AI_DATA->switchinCandidate.battleMon.maxHP;
+    u32 status = AI_DATA->switchinCandidate.battleMon.status1, ability = AI_DATA->switchinCandidate.battleMon.ability, maxHP = AI_DATA->switchinCandidate.battleMon.maxHP, species = AI_DATA->switchinCandidate.battleMon.species, personality = AI_DATA->switchinCandidate.battleMon.personality;
     u32 statusDamage = 0;
 
     // Status condition damage
-    if ((status != 0) && AI_DATA->switchinCandidate.battleMon.ability != ABILITY_MAGIC_GUARD)
+    if ((status != 0) && (ability != ABILITY_MAGIC_GUARD && !SpeciesHasInnate(species, ABILITY_MAGIC_GUARD, personality, TRUE)))
     {
         if (status & STATUS1_BURN)
         {
@@ -1539,7 +1541,7 @@ static u32 GetSwitchinStatusDamage(u32 battler)
                 statusDamage = maxHP / 16;
             else
                 statusDamage = maxHP / 8;
-            if(ability == ABILITY_HEATPROOF)
+            if(ability == ABILITY_HEATPROOF || SpeciesHasInnate(species, ABILITY_HEATPROOF, personality, TRUE))
                 statusDamage = statusDamage / 2;
             if (statusDamage == 0)
                 statusDamage = 1;
@@ -1553,13 +1555,13 @@ static u32 GetSwitchinStatusDamage(u32 battler)
             if (statusDamage == 0)
                 statusDamage = 1;
         }
-        else if ((status & STATUS1_POISON) && ability != ABILITY_POISON_HEAL)
+        else if ((status & STATUS1_POISON) && (ability != ABILITY_POISON_HEAL && !SpeciesHasInnate(species, ABILITY_POISON_HEAL, personality, TRUE)))
         {
             statusDamage = maxHP / 8;
             if (statusDamage == 0)
                 statusDamage = 1;
         }
-        else if ((status & STATUS1_TOXIC_POISON) && ability != ABILITY_POISON_HEAL)
+        else if ((status & STATUS1_TOXIC_POISON) && (ability != ABILITY_POISON_HEAL && !SpeciesHasInnate(species, ABILITY_POISON_HEAL, personality, TRUE)))
         {
             if ((status & STATUS1_TOXIC_COUNTER) != STATUS1_TOXIC_TURN(15)) // not 16 turns
                 AI_DATA->switchinCandidate.battleMon.status1 += STATUS1_TOXIC_TURN(1);
@@ -1573,12 +1575,12 @@ static u32 GetSwitchinStatusDamage(u32 battler)
     // Apply hypothetical poisoning from Toxic Spikes, which means the first turn of damage already added in GetSwitchinHazardsDamage
     // Do this last to skip one iteration of Poison / Toxic damage, and start counting Toxic damage one turn later.
     if (tSpikesLayers != 0 && (defType1 != TYPE_POISON && defType2 != TYPE_POISON
-        && ability != ABILITY_IMMUNITY && ability != ABILITY_POISON_HEAL
+        && (ability != ABILITY_IMMUNITY && !SpeciesHasInnate(species, ABILITY_IMMUNITY, personality, TRUE)) && (ability != ABILITY_POISON_HEAL && !SpeciesHasInnate(species, ABILITY_POISON_HEAL, personality, TRUE))
         && status == 0
         && !(heldItemEffect == HOLD_EFFECT_HEAVY_DUTY_BOOTS
-            && (((gFieldStatuses & STATUS_FIELD_MAGIC_ROOM) || ability == ABILITY_KLUTZ)))
+            && (((gFieldStatuses & STATUS_FIELD_MAGIC_ROOM) || (ability == ABILITY_KLUTZ || SpeciesHasInnate(species, ABILITY_KLUTZ, personality, TRUE)))))
         && heldItemEffect != HOLD_EFFECT_CURE_PSN && heldItemEffect != HOLD_EFFECT_CURE_STATUS
-        && IsMonGrounded(heldItemEffect, ability, defType1, defType2)))
+        && IsMonGrounded(heldItemEffect, ability, defType1, defType2, species, personality)))
     {
         if (tSpikesLayers == 1)
         {
@@ -1634,8 +1636,9 @@ static u32 GetSwitchinHitsToKO(s32 damageTaken, u32 battler)
             currentHP = currentHP - weatherImpact;
 
         // Check if we're at a single use healing item threshold
-        if (AI_DATA->switchinCandidate.battleMon.ability != ABILITY_KLUTZ && usedSingleUseHealingItem == FALSE
-         && !(opposingAbility == ABILITY_UNNERVE && GetPocketByItemId(item) == POCKET_BERRIES))
+        if ((AI_DATA->switchinCandidate.battleMon.ability != ABILITY_KLUTZ && !SpeciesHasInnate(AI_DATA->switchinCandidate.battleMon.species, ABILITY_KLUTZ, AI_DATA->switchinCandidate.battleMon.personality, TRUE))
+         && usedSingleUseHealingItem == FALSE
+         && !(BattlerHasTrait(opposingBattler, ABILITY_UNNERVE) && GetPocketByItemId(item) == POCKET_BERRIES))
         {
             switch (heldItemEffect)
             {
@@ -1760,20 +1763,20 @@ static s32 GetMaxDamagePlayerCouldDealToSwitchin(u32 battler, u32 opposingBattle
     return maxDamageTaken;
 }
 
-static bool32 CanAbilityTrapOpponent(u16 ability, u32 opponent)
+static bool32 CanAbilityTrapOpponent(u16 ability, u32 opponent, u32 species, u32 personality)
 {
     if ((B_GHOSTS_ESCAPE >= GEN_6 && IS_BATTLER_OF_TYPE(opponent, TYPE_GHOST)))
         return FALSE;
-    else if (ability == ABILITY_SHADOW_TAG)
+    else if ((ability == ABILITY_SHADOW_TAG || SpeciesHasInnate(species, ABILITY_SHADOW_TAG, personality, TRUE)))
     {
-        if (B_SHADOW_TAG_ESCAPE >= GEN_4 && AI_DATA->abilities[opponent] == ABILITY_SHADOW_TAG) // Check if ability exists in species
+        if (B_SHADOW_TAG_ESCAPE >= GEN_4 && AI_BATTLER_HAS_TRAIT(opponent, ABILITY_SHADOW_TAG)) // Check if ability exists in species
             return FALSE;
         else
             return TRUE;
     }
-    else if (ability == ABILITY_ARENA_TRAP && IsBattlerGrounded(opponent))
+    else if ((ability == ABILITY_ARENA_TRAP || SpeciesHasInnate(species, ABILITY_ARENA_TRAP, personality, TRUE)) && IsBattlerGrounded(opponent))
         return TRUE;
-    else if (ability == ABILITY_MAGNET_PULL && IS_BATTLER_OF_TYPE(opponent, TYPE_STEEL))
+    else if ((ability == ABILITY_MAGNET_PULL || SpeciesHasInnate(species, ABILITY_MAGNET_PULL, personality, TRUE)) && IS_BATTLER_OF_TYPE(opponent, TYPE_STEEL))
         return TRUE;
     else
         return FALSE;
@@ -1828,7 +1831,7 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
         InitializeSwitchinCandidate(&party[i]);
 
         // While not really invalid per se, not really wise to switch into this mon
-        if (AI_DATA->switchinCandidate.battleMon.ability == ABILITY_TRUANT && IsTruantMonVulnerable(battler, opposingBattler))
+        if ((AI_DATA->switchinCandidate.battleMon.ability == ABILITY_TRUANT || SpeciesHasInnate(AI_DATA->switchinCandidate.battleMon.species, ABILITY_TRUANT, AI_DATA->switchinCandidate.battleMon.personality, TRUE))&& IsTruantMonVulnerable(battler, opposingBattler))
             continue;
 
         // Get max number of hits for player to KO AI mon
@@ -1959,7 +1962,7 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
                 }
 
                 // If mon can trap
-                if (CanAbilityTrapOpponent(AI_DATA->switchinCandidate.battleMon.ability, opposingBattler))
+                if (CanAbilityTrapOpponent(AI_DATA->switchinCandidate.battleMon.ability, opposingBattler, AI_DATA->switchinCandidate.battleMon.species, AI_DATA->switchinCandidate.battleMon.personality))
                 {
                     hitsToKOPlayer = GetNoOfHitsToKOBattlerDmg(damageDealt, opposingBattler);
                     if (CountUsablePartyMons(opposingBattler) > 0
