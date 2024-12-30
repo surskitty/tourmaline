@@ -4104,6 +4104,7 @@ u8 IsRunningFromBattleImpossible(u32 battler)
     {
         gBattleScripting.battler = i - 1;
         gLastUsedAbility = gBattleMons[i - 1].ability;
+        //gLastUsedBattlerAbility[battler] = gBattleMons[i - 1].ability;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PREVENTS_ESCAPE;
         return BATTLE_RUN_FAILURE;
     }
@@ -5306,8 +5307,9 @@ static void CheckChangingTurnOrderEffects(void)
                 {
                     gBattlerAbility = battler;
                     gLastUsedAbility = gBattleMons[battler].ability;
-                    PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
-                    RecordAbilityBattle(battler, gLastUsedAbility);
+                    gLastUsedBattlerAbility[battler] = gBattleMons[battler].ability;
+                    PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedBattlerAbility[battler]);
+                    RecordAbilityBattle(battler, gLastUsedBattlerAbility[battler]);
                     BattleScriptExecute(BattleScript_QuickDrawActivation);
                 }
                 return;

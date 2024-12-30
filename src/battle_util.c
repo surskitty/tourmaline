@@ -477,6 +477,7 @@ bool32 TryRunFromBattle(u32 battler)
             if (speedVar > (Random() & 0xFF))
             {
                 gLastUsedAbility = ABILITY_RUN_AWAY;
+                gLastUsedBattlerAbility[battler] = ABILITY_RUN_AWAY;
                 gProtectStructs[battler].fleeType = FLEE_ABILITY;
                 effect++;
             }
@@ -484,6 +485,7 @@ bool32 TryRunFromBattle(u32 battler)
         else
         {
             gLastUsedAbility = ABILITY_RUN_AWAY;
+            gLastUsedBattlerAbility[battler] = ABILITY_RUN_AWAY;
             gProtectStructs[battler].fleeType = FLEE_ABILITY;
             effect++;
         }
@@ -5841,8 +5843,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 RecordItemEffectBattle(gBattlerAttacker, HOLD_EFFECT_ABILITY_SHIELD);
                 break;
             }
-            gLastUsedBattlerAbility[battler] = ABILITY_LINGERING_AROMA;
             gLastUsedAbility = gBattleMons[gBattlerAttacker].ability;
+            gLastUsedBattlerAbility[battler] = ABILITY_LINGERING_AROMA;
             gBattleMons[gBattlerAttacker].ability = gBattleStruct->overwrittenAbilities[gBattlerAttacker] = gBattleMons[gBattlerTarget].ability;
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_MummyActivates;
@@ -5865,8 +5867,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 RecordItemEffectBattle(gBattlerAttacker, HOLD_EFFECT_ABILITY_SHIELD);
                 break;
             }
-            gLastUsedBattlerAbility[battler] = ABILITY_MUMMY;
             gLastUsedAbility = gBattleMons[gBattlerAttacker].ability;
+            gLastUsedBattlerAbility[battler] = ABILITY_MUMMY;
             gBattleMons[gBattlerAttacker].ability = gBattleStruct->overwrittenAbilities[gBattlerAttacker] = gBattleMons[gBattlerTarget].ability;
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_MummyActivates;
@@ -5990,7 +5992,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker) / (B_ROUGH_SKIN_DMG >= GEN_4 ? 8 : 16);
             if (gBattleMoveDamage == 0)
                 gBattleMoveDamage = 1;
-            PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+            PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedBattlerAbility[battler]);
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_RoughSkinActivates;
             effect++;
@@ -6089,7 +6091,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                      && IsMoveMakingContact(move, gBattlerAttacker))
                     {
                         gBattleScripting.moveEffect = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_POISON;
-                        PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                        PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedBattlerAbility[battler]);
                         BattleScriptPushCursor();
                         gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
                         gHitMarker |= HITMARKER_STATUS_ABILITY_EFFECT;
@@ -6112,7 +6114,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                      && IsMoveMakingContact(move, gBattlerAttacker))
                     {
                         gBattleScripting.moveEffect = MOVE_EFFECT_AFFECTS_USER | MOVE_EFFECT_PARALYSIS;
-                        PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                        PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedBattlerAbility[battler]);
                         BattleScriptPushCursor();
                         gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
                         gHitMarker |= HITMARKER_STATUS_ABILITY_EFFECT;
@@ -10833,7 +10835,7 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(u32 move, u32 mov
             gMoveResultFlags |= (MOVE_RESULT_MISSED | MOVE_RESULT_DOESNT_AFFECT_FOE);
             gLastLandedMoves[battlerDef] = 0;
             gBattleCommunication[MISS_TYPE] = B_MSG_GROUND_MISS;
-            RecordAbilityBattle(battlerDef, ABILITY_LEVITATE);
+            RecordAbilityBattle(battlerDef, gLastUsedBattlerAbility[battlerDef]);
         }
     }
     else if (B_SHEER_COLD_IMMUNITY >= GEN_7 && move == MOVE_SHEER_COLD && IS_BATTLER_OF_TYPE(battlerDef, TYPE_ICE))
@@ -10856,10 +10858,11 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(u32 move, u32 mov
         if (recordAbilities)
         {
             gLastUsedAbility = gBattleMons[battlerDef].ability;
+            gLastUsedBattlerAbility[battlerDef] = gBattleMons[battlerDef].ability;
             gMoveResultFlags |= MOVE_RESULT_MISSED;
             gLastLandedMoves[battlerDef] = 0;
             gBattleCommunication[MISS_TYPE] = B_MSG_AVOIDED_DMG;
-            RecordAbilityBattle(battlerDef, gBattleMons[battlerDef].ability);
+            RecordAbilityBattle(battlerDef, gLastUsedBattlerAbility[battlerDef]);
         }
     }
 

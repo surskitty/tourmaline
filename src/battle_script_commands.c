@@ -9883,6 +9883,7 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS();
         gLastUsedAbility = gBattleMons[battler].ability;
+        //gLastUsedBattlerAbility[battler] = gBattleMons[battler].ability;
         break;
     }
     case VARIOUS_INVERT_STAT_STAGES:
