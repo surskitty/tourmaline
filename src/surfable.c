@@ -49,7 +49,7 @@ static u16 GetSurfMonSpecies(void)
 
 static u16 GetSurfablePokemonSprite(void)
 {
-    u8 i;
+    u32 i;
     u16 mon = GetSurfMonSpecies();
 
     for (i = 0; i < ARRAY_COUNT(gSurfablePokemon); i++)
