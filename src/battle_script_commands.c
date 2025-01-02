@@ -2524,10 +2524,9 @@ static void Cmd_resultmessage(void)
 
     u32 stringId = 0;
 
-    u16 lastAbility;
-    if (gLastUsedBattlerAbility[gBattlerTarget] != ABILITY_NONE)
-        lastAbility = gLastUsedBattlerAbility[gBattlerTarget];
-    else
+    //Move Pop to ability popup for wonderguard and tera shift, only pop when needed.
+    u16 lastAbility = gLastUsedBattlerAbility[gBattlerTarget]; //PopTraitStack();
+    if (lastAbility == ABILITY_NONE)
         lastAbility = gBattleMons[gBattlerTarget].ability;
 
     if (gBattleControllerExecFlags)
@@ -10082,10 +10081,10 @@ static void Cmd_various(void)
     }
     case VARIOUS_ABILITY_POPUP:
     {
-        u16 lastAbility;
-        if (gLastUsedBattlerAbility[battler] != ABILITY_NONE)
+        u16 lastAbility = PopTraitStack();
+        if (lastAbility == ABILITY_NONE)
             lastAbility = gLastUsedBattlerAbility[battler];
-        else
+        if (lastAbility == ABILITY_NONE)
             lastAbility = gBattleMons[battler].ability;
 
         VARIOUS_ARGS();

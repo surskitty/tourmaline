@@ -4406,6 +4406,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
              if (chosenTarget != 0)
             {
                 //SwitchinTraitDone not set to True so that Traced switchin abilities like Intimidate can still activate
+                PushTraitStack(ABILITY_TRACE);
                 BattleScriptPushCursorAndCallback(BattleScript_TraceActivates);
                 gBattleStruct->tracedAbility[battler] = gLastUsedBattlerAbility[chosenTarget] = gBattleMons[chosenTarget].ability;
                 RecordAbilityBattle(chosenTarget, gLastUsedBattlerAbility[chosenTarget]); // Record the opposing battler has this ability
@@ -4427,6 +4428,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             gLastUsedBattlerAbility[battler] = ABILITY_IMPOSTER;
             gBattlerAttacker = battler;
             gBattlerTarget = BATTLE_OPPOSITE(battler);
+            PushTraitStack(ABILITY_IMPOSTER);
             BattleScriptPushCursorAndCallback(BattleScript_ImposterActivates);
             effect++;
         }
@@ -4436,6 +4438,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
             gLastUsedBattlerAbility[battler] = ABILITY_MOLD_BREAKER;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_MOLDBREAKER;
+            PushTraitStack(ABILITY_MOLD_BREAKER);
             BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
             effect++;
         }
@@ -4672,6 +4675,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
 
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN, TRUE))
             {
+                PushTraitStack(ABILITY_DRIZZLE);
                 BattleScriptPushCursorAndCallback(BattleScript_DrizzleActivates);
                 effect++;
             }
@@ -4691,6 +4695,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
 
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_SANDSTORM, TRUE))
             {
+                PushTraitStack(ABILITY_SAND_STREAM);
                 BattleScriptPushCursorAndCallback(BattleScript_SandstreamActivates);
                 effect++;
             }
@@ -4710,6 +4715,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
 
             if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN, TRUE))
             {
+                PushTraitStack(ABILITY_DROUGHT);
                 BattleScriptPushCursorAndCallback(BattleScript_DroughtActivates);
                 effect++;
             }
@@ -4728,11 +4734,13 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
 
             if (B_SNOW_WARNING >= GEN_9 && TryChangeBattleWeather(battler, ENUM_WEATHER_SNOW, TRUE))
             {
+                PushTraitStack(ABILITY_SNOW_WARNING);
                 BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivatesSnow);
                 effect++;
             }
             else if (B_SNOW_WARNING < GEN_9 && TryChangeBattleWeather(battler, ENUM_WEATHER_HAIL, TRUE))
             {
+                PushTraitStack(ABILITY_SNOW_WARNING);
                 BattleScriptPushCursorAndCallback(BattleScript_SnowWarningActivatesHail);
                 effect++;
             }
@@ -5149,6 +5157,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
             gLastUsedBattlerAbility[battler] = ABILITY_TERA_SHIFT;
             gBattlerAttacker = battler;
+            PushTraitStack(ABILITY_TERA_SHIFT);
             BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeWithStringEnd3);
             effect++;
         }

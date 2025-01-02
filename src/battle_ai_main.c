@@ -5450,3 +5450,31 @@ u8 BattlerHasTraitPlain(u8 battlerId, u16 ability)
          
     return traitNum;
 }
+
+void PushTraitStack(u16 ability)
+{
+    for (int i = 0; i < MAX_BATTLERS_COUNT * MAX_MON_TRAITS; i++)
+    {
+        if (gTraitStack[i] == ABILITY_NONE)
+        {
+            gTraitStack[i] = ability;
+            break;
+        }
+    }
+}
+
+u16 PopTraitStack()
+{
+    u8 ability = ABILITY_NONE;
+
+    for (int i = (MAX_BATTLERS_COUNT * MAX_MON_TRAITS) - 1; i >= 0; i--)
+    {
+        if (gTraitStack[i] != ABILITY_NONE)
+        {
+            ability = gTraitStack[i];
+            gTraitStack[i] = ABILITY_NONE;
+            break;
+        }
+    }
+    return ability;
+}

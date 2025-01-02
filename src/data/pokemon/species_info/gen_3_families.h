@@ -271,7 +271,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_BLAZE, ABILITY_NONE, ABILITY_SPEED_BOOST }, //BLAZE
+        .abilities = { ABILITY_DRIZZLE, ABILITY_NONE, ABILITY_SPEED_BOOST }, //BLAZE
         .innates = { ABILITY_DROUGHT, ABILITY_SNOW_WARNING, ABILITY_SAND_STREAM },
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Torchic"),
@@ -933,7 +933,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
     #if P_UPDATED_ABILITIES >= GEN_4
-        .abilities = { ABILITY_PICKUP, ABILITY_GLUTTONY, ABILITY_QUICK_FEET },
+        .abilities = { ABILITY_WONDER_GUARD, ABILITY_GLUTTONY, ABILITY_QUICK_FEET },
     #else
         .abilities = { ABILITY_PICKUP, ABILITY_NONE, ABILITY_QUICK_FEET },
     #endif

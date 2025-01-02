@@ -166,6 +166,7 @@ EWRAM_DATA s32 gBideDmg[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u16 gLastUsedItem = 0;
 EWRAM_DATA u16 gLastUsedAbility = 0;
 EWRAM_DATA u16 gLastUsedBattlerAbility[MAX_BATTLERS_COUNT] = {0};
+EWRAM_DATA u16 gTraitStack[MAX_BATTLERS_COUNT * MAX_MON_TRAITS] = {0};
 EWRAM_DATA u8 gBattlerAttacker = 0;
 EWRAM_DATA u8 gBattlerTarget = 0;
 EWRAM_DATA u8 gBattlerFainted = 0;
@@ -4102,9 +4103,19 @@ u8 IsRunningFromBattleImpossible(u32 battler)
 
     if ((i = IsAbilityPreventingEscape(battler)))
     {
+        u32 ability = ABILITY_NONE;
+
+        if ((BattlerHasTrait(i - 1, ABILITY_SHADOW_TAG))
+         && (B_SHADOW_TAG_ESCAPE >= GEN_4 && !BattlerHasTrait(battler, ABILITY_SHADOW_TAG)))
+            ability = ABILITY_SHADOW_TAG;
+        if ((BattlerHasTrait(i - 1, ABILITY_ARENA_TRAP)) && IsBattlerGrounded(battler))
+            ability = ABILITY_ARENA_TRAP;
+        if ((BattlerHasTrait(i - 1, ABILITY_MAGNET_PULL)) && IS_BATTLER_OF_TYPE(battler, TYPE_STEEL))
+            ability = ABILITY_MAGNET_PULL;
+
         gBattleScripting.battler = i - 1;
-        gLastUsedAbility = gBattleMons[i - 1].ability;
-        //gLastUsedBattlerAbility[battler] = gBattleMons[i - 1].ability;
+        gLastUsedAbility = ability;
+        gLastUsedBattlerAbility[i - 1] = ability;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PREVENTS_ESCAPE;
         return BATTLE_RUN_FAILURE;
     }
@@ -5307,7 +5318,7 @@ static void CheckChangingTurnOrderEffects(void)
                 {
                     gBattlerAbility = battler;
                     gLastUsedAbility = gBattleMons[battler].ability;
-                    gLastUsedBattlerAbility[battler] = gBattleMons[battler].ability;
+                    gLastUsedBattlerAbility[battler] = ABILITY_QUICK_DRAW;
                     PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedBattlerAbility[battler]);
                     RecordAbilityBattle(battler, gLastUsedBattlerAbility[battler]);
                     BattleScriptExecute(BattleScript_QuickDrawActivation);
