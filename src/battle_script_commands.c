@@ -2529,7 +2529,7 @@ static void Cmd_resultmessage(void)
     u32 stringId = 0;
 
     //Move Pop to ability popup for wonderguard and tera shift, only pop when needed.
-    u16 lastAbility = gLastUsedBattlerAbility[gBattlerTarget]; //PopTraitStack();
+    u16 lastAbility = gBattleMons[gBattlerTarget].ability; //PopTraitStack();
     if (lastAbility == ABILITY_NONE)
         lastAbility = gBattleMons[gBattlerTarget].ability;
 
@@ -10088,8 +10088,8 @@ static void Cmd_various(void)
         u16 lastAbility = PopTraitStack();
         if (lastAbility == ABILITY_NONE)
             lastAbility = gLastUsedBattlerAbility[battler];
-        if (lastAbility == ABILITY_NONE)
-            lastAbility = gBattleMons[battler].ability;
+        //if (lastAbility == ABILITY_NONE)
+            //lastAbility = gBattleMons[battler].ability;
 
         VARIOUS_ARGS();
         CreateAbilityPopUp(battler, lastAbility, (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) != 0);

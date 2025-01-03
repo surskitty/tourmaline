@@ -4408,12 +4408,12 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 //SwitchinTraitDone not set to True so that Traced switchin abilities like Intimidate can still activate
                 PushTraitStack(ABILITY_TRACE);
                 BattleScriptPushCursorAndCallback(BattleScript_TraceActivates);
-                gBattleStruct->tracedAbility[battler] = gLastUsedBattlerAbility[chosenTarget] = gBattleMons[chosenTarget].ability;
-                RecordAbilityBattle(chosenTarget, gLastUsedBattlerAbility[chosenTarget]); // Record the opposing battler has this ability
+                gBattleStruct->tracedAbility[battler] = gLastUsedAbility  = gBattleMons[chosenTarget].ability;
+                RecordAbilityBattle(chosenTarget, gLastUsedAbility); // Record the opposing battler has this ability
                 gBattlerAbility = battler;
 
                 PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, chosenTarget, gBattlerPartyIndexes[chosenTarget])
-                PREPARE_ABILITY_BUFFER(gBattleTextBuff2, gLastUsedBattlerAbility[chosenTarget])
+                PREPARE_ABILITY_BUFFER(gBattleTextBuff2, gLastUsedAbility)
             }
         }
         traitCheck = BattlerHasTrait(battler, ABILITY_IMPOSTER);
@@ -4425,7 +4425,6 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
          && !(gStatuses3[BATTLE_OPPOSITE(battler)] & STATUS3_SEMI_INVULNERABLE))
         {
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gLastUsedBattlerAbility[battler] = ABILITY_IMPOSTER;
             gBattlerAttacker = battler;
             gBattlerTarget = BATTLE_OPPOSITE(battler);
             PushTraitStack(ABILITY_IMPOSTER);
@@ -4436,7 +4435,6 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gLastUsedBattlerAbility[battler] = ABILITY_MOLD_BREAKER;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_MOLDBREAKER;
             PushTraitStack(ABILITY_MOLD_BREAKER);
             BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
@@ -4447,8 +4445,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         {
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
             gBattlerAttacker = battler;
-            gLastUsedBattlerAbility[battler] = ABILITY_TERAVOLT;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_TERAVOLT;
+            PushTraitStack(ABILITY_TERAVOLT);
             BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
             effect++;
         }
@@ -4457,8 +4455,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         {
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
             gBattlerAttacker = battler;
-            gLastUsedBattlerAbility[battler] = ABILITY_TURBOBLAZE;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_TURBOBLAZE;
+            PushTraitStack(ABILITY_TURBOBLAZE);
             BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
             effect++;
         }
@@ -4467,8 +4465,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         {
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
             gDisableStructs[battler].slowStartTimer = 5;
-            gLastUsedBattlerAbility[battler] = ABILITY_SLOW_START;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_SLOWSTART;
+            PushTraitStack(ABILITY_SLOW_START);
             BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
             effect++;
         }
@@ -4476,8 +4474,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {                
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gLastUsedBattlerAbility[battler] = ABILITY_UNNERVE;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_UNNERVE;
+            PushTraitStack(ABILITY_UNNERVE);
             BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
             effect++;
         }
@@ -4485,8 +4483,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gLastUsedBattlerAbility[battler] = ABILITY_AS_ONE_ICE_RIDER;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_ASONE;
+            gLastUsedBattlerAbility[battler] = ABILITY_AS_ONE_ICE_RIDER;
             BattleScriptPushCursorAndCallback(BattleScript_ActivateAsOne);
             effect++;
         }
@@ -4494,8 +4492,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gLastUsedBattlerAbility[battler] = ABILITY_AS_ONE_SHADOW_RIDER;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_ASONE;
+            gLastUsedBattlerAbility[battler] = ABILITY_AS_ONE_SHADOW_RIDER;
             BattleScriptPushCursorAndCallback(BattleScript_ActivateAsOne);
             effect++;
         }
@@ -4504,9 +4502,9 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
          && IsBattlerAlive(BATTLE_PARTNER(battler)) && TryResetBattlerStatChanges(BATTLE_PARTNER(battler)))
         {
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gLastUsedBattlerAbility[battler] = ABILITY_CURIOUS_MEDICINE;  
             gEffectBattler = BATTLE_PARTNER(battler);
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_CURIOUS_MEDICINE;
+            PushTraitStack(ABILITY_CURIOUS_MEDICINE);
             BattleScriptPushCursorAndCallback(BattleScript_SwitchInAbilityMsg);
             effect++;
         }
@@ -4514,9 +4512,9 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
         {
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
-            gLastUsedBattlerAbility[battler] = ABILITY_PASTEL_VEIL;  
             gBattlerTarget = battler;
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SWITCHIN_PASTEL_VEIL;
+            PushTraitStack(ABILITY_PASTEL_VEIL);
             BattleScriptPushCursorAndCallback(BattleScript_PastelVeilActivates);
             effect++;
         }
