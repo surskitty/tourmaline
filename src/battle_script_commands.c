@@ -1159,7 +1159,7 @@ static bool32 TryAegiFormChange(void)
 
 bool32 ProteanTryChangeType(u32 battler, u32 ability, u32 move, u32 moveType)
 {
-      if ((ability == ABILITY_PROTEAN || ability == ABILITY_LIBERO)
+      if ((BattlerHasTrait(battler, ABILITY_PROTEAN) || BattlerHasTrait(battler, ABILITY_LIBERO))
          && !gDisableStructs[gBattlerAttacker].usedProteanLibero
          && (gBattleMons[battler].types[0] != moveType || gBattleMons[battler].types[1] != moveType
              || (gBattleMons[battler].types[2] != moveType && gBattleMons[battler].types[2] != TYPE_MYSTERY))
@@ -1259,6 +1259,10 @@ static void Cmd_attackcanceler(void)
             gDisableStructs[gBattlerAttacker].usedProteanLibero = TRUE;
         PREPARE_TYPE_BUFFER(gBattleTextBuff1, moveType);
         gBattlerAbility = gBattlerAttacker;
+        if (BattlerHasTrait(gBattlerAttacker, ABILITY_PROTEAN))
+            PushTraitStack(ABILITY_PROTEAN);
+        if (BattlerHasTrait(gBattlerAttacker, ABILITY_LIBERO))
+            PushTraitStack(ABILITY_LIBERO);
         BattleScriptPushCursor();
         PrepareStringBattle(STRINGID_EMPTYSTRING3, gBattlerAttacker);
         gBattleCommunication[MSG_DISPLAY] = 1;

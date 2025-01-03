@@ -5465,7 +5465,7 @@ void PushTraitStack(u16 ability)
 
 u16 PopTraitStack()
 {
-    u8 ability = ABILITY_NONE;
+    u16 ability = ABILITY_NONE;
 
     for (int i = (MAX_BATTLERS_COUNT * MAX_MON_TRAITS) - 1; i >= 0; i--)
     {
