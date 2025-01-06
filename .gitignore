@@ -4,6 +4,8 @@ convert_inc.sh
 *.o
 *.i
 *.elf
+tourmaline.*
+tourmaline*.*
 *.gba
 !data/*.gba
 *.sgm
