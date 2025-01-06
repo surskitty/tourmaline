@@ -49,3 +49,4 @@ tools/trainerproc/trainerproc
 *.smol
 *.fastSmol
 *.smolTM
+data/maps/**/scripts.inc
