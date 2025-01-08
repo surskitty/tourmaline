@@ -5,7 +5,7 @@ script RustboroCity_Mart_EventScript_Clerk {
     faceplayer
     message(gText_HowMayIServeYou)
     waitmessage
-    if {!flag(FLAG_MET_DEVON_EMPLOYEE) {
+    if (!flag(FLAG_MET_DEVON_EMPLOYEE)) {
         pokemart(RustboroCity_Mart_Pokemart_Basic)
         msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
         release

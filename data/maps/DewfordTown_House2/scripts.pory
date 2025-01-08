@@ -1,59 +1,47 @@
-raw `
-DewfordTown_House2_MapScripts::
-	.byte 0
+mapscripts DewfordTown_House2_MapScripts {}
 
-DewfordTown_House2_EventScript_Man::
-	lock
-	faceplayer
-	goto_if_set FLAG_RECEIVED_SILK_SCARF, DewfordTown_House2_EventScript_ExplainSilkScarf
-	msgbox DewfordTown_House2_Text_WantYouToHaveSilkScarf, MSGBOX_DEFAULT
-	giveitem ITEM_SILK_SCARF
-	goto_if_eq VAR_RESULT, FALSE, DewfordTown_House2_EventScript_NoRoomForScarf
-	setflag FLAG_RECEIVED_SILK_SCARF
-	release
-	end
+script DewfordTown_House2_EventScript_Man {
+    lock
+    faceplayer
+    if (flag(FLAG_RECEIVED_SILK_SCARF)) {
+        msgbox(DewfordTown_House2_Text_ExplainScarf, MSGBOX_DEFAULT)
+    } else {
+        msgbox(DewfordTown_House2_Text_WantYouToHaveScarf, MSGBOX_DEFAULT)
+        giveitem(ITEM_CHOICE_SCARF)
+        if (var(VAR_RESULT) == FALSE) {
+            msgbox(DewfordTown_House2_Text_NoRoom, MSGBOX_DEFAULT)
+        } else {
+            setflag(FLAG_RECEIVED_SILK_SCARF)
+        }
+    }
+    release
+}
 
-DewfordTown_House2_EventScript_NoRoomForScarf::
-	msgbox DewfordTown_House2_Text_NoRoom, MSGBOX_DEFAULT
-	release
-	end
+script DewfordTown_House2_EventScript_Boy {
+    msgbox(format("Wow, you bothered to cross the sea to visit Dewford?\p"
+        "Did you maybe come here because you heard about Brawly?\p"
+        "He's so cool…\n"
+        "Everyone idolizes him."), MSGBOX_NPC)
+}
 
-DewfordTown_House2_EventScript_ExplainSilkScarf::
-	msgbox DewfordTown_House2_Text_ExplainSilkScarf, MSGBOX_DEFAULT
-	release
-	end
+text DewfordTown_House2_Text_WantYouToHaveScarf {
+    format("Gorge your eyes on this!\p"
+        "It's a Choice Scarf. It's right at the cutting edge of fashion, yeah!\p"
+        "Oh, I can see your eyes twinkling!\n"
+        "You appreciate my dazzling style!\p"
+        "Oh, you're a delight!\n"
+        "Here you go. I want you to have it!")
+}
 
-DewfordTown_House2_EventScript_Boy::
-	msgbox DewfordTown_House2_Text_BrawlySoCool, MSGBOX_NPC
-	end
+text DewfordTown_House2_Text_NoRoom {
+    "Oh, you don't have room?\p"
+    "Now, listen tight, this Scarf is a must-\n"
+    "have! Why, I would sell all my items\l"
+    "in order to get it!"
+}
 
-DewfordTown_House2_Text_WantYouToHaveSilkScarf:
-	.string "Gorge your eyes on this!\p"
-	.string "It's a SILK SCARF. It's right at the\n"
-	.string "cutting edge of fashion, yeah!\p"
-	.string "Oh, I can see your eyes twinkling!\n"
-	.string "You appreciate my dazzling style!\p"
-	.string "Oh, you're a delight!\n"
-	.string "Here you go. I want you to have it!$"
+text DewfordTown_House2_Text_ExplainScarf {
+    format("The Choice Scarf locks a Pokémon into a single move, but makes them way faster!\p"
+        "It's a marvelous Scarf that goes with almost any Pokémon!")
+}
 
-DewfordTown_House2_Text_NoRoom:
-	.string "Oh, you don't have room?\p"
-	.string "Now, listen tight, this SCARF is a must-\n"
-	.string "have! Why, I would sell all my items\l"
-	.string "in order to get it!$"
-
-DewfordTown_House2_Text_ExplainSilkScarf:
-	.string "The SILK SCARF raises the power of\n"
-	.string "NORMAL-type moves.\p"
-	.string "It's a marvelous SCARF that will go\n"
-	.string "with almost all POKéMON!$"
-
-DewfordTown_House2_Text_BrawlySoCool:
-	.string "Wow, you bothered to cross the sea\n"
-	.string "to visit DEWFORD?\p"
-	.string "Did you maybe come here because you\n"
-	.string "heard about BRAWLY?\p"
-	.string "He's so cool…\n"
-	.string "Everyone idolizes him.$"
-
-`

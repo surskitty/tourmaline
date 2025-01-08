@@ -1,5 +1,1 @@
-raw `
-ArtisanCave_1F_MapScripts::
-	.byte 0
-
-`
+mapscripts ArtisanCave_1F_MapScripts {}
