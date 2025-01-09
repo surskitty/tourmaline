@@ -9559,9 +9559,9 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Basic Trainer
+AI: Check Bad Move
 
-Drake (Treecko)
+Drake (Treecko) (M)
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -9580,19 +9580,16 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Check Bad Move
+AI: Basic Trainer / Force Setup First Turn
 
 Wingull
 Level: 13
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 Ariel (Eevee) (F)
 Level: 15
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-Treecko
+Drake (Treecko) (M)
 Level: 15
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 === TRAINER_BRENDAN_ROUTE_110_MUDKIP ===
 Name: Brendan
@@ -9605,19 +9602,15 @@ AI: Basic Trainer
 
 Slugma
 Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 Wingull
 Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-Drake (Grovyle)
+Drake (Grovyle) (M)
 Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Ariel (Umbreon) (F)
 Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_BRENDAN_ROUTE_119_MUDKIP ===
 Name: Brendan
@@ -9630,19 +9623,15 @@ AI: Basic Trainer
 
 Slugma
 Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Pelipper
 Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Ariel (Umbreon) (F)
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-Drake (Grovyle)
+Drake (Grovyle) (M)
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 === TRAINER_BRENDAN_LILYCOVE_MUDKIP ===
 Name: Brendan
@@ -9655,23 +9644,18 @@ AI: Basic Trainer / Ace Pokemon
 
 Tropius
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Slugma
 Level: 32
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Pelipper
 Level: 32
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Ariel (Umbreon) (F)
 Level: 34
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
-Drake (Sceptile) @ Sceptilite
+Drake (Sceptile) (M) @ Sceptilite
 Level: 34
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
 === TRAINER_BRENDAN_ROUTE_103_TREECKO ===
 Name: Brendan
@@ -9680,9 +9664,9 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: Yes    
-AI: Check Bad Move / Try To Faint / Force Setup First Turn
+AI: Check Bad Move
 
-Sparky (Torchic)
+Sparky (Torchic) (M)
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -9701,19 +9685,16 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Check Bad Move
+AI: Basic Trainer / Force Setup First Turn
 
 Lotad
 Level: 13
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 Ariel (Eevee) (F)
 Level: 15
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-Torchic
+Sparky (Torchic) (M)
 Level: 15
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 === TRAINER_BRENDAN_ROUTE_110_TREECKO ===
 Name: Brendan
@@ -9726,19 +9707,15 @@ AI: Basic Trainer
 
 Wingull
 Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 Lombre
 Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
-
-Sparky (Combusken)
-Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Ariel (Glaceon) (F)
 Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+
+Sparky (Combusken) (M)
+Level: 20
 
 === TRAINER_BRENDAN_ROUTE_119_TREECKO ===
 Name: Brendan
@@ -9751,20 +9728,15 @@ AI: Basic Trainer
 
 Pelipper
 Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Lombre
 Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-Sparky (Combusken)
+Sparky (Combusken) (M)
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Ariel (Glaceon) (F)
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-
 
 === TRAINER_BRENDAN_LILYCOVE_TREECKO ===
 Name: Brendan
@@ -9777,23 +9749,18 @@ AI: Basic Trainer / Ace Pokemon
 
 Tropius
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Pelipper
 Level: 32
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Ludicolo
 Level: 32
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Ariel (Glaceon) (F)
 Level: 34
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
-Sparky (Blaziken) @ ITEM_BLAZIKENITE
+Sparky (Blaziken) (M) @ ITEM_BLAZIKENITE
 Level: 34
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
 === TRAINER_BRENDAN_ROUTE_103_TORCHIC ===
 Name: Brendan
@@ -9802,9 +9769,9 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: Yes    
-AI: Basic Trainer
+AI: Check Bad Move
 
-Perry (Mudkip)
+Perry (Mudkip) (M)
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -9823,19 +9790,16 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Basic Trainer
+AI: Basic Trainer / Force Setup First Turn
 
 Slugma
 Level: 13
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 Ariel (Eevee) (F)
 Level: 15
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-Mudkip
+Perry (Mudkip) (M)
 Level: 15
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 === TRAINER_BRENDAN_ROUTE_110_TORCHIC ===
 Name: Brendan
@@ -9848,19 +9812,15 @@ AI: Basic Trainer
 
 Lombre
 Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 Slugma
 Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-Perry (Marshtomp)
+Perry (Marshtomp) (M)
 Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Ariel (Espeon) (F)
 Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_BRENDAN_ROUTE_119_TORCHIC ===
 Name: Brendan
@@ -9873,19 +9833,15 @@ AI: Basic Trainer
 
 Lombre
 Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Slugma
 Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Ariel (Espeon) (F)
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-Perry (Marshtomp)
+Perry (Marshtomp) (M)
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 
 === TRAINER_BRENDAN_LILYCOVE_TORCHIC ===
@@ -9899,23 +9855,18 @@ AI: Basic Trainer / Ace Pokemon
 
 Tropius
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Ludicolo
 Level: 32
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Slugma
 Level: 32
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Ariel (Espeon) (F)
 Level: 34
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
-Perry (Swampert) @ ITEM_SWAMPERTITE
+Perry (Swampert) (M) @ ITEM_SWAMPERTITE
 Level: 34
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
 === TRAINER_MAY_ROUTE_103_MUDKIP ===
 Name: May
@@ -9924,9 +9875,9 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: Yes    
-AI: Basic Trainer
+AI: Check Bad Move
 
-Twig (Treecko)
+Twig (Treecko) (M)
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -9949,15 +9900,12 @@ AI: Basic Trainer / Force Setup First Turn
 
 Wingull
 Level: 13
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 Bebe (Eevee) (F)
 Level: 15
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-Twig (Treecko)
+Twig (Treecko) (M)
 Level: 15
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 === TRAINER_MAY_ROUTE_110_MUDKIP ===
 Name: May
@@ -9970,19 +9918,15 @@ AI: Basic Trainer
 
 Wingull
 Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 Slugma
 Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 Bebe (Umbreon) (F)
 Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-Twig (Grovyle)
+Twig (Grovyle) (M)
 Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_MAY_ROUTE_119_MUDKIP ===
 Name: May
@@ -9995,19 +9939,15 @@ AI: Basic Trainer
 
 Slugma
 Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Lombre
 Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Bebe (Umbreon) (F)
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-Twig (Grovyle)
+Twig (Grovyle) (M)
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 === TRAINER_MAY_LILYCOVE_MUDKIP ===
 Name: May
@@ -10020,23 +9960,18 @@ AI: Basic Trainer / Ace Pokemon
 
 Tropius
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Slugma
 Level: 32
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Pelipper
 Level: 32
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Bebe (Umbreon) (F)
 Level: 34
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
-Twig (Sceptile) @ ITEM_SCEPTILITE
+Twig (Sceptile) (M) @ ITEM_SCEPTILITE
 Level: 34
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
 === TRAINER_MAY_ROUTE_103_TREECKO ===
 Name: May
@@ -10045,9 +9980,9 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: Yes    
-AI: Basic Trainer
+AI: Check Bad Move
 
-Nugget (Torchic)
+Nugget (Torchic) (M)
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -10066,19 +10001,16 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: Yes
-AI: Basic Trainer
+AI: Basic Trainer / Force Setup First Turn
 
 Lotad
 Level: 13
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 Bebe (Eevee) (F)
 Level: 15
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-Nugget (Torchic)
+Nugget (Torchic) (M)
 Level: 15
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 === TRAINER_MAY_ROUTE_110_TREECKO ===
 Name: May
@@ -10091,19 +10023,15 @@ AI: Basic Trainer
 
 Wingull
 Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 Lombre
 Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
-
-Nugget (Combusken)
-Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Bebe (Glaceon) (F)
 Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+
+Nugget (Combusken) (M)
+Level: 20
 
 === TRAINER_MAY_ROUTE_119_TREECKO ===
 Name: May
@@ -10116,19 +10044,15 @@ AI: Basic Trainer
 
 Pelipper
 Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Lombre
 Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-Nugget (Combusken)
+Nugget (Combusken) (M)
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Bebe (Glaceon) (F)
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 === TRAINER_MAY_LILYCOVE_TREECKO ===
 Name: May
@@ -10141,23 +10065,18 @@ AI: Basic Trainer / Ace Pokemon
 
 Tropius
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Pelipper
 Level: 32
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Ludicolo
 Level: 32
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Bebe (Glaceon) (F)
 Level: 34
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
-Nugget (Blaziken) @ ITEM_BLAZIKENITE
+Nugget (Blaziken) (M) @ ITEM_BLAZIKENITE
 Level: 34
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
 === TRAINER_MAY_ROUTE_103_TORCHIC ===
 Name: May
@@ -10166,9 +10085,9 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: Yes
-AI: Basic Trainer
+AI: Check Bad Move
 
-Kippers (Mudkip)
+Kippers (Mudkip) (M)
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -10187,19 +10106,16 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: Yes
-AI: Basic Trainer
+AI: Basic Trainer / Force Setup First Turn
 
 Torkoal
 Level: 13
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 Bebe (Eevee) (F)
 Level: 15
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-Kippers (Mudkip)
+Kippers (Mudkip) (M)
 Level: 15
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 === TRAINER_MAY_ROUTE_110_TORCHIC ===
 Name: May
@@ -10218,13 +10134,11 @@ Slugma
 Level: 18
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-Kippers (Marshtomp)
+Kippers (Marshtomp) (M)
 Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Bebe (Espeon) (F)
 Level: 20
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_MAY_ROUTE_119_TORCHIC ===
 Name: May
@@ -10237,19 +10151,15 @@ AI: Basic Trainer
 
 Lombre
 Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Slugma
 Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Bebe (Espeon) (F)
 Level: 20
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-Kippers (Marshtomp)
+Kippers (Marshtomp) (M)
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 === TRAINER_MAY_LILYCOVE_TORCHIC ===
 Name: May
@@ -10262,23 +10172,18 @@ AI: Basic Trainer / Ace Pokemon
 
 Tropius
 Level: 31
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Ludicolo
 Level: 32
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Slugma
 Level: 32
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Bebe (Espeon) (F)
 Level: 34
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
-Kippers (Swampert) @ ITEM_SWAMPERTITE
+Kippers (Swampert) (M) @ ITEM_SWAMPERTITE
 Level: 34
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
 === TRAINER_ISAAC_1 ===
 Name: ISAAC

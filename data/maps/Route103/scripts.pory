@@ -84,8 +84,9 @@ script Route103_EventScript_Rival {
         givemon(SPECIES_EEVEE, 5, move1=MOVE_COVET, move2=MOVE_HELPING_HAND, move3=MOVE_GROWL, move4=MOVE_TAIL_WHIP)
         playfanfare(MUS_OBTAIN_ITEM)
         msgbox("{PLAYER} received Eevee!")
+        waitfanfare
     }
-        
+    special(HealPlayerParty)
     checkplayergender
     if (var(VAR_RESULT) == MALE) {
         msgbox(Route103_Text_MayLetsBattle, MSGBOX_DEFAULT)
