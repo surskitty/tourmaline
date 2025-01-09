@@ -992,6 +992,23 @@
         {
           "map": "MAP_ROUTE109",
           "base_label": "gRoute109",
+          "land_mons": {
+            "encounter_rate": 95,
+            "mons": [
+              { "min_level": 10, "max_level": 15, "species": "SPECIES_SANDYGAST" },
+              { "min_level": 10, "max_level": 15, "species": "SPECIES_PINCURCHIN" },
+              { "min_level": 10, "max_level": 15, "species": "SPECIES_SANDYGAST" },
+              { "min_level": 10, "max_level": 15, "species": "SPECIES_PINCURCHIN" },
+              { "min_level": 10, "max_level": 15, "species": "SPECIES_PYUKUMUKU" },
+              { "min_level": 10, "max_level": 15, "species": "SPECIES_PYUKUMUKU" },
+              { "min_level": 10, "max_level": 15, "species": "SPECIES_WIGLETT" },
+              { "min_level": 10, "max_level": 15, "species": "SPECIES_WIGLETT" },
+              { "min_level": 10, "max_level": 15, "species": "SPECIES_WIGLETT" },
+              { "min_level": 10, "max_level": 15, "species": "SPECIES_WIGLETT" },
+              { "min_level": 10, "max_level": 15, "species": "SPECIES_WIGLETT" },
+              { "min_level": 10, "max_level": 15, "species": "SPECIES_PYUKUMUKU" }
+            ]
+          },
           "water_mons": {
             "encounter_rate": 4,
             "mons": [
