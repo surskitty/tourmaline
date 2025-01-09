@@ -33,6 +33,8 @@ mart RustboroCity_Mart_Pokemart_Expanded {
     ITEM_QUICK_BALL
     ITEM_TIMER_BALL
     ITEM_REPEAT_BALL
+    ITEM_LUCKY_EGG
+    ITEM_EVERSTONE
     ITEM_POTION
     ITEM_SUPER_POTION
     ITEM_ANTIDOTE
@@ -42,7 +44,6 @@ mart RustboroCity_Mart_Pokemart_Expanded {
     ITEM_X_SPEED
     ITEM_X_ATTACK
     ITEM_X_DEFENSE
-    ITEM_BOTTLE_CAP
 }
 
 script RustboroCity_Mart_EventScript_PokefanF {
@@ -51,7 +52,7 @@ script RustboroCity_Mart_EventScript_PokefanF {
 }
 
 script RustboroCity_Mart_EventScript_BugCatcher {
-    msgbox(format("If I collect enough Bottle Caps, I'll be a true Wurmple Master!"), MSGBOX_NPC)
+    msgbox(format("My Wurmple grows really fast with a Lucky Egg."), MSGBOX_NPC)
 }
 
 script RustboroCity_Mart_EventScript_Boy {

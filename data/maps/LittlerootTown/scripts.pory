@@ -3,8 +3,7 @@ raw `
 .set LOCALID_MOM, 4
 .set LOCALID_RIVAL, 7
 .set LOCALID_BIRCH, 8
-
-LittlerootTown_MapScripts::
+LittlerootTown_MapScripts:: @ 81E7DCB
     map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_OnTransition
     map_script MAP_SCRIPT_ON_FRAME_TABLE, LittlerootTown_OnFrame
     map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LittlerootTown_OnWarp
@@ -39,56 +38,86 @@ LittlerootTown_MapScripts::
     @ 3: Met Rival
     @ 4: Received Pokedex
 
-`
 
-script LittlerootTown_OnTransition {
-    setflag(FLAG_VISITED_LITTLEROOT_TOWN)
-    call(Common_EventScript_SetupRivalGfxId)
-    if (var(VAR_LITTLEROOT_INTRO_STATE) == 2) {
-        setobjectxyperm(LOCALID_MOM, 14, 8)
-    }
-    if (var(VAR_LITTLEROOT_INTRO_STATE) == 3) {
-        clearflag(FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE)
-        setobjectmovementtype(LOCALID_MOM, MOVEMENT_TYPE_FACE_DOWN)
-        checkplayergender
-        if (var(VAR_RESULT) == MALE) {
-            setobjectxyperm(LOCALID_MOM, 5, 9)
-        }
-        else {
-            setobjectxyperm(LOCALID_MOM, 14, 9)
-        }
-    } 
+LittlerootTown_OnTransition: @ 81E7DDB
+    setflag FLAG_VISITED_LITTLEROOT_TOWN
+    call Common_EventScript_SetupRivalGfxId
+    compare VAR_LITTLEROOT_INTRO_STATE, 2
+    call_if_eq LittlerootTown_EventScript_MoveMomToMaysDoor
+    call_if_unset FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_SetTwinPos
+    compare VAR_LITTLEROOT_TOWN_STATE, 3
+    call_if_eq LittlerootTown_EventScript_SetMomStandingInFrontOfDoorPos
+    compare VAR_LITTLEROOT_HOUSES_STATE_MAY, 4
+    call_if_eq LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
+    compare VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 4
+    call_if_eq LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
+    compare VAR_OLDALE_RIVAL_STATE, 1
+    call_if_eq LittlerootTown_EventScript_MoveRivalFromOldale
+    compare VAR_LITTLEROOT_RIVAL_STATE, 3
+    call_if_eq LittlerootTown_EventScript_SetRivalLeftForRoute103
+    compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1
+    call_if_eq LittlerootTown_EventScript_HideMapNamePopup
+    compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2
+    call_if_eq LittlerootTown_EventScript_LeftLabAfterDexUpgrade
+    end
 
-    if (!(flag(FLAG_RESCUED_BIRCH))) {
-        if (var(VAR_LITTLEROOT_TOWN_STATE) == 0) {
-            setobjectxyperm(LOCALID_TWIN, 7, 2)
-            setobjectmovementtype(LOCALID_TWIN, MOVEMENT_TYPE_FACE_DOWN)
-        } else {
-            setobjectxyperm(LOCALID_TWIN, 10, 1)
-            setobjectmovementtype(LOCALID_TWIN, MOVEMENT_TYPE_FACE_UP)
-        }
-    } 
-    if ((var(VAR_LITTLEROOT_HOUSES_STATE_MAY) == 3) || (var(VAR_LITTLEROOT_HOUSES_STATE_BRENDAN) == 4)) {
-        setvar(VAR_LITTLEROOT_HOUSES_STATE_MAY, 5)
-        setvar(VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 5)
-    }
-    if (var(VAR_OLDALE_RIVAL_STATE) == 1) {
-        setvar(VAR_OLDALE_RIVAL_STATE, 2)
-        setflag(FLAG_HIDE_OLDALE_TOWN_RIVAL)
-    }
-    if (var(VAR_LITTLEROOT_RIVAL_STATE) == 3) {
-        setflag(FLAG_RIVAL_LEFT_FOR_ROUTE103)
-    }
-    if (var(VAR_DEX_UPGRADE_JOHTO_STARTER_STATE) == 1) {
-        setflag(FLAG_HIDE_MAP_NAME_POPUP)
-    } elif (var(VAR_DEX_UPGRADE_JOHTO_STARTER_STATE) == 2) {
-    setvar(VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 3)
-    }
-}
+LittlerootTown_EventScript_LeftLabAfterDexUpgrade:: @ 81E7E45
+    setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 3
+    return
 
-raw `
+LittlerootTown_EventScript_HideMapNamePopup:: @ 81E7E4B
+    setflag FLAG_HIDE_MAP_NAME_POPUP
+    return
 
-LittlerootTown_OnFrame:
+LittlerootTown_EventScript_SetRivalLeftForRoute103:: @ 81E7E4F
+    setflag FLAG_RIVAL_LEFT_FOR_ROUTE103
+    return
+
+LittlerootTown_EventScript_MoveRivalFromOldale:: @ 81E7E53
+    setvar VAR_OLDALE_RIVAL_STATE, 2
+    setflag FLAG_HIDE_OLDALE_TOWN_RIVAL
+    return
+
+LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent:: @ 81E7E5C
+    setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 5
+    setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 5
+    return
+
+LittlerootTown_EventScript_MoveMomToMaysDoor:: @ 81E7E67
+    setobjectxyperm LOCALID_MOM, 14, 8
+    return
+
+LittlerootTown_EventScript_SetTwinPos:: @ 81E7E6F
+    compare VAR_LITTLEROOT_TOWN_STATE, 0
+    goto_if_eq LittlerootTown_EventScript_SetTwinGuardingRoutePos
+    setobjectxyperm LOCALID_TWIN, 10, 1
+    setobjectmovementtype LOCALID_TWIN, MOVEMENT_TYPE_FACE_UP
+    return
+
+LittlerootTown_EventScript_SetTwinGuardingRoutePos:: @ 81E7E86
+    setobjectxyperm LOCALID_TWIN, 7, 2
+    setobjectmovementtype LOCALID_TWIN, MOVEMENT_TYPE_FACE_DOWN
+    return
+
+LittlerootTown_EventScript_SetMomStandingInFrontOfDoorPos:: @ 81E7E92
+    clearflag FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE
+    setobjectmovementtype LOCALID_MOM, MOVEMENT_TYPE_FACE_DOWN
+    checkplayergender
+    compare VAR_RESULT, MALE
+    call_if_eq LittlerootTown_EventScript_SetMomInFrontOfDoorMale
+    compare VAR_RESULT, FEMALE
+    call_if_eq LittlerootTown_EventScript_SetMomInFrontOfDoorFemale
+    return
+
+LittlerootTown_EventScript_SetMomInFrontOfDoorMale:: @ 81E7EB1
+    setobjectxyperm LOCALID_MOM, 5, 9
+    return
+
+LittlerootTown_EventScript_SetMomInFrontOfDoorFemale:: @ 81E7EB9
+    setobjectxyperm LOCALID_MOM, 14, 9
+    return
+
+LittlerootTown_OnFrame: @ 81E7EC1
     map_script_2 VAR_LITTLEROOT_INTRO_STATE, 1, LittlerootTown_EventScript_StepOffTruckMale
     map_script_2 VAR_LITTLEROOT_INTRO_STATE, 2, LittlerootTown_EventScript_StepOffTruckFemale
     map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, LittlerootTown_EventScript_BeginDexUpgradeScene

@@ -91,7 +91,7 @@ PetalburgWoods_EventScript_DevonResearcherPostBattle::
     applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterDown
     waitmovement 0
     msgbox PetalburgWoods_Text_ThatWasAwfullyClose, MSGBOX_DEFAULT
-    giveitem ITEM_GREAT_BALL
+    giveitem ITEM_ESCAPE_ROPE
     goto_if_eq VAR_RESULT, FALSE, PetalburgWoods_EventScript_BagFull
     goto PetalburgWoods_EventScript_DevonResearcherFinish
     end
@@ -285,113 +285,119 @@ PetalburgWoods_EventScript_JamesRematch::
     trainerbattle_rematch TRAINER_JAMES_1, PetalburgWoods_Text_MyPokemonHaveGrown, PetalburgWoods_Text_CantBePopularIfLose
     msgbox PetalburgWoods_Text_IveBeenTrainingHard, MSGBOX_AUTOCLOSE
     end
-
-PetalburgWoods_Text_NotAOneToBeFound:
-    .string "Hmmm…\n"
-    .string "Not a one to be found…$"
-
-PetalburgWoods_Text_HaveYouSeenShroomish:
-    .string "Hello, have you seen any Pokémon\n"
-    .string "called Shroomish around here?\p"
-    .string "I really love that Pokémon.$"
-
-PetalburgWoods_Text_IWasGoingToAmbushYou:
-    .string "I was going to ambush you, but you\n"
-    .string "had to dawdle in Petalburg Woods\l"
-    .string "forever, didn't you?\p"
-    .string "I got sick of waiting, so here I am!$"
-
-PetalburgWoods_Text_HandOverThosePapers:
-    .string "You! Devon Researcher!\p"
-    .string "Hand over those papers!$"
-
-PetalburgWoods_Text_YouHaveToHelpMe:
-    .string "Aiyeeeh!\p"
-    .string "You're a Pokémon Trainer, aren't you?\n"
-    .string "You've got to help me, please!$"
-
-PetalburgWoods_Text_NoOneCrossesTeamAqua:
-    .string "Hunh? What do you think you're doing?\n"
-    .string "What, you're going to protect him?\p"
-    .string "No one who crosses Team Aqua\n"
-    .string "gets any mercy, not even a kid!\p"
-    .string "Come on and battle me!$"
-
-PetalburgWoods_Text_YoureKiddingMe:
-    .string "You're kidding me! You're tough!$"
-
-PetalburgWoods_Text_YouveGotSomeNerve:
-    .string "Grrr… You've got some nerve\n"
-    .string "meddling with Team Aqua!\l"
-    .string "Come on and battle me again!\p"
-    .string "I wish I could say that, but I'm out of\n"
-    .string "Pokémon…\p"
-    .string "And, hey, we of Team Aqua are also\n"
-    .string "after something in Rustboro.\p"
-    .string "I'll let you go today!$"
-
-PetalburgWoods_Text_ThatWasAwfullyClose:
-    .string "Whew…\n"
-    .string "That was awfully close!\p"
-    .string "Thanks to you, he didn't rob me of\n"
-    .string "these important papers.\p"
-    .string "I know, I'll give you a Great Ball as\n"
-    .string "my thanks!$"
-
-PetalburgWoods_Text_TeamAquaAfterSomethingInRustboro:
-    .string "Didn't that Team Aqua thug say\n"
-    .string "they were after something in\l"
-    .string "Rustboro, too?$"
-
-PetalburgWoods_Text_ICantBeWastingTime:
-    .string "Uh-oh! It's a crisis!\n"
-    .string "I can't be wasting time!$"
-
-PetalburgWoods_Text_YoureLoadedWithItems:
-    .string "You're loaded with items.\n"
-    .string "I can't give you this Great Ball.$"
-
-PetalburgWoods_Text_GoBugPokemonTeam:
-    .string "I caught a whole bunch of Pokémon!\p"
-    .string "Go, go, go!\n"
-    .string "My Bug Pokémon team!$"
-
-PetalburgWoods_Text_ICouldntWin:
-    .string "I have all these Pokémon,\n"
-    .string "but I couldn't win…$"
-
-PetalburgWoods_Text_ImOutOfPokeBalls:
-    .string "I caught a bunch of Pokémon.\n"
-    .string "Now I'm out of Poké Balls.$"
-
-PetalburgWoods_Text_InstantlyPopularWithBugPokemon:
-    .string "If you take Bug Pokémon to school,\n"
-    .string "you get to be instantly popular!$"
-
-PetalburgWoods_Text_CantBePopularIfILose:
-    .string "I can't be popular if I lose.$"
-
-PetalburgWoods_Text_PeopleRespectYou:
-    .string "If you have a big Bug Pokémon,\n"
-    .string "people respect you for it.$"
-
-PetalburgWoods_Text_IWantRematch1:
-    .string "I want a rematch when my Bug\n"
-    .string "Pokémon grow up!\p"
-    .string "I'm registering you in my Pokénav!$"
-
-PetalburgWoods_Text_IWantRematch2:
-    .string "I want a rematch when my Bug \n"
-    .string "Pokémon grow up!\p"
-    .string "I'm registering you in my Pokénav!$"
-
-PetalburgWoods_Text_MyPokemonHaveGrown:
-    .string "My Bug Pokémon have grown.\n"
-    .string "I'll be popular again.$"
-
-PetalburgWoods_Text_CantBePopularIfLose:
-    .string "I can't be popular if I lose.$"
 `
+
+text PetalburgWoods_Text_NotAOneToBeFound {
+    format("Hmmm…\n"
+    "Not a one to be found…")
+}
+
+text PetalburgWoods_Text_HaveYouSeenShroomish {
+    format("Hello, have you seen any Pokémon called Shroomish around here?\p"
+    "I really love that Pokémon.")
+}
+
+text PetalburgWoods_Text_IWasGoingToAmbushYou {
+    format("I was going to ambush you, but you had to dawdle in Petalburg Woods forever, didn't you?\p"
+    "I got sick of waiting, so here I am!")
+}
+
+text PetalburgWoods_Text_HandOverThosePapers {
+    format("You! Devon Researcher!\p"
+    "Hand over those papers!")
+}
+
+text PetalburgWoods_Text_YouHaveToHelpMe {
+    format("Aiyeeeh!\p"
+    "You're a Pokémon Trainer, aren't you?\n"
+    "You've got to help me, please!")
+}
+
+text PetalburgWoods_Text_NoOneCrossesTeamAqua {
+    format("Hunh? What do you think you're doing?\n"
+    "What, you're going to protect him?\p"
+    "No one who crosses Team Aqua gets any mercy, not even a kid!\p"
+    "Come on and battle me!")
+}
+
+text PetalburgWoods_Text_YoureKiddingMe {
+    format("You're kidding me! You're tough!")
+}
+
+text PetalburgWoods_Text_YouveGotSomeNerve {
+    format("Grrr… You've got some nerve meddling with Team Aqua!\l"
+    "Come on and battle me again!\p"
+    "I wish I could say that, but I'm out of Pokémon…\p"
+    "And, hey, we of Team Aqua are also after something in Rustboro.\p"
+    "I'll let you go today!")
+}
+
+text PetalburgWoods_Text_ThatWasAwfullyClose {
+    format("Whew…\n"
+        "That was awfully close!\p"
+        "Thanks to you, he didn't rob me of these important papers.\p"
+        "I know, I'll give you an Escape Rope as my thanks!")
+}
+
+text PetalburgWoods_Text_TeamAquaAfterSomethingInRustboro {
+    format("Didn't that Team Aqua thug say they were after something in Rustboro, too?")
+}
+
+text PetalburgWoods_Text_ICantBeWastingTime {
+    format("Uh-oh! It's a crisis!\n"
+    "I can't be wasting time!")
+}
+
+text PetalburgWoods_Text_YoureLoadedWithItems {
+    format("You're loaded with items.\n"
+    "I can't give you this Escape Rope.")
+}
+
+text PetalburgWoods_Text_GoBugPokemonTeam {
+    format("I caught a whole bunch of Pokémon!\p"
+    "Go, go, go!\n"
+    "My Bug Pokémon team!")
+}
+
+text PetalburgWoods_Text_ICouldntWin {
+    format("I have all these Pokémon, but I couldn't win…")
+}
+
+text PetalburgWoods_Text_ImOutOfPokeBalls {
+    format("I caught a bunch of Pokémon.\n"
+    "Now I'm out of Poké Balls.")
+}
+
+text PetalburgWoods_Text_InstantlyPopularWithBugPokemon {
+    format("If you take Bug Pokémon to school, you get to be instantly popular!")
+}
+
+text PetalburgWoods_Text_CantBePopularIfILose {
+    format("I can't be popular if I lose.")
+}
+
+text PetalburgWoods_Text_PeopleRespectYou {
+    format("If you have a big Bug Pokémon, people respect you for it.")
+}
+
+text PetalburgWoods_Text_IWantRematch1 {
+    format("I want a rematch when my Bug Pokémon grow up!\p"
+        "I'm registering you in my Pokénav!")
+}
+
+text PetalburgWoods_Text_IWantRematch2 {
+    format("I want a rematch when my Bug Pokémon grow up!\p"
+    "I'm registering you in my Pokénav!")
+}
+
+text PetalburgWoods_Text_MyPokemonHaveGrown {
+    format("My Bug Pokémon have grown.\n"
+    "I'll be popular again.")
+}
+
+text PetalburgWoods_Text_CantBePopularIfLose {
+    format("I can't be popular if I lose.")
+}
 
 text PetalburgWoods_Text_IveBeenTrainingHard {
     format("You get to be popular if you have strong Pokémon, right?\p"
