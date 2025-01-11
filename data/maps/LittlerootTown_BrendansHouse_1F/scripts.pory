@@ -300,7 +300,7 @@ text PlayersHouse_1F_Text_MoversPokemonGoSetClock {
     "This is so convenient!\p"
     "{PLAYER}, your room is upstairs.\n"
     "Go check it out, dear!\p"
-    "Your bought you a new clock to mark our move here.\l"
+    "Your Dad bought you a new clock to mark our move here.\l"
     "Don't forget to set it!")
 }
 
@@ -357,7 +357,7 @@ text PlayersHouse_1F_Text_TakeCareHoney {
 }
 
 text PlayersHouse_1F_Text_GotDadsBadgeHeresSomethingFromMom {
-    format("MOM: Oh? Did DAD give you that Badge?\p"
+    format("MOM: Oh? Did your Dad give you that Badge?\p"
     "Then here's something from your Mom!")
 }
 
