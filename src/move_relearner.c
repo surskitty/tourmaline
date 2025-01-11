@@ -5,6 +5,7 @@
 #include "bg.h"
 #include "contest_effect.h"
 #include "data.h"
+#include "daycare.h"
 #include "decompress.h"
 #include "event_data.h"
 #include "field_screen_effect.h"

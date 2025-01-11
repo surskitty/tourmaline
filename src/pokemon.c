@@ -12,6 +12,7 @@
 #include "battle_tower.h"
 #include "battle_z_move.h"
 #include "data.h"
+#include "daycare.h"
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "evolution_scene.h"
@@ -5684,32 +5685,53 @@ u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)
     u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
     u8 level = GetMonData(mon, MON_DATA_LEVEL, 0);
     const struct LevelUpMove *learnset = GetSpeciesLevelUpLearnset(species);
+    const u16 *eggMoveLearnset = GetSpeciesEggMoves(species);
     int i, j, k;
 
     for (i = 0; i < MAX_MON_MOVES; i++)
         learnedMoves[i] = GetMonData(mon, MON_DATA_MOVE1 + i, 0);
 
-    for (i = 0; i < MAX_LEVEL_UP_MOVES; i++)
+    if (FlagGet(FLAG_EGG_MOVES_TUTOR))
     {
-        u16 moveLevel;
-
-        if (learnset[i].move == LEVEL_UP_MOVE_END)
-            break;
-
-        moveLevel = learnset[i].level;
-
-        if (moveLevel <= level)
+        for (i = 0; i < sizeof(eggMoveLearnset); i++)
         {
-            for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != learnset[i].move; j++)
+            for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != eggMoveLearnset[i]; j++)
                 ;
 
             if (j == MAX_MON_MOVES)
             {
-                for (k = 0; k < numMoves && moves[k] != learnset[i].move; k++)
+                for (k = 0; k < numMoves && moves[k] != eggMoveLearnset[i]; k++)
                     ;
 
                 if (k == numMoves)
-                    moves[numMoves++] = learnset[i].move;
+                    moves[numMoves++] = eggMoveLearnset[i];
+            }
+        }
+    }
+    else
+    {
+        for (i = 0; i < MAX_LEVEL_UP_MOVES; i++)
+        {
+            u16 moveLevel;
+
+            if (learnset[i].move == LEVEL_UP_MOVE_END)
+                break;
+
+            moveLevel = learnset[i].level;
+
+            if (moveLevel <= level)
+            {
+                for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != learnset[i].move; j++)
+                    ;
+
+                if (j == MAX_MON_MOVES)
+                {
+                    for (k = 0; k < numMoves && moves[k] != learnset[i].move; k++)
+                        ;
+
+                    if (k == numMoves)
+                        moves[numMoves++] = learnset[i].move;
+                }
             }
         }
     }
@@ -5734,10 +5756,15 @@ u8 GetNumberOfRelearnableMoves(struct Pokemon *mon)
     u16 learnedMoves[MAX_MON_MOVES];
     u16 moves[MAX_LEVEL_UP_MOVES];
     u8 numMoves = 0;
+    u8 numEggMoves = 0;
     u16 species = GetMonData(mon, MON_DATA_SPECIES_OR_EGG, 0);
     u8 level = GetMonData(mon, MON_DATA_LEVEL, 0);
     const struct LevelUpMove *learnset = GetSpeciesLevelUpLearnset(species);
+    const u16 *eggMoveLearnset;
+
     int i, j, k;
+
+    eggMoveLearnset = GetSpeciesEggMoves(species);
 
     if (species == SPECIES_EGG)
         return 0;
@@ -5745,32 +5772,53 @@ u8 GetNumberOfRelearnableMoves(struct Pokemon *mon)
     for (i = 0; i < MAX_MON_MOVES; i++)
         learnedMoves[i] = GetMonData(mon, MON_DATA_MOVE1 + i, 0);
 
-    for (i = 0; i < MAX_LEVEL_UP_MOVES; i++)
+    if (FlagGet(FLAG_EGG_MOVES_TUTOR))
     {
-        u16 moveLevel;
-
-        if (learnset[i].move == LEVEL_UP_MOVE_END)
-            break;
-
-        moveLevel = learnset[i].level;
-
-        if (moveLevel <= level)
+        for (i = 0; i < sizeof(eggMoveLearnset); i++)
         {
-            for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != learnset[i].move; j++)
+            for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != eggMoveLearnset[i]; j++)
                 ;
 
             if (j == MAX_MON_MOVES)
             {
-                for (k = 0; k < numMoves && moves[k] != learnset[i].move; k++)
+                for (k = 0; k < numEggMoves && moves[k] != eggMoveLearnset[i]; k++)
                     ;
 
-                if (k == numMoves)
-                    moves[numMoves++] = learnset[i].move;
+                if (k == numEggMoves)
+                    moves[numEggMoves++] = eggMoveLearnset[i];
             }
         }
+        
+        return numEggMoves;
     }
+    else
+    {
+        for (i = 0; i < MAX_LEVEL_UP_MOVES; i++)
+        {
+            u16 moveLevel;
 
-    return numMoves;
+            if (learnset[i].move == LEVEL_UP_MOVE_END)
+                break;
+
+            moveLevel = learnset[i].level;
+
+            if (moveLevel <= level)
+            {
+                for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != learnset[i].move; j++)
+                    ;
+
+                if (j == MAX_MON_MOVES)
+                {
+                    for (k = 0; k < numMoves && moves[k] != learnset[i].move; k++)
+                        ;
+
+                    if (k == numMoves)
+                        moves[numMoves++] = learnset[i].move;
+                }
+            }
+        }
+        return numMoves;
+    }
 }
 
 u16 SpeciesToPokedexNum(u16 species)
