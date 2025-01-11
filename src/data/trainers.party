@@ -9559,19 +9559,20 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Check Bad Move
-
-Drake (Treecko) (M)
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+AI: Check Bad Move / HP Aware / Force Setup First Turn
 
 Ariel (Eevee) (F)
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Ability: Anticipation
 - Tackle
 - Growl
 - Helping Hand
 - Tail Whip
+
+Drake (Treecko) (M)
+Level: 5
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_BRENDAN_RUSTBORO_MUDKIP ===
 Name: Brendan
@@ -9582,11 +9583,17 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer / Force Setup First Turn
 
-Wingull
-Level: 13
-
 Ariel (Eevee) (F)
+Ability: Anticipation
 Level: 15
+- Quick Attack
+- Helping Hand
+- Wish
+- Yawn
+
+SPECIES_SHELLOS_WEST (M)
+Level: 13
+Ability: Storm Drain
 
 Drake (Treecko) (M)
 Level: 15
@@ -9600,16 +9607,19 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer
 
-Slugma
+Aegis (Dottler) (F)
 Level: 18
 
-Wingull
+SPECIES_SHELLOS_WEST (M)
 Level: 18
-
-Drake (Grovyle) (M)
-Level: 20
+Ability: Storm Drain
 
 Ariel (Umbreon) (F)
+Ability: Inner Focus
+Level: 20
+- Helping Hand
+
+Drake (Grovyle) (M)
 Level: 20
 
 === TRAINER_BRENDAN_ROUTE_119_MUDKIP ===
@@ -9621,14 +9631,17 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer
 
-Slugma
-Level: 29
+Aegis (Orbeetle) (F)
+Level: 30
 
-Pelipper
-Level: 29
+SPECIES_GASTRODON_WEST (M)
+Level: 30
+Ability: Storm Drain
 
 Ariel (Umbreon) (F)
 Level: 31
+Ability: Inner Focus
+- Helping Hand
 
 Drake (Grovyle) (M)
 Level: 31
@@ -9642,17 +9655,26 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer / Ace Pokemon
 
-Tropius
+Kilowattrel (M)
 Level: 31
+Ability: Wind Power
+- Tailwind
+- Electro Ball
+- Acrobatics
+- Discharge
 
-Slugma
+Aegis (Orbeetle) (F)
 Level: 32
+Ability: Telepathy
 
-Pelipper
+SPECIES_GASTRODON_WEST (M)
 Level: 32
+Ability: Storm Drain
 
 Ariel (Umbreon) (F)
 Level: 34
+Ability: Inner Focus
+- Helping Hand
 
 Drake (Sceptile) (M) @ Sceptilite
 Level: 34
@@ -9664,19 +9686,20 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: Yes    
-AI: Check Bad Move
-
-Sparky (Torchic) (M)
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+AI: Check Bad Move / HP Aware / Force Setup First Turn
 
 Ariel (Eevee) (F)
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Ability: Anticipation
 - Tackle
 - Growl
 - Helping Hand
 - Tail Whip
+
+Sparky (Torchic) (M)
+Level: 5
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_BRENDAN_RUSTBORO_TREECKO ===
 Name: Brendan
@@ -9687,11 +9710,17 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer / Force Setup First Turn
 
-Lotad
-Level: 13
-
 Ariel (Eevee) (F)
 Level: 15
+Ability: Anticipation
+- Quick Attack
+- Helping Hand
+- Wish
+- Yawn
+
+Seedot (F)
+Level: 13
+Ability: Early Bird
 
 Sparky (Torchic) (M)
 Level: 15
@@ -9705,14 +9734,17 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer
 
-Wingull
-Level: 18
-
-Lombre
-Level: 18
-
 Ariel (Glaceon) (F)
 Level: 20
+Ability: Ice Body
+
+SPECIES_SHELLOS_WEST (M)
+Level: 18
+Ability: Storm Drain
+
+Nuzleaf (F)
+Level: 18
+Ability: Early Bird
 
 Sparky (Combusken) (M)
 Level: 20
@@ -9726,16 +9758,19 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer
 
-Pelipper
-Level: 29
+Ariel (Glaceon) (F)
+Level: 31
+Ability: Ice Body
 
-Lombre
+SPECIES_GASTRODON_WEST (M)
+Level: 30
+Ability: Storm Drain
+
+Nuzleaf (F)
 Level: 29
+Ability: Early Bird
 
 Sparky (Combusken) (M)
-Level: 31
-
-Ariel (Glaceon) (F)
 Level: 31
 
 === TRAINER_BRENDAN_LILYCOVE_TREECKO ===
@@ -9747,17 +9782,25 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer / Ace Pokemon
 
-Tropius
+Kilowattrel (M)
 Level: 31
+Ability: Wind Power
+- Tailwind
+- Electro Ball
+- Acrobatics
+- Discharge
 
-Pelipper
+Shiftry (F)
 Level: 32
+Ability: Wind Rider
 
-Ludicolo
-Level: 32
+SPECIES_GASTRODON_WEST (M)
+Level: 30
+Ability: Storm Drain
 
 Ariel (Glaceon) (F)
 Level: 34
+Ability: Ice Body
 
 Sparky (Blaziken) (M) @ ITEM_BLAZIKENITE
 Level: 34
@@ -9769,19 +9812,20 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: Yes    
-AI: Check Bad Move
-
-Perry (Mudkip) (M)
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+AI: Check Bad Move / HP Aware / Force Setup First Turn
 
 Ariel (Eevee) (F)
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Ability: Anticipation
 - Tackle
 - Growl
 - Helping Hand
 - Tail Whip
+
+Perry (Mudkip) (M)
+Level: 5
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_BRENDAN_RUSTBORO_TORCHIC ===
 Name: Brendan
@@ -9792,11 +9836,16 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer / Force Setup First Turn
 
-Slugma
-Level: 13
-
 Ariel (Eevee) (F)
 Level: 15
+Ability: Anticipation
+- Quick Attack
+- Helping Hand
+- Wish
+- Yawn
+
+Aegis (Dottler) (F)
+Level: 13
 
 Perry (Mudkip) (M)
 Level: 15
@@ -9810,16 +9859,18 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer
 
-Lombre
-Level: 18
+Ariel (Espeon) (F)
+Level: 20
+Ability: Magic Bounce
 
-Slugma
+Nuzleaf (F)
+Level: 18
+Ability: Early Bird
+
+Aegis (Dottler) (F)
 Level: 18
 
 Perry (Marshtomp) (M)
-Level: 20
-
-Ariel (Espeon) (F)
 Level: 20
 
 === TRAINER_BRENDAN_ROUTE_119_TORCHIC ===
@@ -9831,14 +9882,16 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer
 
-Lombre
-Level: 29
-
-Slugma
-Level: 29
-
 Ariel (Espeon) (F)
 Level: 31
+Ability: Magic Bounce
+
+Nuzleaf (F)
+Level: 29
+Ability: Early Bird
+
+Aegis (Orbeetle) (F)
+Level: 30
 
 Perry (Marshtomp) (M)
 Level: 31
@@ -9853,17 +9906,24 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer / Ace Pokemon
 
-Tropius
+Kilowattrel (M)
 Level: 31
+Ability: Wind Power
+- Tailwind
+- Electro Ball
+- Acrobatics
+- Discharge
 
-Ludicolo
+Shiftry (F)
 Level: 32
+Ability: Wind Rider
 
-Slugma
-Level: 32
+Aegis (Orbeetle) (F)
+Level: 33
 
 Ariel (Espeon) (F)
 Level: 34
+Ability: Magic Bounce
 
 Perry (Swampert) (M) @ ITEM_SWAMPERTITE
 Level: 34
@@ -9875,19 +9935,20 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: Yes    
-AI: Check Bad Move
-
-Twig (Treecko) (M)
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+AI: Check Bad Move / HP Aware / Force Setup First Turn
 
 Bebe (Eevee) (F)
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Ability: Anticipation
 - Tackle
 - Growl
 - Helping Hand
 - Tail Whip
+
+Twig (Treecko) (M)
+Level: 5
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MAY_RUSTBORO_MUDKIP ===
 Name: May
@@ -9898,11 +9959,17 @@ Music: Female
 Double Battle: Yes
 AI: Basic Trainer / Force Setup First Turn
 
-Wingull
-Level: 13
-
 Bebe (Eevee) (F)
 Level: 15
+Ability: Anticipation
+- Quick Attack
+- Helping Hand
+- Wish
+- Yawn
+
+SPECIES_SHELLOS_EAST (F)
+Level: 13
+Ability: Storm Drain
 
 Twig (Treecko) (M)
 Level: 15
@@ -9916,14 +9983,17 @@ Music: Female
 Double Battle: Yes
 AI: Basic Trainer
 
-Wingull
-Level: 18
-
-Slugma
-Level: 18
-
 Bebe (Umbreon) (F)
 Level: 20
+Ability: Inner Focus
+- Helping Hand
+
+SPECIES_SHELLOS_EAST (F)
+Level: 18
+Ability: Storm Drain
+
+Aegis (Dottler) (F)
+Level: 18
 
 Twig (Grovyle) (M)
 Level: 20
@@ -9937,14 +10007,17 @@ Music: Female
 Double Battle: Yes
 AI: Basic Trainer
 
-Slugma
-Level: 29
-
-Lombre
-Level: 29
-
 Bebe (Umbreon) (F)
 Level: 31
+Ability: Inner Focus
+
+Aegis (Orbeetle) (F)
+Level: 29
+Ability: Telepathy
+
+Nuzleaf (F)
+Level: 29
+Ability: Early Bird
 
 Twig (Grovyle) (M)
 Level: 31
@@ -9958,17 +10031,26 @@ Music: Female
 Double Battle: Yes
 AI: Basic Trainer / Ace Pokemon
 
-Tropius
+Kilowattrel (M)
 Level: 31
+Ability: Wind Power
+- Tailwind
+- Electro Ball
+- Acrobatics
+- Discharge
 
-Slugma
+Aegis (Orbeetle) (F)
 Level: 32
+Ability: Telepathy
 
-Pelipper
+SPECIES_GASTRODON_EAST (F)
 Level: 32
+Ability: Storm Drain
 
 Bebe (Umbreon) (F)
 Level: 34
+Ability: Inner Focus
+- Helping Hand
 
 Twig (Sceptile) (M) @ ITEM_SCEPTILITE
 Level: 34
@@ -9980,19 +10062,20 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: Yes    
-AI: Check Bad Move
-
-Nugget (Torchic) (M)
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+AI: Check Bad Move / HP Aware / Force Setup First Turn
 
 Bebe (Eevee) (F)
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Ability: Anticipation
 - Tackle
 - Growl
 - Helping Hand
 - Tail Whip
+
+Nugget (Torchic) (M)
+Level: 5
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MAY_RUSTBORO_TREECKO ===
 Name: May
@@ -10003,11 +10086,17 @@ Music: Female
 Double Battle: Yes
 AI: Basic Trainer / Force Setup First Turn
 
-Lotad
-Level: 13
-
 Bebe (Eevee) (F)
 Level: 15
+Ability: Anticipation
+- Quick Attack
+- Helping Hand
+- Wish
+- Yawn
+
+Popcorn (Seedot) (F) 
+Level: 13
+Ability: Early Bird
 
 Nugget (Torchic) (M)
 Level: 15
@@ -10021,14 +10110,17 @@ Music: Female
 Double Battle: Yes
 AI: Basic Trainer
 
-Wingull
-Level: 18
-
-Lombre
-Level: 18
-
 Bebe (Glaceon) (F)
+Ability: Ice Body
 Level: 20
+
+SPECIES_SHELLOS_EAST (F)
+Level: 18
+Ability: Storm Drain
+
+Popcorn (Nuzleaf) (F)
+Level: 18
+Ability: Early Bird
 
 Nugget (Combusken) (M)
 Level: 20
@@ -10042,16 +10134,19 @@ Music: Female
 Double Battle: Yes
 AI: Basic Trainer
 
-Pelipper
-Level: 29
+Bebe (Glaceon) (F)
+Level: 31
+Ability: Ice Body
 
-Lombre
+SPECIES_GASTRODON_EAST (F)
+Level: 30
+Ability: Storm Drain
+
+Popcorn (Nuzleaf) (F)
 Level: 29
+Ability: Early Bird
 
 Nugget (Combusken) (M)
-Level: 31
-
-Bebe (Glaceon) (F)
 Level: 31
 
 === TRAINER_MAY_LILYCOVE_TREECKO ===
@@ -10063,17 +10158,25 @@ Music: Female
 Double Battle: Yes
 AI: Basic Trainer / Ace Pokemon
 
-Tropius
+Kilowattrel (M)
 Level: 31
+Ability: Wind Power
+- Tailwind
+- Electro Ball
+- Acrobatics
+- Discharge
 
-Pelipper
+Popcorn (Shiftry) (F)
 Level: 32
+Ability: Wind Rider
 
-Ludicolo
-Level: 32
+SPECIES_GASTRODON_EAST (F)
+Level: 33
+Ability: Storm Drain
 
 Bebe (Glaceon) (F)
 Level: 34
+Ability: Ice Body
 
 Nugget (Blaziken) (M) @ ITEM_BLAZIKENITE
 Level: 34
@@ -10085,19 +10188,20 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: Yes
-AI: Check Bad Move
-
-Kippers (Mudkip) (M)
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+AI: Check Bad Move / HP Aware / Force Setup First Turn
 
 Bebe (Eevee) (F)
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Ability: Anticipation
 - Tackle
 - Growl
 - Helping Hand
 - Tail Whip
+
+Kippers (Mudkip) (M)
+Level: 5
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MAY_RUSTBORO_TORCHIC ===
 Name: May
@@ -10108,11 +10212,16 @@ Music: Female
 Double Battle: Yes
 AI: Basic Trainer / Force Setup First Turn
 
-Torkoal
-Level: 13
-
 Bebe (Eevee) (F)
 Level: 15
+Ability: Anticipation
+- Quick Attack
+- Helping Hand
+- Wish
+- Yawn
+
+Aegis (Dottler) (F)
+Level: 13
 
 Kippers (Mudkip) (M)
 Level: 15
@@ -10126,18 +10235,18 @@ Music: Female
 Double Battle: Yes
 AI: Basic Trainer
 
-Lombre
-Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Bebe (Espeon) (F)
+Level: 20
+Ability: Magic Bounce
 
-Slugma
+Popcorn (Nuzleaf) (F)
 Level: 18
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Ability: Early Bird
+
+Aegis (Dottler) (F)
+Level: 18
 
 Kippers (Marshtomp) (M)
-Level: 20
-
-Bebe (Espeon) (F)
 Level: 20
 
 === TRAINER_MAY_ROUTE_119_TORCHIC ===
@@ -10149,14 +10258,15 @@ Music: Female
 Double Battle: Yes
 AI: Basic Trainer
 
-Lombre
-Level: 29
-
-Slugma
-Level: 29
-
 Bebe (Espeon) (F)
-Level: 20
+Level: 30
+Ability: Magic Bounce
+
+Popcorn (Nuzleaf) (F)
+Level: 29
+
+Aegis (Orbeetle) (F)
+Level: 30
 
 Kippers (Marshtomp) (M)
 Level: 31
@@ -10170,17 +10280,25 @@ Music: Female
 Double Battle: Yes
 AI: Basic Trainer / Ace Pokemon
 
-Tropius
+Kilowattrel (M)
 Level: 31
+Ability: Wind Power
+- Tailwind
+- Electro Ball
+- Acrobatics
+- Discharge
 
-Ludicolo
+Popcorn (Shiftry) (F)
 Level: 32
+Ability: Wind Rider
 
-Slugma
+Aegis (Orbeetle) (F)
 Level: 32
+Ability: Telepathy
 
 Bebe (Espeon) (F)
 Level: 34
+Ability: Magic Bounce
 
 Kippers (Swampert) (M) @ ITEM_SWAMPERTITE
 Level: 34
