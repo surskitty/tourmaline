@@ -46,3 +46,38 @@ script FallarborTown_Mart_EventScript_Skitty {
     release
 }
 
+script FallarborTown_Mart_EventScript_MetronomeTutor {
+	lock
+	faceplayer
+	msgbox(MoveTutor_Text_MetronomeTeach, MSGBOX_YESNO)
+	goto_if_eq(VAR_RESULT, NO, FallarborTown_Mart_EventScript_TutorDeclined)
+	msgbox(FallarborTown_Mart_Text_WhichMon, MSGBOX_DEFAULT)
+	setvar(VAR_0x8005, MOVE_METRONOME)
+	call(MoveTutor_EventScript_OpenPartyMenu)
+	goto_if_eq(VAR_RESULT, 0, FallarborTown_Mart_EventScript_TutorDeclined)
+	goto(MoveTutor_EventScript_MetronomeTaught)
+}
+
+script FallarborTown_Mart_EventScript_TutorDeclined {
+	msgbox(format("Okay. I'll be here if you change your mind."), MSGBOX_DEFAULT)
+	release
+}
+
+script MoveTutor_EventScript_MetronomeTaught {
+	msgbox(format("When a Pokémon waggles its finger like a Metronome, all sorts of nice things happen.\p"
+    "Wouldn't it be nice if we could use it, too?"), MSGBOX_DEFAULT)
+	release
+}
+
+text MoveTutor_Text_MetronomeTeach {
+    format("I want all sorts of things!\n"
+    "But I used up my allowance…\p"
+    "Wouldn't it be nice if there were a spell that made money appear when you waggle a finger?\p"
+    "If you want, I can teach your Pokémon the move Metronome.\p"
+    "Money won't appear, but your Pokémon will waggle a finger. Yes?")
+}
+
+text FallarborTown_Mart_Text_WhichMon {
+    format("Okay! I'll teach it!\n"
+    "Which Pokémon should I teach?")
+}
