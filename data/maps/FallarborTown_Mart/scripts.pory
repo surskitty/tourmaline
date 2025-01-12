@@ -53,7 +53,10 @@ script FallarborTown_Mart_EventScript_MetronomeTutor {
 	goto_if_eq(VAR_RESULT, NO, FallarborTown_Mart_EventScript_TutorDeclined)
 	msgbox(FallarborTown_Mart_Text_WhichMon, MSGBOX_DEFAULT)
 	setvar(VAR_0x8005, MOVE_METRONOME)
-	call(MoveTutor_EventScript_OpenPartyMenu)
+	special(ChooseMonForMoveTutor)
+	waitstate
+	lock
+	faceplayer
 	goto_if_eq(VAR_RESULT, 0, FallarborTown_Mart_EventScript_TutorDeclined)
 	goto(MoveTutor_EventScript_MetronomeTaught)
 }
