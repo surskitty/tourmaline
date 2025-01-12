@@ -86,28 +86,6 @@ MoveTutor_EventScript_MimicTaught::
 	release
 	end
 
-FallarborTown_Mart_EventScript_MetronomeTutor::
-	lock
-	faceplayer
-	msgbox MoveTutor_Text_MetronomeTeach, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, MoveTutor_EventScript_MetronomeDeclined
-	msgbox MoveTutor_Text_MetronomeWhichMon, MSGBOX_DEFAULT
-	setvar VAR_0x8005, MOVE_METRONOME
-	call MoveTutor_EventScript_OpenPartyMenu
-	goto_if_eq VAR_RESULT, 0, MoveTutor_EventScript_MetronomeDeclined
-	goto MoveTutor_EventScript_MetronomeTaught
-	end
-
-MoveTutor_EventScript_MetronomeDeclined::
-	msgbox MoveTutor_Text_MetronomeDeclined, MSGBOX_DEFAULT
-	release
-	end
-
-MoveTutor_EventScript_MetronomeTaught::
-	msgbox MoveTutor_Text_MetronomeTaught, MSGBOX_DEFAULT
-	release
-	end
-
 FortreeCity_House2_EventScript_SleepTalkTutor::
 	lock
 	faceplayer

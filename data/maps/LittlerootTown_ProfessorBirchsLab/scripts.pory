@@ -740,12 +740,9 @@ text LittlerootTown_ProfessorBirchsLab_Text_BirchRivalGoneHome {
 
 text LittlerootTown_ProfessorBirchsLab_Text_HeardYouBeatRivalTakePokedex {
     format("PROF. BIRCH: Oh, hi, {PLAYER}{KUN}!\p"
-    "I heard you beat {RIVAL} on\n"
-    "your first try. That's excellent!\p"
-    "{RIVAL}'s been helping with my research\n"
-    "for a long time.\p"
-    "{RIVAL} has an extensive history as\n"
-    "a TRAINER already.\p"
+    "I heard you beat {RIVAL} on your first try. That's excellent!\p"
+    "{RIVAL}'s been helping with my research for a long time.\p"
+    "{RIVAL} has an extensive history as a Trainer already.\p"
     "Here, {PLAYER}{KUN}, I ordered this for my research, but I think you should have this Pokédex.")
 }
 

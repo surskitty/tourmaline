@@ -81,7 +81,7 @@ script Route103_EventScript_Rival {
                 "…Oh, I see, my dad gave you a Pokémon as a gift.\p"
                 "You should have its friend, too."), MSGBOX_DEFAULT)
         }
-        givemon(SPECIES_EEVEE, 5, item=ITEM_ORAN_BERRY, abilityNum=1, move1=MOVE_COVET, move2=MOVE_HELPING_HAND, move3=MOVE_GROWL, move4=MOVE_TAIL_WHIP)
+        givemon(SPECIES_EEVEE, 5, item=ITEM_ORAN_BERRY, abilityNum=0, move1=MOVE_COVET, move2=MOVE_HELPING_HAND, move3=MOVE_GROWL, move4=MOVE_TAIL_WHIP)
         playfanfare(MUS_OBTAIN_ITEM)
         msgbox("{PLAYER} received Eevee!")
         waitfanfare

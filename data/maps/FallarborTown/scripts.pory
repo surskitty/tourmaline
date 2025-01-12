@@ -81,6 +81,6 @@ script FallarborTown_EventScript_TownSign {
 }
 
 script FallarborTown_EventScript_MoveTutorSign {
-    msgbox("Move Tutor's House\n"
+    msgbox("Egg Move Tutor's House\n"
         "“New moves taught to Pokémon.”$", MSGBOX_SIGN)
 }
