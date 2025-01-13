@@ -1,122 +1,239 @@
-raw `
-SlateportCity_NameRatersHouse_MapScripts::
-    .byte 0
+mapscripts SlateportCity_NameRatersHouse_MapScripts {}
 
-SlateportCity_NameRatersHouse_EventScript_NameRater::
+script SlateportCity_NameRatersHouse_EventScript_NameRater {
     lock
     faceplayer
-    msgbox SlateportCity_NameRatersHouse_Text_PleasedToRateMonNickname, MSGBOX_YESNO
-    goto_if_eq VAR_RESULT, YES, SlateportCity_NameRatersHouse_EventScript_ChooseMonToRate
-    goto_if_eq VAR_RESULT, NO, SlateportCity_NameRatersHouse_EventScript_DeclineNameRate
-    end
+    msgbox(SlateportCity_NameRatersHouse_Text_TutorIntro)
+    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Acid Spray", "Chilling Water", "Draining Kiss", "Electroweb", "Flame Charge", "Icy Wind", "Pounce", "Snarl", "Stored Power", "Struggle Bug", "Trailblaze", "Vacuum Wave", "Triple Axel")
+    switch (var(VAR_RESULT)) {
+    case 0:
+        goto(MoveTutor_EventScript_TeachAcidSpray)
+    case 1:
+        goto(MoveTutor_EventScript_TeachChillingWater)
+    case 2:
+        goto(MoveTutor_EventScript_TeachDrainingKiss)
+    case 3:
+        goto(MoveTutor_EventScript_TeachElectroweb)
+    case 4:
+        goto(MoveTutor_EventScript_TeachFlameCharge)
+    case 5:
+        goto(MoveTutor_EventScript_TeachIcyWind)
+    case 6:
+        goto(MoveTutor_EventScript_TeachPounce)
+    case 7:
+        goto(MoveTutor_EventScript_TeachSnarl)
+    case 8:
+        goto(MoveTutor_EventScript_TeachStoredPower)
+    case 9:
+        goto(MoveTutor_EventScript_TeachStruggleBug)
+    case 10:
+        goto(MoveTutor_EventScript_TeachTrailblaze)
+    case 11:
+        goto(MoveTutor_EventScript_TeachVacuumWave)
+    case 12:
+        goto(MoveTutor_EventScript_TeachTripleAxel)
+    default:
+        goto(SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    }
+}
 
-SlateportCity_NameRatersHouse_EventScript_ChooseMonToRate::
-    msgbox SlateportCity_NameRatersHouse_Text_CritiqueWhichMonNickname, MSGBOX_DEFAULT
-    special ChoosePartyMon
+script MoveTutor_EventScript_TeachAcidSpray {
+    msgbox(format("So I shall be teaching Acid Spray?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_ACID_SPRAY)
+    special(ChooseMonForMoveTutor)
     waitstate
-    goto_if_ne VAR_0x8004, PARTY_NOTHING_CHOSEN, SlateportCity_NameRatersHouse_EventScript_RateMonNickname
-    goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, SlateportCity_NameRatersHouse_EventScript_DeclineNameRate
-    end
-
-SlateportCity_NameRatersHouse_EventScript_DeclineNameRate::
-    msgbox SlateportCity_NameRatersHouse_Text_DoVisitAgain, MSGBOX_DEFAULT
+    lock
+    faceplayer
+    goto_if_eq(VAR_RESULT, 0, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_TutorOutro, MSGBOX_DEFAULT)
     release
-    end
+}
 
-SlateportCity_NameRatersHouse_EventScript_RateMonNickname::
-    specialvar VAR_RESULT, ScriptGetPartyMonSpecies
-    goto_if_eq VAR_RESULT, SPECIES_EGG, SlateportCity_NameRatersHouse_EventScript_CantRateEgg
-    special BufferMonNickname
-    special IsMonOTIDNotPlayers
-    goto_if_eq VAR_RESULT, TRUE, SlateportCity_NameRatersHouse_EventScript_PlayerNotMonsOT
-    specialvar VAR_RESULT, MonOTNameNotPlayer
-    special BufferMonNickname
-    goto_if_eq VAR_RESULT, TRUE, SlateportCity_NameRatersHouse_EventScript_PlayerNotMonsOT
-    msgbox SlateportCity_NameRatersHouse_Text_FineNameSuggestBetterOne, MSGBOX_YESNO
-    goto_if_eq VAR_RESULT, YES, SlateportCity_NameRatersHouse_EventScript_ChangeNickname
-    goto_if_eq VAR_RESULT, NO, SlateportCity_NameRatersHouse_EventScript_DeclineNameRate
-    end
-
-SlateportCity_NameRatersHouse_EventScript_CantRateEgg::
-    msgbox SlateportCity_NameRatersHouse_Text_ThatIsMerelyAnEgg, MSGBOX_DEFAULT
+script MoveTutor_EventScript_TeachChillingWater {
+    msgbox(format("So I shall be teaching Chilling Water?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_CHILLING_WATER)
+    special(ChooseMonForMoveTutor)
+    waitstate
+    lock
+    faceplayer
+    goto_if_eq(VAR_RESULT, 0, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_TutorOutro, MSGBOX_DEFAULT)
     release
-    end
+}
 
-SlateportCity_NameRatersHouse_EventScript_PlayerNotMonsOT::
-    msgbox SlateportCity_NameRatersHouse_Text_MagnificentName, MSGBOX_DEFAULT
+script MoveTutor_EventScript_TeachDrainingKiss {
+    msgbox(format("So I shall be teaching Draining Kiss?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_DRAINING_KISS)
+    special(ChooseMonForMoveTutor)
+    waitstate
+    lock
+    faceplayer
+    goto_if_eq(VAR_RESULT, 0, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_TutorOutro, MSGBOX_DEFAULT)
     release
-    end
+}
 
-SlateportCity_NameRatersHouse_EventScript_ChangeNickname::
-    msgbox SlateportCity_NameRatersHouse_Text_WhatShallNewNameBe, MSGBOX_DEFAULT
-    call Common_EventScript_NameReceivedPartyMon
-    specialvar VAR_RESULT, TryPutNameRaterShowOnTheAir
-    special BufferMonNickname
-    goto_if_eq VAR_RESULT, TRUE, SlateportCity_NameRatersHouse_EventScript_NewNameDifferent
-    msgbox SlateportCity_NameRatersHouse_Text_NameNoDifferentYetSuperior, MSGBOX_DEFAULT
+script MoveTutor_EventScript_TeachElectroweb {
+    msgbox(format("So I shall be teaching Electroweb?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_ELECTROWEB)
+    special(ChooseMonForMoveTutor)
+    waitstate
+    lock
+    faceplayer
+    goto_if_eq(VAR_RESULT, 0, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_TutorOutro, MSGBOX_DEFAULT)
     release
-    end
+}
 
-SlateportCity_NameRatersHouse_EventScript_NewNameDifferent::
-    msgbox SlateportCity_NameRatersHouse_Text_MonShallBeKnownAsName, MSGBOX_DEFAULT
+script MoveTutor_EventScript_TeachFlameCharge {
+    msgbox(format("So I shall be teaching Flame Charge?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_FLAME_CHARGE)
+    special(ChooseMonForMoveTutor)
+    waitstate
+    lock
+    faceplayer
+    goto_if_eq(VAR_RESULT, 0, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_TutorOutro, MSGBOX_DEFAULT)
     release
-    end
-`
-
-text SlateportCity_NameRatersHouse_Text_PleasedToRateMonNickname {
-   format("Hi, hi! I'm the NAME RATER!\n"
-    "I'm the fortune-teller of names!\p"
-    "I shall be pleased to rate your\n"
-    "Pokémon's nickname.")
 }
 
-text SlateportCity_NameRatersHouse_Text_CritiqueWhichMonNickname {
-   format("Which Pokémon's nickname should\n"
-    "I critique?")
+script MoveTutor_EventScript_TeachIcyWind {
+    msgbox(format("So I shall be teaching Icy Wind?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_ICY_WIND)
+    special(ChooseMonForMoveTutor)
+    waitstate
+    lock
+    faceplayer
+    goto_if_eq(VAR_RESULT, 0, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_TutorOutro, MSGBOX_DEFAULT)
+    release
 }
 
-text SlateportCity_NameRatersHouse_Text_FineNameSuggestBetterOne {
-   format("Hmmm… {STR_VAR_1}, is it? That is\n"
-    "quite a fine name you bestowed.\p"
-    "But! What say you, if I were to\n"
-    "suggest a slightly better name?")
+script MoveTutor_EventScript_TeachPounce {
+    msgbox(format("So I shall be teaching Pounce?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_POUNCE)
+    special(ChooseMonForMoveTutor)
+    waitstate
+    lock
+    faceplayer
+    goto_if_eq(VAR_RESULT, 0, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_TutorOutro, MSGBOX_DEFAULT)
+    release
 }
 
-text SlateportCity_NameRatersHouse_Text_WhatShallNewNameBe {
-   format("Ah, good. Then, what shall the new\n"
-    "nickname be?")
+script MoveTutor_EventScript_TeachSnarl {
+    msgbox(format("So I shall be teaching Snarl?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_SNARL)
+    special(ChooseMonForMoveTutor)
+    waitstate
+    lock
+    faceplayer
+    goto_if_eq(VAR_RESULT, 0, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_TutorOutro, MSGBOX_DEFAULT)
+    release
 }
 
-text SlateportCity_NameRatersHouse_Text_MonShallBeKnownAsName {
-   format("Done! From now on, this Pokémon\n"
-    "shall be known as {STR_VAR_1}!\p"
-    "It is a better name than before!\n"
-    "How fortunate for you!")
+script MoveTutor_EventScript_TeachStoredPower {
+    msgbox(format("So I shall be teaching Stored Power?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_STORED_POWER)
+    special(ChooseMonForMoveTutor)
+    waitstate
+    lock
+    faceplayer
+    goto_if_eq(VAR_RESULT, 0, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_TutorOutro, MSGBOX_DEFAULT)
+    release
 }
 
-text SlateportCity_NameRatersHouse_Text_DoVisitAgain {
-   format("I see.\n"
-    "Do come visit again.")
+script MoveTutor_EventScript_TeachStruggleBug {
+    msgbox(format("So I shall be teaching Struggle Bug?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_STRUGGLE_BUG)
+    special(ChooseMonForMoveTutor)
+    waitstate
+    lock
+    faceplayer
+    goto_if_eq(VAR_RESULT, 0, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_TutorOutro, MSGBOX_DEFAULT)
+    release
 }
 
-text SlateportCity_NameRatersHouse_Text_NameNoDifferentYetSuperior {
-   format("Done! From now on, this Pokémon\n"
-    "shall be known as {STR_VAR_1}!\p"
-    "It looks no different from before,\n"
-    "and yet, this is vastly superior!\p"
-    "How fortunate for you!")
+script MoveTutor_EventScript_TeachTrailblaze {
+    msgbox(format("So I shall be teaching Trailblaze?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_TRAILBLAZE)
+    special(ChooseMonForMoveTutor)
+    waitstate
+    lock
+    faceplayer
+    goto_if_eq(VAR_RESULT, 0, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_TutorOutro, MSGBOX_DEFAULT)
+    release
 }
 
-text SlateportCity_NameRatersHouse_Text_MagnificentName {
-   format("Hmmm… {STR_VAR_1} it is!\p"
-    "This is a magnificent nickname!\n"
-    "It is impeccably beyond reproach!\p"
-    "You'll do well to cherish your\n"
-    "{STR_VAR_1} now and beyond.")
+script MoveTutor_EventScript_TeachVacuumWave {
+    msgbox(format("So I shall be teaching Vacuum Wave?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_VACUUM_WAVE)
+    special(ChooseMonForMoveTutor)
+    waitstate
+    lock
+    faceplayer
+    goto_if_eq(VAR_RESULT, 0, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_TutorOutro, MSGBOX_DEFAULT)
+    release
 }
 
-text SlateportCity_NameRatersHouse_Text_ThatIsMerelyAnEgg {
-   format("Now, now.\n"
-    "That is merely an Egg!")
+script MoveTutor_EventScript_TeachTripleAxel {
+    msgbox(format("So I shall be teaching Triple Axel?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_TRIPLE_AXEL)
+    special(ChooseMonForMoveTutor)
+    waitstate
+    lock
+    faceplayer
+    goto_if_eq(VAR_RESULT, 0, SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    msgbox(SlateportCity_NameRatersHouse_Text_TutorOutro, MSGBOX_DEFAULT)
+    release
 }
 
+script SlateportCity_NameRatersHouse_EventScript_TutorDeclined {
+    msgbox(format("Hmph. Come back if you change your mind."), MSGBOX_DEFAULT)
+    release
+}
+
+text SlateportCity_NameRatersHouse_Text_TutorIntro {
+    format("Now that you can nickname Pokémon within the Summary menu, no one wants a Name Rater.\p"
+        "Instead, now I teach splendid combat moves!")
+}
+
+text SlateportCity_NameRatersHouse_Text_TutorOutro {
+    format("Come back any time!")
+}
+
+
+text SlateportCity_NameRatersHouse_Text_WhichMon {
+    format("Which Pokémon should I teach?")
+}
