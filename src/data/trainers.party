@@ -235,6 +235,10 @@ Poochyena
 Level: 9
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
+Lillipup
+Level: 9
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
 === TRAINER_MARCEL ===
 Name: MARCEL
 Class: Cooltrainer
@@ -2114,7 +2118,7 @@ Level: 42
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 === TRAINER_CINDY_1 ===
-Name: CINDY
+Name: Cindy
 Class: Lady
 Pic: Lady
 Gender: Female
@@ -2123,9 +2127,108 @@ Items: Full Restore
 Double Battle: Yes
 AI: Basic Trainer
 
-Zigzagoon @ Nugget
+Angel (Pidove) (M) @ Clear Amulet
 Level: 7
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Ball: Luxury Ball
+
+Pippin (Pidgey) (F) @ Covert Cloak
+Level: 7
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Ball: Luxury Ball
+
+=== TRAINER_CINDY_2 ===
+Name: Cindy
+Class: Lady
+Pic: Lady
+Gender: Female
+Music: Female
+Items: Full Restore
+Double Battle: Yes
+AI: Basic Trainer
+
+Angel (Pidove) (M) @ Clear Amulet
+Level: 12
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Ball: Luxury Ball
+
+Pippin (Pidgey) (F) @ Covert Cloak
+Level: 12
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Ball: Luxury Ball
+
+=== TRAINER_CINDY_3 ===
+Name: Cindy
+Class: Lady
+Pic: Lady
+Gender: Female
+Music: Female
+Items: Full Restore
+Double Battle: Yes
+AI: Basic Trainer
+
+Angel (Tranquill) (M) @ Clear Amulet
+Level: 27
+Ball: Luxury Ball
+
+Pippin (Pidgeotto) (F) @ Covert Cloak
+Level: 27
+Ball: Luxury Ball
+
+=== TRAINER_CINDY_4 ===
+Name: Cindy
+Class: Lady
+Pic: Lady
+Gender: Female
+Music: Female
+Items: Full Restore
+Double Battle: Yes
+AI: Basic Trainer
+
+Angel (Tranquill) (M) @ Clear Amulet
+Level: 32
+Ball: Luxury Ball
+
+Pippin (Pidgeotto) (F) @ Covert Cloak
+Level: 32
+Ball: Luxury Ball
+
+
+=== TRAINER_CINDY_5 ===
+Name: Cindy
+Class: Lady
+Pic: Lady
+Gender: Female
+Music: Female
+Items: Full Restore
+Double Battle: Yes
+AI: Basic Trainer
+
+Angel (Unfezant) (M) @ Clear Amulet
+Level: 36
+Ball: Luxury Ball
+
+Pippin (Pidgeot) (F) @ Covert Cloak
+Level: 36
+Ball: Luxury Ball
+
+=== TRAINER_CINDY_6 ===
+Name: Cindy
+Class: Lady
+Pic: Lady
+Gender: Female
+Music: Female
+Items: Full Restore
+Double Battle: Yes
+AI: Basic Trainer
+
+Angel (Unfezant) (M) @ Clear Amulet
+Level: 40
+Ball: Luxury Ball
+
+Pippin (Pidgeot) (F) @ Pidgeotite
+Level: 40
+Ball: Luxury Ball
 
 === TRAINER_DAPHNE ===
 Name: DAPHNE
@@ -2174,22 +2277,6 @@ Numel
 Level: 30
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_CINDY_2 ===
-Name: CINDY
-Class: Lady
-Pic: Lady
-Gender: Female
-Music: Female
-Items: Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Zigzagoon @ Nugget
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Tackle
-- Tail Whip
-
 === TRAINER_BRIANNA ===
 Name: BRIANNA
 Class: Lady
@@ -2217,66 +2304,6 @@ AI: Basic Trainer
 Roselia @ Nugget
 Level: 45
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-
-=== TRAINER_CINDY_3 ===
-Name: CINDY
-Class: Lady
-Pic: Lady
-Gender: Female
-Music: Female
-Items: Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Linoone @ Nugget
-Level: 27
-IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
-
-=== TRAINER_CINDY_4 ===
-Name: CINDY
-Class: Lady
-Pic: Lady
-Gender: Female
-Music: Female
-Items: Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Linoone @ Nugget
-Level: 30
-IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-
-=== TRAINER_CINDY_5 ===
-Name: CINDY
-Class: Lady
-Pic: Lady
-Gender: Female
-Music: Female
-Items: Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Linoone @ Nugget
-Level: 33
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
-
-=== TRAINER_CINDY_6 ===
-Name: CINDY
-Class: Lady
-Pic: Lady
-Gender: Female
-Music: Female
-Items: Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Linoone @ Nugget
-Level: 36
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
-- Fury Swipes
-- Mud Sport
-- Odor Sleuth
-- Sand Attack
 
 === TRAINER_MELISSA ===
 Name: MELISSA
@@ -2518,7 +2545,7 @@ IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 - Crunch
 
 === TRAINER_WINSTON_1 ===
-Name: WINSTON
+Name: Winston
 Class: Rich Boy
 Pic: Rich Boy
 Gender: Male
@@ -2527,9 +2554,119 @@ Items: Full Restore
 Double Battle: Yes
 AI: Basic Trainer
 
-Zigzagoon @ Nugget
+Queen (Zigzagoon Galar) (F) @ Safety Goggles
 Level: 7
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Ball: Luxury Ball
+
+Freddie (Chatot) (M) @ Throat Spray
+Level: 6
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Ball: Luxury Ball
+- Chatter
+- Confide
+- Taunt
+- Peck
+
+=== TRAINER_WINSTON_2 ===
+Name: Winston
+Class: Rich Boy
+Pic: Rich Boy
+Gender: Male
+Music: Rich
+Items: Full Restore
+Double Battle: Yes
+AI: Basic Trainer
+
+Queen (Linoone Galar) (F) @ Safety Goggles
+Level: 27
+Ball: Luxury Ball
+
+Freddie (Chatot) (M) @ Throat Spray
+Level: 27
+Ball: Luxury Ball
+- Chatter
+- Confide
+- Taunt
+- Hyper Voice
+
+=== TRAINER_WINSTON_3 ===
+Name: Winston
+Class: Rich Boy
+Pic: Rich Boy
+Gender: Male
+Music: Rich
+Items: Full Restore
+Double Battle: Yes
+AI: Basic Trainer
+
+Queen (Linoone Galar) (F) @ Safety Goggles
+Level: 32
+Ball: Luxury Ball
+- Snarl
+- Hone Claws
+- Pin Missile
+- Headbutt
+
+Freddie (Chatot) (M) @ Throat Spray
+Level: 32
+Ball: Luxury Ball
+- Chatter
+- Confide
+- Taunt
+- Hyper Voice
+
+=== TRAINER_WINSTON_4 ===
+Name: Winston
+Class: Rich Boy
+Pic: Rich Boy
+Gender: Male
+Music: Rich
+Items: Full Restore
+Double Battle: Yes
+AI: Basic Trainer
+
+Queen (Obstagoon) (F) @ Safety Goggles
+Level: 37
+Ball: Luxury Ball
+- Night Slash
+- Cross Chop
+- Obstruct
+- Take Down
+
+Freddie (Chatot) (M) @ Throat Spray
+Level: 37
+Ball: Luxury Ball
+- Chatter
+- Confide
+- Taunt
+- Hyper Voice
+
+=== TRAINER_WINSTON_5 ===
+Name: Winston
+Class: Rich Boy
+Pic: Rich Boy
+Gender: Male
+Music: Rich
+Items: Full Restore
+Double Battle: Yes
+AI: Basic Trainer
+
+Queen (Obstagoon) (F) @ Safety Goggles
+Level: 40
+Ball: Luxury Ball
+- Night Slash
+- Cross Chop
+- Obstruct
+- Take Down
+
+Freddie (Chatot) (M) @ Throat Spray
+Level: 40
+Ball: Luxury Ball
+- Chatter
+- Confide
+- Taunt
+- Hyper Voice
 
 === TRAINER_MOLLIE ===
 Name: MOLLIE
@@ -2561,66 +2698,6 @@ AI: Basic Trainer
 Azumarill @ Nugget
 Level: 45
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_WINSTON_2 ===
-Name: WINSTON
-Class: Rich Boy
-Pic: Rich Boy
-Gender: Male
-Music: Rich
-Items: Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Linoone @ Nugget
-Level: 27
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_WINSTON_3 ===
-Name: WINSTON
-Class: Rich Boy
-Pic: Rich Boy
-Gender: Male
-Music: Rich
-Items: Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Linoone @ Nugget
-Level: 30
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_WINSTON_4 ===
-Name: WINSTON
-Class: Rich Boy
-Pic: Rich Boy
-Gender: Male
-Music: Rich
-Items: Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Linoone @ Nugget
-Level: 33
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_WINSTON_5 ===
-Name: WINSTON
-Class: Rich Boy
-Pic: Rich Boy
-Gender: Male
-Music: Rich
-Items: Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Linoone @ Nugget
-Level: 36
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Fury Swipes
-- Mud Sport
-- Odor Sleuth
-- Sand Attack
 
 === TRAINER_STEVE_1 ===
 Name: STEVE
@@ -6891,7 +6968,7 @@ Level: 42
 Ability: Scrappy
 
 === TRAINER_BILLY ===
-Name: BILLY
+Name: Billy
 Class: Youngster
 Pic: Youngster
 Gender: Male
@@ -6899,7 +6976,7 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer
 
-Zigzagoon
+Lotad
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -7186,7 +7263,7 @@ Level: 15
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_IVAN ===
-Name: IVAN
+Name: Ivan
 Class: Fisherman
 Pic: Fisherman
 Gender: Male
@@ -9734,13 +9811,21 @@ Level: 36
 - Helping Hand
 
 === TRAINER_GINA_AND_MIA_1 ===
-Name: GINA & MIA
+Name: Gina & Mia
 Class: Twins
 Pic: Twins
 Gender: Male
 Music: Twins
 Double Battle: Yes
 AI: Basic Trainer
+
+Tympole
+Level: 6
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Sewaddle
+Level: 6
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Seedot
 Level: 6
@@ -12262,7 +12347,7 @@ Level: 4
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_HALEY_1 ===
-Name: HALEY
+Name: Haley
 Class: Lass
 Pic: Lass
 Gender: Female
@@ -12270,13 +12355,115 @@ Music: Female
 Double Battle: Yes
 AI: Basic Trainer
 
-Lotad
+Ruri (Azurill) (F)
 Level: 6
+Ability: Thick Fat
+
+Haz (Lotad) (M)
+Level: 6
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Ability: Own Tempo
+
+Ran (Shellos) (F)
+Level: 6
+Ability: Sand Force
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Shroomish
-Level: 6
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+=== TRAINER_HALEY_2 ===
+Name: Haley
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: Yes
+AI: Basic Trainer
+
+Ruri (Marill) (F)
+Level: 26
+Ability: Thick Fat
+
+Haz (Lombre) (M)
+Level: 26
+Ability: Own Tempo
+
+Ran (Shellos) (F)
+Level: 26
+Ability: Sand Force
+
+=== TRAINER_HALEY_3 ===
+Name: Haley
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: Yes
+AI: Basic Trainer
+
+Ruri (Azumarill) (F)
+Level: 30
+Ability: Thick Fat
+
+Haz (Ludicolo) (M)
+Level: 30
+Ability: Own Tempo
+- Energy Ball
+- Knock Off
+- Mega Drain
+- Teeter Dance
+
+Ran (Gastrodon) (F)
+Level: 30
+Ability: Sand Force
+
+=== TRAINER_HALEY_4 ===
+Name: Haley
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: Yes
+AI: Basic Trainer
+
+Ruri (Azumarill) (F)
+Level: 34
+Ability: Thick Fat
+
+Haz (Ludicolo) (M)
+Level: 34
+Ability: Own Tempo
+- Energy Ball
+- Knock Off
+- Mega Drain
+- Teeter Dance
+
+Ran (Gastrodon) (F)
+Level: 34
+Ability: Sand Force
+
+=== TRAINER_HALEY_5 ===
+Name: Haley
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: Yes
+AI: Basic Trainer
+
+Ruri (Azumarill) (F)
+Level: 40
+Ability: Thick Fat
+
+Haz (Ludicolo) (M)
+Level: 40
+Ability: Own Tempo
+- Energy Ball
+- Knock Off
+- Mega Drain
+- Teeter Dance
+
+Ran (Gastrodon) (F)
+Level: 40
+Ability: Sand Force
 
 === TRAINER_JANICE ===
 Name: JANICE
@@ -12311,78 +12498,6 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 Numel
 Level: 15
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-
-=== TRAINER_HALEY_2 ===
-Name: HALEY
-Class: Lass
-Pic: Lass
-Gender: Female
-Music: Female
-Double Battle: Yes
-AI: Basic Trainer
-
-Lombre
-Level: 26
-IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
-
-Shroomish
-Level: 26
-IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
-
-=== TRAINER_HALEY_3 ===
-Name: HALEY
-Class: Lass
-Pic: Lass
-Gender: Female
-Music: Female
-Double Battle: Yes
-AI: Basic Trainer
-
-Lombre
-Level: 29
-IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-
-Breloom
-Level: 29
-IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-
-=== TRAINER_HALEY_4 ===
-Name: HALEY
-Class: Lass
-Pic: Lass
-Gender: Female
-Music: Female
-Double Battle: Yes
-AI: Basic Trainer
-
-Lombre
-Level: 32
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
-
-Breloom
-Level: 32
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
-
-=== TRAINER_HALEY_5 ===
-Name: HALEY
-Class: Lass
-Pic: Lass
-Gender: Female
-Music: Female
-Double Battle: Yes
-AI: Basic Trainer
-
-Swellow
-Level: 34
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
-
-Lombre
-Level: 34
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
-
-Breloom
-Level: 34
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 === TRAINER_SALLY ===
 Name: SALLY
@@ -12466,7 +12581,7 @@ Level: 4
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_LYLE ===
-Name: LYLE
+Name: Lyle
 Class: Bug Catcher
 Pic: Bug Catcher
 Gender: Male
@@ -12474,21 +12589,17 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer
 
-Wurmple
-Level: 3
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Surskit
+Level: 6
 
 Wurmple
-Level: 3
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 6
 
-Wurmple
-Level: 3
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Blipbug
+Level: 6
 
-Wurmple
-Level: 3
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Sewaddle
+Level: 6
 
 === TRAINER_JOSE ===
 Name: JOSE
@@ -12555,7 +12666,7 @@ Level: 25
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JAMES_1 ===
-Name: JAMES
+Name: James
 Class: Bug Catcher
 Pic: Bug Catcher
 Gender: Male
@@ -12563,16 +12674,24 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer
 
-Nincada
+Wurmy (Wurmple) (M)
 Level: 6
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- String Shot
+- Tackle
+- Poison Sting
+- Electroweb
 
-Nincada
+Nibbles (Nincada) (F)
 Level: 6
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Sand Attack
+- Scratch
+- Harden
+- Mud Slap
 
 === TRAINER_JAMES_2 ===
-Name: JAMES
+Name: James
 Class: Bug Catcher
 Pic: Bug Catcher
 Gender: Male
@@ -12580,12 +12699,29 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer
 
-Ninjask
+Dusty (Dustox) (M)
 Level: 27
-IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
+- Moonlight
+- Venoshock
+- Psybeam
+- Leech Life
+
+Nibbles (Ninjask) (F)
+Level: 27
+- Baton Pass
+- Dig
+- Fury Cutter
+- Aerial Ace
+
+Leftovers (Shedinja)
+Level: 27
+- Confuse Ray
+- Shadow Claw
+- Shadow Sneak
+- Absorb
 
 === TRAINER_JAMES_3 ===
-Name: JAMES
+Name: James
 Class: Bug Catcher
 Pic: Bug Catcher
 Gender: Male
@@ -12593,16 +12729,29 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer
 
-Dustox
-Level: 29
-IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
+Dusty (Dustox) (M)
+Level: 30
+- Moonlight
+- Venoshock
+- Psybeam
+- Leech Life
 
-Ninjask
-Level: 29
-IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
+Nibbles (Ninjask) (F)
+Level: 30
+- Baton Pass
+- Toxic
+- Fury Cutter
+- Aerial Ace
+
+Leftovers (Shedinja)
+Level: 30
+- Confuse Ray
+- Shadow Claw
+- Shadow Sneak
+- Toxic
 
 === TRAINER_JAMES_4 ===
-Name: JAMES
+Name: James
 Class: Bug Catcher
 Pic: Bug Catcher
 Gender: Male
@@ -12610,20 +12759,36 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer
 
-Surskit
-Level: 31
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+Looker (Masquerain) (F)
+Level: 34
+- Soak
+- Air Cutter
+- Water Pulse
+- Mud Shot
 
-Dustox
-Level: 31
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+Nibbles (Ninjask) (F)
+Level: 34
+- Baton Pass
+- Toxic
+- Fury Cutter
+- Aerial Ace
 
-Ninjask
-Level: 31
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+Dusty (Dustox) (M)
+Level: 34
+- Moonlight
+- Venoshock
+- Psybeam
+- Leech Life
+
+Leftovers (Shedinja)
+Level: 34
+- Confuse Ray
+- Shadow Claw
+- Shadow Sneak
+- Toxic
 
 === TRAINER_JAMES_5 ===
-Name: JAMES
+Name: James
 Class: Bug Catcher
 Pic: Bug Catcher
 Gender: Male
@@ -12631,21 +12796,33 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer
 
-Surskit
-Level: 33
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
+Looker (Masquerain) (F)
+Level: 40
+- Soak
+- Air Cutter
+- Water Pulse
+- Mud Shot
 
-Ninjask
-Level: 33
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
+Nibbles (Ninjask) (F)
+Level: 40
+- Baton Pass
+- Toxic
+- Fury Cutter
+- Aerial Ace
 
-Dustox
-Level: 33
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
+Dusty (Dustox) (M)
+Level: 40
+- Moonlight
+- Venoshock
+- Psybeam
+- Leech Life
 
-Ninjask
-Level: 33
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
+Leftovers (Shedinja)
+Level: 40
+- Confuse Ray
+- Shadow Claw
+- Shadow Sneak
+- Toxic
 
 === TRAINER_BRICE ===
 Name: BRICE
@@ -14018,13 +14195,17 @@ Level: 8
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_DARIAN ===
-Name: DARIAN
+Name: Darian
 Class: Fisherman
 Pic: Fisherman
 Gender: Male
 Music: Hiker
 Double Battle: Yes
 AI: Basic Trainer
+
+Chewtle
+Level: 6
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Magikarp
 Level: 9
