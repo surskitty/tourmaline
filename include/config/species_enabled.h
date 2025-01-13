@@ -57,9 +57,9 @@
 #define P_GEN_9_CROSS_EVOS               P_CROSS_GENERATION_EVOS // Clodsire handled by P_PALDEAN_FORMS.
 
 // To disable specific families, replace P_GEN_x_POKEMON with FALSE.
-#define P_FAMILY_BULBASAUR               P_GEN_1_POKEMON
-#define P_FAMILY_CHARMANDER              P_GEN_1_POKEMON
-#define P_FAMILY_SQUIRTLE                P_GEN_1_POKEMON
+#define P_FAMILY_BULBASAUR               FALSE
+#define P_FAMILY_CHARMANDER              FALSE
+#define P_FAMILY_SQUIRTLE                FALSE
 #define P_FAMILY_CATERPIE                P_GEN_1_POKEMON
 #define P_FAMILY_WEEDLE                  P_GEN_1_POKEMON
 #define P_FAMILY_PIDGEY                  P_GEN_1_POKEMON
@@ -132,12 +132,12 @@
 #define P_FAMILY_ZAPDOS                  P_GEN_1_POKEMON
 #define P_FAMILY_MOLTRES                 P_GEN_1_POKEMON
 #define P_FAMILY_DRATINI                 P_GEN_1_POKEMON
-#define P_FAMILY_MEWTWO                  P_GEN_1_POKEMON
+#define P_FAMILY_MEWTWO                  FALSE
 #define P_FAMILY_MEW                     P_GEN_1_POKEMON
 
-#define P_FAMILY_CHIKORITA               P_GEN_2_POKEMON
-#define P_FAMILY_CYNDAQUIL               P_GEN_2_POKEMON
-#define P_FAMILY_TOTODILE                P_GEN_2_POKEMON
+#define P_FAMILY_CHIKORITA               FALSE
+#define P_FAMILY_CYNDAQUIL               FALSE
+#define P_FAMILY_TOTODILE                FALSE
 #define P_FAMILY_SENTRET                 P_GEN_2_POKEMON
 #define P_FAMILY_HOOTHOOT                P_GEN_2_POKEMON
 #define P_FAMILY_LEDYBA                  P_GEN_2_POKEMON
