@@ -1,7 +1,6 @@
-raw `
-LilycoveCity_DepartmentStore_4F_MapScripts::
-	.byte 0
+mapscripts LilycoveCity_DepartmentStore_4F_MapScripts {}
 
+raw `
 LilycoveCity_DepartmentStore_4F_EventScript_Gentleman::
 	msgbox LilycoveCity_DepartmentStore_4F_Text_AttackOrDefenseTM, MSGBOX_NPC
 	end
@@ -24,14 +23,6 @@ LilycoveCity_DepartmentStore_4F_EventScript_ClerkLeft::
 	release
 	end
 
-	.align 2
-LilycoveCity_DepartmentStore_4F_Pokemart_AttackTMs:
-	.2byte ITEM_TM_FIRE_BLAST
-	.2byte ITEM_TM_THUNDER
-	.2byte ITEM_TM_BLIZZARD
-	.2byte ITEM_TM_HYPER_BEAM
-	pokemartlistend
-
 LilycoveCity_DepartmentStore_4F_EventScript_ClerkRight::
 	lock
 	faceplayer
@@ -42,20 +33,12 @@ LilycoveCity_DepartmentStore_4F_EventScript_ClerkRight::
 	release
 	end
 
-	.align 2
-LilycoveCity_DepartmentStore_4F_Pokemart_DefenseTMs:
-	.2byte ITEM_TM_PROTECT
-	.2byte ITEM_TM_SAFEGUARD
-	.2byte ITEM_TM_REFLECT
-	.2byte ITEM_TM_LIGHT_SCREEN
-	pokemartlistend
-
 LilycoveCity_DepartmentStore_4F_Text_AttackOrDefenseTM:
 	.string "Hmm…\p"
 	.string "An attacking move…\n"
 	.string "Or a defensive move…\p"
 	.string "It's no easy matter to decide which TM\n"
-	.string "moves should be taught to POKéMON…$"
+	.string "moves should be taught to Pokémon…$"
 
 LilycoveCity_DepartmentStore_4F_Text_FiftyDifferentTMs:
 	.string "There are so many different kinds of\n"
@@ -65,6 +48,30 @@ LilycoveCity_DepartmentStore_4F_Text_FiftyDifferentTMs:
 
 LilycoveCity_DepartmentStore_4F_Text_PokemonOnlyHaveFourMoves:
 	.string "I'd like to get all the different TMs,\n"
-	.string "but a POKéMON learns only four moves.$"
+	.string "but a Pokémon learns only four moves.$"
 
 `
+
+mart LilycoveCity_DepartmentStore_4F_Pokemart_AttackTMs {
+	ITEM_TM_FIRE_BLAST
+	ITEM_TM_THUNDER
+	ITEM_TM_BLIZZARD
+	ITEM_TM_HYPER_BEAM
+	ITEM_TM_PROTECT
+	ITEM_TM_SAFEGUARD
+	ITEM_TM_REFLECT
+	ITEM_TM_LIGHT_SCREEN
+}	
+
+mart LilycoveCity_DepartmentStore_4F_Pokemart_DefenseTMs {
+    ITEM_FIRE_STONE
+    ITEM_ICE_STONE
+    ITEM_LEAF_STONE
+    ITEM_THUNDER_STONE
+    ITEM_WATER_STONE
+    ITEM_MOON_STONE
+    ITEM_SUN_STONE
+    ITEM_DAWN_STONE
+    ITEM_DUSK_STONE
+    ITEM_LINKING_CORD
+}
