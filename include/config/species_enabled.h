@@ -74,7 +74,7 @@
 #define P_FAMILY_JIGGLYPUFF              P_GEN_1_POKEMON
 #define P_FAMILY_ZUBAT                   P_GEN_1_POKEMON
 #define P_FAMILY_ODDISH                  P_GEN_1_POKEMON
-#define P_FAMILY_PARAS                   P_GEN_1_POKEMON
+#define P_FAMILY_PARAS                   FALSE
 #define P_FAMILY_VENONAT                 P_GEN_1_POKEMON
 #define P_FAMILY_DIGLETT                 P_GEN_1_POKEMON // fiery path ALOLAN FORM
 #define P_FAMILY_MEOWTH                  P_GEN_1_POKEMON

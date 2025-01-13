@@ -237,7 +237,7 @@
               { "min_level": 13, "max_level": 13, "species": "SPECIES_PLUSLE" },
               { "min_level": 13, "max_level": 13, "species": "SPECIES_MINUN" },
               { "min_level": 13, "max_level": 13, "species": "SPECIES_ELECTRIKE" },
-              { "min_level": 13, "max_level": 13, "species": "SPECIES_WINGULL" },
+              { "min_level": 13, "max_level": 13, "species": "SPECIES_CHATOT" },
               { "min_level": 12, "max_level": 12, "species": "SPECIES_TRUBBISH" },
               { "min_level": 12, "max_level": 12, "species": "SPECIES_TRUBBISH" },
               { "min_level": 12, "max_level": 12, "species": "SPECIES_MAGNEMITE" },
@@ -576,12 +576,12 @@
               { "min_level": 5, "max_level": 6, "species": "SPECIES_WURMPLE" },
               { "min_level": 5, "max_level": 6, "species": "SPECIES_SHROOMISH" },
               { "min_level": 5, "max_level": 6, "species": "SPECIES_COTTONEE" },
-              { "min_level": 5, "max_level": 6, "species": "SPECIES_PARAS" },
+              { "min_level": 5, "max_level": 6, "species": "SPECIES_MORELULL" },
               { "min_level": 5, "max_level": 6, "species": "SPECIES_TAILLOW" },
               { "min_level": 5, "max_level": 6, "species": "SPECIES_WURMPLE" },
               { "min_level": 5, "max_level": 6, "species": "SPECIES_CASCOON" },
               { "min_level": 5, "max_level": 6, "species": "SPECIES_SILCOON" },
-              { "min_level": 5, "max_level": 6, "species": "SPECIES_MORELULL" },
+              { "min_level": 5, "max_level": 6, "species": "SPECIES_PHANTUMP" },
               { "min_level": 5, "max_level": 6, "species": "SPECIES_PHANTUMP" },
               { "min_level": 5, "max_level": 6, "species": "SPECIES_SLAKOTH" }
             ]
