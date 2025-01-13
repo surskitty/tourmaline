@@ -95,7 +95,7 @@ Level: 21
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_AQUA_HIDEOUT_1 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt M
 Gender: Male
@@ -108,7 +108,7 @@ Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_AQUA_HIDEOUT_2 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt M
 Gender: Male
@@ -125,7 +125,7 @@ Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_AQUA_HIDEOUT_3 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt M
 Gender: Male
@@ -138,7 +138,7 @@ Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_AQUA_HIDEOUT_4 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt M
 Gender: Male
@@ -151,7 +151,7 @@ Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_SEAFLOOR_CAVERN_1 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt M
 Gender: Male
@@ -164,7 +164,7 @@ Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_SEAFLOOR_CAVERN_2 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt M
 Gender: Male
@@ -177,7 +177,7 @@ Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_SEAFLOOR_CAVERN_3 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt M
 Gender: Male
@@ -223,7 +223,7 @@ Level: 26
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_PETALBURG_WOODS ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt M
 Gender: Male
@@ -292,7 +292,7 @@ Level: 30
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_SEAFLOOR_CAVERN_4 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt F
 Gender: Female
@@ -318,7 +318,7 @@ Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_RUSTURF_TUNNEL ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt M
 Gender: Male
@@ -331,7 +331,7 @@ Level: 11
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_WEATHER_INST_1 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt M
 Gender: Male
@@ -348,7 +348,7 @@ Level: 27
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_WEATHER_INST_2 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt M
 Gender: Male
@@ -365,7 +365,7 @@ Level: 27
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_WEATHER_INST_3 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt M
 Gender: Male
@@ -386,7 +386,7 @@ Level: 26
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MUSEUM_1 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt M
 Gender: Male
@@ -399,7 +399,7 @@ Level: 15
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MUSEUM_2 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt M
 Gender: Male
@@ -416,7 +416,7 @@ Level: 14
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_SPACE_CENTER_1 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -429,7 +429,7 @@ Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MT_PYRE_1 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt M
 Gender: Male
@@ -442,7 +442,7 @@ Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MT_PYRE_2 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt M
 Gender: Male
@@ -455,7 +455,7 @@ Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MT_PYRE_3 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt M
 Gender: Male
@@ -472,7 +472,7 @@ Level: 30
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_WEATHER_INST_4 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt F
 Gender: Female
@@ -485,7 +485,7 @@ Level: 28
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_AQUA_HIDEOUT_5 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt F
 Gender: Female
@@ -498,7 +498,7 @@ Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_AQUA_HIDEOUT_6 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt F
 Gender: Female
@@ -2257,7 +2257,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Water Pulse
 
 === TRAINER_GRUNT_SPACE_CENTER_2 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -2743,7 +2743,7 @@ Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MT_CHIMNEY_1 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt F
 Gender: Female
@@ -3456,7 +3456,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Screech
 
 === TRAINER_GRUNT_AQUA_HIDEOUT_7 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt F
 Gender: Female
@@ -3473,7 +3473,7 @@ Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_AQUA_HIDEOUT_8 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt M
 Gender: Male
@@ -6985,7 +6985,7 @@ Level: 7
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JOSH ===
-Name: JOSH
+Name: Josh
 Class: Youngster
 Pic: Youngster
 Gender: Male
@@ -6996,10 +6996,14 @@ AI: Basic Trainer
 Geodude
 Level: 10
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Tackle
+
+Geodude Alola
+Level: 10
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+
 
 === TRAINER_TOMMY ===
-Name: TOMMY
+Name: Tommy
 Class: Youngster
 Pic: Youngster
 Gender: Male
@@ -7011,7 +7015,7 @@ Geodude
 Level: 8
 IVs: 13 HP / 13 Atk / 13 Def / 13 SpA / 13 SpD / 13 Spe
 
-Geodude
+Chewtle
 Level: 8
 IVs: 14 HP / 14 Atk / 14 Def / 14 SpA / 14 SpD / 14 Spe
 
@@ -11837,7 +11841,7 @@ Level: 21
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_SEAFLOOR_CAVERN_5 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt M
 Gender: Male
@@ -11854,7 +11858,7 @@ Level: 35
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 === TRAINER_GRUNT_UNUSED ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Aqua Grunt F
 Gender: Female
@@ -11871,7 +11875,7 @@ Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MT_PYRE_4 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt F
 Gender: Female
@@ -11888,7 +11892,7 @@ Level: 30
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_JAGGED_PASS ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -11905,7 +11909,7 @@ Level: 22
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 === TRAINER_MARC ===
-Name: MARC
+Name: Marc
 Class: Hiker
 Pic: Hiker
 Gender: Male
@@ -11917,7 +11921,7 @@ Geodude
 Level: 8
 IVs: 14 HP / 14 Atk / 14 Def / 14 SpA / 14 SpD / 14 Spe
 
-Geodude
+Chewtle
 Level: 8
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
@@ -12023,7 +12027,7 @@ Level: 35
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MT_CHIMNEY_2 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -12114,7 +12118,7 @@ Level: 36
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_SPACE_CENTER_3 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt F
 Gender: Female
@@ -12131,7 +12135,7 @@ Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_SPACE_CENTER_4 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -12144,7 +12148,7 @@ Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_SPACE_CENTER_5 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -12157,7 +12161,7 @@ Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_SPACE_CENTER_6 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -12170,7 +12174,7 @@ Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_SPACE_CENTER_7 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -12226,7 +12230,7 @@ Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_WEATHER_INST_5 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Aqua
 Pic: Aqua Grunt F
 Gender: Female
@@ -14499,7 +14503,7 @@ Level: 14
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MAGMA_HIDEOUT_1 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -14512,7 +14516,7 @@ Level: 29
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MAGMA_HIDEOUT_2 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -14525,7 +14529,7 @@ Level: 29
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MAGMA_HIDEOUT_3 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -14538,7 +14542,7 @@ Level: 29
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MAGMA_HIDEOUT_4 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -14555,7 +14559,7 @@ Level: 28
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MAGMA_HIDEOUT_5 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -14572,7 +14576,7 @@ Level: 28
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MAGMA_HIDEOUT_6 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -14585,7 +14589,7 @@ Level: 29
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MAGMA_HIDEOUT_7 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -14598,7 +14602,7 @@ Level: 29
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MAGMA_HIDEOUT_8 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -14611,7 +14615,7 @@ Level: 29
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MAGMA_HIDEOUT_9 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -14624,7 +14628,7 @@ Level: 29
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MAGMA_HIDEOUT_10 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -14637,7 +14641,7 @@ Level: 29
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MAGMA_HIDEOUT_11 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -14650,7 +14654,7 @@ Level: 29
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MAGMA_HIDEOUT_12 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -14663,7 +14667,7 @@ Level: 29
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MAGMA_HIDEOUT_13 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt M
 Gender: Male
@@ -14676,7 +14680,7 @@ Level: 29
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MAGMA_HIDEOUT_14 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt F
 Gender: Female
@@ -14689,7 +14693,7 @@ Level: 29
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MAGMA_HIDEOUT_15 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt F
 Gender: Female
@@ -14702,7 +14706,7 @@ Level: 29
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MAGMA_HIDEOUT_16 ===
-Name: GRUNT
+Name: Grunt
 Class: Team Magma
 Pic: Magma Grunt F
 Gender: Female
