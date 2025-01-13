@@ -2,57 +2,309 @@ raw `
 .set LOCALID_NURSE, 1
 
 MauvilleCity_PokemonCenter_1F_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, MauvilleCity_PokemonCenter_1F_OnTransition
-	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
-	.byte 0
+    map_script MAP_SCRIPT_ON_TRANSITION, MauvilleCity_PokemonCenter_1F_OnTransition
+    map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
+    .byte 0
 
 MauvilleCity_PokemonCenter_1F_OnTransition:
-	setrespawn HEAL_LOCATION_MAUVILLE_CITY
-	call Common_EventScript_UpdateBrineyLocation
-	goto MauvilleCity_PokemonCenter_1F_EventScript_SetMauvilleOldManGfx
-	end
-
-MauvilleCity_PokemonCenter_1F_EventScript_SetMauvilleOldManGfx::
-	special SetMauvilleOldManObjEventGfx
-	end
+    setrespawn HEAL_LOCATION_MAUVILLE_CITY
+    call Common_EventScript_UpdateBrineyLocation
+    end
 
 MauvilleCity_PokemonCenter_1F_EventScript_Nurse::
-	setvar VAR_0x800B, LOCALID_NURSE
-	call Common_EventScript_PkmnCenterNurse
-	waitmessage
-	waitbuttonpress
-	release
-	end
+    setvar VAR_0x800B, LOCALID_NURSE
+    call Common_EventScript_PkmnCenterNurse
+    waitmessage
+    waitbuttonpress
+    release
+    end
 
 MauvilleCity_PokemonCenter_1F_EventScript_Woman1::
-	msgbox MauvilleCity_PokemonCenter_1F_Text_ManOverThereSaysWeirdThings, MSGBOX_NPC
-	end
+    msgbox MauvilleCity_PokemonCenter_1F_Text_ManOverThereSaysWeirdThings, MSGBOX_NPC
+    end
 
 MauvilleCity_PokemonCenter_1F_EventScript_Woman2::
-	msgbox MauvilleCity_PokemonCenter_1F_Text_MyDataUpdatedFromRecordCorner, MSGBOX_NPC
-	end
+    msgbox MauvilleCity_PokemonCenter_1F_Text_MyDataUpdatedFromRecordCorner, MSGBOX_NPC
+    end
 
 MauvilleCity_PokemonCenter_1F_EventScript_Youngster::
-	msgbox MauvilleCity_PokemonCenter_1F_Text_RecordCornerSoundsFun, MSGBOX_NPC
-	end
+    msgbox MauvilleCity_PokemonCenter_1F_Text_RecordCornerSoundsFun, MSGBOX_NPC
+    end
 
 MauvilleCity_PokemonCenter_1F_Text_ManOverThereSaysWeirdThings:
-	.string "That man over there, he says weird\n"
-	.string "things!\p"
-	.string "He's funny in a weird way.\n"
-	.string "I doubt I'll forget about him!$"
+    .string "That man over there, he says weird\n"
+    .string "things!\p"
+    .string "He's funny in a weird way.\n"
+    .string "I doubt I'll forget about him!$"
 
 MauvilleCity_PokemonCenter_1F_Text_MyDataUpdatedFromRecordCorner:
-	.string "When I accessed the RECORD CORNER,\n"
-	.string "the data for what's hot in DEWFORD\l"
-	.string "got updated.\p"
-	.string "Now that bit of data is the same\n"
-	.string "as my friend's!$"
+    .string "When I accessed the RECORD CORNER,\n"
+    .string "the data for what's hot in DEWFORD\l"
+    .string "got updated.\p"
+    .string "Now that bit of data is the same\n"
+    .string "as my friend's!$"
 
 MauvilleCity_PokemonCenter_1F_Text_RecordCornerSoundsFun:
-	.string "A RECORD CORNER opened upstairs in\n"
-	.string "the POKéMON CENTER.\p"
-	.string "I don't know what it's about, but it\n"
-	.string "sounds fun. I'll go check it out!$"
+    .string "A RECORD CORNER opened upstairs in\n"
+    .string "the POKéMON CENTER.\p"
+    .string "I don't know what it's about, but it\n"
+    .string "sounds fun. I'll go check it out!$"
 
 `
+
+script MauvilleCity_PokemonCenter_1F_EventScript_Tutor {
+    lock
+    faceplayer
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_TutorIntro)
+    dynmultichoice(1, 1, TRUE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Terrain Moves", "Weather Moves", "Damaging Moves")
+    switch (var(VAR_RESULT)) {
+    case 0:
+        goto(MoveTutor_EventScript_TerrainMoveMenu)
+    case 1:
+        goto(MoveTutor_EventScript_WeatherMoveMenu)
+    case 2:
+        goto(MoveTutor_EventScript_FieldComboMoveMenu)
+    }
+}
+
+script MoveTutor_EventScript_TerrainMoveMenu {
+    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Electric Terrain", "Grassy Terrain", "Misty Terrain", "Psychic Terrain", "Terrain Pulse")
+    switch (var(VAR_RESULT)) {
+    case 0:
+        goto(MoveTutor_EventScript_TeachElectricTerrain)
+    case 1:
+        goto(MoveTutor_EventScript_TeachGrassyTerrain)
+    case 2:
+        goto(MoveTutor_EventScript_TeachMistyTerrain)
+    case 3:
+        goto(MoveTutor_EventScript_TeachPsychicTerrain)
+    case 4:
+        goto(MoveTutor_EventScript_TeachTerrainPulse)
+    default:
+        goto(MauvilleCity_PokemonCenter_1F_EventScript_TutorDeclined)
+    }
+}
+
+script MoveTutor_EventScript_WeatherMoveMenu {
+    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Rain Dance", "Sandstorm", "Snowscape", "Sunny Day", "Weather Ball")
+    switch (var(VAR_RESULT)) {
+    case 0:
+        goto(MoveTutor_EventScript_TeachRainDance)
+    case 1:
+        goto(MoveTutor_EventScript_TeachSandstorm)
+    case 2:
+        goto(MoveTutor_EventScript_TeachSnowscape)
+    case 3:
+        goto(MoveTutor_EventScript_TeachSunnyDay)
+    case 4:
+        goto(MoveTutor_EventScript_TeachWeatherBall)
+    default:
+        goto(MauvilleCity_PokemonCenter_1F_EventScript_TutorDeclined)
+    }
+}    
+
+script MoveTutor_EventScript_FieldComboMoveMenu {
+    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Nature Power", "Terrain Pulse", "Weather Ball", "Expanding Force", "Floral Healing", "Grassy Glide", "Misty Explosion", "Rising Voltage", "Steel Roller")
+    switch (var(VAR_RESULT)) {
+    case 0:
+        goto(MoveTutor_EventScript_TeachNaturePower)
+    case 1:
+        goto(MoveTutor_EventScript_TeachTerrainPulse)
+    case 2:
+        goto(MoveTutor_EventScript_TeachWeatherBall)
+    case 3:
+        goto(MoveTutor_EventScript_TeachExpandingForce)
+    case 4:
+        goto(MoveTutor_EventScript_TeachFloralHealing)
+    case 5:
+        goto(MoveTutor_EventScript_TeachGrassyGlide)
+    case 6:
+        goto(MoveTutor_EventScript_TeachMistyExplosion)
+    case 7:
+        goto(MoveTutor_EventScript_TeachRisingVoltage)
+    case 8:
+        goto(MoveTutor_EventScript_TeachSteelRoller)
+    default:
+        goto(MauvilleCity_PokemonCenter_1F_EventScript_TutorDeclined)
+    }
+}
+
+script MoveTutor_EventScript_TeachElectricTerrain {
+    msgbox(format("So I shall be teaching Electric Terrain?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, MauvilleCity_PokemonCenter_1F_EventScript_TutorDeclined)
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_ELECTRIC_TERRAIN)
+    special(ChooseMonForMoveTutor)
+    goto(MauvilleCity_PokemonCenter_1F_EventScript_Tutor_Outro)
+}
+
+script MoveTutor_EventScript_TeachGrassyTerrain {
+    msgbox(format("So I shall be teaching Grassy Terrain?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, MauvilleCity_PokemonCenter_1F_EventScript_TutorDeclined)
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_GRASSY_TERRAIN)
+    special(ChooseMonForMoveTutor)
+    goto(MauvilleCity_PokemonCenter_1F_EventScript_Tutor_Outro)
+}
+
+script MoveTutor_EventScript_TeachMistyTerrain {
+    msgbox(format("So I shall be teaching Misty Terrain?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, MauvilleCity_PokemonCenter_1F_EventScript_TutorDeclined)
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_MISTY_TERRAIN)
+    special(ChooseMonForMoveTutor)
+    goto(MauvilleCity_PokemonCenter_1F_EventScript_Tutor_Outro)
+}
+
+script MoveTutor_EventScript_TeachPsychicTerrain {
+    msgbox(format("So I shall be teaching Psychic Terrain?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, MauvilleCity_PokemonCenter_1F_EventScript_TutorDeclined)
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_PSYCHIC_TERRAIN)
+    special(ChooseMonForMoveTutor)
+    goto(MauvilleCity_PokemonCenter_1F_EventScript_Tutor_Outro)
+}
+
+script MoveTutor_EventScript_TeachTerrainPulse {
+    msgbox(format("So I shall be teaching Terrain Pulse?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, MauvilleCity_PokemonCenter_1F_EventScript_TutorDeclined)
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_TERRAIN_PULSE)
+    special(ChooseMonForMoveTutor)
+    goto(MauvilleCity_PokemonCenter_1F_EventScript_Tutor_Outro)
+}
+
+script MoveTutor_EventScript_TeachNaturePower {
+    msgbox(format("So I shall be teaching Nature Power?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, MauvilleCity_PokemonCenter_1F_EventScript_TutorDeclined)
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_NATURE_POWER)
+    special(ChooseMonForMoveTutor)
+    goto(MauvilleCity_PokemonCenter_1F_EventScript_Tutor_Outro)
+}
+
+script MoveTutor_EventScript_TeachRainDance {
+    msgbox(format("So I shall be teaching Rain Dance?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, MauvilleCity_PokemonCenter_1F_EventScript_TutorDeclined)
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_RAIN_DANCE)
+    special(ChooseMonForMoveTutor)
+    goto(MauvilleCity_PokemonCenter_1F_EventScript_Tutor_Outro)
+}
+
+script MoveTutor_EventScript_TeachSandstorm {
+    msgbox(format("So I shall be teaching Sandstorm?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, MauvilleCity_PokemonCenter_1F_EventScript_TutorDeclined)
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_SANDSTORM)
+    special(ChooseMonForMoveTutor)
+    goto(MauvilleCity_PokemonCenter_1F_EventScript_Tutor_Outro)
+}
+
+script MoveTutor_EventScript_TeachSnowscape {
+    msgbox(format("So I shall be teaching Snowscape?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, MauvilleCity_PokemonCenter_1F_EventScript_TutorDeclined)
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_SNOWSCAPE)
+    special(ChooseMonForMoveTutor)
+    goto(MauvilleCity_PokemonCenter_1F_EventScript_Tutor_Outro)
+}
+
+script MoveTutor_EventScript_TeachSunnyDay {
+    msgbox(format("So I shall be teaching Sunny Day?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, MauvilleCity_PokemonCenter_1F_EventScript_TutorDeclined)
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_SUNNY_DAY)
+    special(ChooseMonForMoveTutor)
+    goto(MauvilleCity_PokemonCenter_1F_EventScript_Tutor_Outro)
+}
+
+script MoveTutor_EventScript_TeachWeatherBall {
+    msgbox(format("So I shall be teaching Weather Ball?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, MauvilleCity_PokemonCenter_1F_EventScript_TutorDeclined)
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_WEATHER_BALL)
+    special(ChooseMonForMoveTutor)
+    goto(MauvilleCity_PokemonCenter_1F_EventScript_Tutor_Outro)
+}
+
+script MoveTutor_EventScript_TeachExpandingForce {
+    msgbox(format("So I shall be teaching Expanding Force?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, MauvilleCity_PokemonCenter_1F_EventScript_TutorDeclined)
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_EXPANDING_FORCE)
+    special(ChooseMonForMoveTutor)
+    goto(MauvilleCity_PokemonCenter_1F_EventScript_Tutor_Outro)
+}
+
+script MoveTutor_EventScript_TeachFloralHealing {
+    msgbox(format("So I shall be teaching Floral Healing?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, MauvilleCity_PokemonCenter_1F_EventScript_TutorDeclined)
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_FLORAL_HEALING)
+    special(ChooseMonForMoveTutor)
+    goto(MauvilleCity_PokemonCenter_1F_EventScript_Tutor_Outro)
+}
+
+script MoveTutor_EventScript_TeachGrassyGlide {
+    msgbox(format("So I shall be teaching Grassy Glide?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, MauvilleCity_PokemonCenter_1F_EventScript_TutorDeclined)
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_GRASSY_GLIDE)
+    special(ChooseMonForMoveTutor)
+    goto(MauvilleCity_PokemonCenter_1F_EventScript_Tutor_Outro)
+}
+
+script MoveTutor_EventScript_TeachMistyExplosion {
+    msgbox(format("So I shall be teaching Misty Explosion?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, MauvilleCity_PokemonCenter_1F_EventScript_TutorDeclined)
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_MISTY_EXPLOSION)
+    special(ChooseMonForMoveTutor)
+    goto(MauvilleCity_PokemonCenter_1F_EventScript_Tutor_Outro)
+}
+
+script MoveTutor_EventScript_TeachRisingVoltage {
+    msgbox(format("So I shall be teaching Rising Voltage?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, MauvilleCity_PokemonCenter_1F_EventScript_TutorDeclined)
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_RISING_VOLTAGE)
+    special(ChooseMonForMoveTutor)
+    goto(MauvilleCity_PokemonCenter_1F_EventScript_Tutor_Outro)
+}
+
+script MoveTutor_EventScript_TeachSteelRoller {
+    msgbox(format("So I shall be teaching Steel Roller?"), MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, NO, MauvilleCity_PokemonCenter_1F_EventScript_TutorDeclined)
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_WhichMon, MSGBOX_DEFAULT)
+    setvar(VAR_0x8005, MOVE_STEEL_ROLLER)
+    special(ChooseMonForMoveTutor)
+    goto(MauvilleCity_PokemonCenter_1F_EventScript_Tutor_Outro)
+}
+
+script MauvilleCity_PokemonCenter_1F_EventScript_Tutor_Outro {
+    waitstate
+    lock
+    faceplayer
+    goto_if_eq(VAR_RESULT, 0, MauvilleCity_PokemonCenter_1F_EventScript_TutorDeclined)
+    msgbox(MauvilleCity_PokemonCenter_1F_Text_TutorOutro, MSGBOX_DEFAULT)
+    release
+}
+
+script MauvilleCity_PokemonCenter_1F_EventScript_TutorDeclined {
+    msgbox(format("Come back if you change your mind."), MSGBOX_DEFAULT)
+    release
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_TutorIntro {
+    format("Record mixing? I prefer mixing combat gimmicks.\p"
+        "Do you want to teach a Pokémon a move?")
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_TutorOutro {
+    format("Come back any time!")
+}
+
+text MauvilleCity_PokemonCenter_1F_Text_WhichMon {
+    format("Which Pokémon should I teach?")
+}
