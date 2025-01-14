@@ -5453,7 +5453,7 @@ u8 BattlerHasTraitPlain(u8 battlerId, u16 ability)
 
 void PushTraitStack(u16 ability)
 {
-    for (int i = 0; i < MAX_BATTLERS_COUNT * MAX_MON_TRAITS; i++)
+    for (int i = 0; i < MAX_BATTLERS_COUNT * MAX_MON_TRAITS + 4; i++)
     {
         if (gTraitStack[i] == ABILITY_NONE)
         {
@@ -5467,7 +5467,7 @@ u16 PopTraitStack()
 {
     u16 ability = ABILITY_NONE;
 
-    for (int i = (MAX_BATTLERS_COUNT * MAX_MON_TRAITS) - 1; i >= 0; i--)
+    for (int i = (MAX_BATTLERS_COUNT * MAX_MON_TRAITS + 4) - 1; i >= 0; i--)
     {
         if (gTraitStack[i] != ABILITY_NONE)
         {

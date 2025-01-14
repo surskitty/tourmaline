@@ -1143,11 +1143,13 @@ static bool32 TryAegiFormChange(void)
     case SPECIES_AEGISLASH_SHIELD: // Shield -> Blade
         if (IS_MOVE_STATUS(gCurrentMove))
             return FALSE;
+        PushTraitStack(ABILITY_STANCE_CHANGE);
         gBattleMons[gBattlerAttacker].species = SPECIES_AEGISLASH_BLADE;
         break;
     case SPECIES_AEGISLASH_BLADE: // Blade -> Shield
         if (gCurrentMove != MOVE_KINGS_SHIELD)
             return FALSE;
+        PushTraitStack(ABILITY_STANCE_CHANGE);
         gBattleMons[gBattlerAttacker].species = SPECIES_AEGISLASH_SHIELD;
         break;
     }
@@ -1358,6 +1360,7 @@ static void Cmd_attackcanceler(void)
         }
         else
         {
+            PushTraitStack(ABILITY_MAGIC_BOUNCE);
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_MagicCoatBounce;
         }
@@ -1385,6 +1388,7 @@ static void Cmd_attackcanceler(void)
             gBattleCommunication[MULTISTRING_CHOOSER] = 1;
             // Edge case for bouncing a powder move against a grass type pokemon.
             SetAtkCancellerForCalledMove();
+            PushTraitStack(ABILITY_MAGIC_BOUNCE);
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_MagicCoatBounce;
             gBattlerAbility = battler;
@@ -1605,8 +1609,8 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     gPotentialItemEffectBattler = battlerDef;
     accStage = gBattleMons[battlerAtk].statStages[STAT_ACC];
     evasionStage = gBattleMons[battlerDef].statStages[STAT_EVASION];
-    if (atkAbility == ABILITY_UNAWARE || atkAbility == ABILITY_KEEN_EYE || atkAbility == ABILITY_MINDS_EYE
-            || (B_ILLUMINATE_EFFECT >= GEN_9 && atkAbility == ABILITY_ILLUMINATE))
+    if (BattlerHasTrait(battlerAtk, ABILITY_UNAWARE) || BattlerHasTrait(battlerAtk, ABILITY_KEEN_EYE) || BattlerHasTrait(battlerAtk, ABILITY_MINDS_EYE)
+            || (B_ILLUMINATE_EFFECT >= GEN_9 && BattlerHasTrait(battlerAtk, ABILITY_ILLUMINATE)))
         evasionStage = DEFAULT_STAT_STAGE;
     if (gMovesInfo[move].ignoresTargetDefenseEvasionStages)
         evasionStage = DEFAULT_STAT_STAGE;
@@ -1886,6 +1890,7 @@ static void Cmd_ppreduce(void)
     {
         gBattleStruct->distortedTypeMatchups |= gBitTable[gBattlerTarget];
         gBattlerAbility = gBattlerTarget;
+        PushTraitStack(ABILITY_TERA_SHELL);
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_TeraShellDistortingTypeMatchups;
     }
@@ -2063,6 +2068,7 @@ static void Cmd_adjustdamage(void)
     }
     else if (B_STURDY >= GEN_5 && BattlerHasTrait(gBattlerTarget, ABILITY_STURDY) && BATTLER_MAX_HP(gBattlerTarget))
     {
+        PushTraitStack(ABILITY_STURDY);
         RecordAbilityBattle(gBattlerTarget, ABILITY_STURDY);
         gSpecialStatuses[gBattlerTarget].sturdied = TRUE;
     }
@@ -2107,7 +2113,6 @@ static void Cmd_adjustdamage(void)
     {
         gMoveResultFlags |= MOVE_RESULT_STURDIED;
         gLastUsedAbility = ABILITY_STURDY;
-        gLastUsedBattlerAbility[gBattlerTarget] = ABILITY_STURDY;
     }
     else if (B_AFFECTION_MECHANICS == TRUE && gSpecialStatuses[gBattlerTarget].affectionEndured)
     {
@@ -2527,11 +2532,7 @@ static void Cmd_resultmessage(void)
     CMD_ARGS();
 
     u32 stringId = 0;
-
-    //Move Pop to ability popup for wonderguard and tera shift, only pop when needed.
-    u16 lastAbility = gBattleMons[gBattlerTarget].ability; //PopTraitStack();
-    if (lastAbility == ABILITY_NONE)
-        lastAbility = gBattleMons[gBattlerTarget].ability;
+    u16 lastAbility = ABILITY_NONE;
 
     if (gBattleControllerExecFlags)
         return;
@@ -2543,6 +2544,7 @@ static void Cmd_resultmessage(void)
         gBattleResources->flags->flags[gBattlerTarget] &= ~(RESOURCE_FLAG_ICE_FACE);
         gBattleMons[gBattlerTarget].species = SPECIES_EISCUE_NOICE_FACE;
         gBattleScripting.battler = gBattlerTarget; // For STRINGID_PKMNTRANSFORMED
+        PushTraitStack(ABILITY_ICE_FACE);
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_IceFaceNullsDamage;
         return;
@@ -2551,7 +2553,13 @@ static void Cmd_resultmessage(void)
     if (gMoveResultFlags & MOVE_RESULT_MISSED && (!(gMoveResultFlags & MOVE_RESULT_DOESNT_AFFECT_FOE) || gBattleCommunication[MISS_TYPE] > B_MSG_AVOIDED_ATK))
     {
         if (gBattleCommunication[MISS_TYPE] > B_MSG_AVOIDED_ATK) // Wonder Guard or Levitate - show the ability pop-up
+        {
+            if (BattlerHasTrait(gBattlerTarget, ABILITY_WONDER_GUARD))
+                lastAbility = ABILITY_WONDER_GUARD;
+            else if (BattlerHasTrait(gBattlerTarget, ABILITY_LEVITATE))
+                lastAbility = ABILITY_LEVITATE;
             CreateAbilityPopUp(gBattlerTarget, lastAbility, (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) != 0);
+        }
         stringId = gMissStringIds[gBattleCommunication[MISS_TYPE]];
         gBattleCommunication[MSG_DISPLAY] = 1;
     }
@@ -3480,8 +3488,8 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                         gBattlescriptCurrInstr = BattleScript_NoItemSteal;
 
                         gLastUsedAbility = ABILITY_STICKY_HOLD;
-                        gLastUsedBattlerAbility[gBattlerTarget] = ABILITY_STICKY_HOLD;
-                        RecordAbilityBattle(gBattlerTarget, gLastUsedBattlerAbility[gBattlerTarget]);
+                        PushTraitStack(ABILITY_STICKY_HOLD);
+                        RecordAbilityBattle(gBattlerTarget, ABILITY_STICKY_HOLD);
                     }
                     else
                     {
@@ -3857,6 +3865,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 if (battlerAbility)
                 {
                     gBattlerAbility = battlerAbility - 1;
+                    PushTraitStack(ABILITY_AROMA_VEIL);
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
                     gBattlescriptCurrInstr = BattleScript_AromaVeilProtectsRet;
                 }
@@ -6155,6 +6164,7 @@ static void Cmd_moveend(void)
                 StealTargetItem(gBattlerAttacker, gBattlerTarget);
                 gBattleScripting.battler = gBattlerAbility = gBattlerAttacker;
                 gEffectBattler = gBattlerTarget;
+                PushTraitStack(ABILITY_MAGICIAN);
                 BattleScriptPushCursor();
                 gBattlescriptCurrInstr = BattleScript_MagicianActivates;
                 gSpecialStatuses[gBattlerAttacker].preventLifeOrbDamage = TRUE;
@@ -6327,6 +6337,7 @@ static void Cmd_moveend(void)
                             StealTargetItem(gBattlerTarget, gBattlerAttacker);  // Target takes attacker's item
 
                         gEffectBattler = gBattlerAttacker;
+                        PushTraitStack(ABILITY_PICKPOCKET);
                         BattleScriptPushCursor();
                         gBattlescriptCurrInstr = BattleScript_Pickpocket;   // Includes sticky hold check to print separate string
                         effect = TRUE;
@@ -7350,13 +7361,13 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
         BattleScriptPushCursor();
         // Update ability popups for abilities that react to Sticky Web
         if (BattlerHasTrait(battler, ABILITY_MIRROR_ARMOR))
-            gLastUsedBattlerAbility[battler] = ABILITY_MIRROR_ARMOR;
+            PushTraitStack(ABILITY_MIRROR_ARMOR);
         if (BattlerHasTrait(battler, ABILITY_CLEAR_BODY))
-            gLastUsedBattlerAbility[battler] = ABILITY_CLEAR_BODY;
+            PushTraitStack(ABILITY_CLEAR_BODY);
         if (BattlerHasTrait(battler, ABILITY_FULL_METAL_BODY))
-            gLastUsedBattlerAbility[battler] = ABILITY_FULL_METAL_BODY;
+            PushTraitStack(ABILITY_FULL_METAL_BODY);
         if (BattlerHasTrait(battler, ABILITY_WHITE_SMOKE))
-            gLastUsedBattlerAbility[battler] = ABILITY_WHITE_SMOKE;
+            PushTraitStack(ABILITY_WHITE_SMOKE);
         gBattlescriptCurrInstr = BattleScript_StickyWebOnSwitchIn;
     }
     else if (!(gDisableStructs[battler].steelSurgeDone)
@@ -8795,24 +8806,36 @@ static bool32 TryTidyUpClear(u32 battlerAtk, bool32 clear)
 
 u32 IsFlowerVeilProtected(u32 battler)
 {
-    if (IS_BATTLER_OF_TYPE(battler, TYPE_GRASS))
-        return IsAbilityOnSide(battler, ABILITY_FLOWER_VEIL);
+    if (IS_BATTLER_OF_TYPE(battler, TYPE_GRASS) && IsAbilityOnSide(battler, ABILITY_FLOWER_VEIL))
+    {
+        PushTraitStack(ABILITY_FLOWER_VEIL);
+        return TRUE;
+    }
     else
         return 0;
 }
 
 u32 IsLeafGuardProtected(u32 battler)
 {
-    if (IsBattlerWeatherAffected(battler, B_WEATHER_SUN))
-        return BattlerHasTrait(battler, ABILITY_LEAF_GUARD);
+    if (IsBattlerWeatherAffected(battler, B_WEATHER_SUN) && BattlerHasTrait(battler, ABILITY_LEAF_GUARD))
+    {
+        PushTraitStack(ABILITY_LEAF_GUARD);
+        return TRUE;
+    }
     else
         return 0;
 }
 
 bool32 IsShieldsDownProtected(u32 battler)
 {
-    return (BattlerHasTrait(battler, ABILITY_SHIELDS_DOWN)
-            && GetFormIdFromFormSpeciesId(gBattleMons[battler].species) < GetFormIdFromFormSpeciesId(SPECIES_MINIOR_CORE_RED)); // Minior is not in core form
+    if(BattlerHasTrait(battler, ABILITY_SHIELDS_DOWN)
+     && GetFormIdFromFormSpeciesId(gBattleMons[battler].species) < GetFormIdFromFormSpeciesId(SPECIES_MINIOR_CORE_RED)) // Minior is not in core form
+     {
+        PushTraitStack(ABILITY_SHIELDS_DOWN);
+        return TRUE;
+     }
+     else
+        return 0;
 }
 
 u32 IsAbilityStatusProtected(u32 battler)
@@ -9191,6 +9214,7 @@ static void Cmd_various(void)
                 else
                 {
                     gBattleStruct->friskedAbility = TRUE;
+                    PushTraitStack(ABILITY_FRISK);
                     gBattlescriptCurrInstr = BattleScript_FriskMsgWithPopup;
                 }
                 return;
@@ -9666,7 +9690,7 @@ static void Cmd_various(void)
         u16 battlerAbility = GetBattlerAbility(battler);
 
         if (BattlerHasTrait(battler, ABILITY_AS_ONE_ICE_RIDER))
-            battlerAbility == ABILITY_AS_ONE_ICE_RIDER;
+            battlerAbility == ABILITY_CHILLING_NEIGH;
         if (BattlerHasTrait(battler, ABILITY_CHILLING_NEIGH))
             battlerAbility == ABILITY_CHILLING_NEIGH;
         if (BattlerHasTrait(battler, ABILITY_MOXIE))
@@ -9683,9 +9707,9 @@ static void Cmd_various(void)
             PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_ATK);
             BattleScriptPush(cmd->nextInstr);
             gLastUsedAbility = battlerAbility;
-            gLastUsedBattlerAbility[battler] = battlerAbility;
             if (battlerAbility == ABILITY_AS_ONE_ICE_RIDER)
-                gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = gLastUsedBattlerAbility[battler] = ABILITY_CHILLING_NEIGH;
+                gLastUsedAbility = battlerAbility = ABILITY_CHILLING_NEIGH;
+            PushTraitStack(battlerAbility);
             gBattlescriptCurrInstr = BattleScript_RaiseStatOnFaintingTarget;
             return;
         }
@@ -9711,8 +9735,8 @@ static void Cmd_various(void)
             SET_STATCHANGER(STAT_SPATK, 1, FALSE);
             PREPARE_STAT_BUFFER(gBattleTextBuff1, STAT_SPATK);
             BattleScriptPush(cmd->nextInstr);
-            gLastUsedAbility = battlerAbility;
-            gBattleScripting.abilityPopupOverwrite = gLastUsedAbility = gLastUsedBattlerAbility[battler] = ABILITY_GRIM_NEIGH;
+            gLastUsedAbility = battlerAbility = ABILITY_GRIM_NEIGH;
+            PushTraitStack(battlerAbility);
             gBattlescriptCurrInstr = BattleScript_RaiseStatOnFaintingTarget;
             return;
         }
@@ -9748,6 +9772,7 @@ static void Cmd_various(void)
         {
             SET_STATCHANGER(i, 1, FALSE);
             PREPARE_STAT_BUFFER(gBattleTextBuff1, i);
+            PushTraitStack(ABILITY_BEAST_BOOST);
             BattleScriptPush(cmd->nextInstr);
             gBattlescriptCurrInstr = BattleScript_AttackerAbilityStatRaise;
             return;
@@ -10086,10 +10111,7 @@ static void Cmd_various(void)
     case VARIOUS_ABILITY_POPUP:
     {
         u16 lastAbility = PopTraitStack();
-        if (lastAbility == ABILITY_NONE)
-            lastAbility = gLastUsedBattlerAbility[battler];
-        //if (lastAbility == ABILITY_NONE)
-            //lastAbility = gBattleMons[battler].ability;
+        //gBattleScripting.battler = battler;
 
         VARIOUS_ARGS();
         CreateAbilityPopUp(battler, lastAbility, (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) != 0);
@@ -10681,6 +10703,7 @@ static void Cmd_various(void)
             PREPARE_SPECIES_BUFFER(gBattleTextBuff1, gBattleMons[gBattlerAttacker].species);
             gBattleStruct->changedSpecies[GetBattlerSide(gBattlerAttacker)][gBattlerPartyIndexes[gBattlerAttacker]] = gBattleMons[gBattlerAttacker].species;
             gBattleMons[gBattlerAttacker].species = SPECIES_GRENINJA_ASH;
+            PushTraitStack(ABILITY_BATTLE_BOND);
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_BattleBondActivatesOnMoveEndAttacker;
             return;
@@ -11001,8 +11024,8 @@ static void Cmd_various(void)
                 else if (BattlerHasTrait(battler, ABILITY_WIND_POWER))
                     ability = ABILITY_WIND_POWER;
                 gLastUsedAbility = ability;
-                gLastUsedBattlerAbility[battler] = ability;
-                RecordAbilityBattle(battler, gLastUsedBattlerAbility[battler]);
+                PushTraitStack(ability);
+                RecordAbilityBattle(battler, ability);
                 gBattlerAbility = gBattleScripting.battler = battler;
                 gBattlescriptCurrInstr = cmd->nextInstr;
             }
@@ -11781,6 +11804,7 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
     {
         statValue ^= STAT_BUFF_NEGATIVE;
         gBattleScripting.statChanger ^= STAT_BUFF_NEGATIVE;
+        //PushTraitStack(ABILITY_CONTRARY);
         RecordAbilityBattle(battler, ABILITY_CONTRARY);
         if (flags & STAT_CHANGE_UPDATE_MOVE_EFFECT)
         {
@@ -11855,8 +11879,8 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
                         BattleScriptPush(BS_ptr);
                         gBattlescriptCurrInstr = BattleScript_AbilityNoStatLoss;
                         gLastUsedAbility = battlerAbility;
-                        gLastUsedBattlerAbility[battler] = battlerAbility;
-                        RecordAbilityBattle(battler, gLastUsedBattlerAbility[battler]);
+                        PushTraitStack(battlerAbility);
+                        RecordAbilityBattle(battler, battlerAbility);
                     }
                     gSpecialStatuses[battler].statLowered = TRUE;
                 }
@@ -11907,7 +11931,7 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
                 gBattlerAbility = battler;
                 gBattlescriptCurrInstr = BattleScript_AbilityNoSpecificStatLoss;
                 gLastUsedAbility = battlerAbility;
-                gLastUsedBattlerAbility[battler] = battlerAbility;
+                PushTraitStack(battlerAbility);
                 RecordAbilityBattle(battler, gLastUsedBattlerAbility[battler]);
             }
             return STAT_CHANGE_DIDNT_WORK;
@@ -11917,6 +11941,7 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
             if (flags == STAT_CHANGE_ALLOW_PTR)
             {
                 SET_STATCHANGER(statId, GET_STAT_BUFF_VALUE(statValue) | STAT_BUFF_NEGATIVE, TRUE);
+                PushTraitStack(ABILITY_MIRROR_ARMOR);
                 BattleScriptPush(BS_ptr);
                 gBattleScripting.battler = battler;
                 gBattlerAbility = battler;
@@ -12016,6 +12041,7 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
                 if (BattlerHasTrait(index, ABILITY_OPPORTUNIST)
                  && gProtectStructs[battler].activateOpportunist == 0) // don't activate opportunist on other mon's opportunist raises
                 {
+                    PushTraitStack(ABILITY_OPPORTUNIST);
                     gProtectStructs[index].activateOpportunist = 2;      // set stats to copy
                 }
                 if (GetBattlerHoldEffect(index, TRUE) == HOLD_EFFECT_MIRROR_HERB)
@@ -12518,7 +12544,7 @@ static void Cmd_tryKO(void)
     {
         gMoveResultFlags |= MOVE_RESULT_MISSED;
         gLastUsedAbility = ABILITY_STURDY;
-        gLastUsedBattlerAbility[gBattlerTarget] = ABILITY_STURDY;
+        PushTraitStack(ABILITY_STURDY);
         gBattlescriptCurrInstr = BattleScript_SturdyPreventsOHKO;
         gBattlerAbility = gBattlerTarget;
     }
@@ -12604,9 +12630,10 @@ static void Cmd_tryinfatuating(void)
 
     if (BattlerHasTrait(gBattlerTarget, ABILITY_OBLIVIOUS))
     {
+        PushTraitStack(ABILITY_OBLIVIOUS);
         gBattlescriptCurrInstr = BattleScript_NotAffectedAbilityPopUp;
         gLastUsedAbility = ABILITY_OBLIVIOUS;
-        gLastUsedBattlerAbility[gBattlerTarget] = ABILITY_OBLIVIOUS;
+        PushTraitStack(ABILITY_OBLIVIOUS);
         RecordAbilityBattle(gBattlerTarget, ABILITY_OBLIVIOUS);
     }
     else
@@ -14307,7 +14334,7 @@ static void Cmd_settaunt(void)
     {
         gBattlescriptCurrInstr = BattleScript_NotAffectedAbilityPopUp;
         gLastUsedAbility = ABILITY_OBLIVIOUS;
-        gLastUsedBattlerAbility[gBattlerTarget] = ABILITY_OBLIVIOUS;
+        PushTraitStack(ABILITY_OBLIVIOUS);
         RecordAbilityBattle(gBattlerTarget, ABILITY_OBLIVIOUS);
     }
     else if (gDisableStructs[gBattlerTarget].tauntTimer == 0)
@@ -14406,8 +14433,7 @@ static void Cmd_tryswapitems(void)
         {
             gBattlescriptCurrInstr = BattleScript_StickyHoldActivates;
             gLastUsedAbility = gBattleMons[gBattlerTarget].ability;
-            gLastUsedBattlerAbility[gBattlerTarget] = ABILITY_STICKY_HOLD;
-            RecordAbilityBattle(gBattlerTarget, gLastUsedBattlerAbility[gBattlerTarget]);
+            RecordAbilityBattle(gBattlerTarget, ABILITY_STICKY_HOLD);
         }
         // took a while, but all checks passed and items can be safely swapped
         else
@@ -15081,6 +15107,7 @@ bool32 DoesDisguiseBlockMove(u32 battler, u32 move)
         || !BattlerHasTrait(battler, ABILITY_DISGUISE))
         return FALSE;
     else
+        PushTraitStack(ABILITY_DISGUISE);
         return TRUE;
 }
 
@@ -17275,7 +17302,10 @@ void BS_TryGulpMissile(void)
      && (gCurrentMove == MOVE_DIVE)
      && (BattlerHasTrait(gBattlerAttacker, ABILITY_GULP_MISSILE))
      && TryBattleFormChange(gBattlerAttacker, FORM_CHANGE_BATTLE_HP_PERCENT))
+     {
+        PushTraitStack(ABILITY_GULP_MISSILE);
         gBattlescriptCurrInstr = BattleScript_GulpMissileFormChange;
+     }
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
 }
@@ -17290,6 +17320,7 @@ void BS_TryActivateGulpMissile(void)
         && gBattleMons[gBattlerTarget].species != SPECIES_CRAMORANT
         && BattlerHasTrait(gBattlerTarget, ABILITY_GULP_MISSILE))
     {
+        PushTraitStack(ABILITY_GULP_MISSILE);
         if (!BattlerHasTrait(gBattlerAttacker, ABILITY_MAGIC_GUARD))
         {
             gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker) / 4;
@@ -17440,13 +17471,70 @@ void BS_JumpIfBlockedBySoundproof(void)
     if (gMovesInfo[gCurrentMove].soundMove && BattlerHasTrait(battler, ABILITY_SOUNDPROOF))
     {
         gLastUsedAbility = ABILITY_SOUNDPROOF;
-        gLastUsedBattlerAbility[battler] = ABILITY_SOUNDPROOF;
+        PushTraitStack(ABILITY_SOUNDPROOF);
         gBattlescriptCurrInstr = cmd->jumpInstr;
-        RecordAbilityBattle(battler, gLastUsedBattlerAbility[battler]);
+        RecordAbilityBattle(battler, ABILITY_SOUNDPROOF);
         gBattlerAbility = battler;
     }
     else
     {
         gBattlescriptCurrInstr = cmd->nextInstr;
     }
+}
+
+void BS_PushTraitStack(void)
+{
+    NATIVE_ARGS(u16 ability);
+    PushTraitStack(cmd->ability);
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_PushSleepImmunityTrait(void)
+{
+    NATIVE_ARGS();
+    if (BattlerHasTrait(BS_TARGET, ABILITY_INSOMNIA))
+        PushTraitStack(ABILITY_INSOMNIA);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_VITAL_SPIRIT))
+        PushTraitStack(ABILITY_VITAL_SPIRIT);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_COMATOSE))
+        PushTraitStack(ABILITY_COMATOSE);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_PURIFYING_SALT))
+        PushTraitStack(ABILITY_PURIFYING_SALT);
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_PushPoisonImmunityTrait(void)
+{
+    NATIVE_ARGS();
+    if (BattlerHasTrait(BS_TARGET, ABILITY_COMATOSE))
+        PushTraitStack(ABILITY_COMATOSE);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_PURIFYING_SALT))
+        PushTraitStack(ABILITY_PURIFYING_SALT);
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_PushParalysisImmunityTrait(void)
+{
+    NATIVE_ARGS();
+    if (BattlerHasTrait(BS_TARGET, ABILITY_LIMBER))
+        PushTraitStack(ABILITY_LIMBER);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_COMATOSE))
+        PushTraitStack(ABILITY_COMATOSE);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_PURIFYING_SALT))
+        PushTraitStack(ABILITY_PURIFYING_SALT);
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_PushBurnImmunityTrait(void)
+{
+    NATIVE_ARGS();
+    if (BattlerHasTrait(BS_TARGET, ABILITY_WATER_VEIL))
+        PushTraitStack(ABILITY_WATER_VEIL);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_WATER_BUBBLE))
+        PushTraitStack(ABILITY_WATER_BUBBLE);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_COMATOSE))
+        PushTraitStack(ABILITY_COMATOSE);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_PURIFYING_SALT))
+        PushTraitStack(ABILITY_PURIFYING_SALT);
+    gBattlescriptCurrInstr = cmd->nextInstr;
 }

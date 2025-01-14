@@ -2,6 +2,7 @@
 #include "malloc.h"
 #include "battle.h"
 #include "pokemon.h"
+#include "battle_ai_main.h"
 #include "battle_controllers.h"
 #include "battle_interface.h"
 #include "battle_z_move.h"
@@ -2776,8 +2777,8 @@ void CreateAbilityPopUp(u8 battlerId, u32 ability, bool32 isDoubleBattle)
 
 void UpdateAbilityPopup(u8 battlerId)
 {
-
     u16 lastAbility;
+    
     if (gLastUsedBattlerAbility[battlerId] != 0)
         lastAbility = gLastUsedBattlerAbility[battlerId];
     else

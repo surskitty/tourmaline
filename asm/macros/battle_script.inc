@@ -2516,3 +2516,24 @@
 	printstring STRINGID_EMPTYSTRING3
 	waitmessage 1
 	.endm
+
+	.macro pushtraitstack ability:req
+	callnative BS_PushTraitStack
+	.2byte \ability
+	.endm
+
+	.macro pushsleepimmunitytrait
+	callnative BS_PushSleepImmunityTrait
+	.endm
+
+	.macro pushpoisonimmunitytrait
+	callnative BS_PushPoisonImmunityTrait
+	.endm
+
+	.macro pushparalysisimmunitytrait
+	callnative BS_PushParalysisImmunityTrait
+	.endm
+
+	.macro pushburnimmunitytrait
+	callnative BS_PushBurnImmunityTrait
+	.endm

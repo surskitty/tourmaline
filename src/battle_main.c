@@ -166,7 +166,7 @@ EWRAM_DATA s32 gBideDmg[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u16 gLastUsedItem = 0;
 EWRAM_DATA u16 gLastUsedAbility = 0;
 EWRAM_DATA u16 gLastUsedBattlerAbility[MAX_BATTLERS_COUNT] = {0};
-EWRAM_DATA u16 gTraitStack[MAX_BATTLERS_COUNT * MAX_MON_TRAITS] = {0};
+EWRAM_DATA u16 gTraitStack[MAX_BATTLERS_COUNT * MAX_MON_TRAITS + 4] = {0};
 EWRAM_DATA u8 gBattlerAttacker = 0;
 EWRAM_DATA u8 gBattlerTarget = 0;
 EWRAM_DATA u8 gBattlerFainted = 0;
@@ -5317,10 +5317,10 @@ static void CheckChangingTurnOrderEffects(void)
                 else if (gProtectStructs[battler].quickDraw)
                 {
                     gBattlerAbility = battler;
-                    gLastUsedAbility = gBattleMons[battler].ability;
-                    gLastUsedBattlerAbility[battler] = ABILITY_QUICK_DRAW;
-                    PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedBattlerAbility[battler]);
-                    RecordAbilityBattle(battler, gLastUsedBattlerAbility[battler]);
+                    gLastUsedAbility = ABILITY_QUICK_DRAW;
+                    PushTraitStack(ABILITY_QUICK_DRAW);
+                    PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
+                    RecordAbilityBattle(battler, gLastUsedAbility);
                     BattleScriptExecute(BattleScript_QuickDrawActivation);
                 }
                 return;
