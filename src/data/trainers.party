@@ -6031,7 +6031,7 @@ Level: 33
 - Aerial Ace
 
 === TRAINER_TATE_AND_LIZA_1 ===
-Name: TATE&LIZA
+Name: Tate&Liza
 Class: Leader
 Pic: Leader Tate And Liza
 Gender: Male
@@ -6040,75 +6040,283 @@ Items: Hyper Potion / Hyper Potion / Hyper Potion / Hyper Potion
 Double Battle: Yes
 AI: Smart Trainer
 
-Claydol
+Xatu
 Level: 41
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+Ability: Magic Bounce
+- Tailwind
+- Wish
+- Baton Pass
+- Calm Mind
+
+Farigiraf @ Wiki Berry
+Level: 41
+Ability: Cud Chew
+- Twin Beam
+- Wish
+- Baton Pass
+- Calm Mind
+
+Bruxish @ Assault Vest
+Level: 41
+Ability: Strong Jaw
+Nature: Jolly
+- Psychic Fangs
+- Crunch
+- Poison Fang
+- Ice Fang
+
+Lunatone @ Power Herb
+Level: 42
+Nature: Timid
+- Moonblast
+- Protect
+- Meteor Beam
+- Calm Mind
+
+Solrock @ Sitrus Berry
+Level: 42
+Nature: Jolly
+- Zen Headbutt
+- Earthquake
+- Stone Edge
+- Explosion
+
+Alakazam @ Alakazite
+Level: 41
+Ability: Magic Guard
+- Recover
+- Protect
+- Psyshock
+- Focus Blast
+
+=== TRAINER_TATE_AND_LIZA_2 ===
+Name: Tate&Liza
+Class: Leader
+Pic: Leader Tate And Liza
+Gender: Male
+Music: Female
+Items: Full Restore / Full Restore / Full Restore
+Double Battle: Yes
+AI: Basic Trainer
+
+Slowpoke
+Level: 48
+- Yawn
+- Psychic
+- Calm Mind
+- Protect
+
+Claydol
+Level: 49
 - Earthquake
 - Ancient Power
 - Psychic
 - Light Screen
 
-Xatu
-Level: 41
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+Xatu @ Chesto Berry
+Level: 49
 - Psychic
-- Sunny Day
+- Rest
 - Confuse Ray
 - Calm Mind
 
-Lunatone @ Sitrus Berry
-Level: 42
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Light Screen
+Lunatone @ Chesto Berry
+Level: 50
+- Earthquake
 - Psychic
-- Hypnosis
+- Rest
 - Calm Mind
 
 Solrock @ Sitrus Berry
-Level: 42
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+Level: 50
+- Sunny Day
+- Solar Beam
+- Psychic
+- Flamethrower
+
+=== TRAINER_TATE_AND_LIZA_3 ===
+Name: Tate&Liza
+Class: Leader
+Pic: Leader Tate And Liza
+Gender: Male
+Music: Female
+Items: Full Restore / Full Restore / Full Restore
+Double Battle: Yes
+AI: Basic Trainer
+
+Drowzee
+Level: 53
+- Hypnosis
+- Dream Eater
+- Headbutt
+- Protect
+
+Slowpoke
+Level: 53
+- Yawn
+- Psychic
+- Calm Mind
+- Protect
+
+Claydol
+Level: 54
+- Earthquake
+- Explosion
+- Psychic
+- Light Screen
+
+Xatu @ Chesto Berry
+Level: 54
+- Psychic
+- Rest
+- Confuse Ray
+- Calm Mind
+
+Lunatone @ Chesto Berry
+Level: 55
+- Earthquake
+- Psychic
+- Rest
+- Calm Mind
+
+Solrock @ Sitrus Berry
+Level: 55
+- Sunny Day
+- Solar Beam
+- Psychic
+- Flamethrower
+
+=== TRAINER_TATE_AND_LIZA_4 ===
+Name: Tate&Liza
+Class: Leader
+Pic: Leader Tate And Liza
+Gender: Male
+Music: Female
+Items: Full Restore / Full Restore / Full Restore
+Double Battle: Yes
+AI: Basic Trainer
+
+Hypno
+Level: 58
+- Hypnosis
+- Dream Eater
+- Headbutt
+- Protect
+
+Claydol
+Level: 59
+- Earthquake
+- Explosion
+- Psychic
+- Light Screen
+
+Slowpoke
+Level: 58
+- Yawn
+- Psychic
+- Calm Mind
+- Protect
+
+Xatu @ Chesto Berry
+Level: 59
+- Psychic
+- Rest
+- Confuse Ray
+- Calm Mind
+
+Lunatone @ Chesto Berry
+Level: 60
+- Earthquake
+- Psychic
+- Rest
+- Calm Mind
+
+Solrock @ Sitrus Berry
+Level: 60
+- Sunny Day
+- Solar Beam
+- Psychic
+- Flamethrower
+
+=== TRAINER_TATE_AND_LIZA_5 ===
+Name: Tate&Liza
+Class: Leader
+Pic: Leader Tate And Liza
+Gender: Male
+Music: Female
+Items: Full Restore / Full Restore / Full Restore
+Double Battle: Yes
+AI: Basic Trainer
+
+Hypno
+Level: 63
+- Hypnosis
+- Dream Eater
+- Headbutt
+- Protect
+
+Claydol
+Level: 64
+- Earthquake
+- Explosion
+- Psychic
+- Light Screen
+
+Slowking
+Level: 63
+- Yawn
+- Psychic
+- Calm Mind
+- Protect
+
+Xatu @ Chesto Berry
+Level: 64
+- Psychic
+- Rest
+- Confuse Ray
+- Calm Mind
+
+Lunatone @ Chesto Berry
+Level: 65
+- Earthquake
+- Psychic
+- Rest
+- Calm Mind
+
+Solrock @ Sitrus Berry
+Level: 65
 - Sunny Day
 - Solar Beam
 - Psychic
 - Flamethrower
 
 === TRAINER_JUAN_1 ===
-Name: JUAN
+Name: Juan
 Class: Leader
 Pic: Leader Juan
 Gender: Male
 Music: Male
 Items: Hyper Potion / Hyper Potion
 Double Battle: Yes
-AI: Smart Trainer
+AI: Smart Trainer / Double Ace Pokemon
 
-Luvdisc
-Level: 41
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Water Pulse
-- Attract
-- Sweet Kiss
-- Flail
+Pelipper @ Wacan Berry
+Level: 42
+Ability: Drizzle
+- Hurricane
+- Tailwind
+- Wide Guard
+- Weather Ball
 
 Whiscash
 Level: 41
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Rain Dance
 - Water Pulse
 - Amnesia
 - Earthquake
 
-Sealeo
-Level: 43
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Encore
-- Body Slam
-- Aurora Beam
-- Water Pulse
-
 Crawdaunt
 Level: 43
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Water Pulse
 - Crabhammer
 - Taunt
@@ -6116,11 +6324,25 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
 Kingdra @ Chesto Berry
 Level: 46
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Water Pulse
 - Double Team
 - Ice Beam
 - Rest
+
+Tatsugiri Stretchy
+Level: 46
+- Dragon Pulse
+- Water Pulse
+- Helping Hand
+- Protect
+
+Dondozo @ Chesto Berry
+Level: 46
+Ability: Oblivious
+- Rest
+- Order Up
+- Wave Crash
+- Body Press
 
 === TRAINER_JERRY_1 ===
 Name: JERRY
@@ -7284,7 +7506,7 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Yellow
 
 Wailord
@@ -12067,7 +12289,7 @@ Level: 13
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
 === TRAINER_SYLVIA ===
-Name: SYLVIA
+Name: Sylvia
 Class: Hex Maniac
 Pic: Hex Maniac
 Gender: Female
@@ -12075,12 +12297,14 @@ Music: Suspicious
 Double Battle: Yes
 AI: Basic Trainer
 
-Meditite
-Level: 36
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Medicham
+Level: 40
+
+Gallade
+Level: 40
 
 === TRAINER_LEONARDO ===
-Name: LEONARDO
+Name: Leonardo
 Class: Swimmer M
 Pic: Swimmer M
 Gender: Male
@@ -12092,8 +12316,12 @@ Carvanha
 Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
+Carvanha
+Level: 34
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
 === TRAINER_ATHENA ===
-Name: ATHENA
+Name: Athena
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Female
@@ -12104,16 +12332,18 @@ AI: Basic Trainer
 
 Manectric
 Level: 32
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Thunder
+Ability: Lightning Rod
+- Discharge
 - Thunder Wave
 - Quick Attack
+- Protect
 
-Linoone
+Linoone @ Figy Berry
 Level: 32
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Ability: Gluttony
 - Surf
-- Thief
+- Extreme Speed
+- Dig
 
 === TRAINER_HARRISON ===
 Name: HARRISON
@@ -15657,209 +15887,8 @@ Level: 60
 - Dragon Dance
 - Earthquake
 
-=== TRAINER_TATE_AND_LIZA_2 ===
-Name: TATE&LIZA
-Class: Leader
-Pic: Leader Tate And Liza
-Gender: Male
-Music: Female
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Slowpoke
-Level: 48
-- Yawn
-- Psychic
-- Calm Mind
-- Protect
-
-Claydol
-Level: 49
-- Earthquake
-- Ancient Power
-- Psychic
-- Light Screen
-
-Xatu @ Chesto Berry
-Level: 49
-- Psychic
-- Rest
-- Confuse Ray
-- Calm Mind
-
-Lunatone @ Chesto Berry
-Level: 50
-- Earthquake
-- Psychic
-- Rest
-- Calm Mind
-
-Solrock @ Sitrus Berry
-Level: 50
-- Sunny Day
-- Solar Beam
-- Psychic
-- Flamethrower
-
-=== TRAINER_TATE_AND_LIZA_3 ===
-Name: TATE&LIZA
-Class: Leader
-Pic: Leader Tate And Liza
-Gender: Male
-Music: Female
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Drowzee
-Level: 53
-- Hypnosis
-- Dream Eater
-- Headbutt
-- Protect
-
-Slowpoke
-Level: 53
-- Yawn
-- Psychic
-- Calm Mind
-- Protect
-
-Claydol
-Level: 54
-- Earthquake
-- Explosion
-- Psychic
-- Light Screen
-
-Xatu @ Chesto Berry
-Level: 54
-- Psychic
-- Rest
-- Confuse Ray
-- Calm Mind
-
-Lunatone @ Chesto Berry
-Level: 55
-- Earthquake
-- Psychic
-- Rest
-- Calm Mind
-
-Solrock @ Sitrus Berry
-Level: 55
-- Sunny Day
-- Solar Beam
-- Psychic
-- Flamethrower
-
-=== TRAINER_TATE_AND_LIZA_4 ===
-Name: TATE&LIZA
-Class: Leader
-Pic: Leader Tate And Liza
-Gender: Male
-Music: Female
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Hypno
-Level: 58
-- Hypnosis
-- Dream Eater
-- Headbutt
-- Protect
-
-Claydol
-Level: 59
-- Earthquake
-- Explosion
-- Psychic
-- Light Screen
-
-Slowpoke
-Level: 58
-- Yawn
-- Psychic
-- Calm Mind
-- Protect
-
-Xatu @ Chesto Berry
-Level: 59
-- Psychic
-- Rest
-- Confuse Ray
-- Calm Mind
-
-Lunatone @ Chesto Berry
-Level: 60
-- Earthquake
-- Psychic
-- Rest
-- Calm Mind
-
-Solrock @ Sitrus Berry
-Level: 60
-- Sunny Day
-- Solar Beam
-- Psychic
-- Flamethrower
-
-=== TRAINER_TATE_AND_LIZA_5 ===
-Name: TATE&LIZA
-Class: Leader
-Pic: Leader Tate And Liza
-Gender: Male
-Music: Female
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Hypno
-Level: 63
-- Hypnosis
-- Dream Eater
-- Headbutt
-- Protect
-
-Claydol
-Level: 64
-- Earthquake
-- Explosion
-- Psychic
-- Light Screen
-
-Slowking
-Level: 63
-- Yawn
-- Psychic
-- Calm Mind
-- Protect
-
-Xatu @ Chesto Berry
-Level: 64
-- Psychic
-- Rest
-- Confuse Ray
-- Calm Mind
-
-Lunatone @ Chesto Berry
-Level: 65
-- Earthquake
-- Psychic
-- Rest
-- Calm Mind
-
-Solrock @ Sitrus Berry
-Level: 65
-- Sunny Day
-- Solar Beam
-- Psychic
-- Flamethrower
-
 === TRAINER_JUAN_2 ===
-Name: JUAN
+Name: Juan
 Class: Leader
 Pic: Leader Juan
 Gender: Male
@@ -15904,7 +15933,7 @@ Level: 51
 - Rest
 
 === TRAINER_JUAN_3 ===
-Name: JUAN
+Name: Juan
 Class: Leader
 Pic: Leader Juan
 Gender: Male
@@ -15949,7 +15978,7 @@ Level: 56
 - Rest
 
 === TRAINER_JUAN_4 ===
-Name: JUAN
+Name: Juan
 Class: Leader
 Pic: Leader Juan
 Gender: Male
@@ -16001,7 +16030,7 @@ Level: 61
 - Rest
 
 === TRAINER_JUAN_5 ===
-Name: JUAN
+Name: Juan
 Class: Leader
 Pic: Leader Juan
 Gender: Male

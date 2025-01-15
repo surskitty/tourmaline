@@ -451,6 +451,8 @@ static const u16 sHoennToNationalOrder[HOENN_DEX_COUNT - 1] =
     HOENN_TO_NATIONAL(GARGANACL),
     HOENN_TO_NATIONAL(CLOBBOPUS),
     HOENN_TO_NATIONAL(GRAPPLOCT),
+    HOENN_TO_NATIONAL(TATSUGIRI),
+    HOENN_TO_NATIONAL(DONDOZO),
 };
 
 const struct SpindaSpot gSpindaSpotGraphics[] =
