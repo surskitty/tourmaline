@@ -1,66 +1,89 @@
+mapscripts LavaridgeTown_HerbShop_MapScripts {}
+
+mart LavaridgeTown_HerbShop_Pokemart {
+    ITEM_ENERGY_POWDER
+    ITEM_ENERGY_ROOT
+    ITEM_HEAL_POWDER
+    ITEM_REVIVAL_HERB
+    ITEM_ABSORB_BULB
+    ITEM_LUMINOUS_MOSS
+    ITEM_MIRROR_HERB
+    ITEM_WHITE_HERB
+    ITEM_LONELY_MINT
+    ITEM_BRAVE_MINT
+    ITEM_ADAMANT_MINT
+    ITEM_NAUGHTY_MINT
+    ITEM_BOLD_MINT
+    ITEM_RELAXED_MINT
+    ITEM_IMPISH_MINT
+    ITEM_LAX_MINT
+    ITEM_TIMID_MINT
+    ITEM_HASTY_MINT
+    ITEM_JOLLY_MINT
+    ITEM_NAIVE_MINT
+    ITEM_MODEST_MINT
+    ITEM_MILD_MINT
+    ITEM_QUIET_MINT
+    ITEM_RASH_MINT
+    ITEM_CALM_MINT
+    ITEM_GENTLE_MINT
+    ITEM_SASSY_MINT
+    ITEM_CAREFUL_MINT
+}
+
 raw `
-LavaridgeTown_HerbShop_MapScripts::
-	.byte 0
 
 LavaridgeTown_HerbShop_EventScript_Clerk::
-	lock
-	faceplayer
-	message LavaridgeTown_HerbShop_Text_WelcomeToHerbShop
-	waitmessage
-	pokemart LavaridgeTown_HerbShop_Pokemart
-	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
-	release
-	end
-
-	.align 2
-LavaridgeTown_HerbShop_Pokemart:
-	.2byte ITEM_ENERGY_POWDER
-	.2byte ITEM_ENERGY_ROOT
-	.2byte ITEM_HEAL_POWDER
-	.2byte ITEM_REVIVAL_HERB
-	pokemartlistend
+    lock
+    faceplayer
+    message LavaridgeTown_HerbShop_Text_WelcomeToHerbShop
+    waitmessage
+    pokemart LavaridgeTown_HerbShop_Pokemart
+    msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+    release
+    end
 
 LavaridgeTown_HerbShop_EventScript_ExpertM::
-	msgbox LavaridgeTown_HerbShop_Text_HerbalMedicineWorksButMonWillDislike, MSGBOX_NPC
-	end
+    msgbox LavaridgeTown_HerbShop_Text_HerbalMedicineWorksButMonWillDislike, MSGBOX_NPC
+    end
 
 LavaridgeTown_HerbShop_EventScript_OldMan::
-	lock
-	faceplayer
-	goto_if_set FLAG_RECEIVED_CHARCOAL, LavaridgeTown_HerbShop_EventScript_ExplainCharcoal
-	msgbox LavaridgeTown_HerbShop_Text_YouveComeToLookAtHerbalMedicine, MSGBOX_DEFAULT
-	giveitem ITEM_CHARCOAL
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_CHARCOAL
-	release
-	end
+    lock
+    faceplayer
+    goto_if_set FLAG_RECEIVED_CHARCOAL, LavaridgeTown_HerbShop_EventScript_ExplainCharcoal
+    msgbox LavaridgeTown_HerbShop_Text_YouveComeToLookAtHerbalMedicine, MSGBOX_DEFAULT
+    giveitem ITEM_CHARCOAL
+    goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+    setflag FLAG_RECEIVED_CHARCOAL
+    release
+    end
 
 LavaridgeTown_HerbShop_EventScript_ExplainCharcoal::
-	msgbox LavaridgeTown_HerbShop_Text_ExplainCharcoal, MSGBOX_DEFAULT
-	release
-	end
+    msgbox LavaridgeTown_HerbShop_Text_ExplainCharcoal, MSGBOX_DEFAULT
+    release
+    end
 
 LavaridgeTown_HerbShop_Text_WelcomeToHerbShop:
-	.string "Welcome to the HERB SHOP, home of\n"
-	.string "effective and inexpensive medicine!$"
+    .string "Welcome to the HERB SHOP, home of\n"
+    .string "effective and inexpensive medicine!$"
 
 LavaridgeTown_HerbShop_Text_YouveComeToLookAtHerbalMedicine:
-	.string "You've come to look at herbal medicine\n"
-	.string "in LAVARIDGE?\p"
-	.string "That's rather commendable.\p"
-	.string "I like you! Take this!$"
+    .string "You've come to look at herbal medicine\n"
+    .string "in LAVARIDGE?\p"
+    .string "That's rather commendable.\p"
+    .string "I like you! Take this!$"
 
 LavaridgeTown_HerbShop_Text_ExplainCharcoal:
-	.string "That CHARCOAL I gave you, it's used\n"
-	.string "for making herbal medicine.\p"
-	.string "It also does wonders when held by\n"
-	.string "a POKéMON.\p"
-	.string "It intensifies the power of FIRE-type\n"
-	.string "moves.$"
+    .string "That CHARCOAL I gave you, it's used\n"
+    .string "for making herbal medicine.\p"
+    .string "It also does wonders when held by\n"
+    .string "a POKéMON.\p"
+    .string "It intensifies the power of FIRE-type\n"
+    .string "moves.$"
 
 LavaridgeTown_HerbShop_Text_HerbalMedicineWorksButMonWillDislike:
-	.string "Herbal medicine works impressively well.\n"
-	.string "But your POKéMON will dislike you for it.\l"
-	.string "It must be horribly bitter!$"
+    .string "Herbal medicine works impressively well.\n"
+    .string "But your POKéMON will dislike you for it.\l"
+    .string "It must be horribly bitter!$"
 
 `
