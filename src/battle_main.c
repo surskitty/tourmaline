@@ -166,7 +166,7 @@ EWRAM_DATA s32 gBideDmg[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u16 gLastUsedItem = 0;
 EWRAM_DATA u16 gLastUsedAbility = 0;
 EWRAM_DATA u16 gLastUsedBattlerAbility[MAX_BATTLERS_COUNT] = {0};
-EWRAM_DATA u16 gTraitStack[MAX_BATTLERS_COUNT * MAX_MON_TRAITS + 4] = {0};
+EWRAM_DATA u16 gTraitStack[MAX_BATTLERS_COUNT * MAX_MON_TRAITS][2] = {0};
 EWRAM_DATA u8 gBattlerAttacker = 0;
 EWRAM_DATA u8 gBattlerTarget = 0;
 EWRAM_DATA u8 gBattlerFainted = 0;
@@ -3980,6 +3980,8 @@ static void HandleEndTurn_ContinueBattle(void)
         gBattleStruct->wishPerishSongBattlerId = 0;
         gBattleStruct->turnCountersTracker = 0;
         gMoveResultFlags = 0;
+        while(PullTraitStackAbility() != ABILITY_NONE) //Clear trait stack
+            PopTraitStack();
     }
 }
 
@@ -5318,7 +5320,7 @@ static void CheckChangingTurnOrderEffects(void)
                 {
                     gBattlerAbility = battler;
                     gLastUsedAbility = ABILITY_QUICK_DRAW;
-                    PushTraitStack(ABILITY_QUICK_DRAW);
+                    PushTraitStack(battler, ABILITY_QUICK_DRAW);
                     PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
                     RecordAbilityBattle(battler, gLastUsedAbility);
                     BattleScriptExecute(BattleScript_QuickDrawActivation);

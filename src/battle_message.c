@@ -3443,28 +3443,16 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 toCpy = gAbilitiesInfo[gLastUsedAbility].name;
                 break;
             case B_TXT_ATK_ABILITY: // attacker ability
-              //  if (gLastUsedBattlerAbility[gBattlerAttacker] != ABILITY_NONE)
-              //      toCpy = gAbilitiesInfo[gLastUsedBattlerAbility[gBattlerAttacker]].name;
-              //  else
-                    toCpy = gAbilitiesInfo[sBattlerAbilities[gBattlerAttacker]].name;
+                toCpy = gAbilitiesInfo[sBattlerAbilities[gBattlerAttacker]].name;
                 break;
             case B_TXT_DEF_ABILITY: // target ability
-              //  if (gLastUsedBattlerAbility[gBattlerTarget] != ABILITY_NONE)
-              //      toCpy = gAbilitiesInfo[gLastUsedBattlerAbility[gBattlerTarget]].name;
-              //  else
-                    toCpy = gAbilitiesInfo[sBattlerAbilities[gBattlerTarget]].name;
+                toCpy = gAbilitiesInfo[sBattlerAbilities[gBattlerTarget]].name;
                 break;
             case B_TXT_SCR_ACTIVE_ABILITY: // scripting active ability
-              //  if (gLastUsedBattlerAbility[gBattleScripting.battler] != ABILITY_NONE)
-              //      toCpy = gAbilitiesInfo[gLastUsedBattlerAbility[gBattleScripting.battler]].name;
-              //  else
-                    toCpy = gAbilitiesInfo[sBattlerAbilities[gBattleScripting.battler]].name;
+                toCpy = gAbilitiesInfo[sBattlerAbilities[gBattleScripting.battler]].name;
                 break;
             case B_TXT_EFF_ABILITY: // effect battler ability
-              //  if (gLastUsedBattlerAbility[gEffectBattler] != ABILITY_NONE)
-              //      toCpy = gAbilitiesInfo[gLastUsedBattlerAbility[gEffectBattler]].name;
-              //  else
-                    toCpy = gAbilitiesInfo[sBattlerAbilities[gEffectBattler]].name;
+                toCpy = gAbilitiesInfo[sBattlerAbilities[gEffectBattler]].name;
                 break;
             case B_TXT_TRAINER1_CLASS: // trainer class name
                 toCpy = BattleStringGetOpponentClassByTrainerId(gTrainerBattleOpponent_A);

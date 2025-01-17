@@ -2517,8 +2517,9 @@
 	waitmessage 1
 	.endm
 
-	.macro pushtraitstack ability:req
+	.macro pushtraitstack battler:req, ability:req
 	callnative BS_PushTraitStack
+	.byte \battler
 	.2byte \ability
 	.endm
 

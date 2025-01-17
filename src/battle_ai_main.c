@@ -5451,30 +5451,63 @@ u8 BattlerHasTraitPlain(u8 battlerId, u16 ability)
     return traitNum;
 }
 
-void PushTraitStack(u16 ability)
+void PushTraitStack(u8 battlerId, u16 ability)
 {
-    for (int i = 0; i < MAX_BATTLERS_COUNT * MAX_MON_TRAITS + 4; i++)
+    for (int i = 0; i < (MAX_BATTLERS_COUNT * MAX_MON_TRAITS); i++)
     {
-        if (gTraitStack[i] == ABILITY_NONE)
+        if (gTraitStack[i][1] == ABILITY_NONE)
         {
-            gTraitStack[i] = ability;
+            gTraitStack[i][0] = battlerId;
+            gTraitStack[i][1] = ability;
             break;
         }
     }
 }
 
-u16 PopTraitStack()
+u8 PullTraitStackBattler()
+{
+    u8 battlerId = 0;
+
+    for (int i = 0; i < (MAX_BATTLERS_COUNT * MAX_MON_TRAITS); i++)
+    {
+        if (gTraitStack[i][1] == ABILITY_NONE)
+        {
+            battlerId = gTraitStack[i-1][0];
+            break;
+        }
+    }
+    return battlerId;
+}
+
+u16 PullTraitStackAbility()
 {
     u16 ability = ABILITY_NONE;
 
-    for (int i = (MAX_BATTLERS_COUNT * MAX_MON_TRAITS + 4) - 1; i >= 0; i--)
+    for (int i = 0; i < (MAX_BATTLERS_COUNT * MAX_MON_TRAITS); i++)
     {
-        if (gTraitStack[i] != ABILITY_NONE)
+        if (gTraitStack[i][1] == ABILITY_NONE)
         {
-            ability = gTraitStack[i];
-            gTraitStack[i] = ABILITY_NONE;
+            if (i == 0)
+                break; //Do nothing if first slot is already empty
+            ability = gTraitStack[i-1][1]; //Return the ability in the slot before the most recent empty slot
             break;
         }
     }
     return ability;
+}
+// Clears the latest ability popup slot.  Searches from the bottom to the top since the stack should generally be small.
+void PopTraitStack()
+{
+    u16 ability = ABILITY_NONE;
+
+    for (int i =0; i < (MAX_BATTLERS_COUNT * MAX_MON_TRAITS); i++)
+    {
+        if (gTraitStack[i][1] == ABILITY_NONE)
+        {
+            if (i == 0)
+                break; //Do nothing if first slot is already empty
+            gTraitStack[i-1][0] = gTraitStack[i-1][1] = 0; //Clear the slot
+            break;
+        }
+    }
 }

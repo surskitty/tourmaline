@@ -2777,17 +2777,11 @@ void CreateAbilityPopUp(u8 battlerId, u32 ability, bool32 isDoubleBattle)
 
 void UpdateAbilityPopup(u8 battlerId)
 {
-    u16 lastAbility;
-    
-    if (gLastUsedBattlerAbility[battlerId] != 0)
-        lastAbility = gLastUsedBattlerAbility[battlerId];
-    else
-        lastAbility = gBattleMons[battlerId].ability;
-
     u8 spriteId1 = gBattleStruct->abilityPopUpSpriteIds[battlerId][0];
     u8 spriteId2 = gBattleStruct->abilityPopUpSpriteIds[battlerId][1];
-    u16 ability = (gBattleScripting.abilityPopupOverwrite != 0) ? gBattleScripting.abilityPopupOverwrite : lastAbility;
+    u16 ability = (gBattleScripting.abilityPopupOverwrite != 0) ? gBattleScripting.abilityPopupOverwrite : gBattleMons[battlerId].ability;;
 
+    PopTraitStack();
     PrintAbilityOnAbilityPopUp(ability, spriteId1, spriteId2);
     RestoreOverwrittenPixels((void*)(OBJ_VRAM0) + (gSprites[spriteId1].oam.tileNum * 32));
 }
