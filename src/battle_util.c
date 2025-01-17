@@ -477,7 +477,7 @@ bool32 TryRunFromBattle(u32 battler)
             if (speedVar > (Random() & 0xFF))
             {
                 gLastUsedAbility = ABILITY_RUN_AWAY;
-                gLastUsedBattlerAbility[battler] = ABILITY_RUN_AWAY;
+                PushTraitStack(battler, ABILITY_RUN_AWAY);
                 gProtectStructs[battler].fleeType = FLEE_ABILITY;
                 effect++;
             }
@@ -485,7 +485,7 @@ bool32 TryRunFromBattle(u32 battler)
         else
         {
             gLastUsedAbility = ABILITY_RUN_AWAY;
-            gLastUsedBattlerAbility[battler] = ABILITY_RUN_AWAY;
+            PushTraitStack(battler, ABILITY_RUN_AWAY);
             gProtectStructs[battler].fleeType = FLEE_ABILITY;
             effect++;
         }
@@ -4135,20 +4135,11 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         gBattlerAttacker = battler;
 
     if (special)
-        {
-            gLastUsedAbility = special;
-            gLastUsedBattlerAbility[battler] = special;
-        }
+        gLastUsedAbility = special;
     else if (ability)
-        {
-            gLastUsedAbility = ability;
-            gLastUsedBattlerAbility[battler] = ability;
-        }
+        gLastUsedAbility = ability;
     else
-        {
-            gLastUsedAbility = GetBattlerAbility(battler); //default to vanilla code
-            gLastUsedBattlerAbility[battler] = GetBattlerAbility(battler);
-        }
+        gLastUsedAbility = GetBattlerAbility(battler);
 
     if (moveArg)
         move = moveArg;
@@ -5523,8 +5514,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             }
             if (caseID == ABILITYEFFECT_WOULD_BLOCK)
             {
-                if (effect && gLastUsedBattlerAbility[battler] != 0xFFFF)
-                    RecordAbilityBattle(battler, gLastUsedBattlerAbility[battler]);
+                if (effect && gLastUsedAbility != 0xFFFF)
+                    RecordAbilityBattle(battler, gLastUsedAbility);
 
                 return effect;
             }
@@ -5910,9 +5901,9 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 RecordItemEffectBattle(gBattlerAttacker, HOLD_EFFECT_ABILITY_SHIELD);
                 break;
             }
-            gLastUsedBattlerAbility[gBattlerAttacker] = gBattleMons[gBattlerAttacker].ability;
+            gLastUsedAbility = gBattleMons[gBattlerAttacker].ability;
             gBattleMons[gBattlerAttacker].ability = gBattleStruct->overwrittenAbilities[gBattlerAttacker] = gBattleMons[gBattlerTarget].ability;
-            gBattleMons[gBattlerTarget].ability = gBattleStruct->overwrittenAbilities[gBattlerTarget] = gLastUsedBattlerAbility[gBattlerAttacker];
+            gBattleMons[gBattlerTarget].ability = gBattleStruct->overwrittenAbilities[gBattlerTarget] = gLastUsedAbility;
             PushTraitStack(battler, ABILITY_WANDERING_SPIRIT);
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_WanderingSpiritActivates;
@@ -6409,7 +6400,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
          && RandomWeighted(RNG_TOXIC_CHAIN, 7, 3))
         {
             gBattleScripting.moveEffect = MOVE_EFFECT_TOXIC;
-            PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedBattlerAbility[gBattlerAttacker]);
+            PREPARE_ABILITY_BUFFER(gBattleTextBuff1, gLastUsedAbility);
             PushTraitStack(gBattlerAttacker, ABILITY_TOXIC_CHAIN);
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_AbilityStatusEffect;
@@ -6682,7 +6673,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         }
         break;
     case ABILITYEFFECT_FIELD_SPORT:
-        switch (gLastUsedBattlerAbility[battler])
+        switch (gLastUsedAbility)
         {
         case ABILITYEFFECT_MUD_SPORT:
             for (i = 0; i < gBattlersCount; i++)
@@ -6703,7 +6694,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             {
                 if (BattlerHasTrait(i, ability))
                 {
-                    gLastUsedBattlerAbility[i] = ability;
+                    gLastUsedAbility = ability;
                     effect = i + 1;
                 }
             }
@@ -6786,8 +6777,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         break;
     }
 
-    if (effect && gLastUsedBattlerAbility[battler] != 0xFFFF)
-        RecordAbilityBattle(battler, gLastUsedBattlerAbility[battler]);
+    if (effect && gLastUsedAbility != 0xFFFF)
+        RecordAbilityBattle(battler, gLastUsedAbility);
     if (effect && caseID <= ABILITYEFFECT_MOVE_END)
         gBattlerAbility = battler;
 
@@ -10887,11 +10878,10 @@ static inline uq4_12_t CalcTypeEffectivenessMultiplierInternal(u32 move, u32 mov
         if (recordAbilities)
         {
             gLastUsedAbility = gBattleMons[battlerDef].ability;
-            gLastUsedBattlerAbility[battlerDef] = gBattleMons[battlerDef].ability;
             gMoveResultFlags |= MOVE_RESULT_MISSED;
             gLastLandedMoves[battlerDef] = 0;
             gBattleCommunication[MISS_TYPE] = B_MSG_AVOIDED_DMG;
-            RecordAbilityBattle(battlerDef, gLastUsedBattlerAbility[battlerDef]);
+            RecordAbilityBattle(battlerDef, gBattleMons[battlerDef].ability);
         }
     }
 

@@ -165,7 +165,8 @@ EWRAM_DATA s32 gHpDealt = 0;
 EWRAM_DATA s32 gBideDmg[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u16 gLastUsedItem = 0;
 EWRAM_DATA u16 gLastUsedAbility = 0;
-EWRAM_DATA u16 gLastUsedBattlerAbility[MAX_BATTLERS_COUNT] = {0};
+EWRAM_DATA u16 gDisplayAbility = 0;
+EWRAM_DATA u8 gDisplayBattler = 0;
 EWRAM_DATA u16 gTraitStack[MAX_BATTLERS_COUNT * MAX_MON_TRAITS][2] = {0};
 EWRAM_DATA u8 gBattlerAttacker = 0;
 EWRAM_DATA u8 gBattlerTarget = 0;
@@ -4117,7 +4118,6 @@ u8 IsRunningFromBattleImpossible(u32 battler)
 
         gBattleScripting.battler = i - 1;
         gLastUsedAbility = ability;
-        gLastUsedBattlerAbility[i - 1] = ability;
         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PREVENTS_ESCAPE;
         return BATTLE_RUN_FAILURE;
     }
