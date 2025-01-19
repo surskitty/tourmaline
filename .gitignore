@@ -50,3 +50,4 @@ tools/trainerproc/trainerproc
 *.fastSmol
 *.smolTM
 data/maps/**/scripts.inc
+src/data/trainers.h
