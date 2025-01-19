@@ -1236,18 +1236,18 @@
           "land_mons": {
             "encounter_rate": 10,
             "mons": [
-              { "min_level": 24, "max_level": 24, "species": "SPECIES_VOLTORB" },
-              { "min_level": 24, "max_level": 24, "species": "SPECIES_MAGNEMITE" },
-              { "min_level": 25, "max_level": 25, "species": "SPECIES_VOLTORB" },
-              { "min_level": 25, "max_level": 25, "species": "SPECIES_MAGNEMITE" },
-              { "min_level": 23, "max_level": 23, "species": "SPECIES_VOLTORB" },
-              { "min_level": 23, "max_level": 23, "species": "SPECIES_MAGNEMITE" },
-              { "min_level": 26, "max_level": 26, "species": "SPECIES_VOLTORB" },
-              { "min_level": 26, "max_level": 26, "species": "SPECIES_MAGNEMITE" },
-              { "min_level": 22, "max_level": 22, "species": "SPECIES_VOLTORB" },
-              { "min_level": 22, "max_level": 22, "species": "SPECIES_MAGNEMITE" },
-              { "min_level": 26, "max_level": 26, "species": "SPECIES_ELECTRODE" },
-              { "min_level": 26, "max_level": 26, "species": "SPECIES_MAGNETON" }
+              { "min_level": 24, "max_level": 26, "species": "SPECIES_VOLTORB" },
+              { "min_level": 24, "max_level": 26, "species": "SPECIES_MAGNEMITE" },
+              { "min_level": 24, "max_level": 26, "species": "SPECIES_MAGNEMITE" },
+              { "min_level": 24, "max_level": 26, "species": "SPECIES_VOLTORB" },
+              { "min_level": 24, "max_level": 26, "species": "SPECIES_PIKACHU" },
+              { "min_level": 24, "max_level": 26, "species": "SPECIES_JOLTIK" },
+              { "min_level": 24, "max_level": 26, "species": "SPECIES_PIKACHU" },
+              { "min_level": 26, "max_level": 30, "species": "SPECIES_GALVANTULA" },
+              { "min_level": 26, "max_level": 30, "species": "SPECIES_ROTOM" },
+              { "min_level": 26, "max_level": 30, "species": "SPECIES_RAICHU_ALOLA" },
+              { "min_level": 26, "max_level": 30, "species": "SPECIES_ELECTRODE" },
+              { "min_level": 26, "max_level": 30, "species": "SPECIES_MAGNETON" }
             ]
           }
         },
@@ -1285,15 +1285,15 @@
             "encounter_rate": 30,
             "mons": [
               { "min_level": 5, "max_level": 10, "species": "SPECIES_MAGIKARP" },
-              { "min_level": 5, "max_level": 10, "species": "SPECIES_TENTACOOL" },
+              { "min_level": 5, "max_level": 10, "species": "SPECIES_CARVANHA" },
               { "min_level": 10, "max_level": 30, "species": "SPECIES_MAGIKARP" },
-              { "min_level": 10, "max_level": 30, "species": "SPECIES_TENTACOOL" },
               { "min_level": 10, "max_level": 30, "species": "SPECIES_CARVANHA" },
-              { "min_level": 25, "max_level": 30, "species": "SPECIES_CARVANHA" },
-              { "min_level": 30, "max_level": 35, "species": "SPECIES_CARVANHA" },
-              { "min_level": 20, "max_level": 25, "species": "SPECIES_CARVANHA" },
-              { "min_level": 35, "max_level": 40, "species": "SPECIES_CARVANHA" },
-              { "min_level": 40, "max_level": 45, "species": "SPECIES_CARVANHA" }
+              { "min_level": 10, "max_level": 30, "species": "SPECIES_FEEBAS" },
+              { "min_level": 20, "max_level": 45, "species": "SPECIES_CARVANHA" },
+              { "min_level": 20, "max_level": 45, "species": "SPECIES_CARVANHA" },
+              { "min_level": 30, "max_level": 45, "species": "SPECIES_CARVANHA" },
+              { "min_level": 10, "max_level": 30, "species": "SPECIES_FEEBAS" },
+              { "min_level": 20, "max_level": 45, "species": "SPECIES_FEEBAS" }
             ]
           }
         },
