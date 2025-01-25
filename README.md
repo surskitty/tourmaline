@@ -1,5 +1,7 @@
 # Trait System (Beta)
 
+Note, some abilities haven't been updated to work as an Innate just yet, but everything should always work as a vanilla ability.  The type change moves like Pixilate for example haven't been updated yet.  But if you're wondering about strange combat interactions feel free to let me know so I can include them as test cases.
+
 - General terminology I'm going for is:
    - Ability = Same as vanilla.
    - Innate = Additional abilities that are the same for all members of a species.
