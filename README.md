@@ -1,3 +1,21 @@
+# Trait System (Beta)
+
+- General terminology I'm going for is:
+   Ability = Same as vanilla.
+   Innate = Additional abilities that are the same for all members of a species.
+   Trait = Encompassing term for either one
+  Note: for the sake of making merging a little easier, "Ability" is still used in many places when "Trait" is intended.
+
+- This is a beta both to see if anyone catches any sort of major formatting or bugs I should address now before I proceed and also just to actually get something out there after talking about it so much.
+- To add Innates you just need to add a new .innates parameter underneath the existing .abilities one using the same formatting.  Bulbasaur and Torchic have examples commented out.
+  ex: .innates = { ABILITY_PROTEAN, ABILITY_ROUGH_SKIN, ABILITY_CLEAR_BODY },
+- The basic code design is all Ability checks have been replaced with Trait checks, reading all passives a pokemon has whenever an Ability is looked for.  All previously mutually exclusive abilities like the weather ones which use a Switch Case format has been replaced with If statements so that they can all be called anyway (though natually any abilities that actually conflict will overwrite by code order, Drought and Snow Warning will both activate, but Snow Warning is later in the list so ultimately the weather will be snow/hail.  Really this is only a consideration for future randomizer settings.
+- Ability popups have been modified into a Stack system so that when multiple abilities are triggered at once, they are stored then read out in the correct order.  Battle Message logic has also been updated to account for the new timings.
+- There's a new Summary page that displays the pokemon's Ability and up to 3 Innates.  Currently it only works in the overworld but it still works to let you confirm innates are in place.
+
+Basic code design comes from old Emerald Redux code with permission.
+
+
 # pokeemerald-expansion
 
 ### Important: DO NOT use GitHub's "Download Zip" option. Using this option will not download the commit history required to update your expansion version or merge other feature branches. Instead, please read [this guide](https://github.com/Pawkkie/Team-Aquas-Asset-Repo/wiki/The-Basics-of-GitHub) to learn how to fork the repository and clone locally from there.
