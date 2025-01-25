@@ -13,6 +13,7 @@
 - Uses the MAX_MON_INNATES variable to control how many Innates are available, default is 3 totaling up to 4 active abilities per pokemon.
 - Ability popups have been modified into a Stack system so that when multiple abilities are triggered at once, they are stored then read out in the correct order.  Battle Message logic has also been updated to account for the new timings.
 - There's a new Summary page that displays the pokemon's Ability and up to 3 Innates.  Currently it only works in the overworld but it still works to let you confirm innates are in place.
+- Abilities that affect other abilities such as Trace or Neutralizing Gas only affect the original Ability still, Innates will remain active.
 
 Basic code design comes from old Emerald Redux code with permission.
 
