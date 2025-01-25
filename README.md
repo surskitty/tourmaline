@@ -10,6 +10,7 @@
 - To add Innates you just need to add a new .innates parameter underneath the existing .abilities one using the same formatting.  Bulbasaur and Torchic have examples commented out.
    - ex: .innates = { ABILITY_PROTEAN, ABILITY_ROUGH_SKIN, ABILITY_CLEAR_BODY },
 - The basic code design is all Ability checks have been replaced with Trait checks, reading all passives a pokemon has whenever an Ability is looked for.  All previously mutually exclusive abilities like the weather ones which use a Switch Case format has been replaced with If statements so that they can all be called anyway (though natually any abilities that actually conflict will overwrite by code order, Drought and Snow Warning will both activate, but Snow Warning is later in the list so ultimately the weather will be snow/hail.  Really this is only a consideration for future randomizer settings.
+- Uses the MAX_MON_INNATES variable to control how many Innates are available, default is 3 totaling up to 4 active abilities per pokemon.
 - Ability popups have been modified into a Stack system so that when multiple abilities are triggered at once, they are stored then read out in the correct order.  Battle Message logic has also been updated to account for the new timings.
 - There's a new Summary page that displays the pokemon's Ability and up to 3 Innates.  Currently it only works in the overworld but it still works to let you confirm innates are in place.
 
