@@ -3338,6 +3338,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
                 gHitMarker |= HITMARKER_UNABLE_TO_USE_MOVE;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_LOAFING;
                 gBattlerAbility = gBattlerAttacker;
+                PushTraitStack(gBattlerAttacker, ABILITY_TRUANT);
                 gBattlescriptCurrInstr = BattleScript_TruantLoafingAround;
                 gMoveResultFlags |= MOVE_RESULT_MISSED;
                 effect = 1;
@@ -4375,13 +4376,12 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         u8 traitCheck = ABILITY_NONE;
         
         // Trace replaces your main Ability, so it generally should not be an Innate.
-        traitCheck = BattlerHasTrait(battler, ABILITY_TRACE);
-        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck])
+        traitCheck = GetBattlerAbility(battler) == ABILITY_TRACE;
+        if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck] )
         {
             u32 chosenTarget = 0;
             u32 target1;
             u32 target2;
-
             side = (BATTLE_OPPOSITE(GetBattlerPosition(battler))) & BIT_SIDE;
             target1 = GetBattlerAtPosition(side);
             target2 = GetBattlerAtPosition(side + BIT_FLANK);
@@ -4400,16 +4400,15 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 if (!gAbilitiesInfo[gBattleMons[target1].ability].cantBeTraced && gBattleMons[target1].hp != 0)
                     chosenTarget = target1, effect++;
             }
-
-             if (chosenTarget != 0)
+             if (effect != 0)
             {
                 //SwitchinTraitDone not set to True so that Traced switchin abilities like Intimidate can still activate
                 PushTraitStack(battler, ABILITY_TRACE);
                 BattleScriptPushCursorAndCallback(BattleScript_TraceActivates);
-                gBattleStruct->tracedAbility[battler] = gLastUsedAbility  = gBattleMons[chosenTarget].ability;
+                gBattleStruct->tracedAbility[battler] = gLastUsedAbility = gBattleMons[chosenTarget].ability;
                 RecordAbilityBattle(chosenTarget, gLastUsedAbility); // Record the opposing battler has this ability
                 gBattlerAbility = battler;
-
+                
                 PREPARE_MON_NICK_WITH_PREFIX_BUFFER(gBattleTextBuff1, chosenTarget, gBattlerPartyIndexes[chosenTarget])
                 PREPARE_ABILITY_BUFFER(gBattleTextBuff2, gLastUsedAbility)
             }
@@ -5855,8 +5854,10 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 RecordItemEffectBattle(gBattlerAttacker, HOLD_EFFECT_ABILITY_SHIELD);
                 break;
             }
+            
             gLastUsedAbility = gBattleMons[gBattlerAttacker].ability;
             gBattleMons[gBattlerAttacker].ability = gBattleStruct->overwrittenAbilities[gBattlerAttacker] = gBattleMons[gBattlerTarget].ability;
+            PushTraitStack(gBattlerAttacker, gLastUsedAbility);
             PushTraitStack(battler, ABILITY_LINGERING_AROMA);
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_MummyActivates;
@@ -5879,8 +5880,10 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                 RecordItemEffectBattle(gBattlerAttacker, HOLD_EFFECT_ABILITY_SHIELD);
                 break;
             }
+            
             gLastUsedAbility = gBattleMons[gBattlerAttacker].ability;
             gBattleMons[gBattlerAttacker].ability = gBattleStruct->overwrittenAbilities[gBattlerAttacker] = gBattleMons[gBattlerTarget].ability;
+            PushTraitStack(gBattlerAttacker, gLastUsedAbility);
             PushTraitStack(battler, ABILITY_MUMMY);
             BattleScriptPushCursor();
             gBattlescriptCurrInstr = BattleScript_MummyActivates;
@@ -6776,12 +6779,10 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         }
         break;
     }
-
     if (effect && gLastUsedAbility != 0xFFFF)
         RecordAbilityBattle(battler, gLastUsedAbility);
     if (effect && caseID <= ABILITYEFFECT_MOVE_END)
         gBattlerAbility = battler;
-
     return effect;
 }
 

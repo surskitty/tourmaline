@@ -7846,6 +7846,7 @@ BattleScript_IntimidateActivates::
 .endif
 	setbyte gBattlerTarget, 0
 BattleScript_IntimidateLoop:
+	setbyte gDisplayAbility ABILITY_INTIMIDATE
 	jumpifbyteequal gBattlerTarget, gBattlerAttacker, BattleScript_IntimidateLoopIncrement
 	jumpiftargetally BattleScript_IntimidateLoopIncrement
 	jumpifabsent BS_TARGET, BattleScript_IntimidateLoopIncrement
@@ -8417,6 +8418,10 @@ BattleScript_MummyActivates::
 .endif
 	recordability BS_TARGET
 	recordability BS_ATTACKER
+	setbyte gDisplayAbility, ABILITY_MUMMY
+	jumpifability BS_TARGET, ABILITY_MUMMY, BattleScript_MummyCalled
+	sethword gDisplayAbility, ABILITY_LINGERING_AROMA
+BattleScript_MummyCalled::
 	printstring STRINGID_ATTACKERACQUIREDABILITY
 	waitmessage B_WAIT_TIME_LONG
 	return
@@ -9587,6 +9592,8 @@ BattleScript_RedCardIngrain:
 	restoretarget
 	return
 BattleScript_RedCardSuctionCups:
+	pushtraitstack BS_TARGET ABILITY_SUCTION_CUPS
+	call BattleScript_AbilityPopUp
 	printstring STRINGID_PKMNANCHORSITSELFWITH
 	waitmessage B_WAIT_TIME_LONG
 	removeitem BS_SCRIPTING

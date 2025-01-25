@@ -5466,12 +5466,14 @@ void PushTraitStack(u8 battlerId, u16 ability)
 
 u8 PullTraitStackBattler()
 {
-    u8 battlerId = 0;
+    u8 battlerId = MAX_BATTLERS_COUNT;
 
     for (int i = 0; i < (MAX_BATTLERS_COUNT * MAX_MON_TRAITS); i++)
     {
         if (gTraitStack[i][1] == ABILITY_NONE)
         {
+            if (i == 0)
+                break; //Do nothing if first slot is already empty
             battlerId = gTraitStack[i-1][0];
             break;
         }
@@ -5492,6 +5494,8 @@ u16 PullTraitStackAbility()
             ability = gTraitStack[i-1][1]; //Return the ability in the slot before the most recent empty slot
             break;
         }
+            else
+            DebugPrintf("STACK ABILITY [%d] - %S", i, gAbilitiesInfo[gTraitStack[i][1]].name);
     }
     return ability;
 }

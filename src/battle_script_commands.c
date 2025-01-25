@@ -2558,6 +2558,7 @@ static void Cmd_resultmessage(void)
                 lastAbility = ABILITY_WONDER_GUARD;
             else if (BattlerHasTrait(gBattlerTarget, ABILITY_LEVITATE))
                 lastAbility = ABILITY_LEVITATE;
+            gDisplayAbility = lastAbility;
             CreateAbilityPopUp(gBattlerTarget, lastAbility, (gBattleTypeFlags & BATTLE_TYPE_DOUBLE) != 0);
         }
         stringId = gMissStringIds[gBattleCommunication[MISS_TYPE]];
@@ -7412,12 +7413,9 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
         {
             if (i == battler)
                 continue;
-
-            
-            if (BattlerHasTrait(i, ABILITY_TRACE))
+            if (GetBattlerAbility(i) == ABILITY_TRACE) //Trace should be an ability
                 if (AbilityBattleEffects(ABILITYEFFECT_ON_SWITCHIN, i, 0, 0, 0))
                     return TRUE;
-
             if (BattlerHasTrait(i, ABILITY_FORECAST)
              || BattlerHasTrait(i, ABILITY_FLOWER_GIFT)
              || BattlerHasTrait(i, ABILITY_ICE_FACE)
@@ -7439,7 +7437,6 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
 
             gBattleStruct->hpOnSwitchout[GetBattlerSide(i)] = gBattleMons[i].hp;
         }
-
         gBattleStruct->forcedSwitch &= ~(gBitTable[battler]);
         return FALSE;
     }
@@ -9418,7 +9415,6 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS();
         gSpecialStatuses[battler].switchInAbilityDone = FALSE;
-        
         for(i=0; i<=MAX_MON_INNATES+1; i++)
             gSpecialStatuses[battler].switchInTraitDone[i] = FALSE;
         break;
@@ -10111,8 +10107,12 @@ static void Cmd_various(void)
     case VARIOUS_ABILITY_POPUP:
     {
         gDisplayBattler = PullTraitStackBattler();
-        gDisplayAbility = PullTraitStackAbility();
 
+        //ABILITY_CONTRARY ABILITY_DEFIANT ABILITY_OPPORTUNIST
+        gDisplayAbility = PullTraitStackAbility();
+        if (gDisplayBattler != MAX_BATTLERS_COUNT)
+            gBattleScripting.battler = gDisplayBattler;
+        
         PopTraitStack();
         
         VARIOUS_ARGS();

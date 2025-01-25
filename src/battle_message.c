@@ -3443,13 +3443,13 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst)
                 toCpy = gAbilitiesInfo[gDisplayAbility].name;
                 break;
             case B_TXT_ATK_ABILITY: // attacker ability
-                toCpy = gAbilitiesInfo[sBattlerAbilities[gBattlerAttacker]].name;
+                toCpy = gAbilitiesInfo[gDisplayAbility].name;
                 break;
             case B_TXT_DEF_ABILITY: // target ability
-                toCpy = gAbilitiesInfo[sBattlerAbilities[gBattlerTarget]].name;
+                toCpy = gAbilitiesInfo[gDisplayAbility].name;
                 break;
             case B_TXT_SCR_ACTIVE_ABILITY: // scripting active ability
-                toCpy = gAbilitiesInfo[sBattlerAbilities[gBattleScripting.battler]].name;
+                toCpy = gAbilitiesInfo[gDisplayAbility].name;
                 break;
             case B_TXT_EFF_ABILITY: // effect battler ability
                 toCpy = gAbilitiesInfo[sBattlerAbilities[gEffectBattler]].name;
