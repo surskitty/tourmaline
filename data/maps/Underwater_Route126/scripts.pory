@@ -1,5 +1,1 @@
-raw `
-Underwater_Route126_MapScripts::
-	.byte 0
-
-`
+mapscripts Underwater_Route126_MapScripts {}
