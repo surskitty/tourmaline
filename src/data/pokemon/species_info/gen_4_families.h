@@ -5064,7 +5064,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
+#ifdef P_TRAITS
+        .abilities = { ABILITY_ELECTROMORPHOSIS, ABILITY_BATTERY, ABILITY_NONE },
+        .innates = { ABILITY_LEVITATE },
+#else
         .abilities = { ABILITY_LEVITATE, ABILITY_NONE, ABILITY_NONE },
+#endif
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Rotom"),
         .cryId = CRY_ROTOM,
@@ -5137,7 +5142,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
+#ifdef P_TRAITS
+        .abilities = { ABILITY_AROMA_VEIL, ABILITY_SWEET_VEIL, ABILITY_NONE },
+        .innates = { ABILITY_LEVITATE },
+#else
         .abilities = { ABILITY_LEVITATE, ABILITY_NONE, ABILITY_NONE },
+#endif
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Rotom"),
         .cryId = CRY_ROTOM,
@@ -5202,7 +5212,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
+#ifdef P_TRAITS
+        .abilities = { ABILITY_SCREEN_CLEANER, ABILITY_SCREEN_CLEANER, ABILITY_NONE },
+        .innates = { ABILITY_LEVITATE },
+#else
         .abilities = { ABILITY_LEVITATE, ABILITY_NONE, ABILITY_NONE },
+#endif
         .bodyColor = BODY_COLOR_RED,
         .noFlip = TRUE,
         .speciesName = _("Rotom"),
@@ -5268,7 +5283,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
+#ifdef P_TRAITS
+        .abilities = { ABILITY_SNOW_WARNING, ABILITY_THERMAL_EXCHANGE, ABILITY_NONE },
+        .innates = { ABILITY_LEVITATE },
+#else
         .abilities = { ABILITY_LEVITATE, ABILITY_NONE, ABILITY_NONE },
+#endif
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Rotom"),
         .cryId = CRY_ROTOM,
@@ -5333,7 +5353,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
+#ifdef P_TRAITS
+        .abilities = { ABILITY_WIND_POWER, ABILITY_WIND_POWER, ABILITY_NONE },
+        .innates = { ABILITY_LEVITATE },
+#else
         .abilities = { ABILITY_LEVITATE, ABILITY_NONE, ABILITY_NONE },
+#endif
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Rotom"),
         .cryId = CRY_ROTOM,
@@ -5399,7 +5424,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
+#ifdef P_TRAITS
+        .abilities = { ABILITY_SEED_SOWER, ABILITY_SEED_SOWER, ABILITY_NONE },
+        .innates = { ABILITY_LEVITATE },
+#else
         .abilities = { ABILITY_LEVITATE, ABILITY_NONE, ABILITY_NONE },
+#endif
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Rotom"),
         .cryId = CRY_ROTOM,

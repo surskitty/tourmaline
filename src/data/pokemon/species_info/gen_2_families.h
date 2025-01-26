@@ -4690,11 +4690,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
-    #if P_UPDATED_ABILITIES >= GEN_4
+#ifdef P_TRAITS
+        .abilities = { ABILITY_STURDY, ABILITY_CONTRARY, ABILITY_NONE },
+        .innates = { ABILITY_GLUTTONY },
+#else
         .abilities = { ABILITY_STURDY, ABILITY_GLUTTONY, ABILITY_CONTRARY },
-    #else
-        .abilities = { ABILITY_STURDY, ABILITY_NONE, ABILITY_CONTRARY },
-    #endif
+#endif
         .bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Shuckle"),
         .cryId = CRY_SHUCKLE,
@@ -6909,11 +6910,12 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-    #if P_UPDATED_ABILITIES >= GEN_4
+#ifdef P_TRAITS
+        .abilities = { ABILITY_TECHNICIAN, ABILITY_MOODY, ABILITY_NONE },
+        .innates = { ABILITY_OWN_TEMPO },
+#else
         .abilities = { ABILITY_OWN_TEMPO, ABILITY_TECHNICIAN, ABILITY_MOODY },
-    #else
-        .abilities = { ABILITY_OWN_TEMPO, ABILITY_NONE, ABILITY_MOODY },
-    #endif
+#endif
         .bodyColor = BODY_COLOR_WHITE,
         .speciesName = _("Smeargle"),
         .cryId = CRY_SMEARGLE,
