@@ -1,17 +1,21 @@
 # Trait System (Beta)
 
+Note, some abilities haven't been updated to work as an Innate just yet, but everything should always work as a vanilla ability.  The type change moves like Pixilate for example haven't been updated yet.  But if you're wondering about strange combat interactions feel free to let me know so I can include them as test cases.
+
 - General terminology I'm going for is:
-   Ability = Same as vanilla.
-   Innate = Additional abilities that are the same for all members of a species.
-   Trait = Encompassing term for either one
+   - Ability = Same as vanilla.
+   - Innate = Additional abilities that are the same for all members of a species.
+   - Trait = Encompassing term for either one
   Note: for the sake of making merging a little easier, "Ability" is still used in many places when "Trait" is intended.
 
 - This is a beta both to see if anyone catches any sort of major formatting or bugs I should address now before I proceed and also just to actually get something out there after talking about it so much.
 - To add Innates you just need to add a new .innates parameter underneath the existing .abilities one using the same formatting.  Bulbasaur and Torchic have examples commented out.
-  ex: .innates = { ABILITY_PROTEAN, ABILITY_ROUGH_SKIN, ABILITY_CLEAR_BODY },
+   - ex: .innates = { ABILITY_PROTEAN, ABILITY_ROUGH_SKIN, ABILITY_CLEAR_BODY },
 - The basic code design is all Ability checks have been replaced with Trait checks, reading all passives a pokemon has whenever an Ability is looked for.  All previously mutually exclusive abilities like the weather ones which use a Switch Case format has been replaced with If statements so that they can all be called anyway (though natually any abilities that actually conflict will overwrite by code order, Drought and Snow Warning will both activate, but Snow Warning is later in the list so ultimately the weather will be snow/hail.  Really this is only a consideration for future randomizer settings.
+- Uses the MAX_MON_INNATES variable to control how many Innates are available, default is 3 totaling up to 4 active abilities per pokemon.
 - Ability popups have been modified into a Stack system so that when multiple abilities are triggered at once, they are stored then read out in the correct order.  Battle Message logic has also been updated to account for the new timings.
 - There's a new Summary page that displays the pokemon's Ability and up to 3 Innates.  Currently it only works in the overworld but it still works to let you confirm innates are in place.
+- Abilities that affect other abilities such as Trace or Neutralizing Gas only affect the original Ability still, Innates will remain active.  Trace in particular should probably exclusively be a vanilla Ability since it's designed to replace itself.  I might set these up with toggle options and new logic in the future.
 
 Basic code design comes from old Emerald Redux code with permission.
 
