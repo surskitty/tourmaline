@@ -6820,14 +6820,14 @@ bool32 IsNeutralizingGasOnField(void)
     return FALSE;
 }
 
-/*bool32 IsMoldBreakerTypeAbility(u32 battler, u32 ability)
+bool32 IsMoldBreakerTypeAbility(u32 battler, u32 ability)
 {
     if (gStatuses3[battler] & STATUS3_GASTRO_ACID)
         return FALSE;
 
     return (ability == ABILITY_MOLD_BREAKER || ability == ABILITY_TERAVOLT || ability == ABILITY_TURBOBLAZE
         || (ability == ABILITY_MYCELIUM_MIGHT && IS_MOVE_STATUS(gCurrentMove)));
-}*/
+}
 
 bool32 HasMoldBreakerTypeAbility(u32 battler)
 {
@@ -9361,7 +9361,7 @@ static inline u32 CalcMoveBasePower(u32 move, u32 battlerAtk, u32 battlerDef, u3
         break;
     case EFFECT_DOUBLE_POWER_ON_ARG_STATUS:
         // Comatose targets treated as if asleep
-        if ((gBattleMons[battlerDef].status1 | (STATUS1_SLEEP * (abilityDef == ABILITY_COMATOSE))) & gMovesInfo[move].argument
+        if ((gBattleMons[battlerDef].status1 | (STATUS1_SLEEP * (BattlerHasTrait(battlerDef, ABILITY_COMATOSE)))) & gMovesInfo[move].argument
          && !((gMovesInfo[move].additionalEffects->moveEffect == MOVE_EFFECT_REMOVE_STATUS) && DoesSubstituteBlockMove(battlerAtk, battlerDef, move)))
         {
             basePower *= 2;
@@ -9916,7 +9916,7 @@ static inline u32 CalcAttackStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 m
     if (isCrit && atkStage < DEFAULT_STAT_STAGE)
         atkStage = DEFAULT_STAT_STAGE;
     // pokemon with unaware ignore attack stat changes while taking damage
-    if (defAbility == ABILITY_UNAWARE)
+    if (BattlerHasTrait(battlerDef, ABILITY_UNAWARE))
         atkStage = DEFAULT_STAT_STAGE;
 
     atkStat *= gStatStageRatios[atkStage][0];
@@ -10125,7 +10125,7 @@ static inline u32 CalcDefenseStat(u32 move, u32 battlerAtk, u32 battlerDef, u32 
     if (isCrit && defStage > DEFAULT_STAT_STAGE)
         defStage = DEFAULT_STAT_STAGE;
     // pokemon with unaware ignore defense stat changes while dealing damage
-    if (atkAbility == ABILITY_UNAWARE)
+    if (BattlerHasTrait(battlerAtk, ABILITY_UNAWARE))
         defStage = DEFAULT_STAT_STAGE;
     // certain moves also ignore stat changes
     if (gMovesInfo[move].ignoresTargetDefenseEvasionStages)
