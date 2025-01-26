@@ -5,6 +5,7 @@
 #include "fieldmap.h"
 #include "save.h"
 #include "battle.h"
+#include "battle_ai_main.h"
 #include "random.h"
 #include "task.h"
 #include "battle_tower.h"
@@ -814,30 +815,30 @@ static bool8 DoesAbilityPreventStatus(struct Pokemon *mon, u32 status)
     u16 ability = GetMonAbility(mon);
     bool8 ret = FALSE;
 
-    if (ability == ABILITY_COMATOSE)
+    if (BattlerHasTrait(gBattlerTarget, ABILITY_COMATOSE))
         return TRUE;
 
     switch (status)
     {
     case STATUS1_FREEZE:
     case STATUS1_FROSTBITE:
-        if (ability == ABILITY_MAGMA_ARMOR)
+        if (BattlerHasTrait(gBattlerTarget, ABILITY_MAGMA_ARMOR))
             ret = TRUE;
         break;
     case STATUS1_BURN:
-        if (ability == ABILITY_WATER_VEIL || ability == ABILITY_WATER_BUBBLE)
+        if (BattlerHasTrait(gBattlerTarget, ABILITY_WATER_VEIL) || BattlerHasTrait(gBattlerTarget, ABILITY_WATER_BUBBLE))
             ret = TRUE;
         break;
     case STATUS1_PARALYSIS:
-        if (ability == ABILITY_LIMBER)
+        if (BattlerHasTrait(gBattlerTarget, ABILITY_LIMBER))
             ret = TRUE;
         break;
     case STATUS1_SLEEP:
-        if (ability == ABILITY_INSOMNIA || ability == ABILITY_VITAL_SPIRIT)
+        if (BattlerHasTrait(gBattlerTarget, ABILITY_INSOMNIA) || BattlerHasTrait(gBattlerTarget, ABILITY_VITAL_SPIRIT))
             ret = TRUE;
         break;
     case STATUS1_TOXIC_POISON:
-        if (ability == ABILITY_IMMUNITY || ability == ABILITY_PASTEL_VEIL)
+        if (BattlerHasTrait(gBattlerTarget, ABILITY_IMMUNITY) || BattlerHasTrait(gBattlerTarget, ABILITY_PASTEL_VEIL))
             ret = TRUE;
         break;
     }
@@ -1624,7 +1625,8 @@ static bool8 CanEncounterWildMon(u8 enemyMonLevel)
     if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
     {
         u16 monAbility = GetMonAbility(&gPlayerParty[0]);
-        if (monAbility == ABILITY_KEEN_EYE || monAbility == ABILITY_INTIMIDATE)
+        if (monAbility == ABILITY_KEEN_EYE || SpeciesHasInnate(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), ABILITY_KEEN_EYE, GetMonData(&gPlayerParty[0], MON_DATA_PERSONALITY), TRUE)
+         || monAbility == ABILITY_INTIMIDATE || SpeciesHasInnate(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), ABILITY_INTIMIDATE, GetMonData(&gPlayerParty[0], MON_DATA_PERSONALITY), TRUE))
         {
             u8 playerMonLevel = GetMonData(&gPlayerParty[0], MON_DATA_LEVEL);
             if (playerMonLevel > 5 && enemyMonLevel <= playerMonLevel - 5 && Random() % 2 == 0)

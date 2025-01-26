@@ -1,5 +1,7 @@
 #include "global.h"
 #include "malloc.h"
+#include "battle.h"
+#include "battle_ai_main.h"
 #include "battle_anim.h"
 #include "battle_interface.h"
 #include "decompress.h"
@@ -6679,7 +6681,7 @@ static void AnimTask_AllySwitchDataSwap(u8 taskId)
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
     {
         u16 ability = GetBattlerAbility(i);
-        if (gChosenMoveByBattler[i] == MOVE_SNIPE_SHOT || ability == ABILITY_PROPELLER_TAIL || ability == ABILITY_STALWART)
+        if (gChosenMoveByBattler[i] == MOVE_SNIPE_SHOT || BattlerHasTrait(i, ABILITY_PROPELLER_TAIL) || BattlerHasTrait(i, ABILITY_STALWART))
             gBattleStruct->moveTarget[i] ^= BIT_FLANK;
     }
 

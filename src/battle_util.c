@@ -4376,7 +4376,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         u8 traitCheck = ABILITY_NONE;
         
         // Trace replaces your main Ability, so it generally should not be an Innate.
-        traitCheck = GetBattlerAbility(battler) == ABILITY_TRACE;
+        traitCheck = BattlerHasTrait(battler, ABILITY_TRACE);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck] )
         {
             u32 chosenTarget = 0;

@@ -3081,7 +3081,7 @@ bool32 AnyPartyMemberStatused(u32 battlerId, bool32 checkSoundproof)
     {
         if (i == battlerOnField1 || i == battlerOnField2)
             continue;
-        if (B_HEAL_BELL_SOUNDPROOF < GEN_5 && checkSoundproof 
+        if (B_HEAL_BELL_SOUNDPROOF < GEN_5 && checkSoundproof
          && (GetMonAbility(&party[i]) == ABILITY_SOUNDPROOF || SpeciesHasInnate(GetMonData(&party[i], MON_DATA_SPECIES), ABILITY_SOUNDPROOF, GetMonData(&party[i], MON_DATA_PERSONALITY), TRUE)))
             continue;
         if (GetMonData(&party[i], MON_DATA_STATUS) != STATUS1_NONE)
