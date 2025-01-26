@@ -332,7 +332,7 @@ static bool32 ChangeOrderTargetAfterAttacker(void);
 void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBattler);
 static void RemoveAllWeather(void);
 static void RemoveAllTerrains(void);
-static bool8 CanAbilityPreventStatLoss(u16 abilityDef);
+static bool8 CanAbilityPreventStatLoss(u16 battler, u16 abilityDef);
 static bool8 CanBattlerPreventStatLoss(u16 battler);
 static bool8 CanBurnHitThaw(u16 move);
 static u32 GetNextTarget(u32 moveTarget, bool32 excludeCurrent);
@@ -1639,45 +1639,29 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     calc /= gAccuracyStageRatios[buff].divisor;
 
     // Attacker's ability
-    switch (atkAbility)
-    {
-    case ABILITY_COMPOUND_EYES:
+    if (BattlerHasTrait(battlerAtk, ABILITY_COMPOUND_EYES))
         calc = (calc * 130) / 100; // 1.3 compound eyes boost
-        break;
-    case ABILITY_VICTORY_STAR:
+    if (BattlerHasTrait(battlerAtk, ABILITY_VICTORY_STAR))
         calc = (calc * 110) / 100; // 1.1 victory star boost
-        break;
-    case ABILITY_HUSTLE:
+    if (BattlerHasTrait(battlerAtk, ABILITY_HUSTLE))
         if (IS_MOVE_PHYSICAL(move))
             calc = (calc * 80) / 100; // 1.2 hustle loss
-        break;
-    }
 
     // Target's ability
-    switch (defAbility)
-    {
-    case ABILITY_SAND_VEIL:
+    if (BattlerHasTrait(battlerDef, ABILITY_SAND_VEIL))
         if (WEATHER_HAS_EFFECT && gBattleWeather & B_WEATHER_SANDSTORM)
             calc = (calc * 80) / 100; // 1.2 sand veil loss
-        break;
-    case ABILITY_SNOW_CLOAK:
+    if (BattlerHasTrait(battlerDef, ABILITY_SNOW_CLOAK))
         if (WEATHER_HAS_EFFECT && (gBattleWeather & (B_WEATHER_HAIL | B_WEATHER_SNOW)))
             calc = (calc * 80) / 100; // 1.2 snow cloak loss
-        break;
-    case ABILITY_TANGLED_FEET:
+    if (BattlerHasTrait(battlerDef, ABILITY_TANGLED_FEET))
         if (gBattleMons[battlerDef].status2 & STATUS2_CONFUSION)
             calc = (calc * 50) / 100; // 1.5 tangled feet loss
-        break;
-    }
 
     // Attacker's ally's ability
-    switch (atkAllyAbility)
-    {
-    case ABILITY_VICTORY_STAR:
+    if (BattlerHasTrait(atkAlly, ABILITY_VICTORY_STAR))
         if (IsBattlerAlive(atkAlly))
             calc = (calc * 110) / 100; // 1.1 ally's victory star boost
-        break;
-    }
 
     // Attacker's hold effect
     switch (atkHoldEffect)
@@ -10108,7 +10092,7 @@ static void Cmd_various(void)
     {
         gDisplayBattler = PullTraitStackBattler();
 
-        //ABILITY_CONTRARY ABILITY_DEFIANT ABILITY_OPPORTUNIST
+        //Check for conflicts/loops with ABILITY_CONTRARY ABILITY_DEFIANT ABILITY_OPPORTUNIST
         gDisplayAbility = PullTraitStackAbility();
         if (gDisplayBattler != MAX_BATTLERS_COUNT)
             gBattleScripting.battler = gDisplayBattler;
@@ -16242,15 +16226,13 @@ static bool8 IsFinalStrikeEffect(u32 moveEffect)
     return FALSE;
 }
 
-static bool8 CanAbilityPreventStatLoss(u16 abilityDef)
+static bool8 CanAbilityPreventStatLoss(u16 battlerDef, u16 abilityDef)
 {
-    switch (abilityDef)
-    {
-    case ABILITY_CLEAR_BODY:
-    case ABILITY_FULL_METAL_BODY:
-    case ABILITY_WHITE_SMOKE:
+    if(BattlerHasTrait(battlerDef, ABILITY_CLEAR_BODY)
+     || BattlerHasTrait(battlerDef, ABILITY_FULL_METAL_BODY)
+     || BattlerHasTrait(battlerDef, ABILITY_WHITE_SMOKE))
         return TRUE;
-    }
+
     return FALSE;
 }
 
