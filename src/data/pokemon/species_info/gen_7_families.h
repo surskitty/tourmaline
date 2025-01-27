@@ -2925,7 +2925,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS),
+#ifdef P_TRAITS
+        .abilities = { ABILITY_MYCELIUM_MIGHT, ABILITY_EFFECT_SPORE, ABILITY_NONE },
+        .innates = { ABILITY_ILLUMINATE, ABILITY_RAIN_DISH },
+#else
         .abilities = { ABILITY_ILLUMINATE, ABILITY_EFFECT_SPORE, ABILITY_RAIN_DISH },
+#endif
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Morelull"),
         .cryId = CRY_MORELULL,
@@ -2990,7 +2995,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS),
+#ifdef P_TRAITS
+        .abilities = { ABILITY_MYCELIUM_MIGHT, ABILITY_EFFECT_SPORE, ABILITY_NONE },
+        .innates = { ABILITY_ILLUMINATE, ABILITY_RAIN_DISH },
+#else
         .abilities = { ABILITY_ILLUMINATE, ABILITY_EFFECT_SPORE, ABILITY_RAIN_DISH },
+#endif
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Shiinotic"),
         .cryId = CRY_SHIINOTIC,
