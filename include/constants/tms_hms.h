@@ -8,7 +8,7 @@
     F(CALM_MIND) \
     F(ROAR) \
     F(TOXIC) \
-    F(HAIL) \
+    F(SNOWSCAPE) \
     F(BULK_UP) \
     F(BULLET_SEED) \
     F(HIDDEN_POWER) \
