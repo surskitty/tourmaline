@@ -889,5 +889,5 @@ u8 SpeciesHasInnate(u16 species, u16 ability, u32 personality, bool8 disablerand
 u16 GetSpeciesInnate(u16 species, u8 traitNum, u32 personality, bool8 disablerandomizer);
 //u8 GetSpeciesInnateNum(u16 species, u16 ability, u32 personality, bool8 disableRandomizer);
 bool8 BoxMonHasInnate(struct BoxPokemon* boxmon, u16 ability, bool8 disableRandomizer);
-bool8 MonHasInnate(struct Pokemon* mon, u16 ability, bool8 disableRandomizer);
+bool8 MonHasTrait(struct Pokemon* mon, u16 ability, bool8 disableRandomizer);
 #endif // GUARD_POKEMON_H

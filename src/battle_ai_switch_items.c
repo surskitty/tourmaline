@@ -523,8 +523,7 @@ static bool32 ShouldSwitchIfGameStatePrompt(u32 battler, bool32 emitResult)
                                 && i != gBattlerPartyIndexes[battler]
                                 && i != gBattlerPartyIndexes[BATTLE_PARTNER(battler)]
                                 && IsBattlerGrounded(battler)
-                                && ((GetMonAbility(&party[i]) == ABILITY_MISTY_SURGE || SpeciesHasInnate(GetMonData(&party[i], MON_DATA_SPECIES), ABILITY_MISTY_SURGE, GetMonData(&party[i], MON_DATA_PERSONALITY), TRUE))
-                                    || GetMonAbility(&party[i]) == ABILITY_ELECTRIC_SURGE || SpeciesHasInnate(GetMonData(&party[i], MON_DATA_SPECIES), ABILITY_ELECTRIC_SURGE, GetMonData(&party[i], MON_DATA_PERSONALITY), TRUE))) //Ally has Misty or Electric Surge
+                                && (MonHasTrait(&party[i], ABILITY_MISTY_SURGE, TRUE) || MonHasTrait(&party[i], ABILITY_ELECTRIC_SURGE, TRUE))) //Ally has Misty or Electric Surge
                                 {
                                     *(gBattleStruct->AI_monToSwitchIntoId + BATTLE_PARTNER(battler)) = i;
                                     if (emitResult)

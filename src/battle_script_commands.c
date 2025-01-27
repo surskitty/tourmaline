@@ -14951,7 +14951,7 @@ static void Cmd_pickup(void)
 
             ability = gSpeciesInfo[species].abilities[GetMonData(&gPlayerParty[i], MON_DATA_ABILITY_NUM)];
 
-            if ((ability == ABILITY_PICKUP || SpeciesHasInnate(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES), ABILITY_PICKUP, GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY), TRUE))
+            if (MonHasTrait(&gPlayerParty[i], ABILITY_PICKUP, TRUE)
                 && species != SPECIES_NONE
                 && species != SPECIES_EGG
                 && heldItem == ITEM_NONE
@@ -14978,7 +14978,7 @@ static void Cmd_pickup(void)
                     }
                 }
             }
-            else if ((ability == ABILITY_HONEY_GATHER || SpeciesHasInnate(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES), ABILITY_HONEY_GATHER, GetMonData(&gPlayerParty[i], MON_DATA_PERSONALITY), TRUE))
+            else if (MonHasTrait(&gPlayerParty[i], ABILITY_HONEY_GATHER, TRUE)
                 && species != 0
                 && species != SPECIES_EGG
                 && heldItem == ITEM_NONE)

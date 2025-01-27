@@ -1625,8 +1625,8 @@ static bool8 CanEncounterWildMon(u8 enemyMonLevel)
     if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
     {
         u16 monAbility = GetMonAbility(&gPlayerParty[0]);
-        if (monAbility == ABILITY_KEEN_EYE || SpeciesHasInnate(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), ABILITY_KEEN_EYE, GetMonData(&gPlayerParty[0], MON_DATA_PERSONALITY), TRUE)
-         || monAbility == ABILITY_INTIMIDATE || SpeciesHasInnate(GetMonData(&gPlayerParty[0], MON_DATA_SPECIES), ABILITY_INTIMIDATE, GetMonData(&gPlayerParty[0], MON_DATA_PERSONALITY), TRUE))
+        if (MonHasTrait(&gPlayerParty[0], ABILITY_SOUNDPROOF, TRUE)
+         || MonHasTrait(&gPlayerParty[0], ABILITY_SOUNDPROOF, TRUE))
         {
             u8 playerMonLevel = GetMonData(&gPlayerParty[0], MON_DATA_LEVEL);
             if (playerMonLevel > 5 && enemyMonLevel <= playerMonLevel - 5 && Random() % 2 == 0)
