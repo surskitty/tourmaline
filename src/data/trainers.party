@@ -523,7 +523,7 @@ Makuhita
 Level: 30
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-Machoke
+Mienfoo
 Level: 30
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
@@ -2731,7 +2731,7 @@ Music: Suspicious
 Double Battle: Yes
 AI: Basic Trainer
 
-Rhyhorn
+Boldore
 Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -2774,7 +2774,7 @@ Lairon
 Level: 29
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
-Rhyhorn
+Boldore
 Level: 29
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
@@ -2791,7 +2791,7 @@ Lairon
 Level: 32
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
-Rhyhorn
+Boldore
 Level: 32
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
@@ -2808,7 +2808,7 @@ Aggron
 Level: 35
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
-Rhydon
+Gigalith
 Level: 35
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
@@ -3241,7 +3241,7 @@ Music: Intense
 Double Battle: Yes
 AI: Basic Trainer
 
-Machop
+Stufful
 Level: 13
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
@@ -3250,7 +3250,7 @@ Level: 13
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
 === TRAINER_HITOSHI ===
-Name: HITOSHI
+Name: Hitoshi
 Class: Black Belt
 Pic: Black Belt
 Gender: Male
@@ -3258,16 +3258,14 @@ Music: Intense
 Double Battle: Yes
 AI: Basic Trainer
 
-Machop
+Grapploct
 Level: 32
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-Machoke
+Bewear
 Level: 32
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
 === TRAINER_KIYO ===
-Name: KIYO
+Name: Kiyo
 Class: Black Belt
 Pic: Black Belt
 Gender: Male
@@ -3277,10 +3275,12 @@ AI: Basic Trainer
 
 Hariyama
 Level: 34
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+
+Grapploct
+Level: 32
 
 === TRAINER_KOICHI ===
-Name: KOICHI
+Name: Koichi
 Class: Black Belt
 Pic: Black Belt
 Gender: Male
@@ -3288,16 +3288,14 @@ Music: Intense
 Double Battle: Yes
 AI: Basic Trainer
 
-Machop
+Mienfoo
 Level: 24
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-Machoke
+Breloom
 Level: 28
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 === TRAINER_NOB_1 ===
-Name: NOB
+Name: Nob
 Class: Black Belt
 Pic: Black Belt
 Gender: Male
@@ -3305,12 +3303,14 @@ Music: Intense
 Double Battle: Yes
 AI: Basic Trainer
 
-Machop
+Clobbopus
 Level: 19
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+
+Stufful
+Level: 19
 
 === TRAINER_NOB_2 ===
-Name: NOB
+Name: Nob
 Class: Black Belt
 Pic: Black Belt
 Gender: Male
@@ -3318,12 +3318,14 @@ Music: Intense
 Double Battle: Yes
 AI: Basic Trainer
 
-Machoke
+Clobbopus
 Level: 27
-IVs: 13 HP / 13 Atk / 13 Def / 13 SpA / 13 SpD / 13 Spe
+
+Stufful
+Level: 27
 
 === TRAINER_NOB_3 ===
-Name: NOB
+Name: Nob
 Class: Black Belt
 Pic: Black Belt
 Gender: Male
@@ -3331,16 +3333,14 @@ Music: Intense
 Double Battle: Yes
 AI: Basic Trainer
 
-Machop
-Level: 29
-IVs: 14 HP / 14 Atk / 14 Def / 14 SpA / 14 SpD / 14 Spe
+Grapploct
+Level: 31
 
-Machoke
-Level: 29
-IVs: 14 HP / 14 Atk / 14 Def / 14 SpA / 14 SpD / 14 Spe
+Bewear
+Level: 31
 
 === TRAINER_NOB_4 ===
-Name: NOB
+Name: Nob
 Class: Black Belt
 Pic: Black Belt
 Gender: Male
@@ -3348,20 +3348,17 @@ Music: Intense
 Double Battle: Yes
 AI: Basic Trainer
 
-Machop
-Level: 31
-IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+Mienshao
+Level: 35
 
-Machoke
-Level: 31
-IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+Grapploct
+Level: 35
 
-Machoke
-Level: 31
-IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+Bewear
+Level: 35
 
 === TRAINER_NOB_5 ===
-Name: NOB
+Name: Nob
 Class: Black Belt
 Pic: Black Belt
 Gender: Male
@@ -3369,21 +3366,14 @@ Music: Intense
 Double Battle: Yes
 AI: Basic Trainer
 
-Machop
-Level: 33
-IVs: 17 HP / 17 Atk / 17 Def / 17 SpA / 17 SpD / 17 Spe
+Mienshao
+Level: 38
 
-Machoke
-Level: 33
-IVs: 17 HP / 17 Atk / 17 Def / 17 SpA / 17 SpD / 17 Spe
+Grapploct
+Level: 38
 
-Machoke
-Level: 33
-IVs: 17 HP / 17 Atk / 17 Def / 17 SpA / 17 SpD / 17 Spe
-
-Machamp @ Black Belt
-Level: 33
-IVs: 17 HP / 17 Atk / 17 Def / 17 SpA / 17 SpD / 17 Spe
+Bewear
+Level: 38
 
 === TRAINER_YUJI ===
 Name: YUJI
@@ -3398,12 +3388,12 @@ Makuhita
 Level: 26
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-Machoke
+Mienfoo
 Level: 26
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_DAISUKE ===
-Name: DAISUKE
+Name: Daisuke
 Class: Black Belt
 Pic: Black Belt
 Gender: Male
@@ -3411,12 +3401,14 @@ Music: Intense
 Double Battle: Yes
 AI: Basic Trainer
 
-Machop
+Mienfoo
 Level: 19
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+
+Mienfoo
+Level: 19
 
 === TRAINER_ATSUSHI ===
-Name: ATSUSHI
+Name: Atsushi
 Class: Black Belt
 Pic: Black Belt
 Gender: Male
@@ -3426,7 +3418,9 @@ AI: Basic Trainer
 
 Hariyama
 Level: 32
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+
+Breloom
+Level: 32
 
 === TRAINER_KIRK ===
 Name: KIRK
@@ -5090,11 +5084,11 @@ Items: Super Potion / Super Potion
 Double Battle: Yes
 AI: Smart Trainer
 
-Judo (Machop) (F)
+Muay Thai (Stufful) (F)
 Level: 16
-Ability: Steadfast
-- Low Sweep
-- Knock Off
+Ability: Fluffy
+- Force Palm
+- Payback
 - Coaching
 - Bulk Up
 
@@ -5123,13 +5117,6 @@ Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
 AI: Basic Trainer
-
-Machamp @ Sitrus Berry
-Level: 33
-- Karate Chop
-- Rock Slide
-- Focus Punch
-- Bulk Up
 
 Meditite
 Level: 33
@@ -5161,13 +5148,6 @@ Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
 AI: Basic Trainer
-
-Machamp @ Sitrus Berry
-Level: 38
-- Karate Chop
-- Rock Slide
-- Focus Punch
-- Bulk Up
 
 Medicham
 Level: 38
@@ -5206,13 +5186,6 @@ Level: 40
 - Protect
 - Fire Punch
 - Ice Punch
-
-Machamp @ Sitrus Berry
-Level: 43
-- Karate Chop
-- Rock Slide
-- Focus Punch
-- Bulk Up
 
 Medicham
 Level: 43
@@ -5258,13 +5231,6 @@ Level: 46
 - Protect
 - Fire Punch
 - Ice Punch
-
-Machamp @ Sitrus Berry
-Level: 48
-- Cross Chop
-- Rock Slide
-- Focus Punch
-- Bulk Up
 
 Medicham
 Level: 48
@@ -5537,18 +5503,18 @@ Ability: Drought
 
 Dachsbun @ Misty Seed
 Level: 29
-- Bite
+- Work Up
 - Play Rough
 - Baton Pass
 - Helping Hand
 
-Ponyta
-Level: 24
-Ability: Flash Fire
-- Overheat
-- Flame Charge
-- Ally Switch
-- Double Kick
+Shiinotic
+Level: 27
+Ability: Rain Dish
+- Draining Kiss
+- Strength Sap
+- Solar Beam
+- Weather Ball
 
 Slugma
 Level: 24
@@ -5557,12 +5523,12 @@ Level: 24
 - Pain Split
 - Sunny Day
 
-Numel
+Numel @ White Herb
 Level: 26
 Ability: Simple
 - Trailblaze
 - Bulldoze
-- Lava Plume
+- Overheat
 - Attract
 
 === TRAINER_FLANNERY_2 ===
@@ -7332,7 +7298,7 @@ Level: 8
 IVs: 14 HP / 14 Atk / 14 Def / 14 SpA / 14 SpD / 14 Spe
 
 === TRAINER_JOEY ===
-Name: JOEY
+Name: Joey
 Class: Youngster
 Pic: Youngster
 Gender: Male
@@ -7340,12 +7306,14 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer
 
-Machop
+Stufful
 Level: 9
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Joltik
+Level: 9
 
 === TRAINER_BEN ===
-Name: BEN
+Name: Ben
 Class: Youngster
 Pic: Youngster
 Gender: Male
@@ -10191,7 +10159,7 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Leech Seed
 
 === TRAINER_HUEY ===
-Name: HUEY
+Name: Huey
 Class: Sailor
 Pic: Sailor
 Gender: Male
@@ -10203,12 +10171,12 @@ Wingull
 Level: 12
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 
-Machop
+Clobbopus
 Level: 12
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 
 === TRAINER_EDMOND ===
-Name: EDMOND
+Name: Edmond
 Class: Sailor
 Pic: Sailor
 Gender: Male
@@ -10217,6 +10185,10 @@ Double Battle: Yes
 AI: Basic Trainer
 
 Wingull
+Level: 13
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Sandygast
 Level: 13
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -10233,12 +10205,12 @@ Wingull
 Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Machoke
+Mienfoo
 Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_DWAYNE ===
-Name: DWAYNE
+Name: Dwayne
 Class: Sailor
 Pic: Sailor
 Gender: Male
@@ -10250,7 +10222,7 @@ Wingull
 Level: 11
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Machop
+Clobbopus
 Level: 11
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -10271,12 +10243,12 @@ Tentacruel
 Level: 44
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Machoke
+Mienfoo
 Level: 44
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_LEONARD ===
-Name: LEONARD
+Name: Leonard
 Class: Sailor
 Pic: Sailor
 Gender: Male
@@ -10284,20 +10256,17 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer
 
-Machop
+Grapploct
 Level: 43
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Pelipper
 Level: 43
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Machoke
+Hitmontop
 Level: 43
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_DUNCAN ===
-Name: DUNCAN
+Name: Duncan
 Class: Sailor
 Pic: Sailor
 Gender: Male
@@ -10307,14 +10276,12 @@ AI: Basic Trainer
 
 Spheal
 Level: 25
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Machoke
+Wattrel
 Level: 25
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ERNEST_2 ===
-Name: ERNEST
+Name: Ernest
 Class: Sailor
 Pic: Sailor
 Gender: Male
@@ -10330,7 +10297,7 @@ Tentacool
 Level: 36
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 
-Machoke
+Mienfoo
 Level: 36
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 
@@ -10351,7 +10318,7 @@ Tentacool
 Level: 39
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
-Machoke
+Mienfoo
 Level: 39
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
@@ -10372,7 +10339,7 @@ Tentacool
 Level: 42
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
-Machoke
+Mienfoo
 Level: 42
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
@@ -10389,7 +10356,7 @@ Pelipper
 Level: 45
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
-Machoke
+Mienfoo
 Level: 45
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
@@ -10496,7 +10463,7 @@ Manectric
 Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Machamp
+Bewear
 Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -10509,7 +10476,7 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer
 
-Machoke
+Mienfoo
 Level: 33
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
@@ -12246,7 +12213,7 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer
 
-Machop
+Stufful
 Level: 13
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
@@ -13161,7 +13128,7 @@ Level: 40
 - Toxic
 
 === TRAINER_BRICE ===
-Name: BRICE
+Name: Brice
 Class: Hiker
 Pic: Hiker
 Gender: Male
@@ -13173,7 +13140,7 @@ Numel
 Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Machop
+Mankey
 Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -13211,7 +13178,7 @@ Geodude
 Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Machop
+Mienfoo
 Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -13299,7 +13266,7 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Water Gun
 
 === TRAINER_MIKE_1 ===
-Name: MIKE
+Name: Mike
 Class: Hiker
 Pic: Hiker
 Gender: Male
@@ -13320,7 +13287,7 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Scary Face
 
 === TRAINER_MIKE_2 ===
-Name: MIKE
+Name: Mike
 Class: Hiker
 Pic: Hiker
 Gender: Male
@@ -13336,7 +13303,7 @@ Geodude
 Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Machop
+Mienfoo
 Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -14062,7 +14029,7 @@ Music: Intense
 Double Battle: Yes
 AI: Basic Trainer
 
-Machoke
+Mienfoo
 Level: 34
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -15200,7 +15167,7 @@ Wingull
 Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Machop
+Clobbopus
 Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -16353,7 +16320,7 @@ Wingull
 Level: 30
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 
-Machop
+Clobbopus
 Level: 30
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 
@@ -16362,7 +16329,7 @@ Level: 30
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 
 === TRAINER_CORY_3 ===
-Name: CORY
+Name: Cory
 Class: Sailor
 Pic: Sailor
 Gender: Male
@@ -16374,7 +16341,7 @@ Pelipper
 Level: 32
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
-Machop
+Clobbopus
 Level: 32
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
@@ -16395,7 +16362,7 @@ Pelipper
 Level: 34
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
-Machop
+Clobbopus
 Level: 34
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
@@ -16416,7 +16383,7 @@ Pelipper
 Level: 36
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
-Machoke
+Clobbopus
 Level: 36
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
@@ -16513,11 +16480,11 @@ Music: Intense
 Double Battle: Yes
 AI: Basic Trainer
 
-Machoke
+Mienfoo
 Level: 37
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 
-Machoke
+Mienfoo
 Level: 37
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 
@@ -16534,11 +16501,11 @@ Makuhita
 Level: 39
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
-Machoke
+Mienfoo
 Level: 39
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
-Machoke
+Mienfoo
 Level: 39
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
@@ -16555,11 +16522,11 @@ Hariyama
 Level: 41
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
-Machoke
+Mienfoo
 Level: 41
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
-Machoke
+Mienfoo
 Level: 41
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
@@ -16576,11 +16543,11 @@ Hariyama
 Level: 43
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
-Machamp
+Bewear
 Level: 43
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
-Machamp
+Bewear
 Level: 43
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
@@ -16778,7 +16745,7 @@ Music: Hiker
 Double Battle: Yes
 AI: Basic Trainer
 
-Machop
+Primeape
 Level: 28
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
@@ -16799,7 +16766,7 @@ Music: Hiker
 Double Battle: Yes
 AI: Basic Trainer
 
-Machop
+Primeape
 Level: 30
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
@@ -16820,8 +16787,8 @@ Music: Hiker
 Double Battle: Yes
 AI: Basic Trainer
 
-Machoke
-Level: 33
+Annihilape
+Level: 38
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 Camerupt
