@@ -4959,7 +4959,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
+#ifdef P_TRAITS
+        .abilities = { ABILITY_WANDERING_SPIRIT, ABILITY_NONE, ABILITY_NONE },
+        .innates = { ABILITY_STEELWORKER },
+#else
         .abilities = { ABILITY_STEELWORKER, ABILITY_NONE, ABILITY_NONE },
+#endif
         .bodyColor = BODY_COLOR_GREEN,
         .noFlip = TRUE,
         .speciesName = _("Dhelmise"),
@@ -5025,7 +5030,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_DRAGON),
+#ifdef P_TRAITS
         .abilities = { ABILITY_BULLETPROOF, ABILITY_SOUNDPROOF, ABILITY_OVERCOAT },
+        .innates = { },
+#else
+        .abilities = { ABILITY_BULLETPROOF, ABILITY_SOUNDPROOF, ABILITY_OVERCOAT },
+#endif
         .bodyColor = BODY_COLOR_GRAY,
         .speciesName = _("Jangmo-o"),
         .cryId = CRY_JANGMO_O,
@@ -5089,7 +5099,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_DRAGON),
+#ifdef P_TRAITS
         .abilities = { ABILITY_BULLETPROOF, ABILITY_SOUNDPROOF, ABILITY_OVERCOAT },
+        .innates = { },
+#else
+        .abilities = { ABILITY_BULLETPROOF, ABILITY_SOUNDPROOF, ABILITY_OVERCOAT },
+#endif
         .bodyColor = BODY_COLOR_GRAY,
         .speciesName = _("Hakamo-o"),
         .cryId = CRY_HAKAMO_O,
@@ -5153,7 +5168,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_DRAGON),
+#ifdef P_TRAITS
         .abilities = { ABILITY_BULLETPROOF, ABILITY_SOUNDPROOF, ABILITY_OVERCOAT },
+        .innates = { },
+#else
+        .abilities = { ABILITY_BULLETPROOF, ABILITY_SOUNDPROOF, ABILITY_OVERCOAT },
+#endif
         .bodyColor = BODY_COLOR_GRAY,
         .speciesName = _("Kommo-o"),
         .cryId = CRY_KOMMO_O,
@@ -5212,7 +5232,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_DRAGON),
+#ifdef P_TRAITS
         .abilities = { ABILITY_OVERCOAT, ABILITY_NONE, ABILITY_NONE },
+        .innates = { },
+#else
+        .abilities = { ABILITY_OVERCOAT, ABILITY_NONE, ABILITY_NONE },
+#endif
         .bodyColor = BODY_COLOR_GRAY,
         .speciesName = _("Kommo-o"),
         .cryId = CRY_KOMMO_O,
@@ -5274,7 +5299,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
+#ifdef P_TRAITS
         .abilities = { ABILITY_ELECTRIC_SURGE, ABILITY_NONE, ABILITY_TELEPATHY },
+        .innates = { },
+#else
+        .abilities = { ABILITY_ELECTRIC_SURGE, ABILITY_NONE, ABILITY_TELEPATHY },
+#endif
         .bodyColor = BODY_COLOR_YELLOW,
         .speciesName = _("Tapu Koko"),
         .cryId = CRY_TAPU_KOKO,
@@ -5340,7 +5370,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
+#ifdef P_TRAITS
         .abilities = { ABILITY_PSYCHIC_SURGE, ABILITY_NONE, ABILITY_TELEPATHY },
+        .innates = { },
+#else
+        .abilities = { ABILITY_PSYCHIC_SURGE, ABILITY_NONE, ABILITY_TELEPATHY },
+#endif
         .bodyColor = BODY_COLOR_PINK,
         .speciesName = _("Tapu Lele"),
         .cryId = CRY_TAPU_LELE,
@@ -5406,7 +5441,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
+#ifdef P_TRAITS
         .abilities = { ABILITY_GRASSY_SURGE, ABILITY_NONE, ABILITY_TELEPATHY },
+        .innates = { },
+#else
+        .abilities = { ABILITY_GRASSY_SURGE, ABILITY_NONE, ABILITY_TELEPATHY },
+#endif
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Tapu Bulu"),
         .cryId = CRY_TAPU_BULU,
@@ -5472,7 +5512,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
+#ifdef P_TRAITS
         .abilities = { ABILITY_MISTY_SURGE, ABILITY_NONE, ABILITY_TELEPATHY },
+        .innates = { },
+#else
+        .abilities = { ABILITY_MISTY_SURGE, ABILITY_NONE, ABILITY_TELEPATHY },
+#endif
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Tapu Fini"),
         .cryId = CRY_TAPU_FINI,

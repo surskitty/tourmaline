@@ -34,6 +34,7 @@ My intention is for each Pok&eacute;mon species to have at least one thing it's 
 - The Treecko line now has Sharpness as their Hidden Ability, Overgrow as a Trait, and Unburden as the regular Ability.
 - The Torchic line has Quick Feet as their regular Ability, Blaze as a Trait, and Speed Boost as the Hidden Ability.
 - The Mudkip line has Hydration as their Hidden Ability, Torrent as a Trait, and Damp as their regular Ability. Mega Swampert has both Torrent and Damp as Traits, as it's the least exciting starter to mega evolve.
+- Mightyena has Strong Jaw as a Trait.
 - Beautifly has Berserk as a Trait, and Dustox has Toxic Debris.
 - Surskit has Supersweet Syrup as a Trait, and Masquerain has Analytic and Wind Rider as its traits.
 - Slaking is entirely unchanged to encourage Skill Swap shenanigans.
@@ -49,8 +50,9 @@ My intention is for each Pok&eacute;mon species to have at least one thing it's 
 - Houndoom and Stoutland have Guard Dog as a Hidden Ability.
 - Rotom in all forms has Levitate as a Trait. Lightbulb Rotom's Abilities are Electromorphosis or Battery; Fan Rotom has Wind Power; Frost Rotom has Snow Warning or Thermal Exchange; Heat Rotom has Aroma Veil or Sweet Veil; Mow Rotom has Seed Sower; Wash Rotom has Screen Cleaner.
 - Leavanny has Sharpness as a Trait.
-- Morelull and Shiinotic have Mycelium Might as an Ability.
 - Clauncher and Clawitzer have Sniper as a Trait.
+- Dhelmise has Wandering Spirit as its Ability, as Steelworker is now a Trait.
+- Morelull and Shiinotic have Mycelium Might as an Ability.
 
 ## Credits
 - pret's [pokeemerald](https://github.com/pret/pokeemerald) 
