@@ -4571,7 +4571,7 @@ Level: 34
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 
 === TRAINER_WALTER_3 ===
-Name: WALTER
+Name: Walter
 Class: Gentleman
 Pic: Gentleman
 Gender: Male
@@ -4582,18 +4582,10 @@ AI: Basic Trainer
 Linoone
 Level: 36
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-- Headbutt
-- Sand Attack
-- Odor Sleuth
-- Fury Swipes
 
 Manectric
 Level: 36
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-- Quick Attack
-- Spark
-- Odor Sleuth
-- Roar
 
 === TRAINER_WALTER_4 ===
 Name: WALTER
@@ -4606,18 +4598,9 @@ AI: Basic Trainer
 
 Linoone
 Level: 39
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
-- Headbutt
-- Sand Attack
-- Odor Sleuth
-- Fury Swipes
 
 Manectric
 Level: 39
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
-- Quick Attack
-- Spark
-- Odor Sleuth
 
 === TRAINER_WALTER_5 ===
 Name: WALTER
@@ -4630,80 +4613,73 @@ AI: Basic Trainer
 
 Linoone
 Level: 41
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
-- Headbutt
-- Sand Attack
-- Odor Sleuth
-- Fury Swipes
 
-Golduck
+Tatsugiri
 Level: 41
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
-- Fury Swipes
-- Disable
-- Confusion
-- Psych Up
 
 Manectric
 Level: 41
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
-- Quick Attack
-- Spark
-- Odor Sleuth
-- Roar
 
 === TRAINER_SIDNEY ===
-Name: SIDNEY
+Name: Sidney
 Class: Elite Four
 Pic: Elite Four Sidney
 Gender: Male
 Music: Elite Four
 Items: Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer / Force Setup First Turn
+AI: Smart Trainer / Force Setup First Turn / Double Ace Pokemon
 Mugshot: Purple
+
+Cacturne @ Tanga Berry
+Level: 46
+- Spikes
+- Spiky Shield
+- Leaf Storm
+- Focus Punch
+
+Shiftry @ Tanga Berry
+Level: 48
+Nature: Adamant
+- Tailwind
+- Throat Chop
+- Leaf Blade
+- Upper Hand
 
 Mightyena
 Level: 46
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Roar
-- Double Edge
-- Sand Attack
+Ability: Moxie
+- Howl
+- Play Rough
+- Psychic Fangs
 - Crunch
-
-Shiftry
-Level: 48
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Torment
-- Double Team
-- Swagger
-- Extrasensory
-
-Cacturne
-Level: 46
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Leech Seed
-- Feint Attack
-- Needle Arm
-- Cotton Spore
 
 Crawdaunt
 Level: 48
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Surf
-- Swords Dance
-- Strength
-- Facade
-
-Absol @ Sitrus Berry
-Level: 49
-- Aerial Ace
+Nature: Jolly
+- Dragon Dance
+- Night Slash
+- Waterfall
 - Rock Slide
-- Swords Dance
-- Slash
+
+Houndoom @ Throat Spray
+Level: 49
+Nature: Modest
+IVs: 30 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Beat Up
+- Foul Play
+- Burning Jealousy
+- Hyper Voice
+
+Absol @ Absolite
+Level: 49
+- Megahorn
+- Play Rough
+- Night Slash
+- Psycho Cut
 
 === TRAINER_PHOEBE ===
-Name: PHOEBE
+Name: Phoebe
 Class: Elite Four
 Pic: Elite Four Phoebe
 Gender: Female
@@ -4715,7 +4691,6 @@ Mugshot: Green
 
 Dusclops
 Level: 48
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Shadow Punch
 - Confuse Ray
 - Curse
@@ -4723,7 +4698,6 @@ IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 
 Banette
 Level: 49
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Shadow Ball
 - Grudge
 - Will O Wisp
@@ -4731,7 +4705,6 @@ IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 
 Sableye
 Level: 50
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Shadow Ball
 - Double Team
 - Night Shade
@@ -4739,7 +4712,6 @@ IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 
 Banette
 Level: 49
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Shadow Ball
 - Psychic
 - Thunderbolt
@@ -4763,44 +4735,39 @@ Double Battle: Yes
 AI: Basic Trainer
 Mugshot: Pink
 
-Sealeo
+Ninetales Alola @ Icy Rock
 Level: 50
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Encore
-- Body Slam
-- Hail
-- Ice Ball
-
-Glalie
-Level: 50
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Light Screen
-- Crunch
-- Icy Wind
-- Ice Beam
-
-Sealeo
-Level: 52
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Attract
-- Double Edge
-- Hail
+Ability: Snow Warning
+- Aurora Veil
+- Weather Ball
 - Blizzard
+- Dazzling Gleam
 
 Glalie
+Level: 50
+Ability: Moody
+- Protect
+- Substitute
+- Icy Wind
+- Crunch
+
+Froslass @ Light Clay
 Level: 52
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+- Blizzard
+- Aurora Veil
+- Snowscape
+
+Glalie @ Glalitite
+Level: 52
 - Shadow Ball
-- Explosion
-- Hail
-- Ice Beam
+- Facade
+- Body Slam
 
 Walrein @ Sitrus Berry
 Level: 53
 - Surf
 - Body Slam
 - Ice Beam
-- Sheer Cold
 
 === TRAINER_DRAKE ===
 Name: DRAKE
@@ -6553,7 +6520,7 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Feint Attack
 
 === TRAINER_ANNA_AND_MEG_1 ===
-Name: ANNA & MEG
+Name: Anna & Meg
 Class: Sr And Jr
 Pic: Sr And Jr
 Gender: Male
@@ -6564,20 +6531,13 @@ AI: Basic Trainer
 Zigzagoon
 Level: 15
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Growl
-- Tail Whip
-- Headbutt
-- Odor Sleuth
 
 Makuhita
 Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-- Tackle
-- Focus Energy
-- Arm Thrust
 
 === TRAINER_ANNA_AND_MEG_2 ===
-Name: ANNA & MEG
+Name: Anna & Meg
 Class: Sr And Jr
 Pic: Sr And Jr
 Gender: Male
@@ -6588,20 +6548,13 @@ AI: Basic Trainer
 Zigzagoon
 Level: 28
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
-- Growl
-- Tail Whip
-- Headbutt
-- Odor Sleuth
 
 Makuhita
 Level: 30
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
-- Tackle
-- Focus Energy
-- Arm Thrust
 
 === TRAINER_ANNA_AND_MEG_3 ===
-Name: ANNA & MEG
+Name: Anna & Meg
 Class: Sr And Jr
 Pic: Sr And Jr
 Gender: Male
@@ -6612,20 +6565,13 @@ AI: Basic Trainer
 Zigzagoon
 Level: 31
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-- Growl
-- Tail Whip
-- Headbutt
-- Odor Sleuth
 
 Makuhita
 Level: 33
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-- Tackle
-- Focus Energy
-- Arm Thrust
 
 === TRAINER_ANNA_AND_MEG_4 ===
-Name: ANNA & MEG
+Name: Anna & Meg
 Class: Sr And Jr
 Pic: Sr And Jr
 Gender: Male
@@ -6636,20 +6582,13 @@ AI: Basic Trainer
 Linoone
 Level: 34
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
-- Growl
-- Tail Whip
-- Headbutt
-- Odor Sleuth
 
 Makuhita
 Level: 36
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
-- Tackle
-- Focus Energy
-- Arm Thrust
 
 === TRAINER_ANNA_AND_MEG_5 ===
-Name: ANNA & MEG
+Name: Anna & Meg
 Class: Sr And Jr
 Pic: Sr And Jr
 Gender: Male
@@ -6660,17 +6599,10 @@ AI: Basic Trainer
 Linoone
 Level: 36
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
-- Growl
-- Tail Whip
-- Headbutt
-- Odor Sleuth
 
 Hariyama
 Level: 38
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
-- Tackle
-- Focus Energy
-- Arm Thrust
 
 === TRAINER_VICTOR ===
 Name: VICTOR
@@ -7467,7 +7399,7 @@ Level: 13
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_WALLACE ===
-Name: WALLACE
+Name: Wallace
 Class: Champion
 Pic: Champion Wallace
 Gender: Male
@@ -7477,7 +7409,16 @@ Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Yellow
 
+Gyarados @ Gyaradosite
+Level: 56
+Ability: Moxie
+- Dragon Dance
+- Lash Out
+- Temper Flare
+- Waterfall
+
 Wailord
+Ability: Pressure
 Level: 57
 - Rain Dance
 - Water Spout
@@ -7505,15 +7446,9 @@ Level: 56
 - Amnesia
 - Hyper Beam
 
-Gyarados
-Level: 56
-- Dragon Dance
-- Earthquake
-- Hyper Beam
-- Surf
-
 Milotic @ Sitrus Berry
 Level: 58
+Ability: Competitive
 - Recover
 - Surf
 - Ice Beam
