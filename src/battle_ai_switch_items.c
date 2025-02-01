@@ -1696,7 +1696,6 @@ static s32 GetMaxDamagePlayerCouldDealToSwitchin(u32 battler, u32 opposingBattle
 
 static bool32 CanAbilityTrapOpponent(u16 ability, u32 opponent, u32 species, u32 personality)
 {
-    DebugPrintf("TRAPPING ABILITY CHECK");
     if ((B_GHOSTS_ESCAPE >= GEN_6 && IS_BATTLER_OF_TYPE(opponent, TYPE_GHOST)))
         return FALSE;
     else if ((ability == ABILITY_SHADOW_TAG || SpeciesHasInnate(species, ABILITY_SHADOW_TAG, personality, TRUE)))
@@ -2004,14 +2003,13 @@ u32 GetMostSuitableMonToSwitchInto(u32 battler, bool32 switchAfterMonKOd)
         return bestMonId;
     }
 
-DebugPrintf("SMART MON CHOICES: %d", AI_THINKING_STRUCT->aiFlags[battler] & (1 >> 17));
-DebugPrintf("SMART MON CHOICES: %d", AI_THINKING_STRUCT->aiFlags[battler]);
-DebugPrintf("SMART MON CHOICES: %d", (1 >> 17));
+DebugPrintf("TRAINER AI FLAGS = %d", AI_THINKING_STRUCT->aiFlags[battler]);
+
     // Split ideal mon decision between after previous mon KO'd (prioritize offensive options) and after switching active mon out (prioritize defensive options), and expand the scope of both.
     // Only use better mon selection if AI_FLAG_SMART_MON_CHOICES is set for the trainer.
     if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_MON_CHOICES && !(gBattleTypeFlags & BATTLE_TYPE_DOUBLE)) // Double Battles aren't included in AI_FLAG_SMART_MON_CHOICE. Defaults to regular switch in logic
     {
-        DebugPrintf("SMART MON CHOICES: TRUE");
+        //DebugPrintf("SMART MON CHOICES: TRUE");
         bestMonId = GetBestMonIntegrated(party, firstId, lastId, battler, opposingBattler, battlerIn1, battlerIn2, switchAfterMonKOd);
         return bestMonId;
     }
@@ -2019,7 +2017,7 @@ DebugPrintf("SMART MON CHOICES: %d", (1 >> 17));
 
     // This all handled by the GetBestMonIntegrated function if the AI_FLAG_SMART_MON_CHOICES flag is set
     else
-    {DebugPrintf("SMART MON CHOICES: FALSE");
+    {//DebugPrintf("SMART MON CHOICES: FALSE");
         s32 i, aliveCount = 0, aceMonCount = 0;
         u32 invalidMons = 0, aceMonId = PARTY_SIZE;
         // Get invalid slots ids.
