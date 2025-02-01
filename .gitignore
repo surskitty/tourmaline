@@ -38,6 +38,10 @@ prefabs.json
 *.diff
 *.sym
 *.js
+/pokeemerald-*.png
 src/data/map_group_count.h
 tools/trainerproc/trainerproc
-/.vs
+*.Identifier
+*.smol
+*.fastSmol
+*.smolTM

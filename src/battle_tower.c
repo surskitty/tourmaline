@@ -45,7 +45,7 @@ EWRAM_DATA const struct BattleFrontierTrainer *gFacilityTrainers = NULL;
 EWRAM_DATA const struct TrainerMon *gFacilityTrainerMons = NULL;
 
 // IWRAM common
-u16 gFrontierTempParty[MAX_FRONTIER_PARTY_SIZE];
+COMMON_DATA u16 gFrontierTempParty[MAX_FRONTIER_PARTY_SIZE] = {0};
 
 // This file's functions.
 static void InitTowerChallenge(void);
@@ -1567,7 +1567,7 @@ void CreateFacilityMon(const struct TrainerMon *fmon, u16 level, u8 fixedIV, u32
 {
     u8 ball = (fmon->ball == 0xFF) ? Random() % POKEBALL_COUNT : fmon->ball;
     u16 move;
-    u32 personality, ability, friendship, j;
+    u32 personality = 0, ability, friendship, j;
 
     if (fmon->gender == TRAINER_MON_MALE)
     {
