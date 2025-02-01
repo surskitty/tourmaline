@@ -800,84 +800,56 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             }
             if (AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_JUSTIFIED)
             && moveType == TYPE_DARK && !IS_MOVE_STATUS(move))
-            {
                 RETURN_SCORE_MINUS(10);
-            }
             if (AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_RATTLED)
              && (!IS_MOVE_STATUS(move)
              && (moveType == TYPE_DARK || moveType == TYPE_GHOST || moveType == TYPE_BUG)))
-            {
                 RETURN_SCORE_MINUS(10);
-            }
             if (AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_AROMA_VEIL)
             && IsAromaVeilProtectedMove(move))
-            {
                 RETURN_SCORE_MINUS(10);
-            }
             if (AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_SWEET_VEIL)
             && (moveEffect == EFFECT_SLEEP || moveEffect == EFFECT_YAWN))
-            {
                 RETURN_SCORE_MINUS(10);
-            }
             if (AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_FLOWER_VEIL)
             && (IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS) && (IsNonVolatileStatusMoveEffect(moveEffect) || IsStatLoweringEffect(moveEffect))))
-            {
                 RETURN_SCORE_MINUS(10);
-            }
             if (AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_MAGIC_BOUNCE)
             && gMovesInfo[move].magicCoatAffected)
-            {
                 RETURN_SCORE_MINUS(20);
-            }
             if (AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_CONTRARY)
             && IsStatLoweringEffect(moveEffect))
-            {
                 RETURN_SCORE_MINUS(20);
-            }
             if ((AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_CLEAR_BODY) || AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_FULL_METAL_BODY) || AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_WHITE_SMOKE))
             && IsStatLoweringEffect(moveEffect))
-            {
                 RETURN_SCORE_MINUS(10);
-            }
             if (AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_HYPER_CUTTER)
             && ((moveEffect == EFFECT_ATTACK_DOWN ||  moveEffect == EFFECT_ATTACK_DOWN_2)
              && move != MOVE_PLAY_NICE && move != MOVE_NOBLE_ROAR && move != MOVE_TEARFUL_LOOK && move != MOVE_VENOM_DRENCH))
-            {
                 RETURN_SCORE_MINUS(10);
-            }
             if (((AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_ILLUMINATE) && B_ILLUMINATE_EFFECT >= GEN_9)
              || AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_KEEN_EYE) || AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_MINDS_EYE))
              && (moveEffect == EFFECT_ACCURACY_DOWN || moveEffect == EFFECT_ACCURACY_DOWN_2))
-            {
                 RETURN_SCORE_MINUS(10);
-            }
             if (AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_BIG_PECKS)
             && (moveEffect == EFFECT_DEFENSE_DOWN || moveEffect == EFFECT_DEFENSE_DOWN_2))
-            {
                 RETURN_SCORE_MINUS(10);
-            }
             if ((AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_DEFIANT) || AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_COMPETITIVE))
              && (IsStatLoweringEffect(moveEffect) && !IS_TARGETING_PARTNER(battlerAtk, battlerDef)))
-            {
                 RETURN_SCORE_MINUS(8);
-            }
             if (AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_COMATOSE)
             && IsNonVolatileStatusMoveEffect(moveEffect))
-            {
                 RETURN_SCORE_MINUS(10);
-            }
             if (AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_SHIELDS_DOWN)
             && IsShieldsDownProtected(battlerAtk) && IsNonVolatileStatusMoveEffect(moveEffect))
-            {
                 RETURN_SCORE_MINUS(10);
-            }
             if (AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_LEAF_GUARD)
             && ((AI_GetWeather(aiData) & B_WEATHER_SUN)
             && aiData->holdEffects[battlerDef] != HOLD_EFFECT_UTILITY_UMBRELLA
             && IsNonVolatileStatusMoveEffect(moveEffect)))
-            {
                 RETURN_SCORE_MINUS(10);
-            }// def ability checks
+            
+            // def ability checks
 
             // target partner ability checks & not attacking partner
             if (isDoubleBattle)
@@ -3652,7 +3624,7 @@ static u32 AI_CalcMoveEffectScore(u32 battlerAtk, u32 battlerDef, u32 move)
     case EFFECT_STEALTH_ROCK:
     case EFFECT_STICKY_WEB:
     case EFFECT_TOXIC_SPIKES:
-        if (AI_ShouldSetUpHazards(battlerAtk, battlerDef, aiData));
+        if (AI_ShouldSetUpHazards(battlerAtk, battlerDef, aiData))
         {
             if (gDisableStructs[battlerAtk].isFirstTurn)
                 ADJUST_SCORE(BEST_EFFECT);

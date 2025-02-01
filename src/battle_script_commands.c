@@ -6110,6 +6110,43 @@ static void Cmd_moveend(void)
             else
                 gBattleScripting.moveendState++;
             break;
+        case MOVEEND_HIT_SWITCH_TARGET:
+            if (gMovesInfo[gCurrentMove].effect == EFFECT_HIT_SWITCH_TARGET
+             && !(gHitMarker & HITMARKER_UNABLE_TO_USE_MOVE)
+             && TARGET_TURN_DAMAGED
+             && IsBattlerAlive(gBattlerTarget)
+             && IsBattlerAlive(gBattlerAttacker)
+             && gSpecialStatuses[gBattlerAttacker].parentalBondState != PARENTAL_BOND_1ST_HIT)
+            {
+                u32 targetAbility = GetBattlerAbility(gBattlerTarget);
+                if (targetAbility == ABILITY_GUARD_DOG)
+                {
+                    gBattleScripting.moveendState++;
+                    break;
+                }
+
+                effect = TRUE;
+                BattleScriptPushCursor();
+                if (targetAbility == ABILITY_SUCTION_CUPS)
+                {
+                    gBattlescriptCurrInstr = BattleScript_AbilityPreventsPhasingOutRet;
+                }
+                else if (gStatuses3[gBattlerTarget] & STATUS3_ROOTED)
+                {
+                    gBattlescriptCurrInstr = BattleScript_PrintMonIsRootedRet;
+                }
+                else if (GetActiveGimmick(gBattlerTarget) == GIMMICK_DYNAMAX)
+                {
+                    gBattlescriptCurrInstr = BattleScript_HitSwitchTargetDynamaxed;
+                }
+                else
+                {
+                    gBattleScripting.switchCase = B_SWITCH_HIT;
+                    gBattlescriptCurrInstr = BattleScript_TryHitSwitchTarget;
+                }
+            }
+            gBattleScripting.moveendState++;
+            break;
         case MOVEEND_KINGSROCK: // King's rock
             // These effects will occur at each hit in a multi-strike move
             if (ItemBattleEffects(ITEMEFFECT_KINGSROCK, 0, FALSE))
@@ -10326,7 +10363,7 @@ static void Cmd_various(void)
         PopTraitStack();
         
         VARIOUS_ARGS();
-        CreateAbilityPopUp(gDisplayBattler, gDisplayAbility, (IsDoubleBattle()) != 0);
+        CreateAbilityPopUp(battler, gBattleMons[battler].ability, (IsDoubleBattle()) != 0);
         break;
     }
     case VARIOUS_UPDATE_ABILITY_POPUP:
@@ -17506,6 +17543,464 @@ void BS_JumpIfBlockedBySoundproof(void)
     }
 }
 
+void BS_SetMagicCoatTarget(void)
+{
+    NATIVE_ARGS();
+    u32 side;
+    gBattleStruct->attackerBeforeBounce = gBattleScripting.battler = gBattlerAttacker;
+    gBattlerAttacker = gBattlerTarget;
+    side = BATTLE_OPPOSITE(GetBattlerSide(gBattlerAttacker));
+    if (IsAffectedByFollowMe(gBattlerAttacker, side, gCurrentMove))
+        gBattlerTarget = gSideTimers[side].followmeTarget;
+    else
+        gBattlerTarget = gBattleStruct->attackerBeforeBounce;
+
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_TeatimeInvul(void)
+{
+    NATIVE_ARGS(u8 battler, const u8 *jumpInstr);
+
+    u32 battler = GetBattlerForBattleScript(cmd->battler);
+    if (ItemId_GetPocket(gBattleMons[battler].item) == POCKET_BERRIES && !(gStatuses3[gBattlerTarget] & (STATUS3_SEMI_INVULNERABLE)))
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    else
+        gBattlescriptCurrInstr = cmd->jumpInstr;
+}
+
+void BS_TeatimeTargets(void)
+{
+    NATIVE_ARGS(const u8 *failInstr);
+    u32 count = 0, i;
+
+    for (i = 0; i < gBattlersCount; i++)
+    {
+        if (IsTeatimeAffected(i))
+            count++;
+    }
+    if (count == 0)
+        gBattlescriptCurrInstr = cmd->failInstr;
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_TryWindRiderPower(void)
+{
+    NATIVE_ARGS(u8 battler, const u8 *failInstr);
+
+    u32 battler = GetBattlerForBattleScript(cmd->battler);
+    u16 ability = GetBattlerAbility(battler);
+    if (GetBattlerSide(battler) == GetBattlerSide(gBattlerAttacker)
+        && (ability == ABILITY_WIND_RIDER || ability == ABILITY_WIND_POWER))
+    {
+        gLastUsedAbility = ability;
+        RecordAbilityBattle(battler, gLastUsedAbility);
+        gBattlerAbility = gBattleScripting.battler = battler;
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
+    else
+    {
+        gBattlescriptCurrInstr = cmd->failInstr;
+    }
+}
+
+void BS_ActivateWeatherChangeAbilities(void)
+{
+    NATIVE_ARGS(u8 battler);
+
+    u32 battler = GetBattlerForBattleScript(cmd->battler);
+    gBattlescriptCurrInstr = cmd->nextInstr;
+    AbilityBattleEffects(ABILITYEFFECT_ON_WEATHER, battler, 0, 0, 0);
+}
+
+void BS_ActivateTerrainChangeAbilities(void)
+{
+    NATIVE_ARGS(u8 battler);
+
+    u32 battler = GetBattlerForBattleScript(cmd->battler);
+    gBattlescriptCurrInstr = cmd->nextInstr;
+    AbilityBattleEffects(ABILITYEFFECT_ON_TERRAIN, battler, 0, 0, 0);
+}
+
+void BS_StoreHealingWish(void)
+{
+    NATIVE_ARGS(u8 battler);
+
+    u32 battler = GetBattlerForBattleScript(cmd->battler);
+    if (gCurrentMove == MOVE_LUNAR_DANCE)
+        gBattleStruct->storedLunarDance |= 1u << battler;
+    else
+        gBattleStruct->storedHealingWish |= 1u << battler;
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_HitSwitchTargetFailed(void)
+{
+    NATIVE_ARGS();
+    gBattleStruct->hitSwitchTargetFailed = TRUE;
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_TryRevivalBlessing(void)
+{
+    NATIVE_ARGS(const u8 *failInstr);
+    u32 side = GetBattlerSide(gBattlerAttacker);
+    u8 index = GetFirstFaintedPartyIndex(gBattlerAttacker);
+
+    // Move fails if there are no battlers to revive.
+    if (index == PARTY_SIZE)
+    {
+        gBattlescriptCurrInstr = cmd->failInstr;
+        return;
+    }
+
+    // Battler selected! Revive and go to next instruction.
+    if (gSelectedMonPartyId != PARTY_SIZE)
+    {
+        struct Pokemon *party = GetSideParty(side);
+
+        u16 hp = GetMonData(&party[gSelectedMonPartyId], MON_DATA_MAX_HP) / 2;
+        BtlController_EmitSetMonData(gBattlerAttacker, BUFFER_A, REQUEST_HP_BATTLE, 1u << gSelectedMonPartyId, sizeof(hp), &hp);
+        MarkBattlerForControllerExec(gBattlerAttacker);
+        PREPARE_SPECIES_BUFFER(gBattleTextBuff1, GetMonData(&party[gSelectedMonPartyId], MON_DATA_SPECIES));
+
+        // If an on-field battler is revived, it needs to be sent out again.
+        if (IsDoubleBattle() &&
+            gBattlerPartyIndexes[BATTLE_PARTNER(gBattlerAttacker)] == gSelectedMonPartyId)
+        {
+            u32 i = BATTLE_PARTNER(gBattlerAttacker);
+            gAbsentBattlerFlags &= ~(1u << i);
+            gBattleStruct->monToSwitchIntoId[i] = gSelectedMonPartyId;
+            gBattleScripting.battler = i;
+            gBattleCommunication[MULTIUSE_STATE] = TRUE;
+        }
+
+        gSelectedMonPartyId = PARTY_SIZE;
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
+    else
+    {
+        // Open party menu, wait to go to next instruction.
+        BtlController_EmitChoosePokemon(gBattlerAttacker, BUFFER_A, PARTY_ACTION_CHOOSE_FAINTED_MON, PARTY_SIZE, ABILITY_NONE, gBattleStruct->battlerPartyOrders[gBattlerAttacker]);
+        MarkBattlerForControllerExec(gBattlerAttacker);
+    }
+}
+
+void BS_JumpIfCommanderActive(void)
+{
+    NATIVE_ARGS(const u8 *jumpInstr);
+
+    if (gBattleStruct->commanderActive[gBattlerTarget] != SPECIES_NONE)
+        gBattlescriptCurrInstr = cmd->jumpInstr;
+    else if (gStatuses3[gBattlerTarget] & STATUS3_COMMANDER)
+        gBattlescriptCurrInstr = cmd->jumpInstr;
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+static void UpdatePokeFlutePartyStatus(struct Pokemon* party, u8 position)
+{
+    s32 i;
+    u8 battler;
+    u32 monToCheck, status;
+    u16 species, abilityNum;
+    monToCheck = 0;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        species = GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG);
+        abilityNum = GetMonData(&party[i], MON_DATA_ABILITY_NUM);
+        status = GetMonData(&party[i], MON_DATA_STATUS);
+        if (species != SPECIES_NONE
+            && species != SPECIES_EGG
+            && status & AILMENT_FNT
+            && GetAbilityBySpecies(species, abilityNum) != ABILITY_SOUNDPROOF)
+            monToCheck |= (1 << i);
+    }
+    if (monToCheck)
+    {
+        battler = GetBattlerAtPosition(position);
+        status = 0;
+        BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE, monToCheck, 4, &status);
+        MarkBattlerForControllerExec(battler);
+        gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+    }
+}
+
+void BS_CheckPokeFlute(void)
+{
+    NATIVE_ARGS();
+    gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+
+    s32 i;
+    for (i = 0; i < gBattlersCount; i++)
+    {
+        if (GetBattlerAbility(i) != ABILITY_SOUNDPROOF)
+        {
+            gBattleMons[i].status1 &= ~STATUS1_SLEEP;
+            gBattleMons[i].status2 &= ~STATUS2_NIGHTMARE;
+        }
+    }
+
+    UpdatePokeFlutePartyStatus(gPlayerParty, B_POSITION_PLAYER_LEFT);
+    UpdatePokeFlutePartyStatus(gEnemyParty, B_POSITION_OPPONENT_LEFT);
+
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_WaitFanfare(void)
+{
+    NATIVE_ARGS();
+
+    if (!IsFanfareTaskInactive())
+        return;
+
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_SetBeakBlast(void)
+{
+    NATIVE_ARGS();
+    gProtectStructs[gBattlerAttacker].beakBlastCharge = TRUE;
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_RemoveTerrain(void)
+{
+    NATIVE_ARGS();
+    RemoveAllTerrains();
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_SetMagicCoatTarget(void)
+{
+    NATIVE_ARGS();
+    u32 side;
+    gBattleStruct->attackerBeforeBounce = gBattleScripting.battler = gBattlerAttacker;
+    gBattlerAttacker = gBattlerTarget;
+    side = BATTLE_OPPOSITE(GetBattlerSide(gBattlerAttacker));
+    if (IsAffectedByFollowMe(gBattlerAttacker, side, gCurrentMove))
+        gBattlerTarget = gSideTimers[side].followmeTarget;
+    else
+        gBattlerTarget = gBattleStruct->attackerBeforeBounce;
+
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_TeatimeInvul(void)
+{
+    NATIVE_ARGS(u8 battler, const u8 *jumpInstr);
+
+    u32 battler = GetBattlerForBattleScript(cmd->battler);
+    if (ItemId_GetPocket(gBattleMons[battler].item) == POCKET_BERRIES && !(gStatuses3[gBattlerTarget] & (STATUS3_SEMI_INVULNERABLE)))
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    else
+        gBattlescriptCurrInstr = cmd->jumpInstr;
+}
+
+void BS_TeatimeTargets(void)
+{
+    NATIVE_ARGS(const u8 *failInstr);
+    u32 count = 0, i;
+
+    for (i = 0; i < gBattlersCount; i++)
+    {
+        if (IsTeatimeAffected(i))
+            count++;
+    }
+    if (count == 0)
+        gBattlescriptCurrInstr = cmd->failInstr;
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_TryWindRiderPower(void)
+{
+    NATIVE_ARGS(u8 battler, const u8 *failInstr);
+
+    u32 battler = GetBattlerForBattleScript(cmd->battler);
+    u16 ability = GetBattlerAbility(battler);
+    if (GetBattlerSide(battler) == GetBattlerSide(gBattlerAttacker)
+        && (ability == ABILITY_WIND_RIDER || ability == ABILITY_WIND_POWER))
+    {
+        gLastUsedAbility = ability;
+        RecordAbilityBattle(battler, gLastUsedAbility);
+        gBattlerAbility = gBattleScripting.battler = battler;
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
+    else
+    {
+        gBattlescriptCurrInstr = cmd->failInstr;
+    }
+}
+
+void BS_ActivateWeatherChangeAbilities(void)
+{
+    NATIVE_ARGS(u8 battler);
+
+    u32 battler = GetBattlerForBattleScript(cmd->battler);
+    gBattlescriptCurrInstr = cmd->nextInstr;
+    AbilityBattleEffects(ABILITYEFFECT_ON_WEATHER, battler, 0, 0, 0);
+}
+
+void BS_ActivateTerrainChangeAbilities(void)
+{
+    NATIVE_ARGS(u8 battler);
+
+    u32 battler = GetBattlerForBattleScript(cmd->battler);
+    gBattlescriptCurrInstr = cmd->nextInstr;
+    AbilityBattleEffects(ABILITYEFFECT_ON_TERRAIN, battler, 0, 0, 0);
+}
+
+void BS_StoreHealingWish(void)
+{
+    NATIVE_ARGS(u8 battler);
+
+    u32 battler = GetBattlerForBattleScript(cmd->battler);
+    if (gCurrentMove == MOVE_LUNAR_DANCE)
+        gBattleStruct->storedLunarDance |= 1u << battler;
+    else
+        gBattleStruct->storedHealingWish |= 1u << battler;
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_HitSwitchTargetFailed(void)
+{
+    NATIVE_ARGS();
+    gBattleStruct->hitSwitchTargetFailed = TRUE;
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_TryRevivalBlessing(void)
+{
+    NATIVE_ARGS(const u8 *failInstr);
+    u32 side = GetBattlerSide(gBattlerAttacker);
+    u8 index = GetFirstFaintedPartyIndex(gBattlerAttacker);
+
+    // Move fails if there are no battlers to revive.
+    if (index == PARTY_SIZE)
+    {
+        gBattlescriptCurrInstr = cmd->failInstr;
+        return;
+    }
+
+    // Battler selected! Revive and go to next instruction.
+    if (gSelectedMonPartyId != PARTY_SIZE)
+    {
+        struct Pokemon *party = GetSideParty(side);
+
+        u16 hp = GetMonData(&party[gSelectedMonPartyId], MON_DATA_MAX_HP) / 2;
+        BtlController_EmitSetMonData(gBattlerAttacker, BUFFER_A, REQUEST_HP_BATTLE, 1u << gSelectedMonPartyId, sizeof(hp), &hp);
+        MarkBattlerForControllerExec(gBattlerAttacker);
+        PREPARE_SPECIES_BUFFER(gBattleTextBuff1, GetMonData(&party[gSelectedMonPartyId], MON_DATA_SPECIES));
+
+        // If an on-field battler is revived, it needs to be sent out again.
+        if (IsDoubleBattle() &&
+            gBattlerPartyIndexes[BATTLE_PARTNER(gBattlerAttacker)] == gSelectedMonPartyId)
+        {
+            u32 i = BATTLE_PARTNER(gBattlerAttacker);
+            gAbsentBattlerFlags &= ~(1u << i);
+            gBattleStruct->monToSwitchIntoId[i] = gSelectedMonPartyId;
+            gBattleScripting.battler = i;
+            gBattleCommunication[MULTIUSE_STATE] = TRUE;
+        }
+
+        gSelectedMonPartyId = PARTY_SIZE;
+        gBattlescriptCurrInstr = cmd->nextInstr;
+    }
+    else
+    {
+        // Open party menu, wait to go to next instruction.
+        BtlController_EmitChoosePokemon(gBattlerAttacker, BUFFER_A, PARTY_ACTION_CHOOSE_FAINTED_MON, PARTY_SIZE, ABILITY_NONE, gBattleStruct->battlerPartyOrders[gBattlerAttacker]);
+        MarkBattlerForControllerExec(gBattlerAttacker);
+    }
+}
+
+void BS_JumpIfCommanderActive(void)
+{
+    NATIVE_ARGS(const u8 *jumpInstr);
+
+    if (gBattleStruct->commanderActive[gBattlerTarget] != SPECIES_NONE)
+        gBattlescriptCurrInstr = cmd->jumpInstr;
+    else if (gStatuses3[gBattlerTarget] & STATUS3_COMMANDER)
+        gBattlescriptCurrInstr = cmd->jumpInstr;
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+static void UpdatePokeFlutePartyStatus(struct Pokemon* party, u8 position)
+{
+    s32 i;
+    u8 battler;
+    u32 monToCheck, status;
+    u16 species, abilityNum;
+    monToCheck = 0;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        species = GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG);
+        abilityNum = GetMonData(&party[i], MON_DATA_ABILITY_NUM);
+        status = GetMonData(&party[i], MON_DATA_STATUS);
+        if (species != SPECIES_NONE
+            && species != SPECIES_EGG
+            && status & AILMENT_FNT
+            && GetAbilityBySpecies(species, abilityNum) != ABILITY_SOUNDPROOF)
+            monToCheck |= (1 << i);
+    }
+    if (monToCheck)
+    {
+        battler = GetBattlerAtPosition(position);
+        status = 0;
+        BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE, monToCheck, 4, &status);
+        MarkBattlerForControllerExec(battler);
+        gBattleCommunication[MULTISTRING_CHOOSER] = 1;
+    }
+}
+
+void BS_CheckPokeFlute(void)
+{
+    NATIVE_ARGS();
+    gBattleCommunication[MULTISTRING_CHOOSER] = 0;
+
+    s32 i;
+    for (i = 0; i < gBattlersCount; i++)
+    {
+        if (GetBattlerAbility(i) != ABILITY_SOUNDPROOF)
+        {
+            gBattleMons[i].status1 &= ~STATUS1_SLEEP;
+            gBattleMons[i].status2 &= ~STATUS2_NIGHTMARE;
+        }
+    }
+
+    UpdatePokeFlutePartyStatus(gPlayerParty, B_POSITION_PLAYER_LEFT);
+    UpdatePokeFlutePartyStatus(gEnemyParty, B_POSITION_OPPONENT_LEFT);
+
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_WaitFanfare(void)
+{
+    NATIVE_ARGS();
+
+    if (!IsFanfareTaskInactive())
+        return;
+
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_SetBeakBlast(void)
+{
+    NATIVE_ARGS();
+    gProtectStructs[gBattlerAttacker].beakBlastCharge = TRUE;
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_RemoveTerrain(void)
+{
+    NATIVE_ARGS();
+    RemoveAllTerrains();
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
 void BS_TryHitSwitchTarget(void)
 {
     NATIVE_ARGS(const u8 *failInstr);
@@ -17752,6 +18247,64 @@ void BS_RemoveTerrain(void)
 {
     NATIVE_ARGS();
     RemoveAllTerrains();
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_PushTraitStack(void)
+{
+    NATIVE_ARGS(u8 battler, u16 ability);
+    u32 battler = GetBattlerForBattleScript(cmd->battler);
+    PushTraitStack(battler, cmd->ability);
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_PushSleepImmunityTrait(void)
+{
+    NATIVE_ARGS();
+    if (BattlerHasTrait(BS_TARGET, ABILITY_INSOMNIA))
+        PushTraitStack(BS_TARGET, ABILITY_INSOMNIA);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_VITAL_SPIRIT))
+        PushTraitStack(BS_TARGET, ABILITY_VITAL_SPIRIT);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_COMATOSE))
+        PushTraitStack(BS_TARGET, ABILITY_COMATOSE);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_PURIFYING_SALT))
+        PushTraitStack(BS_TARGET, ABILITY_PURIFYING_SALT);
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_PushPoisonImmunityTrait(void)
+{
+    NATIVE_ARGS();
+    if (BattlerHasTrait(BS_TARGET, ABILITY_COMATOSE))
+        PushTraitStack(BS_TARGET, ABILITY_COMATOSE);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_PURIFYING_SALT))
+        PushTraitStack(BS_TARGET, ABILITY_PURIFYING_SALT);
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_PushParalysisImmunityTrait(void)
+{
+    NATIVE_ARGS();
+    if (BattlerHasTrait(BS_TARGET, ABILITY_LIMBER))
+        PushTraitStack(BS_TARGET, ABILITY_LIMBER);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_COMATOSE))
+        PushTraitStack(BS_TARGET, ABILITY_COMATOSE);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_PURIFYING_SALT))
+        PushTraitStack(BS_TARGET, ABILITY_PURIFYING_SALT);
+    gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_PushBurnImmunityTrait(void)
+{
+    NATIVE_ARGS();
+    if (BattlerHasTrait(BS_TARGET, ABILITY_WATER_VEIL))
+        PushTraitStack(BS_TARGET, ABILITY_WATER_VEIL);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_WATER_BUBBLE))
+        PushTraitStack(BS_TARGET, ABILITY_WATER_BUBBLE);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_COMATOSE))
+        PushTraitStack(BS_TARGET, ABILITY_COMATOSE);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_PURIFYING_SALT))
+        PushTraitStack(BS_TARGET, ABILITY_PURIFYING_SALT);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 

@@ -4584,7 +4584,7 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         traitCheck = BattlerHasTrait(battler, ABILITY_TRACE);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck] )
         {
-            u32 chosenTarget = 0;
+            u32 chosenTarget;
             u32 target1;
             u32 target2;
             side = (BATTLE_OPPOSITE(GetBattlerPosition(battler))) & BIT_SIDE;
@@ -5214,7 +5214,8 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
         }
         traitCheck = BattlerHasTrait(battler, ABILITY_COSTAR);
         if (traitCheck && !gSpecialStatuses[battler].switchInTraitDone[traitCheck]
-         && IsDoubleBattle() && IsBattlerAlive(BATTLE_PARTNER(battler))
+         && IsDoubleBattle()
+         && IsBattlerAlive(BATTLE_PARTNER(battler))
          && CountBattlerStatIncreases(BATTLE_PARTNER(battler), FALSE))
         {
             gSpecialStatuses[battler].switchInTraitDone[traitCheck] = TRUE;
@@ -12220,6 +12221,10 @@ void SetShellSideArmCategory(void)
     u8 statStage;
     u32 physical;
     u32 special;
+
+    // Don't run this check for Safari Battles. Because player's stats are zeroed out, this performs division by zero which previously would crash on certain emulators in Safari Zone.
+    if (gBattleTypeFlags & BATTLE_TYPE_SAFARI)
+        return;
 
     for (battlerAtk = 0; battlerAtk < gBattlersCount; battlerAtk++)
     {

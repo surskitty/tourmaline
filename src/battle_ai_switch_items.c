@@ -509,7 +509,7 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
             if (AiExpectsToFaintPlayer(battler))
                 switchMon = FALSE;
 
-            // Checks to see if active Pokemon can do something against sleep
+            //  Checks to see if active Pokemon can do something against sleep
             if ((AI_BATTLER_HAS_TRAIT(battler, ABILITY_NATURAL_CURE)
                 || AI_BATTLER_HAS_TRAIT(battler, ABILITY_SHED_SKIN)
                 || AI_BATTLER_HAS_TRAIT(battler, ABILITY_EARLY_BIRD))
@@ -532,7 +532,7 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
                 switchMon = FALSE;
         }
 
-        // Secondary Damage
+        //  Secondary Damage
         if (!AI_BATTLER_HAS_TRAIT(battler, ABILITY_MAGIC_GUARD)
             && !AiExpectsToFaintPlayer(battler))
         {
@@ -1895,10 +1895,6 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
                             slowThreatenId = i;
                     }
                 }
-                DebugPrintf("TRAPPERID = %d", i);
-                DebugPrintf("CanAbilityTrapPartyMons = %d", CanAbilityTrapOpponent(AI_DATA->switchinCandidate.battleMon.ability, opposingBattler, AI_DATA->switchinCandidate.battleMon.species, AI_DATA->switchinCandidate.battleMon.personality));
-                DebugPrintf("PARTY COUNT = %d", CountUsablePartyMons(opposingBattler));
-                DebugPrintf("CAN WIN 1V1 = %d", canSwitchinWin1v1);
 
                 // If mon can trap
                 if (CanAbilityTrapOpponent(AI_DATA->switchinCandidate.battleMon.ability, opposingBattler, AI_DATA->switchinCandidate.battleMon.species, AI_DATA->switchinCandidate.battleMon.personality)
@@ -2002,12 +1998,10 @@ u32 GetMostSuitableMonToSwitchInto(u32 battler, bool32 switchAfterMonKOd)
         bestMonId = GetNextMonInParty(party, firstId, lastId, battlerIn1, battlerIn2);
         return bestMonId;
     }
-
     DebugPrintf("TRAINER AI FLAG = %d", AI_THINKING_STRUCT->aiFlags[battler]);
     DebugPrintf("TRAINER AI FLAG SMART PASS = %d", AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_MON_CHOICES);
-    // Split ideal mon decision between after previous mon KO'd (prioritize offensive options) and after switching active mon out (prioritize defensive options), and expand the scope of both.
     // Only use better mon selection if AI_FLAG_SMART_MON_CHOICES is set for the trainer.
-    if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_MON_CHOICES && !(gBattleTypeFlags & BATTLE_TYPE_DOUBLE)) // Double Battles aren't included in AI_FLAG_SMART_MON_CHOICE. Defaults to regular switch in logic
+    if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_MON_CHOICES && !IsDoubleBattle()) // Double Battles aren't included in AI_FLAG_SMART_MON_CHOICE. Defaults to regular switch in logic
     {
         //DebugPrintf("SMART MON CHOICES: TRUE");
         bestMonId = GetBestMonIntegrated(party, firstId, lastId, battler, opposingBattler, battlerIn1, battlerIn2, switchAfterMonKOd);
@@ -2017,7 +2011,7 @@ u32 GetMostSuitableMonToSwitchInto(u32 battler, bool32 switchAfterMonKOd)
 
     // This all handled by the GetBestMonIntegrated function if the AI_FLAG_SMART_MON_CHOICES flag is set
     else
-    {//DebugPrintf("SMART MON CHOICES: FALSE");
+    {
         s32 i, aliveCount = 0, aceMonCount = 0;
         u32 invalidMons = 0, aceMonId = PARTY_SIZE;
         // Get invalid slots ids.
