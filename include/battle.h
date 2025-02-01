@@ -230,7 +230,6 @@ struct SpecialStatus
     u8 stormDrainRedirected:1;
     u8 switchInAbilityDone:1;
     bool8 switchInTraitDone[MAX_MON_TRAITS + 1];
-    u8 traced:1;
     u8 switchInItemDone:1;
     u8 instructedChosenTarget:3;
     u8 berryReduced:1;
@@ -835,6 +834,7 @@ struct BattleStruct
     u8 padding:7;
     u8 usedEjectItem;
     u8 usedMicleBerry;
+    u8 trainerSlideSpriteIds[MAX_BATTLERS_COUNT];
 };
 
 // The palaceFlags member of struct BattleStruct contains 1 flag per move to indicate which moves the AI should consider,
