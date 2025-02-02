@@ -149,7 +149,7 @@ static u32 GetWildAiFlags(void)
 static u32 GetAiFlags(u16 trainerId)
 {
     u32 flags = 0;
-
+DebugPrintf("TRAINER AI ID= %d", trainerId);
     if (!(gBattleTypeFlags & BATTLE_TYPE_HAS_AI) && !IsWildMonSmart())
         return 0;
     if (trainerId == 0xFFFF)
@@ -173,7 +173,7 @@ static u32 GetAiFlags(u16 trainerId)
         else
             flags = GetTrainerAIFlagsFromId(trainerId);
     }
-
+DebugPrintf("TRAINER AI FLAG START CHECK= %d", flags);
     if (IsDoubleBattle())
     {
         flags |= AI_FLAG_DOUBLE_BATTLE;
@@ -185,7 +185,7 @@ static u32 GetAiFlags(u16 trainerId)
 
     if (sDynamicAiFunc != NULL)
         flags |= AI_FLAG_DYNAMIC_FUNC;
-
+DebugPrintf("TRAINER AI FLAG START = %d", flags);
     return flags;
 }
 
