@@ -1626,7 +1626,7 @@ static bool8 CanEncounterWildMon(u8 enemyMonLevel)
     {
         u16 monAbility = GetMonAbility(&gPlayerParty[0]);
         if (MonHasTrait(&gPlayerParty[0], ABILITY_SOUNDPROOF, TRUE)
-         || MonHasTrait(&gPlayerParty[0], ABILITY_SOUNDPROOF, TRUE))
+         || MonHasTrait(&gPlayerParty[0], ABILITY_INTIMIDATE, TRUE))
         {
             u8 playerMonLevel = GetMonData(&gPlayerParty[0], MON_DATA_LEVEL);
             if (playerMonLevel > 5 && enemyMonLevel <= playerMonLevel - 5 && Random() % 2 == 0)

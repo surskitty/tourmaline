@@ -441,7 +441,7 @@ static bool32 ShouldSwitchIfOpponentChargingOrInvulnerable(u32 battler)
 }
 
 static bool32 ShouldSwitchIfTrapperInParty(u32 battler)
-{
+{DebugPrintf("TRAINER AI FLAG = %d", AI_THINKING_STRUCT->aiFlags[battler]);
     s32 firstId;
     s32 lastId;
     struct Pokemon *party;
@@ -449,7 +449,7 @@ static bool32 ShouldSwitchIfTrapperInParty(u32 battler)
     u16 monAbility;
     u16 species, personality;
     s32 opposingBattler =  GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
-
+DebugPrintf("TRAINER AI FLAG = %d", AI_THINKING_STRUCT->aiFlags[battler]);
     // Only use this if AI_FLAG_SMART_SWITCHING is set for the trainer
     if (!(AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_SWITCHING))
         return FALSE;
@@ -509,7 +509,7 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
             if (AiExpectsToFaintPlayer(battler))
                 switchMon = FALSE;
 
-            //  Checks to see if active Pokemon can do something against sleep
+            // Checks to see if active Pokemon can do something against sleep
             if ((AI_BATTLER_HAS_TRAIT(battler, ABILITY_NATURAL_CURE)
                 || AI_BATTLER_HAS_TRAIT(battler, ABILITY_SHED_SKIN)
                 || AI_BATTLER_HAS_TRAIT(battler, ABILITY_EARLY_BIRD))
@@ -730,7 +730,7 @@ static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 perc
 
         species = GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG);
         monAbility = GetMonAbility(&party[i]);
-        CalcPartyMonTypeEffectivenessMultiplier(gLastLandedMoves[battler], species, monAbility);
+        CalcPartyMonTypeEffectivenessMultiplier(gLastLandedMoves[battler], species, monAbility, gBattlerTarget);
         if (gMoveResultFlags & flags)
         {
             battlerIn1 = gLastHitBy[battler];
@@ -904,14 +904,14 @@ static bool32 ShouldSwitchIfAttackingStatsLowered(u32 battler)
 }
 
 bool32 ShouldSwitch(u32 battler)
-{
+{DebugPrintf("TRAINER AI FLAG = %d", AI_THINKING_STRUCT->aiFlags[battler]);
     u32 battlerIn1, battlerIn2;
     s32 firstId;
     s32 lastId; // + 1
     struct Pokemon *party;
     s32 i;
     s32 availableToSwitch;
-
+DebugPrintf("TRAINER AI FLAG = %d", AI_THINKING_STRUCT->aiFlags[battler]);
     if (gBattleMons[battler].status2 & (STATUS2_WRAPPED | STATUS2_ESCAPE_PREVENTION))
         return FALSE;
     if (gStatuses3[battler] & STATUS3_ROOTED)
@@ -941,7 +941,7 @@ bool32 ShouldSwitch(u32 battler)
         battlerIn1 = battler;
         battlerIn2 = battler;
     }
-
+DebugPrintf("TRAINER AI FLAG = %d", AI_THINKING_STRUCT->aiFlags[battler]);
     GetAIPartyIndexes(battler, &firstId, &lastId);
     party = GetBattlerParty(battler);
 
@@ -974,7 +974,7 @@ bool32 ShouldSwitch(u32 battler)
         return TRUE;
     if (FindMonThatAbsorbsOpponentsMove(battler))
         return TRUE;
-
+DebugPrintf("TRAINER AI FLAG = %d", AI_THINKING_STRUCT->aiFlags[battler]);
     // These Functions can prompt switch to party member returned by GetMostSuitableMonToSwitchInto
     if ((AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_SWITCHING) && (CanMonSurviveHazardSwitchin(battler) == FALSE))
         return FALSE;
@@ -1019,7 +1019,7 @@ bool32 ShouldSwitch(u32 battler)
 }
 
 bool32 IsSwitchinValid(u32 battler)
-{
+{DebugPrintf("TRAINER AI FLAG = %d", AI_THINKING_STRUCT->aiFlags[battler]);
     // Edge case: See if partner already chose to switch into the same mon
     if (IsDoubleBattle())
     {
@@ -1043,14 +1043,14 @@ bool32 IsSwitchinValid(u32 battler)
 }
 
 void AI_TrySwitchOrUseItem(u32 battler)
-{
+{DebugPrintf("TRAINER AI FLAG3 = %d", AI_THINKING_STRUCT->aiFlags[battler]);
     struct Pokemon *party;
     u8 battlerIn1, battlerIn2;
     s32 firstId;
     s32 lastId; // + 1
     u8 battlerPosition = GetBattlerPosition(battler);
     party = GetBattlerParty(battler);
-
+DebugPrintf("TRAINER AI FLAG = %d", AI_THINKING_STRUCT->aiFlags[battler]);
     if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
     {
         if (AI_DATA->shouldSwitch & (1u << battler) && IsSwitchinValid(battler))
@@ -1965,7 +1965,7 @@ u32 GetMostSuitableMonToSwitchInto(u32 battler, bool32 switchAfterMonKOd)
     s32 firstId = 0;
     s32 lastId = 0; // + 1
     struct Pokemon *party;
-
+    DebugPrintf("TRAINER AI FLAG = %d", AI_THINKING_STRUCT->aiFlags[battler]);
     if (*(gBattleStruct->monToSwitchIntoId + battler) != PARTY_SIZE)
         return *(gBattleStruct->monToSwitchIntoId + battler);
     if (gBattleTypeFlags & BATTLE_TYPE_ARENA)

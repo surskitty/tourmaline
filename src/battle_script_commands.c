@@ -5957,12 +5957,10 @@ static void Cmd_moveend(void)
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_ABILITIES: // Such as abilities activating on contact(Poison Spore, Rough Skin, etc.).
-          //  for ( ; gBattleStruct->traitCount <= MAX_MON_INNATES; gBattleStruct->traitCount++)
             {
                 if (AbilityBattleEffects(ABILITYEFFECT_MOVE_END, gBattlerTarget, 0, 0, 0))
                     effect = TRUE;
             } 
-           // gBattleStruct->traitCount = 0; // reset traitCount for next use
             gBattleScripting.moveendState++;
             break;
         case MOVEEND_ABILITIES_ATTACKER: // Poison Touch, possibly other in the future
@@ -7631,11 +7629,11 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
         // Update ability popups for abilities that react to Sticky Web
         if (BattlerHasTrait(battler, ABILITY_MIRROR_ARMOR))
             PushTraitStack(battler, ABILITY_MIRROR_ARMOR);
-        if (BattlerHasTrait(battler, ABILITY_CLEAR_BODY))
+        else if (BattlerHasTrait(battler, ABILITY_CLEAR_BODY))
             PushTraitStack(battler, ABILITY_CLEAR_BODY);
-        if (BattlerHasTrait(battler, ABILITY_FULL_METAL_BODY))
+        else if (BattlerHasTrait(battler, ABILITY_FULL_METAL_BODY))
             PushTraitStack(battler, ABILITY_FULL_METAL_BODY);
-        if (BattlerHasTrait(battler, ABILITY_WHITE_SMOKE))
+        else if (BattlerHasTrait(battler, ABILITY_WHITE_SMOKE))
             PushTraitStack(battler, ABILITY_WHITE_SMOKE);
         gBattlescriptCurrInstr = BattleScript_StickyWebOnSwitchIn;
     }

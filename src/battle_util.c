@@ -10900,7 +10900,7 @@ uq4_12_t CalcTypeEffectivenessMultiplier(u32 move, u32 moveType, u32 battlerAtk,
     return modifier;
 }
 
-uq4_12_t CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 battlerDef)
+uq4_12_t CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 defAbility, u16 battlerDef)
 {
     uq4_12_t modifier = UQ_4_12(1.0);
     u32 moveType = GetMoveType(move);
