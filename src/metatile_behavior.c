@@ -90,10 +90,10 @@ static const u8 sTileBitAttributes[NUM_METATILE_BEHAVIORS] =
     [MB_BRIDGE_OVER_POND_LOW]               = TILE_FLAG_UNUSED,
     [MB_BRIDGE_OVER_POND_MED]               = TILE_FLAG_UNUSED,
     [MB_BRIDGE_OVER_POND_HIGH]              = TILE_FLAG_UNUSED,
-    [MB_PACIFIDLOG_VERTICAL_LOG_TOP]        = TILE_FLAG_UNUSED,
-    [MB_PACIFIDLOG_VERTICAL_LOG_BOTTOM]     = TILE_FLAG_UNUSED,
-    [MB_PACIFIDLOG_HORIZONTAL_LOG_LEFT]     = TILE_FLAG_UNUSED,
-    [MB_PACIFIDLOG_HORIZONTAL_LOG_RIGHT]    = TILE_FLAG_UNUSED,
+    [MB_PACIFIDLOG_VERTICAL_LOG_TOP]        = TILE_FLAG_UNUSED | TILE_FLAG_HAS_ENCOUNTERS,
+    [MB_PACIFIDLOG_VERTICAL_LOG_BOTTOM]     = TILE_FLAG_UNUSED | TILE_FLAG_HAS_ENCOUNTERS,
+    [MB_PACIFIDLOG_HORIZONTAL_LOG_LEFT]     = TILE_FLAG_UNUSED | TILE_FLAG_HAS_ENCOUNTERS,
+    [MB_PACIFIDLOG_HORIZONTAL_LOG_RIGHT]    = TILE_FLAG_UNUSED | TILE_FLAG_HAS_ENCOUNTERS,
     [MB_FORTREE_BRIDGE]                     = TILE_FLAG_UNUSED,
     [MB_BRIDGE_OVER_POND_MED_EDGE_1]        = TILE_FLAG_UNUSED,
     [MB_BRIDGE_OVER_POND_MED_EDGE_2]        = TILE_FLAG_UNUSED,
@@ -830,6 +830,7 @@ bool8 MetatileBehavior_IsBridgeOverWaterNoEdge(u8 metatileBehavior)
 bool8 MetatileBehavior_IsLandWildEncounter(u8 metatileBehavior)
 {
     if (MetatileBehavior_IsSurfableWaterOrUnderwater(metatileBehavior) == FALSE
+     && MetatileBehavior_IsPuddle(metatileBehavior) == FALSE
      && MetatileBehavior_IsEncounterTile(metatileBehavior) == TRUE)
         return TRUE;
     else
