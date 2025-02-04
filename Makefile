@@ -1,6 +1,6 @@
 # GBA rom header
-TITLE       := POKEMON VENO
-GAME_CODE   := VENO
+TITLE       := POKEMON EMER
+GAME_CODE   := BPEE
 MAKER_CODE  := 01
 REVISION    := 0
 KEEP_TEMPS  ?= 0
