@@ -11,46 +11,38 @@ PacifidlogTown_OnTransition:
 PacifidlogTown_OnResume:
 	setstepcallback STEP_CB_PACIFIDLOG_BRIDGE
 	end
-
-PacifidlogTown_EventScript_NinjaBoy::
-	msgbox PacifidlogTown_Text_NeatHousesOnWater, MSGBOX_NPC
-	end
-
-PacifidlogTown_EventScript_Girl::
-	msgbox PacifidlogTown_Text_FastRunningCurrent, MSGBOX_NPC
-	end
-
-PacifidlogTown_EventScript_Fisherman::
-	msgbox PacifidlogTown_Text_SkyPillarTooScary, MSGBOX_NPC
-	end
-
-PacifidlogTown_EventScript_TownSign::
-	msgbox PacifidlogTown_Text_TownSign, MSGBOX_SIGN
-	end
-
-PacifidlogTown_Text_FastRunningCurrent:
-	.string "The sea between PACIFIDLOG and\n"
-	.string "SLATEPORT has a fast-running tide.\p"
-	.string "If you decide to SURF, you could end\n"
-	.string "up swept away somewhere else.$"
-
-PacifidlogTown_Text_NeatHousesOnWater:
-	.string "See, isn't it neat?\n"
-	.string "These houses are on water!\p"
-	.string "I was born here!$"
-
-PacifidlogTown_Text_SkyPillarTooScary:
-	.string "The SKY PILLAR?\p"
-	.string "…Oh, you must mean that tall, tall\n"
-	.string "tower a little further out.\p"
-	.string "If you asked me, I wouldn't climb it.\n"
-	.string "It's too scary to get up that high.\p"
-	.string "Life at sea level in PACIFIDLOG,\n"
-	.string "that suits me fine.$"
-
-PacifidlogTown_Text_TownSign:
-	.string "PACIFIDLOG TOWN\p"
-	.string "“Where the morning sun smiles upon\n"
-	.string "the waters.”$"
-
 `
+
+script PacifidlogTown_EventScript_NinjaBoy {
+	msgbox(format("See, isn't it neat?\n"
+		"These houses are on water!\p"
+		"I was born here!"), MSGBOX_NPC)
+}
+
+script PacifidlogTown_EventScript_Girl {
+	msgbox(format("The sea between Pacifidlog and Slateport has a fast-running tide.\p"
+		"If you decide to Surf, you could end up swept away somewhere else."), MSGBOX_NPC)
+}
+
+script PacifidlogTown_EventScript_Fisherman {
+	msgbox(PacifidlogTown_Text_SkyPillarTooScary, MSGBOX_NPC)
+}
+
+script PacifidlogTown_EventScript_TownSign {
+	msgbox(format("Pacifidlog Town\p"
+	"“Where the morning sun smiles upon the waters.”"), MSGBOX_SIGN)
+}
+
+text PacifidlogTown_Text_SkyPillarTooScary {
+	format("The Sky Pillar?\p"
+		"…Oh, you must mean that tall, tall tower a little further out.\p"
+	"If you asked me, I wouldn't climb it.\n"
+	"It's too scary to get up that high.\p"
+	"Life at sea level in Pacifidlog, that suits me fine.")
+}
+
+script PacifidlogTown_EventScript_Corsola {
+	msgbox("Cor-cor?", MSGBOX_NPC)
+	setseenmon(SPECIES_CORSOLA)
+}
+
