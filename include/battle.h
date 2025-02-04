@@ -1082,6 +1082,7 @@ extern s32 gBideDmg[MAX_BATTLERS_COUNT];
 extern u16 gLastUsedItem;
 extern u16 gLastUsedAbility;
 extern u16 gDisplayAbility;
+extern u16 gDisplayAbility2;
 extern u8 gDisplayBattler;
 extern u16 gTraitStack[MAX_BATTLERS_COUNT * MAX_MON_TRAITS][2]; // +4 buffer for potential overflows if traits aren't popped enough
 extern u8 gBattlerAttacker;

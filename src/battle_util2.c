@@ -56,6 +56,7 @@ void FreeBattleResources(void)
     gFieldStatuses = 0;
     if (gBattleResources != NULL)
     {
+        memset(&gBattleStruct->illusion, 0, sizeof(gBattleStruct->illusion));
         FREE_AND_SET_NULL(gBattleStruct);
 
         FREE_AND_SET_NULL(gBattleResources->secretBase);

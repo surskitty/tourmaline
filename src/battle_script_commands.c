@@ -6117,7 +6117,7 @@ static void Cmd_moveend(void)
              && gSpecialStatuses[gBattlerAttacker].parentalBondState != PARENTAL_BOND_1ST_HIT)
             {
                 u32 targetAbility = GetBattlerAbility(gBattlerTarget);
-                if (targetAbility == ABILITY_GUARD_DOG)
+                if (BattlerHasTrait(gBattlerTarget, ABILITY_GUARD_DOG))
                 {
                     gBattleScripting.moveendState++;
                     break;
@@ -6125,8 +6125,9 @@ static void Cmd_moveend(void)
 
                 effect = TRUE;
                 BattleScriptPushCursor();
-                if (targetAbility == ABILITY_SUCTION_CUPS)
+                if (BattlerHasTrait(gBattlerTarget, ABILITY_SUCTION_CUPS))
                 {
+                    PushTraitStack(gBattlerTarget, ABILITY_SUCTION_CUPS);
                     gBattlescriptCurrInstr = BattleScript_AbilityPreventsPhasingOutRet;
                 }
                 else if (gStatuses3[gBattlerTarget] & STATUS3_ROOTED)
@@ -8421,7 +8422,7 @@ static bool32 TrySymbiosis(u32 battler, u32 itemId)
     {
         BestowItem(BATTLE_PARTNER(battler), battler);
         gLastUsedAbility = ABILITY_SYMBIOSIS;
-        PushTraitStack(battler, ABILITY_SYMBIOSIS);
+        PushTraitStack(BATTLE_PARTNER(battler), ABILITY_SYMBIOSIS);
         gBattleScripting.battler = gBattlerAbility = BATTLE_PARTNER(battler);
         gBattlerAttacker = battler;
         BattleScriptPush(gBattlescriptCurrInstr + 2);
@@ -10163,7 +10164,8 @@ static void Cmd_various(void)
                 gBattlescriptCurrInstr = cmd->failInstr;
             }
             else
-            {
+            {   
+                gDisplayAbility = gBattleMons[gBattlerAttacker].ability;
                 gBattleMons[gBattlerTarget].ability = gBattleStruct->overwrittenAbilities[gBattlerTarget] = gBattleMons[gBattlerAttacker].ability;
                 gBattlescriptCurrInstr = cmd->nextInstr;
             }
@@ -10352,16 +10354,15 @@ static void Cmd_various(void)
     case VARIOUS_ABILITY_POPUP:
     {
         gDisplayBattler = PullTraitStackBattler();
-
-        //Check for conflicts/loops with ABILITY_CONTRARY ABILITY_DEFIANT ABILITY_OPPORTUNIST
         gDisplayAbility = PullTraitStackAbility();
+
         if (gDisplayBattler != MAX_BATTLERS_COUNT)
             gBattleScripting.battler = gDisplayBattler;
         
         PopTraitStack();
         
         VARIOUS_ARGS();
-        CreateAbilityPopUp(battler, gBattleMons[battler].ability, (IsDoubleBattle()) != 0);
+        CreateAbilityPopUp(gDisplayBattler, gDisplayAbility, (IsDoubleBattle()) != 0);
         break;
     }
     case VARIOUS_UPDATE_ABILITY_POPUP:
@@ -10427,6 +10428,9 @@ static void Cmd_various(void)
     case VARIOUS_CURE_STATUS:
     {
         VARIOUS_ARGS();
+        //gBattleScripting.battler = BATTLE_PARTNER(battler);
+        //battler = 0;
+        DebugPrintf("BATTLER: %d", battler);
         gBattleMons[battler].status1 = 0;
         BtlController_EmitSetMonData(battler, BUFFER_A, REQUEST_STATUS_BATTLE, 0, sizeof(gBattleMons[battler].status1), &gBattleMons[battler].status1);
         MarkBattlerForControllerExec(battler);
@@ -17782,14 +17786,14 @@ void BS_PushTraitStack(void)
 void BS_PushSleepImmunityTrait(void)
 {
     NATIVE_ARGS();
-    if (BattlerHasTrait(BS_TARGET, ABILITY_INSOMNIA))
-        PushTraitStack(BS_TARGET, ABILITY_INSOMNIA);
-    else if (BattlerHasTrait(BS_TARGET, ABILITY_VITAL_SPIRIT))
-        PushTraitStack(BS_TARGET, ABILITY_VITAL_SPIRIT);
-    else if (BattlerHasTrait(BS_TARGET, ABILITY_COMATOSE))
+    if (BattlerHasTrait(BS_TARGET, ABILITY_COMATOSE))
         PushTraitStack(BS_TARGET, ABILITY_COMATOSE);
     else if (BattlerHasTrait(BS_TARGET, ABILITY_PURIFYING_SALT))
         PushTraitStack(BS_TARGET, ABILITY_PURIFYING_SALT);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_VITAL_SPIRIT))
+        PushTraitStack(BS_TARGET, ABILITY_VITAL_SPIRIT);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_INSOMNIA))
+        PushTraitStack(BS_TARGET, ABILITY_INSOMNIA);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
@@ -17800,31 +17804,33 @@ void BS_PushPoisonImmunityTrait(void)
         PushTraitStack(BS_TARGET, ABILITY_COMATOSE);
     else if (BattlerHasTrait(BS_TARGET, ABILITY_PURIFYING_SALT))
         PushTraitStack(BS_TARGET, ABILITY_PURIFYING_SALT);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_IMMUNITY))
+        PushTraitStack(BS_TARGET, ABILITY_IMMUNITY);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 void BS_PushParalysisImmunityTrait(void)
 {
     NATIVE_ARGS();
-    if (BattlerHasTrait(BS_TARGET, ABILITY_LIMBER))
-        PushTraitStack(BS_TARGET, ABILITY_LIMBER);
-    else if (BattlerHasTrait(BS_TARGET, ABILITY_COMATOSE))
+    if (BattlerHasTrait(BS_TARGET, ABILITY_COMATOSE))
         PushTraitStack(BS_TARGET, ABILITY_COMATOSE);
     else if (BattlerHasTrait(BS_TARGET, ABILITY_PURIFYING_SALT))
         PushTraitStack(BS_TARGET, ABILITY_PURIFYING_SALT);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_LIMBER))
+        PushTraitStack(BS_TARGET, ABILITY_LIMBER);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 void BS_PushBurnImmunityTrait(void)
 {
     NATIVE_ARGS();
-    if (BattlerHasTrait(BS_TARGET, ABILITY_WATER_VEIL))
-        PushTraitStack(BS_TARGET, ABILITY_WATER_VEIL);
-    else if (BattlerHasTrait(BS_TARGET, ABILITY_WATER_BUBBLE))
-        PushTraitStack(BS_TARGET, ABILITY_WATER_BUBBLE);
-    else if (BattlerHasTrait(BS_TARGET, ABILITY_COMATOSE))
+    if (BattlerHasTrait(BS_TARGET, ABILITY_COMATOSE))
         PushTraitStack(BS_TARGET, ABILITY_COMATOSE);
     else if (BattlerHasTrait(BS_TARGET, ABILITY_PURIFYING_SALT))
         PushTraitStack(BS_TARGET, ABILITY_PURIFYING_SALT);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_WATER_VEIL))
+        PushTraitStack(BS_TARGET, ABILITY_WATER_VEIL);
+    else if (BattlerHasTrait(BS_TARGET, ABILITY_WATER_BUBBLE))
+        PushTraitStack(BS_TARGET, ABILITY_WATER_BUBBLE);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }

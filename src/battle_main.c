@@ -169,6 +169,7 @@ EWRAM_DATA s32 gBideDmg[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA u16 gLastUsedItem = 0;
 EWRAM_DATA u16 gLastUsedAbility = 0;
 EWRAM_DATA u16 gDisplayAbility = 0;
+EWRAM_DATA u16 gDisplayAbility2 = 0;
 EWRAM_DATA u8 gDisplayBattler = 0;
 EWRAM_DATA u16 gTraitStack[MAX_BATTLERS_COUNT * MAX_MON_TRAITS][2] = {0};
 EWRAM_DATA u8 gBattlerAttacker = 0;
