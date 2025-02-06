@@ -2,6 +2,7 @@
 #include "malloc.h"
 #include "battle.h"
 #include "pokemon.h"
+#include "battle_ai_main.h"
 #include "battle_controllers.h"
 #include "battle_interface.h"
 #include "battle_z_move.h"
@@ -2782,6 +2783,7 @@ void UpdateAbilityPopup(u8 battlerId)
     u8 spriteId2 = gBattleStruct->abilityPopUpSpriteIds[battlerId][1];
     u16 ability = (gBattleScripting.abilityPopupOverwrite != 0) ? gBattleScripting.abilityPopupOverwrite : gBattleMons[battlerId].ability;
 
+    PopTraitStack();
     PrintAbilityOnAbilityPopUp(ability, spriteId1, spriteId2);
     RestoreOverwrittenPixels((void*)(OBJ_VRAM0) + (gSprites[spriteId1].oam.tileNum * 32));
 }

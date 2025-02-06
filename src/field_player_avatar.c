@@ -2138,7 +2138,8 @@ static bool32 Fishing_DoesFirstMonInPartyHaveSuctionCupsOrStickyHold(void)
 
     ability = GetMonAbility(&gPlayerParty[0]);
 
-    return (ability == ABILITY_SUCTION_CUPS || ability == ABILITY_STICKY_HOLD);
+    return (MonHasTrait(&gPlayerParty[0], ABILITY_SUCTION_CUPS, TRUE)
+            || MonHasTrait(&gPlayerParty[0], ABILITY_STICKY_HOLD, TRUE));
 }
 
 static bool32 Fishing_RollForBite(u32 rod, bool32 isStickyHold)

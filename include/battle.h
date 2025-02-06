@@ -229,6 +229,7 @@ struct SpecialStatus
     u8 sturdied:1;
     u8 stormDrainRedirected:1;
     u8 switchInAbilityDone:1;
+    bool8 switchInTraitDone[MAX_MON_TRAITS + 1];
     u8 switchInItemDone:1;
     u8 instructedChosenTarget:3;
     u8 berryReduced:1;
@@ -663,6 +664,7 @@ struct BattleStruct
     u8 moneyMultiplierMove:1;
     u8 savedTurnActionNumber;
     u8 eventsBeforeFirstTurnState;
+    u8 switchInAbilitiesCounter;
     u8 faintedActionsState;
     u8 faintedActionsBattlerId;
     u8 scriptPartyIdx; // for printing the nickname
@@ -1079,6 +1081,10 @@ extern s32 gHpDealt;
 extern s32 gBideDmg[MAX_BATTLERS_COUNT];
 extern u16 gLastUsedItem;
 extern u16 gLastUsedAbility;
+extern u16 gDisplayAbility;
+extern u16 gDisplayAbility2;
+extern u8 gDisplayBattler;
+extern u16 gTraitStack[MAX_BATTLERS_COUNT * MAX_MON_TRAITS][2];
 extern u8 gBattlerAttacker;
 extern u8 gBattlerTarget;
 extern u8 gBattlerFainted;

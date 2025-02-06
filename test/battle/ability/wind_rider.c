@@ -7,7 +7,7 @@ ASSUMPTIONS
     ASSUME(gMovesInfo[MOVE_TAILWIND].windMove == TRUE);
 }
 
-SINGLE_BATTLE_TEST("Wind Rider raises Attack by one stage if it sets up Tailwind")
+SINGLE_BATTLE_TEST("TTEST Wind Rider raises Attack by one stage if it sets up Tailwind")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);

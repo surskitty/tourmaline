@@ -155,7 +155,7 @@ bool8 SetUpFieldMove_Cut(void)
     {
         PlayerGetDestCoords(&gPlayerFacingPosition.x, &gPlayerFacingPosition.y);
         userAbility = GetMonAbility(&gPlayerParty[GetCursorSelectionMonId()]);
-        if (userAbility == ABILITY_HYPER_CUTTER)
+        if (MonHasTrait(&gPlayerParty[GetCursorSelectionMonId()], ABILITY_HYPER_CUTTER, TRUE))
         {
             sCutSquareSide = CUT_HYPER_SIDE;
             sTileCountFromPlayer_X = 2;

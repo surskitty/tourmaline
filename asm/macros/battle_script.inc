@@ -2518,3 +2518,9 @@
 	printstring STRINGID_EMPTYSTRING3
 	waitmessage 1
 	.endm
+
+	.macro pushtraitstack battler:req, ability:req
+	callnative BS_PushTraitStack
+	.byte \battler
+	.2byte \ability
+	.endm

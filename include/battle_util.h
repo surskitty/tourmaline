@@ -60,6 +60,12 @@ enum {
     ABILITYEFFECT_SWITCH_IN_STATUSES,
 };
 
+#define STORE_BATTLER_TRAITS(battler) \
+({for (int traitLoop = 0; traitLoop < MAX_MON_TRAITS; traitLoop++)\
+{battlerTraits[traitLoop] = GetBattlerTrait(battler, traitLoop);\
+}})
+//DebugPrintf("Battler[%d] - Trait[%d]: %S", battler, i,  gAbilitiesInfo[battlerTraits[i]].name);\
+
 // Special cases
 #define ABILITYEFFECT_MUD_SPORT                  252 // Only used if B_SPORT_TURNS >= GEN_6
 #define ABILITYEFFECT_WATER_SPORT                253 // Only used if B_SPORT_TURNS >= GEN_6
@@ -215,7 +221,9 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
 bool32 TryPrimalReversion(u32 battler);
 bool32 IsNeutralizingGasOnField(void);
 bool32 IsMoldBreakerTypeAbility(u32 battler, u32 ability);
+bool32 HasMoldBreakerTypeAbility(u32 battler);
 u32 GetBattlerAbility(u32 battler);
+u32 GetBattlerTrait(u8 battler, u8 traitNum);
 u32 IsAbilityOnSide(u32 battler, u32 ability);
 u32 IsAbilityOnOpposingSide(u32 battler, u32 ability);
 u32 IsAbilityOnField(u32 ability);
@@ -246,7 +254,7 @@ s32 CalculateMoveDamage(struct DamageCalculationData *damageCalcData, u32 fixedB
 s32 CalculateMoveDamageVars(struct DamageCalculationData *damageCalcData, u32 fixedBasePower, uq4_12_t typeEffectivenessModifier,
                             u32 weather, u32 holdEffectAtk, u32 holdEffectDef, u32 abilityAtk, u32 abilityDef);
 uq4_12_t CalcTypeEffectivenessMultiplier(u32 move, u32 moveType, u32 battlerAtk, u32 battlerDef, u32 defAbility, bool32 recordAbilities);
-uq4_12_t CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 abilityDef);
+uq4_12_t CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 defAbility, u16 battlerDef);
 uq4_12_t GetTypeModifier(u32 atkType, u32 defType);
 uq4_12_t GetOverworldTypeEffectiveness(struct Pokemon *mon, u8 moveType);
 s32 GetStealthHazardDamage(u8 hazardType, u32 battler);
@@ -314,7 +322,7 @@ bool32 CanBeBurned(u32 battler, u32 ability);
 bool32 CanBeParalyzed(u32 battler, u32 ability);
 bool32 CanBeFrozen(u32 battler);
 bool32 CanGetFrostbite(u32 battler);
-bool32 CanBeConfused(u32 battler);
+bool32 CanBeConfused(u32 battler, u32 ability);
 bool32 IsBattlerTerrainAffected(u32 battler, u32 terrainFlag);
 u32 GetBattlerAffectionHearts(u32 battler);
 void TryToRevertMimicryAndFlags(void);

@@ -7023,3 +7023,49 @@ bool32 IsSpeciesForeignRegionalForm(u32 species, u32 currentRegion)
     }
     return FALSE;
 }
+
+//Returns the slot the Innate is found in, assuming the Ability is already slot 1.  Returns 0 if not found.
+u8 SpeciesHasInnate(u16 species, u16 ability, u32 personality, bool8 disablerandomizer) {
+    u8 i;
+    u8 innateNum = 0;
+
+    for (i = 0; i < MAX_MON_INNATES; i++)
+    {
+        if (gSpeciesInfo[species].innates[i] == ability)
+            {innateNum = innateNum + 2 + i;
+            DebugPrintf("INNATE FOUND: %d", innateNum - 1);}
+    }
+    
+    //if (!disablerandomizer) {
+    //    innate1 = RandomizeInnate(gBaseStats[species].innates[0], species, personality);
+    //    innate2 = RandomizeInnate(gBaseStats[species].innates[1], species, personality);
+    //    innate3 = RandomizeInnate(gBaseStats[species].innates[2], species, personality);
+    //}
+        return innateNum;
+}
+
+bool8 BoxMonHasInnate(struct BoxPokemon *boxmon, u16 ability, bool8 disableRandomizer) {
+    u16 species = GetBoxMonData(boxmon, MON_DATA_SPECIES, NULL);
+    u32 personality = GetBoxMonData(boxmon, MON_DATA_PERSONALITY, NULL);
+
+    return SpeciesHasInnate(species, ability, personality, disableRandomizer);
+}
+
+bool8 MonHasTrait(struct Pokemon *mon, u16 ability, bool8 disableRandomizer)
+{
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+    u8 personality = GetMonData(mon, MON_DATA_PERSONALITY, NULL);
+    return (GetMonAbility(mon) == ability || SpeciesHasInnate(species, ability, personality, disableRandomizer));
+} 
+
+u16 GetSpeciesInnate(u16 species, u8 traitNum, u32 personality, bool8 disablerandomizer) {
+    //u8 i;
+
+    //if (!disablerandomizer) {
+    //    return RandomizeInnate(gBaseStats[species].innates[traitNum], species, personality);
+    //}
+    if (MAX_MON_INNATES > 0)
+            return gSpeciesInfo[species].innates[traitNum - 1];
+    else
+        return 0;
+}

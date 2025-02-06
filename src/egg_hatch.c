@@ -932,9 +932,9 @@ u8 GetEggCyclesToSubtract(void)
         if (!GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_EGG))
         {
             u16 ability = GetMonAbility(&gPlayerParty[i]);
-            if (ability == ABILITY_MAGMA_ARMOR
-             || ability == ABILITY_FLAME_BODY
-             || ability == ABILITY_STEAM_ENGINE)
+            if (MonHasTrait(&gPlayerParty[i], ABILITY_MAGMA_ARMOR, TRUE)
+             || MonHasTrait(&gPlayerParty[i], ABILITY_FLAME_BODY, TRUE)
+             || MonHasTrait(&gPlayerParty[i], ABILITY_STEAM_ENGINE, TRUE))
                 return 2;
         }
     }

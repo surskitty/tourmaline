@@ -8,6 +8,10 @@
 #define MIN_ROLL_PERCENTAGE DMG_ROLL_PERCENT_LO
 #define DMG_ROLL_PERCENTAGE ((MAX_ROLL_PERCENTAGE + MIN_ROLL_PERCENTAGE + 1) / 2) // Controls the damage roll the AI sees for the default roll. By default the 9th roll is seen
 
+#define BATTLER_NONE       0
+#define BATTLER_ABILITY    1
+#define BATTLER_INNATE     2
+
 enum DamageRollType
 {
     DMG_ROLL_LOWEST,
@@ -78,7 +82,7 @@ bool32 IsStatBoostingBerry(u32 item);
 bool32 CanKnockOffItem(u32 battler, u32 item);
 bool32 IsAbilityOfRating(u32 ability, s8 rating);
 bool32 AI_IsAbilityOnSide(u32 battlerId, u32 ability);
-bool32 AI_MoveMakesContact(u32 ability, u32 holdEffect, u32 move);
+bool32 AI_MoveMakesContact(u32 ability, u32 holdEffect, u32 move, u32 battlerAtk);
 bool32 ShouldUseZMove(u32 battlerAtk, u32 battlerDef, u32 chosenMove);
 
 // stat stage checks
@@ -125,7 +129,7 @@ bool32 HasMoveWithLowAccuracy(u32 battlerAtk, u32 battlerDef, u32 accCheck, bool
 bool32 HasAnyKnownMove(u32 battlerId);
 bool32 IsAromaVeilProtectedMove(u32 move);
 bool32 IsNonVolatileStatusMoveEffect(u32 moveEffect);
-bool32 IsMoveRedirectionPrevented(u32 move, u32 atkAbility);
+bool32 IsMoveRedirectionPrevented(u32 move, u32 atkAbility, u32 battlerAtk);
 bool32 IsMoveEncouragedToHit(u32 battlerAtk, u32 battlerDef, u32 move);
 bool32 IsHazardMoveEffect(u32 moveEffect);
 bool32 IsTwoTurnNotSemiInvulnerableMove(u32 battlerAtk, u32 move);

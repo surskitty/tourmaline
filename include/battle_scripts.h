@@ -292,6 +292,7 @@ extern const u8 BattleScript_StickyWebOnSwitchIn[];
 extern const u8 BattleScript_SolarPowerActivates[];
 extern const u8 BattleScript_CursedBodyActivates[];
 extern const u8 BattleScript_MummyActivates[];
+extern const u8 BattleScript_MummyCalled[];
 extern const u8 BattleScript_WeakArmorActivates[];
 extern const u8 BattleScript_FellStingerRaisesStat[];
 extern const u8 BattleScript_SnowWarningActivatesHail[];

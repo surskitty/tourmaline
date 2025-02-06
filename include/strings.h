@@ -2711,4 +2711,8 @@ extern const u8 gText_PlayerScurriedBackHome[];
 extern const u8 gText_Relearn[]; // move relearner from summary screen
 extern const u8 gText_Rename[]; // change nickname from summary screen
 
+//New Summary Pages
+extern const u8 gText_PkmnTraits[];
+extern const u8 gText_PkmnMemos[];
+
 #endif // GUARD_STRINGS_H
