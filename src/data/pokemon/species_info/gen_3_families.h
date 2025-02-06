@@ -954,7 +954,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
 #ifdef P_TRAITS
         .abilities = { ABILITY_INTIMIDATE, ABILITY_MOXIE, ABILITY_NONE },
-        .innates = { ABILITY_STRONG_JAW ABILITY_QUICK_FEET, ABILITY_RUN_AWAY },
+        .innates = { ABILITY_STRONG_JAW, ABILITY_QUICK_FEET, ABILITY_RUN_AWAY },
 #else
         .abilities = { ABILITY_INTIMIDATE, ABILITY_QUICK_FEET, ABILITY_MOXIE },
 #endif
