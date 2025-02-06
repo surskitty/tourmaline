@@ -12,9 +12,6 @@
 #define BATTLER_ABILITY    1
 #define BATTLER_INNATE     2
 
-#define BATTLER_HAS_TRAIT(battlerId, ability) ((GetBattlerAbility(battlerId) == ability || BattlerHasInnate(battlerId, ability)) && IsBattlerAlive(battlerId))
-#define BATTLER_HAS_TRAIT_FAST(battlerId, abilityToCheck, battlerAbility) ((battlerAbility == abilityToCheck || BattlerHasInnate(battlerId, abilityToCheck))) //Useful to make calculations faster
-
 enum DamageRollType
 {
     DMG_ROLL_LOWEST,

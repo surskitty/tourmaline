@@ -488,11 +488,13 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
     u8 opposingPosition = BATTLE_OPPOSITE(GetBattlerPosition(battler));
     u8 opposingBattler = GetBattlerAtPosition(opposingPosition);
     bool32 hasStatRaised = AnyStatIsRaised(battler);
+    u16 AIBattlerTraits[MAX_MON_TRAITS];
+    AI_STORE_BATTLER_TRAITS(battler);
 
     //Perish Song
     if (gStatuses3[battler] & STATUS3_PERISH_SONG
         && gDisableStructs[battler].perishSongTimer == 0
-        && !AI_BATTLER_HAS_TRAIT(battler, ABILITY_SOUNDPROOF))
+        && !AISearchTraits(AIBattlerTraits, ABILITY_SOUNDPROOF))
         switchMon = TRUE;
 
     if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_SWITCHING)
@@ -510,9 +512,9 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
                 switchMon = FALSE;
 
             // Checks to see if active Pokemon can do something against sleep
-            if ((AI_BATTLER_HAS_TRAIT(battler, ABILITY_NATURAL_CURE)
-                || AI_BATTLER_HAS_TRAIT(battler, ABILITY_SHED_SKIN)
-                || AI_BATTLER_HAS_TRAIT(battler, ABILITY_EARLY_BIRD))
+            if ((AISearchTraits(AIBattlerTraits, ABILITY_NATURAL_CURE)
+                || AISearchTraits(AIBattlerTraits, ABILITY_SHED_SKIN)
+                || AISearchTraits(AIBattlerTraits, ABILITY_EARLY_BIRD))
                 || holdEffect == (HOLD_EFFECT_CURE_SLP | HOLD_EFFECT_CURE_STATUS)
                 || HasMove(battler, MOVE_SLEEP_TALK)
                 || (HasMoveEffect(battler, MOVE_SNORE) && AI_GetMoveEffectiveness(MOVE_SNORE, battler, opposingBattler) >= AI_EFFECTIVENESS_x2)
@@ -522,10 +524,13 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
                 switchMon = FALSE;
 
             // Check if Active Pokemon evasion boosted and might be able to dodge until awake
+            u16 AIBattlerTraits[MAX_MON_TRAITS];
+            AI_STORE_BATTLER_TRAITS(opposingBattler);
+
             if (gBattleMons[battler].statStages[STAT_EVASION] > (DEFAULT_STAT_STAGE + 3)
-                && AI_BATTLER_HAS_TRAIT(opposingBattler, ABILITY_UNAWARE)
-                && AI_BATTLER_HAS_TRAIT(opposingBattler, ABILITY_KEEN_EYE)
-                && AI_BATTLER_HAS_TRAIT(opposingBattler, ABILITY_MINDS_EYE)
+                && AISearchTraits(AIBattlerTraits, ABILITY_UNAWARE)
+                && AISearchTraits(AIBattlerTraits, ABILITY_KEEN_EYE)
+                && AISearchTraits(AIBattlerTraits, ABILITY_MINDS_EYE)
                 && (B_ILLUMINATE_EFFECT >= GEN_9 && AI_DATA->abilities[opposingBattler] != ABILITY_ILLUMINATE)
                 && !(gBattleMons[battler].status2 & STATUS2_FORESIGHT)
                 && !(gStatuses3[battler] & STATUS3_MIRACLE_EYED))

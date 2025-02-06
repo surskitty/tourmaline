@@ -87,6 +87,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
 void ModifyPersonalityForNature(u32 *personality, u32 newNature);
 u32 GeneratePersonalityForGender(u32 gender, u32 species);
 void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon *partyEntry);
+//u16 battlerTraits[MAX_MON_TRAITS];
 
 extern struct MultiPartnerMenuPokemon gMultiPartnerParty[MULTI_PARTY_SIZE];
 
@@ -105,5 +106,15 @@ extern const u8 gStatusConditionString_ConfusionJpn[8];
 extern const u8 gStatusConditionString_LoveJpn[8];
 
 extern const u8 *const gStatusConditionStringsTable[7][2];
+
+static inline u32 SearchTraits(u16 *battlerTraits, u32 abilityToCheck)
+{
+  for (u32 i = 0; i < MAX_MON_TRAITS; i++)
+  {
+    if (battlerTraits[i] == abilityToCheck)
+      return i + 1;
+  }
+  return 0;
+}
 
 #endif // GUARD_BATTLE_MAIN_H

@@ -814,31 +814,33 @@ static bool8 DoesAbilityPreventStatus(struct Pokemon *mon, u32 status)
 {
     u16 ability = GetMonAbility(mon);
     bool8 ret = FALSE;
+    u16 battlerTraits[MAX_MON_TRAITS];
+    STORE_BATTLER_TRAITS(gBattlerTarget);
 
-    if (BattlerHasTrait(gBattlerTarget, ABILITY_COMATOSE))
+    if (SearchTraits(battlerTraits, ABILITY_COMATOSE))
         return TRUE;
 
     switch (status)
     {
     case STATUS1_FREEZE:
     case STATUS1_FROSTBITE:
-        if (BattlerHasTrait(gBattlerTarget, ABILITY_MAGMA_ARMOR))
+        if (SearchTraits(battlerTraits, ABILITY_MAGMA_ARMOR))
             ret = TRUE;
         break;
     case STATUS1_BURN:
-        if (BattlerHasTrait(gBattlerTarget, ABILITY_WATER_VEIL) || BattlerHasTrait(gBattlerTarget, ABILITY_WATER_BUBBLE))
+        if (SearchTraits(battlerTraits, ABILITY_WATER_VEIL) || SearchTraits(battlerTraits, ABILITY_WATER_BUBBLE))
             ret = TRUE;
         break;
     case STATUS1_PARALYSIS:
-        if (BattlerHasTrait(gBattlerTarget, ABILITY_LIMBER))
+        if (SearchTraits(battlerTraits, ABILITY_LIMBER))
             ret = TRUE;
         break;
     case STATUS1_SLEEP:
-        if (BattlerHasTrait(gBattlerTarget, ABILITY_INSOMNIA) || BattlerHasTrait(gBattlerTarget, ABILITY_VITAL_SPIRIT))
+        if (SearchTraits(battlerTraits, ABILITY_INSOMNIA) || SearchTraits(battlerTraits, ABILITY_VITAL_SPIRIT))
             ret = TRUE;
         break;
     case STATUS1_TOXIC_POISON:
-        if (BattlerHasTrait(gBattlerTarget, ABILITY_IMMUNITY) || BattlerHasTrait(gBattlerTarget, ABILITY_PASTEL_VEIL))
+        if (SearchTraits(battlerTraits, ABILITY_IMMUNITY) || SearchTraits(battlerTraits, ABILITY_PASTEL_VEIL))
             ret = TRUE;
         break;
     }

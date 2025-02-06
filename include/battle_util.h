@@ -60,6 +60,12 @@ enum {
     ABILITYEFFECT_SWITCH_IN_STATUSES,
 };
 
+#define STORE_BATTLER_TRAITS(battler) \
+({for (int traitLoop = 0; traitLoop < MAX_MON_TRAITS; traitLoop++)\
+{battlerTraits[traitLoop] = GetBattlerTrait(battler, traitLoop);\
+}})
+//DebugPrintf("Battler[%d] - Trait[%d]: %S", battler, i,  gAbilitiesInfo[battlerTraits[i]].name);\
+
 // Special cases
 #define ABILITYEFFECT_MUD_SPORT                  252 // Only used if B_SPORT_TURNS >= GEN_6
 #define ABILITYEFFECT_WATER_SPORT                253 // Only used if B_SPORT_TURNS >= GEN_6
@@ -218,7 +224,6 @@ bool32 IsMoldBreakerTypeAbility(u32 battler, u32 ability);
 bool32 HasMoldBreakerTypeAbility(u32 battler);
 u32 GetBattlerAbility(u32 battler);
 u32 GetBattlerTrait(u8 battler, u8 traitNum);
-u32 GetBattlerTraitPlain(u8 battler, u8 traitNum);
 u32 IsAbilityOnSide(u32 battler, u32 ability);
 u32 IsAbilityOnOpposingSide(u32 battler, u32 ability);
 u32 IsAbilityOnField(u32 ability);
@@ -317,7 +322,7 @@ bool32 CanBeBurned(u32 battler, u32 ability);
 bool32 CanBeParalyzed(u32 battler, u32 ability);
 bool32 CanBeFrozen(u32 battler);
 bool32 CanGetFrostbite(u32 battler);
-bool32 CanBeConfused(u32 battler);
+bool32 CanBeConfused(u32 battler, u32 ability);
 bool32 IsBattlerTerrainAffected(u32 battler, u32 terrainFlag);
 u32 GetBattlerAffectionHearts(u32 battler);
 void TryToRevertMimicryAndFlags(void);
