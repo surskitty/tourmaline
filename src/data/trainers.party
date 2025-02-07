@@ -593,7 +593,7 @@ Level: 37
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_ARCHIE ===
-Name: ARCHIE
+Name: Archie
 Class: Aqua Leader
 Pic: Aqua Leader Archie
 Gender: Male
@@ -604,15 +604,12 @@ AI: Basic Trainer
 
 Mightyena
 Level: 41
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Crobat
 Level: 41
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-Sharpedo
+Sharpedo @ Sharpedonite
 Level: 43
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 === TRAINER_LEAH ===
 Name: LEAH
@@ -10966,7 +10963,6 @@ Ability: Magic Bounce
 
 Nuzleaf (F)
 Level: 18
-Ability: Early Bird
 
 Aegis (Dottler) (F)
 Level: 18
@@ -10989,14 +10985,12 @@ Ability: Magic Bounce
 
 Nuzleaf (F)
 Level: 29
-Ability: Early Bird
 
 Aegis (Orbeetle) (F)
 Level: 30
 
 Perry (Marshtomp) (M)
 Level: 31
-
 
 === TRAINER_BRENDAN_LILYCOVE_TORCHIC ===
 Name: Brendan
@@ -11068,7 +11062,7 @@ Ability: Anticipation
 - Wish
 - Yawn
 
-SPECIES_SHELLOS_EAST (F)
+Shellos East (F)
 Level: 13
 Ability: Storm Drain
 
@@ -11086,9 +11080,8 @@ AI: Basic Trainer
 
 Bebe (Umbreon) (F)
 Level: 20
-Ability: Inner Focus
 
-SPECIES_SHELLOS_EAST (F)
+Shellos East (F)
 Level: 18
 Ability: Storm Drain
 
@@ -11109,15 +11102,12 @@ AI: Basic Trainer
 
 Bebe (Umbreon) (F)
 Level: 31
-Ability: Inner Focus
 
 Aegis (Orbeetle) (F)
 Level: 29
-Ability: Telepathy
 
 Nuzleaf (F)
 Level: 29
-Ability: Early Bird
 
 Twig (Grovyle) (M)
 Level: 31
@@ -11131,9 +11121,8 @@ Music: Female
 Double Battle: Yes
 AI: Basic Trainer / Ace Pokemon
 
-Kilowattrel (M)
+Halcyon (Kilowattrel) (M)
 Level: 31
-Ability: Wind Power
 - Tailwind
 - Electro Ball
 - Acrobatics
@@ -11141,17 +11130,15 @@ Ability: Wind Power
 
 Aegis (Orbeetle) (F)
 Level: 32
-Ability: Telepathy
 
-SPECIES_GASTRODON_EAST (F)
+Gastrodon East (F)
 Level: 32
 Ability: Storm Drain
 
 Bebe (Umbreon) (F)
 Level: 34
-Ability: Inner Focus
 
-Twig (Sceptile) (M) @ ITEM_SCEPTILITE
+Twig (Sceptile) (M) @ Sceptilite
 Level: 34
 
 === TRAINER_MAY_ROUTE_103_TREECKO ===
@@ -11195,7 +11182,6 @@ Ability: Anticipation
 
 Popcorn (Seedot) (F) 
 Level: 13
-Ability: Early Bird
 
 Nugget (Torchic) (M)
 Level: 15
@@ -11213,13 +11199,12 @@ Bebe (Glaceon) (F)
 Ability: Ice Body
 Level: 20
 
-SPECIES_SHELLOS_EAST (F)
+Shellos East (F)
 Level: 18
 Ability: Storm Drain
 
 Popcorn (Nuzleaf) (F)
 Level: 18
-Ability: Early Bird
 
 Nugget (Combusken) (M)
 Level: 20
@@ -11237,13 +11222,12 @@ Bebe (Glaceon) (F)
 Level: 31
 Ability: Ice Body
 
-SPECIES_GASTRODON_EAST (F)
+Gastrodon East (F)
 Level: 30
 Ability: Storm Drain
 
 Popcorn (Nuzleaf) (F)
 Level: 29
-Ability: Early Bird
 
 Nugget (Combusken) (M)
 Level: 31
@@ -11257,7 +11241,7 @@ Music: Female
 Double Battle: Yes
 AI: Basic Trainer / Ace Pokemon
 
-Kilowattrel (M)
+Halcyon (Kilowattrel) (M)
 Level: 31
 Ability: Wind Power
 - Tailwind
@@ -11267,9 +11251,8 @@ Ability: Wind Power
 
 Popcorn (Shiftry) (F)
 Level: 32
-Ability: Wind Rider
 
-SPECIES_GASTRODON_EAST (F)
+Gastrodon East (F)
 Level: 33
 Ability: Storm Drain
 
@@ -11340,7 +11323,6 @@ Ability: Magic Bounce
 
 Popcorn (Nuzleaf) (F)
 Level: 18
-Ability: Early Bird
 
 Aegis (Dottler) (F)
 Level: 18
@@ -11379,7 +11361,7 @@ Music: Female
 Double Battle: Yes
 AI: Basic Trainer / Ace Pokemon
 
-Kilowattrel (M)
+Halcyon (Kilowattrel) (M)
 Level: 31
 Ability: Wind Power
 - Tailwind
@@ -11389,7 +11371,6 @@ Ability: Wind Power
 
 Popcorn (Shiftry) (F)
 Level: 32
-Ability: Wind Rider
 
 Aegis (Orbeetle) (F)
 Level: 32
@@ -11399,11 +11380,11 @@ Bebe (Espeon) (F)
 Level: 34
 Ability: Magic Bounce
 
-Kippers (Swampert) (M) @ ITEM_SWAMPERTITE
+Kippers (Swampert) (M) @ Swampertite
 Level: 34
 
 === TRAINER_ISAAC_1 ===
-Name: ISAAC
+Name: Isaac
 Class: Pkmn Breeder
 Pic: Pokemon Breeder M
 Gender: Male
@@ -11436,7 +11417,7 @@ Level: 11
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_DAVIS ===
-Name: DAVIS
+Name: Davis
 Class: Bug Catcher
 Pic: Bug Catcher
 Gender: Male
@@ -11449,7 +11430,7 @@ Level: 27
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MITCHELL ===
-Name: MITCHELL
+Name: Mitchell
 Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
@@ -11474,7 +11455,7 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Shadow Ball
 
 === TRAINER_ISAAC_2 ===
-Name: ISAAC
+Name: Isaac
 Class: Pkmn Breeder
 Pic: Pokemon Breeder M
 Gender: Male
@@ -11507,7 +11488,7 @@ Level: 22
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 
 === TRAINER_ISAAC_3 ===
-Name: ISAAC
+Name: Isaac
 Class: Pkmn Breeder
 Pic: Pokemon Breeder M
 Gender: Male
@@ -11540,7 +11521,7 @@ Level: 25
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 === TRAINER_ISAAC_4 ===
-Name: ISAAC
+Name: Isaac
 Class: Pkmn Breeder
 Pic: Pokemon Breeder M
 Gender: Male
@@ -11573,7 +11554,7 @@ Level: 28
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 === TRAINER_ISAAC_5 ===
-Name: ISAAC
+Name: Isaac
 Class: Pkmn Breeder
 Pic: Pokemon Breeder M
 Gender: Male
@@ -12242,7 +12223,6 @@ Ability: Lightning Rod
 
 Linoone @ Figy Berry
 Level: 32
-Ability: Gluttony
 - Surf
 - Extreme Speed
 - Dig
@@ -12524,7 +12504,7 @@ Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MAXIE_MAGMA_HIDEOUT ===
-Name: MAXIE
+Name: Maxie
 Class: Magma Leader
 Pic: Magma Leader Maxie
 Gender: Male
@@ -12535,18 +12515,15 @@ AI: Basic Trainer
 
 Mightyena
 Level: 37
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Crobat
 Level: 38
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Camerupt
 Level: 39
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 === TRAINER_MAXIE_MT_CHIMNEY ===
-Name: MAXIE
+Name: Maxie
 Class: Magma Leader
 Pic: Magma Leader Maxie
 Gender: Male
@@ -12578,6 +12555,7 @@ AI: Basic Trainer
 
 Gothita
 Level: 4
+Ability: Frisk
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Tarountula
@@ -12595,7 +12573,7 @@ AI: Basic Trainer
 
 Ruri (Azurill) (F)
 Level: 6
-Ability: Thick Fat
+Ability: Sap Sipper
 
 Haz (Lotad) (M)
 Level: 6
@@ -12618,7 +12596,7 @@ AI: Basic Trainer
 
 Ruri (Marill) (F)
 Level: 26
-Ability: Thick Fat
+Ability: Sap Sipper
 
 Haz (Lombre) (M)
 Level: 26
@@ -12639,7 +12617,7 @@ AI: Basic Trainer
 
 Ruri (Azumarill) (F)
 Level: 30
-Ability: Thick Fat
+Ability: Sap Sipper
 
 Haz (Ludicolo) (M)
 Level: 30
@@ -12664,7 +12642,7 @@ AI: Basic Trainer
 
 Ruri (Azumarill) (F)
 Level: 34
-Ability: Thick Fat
+Ability: Sap Sipper
 
 Haz (Ludicolo) (M)
 Level: 34
@@ -12689,7 +12667,7 @@ AI: Basic Trainer
 
 Ruri (Azumarill) (F)
 Level: 40
-Ability: Thick Fat
+Ability: Sap Sipper
 
 Haz (Ludicolo) (M)
 Level: 40
@@ -12704,7 +12682,7 @@ Level: 40
 Ability: Sand Force
 
 === TRAINER_JANICE ===
-Name: JANICE
+Name: Janice
 Class: Lass
 Pic: Lass
 Gender: Female
@@ -12712,12 +12690,16 @@ Music: Female
 Double Battle: Yes
 AI: Basic Trainer
 
-Marill
+Azurill
+Level: 9
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Stufful
 Level: 9
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_VIVI ===
-Name: VIVI
+Name: Vivi
 Class: Winstrate
 Pic: Lass
 Gender: Female
@@ -12738,7 +12720,7 @@ Level: 15
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_SALLY ===
-Name: SALLY
+Name: Sally
 Class: Lass
 Pic: Lass
 Gender: Female
@@ -12750,8 +12732,12 @@ Oddish
 Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
+Trubbish
+Level: 16
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
 === TRAINER_ROBIN ===
-Name: ROBIN
+Name: Robin
 Class: Lass
 Pic: Lass
 Gender: Female
@@ -12772,7 +12758,7 @@ Level: 14
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ANDREA ===
-Name: ANDREA
+Name: Andrea
 Class: Lass
 Pic: Lass
 Gender: Female
@@ -12782,10 +12768,12 @@ AI: Basic Trainer
 
 Luvdisc
 Level: 40
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+
+Cursola
+Level: 40
 
 === TRAINER_CRISSY ===
-Name: CRISSY
+Name: Crissy
 Class: Lass
 Pic: Lass
 Gender: Female
@@ -12793,13 +12781,11 @@ Music: Female
 Double Battle: Yes
 AI: Basic Trainer
 
-Goldeen
+Seaking
 Level: 39
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Wailmer
 Level: 39
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_RICK ===
 Name: Rick
@@ -12840,7 +12826,7 @@ Sewaddle
 Level: 6
 
 === TRAINER_JOSE ===
-Name: JOSE
+Name: Jose
 Class: Bug Catcher
 Pic: Bug Catcher
 Gender: Male
@@ -12857,7 +12843,7 @@ Level: 8
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 === TRAINER_DOUG ===
-Name: DOUG
+Name: Doug
 Class: Bug Catcher
 Pic: Bug Catcher
 Gender: Male
@@ -12865,16 +12851,14 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer
 
-Nincada
+Shedinja
 Level: 28
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Ninjask
 Level: 28
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GREG ===
-Name: GREG
+Name: Greg
 Class: Bug Catcher
 Pic: Bug Catcher
 Gender: Male
@@ -12884,14 +12868,12 @@ AI: Basic Trainer
 
 Volbeat
 Level: 25
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Illumise
 Level: 25
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_KENT ===
-Name: KENT
+Name: Kent
 Class: Bug Catcher
 Pic: Bug Catcher
 Gender: Male
@@ -13080,7 +13062,7 @@ Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_TRENT_1 ===
-Name: TRENT
+Name: Trent
 Class: Hiker
 Pic: Hiker
 Gender: Male
@@ -14996,7 +14978,7 @@ Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MAXIE_MOSSDEEP ===
-Name: MAXIE
+Name: Maxie
 Class: Magma Leader
 Pic: Magma Leader Maxie
 Gender: Male
@@ -15006,18 +14988,15 @@ AI: Basic Trainer
 
 Mightyena
 Level: 42
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Crobat
 Level: 43
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-Camerupt
+Camerupt @ Cameruptite
 Level: 44
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 === TRAINER_PETE ===
-Name: PETE
+Name: Pete
 Class: Swimmer M
 Pic: Swimmer M
 Gender: Male
@@ -16020,14 +15999,14 @@ Level: 30
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
 === TRAINER_STEVEN ===
-Name: STEVEN
+Name: Steven
 Class: Rival
 Pic: Steven
 Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
 
 Skarmory
 Level: 77
@@ -16064,12 +16043,14 @@ Level: 76
 - Aerial Ace
 - Slash
 
-Metagross @ Sitrus Berry
+Metagross @ Metagrossite
 Level: 78
+Nature: Adamant
+EVs: 252 Atk / 252 Def / 6 SpA
 - Earthquake
-- Psychic
+- Zen Headbutt
 - Meteor Mash
-- Shadow Ball
+- Knock Off
 
 === TRAINER_ANABEL ===
 Name: ANABEL
