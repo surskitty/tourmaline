@@ -8,7 +8,7 @@ mapscripts Route103_MapScripts {
        call(ProfBirch_EventScript_UpdateLocation)
     }
     MAP_SCRIPT_ON_LOAD {
-       if (flag(FLAG_SYS_GAME_CLEAR)) {
+       if (flag(FLAG_VISITED_LILYCOVE_CITY)) {
            setmetatile(45, 5, METATILE_General_CaveEntrance_Top, TRUE)
            setmetatile(45, 6, METATILE_General_CaveEntrance_Bottom, FALSE)
        }
