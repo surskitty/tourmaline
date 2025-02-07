@@ -1414,8 +1414,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_MINERAL),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_OWN_TEMPO, ABILITY_NONE, ABILITY_KLUTZ },
-        .innates = { },
+        .abilities = { ABILITY_OWN_TEMPO, ABILITY_KLUTZ, ABILITY_NONE },
+        .innates = { ABILITY_AROMA_VEIL },
 #else
         .abilities = { ABILITY_OWN_TEMPO, ABILITY_NONE, ABILITY_KLUTZ },
 #endif
@@ -1483,7 +1483,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_MINERAL),
 #ifdef P_TRAITS
         .abilities = { ABILITY_WELL_BAKED_BODY, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_AROMA_VEIL },
+        .innates = { ABILITY_AROMA_VEIL, ABILITY_WELL_BAKED_BODY },
 #else
         .abilities = { ABILITY_WELL_BAKED_BODY, ABILITY_NONE, ABILITY_AROMA_VEIL },
 #endif
@@ -6039,7 +6039,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_DRAGON, EGG_GROUP_MINERAL),
 #ifdef P_TRAITS
         .abilities = { ABILITY_THERMAL_EXCHANGE, ABILITY_NONE, ABILITY_ICE_BODY },
-        .innates = { },
+        .innates = { ABILITY_THERMAL_EXCHANGE, ABILITY_ICE_BODY },
 #else
         .abilities = { ABILITY_THERMAL_EXCHANGE, ABILITY_NONE, ABILITY_ICE_BODY },
 #endif
@@ -6107,7 +6107,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_DRAGON, EGG_GROUP_MINERAL),
 #ifdef P_TRAITS
         .abilities = { ABILITY_THERMAL_EXCHANGE, ABILITY_NONE, ABILITY_ICE_BODY },
-        .innates = { },
+        .innates = { ABILITY_THERMAL_EXCHANGE, ABILITY_ICE_BODY },
 #else
         .abilities = { ABILITY_THERMAL_EXCHANGE, ABILITY_NONE, ABILITY_ICE_BODY },
 #endif
@@ -6174,7 +6174,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_DRAGON, EGG_GROUP_MINERAL),
 #ifdef P_TRAITS
         .abilities = { ABILITY_THERMAL_EXCHANGE, ABILITY_NONE, ABILITY_ICE_BODY },
-        .innates = { },
+        .innates = { ABILITY_THERMAL_EXCHANGE, ABILITY_ICE_BODY },
 #else
         .abilities = { ABILITY_THERMAL_EXCHANGE, ABILITY_NONE, ABILITY_ICE_BODY },
 #endif

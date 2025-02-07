@@ -1788,8 +1788,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_WATER_1),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_STRONG_JAW, ABILITY_SHELL_ARMOR, ABILITY_SWIFT_SWIM },
-        .innates = { },
+        .abilities = { ABILITY_SHELL_ARMOR, ABILITY_SWIFT_SWIM, ABILITY_NONE },
+        .innates = { ABILITY_STRONG_JAW },
 #else
         .abilities = { ABILITY_STRONG_JAW, ABILITY_SHELL_ARMOR, ABILITY_SWIFT_SWIM },
 #endif
@@ -1855,8 +1855,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_WATER_1),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_STRONG_JAW, ABILITY_SHELL_ARMOR, ABILITY_SWIFT_SWIM },
-        .innates = { },
+        .abilities = { ABILITY_SHELL_ARMOR, ABILITY_SWIFT_SWIM, ABILITY_NONE },
+        .innates = { ABILITY_STRONG_JAW },
 #else
         .abilities = { ABILITY_STRONG_JAW, ABILITY_SHELL_ARMOR, ABILITY_SWIFT_SWIM },
 #endif
@@ -3296,8 +3296,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_RATTLED, ABILITY_STATIC, ABILITY_KLUTZ },
-        .innates = { },
+        .abilities = { ABILITY_STATIC, ABILITY_KLUTZ, ABILITY_NONE },
+        .innates = { ABILITY_RATTLED },
 #else
         .abilities = { ABILITY_RATTLED, ABILITY_STATIC, ABILITY_KLUTZ },
 #endif
@@ -3365,8 +3365,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_HUMAN_LIKE),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_PUNK_ROCK, ABILITY_PLUS, ABILITY_TECHNICIAN },
-        .innates = { },
+        .abilities = { ABILITY_PLUS, ABILITY_TECHNICIAN, ABILITY_NONE },
+        .innates = { ABILITY_PUNK_ROCK },
 #else
         .abilities = { ABILITY_PUNK_ROCK, ABILITY_PLUS, ABILITY_TECHNICIAN },
 #endif
@@ -3434,8 +3434,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_HUMAN_LIKE),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_PUNK_ROCK, ABILITY_PLUS, ABILITY_TECHNICIAN },
-        .innates = { },
+        .abilities = { ABILITY_PLUS, ABILITY_TECHNICIAN, ABILITY_NONE },
+        .innates = { ABILITY_PUNK_ROCK },
 #else
         .abilities = { ABILITY_PUNK_ROCK, ABILITY_PLUS, ABILITY_TECHNICIAN },
 #endif
@@ -3492,8 +3492,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_HUMAN_LIKE),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_PUNK_ROCK, ABILITY_MINUS, ABILITY_TECHNICIAN },
-        .innates = { },
+        .abilities = { ABILITY_MINUS, ABILITY_TECHNICIAN, ABILITY_NONE },
+        .innates = { ABILITY_PUNK_ROCK },
 #else
         .abilities = { ABILITY_PUNK_ROCK, ABILITY_MINUS, ABILITY_TECHNICIAN },
 #endif
@@ -3560,8 +3560,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_HUMAN_LIKE),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_PUNK_ROCK, ABILITY_MINUS, ABILITY_TECHNICIAN },
-        .innates = { },
+        .abilities = { ABILITY_MINUS, ABILITY_TECHNICIAN, ABILITY_NONE },
+        .innates = { ABILITY_PUNK_ROCK },
 #else
         .abilities = { ABILITY_PUNK_ROCK, ABILITY_MINUS, ABILITY_TECHNICIAN },
 #endif
@@ -3805,8 +3805,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_HUMAN_LIKE),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_LIMBER, ABILITY_NONE, ABILITY_TECHNICIAN },
-        .innates = { },
+        .abilities = { ABILITY_TECHNICIAN, ABILITY_NONE, ABILITY_NONE },
+        .innates = { ABILITY_LIMBER },
 #else
         .abilities = { ABILITY_LIMBER, ABILITY_NONE, ABILITY_TECHNICIAN },
 #endif
@@ -3873,8 +3873,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_HUMAN_LIKE),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_LIMBER, ABILITY_NONE, ABILITY_TECHNICIAN },
-        .innates = { },
+        .abilities = { ABILITY_TECHNICIAN, ABILITY_NONE, ABILITY_NONE },
+        .innates = { ABILITY_LIMBER },
 #else
         .abilities = { ABILITY_LIMBER, ABILITY_NONE, ABILITY_TECHNICIAN },
 #endif
@@ -4994,8 +4994,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_AMORPHOUS),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_LIGHTNING_ROD, ABILITY_NONE, ABILITY_ELECTRIC_SURGE },
-        .innates = { },
+        .abilities = { ABILITY_IRON_BARBS, ABILITY_NONE, ABILITY_ELECTRIC_SURGE },
+        .innates = { ABILITY_LIGHTNING_ROD },
 #else
         .abilities = { ABILITY_LIGHTNING_ROD, ABILITY_NONE, ABILITY_ELECTRIC_SURGE },
 #endif

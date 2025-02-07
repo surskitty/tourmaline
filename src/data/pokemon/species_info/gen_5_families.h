@@ -5067,8 +5067,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG, EGG_GROUP_MINERAL),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_STURDY, ABILITY_SHELL_ARMOR, ABILITY_WEAK_ARMOR },
-        .innates = { },
+        .abilities = { ABILITY_STURDY, ABILITY_NONE, ABILITY_WEAK_ARMOR },
+        .innates = { ABILITY_SHELL_ARMOR, ABILITY_OVERCOAT },
 #else
         .abilities = { ABILITY_STURDY, ABILITY_SHELL_ARMOR, ABILITY_WEAK_ARMOR },
 #endif
@@ -5136,8 +5136,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG, EGG_GROUP_MINERAL),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_STURDY, ABILITY_SHELL_ARMOR, ABILITY_WEAK_ARMOR },
-        .innates = { },
+        .abilities = { ABILITY_STURDY, ABILITY_NONE, ABILITY_WEAK_ARMOR },
+        .innates = { ABILITY_SHELL_ARMOR, ABILITY_OVERCOAT },
 #else
         .abilities = { ABILITY_STURDY, ABILITY_SHELL_ARMOR, ABILITY_WEAK_ARMOR },
 #endif

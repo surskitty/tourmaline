@@ -8686,8 +8686,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_ROCK_HEAD, ABILITY_STURDY, ABILITY_SAND_VEIL },
-        .innates = { },
+        .abilities = { ABILITY_ROCK_HEAD, ABILITY_STURDY, ABILITY_NONE },
+        .innates = { ABILITY_SAND_VEIL },
 #else
         .abilities = { ABILITY_ROCK_HEAD, ABILITY_STURDY, ABILITY_SAND_VEIL },
 #endif
@@ -8757,8 +8757,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_ROCK_HEAD, ABILITY_STURDY, ABILITY_SAND_VEIL },
-        .innates = { },
+        .abilities = { ABILITY_ROCK_HEAD, ABILITY_STURDY, ABILITY_NONE },
+        .innates = { ABILITY_SAND_VEIL },
 #else
         .abilities = { ABILITY_ROCK_HEAD, ABILITY_STURDY, ABILITY_SAND_VEIL },
 #endif
@@ -8827,8 +8827,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_ROCK_HEAD, ABILITY_STURDY, ABILITY_SAND_VEIL },
-        .innates = { },
+        .abilities = { ABILITY_ROCK_HEAD, ABILITY_STURDY, ABILITY_NONE },
+        .innates = { ABILITY_SAND_VEIL },
 #else
         .abilities = { ABILITY_ROCK_HEAD, ABILITY_STURDY, ABILITY_SAND_VEIL },
 #endif
