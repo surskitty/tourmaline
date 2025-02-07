@@ -1,5 +1,6 @@
 #include "global.h"
 #include "battle.h"
+#include "battle_ai_main.h"
 #include "battle_anim.h"
 #include "battle_controllers.h"
 #include "battle_interface.h"
@@ -929,7 +930,7 @@ void BS_TrySetStatus2(void)
             u8 atkGender = GetGenderFromSpeciesAndPersonality(gBattleMons[gBattlerAttacker].species, gBattleMons[gBattlerAttacker].personality);
             u8 defGender = GetGenderFromSpeciesAndPersonality(gBattleMons[gBattlerTarget].species, gBattleMons[gBattlerTarget].personality);
             if (!(gBattleMons[gBattlerTarget].status2 & STATUS2_INFATUATION)
-                && gBattleMons[gBattlerTarget].ability != ABILITY_OBLIVIOUS
+                && !BattlerHasTrait(gBattlerTarget, ABILITY_OBLIVIOUS) 
                 && !IsAbilityOnSide(gBattlerTarget, ABILITY_AROMA_VEIL)
                 && atkGender != defGender
                 && atkGender != MON_GENDERLESS

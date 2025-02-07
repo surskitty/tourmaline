@@ -179,7 +179,7 @@ void SaveBattlerData(u32 battlerId)
     AI_THINKING_STRUCT->saved[battlerId].types[1] = gBattleMons[battlerId].types[1];
 }
 
-static bool32 ShouldFailForIllusion(u32 illusionSpecies, u32 battlerId)
+static bool32 ShouldFallForIllusion(u32 illusionSpecies, u32 battlerId)
 {
     u32 i, j;
     const struct LevelUpMove *learnset;
@@ -225,7 +225,7 @@ void SetBattlerData(u32 battlerId)
         // Simulate Illusion
         species = gBattleMons[battlerId].species;
         illusionSpecies = GetIllusionMonSpecies(battlerId);
-        if (illusionSpecies != SPECIES_NONE && ShouldFailForIllusion(illusionSpecies, battlerId))
+        if (illusionSpecies != SPECIES_NONE && ShouldFallForIllusion(illusionSpecies, battlerId))
         {
             // If the battler's type has not been changed, AI assumes the types of the illusion mon.
             if (gBattleMons[battlerId].types[0] == gSpeciesInfo[species].types[0]
@@ -412,22 +412,22 @@ static inline s32 DmgRoll(s32 dmg)
 bool32 IsDamageMoveUnusable(u32 battlerAtk, u32 battlerDef, u32 move, u32 moveType)
 {
     struct AiLogicData *aiData = AI_DATA;
-    u32 battlerDefAbility;
+    //u32 battlerDefAbility;
     u32 partnerBattlerDefAbility;
 
     if (DoesBattlerIgnoreAbilityChecks(aiData->abilities[battlerAtk], move))
     {
-        battlerDefAbility = ABILITY_NONE;
+        //battlerDefAbility = ABILITY_NONE;
         partnerBattlerDefAbility = ABILITY_NONE;
     }
     else
     {
-        battlerDefAbility = aiData->abilities[battlerDef];
+        //battlerDefAbility = aiData->abilities[battlerDef];
         partnerBattlerDefAbility = aiData->abilities[BATTLE_PARTNER(battlerDef)];
     }
 
     if (battlerDef == BATTLE_PARTNER(battlerAtk))
-        battlerDefAbility = aiData->abilities[battlerDef];
+        //battlerDefAbility = aiData->abilities[battlerDef];
 
     if (gBattleStruct->commandingDondozo & (1u << battlerDef))
         return TRUE;
@@ -547,17 +547,20 @@ static inline void CalcDynamicMoveDamage(struct DamageCalculationData *damageCal
     u32 move = damageCalcData->move;
     s32 expected = *expectedDamage;
     s32 minimum = *minimumDamage;
+    u16 battlerTraits[MAX_MON_TRAITS];
+    STORE_BATTLER_TRAITS(damageCalcData->battlerAtk);
+
 
     switch (gMovesInfo[move].effect)
     {
     case EFFECT_LEVEL_DAMAGE:
-        expected = minimum = gBattleMons[damageCalcData->battlerAtk].level * (abilityAtk == ABILITY_PARENTAL_BOND ? 2 : 1);
+        expected = minimum = gBattleMons[damageCalcData->battlerAtk].level * (SearchTraits(battlerTraits, ABILITY_PARENTAL_BOND) ? 2 : 1);
         break;
     case EFFECT_PSYWAVE:
-        expected = minimum = gBattleMons[damageCalcData->battlerAtk].level * (abilityAtk == ABILITY_PARENTAL_BOND ? 2 : 1);
+        expected = minimum = gBattleMons[damageCalcData->battlerAtk].level * (SearchTraits(battlerTraits, ABILITY_PARENTAL_BOND) ? 2 : 1);
         break;
     case EFFECT_FIXED_DAMAGE_ARG:
-        expected = minimum = gMovesInfo[move].argument * (abilityAtk == ABILITY_PARENTAL_BOND ? 2 : 1);
+        expected = minimum = gMovesInfo[move].argument * (SearchTraits(battlerTraits, ABILITY_PARENTAL_BOND) ? 2 : 1);
         break;
     case EFFECT_MULTI_HIT:
         if (move == MOVE_WATER_SHURIKEN && gBattleMons[damageCalcData->battlerAtk].species == SPECIES_GRENINJA_ASH)
@@ -565,7 +568,7 @@ static inline void CalcDynamicMoveDamage(struct DamageCalculationData *damageCal
             expected *= 3;
             minimum *= 3;
         }
-        else if (abilityAtk == ABILITY_SKILL_LINK)
+        else if (SearchTraits(battlerTraits, ABILITY_SKILL_LINK))
         {
             expected *= 5;
             minimum *= 5;
@@ -587,7 +590,7 @@ static inline void CalcDynamicMoveDamage(struct DamageCalculationData *damageCal
         expected = minimum = max(0, gBattleMons[damageCalcData->battlerDef].hp - gBattleMons[damageCalcData->battlerAtk].hp);
         break;
     case EFFECT_SUPER_FANG:
-        expected = minimum = (abilityAtk == ABILITY_PARENTAL_BOND
+        expected = minimum = (SearchTraits(battlerTraits, ABILITY_PARENTAL_BOND)
             ? max(2, gBattleMons[damageCalcData->battlerDef].hp * 3 / 4)
             : max(1, gBattleMons[damageCalcData->battlerDef].hp / 2));
         break;
@@ -676,14 +679,7 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
         damageCalcData.randomFactor = FALSE;
         damageCalcData.updateFlags = FALSE;
 
-        // Check AI knowledge for Crit blocking abilities before Crit Check
-        u16 abilityDef = ABILITY_NONE;
-            if (AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_BATTLE_ARMOR))
-        abilityDef = ABILITY_BATTLE_ARMOR;
-            else if (AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_SHELL_ARMOR))
-        abilityDef = ABILITY_SHELL_ARMOR;
-
-        critChanceIndex = CalcCritChanceStageArgs(battlerAtk, battlerDef, move, FALSE, aiData->abilities[battlerAtk], abilityDef, aiData->holdEffects[battlerAtk]);
+        critChanceIndex = CalcCritChanceStageArgs(battlerAtk, battlerDef, move, FALSE, aiData->abilities[battlerAtk], aiData->abilities[battlerDef], aiData->holdEffects[battlerAtk]);
         if (critChanceIndex > 1) // Consider crit damage only if a move has at least +2 crit chance
         {
             damageCalcData.isCrit = FALSE;
@@ -770,7 +766,7 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
 
 bool32 AI_IsDamagedByRecoil(u32 battler)
 {
-    u32 ability = AI_DATA->abilities[battler];
+    //u32 ability = AI_DATA->abilities[battler];
     if (AI_BATTLER_HAS_TRAIT(battler, ABILITY_MAGIC_GUARD) || AI_BATTLER_HAS_TRAIT(battler, ABILITY_ROCK_HEAD))
         return FALSE;
     return TRUE;
@@ -901,7 +897,7 @@ static bool32 AI_IsMoveEffectInPlus(u32 battlerAtk, u32 battlerDef, u32 move, s3
 static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s32 noOfHitsToKo)
 {
     u32 abilityAtk = AI_DATA->abilities[battlerAtk];
-    u32 abilityDef = AI_DATA->abilities[battlerDef];
+    //u32 abilityDef = AI_DATA->abilities[battlerDef];
     u8 i;
 
     // recoil
@@ -979,8 +975,8 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
 s32 AI_WhichMoveBetter(u32 move1, u32 move2, u32 battlerAtk, u32 battlerDef, s32 noOfHitsToKo)
 {
     bool32 effect1, effect2;
-    u32 defAbility = AI_DATA->abilities[battlerDef];
-    u32 atkAbility = AI_DATA->abilities[battlerAtk];
+    //u32 defAbility = AI_DATA->abilities[battlerDef];
+    //u32 atkAbility = AI_DATA->abilities[battlerAtk];
 
     // Check if physical moves hurt.
     if (AI_DATA->holdEffects[battlerAtk] != HOLD_EFFECT_PROTECTIVE_PADS && !AI_BATTLER_HAS_TRAIT(battlerAtk, ABILITY_LONG_REACH)
@@ -1150,7 +1146,7 @@ static bool32 CanEndureHit(u32 battler, u32 battlerTarget, u32 move)
 
     if (!DoesBattlerIgnoreAbilityChecks(AI_DATA->abilities[battler], move))
     {
-        if (B_STURDY >= GEN_5 && AI_DATA->abilities[battlerTarget] == ABILITY_STURDY)
+        if (B_STURDY >= GEN_5 && AI_BATTLER_HAS_TRAIT(battlerTarget, ABILITY_STURDY))
             return TRUE;
         if (gBattleMons[battlerTarget].species == SPECIES_MIMIKYU_DISGUISED)
             return TRUE;
@@ -1340,6 +1336,8 @@ s32 AI_DecideKnownAbilityForTurn(u32 battlerId)
     u32 validAbilities[NUM_ABILITY_SLOTS];
     u8 i, numValidAbilities = 0;
     u32 knownAbility = AI_GetBattlerAbility(battlerId);
+    u16 battlerTraits[MAX_MON_TRAITS];
+    STORE_BATTLER_TRAITS(battlerId);
 
     // We've had ability overwritten by e.g. Worry Seed. It is not part of AI_PARTY in case of switching
     if (gBattleStruct->overwrittenAbilities[battlerId])
@@ -1357,7 +1355,7 @@ s32 AI_DecideKnownAbilityForTurn(u32 battlerId)
         return AI_PARTY->mons[GetBattlerSide(battlerId)][gBattlerPartyIndexes[battlerId]].ability;
 
     // Abilities that prevent fleeing - treat as always known
-    if (knownAbility == ABILITY_SHADOW_TAG || knownAbility == ABILITY_MAGNET_PULL || knownAbility == ABILITY_ARENA_TRAP)
+    if (SearchTraits(battlerTraits, ABILITY_SHADOW_TAG) || SearchTraits(battlerTraits, ABILITY_MAGNET_PULL) || SearchTraits(battlerTraits, ABILITY_ARENA_TRAP))
         return knownAbility;
 
     for (i = 0; i < NUM_ABILITY_SLOTS; i++)
@@ -2698,7 +2696,7 @@ struct Pokemon *GetPartyBattlerPartyData(u32 battlerId, u32 switchBattler)
 static bool32 PartyBattlerShouldAvoidHazards(u32 currBattler, u32 switchBattler)
 {
     struct Pokemon *mon = GetPartyBattlerPartyData(currBattler, switchBattler);
-    u32 ability = GetMonAbility(mon);   // we know our own party data
+    //u32 ability = GetMonAbility(mon);   // we know our own party data
     u32 holdEffect;
     u32 species = GetMonData(mon, MON_DATA_SPECIES);
     u32 flags = gSideStatuses[GetBattlerSide(currBattler)] & (SIDE_STATUS_SPIKES | SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_STICKY_WEB | SIDE_STATUS_TOXIC_SPIKES);
@@ -4105,8 +4103,8 @@ bool32 AI_ShouldSpicyExtract(u32 battlerAtk, u32 battlerAtkPartner, u32 move, st
         partnerAbility = aiData->abilities[battlerAtkPartner];
 
     if (gBattleMons[battlerAtkPartner].statStages[STAT_ATK] == MAX_STAT_STAGE
-     || (partnerAbility == ABILITY_CONTRARY || BattlerHasInnate(battlerAtkPartner, ABILITY_CONTRARY))
-     || (partnerAbility == ABILITY_GOOD_AS_GOLD || BattlerHasInnate(battlerAtkPartner, ABILITY_GOOD_AS_GOLD))
+     || (AI_BATTLER_HAS_TRAIT(partnerAbility,ABILITY_CONTRARY))
+     || (AI_BATTLER_HAS_TRAIT(partnerAbility,ABILITY_GOOD_AS_GOLD))
      || HasMoveEffect(BATTLE_OPPOSITE(battlerAtk), EFFECT_FOUL_PLAY)
      || HasMoveEffect(BATTLE_OPPOSITE(battlerAtkPartner), EFFECT_FOUL_PLAY))
         return FALSE;

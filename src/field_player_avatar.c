@@ -2131,12 +2131,12 @@ static bool32 DoesFishingMinigameAllowCancel(void)
 
 static bool32 Fishing_DoesFirstMonInPartyHaveSuctionCupsOrStickyHold(void)
 {
-    u32 ability;
+    //u32 ability;
 
     if (GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
         return FALSE;
 
-    ability = GetMonAbility(&gPlayerParty[0]);
+    //ability = GetMonAbility(&gPlayerParty[0]);
 
     return (MonHasTrait(&gPlayerParty[0], ABILITY_SUCTION_CUPS, TRUE)
             || MonHasTrait(&gPlayerParty[0], ABILITY_STICKY_HOLD, TRUE));

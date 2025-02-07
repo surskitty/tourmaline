@@ -332,7 +332,7 @@ static bool32 ChangeOrderTargetAfterAttacker(void);
 void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBattler);
 static void RemoveAllWeather(void);
 static void RemoveAllTerrains(void);
-static bool8 CanAbilityPreventStatLoss(u16 battler, u16 abilityDef);
+//static bool8 CanAbilityPreventStatLoss(u16 battler, u16 abilityDef);
 static bool8 CanBattlerPreventStatLoss(u16 battler);
 static bool8 CanBurnHitThaw(u16 move);
 static u32 GetNextTarget(u32 moveTarget, bool32 excludeCurrent);
@@ -1537,7 +1537,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move, u32 atkAbility, u
     u32 atkParam = GetBattlerHoldEffectParam(battlerAtk);
     u32 defParam = GetBattlerHoldEffectParam(battlerDef);
     u32 atkAlly = BATTLE_PARTNER(battlerAtk);
-    u32 atkAllyAbility = GetBattlerAbility(atkAlly);
+    //u32 atkAllyAbility = GetBattlerAbility(atkAlly);
     u16 battlerTraits[MAX_MON_TRAITS];
     STORE_BATTLER_TRAITS(battlerAtk);
 
@@ -1868,7 +1868,18 @@ static inline u32 GetHoldEffectCritChanceIncrease(u32 battler, u32 holdEffect)
 #define CRITICAL_HIT_ALWAYS  -2
 s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility, u32 abilityAtk, u32 abilityDef, u32 holdEffectAtk)
 {
+    //Sets Trait Searches outside, use AI search??
     s32 critChance = 0;
+    u16 battlerTraits[MAX_MON_TRAITS];
+    u16 AIBattlerTraits[MAX_MON_TRAITS];
+    STORE_BATTLER_TRAITS(battlerDef);
+    AI_STORE_BATTLER_TRAITS(battlerDef);
+
+    abilityDef = ABILITY_NONE;
+    if (AI_DATA->aiCalcInProgress ? AISearchTraits(AIBattlerTraits, ABILITY_BATTLE_ARMOR) : SearchTraits(battlerTraits, ABILITY_BATTLE_ARMOR))
+        abilityDef = ABILITY_BATTLE_ARMOR;
+    if (AI_DATA->aiCalcInProgress ? AISearchTraits(AIBattlerTraits, ABILITY_SHELL_ARMOR) : SearchTraits(battlerTraits, ABILITY_SHELL_ARMOR))
+        abilityDef = ABILITY_SHELL_ARMOR;
 
     if (gSideStatuses[battlerDef] & SIDE_STATUS_LUCKY_CHANT)
     {
@@ -1882,19 +1893,20 @@ s32 CalcCritChanceStageArgs(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
     }
     else
     {
+        bool8 superLuck = BattlerHasTrait(gBattlerAttacker, ABILITY_SUPER_LUCK);
         critChance  = 2 * ((gBattleMons[battlerAtk].status2 & STATUS2_FOCUS_ENERGY) != 0)
                     + 1 * ((gBattleMons[battlerAtk].status2 & STATUS2_DRAGON_CHEER) != 0)
                     + gMovesInfo[move].criticalHitStage
                     + GetHoldEffectCritChanceIncrease(battlerAtk, holdEffectAtk)
                     + 2 * (B_AFFECTION_MECHANICS == TRUE && GetBattlerAffectionHearts(battlerAtk) == AFFECTION_FIVE_HEARTS)
-                    + (BattlerHasTrait(gBattlerAttacker, ABILITY_SUPER_LUCK))
+                    + superLuck
                     + gBattleStruct->bonusCritStages[gBattlerAttacker];
 
         if (critChance >= ARRAY_COUNT(sCriticalHitOdds))
             critChance = ARRAY_COUNT(sCriticalHitOdds) - 1;
     }
 
-if (critChance != CRITICAL_HIT_BLOCKED && (abilityDef == ABILITY_BATTLE_ARMOR || abilityDef == ABILITY_SHELL_ARMOR))
+if (critChance != CRITICAL_HIT_BLOCKED && abilityDef)
     {
         // Record ability only if move had 100% chance to get a crit
         if (recordAbility)
@@ -1915,11 +1927,7 @@ if (critChance != CRITICAL_HIT_BLOCKED && (abilityDef == ABILITY_BATTLE_ARMOR ||
 s32 CalcCritChanceStage(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordAbility)
 {
     u32 abilityAtk = GetBattlerAbility(gBattlerAttacker);
-    u32 abilityDef = ABILITY_NONE; //Looks for crit blocking abilities here to not conflict with AI ability check logic
-            if (BattlerHasTrait(battlerDef, ABILITY_BATTLE_ARMOR))
-        abilityDef = ABILITY_BATTLE_ARMOR;
-            else if (BattlerHasTrait(battlerDef, ABILITY_SHELL_ARMOR))
-        abilityDef = ABILITY_SHELL_ARMOR;
+    u32 abilityDef = GetBattlerAbility(gBattlerTarget);
     u32 holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
     return CalcCritChanceStageArgs(battlerAtk, battlerDef, move, recordAbility, abilityAtk, abilityDef, holdEffectAtk);
 }
@@ -1944,7 +1952,7 @@ s32 CalcCritChanceStageGen1(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
     s32 critChance = 0;
     s32 moveCritStage = gMovesInfo[gCurrentMove].criticalHitStage;
     s32 bonusCritStage = gBattleStruct->bonusCritStages[battlerAtk]; // G-Max Chi Strike
-    u32 abilityAtk = GetBattlerAbility(battlerAtk);
+    //u32 abilityAtk = GetBattlerAbility(battlerAtk);
     u32 abilityDef = GetBattlerAbility(battlerDef);
     u32 holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
     u16 baseSpeed = gSpeciesInfo[gBattleMons[battlerAtk].species].baseSpeed;
@@ -1968,7 +1976,7 @@ s32 CalcCritChanceStageGen1(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
     else if (IsBattlerLeekAffected(battlerAtk, holdEffectAtk))
         critChance = critChance * farfetchdLeekScaler;
 
-    if (abilityAtk == ABILITY_SUPER_LUCK)
+    if (BattlerHasTrait(battlerAtk, ABILITY_SUPER_LUCK))
         critChance = critChance * superLuckScaler;
 
     if (critChance > 255)
@@ -1977,7 +1985,7 @@ s32 CalcCritChanceStageGen1(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
     // Prevented crits
     if (gSideStatuses[battlerDef] & SIDE_STATUS_LUCKY_CHANT)
         critChance = -1;
-    else if (abilityDef == ABILITY_BATTLE_ARMOR || abilityDef == ABILITY_SHELL_ARMOR)
+    else if (BattlerHasTrait(battlerDef, ABILITY_BATTLE_ARMOR) || BattlerHasTrait(battlerDef, ABILITY_SHELL_ARMOR))
     {
         if (recordAbility)
             RecordAbilityBattle(battlerDef, abilityDef);
@@ -1987,7 +1995,7 @@ s32 CalcCritChanceStageGen1(u32 battlerAtk, u32 battlerDef, u32 move, bool32 rec
     // Guaranteed crits
     else if (gStatuses3[battlerAtk] & STATUS3_LASER_FOCUS
              || gMovesInfo[move].alwaysCriticalHit == TRUE
-             || (abilityAtk == ABILITY_MERCILESS && gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY))
+             || (BattlerHasTrait(battlerAtk, ABILITY_MERCILESS) && gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY))
     {
         critChance = -2;
     }
@@ -3778,7 +3786,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                 break;
             case MOVE_EFFECT_BUG_BITE:
                 if (ItemId_GetPocket(gBattleMons[gEffectBattler].item) == POCKET_BERRIES
-                    && battlerAbility != ABILITY_STICKY_HOLD)
+                    && !BattlerHasTrait(gEffectBattler, ABILITY_STICKY_HOLD))
                 {
                     // target loses their berry
                     gLastUsedItem = gBattleMons[gEffectBattler].item;
@@ -4263,7 +4271,7 @@ static void Cmd_tryfaintmon(void)
     }
     else
     {
-        if (gBattleMons[battler].ability == ABILITY_NEUTRALIZING_GAS
+        if (BattlerHasTrait(battler, ABILITY_NEUTRALIZING_GAS)
          && !(gAbsentBattlerFlags & (1u << battler))
          && !IsBattlerAlive(battler))
         {
@@ -5540,7 +5548,7 @@ static void Cmd_playstatchangeanimation(void)
     u32 startingStatAnimId = 0;
     u32 flags = cmd->flags;
     u32 battler = GetBattlerForBattleScript(cmd->battler);
-    u32 ability = GetBattlerAbility(battler);
+    //u32 ability = GetBattlerAbility(battler);
     u32 stats = cmd->stats;
     u16 battlerTraits[MAX_MON_TRAITS];
     STORE_BATTLER_TRAITS(battler);
@@ -5845,7 +5853,7 @@ static void Cmd_moveend(void)
                     gBattleMoveDamage = GetDrainedBigRootHp(gBattlerAttacker, gBattleMoveDamage);
                     gHitMarker |= HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_IGNORE_DISGUISE;
                     effect = TRUE;
-                    if (GetBattlerAbility(gBattlerTarget) == ABILITY_LIQUID_OOZE)
+                    if (BattlerHasTrait(gBattlerTarget, ABILITY_LIQUID_OOZE))
                     {
                         gBattleMoveDamage *= -1;
                         gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_ABSORB_OOZE;
@@ -6126,7 +6134,7 @@ static void Cmd_moveend(void)
              && IsBattlerAlive(gBattlerAttacker)
              && gSpecialStatuses[gBattlerAttacker].parentalBondState != PARENTAL_BOND_1ST_HIT)
             {
-                u32 targetAbility = GetBattlerAbility(gBattlerTarget);
+                //u32 targetAbility = GetBattlerAbility(gBattlerTarget);
                 if (BattlerHasTrait(gBattlerTarget, ABILITY_GUARD_DOG))
                 {
                     gBattleScripting.moveendState++;
@@ -7674,7 +7682,7 @@ static bool32 DoSwitchInEffectsForBattler(u32 battler)
     }
     else
     {
-        u32 battlerAbility = GetBattlerAbility(battler);
+        //u32 battlerAbility = GetBattlerAbility(battler);
         // There is a hack here to ensure the truant counter will be 0 when the battler's next turn starts.
         // The truant counter is not updated in the case where a mon switches in after a lost judgment in the battle arena.
         if (SearchTraits(battlerTraits, ABILITY_TRUANT)
@@ -9178,7 +9186,7 @@ static bool32 IsElectricAbilityAffected(u32 battler, u32 ability)
         moveType = gMovesInfo[gCurrentMove].type;
 
     if (moveType == TYPE_ELECTRIC
-     && (ability != ABILITY_LIGHTNING_ROD || B_REDIRECT_ABILITY_IMMUNITY >= GEN_5)
+     && (!BattlerHasTrait(battler, ABILITY_LIGHTNING_ROD) || B_REDIRECT_ABILITY_IMMUNITY >= GEN_5)
      && BattlerHasTrait(battler, ability))
         return TRUE;
     else
@@ -9970,11 +9978,11 @@ static void Cmd_various(void)
         STORE_BATTLER_TRAITS(battler);
 
         if (SearchTraits(battlerTraits, ABILITY_AS_ONE_ICE_RIDER))
-            battlerAbility == ABILITY_CHILLING_NEIGH;
+            battlerAbility = ABILITY_CHILLING_NEIGH;
         if (SearchTraits(battlerTraits, ABILITY_CHILLING_NEIGH))
-            battlerAbility == ABILITY_CHILLING_NEIGH;
+            battlerAbility = ABILITY_CHILLING_NEIGH;
         if (SearchTraits(battlerTraits, ABILITY_MOXIE))
-            battlerAbility == ABILITY_MOXIE;
+            battlerAbility = ABILITY_MOXIE;
 
         if ((battlerAbility == ABILITY_MOXIE
          || battlerAbility == ABILITY_CHILLING_NEIGH
@@ -10002,9 +10010,9 @@ static void Cmd_various(void)
         u16 battlerAbility = GetBattlerAbility(battler);
 
         if (BattlerHasTrait(battler, ABILITY_AS_ONE_SHADOW_RIDER))
-            battlerAbility == ABILITY_AS_ONE_SHADOW_RIDER;
+            battlerAbility = ABILITY_AS_ONE_SHADOW_RIDER;
         if (BattlerHasTrait(battler, ABILITY_GRIM_NEIGH))
-            battlerAbility == ABILITY_GRIM_NEIGH;
+            battlerAbility = ABILITY_GRIM_NEIGH;
 
         if ((battlerAbility == ABILITY_GRIM_NEIGH
          || battlerAbility == ABILITY_AS_ONE_SHADOW_RIDER)
@@ -10830,7 +10838,7 @@ static void Cmd_various(void)
 
         for (i = 0; i < gBattlersCount; i++)
         {
-            u32 ability = GetBattlerAbility(i);
+            //u32 ability = GetBattlerAbility(i);
            
             STORE_BATTLER_TRAITS(i);
 
@@ -12577,7 +12585,7 @@ static void Cmd_tryKO(void)
 
     bool32 lands = FALSE;
     u32 holdEffect = GetBattlerHoldEffect(gBattlerTarget, TRUE);
-    u16 targetAbility = GetBattlerAbility(gBattlerTarget);
+    //u16 targetAbility = GetBattlerAbility(gBattlerTarget);
 
     // Dynamaxed Pokemon cannot be hit by OHKO moves.
     if ((GetActiveGimmick(gBattlerTarget) == GIMMICK_DYNAMAX))
@@ -13560,7 +13568,7 @@ static void Cmd_healpartystatus(void)
             if (species != SPECIES_NONE && species != SPECIES_EGG)
             {
                 u16 ability;
-                u32 battler;
+                //u32 battler;
                 bool32 isAttacker = gBattlerPartyIndexes[gBattlerAttacker] == i;
                 bool32 isDoublesPartner = gBattlerPartyIndexes[partner] == i && IsBattlerAlive(partner);
 
@@ -15037,7 +15045,7 @@ static void Cmd_pickup(void)
     CMD_ARGS();
 
     u32 i, j;
-    u16 species, heldItem, ability;
+    u16 species, heldItem; //ability;
     u8 lvlDivBy10;
 
     if (!InBattlePike()) // No items in Battle Pike.
@@ -15051,7 +15059,7 @@ static void Cmd_pickup(void)
             if (lvlDivBy10 > 9)
                 lvlDivBy10 = 9;
 
-            ability = gSpeciesInfo[species].abilities[GetMonData(&gPlayerParty[i], MON_DATA_ABILITY_NUM)];
+            //ability = gSpeciesInfo[species].abilities[GetMonData(&gPlayerParty[i], MON_DATA_ABILITY_NUM)];
 
             if (MonHasTrait(&gPlayerParty[i], ABILITY_PICKUP, TRUE)
                 && species != SPECIES_NONE
@@ -16328,7 +16336,7 @@ static bool8 IsFinalStrikeEffect(u32 moveEffect)
     return FALSE;
 }
 
-static bool8 CanAbilityPreventStatLoss(u16 battlerDef, u16 abilityDef)
+/*static bool8 CanAbilityPreventStatLoss(u16 battlerDef, u16 abilityDef)
 {
     u16 battlerTraits[MAX_MON_TRAITS];
     STORE_BATTLER_TRAITS(battlerDef);
@@ -16339,7 +16347,7 @@ static bool8 CanAbilityPreventStatLoss(u16 battlerDef, u16 abilityDef)
         return TRUE;
 
     return FALSE;
-}
+}*/
 
 static bool8 CanBattlerPreventStatLoss(u16 battler)
 {
@@ -17624,7 +17632,7 @@ void BS_TryWindRiderPower(void)
     u32 battler = GetBattlerForBattleScript(cmd->battler);
     u16 ability = GetBattlerAbility(battler);
     if (GetBattlerSide(battler) == GetBattlerSide(gBattlerAttacker)
-        && (ability == ABILITY_WIND_RIDER || ability == ABILITY_WIND_POWER))
+        && (BattlerHasTrait(battler, ABILITY_WIND_RIDER) || BattlerHasTrait(battler, ABILITY_WIND_POWER)))
     {
         gLastUsedAbility = ability;
         RecordAbilityBattle(battler, gLastUsedAbility);
@@ -17736,17 +17744,17 @@ static void UpdatePokeFlutePartyStatus(struct Pokemon* party, u8 position)
     s32 i;
     u8 battler;
     u32 monToCheck, status;
-    u16 species, abilityNum;
+    u16 species; //abilityNum;
     monToCheck = 0;
     for (i = 0; i < PARTY_SIZE; i++)
     {
         species = GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG);
-        abilityNum = GetMonData(&party[i], MON_DATA_ABILITY_NUM);
+        //abilityNum = GetMonData(&party[i], MON_DATA_ABILITY_NUM);
         status = GetMonData(&party[i], MON_DATA_STATUS);
         if (species != SPECIES_NONE
             && species != SPECIES_EGG
             && status & AILMENT_FNT
-            && GetAbilityBySpecies(species, abilityNum) != ABILITY_SOUNDPROOF)
+            && !MonHasTrait(&party[i], ABILITY_SOUNDPROOF, TRUE))
             monToCheck |= (1 << i);
     }
     if (monToCheck)
@@ -17767,7 +17775,7 @@ void BS_CheckPokeFlute(void)
     s32 i;
     for (i = 0; i < gBattlersCount; i++)
     {
-        if (GetBattlerAbility(i) != ABILITY_SOUNDPROOF)
+        if (!BattlerHasTrait(i, ABILITY_SOUNDPROOF))
         {
             gBattleMons[i].status1 &= ~STATUS1_SLEEP;
             gBattleMons[i].status2 &= ~STATUS2_NIGHTMARE;

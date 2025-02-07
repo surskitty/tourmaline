@@ -331,7 +331,7 @@ static u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon, u8 wildMonIn
         // check ability for max level mon
         if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
         {
-            u16 ability = GetMonAbility(&gPlayerParty[0]);
+            //u16 ability = GetMonAbility(&gPlayerParty[0]);
             if (MonHasTrait(&gPlayerParty[0], ABILITY_HUSTLE , TRUE) || MonHasTrait(&gPlayerParty[0], ABILITY_VITAL_SPIRIT, TRUE) || MonHasTrait(&gPlayerParty[0], ABILITY_PRESSURE, TRUE))
             {
                 if (Random() % 2 == 0)
@@ -570,7 +570,7 @@ static bool8 WildEncounterCheck(u32 encounterRate, bool8 ignoreAbility)
         encounterRate *= 2;
     if (!ignoreAbility && !GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
     {
-        u32 ability = GetMonAbility(&gPlayerParty[0]);
+        //u32 ability = GetMonAbility(&gPlayerParty[0]);
 
         if (MonHasTrait(&gPlayerParty[0], ABILITY_STENCH, TRUE) && gMapHeader.mapLayoutId == LAYOUT_BATTLE_FRONTIER_BATTLE_PYRAMID_FLOOR)
             encounterRate = encounterRate * 3 / 4;
@@ -1014,12 +1014,12 @@ static bool8 IsWildLevelAllowedByRepel(u8 wildLevel)
 
 static bool8 IsAbilityAllowingEncounter(u8 level)
 {
-    u16 ability;
+    //u16 ability;
 
     if (GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
         return TRUE;
 
-    ability = GetMonAbility(&gPlayerParty[0]);
+    //ability = GetMonAbility(&gPlayerParty[0]);
     if (MonHasTrait(&gPlayerParty[0], ABILITY_KEEN_EYE, TRUE) || MonHasTrait(&gPlayerParty[0], ABILITY_INTIMIDATE, TRUE))
     {
         u8 playerMonLevel = GetMonData(&gPlayerParty[0], MON_DATA_LEVEL);

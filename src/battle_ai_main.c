@@ -1381,7 +1381,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
         case EFFECT_SHED_TAIL:
             if (CountUsablePartyMons(battlerAtk) == 0)
                 ADJUST_SCORE(-10);
-            if (gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE || aiData->abilities[battlerDef] == ABILITY_INFILTRATOR)
+            if (gBattleMons[battlerAtk].status2 & STATUS2_SUBSTITUTE || AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_INFILTRATOR))
                 ADJUST_SCORE(-8);
             else if (aiData->hpPercents[battlerAtk] <= 50)
                 ADJUST_SCORE(-10);
@@ -2893,7 +2893,7 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                     {
                         ADJUST_SCORE(GOOD_EFFECT);
                     }
-                    else if (aiData->abilities[battlerAtk] == ABILITY_CONTRARY && HasMoveThatLowersOwnStats(battlerAtkPartner))
+                    else if (AI_BATTLER_HAS_TRAIT(battlerAtk, ABILITY_CONTRARY) && HasMoveThatLowersOwnStats(battlerAtkPartner))
                     {
                         ADJUST_SCORE(GOOD_EFFECT);
                     }
@@ -5392,7 +5392,7 @@ u16 PullTraitStackAbility()
 // Clears the latest ability popup slot.  Searches from the bottom to the top since the stack should generally be small.
 void PopTraitStack()
 {
-    u16 ability = ABILITY_NONE;
+    //u16 ability = ABILITY_NONE;
 
     for (int i =0; i < (MAX_BATTLERS_COUNT * MAX_MON_TRAITS); i++)
     {
