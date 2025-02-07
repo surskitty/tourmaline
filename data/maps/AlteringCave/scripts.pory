@@ -1,9 +1,14 @@
 mapscripts AlteringCave_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         setflag(FLAG_LANDMARK_ALTERING_CAVE)
-        addvar(VAR_ALTERING_CAVE_WILD_SET, 1)
-        if (VAR_ALTERING_CAVE_WILD_SET == (NUM_ALTERING_CAVE_TABLES + 1)) {
-            setvar(VAR_ALTERING_CAVE_WILD_SET, 0)
-        }
+        call(AlteringCave_UpdateCave)
     }
+}
+
+script AlteringCave_UpdateCave {
+	addvar(VAR_ALTERING_CAVE_WILD_SET, 1)
+	if (var(VAR_ALTERING_CAVE_WILD_SET) == NUM_ALTERING_CAVE_TABLES + 1)
+	{
+    	setvar(VAR_ALTERING_CAVE_WILD_SET, 0)
+	}
 }
