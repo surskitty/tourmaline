@@ -1,5 +1,1 @@
-raw `
-AbandonedShip_Room_B1F_MapScripts::
-	.byte 0
-
-`
+mapscripts AbandonedShip_Room_B1F_MapScripts {}

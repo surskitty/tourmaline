@@ -1034,7 +1034,7 @@ gText_Sudowoodo_Attacked::
 	.string "The weird tree attacked!$"
 
 gText_LegendaryFlewAway::
-	.string "The {STR_VAR_1} flew away!$"
+	.string "The {STR_VAR_1} left!$"
 
 	.include "data/text/pc_transfer.inc"
 	.include "data/text/questionnaire.inc"
