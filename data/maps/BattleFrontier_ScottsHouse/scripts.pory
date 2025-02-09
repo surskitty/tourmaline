@@ -185,7 +185,7 @@ BattleFrontier_ScottsHouse_EventScript_Give1BattlePoint::
 
 BattleFrontier_ScottsHouse_EventScript_GiveBattlePoints::
 	special GiveFrontierBattlePoints
-	msgbox BattleFrontier_ScottsHouse_Text_ObtainedXBattlePoints, MSGBOX_GETPOINTS
+	msgbox gText_ObtainedXBattlePoints, MSGBOX_GETPOINTS
 	msgbox BattleFrontier_ScottsHouse_Text_ExplainBattlePoints, MSGBOX_DEFAULT
 	setflag FLAG_SCOTT_GIVES_BATTLE_POINTS
 	setflag FLAG_TEMP_2
@@ -237,10 +237,6 @@ BattleFrontier_ScottsHouse_Text_HaveThisAsMementoOfOurPathsCrossing:
 	.string "{PLAYER}{KUN}, I want you to have this\n"
 	.string "as a memento for all the time our\l"
 	.string "paths crossed on our journeys.$"
-
-BattleFrontier_ScottsHouse_Text_ObtainedXBattlePoints:
-	.string "{PLAYER} obtained\n"
-	.string "{STR_VAR_1} Battle Point(s).$"
 
 BattleFrontier_ScottsHouse_Text_ExplainBattlePoints:
 	.string "SCOTT: You can check your Battle\n"

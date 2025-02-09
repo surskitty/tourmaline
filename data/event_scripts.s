@@ -945,6 +945,10 @@ gText_MonsHealed::
 	.string "to perfect health.\p"
 	.string "We hope you excel!$"
 
+gText_ObtainedXBattlePoints::
+	.string "{PLAYER} obtained\n"
+	.string "{STR_VAR_1} Battle Point(s).$"
+
 gText_HadQuiteAnExperienceTakeRest::
 	.string "MOM: {PLAYER}!\n"
 	.string "Welcome home.\p"
