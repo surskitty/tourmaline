@@ -1,70 +1,60 @@
-raw `
-OldaleTown_Mart_MapScripts::
-	.byte 0
+mapscripts OldaleTown_Mart_MapScripts {}
 
-OldaleTown_Mart_EventScript_Clerk::
-	lock
-	faceplayer
-	message gText_HowMayIServeYou
-	waitmessage
-	goto_if_set FLAG_ADVENTURE_STARTED, OldaleTown_Mart_ExpandedItems
-	pokemart OldaleTown_Mart_Pokemart_Basic
-	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
-	release
-	end
+script OldaleTown_Mart_EventScript_Clerk {
+    lock
+    faceplayer
+    message(gText_HowMayIServeYou)
+    waitmessage
+    if (flag(FLAG_ADVENTURE_STARTED)) {
+        pokemart(OldaleTown_Mart_Pokemart_Expanded)
+    } else {
+        pokemart(OldaleTown_Mart_Pokemart_Basic)
+    }
+    msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
+    release
+}
 
-	.align 2
-OldaleTown_Mart_Pokemart_Basic:
-	.2byte ITEM_POTION
-	.2byte ITEM_ANTIDOTE
-	.2byte ITEM_PARALYZE_HEAL
-	.2byte ITEM_AWAKENING
-	pokemartlistend
+mart OldaleTown_Mart_Pokemart_Basic {
+    ITEM_POTION
+    ITEM_REPEL
+    ITEM_LURE
+    ITEM_ANTIDOTE
+    ITEM_PARALYZE_HEAL
+    ITEM_AWAKENING
+}
 
-OldaleTown_Mart_ExpandedItems::
-	pokemart OldaleTown_Mart_Pokemart_Expanded
-	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
-	release
-	end
+mart OldaleTown_Mart_Pokemart_Expanded {
+    ITEM_POKE_BALL
+    ITEM_POTION
+    ITEM_REPEL
+    ITEM_LURE
+    ITEM_ANTIDOTE
+    ITEM_PARALYZE_HEAL
+    ITEM_AWAKENING
+}
 
-	.align 2
-OldaleTown_Mart_Pokemart_Expanded:
-	.2byte ITEM_POKE_BALL
-	.2byte ITEM_POTION
-	.2byte ITEM_ANTIDOTE
-	.2byte ITEM_PARALYZE_HEAL
-	.2byte ITEM_AWAKENING
-	pokemartlistend
+script OldaleTown_Mart_EventScript_Woman {
+    lock
+    faceplayer
+    if (flag(FLAG_ADVENTURE_STARTED)) {
+        msgbox(OldaleTown_Mart_Text_ImGoingToBuyPokeBalls, MSGBOX_DEFAULT)
+        release
+    } else {
+        msgbox(OldaleTown_Mart_Text_PokeBallsAreSoldOut, MSGBOX_DEFAULT)
+        release
+    }
+}
 
-OldaleTown_Mart_EventScript_Woman::
-	lock
-	faceplayer
-	goto_if_set FLAG_ADVENTURE_STARTED, OldaleTown_Mart_EventScript_PokeBallsInStock
-	msgbox OldaleTown_Mart_Text_PokeBallsAreSoldOut, MSGBOX_DEFAULT
-	release
-	end
+script OldaleTown_Mart_EventScript_Boy {
+    msgbox(format("You can use a Lure to attract wild Pokémon, or a Repel to keep them away.\p"
+        "I heard what Pokémon you have in front matters, too."), MSGBOX_NPC)
+}
 
-OldaleTown_Mart_EventScript_PokeBallsInStock::
-	msgbox OldaleTown_Mart_Text_ImGoingToBuyPokeBalls, MSGBOX_DEFAULT
-	release
-	end
+text OldaleTown_Mart_Text_PokeBallsAreSoldOut {
+    "The clerk says they're all sold out.\n"
+    "I can't buy any Poké Balls."
+}
 
-OldaleTown_Mart_EventScript_Boy::
-	msgbox OldaleTown_Mart_Text_RestoreHPWithPotion, MSGBOX_NPC
-	end
-
-OldaleTown_Mart_Text_PokeBallsAreSoldOut:
-	.string "The clerk says they're all sold out.\n"
-	.string "I can't buy any POKé BALLS.$"
-
-OldaleTown_Mart_Text_ImGoingToBuyPokeBalls:
-	.string "I'm going to buy a bunch of POKé BALLS\n"
-	.string "and catch a bunch of POKéMON!$"
-
-OldaleTown_Mart_Text_RestoreHPWithPotion:
-	.string "If a POKéMON gets hurt and loses its HP\n"
-	.string "and faints, it won't be able to battle.\p"
-	.string "To prevent your POKéMON from fainting,\n"
-	.string "restore its HP with a POTION.$"
-
-`
+text OldaleTown_Mart_Text_ImGoingToBuyPokeBalls {
+    format("I'm going to buy a bunch of Poké Balls and catch a bunch of Pokémon!")
+}

@@ -270,6 +270,12 @@ script LittlerootTown_EventScript_Boy {
         "When does Prof. Birch spend time at home?"), MSGBOX_NPC)
 }
 
+script LittlerootTown_EventScript_Taillow {
+    playmoncry(SPECIES_TAILLOW, CRY_MODE_NORMAL)
+    setseenmon(SPECIES_TAILLOW)
+    msgbox(format("Prrrt?"), MSGBOX_NPC)
+}
+
 script LittlerootTown_EventScript_Twin {
     lock
     faceplayer

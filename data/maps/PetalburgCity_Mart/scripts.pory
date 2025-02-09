@@ -20,6 +20,7 @@ mart PetalburgCity_Mart_Pokemart_Basic {
     ITEM_ANTIDOTE
     ITEM_PARALYZE_HEAL
     ITEM_AWAKENING
+    ITEM_LURE
     ITEM_REPEL
     ITEM_X_SPEED
     ITEM_X_ATTACK
@@ -35,17 +36,18 @@ mart PetalburgCity_Mart_Pokemart_Expanded {
     ITEM_ANTIDOTE
     ITEM_PARALYZE_HEAL
     ITEM_AWAKENING
+    ITEM_LURE
     ITEM_REPEL
     ITEM_X_SPEED
     ITEM_X_ATTACK
     ITEM_X_DEFENSE
-    ITEM_ORANGE_MAIL
     ITEM_SCEPTILITE
     ITEM_BLAZIKENITE
     ITEM_SWAMPERTITE
     ITEM_AUDINITE
     ITEM_PIDGEOTITE
     ITEM_LOPUNNITE
+    ITEM_ORANGE_MAIL
 }
 
 script PetalburgCity_Mart_EventScript_Woman {
