@@ -1139,7 +1139,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
 #ifdef P_TRAITS
         .abilities = { ABILITY_SWARM, ABILITY_COMPOUND_EYES, ABILITY_NONE },
-        .innates = { ABILITY_TELEPATHY },
+        .innates = { ABILITY_TELEPATHY, ABILITY_ANALYTIC },
 #else
         .abilities = { ABILITY_SWARM, ABILITY_COMPOUND_EYES, ABILITY_TELEPATHY },
 #endif
@@ -1208,7 +1208,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
 #ifdef P_TRAITS
         .abilities = { ABILITY_SWARM, ABILITY_COMPOUND_EYES, ABILITY_NONE },
-        .innates = { ABILITY_TELEPATHY },
+        .innates = { ABILITY_TELEPATHY, ABILITY_ANALYTIC },
 #else
         .abilities = { ABILITY_SWARM, ABILITY_COMPOUND_EYES, ABILITY_TELEPATHY },
 #endif
@@ -1276,7 +1276,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
 #ifdef P_TRAITS
         .abilities = { ABILITY_SWARM, ABILITY_FRISK, ABILITY_NONE },
-        .innates = { ABILITY_TELEPATHY },
+        .innates = { ABILITY_TELEPATHY, ABILITY_ANALYTIC },
 #else
         .abilities = { ABILITY_SWARM, ABILITY_FRISK, ABILITY_TELEPATHY },
 #endif
