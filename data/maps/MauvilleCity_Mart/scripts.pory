@@ -1,5 +1,15 @@
 mapscripts MauvilleCity_Mart_MapScripts {}
 
+script MauvilleCity_Mart_EventScript_Clerk {
+    lock
+    faceplayer
+    message(gText_HowMayIServeYou)
+    waitmessage
+    pokemart(MauvilleCity_Mart_Pokemart)
+    msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
+    release
+}
+
 mart MauvilleCity_Mart_Pokemart {
 	ITEM_POKE_BALL
 	ITEM_GREAT_BALL
@@ -25,37 +35,11 @@ mart MauvilleCity_Mart_Pokemart {
 	ITEM_THROAT_SPRAY
 }
 
-raw `
-MauvilleCity_Mart_EventScript_Clerk::
-	lock
-	faceplayer
-	message gText_HowMayIServeYou
-	waitmessage
-	pokemart MauvilleCity_Mart_Pokemart
-	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
-	release
-	end
+script MauvilleCity_Mart_EventScript_ExpertM {
+	msgbox(format("Our Gym Leader, Wattson, likes to use Electric Terrain.\p"
+	"You would do well to buy Electric Seeds."), MSGBOX_NPC)
+}
 
-MauvilleCity_Mart_EventScript_ExpertM::
-	msgbox MauvilleCity_Mart_Text_ItemsToTemporarilyElevateStats, MSGBOX_NPC
-	end
-
-MauvilleCity_Mart_EventScript_Man::
-	msgbox MauvilleCity_Mart_Text_DecisionsDetermineBattle, MSGBOX_NPC
-	end
-
-MauvilleCity_Mart_Text_ItemsToTemporarilyElevateStats:
-	.string "There are items that temporarily\n"
-	.string "elevate the stats of Pokémon.\p"
-	.string "The ones I know you use in battle\n"
-	.string "are X Attack and X Defend…\p"
-	.string "I do believe that there are others\n"
-	.string "like them.$"
-
-MauvilleCity_Mart_Text_DecisionsDetermineBattle:
-	.string "Use a certain move, or use an item\n"
-	.string "instead…\p"
-	.string "The Trainer's decisions determine how\n"
-	.string "battles turn out, I think.$"
-
-`
+script MauvilleCity_Mart_EventScript_Man {
+	msgbox(format("A Trainer's choices determine the battle's outcome, whether it's moves or items."), MSGBOX_NPC)
+}

@@ -14,6 +14,7 @@ mart LavaridgeTown_Mart_Pokemart {
     ITEM_UTILITY_UMBRELLA
     ITEM_WIDE_LENS
     ITEM_REVIVE
+    ITEM_SUPER_LURE
     ITEM_SUPER_REPEL
     ITEM_X_SPEED
 }

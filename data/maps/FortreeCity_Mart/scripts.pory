@@ -19,12 +19,13 @@ mart FortreeCity_Mart_Pokemart {
     ITEM_PARALYZE_HEAL
     ITEM_AWAKENING
     ITEM_REVIVE
+    ITEM_SUPER_LURE
     ITEM_SUPER_REPEL
-    ITEM_WOOD_MAIL
     ITEM_PIDGEOTITE
     ITEM_ALTARIANITE
     ITEM_SALAMENCITE
     ITEM_PINSIRITE
+    ITEM_WOOD_MAIL
 }
 
 script FortreeCity_Mart_EventScript_Woman {

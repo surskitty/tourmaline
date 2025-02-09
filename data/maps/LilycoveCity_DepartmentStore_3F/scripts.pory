@@ -1,95 +1,75 @@
 mapscripts LilycoveCity_DepartmentStore_3F_MapScripts {}
 
-raw `
-
-LilycoveCity_DepartmentStore_3F_EventScript_ClerkLeft::
+script LilycoveCity_DepartmentStore_3F_EventScript_ClerkLeft {
     lock
     faceplayer
-    message gText_HowMayIServeYou
+    message(gText_HowMayIServeYou)
     waitmessage
-    pokemart LilycoveCity_DepartmentStore_3F_Pokemart_Vitamins
-    msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+    pokemart(LilycoveCity_DepartmentStore_3F_Pokemart_Vitamins)
+    msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
     release
-    end
+}
 
-LilycoveCity_DepartmentStore_3F_EventScript_ClerkRight::
+script LilycoveCity_DepartmentStore_3F_EventScript_ClerkRight {
     lock
     faceplayer
-    message gText_HowMayIServeYou
+    message(gText_HowMayIServeYou)
     waitmessage
-    pokemart LilycoveCity_DepartmentStore_3F_Pokemart_StatBoosters
-    msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+    pokemart(LilycoveCity_DepartmentStore_3F_Pokemart_StatBoosters)
+    msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
     release
-    end
+}
 
-    .align 2
-LilycoveCity_DepartmentStore_3F_Pokemart_StatBoosters:
-    .2byte ITEM_X_SPEED
-    .2byte ITEM_X_SP_ATK
-    .2byte ITEM_X_ATTACK
-    .2byte ITEM_X_DEFENSE
-    .2byte ITEM_DIRE_HIT
-    .2byte ITEM_GUARD_SPEC
-    .2byte ITEM_X_ACCURACY
-    pokemartlistend
-
-LilycoveCity_DepartmentStore_3F_EventScript_TriathleteM::
-    msgbox LilycoveCity_DepartmentStore_3F_Text_ItemsBestForTougheningPokemon, MSGBOX_NPC
-    end
-
-LilycoveCity_DepartmentStore_3F_EventScript_PokefanM::
-    msgbox LilycoveCity_DepartmentStore_3F_Text_WantMoreEndurance, MSGBOX_NPC
-    end
-
-LilycoveCity_DepartmentStore_3F_EventScript_Woman::
-    msgbox LilycoveCity_DepartmentStore_3F_Text_GaveCarbosToSpeedUpMon, MSGBOX_NPC
-    end
-
-LilycoveCity_DepartmentStore_3F_Text_ItemsBestForTougheningPokemon:
-    .string "For quickly toughening up Pokémon,\n"
-    .string "items are the best.\p"
-    .string "Protein boosts Attack,\n"
-    .string "and Calcium raises Sp. Atk.$"
-
-LilycoveCity_DepartmentStore_3F_Text_WantMoreEndurance:
-    .string "I want my Pokémon to have more\n"
-    .string "endurance.\p"
-    .string "I'm trying to decide whether to raise\n"
-    .string "Defense with Iron, or Sp. Def with Zinc.$"
-
-LilycoveCity_DepartmentStore_3F_Text_GaveCarbosToSpeedUpMon:
-    .string "I gave a Carbos to my Pokémon,\n"
-    .string "and its Speed went up.$"
-
-`
+mart LilycoveCity_DepartmentStore_3F_Pokemart_StatBoosters {
+    ITEM_X_SPEED
+    ITEM_X_ATTACK
+    ITEM_X_DEFENSE
+    ITEM_X_SP_ATK
+    ITEM_X_SP_DEF
+    ITEM_DIRE_HIT
+    ITEM_GUARD_SPEC
+    ITEM_X_ACCURACY
+    ITEM_ASSAULT_VEST
+    ITEM_CHOICE_BAND
+    ITEM_CHOICE_SPECS
+    ITEM_CHOICE_SCARF
+    ITEM_EXPERT_BELT
+    ITEM_FOCUS_BAND
+    ITEM_FOCUS_SASH
+    ITEM_MUSCLE_BAND
+    ITEM_WISE_GLASSES
+    ITEM_WEAKNESS_POLICY  
+}
 
 mart LilycoveCity_DepartmentStore_3F_Pokemart_Vitamins {
+    ITEM_FRESH_START_MOCHI
     ITEM_PROTEIN
     ITEM_CALCIUM
     ITEM_IRON
     ITEM_ZINC
     ITEM_CARBOS
     ITEM_HP_UP
+    ITEM_POWER_BRACER
+    ITEM_POWER_LENS
+    ITEM_POWER_BELT
+    ITEM_POWER_WEIGHT
+    ITEM_POWER_ANKLET
+    ITEM_POWER_BAND
     ITEM_ABILITY_CAPSULE
     ITEM_ABILITY_PATCH
-    ITEM_LONELY_MINT
-    ITEM_BRAVE_MINT
-    ITEM_ADAMANT_MINT
-    ITEM_NAUGHTY_MINT
-    ITEM_BOLD_MINT
-    ITEM_RELAXED_MINT
-    ITEM_IMPISH_MINT
-    ITEM_LAX_MINT
-    ITEM_TIMID_MINT
-    ITEM_HASTY_MINT
-    ITEM_JOLLY_MINT
-    ITEM_NAIVE_MINT
-    ITEM_MODEST_MINT
-    ITEM_MILD_MINT
-    ITEM_QUIET_MINT
-    ITEM_RASH_MINT
-    ITEM_CALM_MINT
-    ITEM_GENTLE_MINT
-    ITEM_SASSY_MINT
-    ITEM_CAREFUL_MINT
 }
+
+script LilycoveCity_DepartmentStore_3F_EventScript_TriathleteM {
+    msgbox(format("For quickly toughening up Pokémon, items are the best.\p"
+        "I wish they had the herbal mints from Lavaridge Town, though."), MSGBOX_NPC)
+}
+
+script LilycoveCity_DepartmentStore_3F_EventScript_PokefanM {
+    msgbox(format("I want my Pokémon to have more endurance.\p
+        I can't pick between a Focus Sash or an Assault Vest."), MSGBOX_NPC)
+}
+
+script LilycoveCity_DepartmentStore_3F_EventScript_Woman {
+    msgbox(format("Once I took the Power Anklet off my Pokémon, it was really fast."), MSGBOX_NPC)
+}
+

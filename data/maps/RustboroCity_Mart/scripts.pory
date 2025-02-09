@@ -22,6 +22,7 @@ mart RustboroCity_Mart_Pokemart_Basic {
     ITEM_SUPER_POTION
     ITEM_ANTIDOTE
     ITEM_PARALYZE_HEAL
+    ITEM_LURE
     ITEM_REPEL
     ITEM_X_SPEED
     ITEM_X_ATTACK
@@ -50,6 +51,7 @@ mart RustboroCity_Mart_Pokemart_Expanded {
     ITEM_ANTIDOTE
     ITEM_PARALYZE_HEAL
     ITEM_FULL_HEAL
+    ITEM_LURE
     ITEM_REPEL
     ITEM_X_SPEED
     ITEM_X_ATTACK

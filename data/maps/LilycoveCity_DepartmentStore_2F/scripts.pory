@@ -1,37 +1,24 @@
 mapscripts LilycoveCity_DepartmentStore_2F_MapScripts {}
-raw `
-LilycoveCity_DepartmentStore_2F_EventScript_Cook::
-    msgbox LilycoveCity_DepartmentStore_2F_Text_LearnToUseItemsProperly, MSGBOX_NPC
-    end
 
-LilycoveCity_DepartmentStore_2F_EventScript_PokefanF::
-    msgbox LilycoveCity_DepartmentStore_2F_Text_GoodGiftForHusband, MSGBOX_NPC
-    end
-
-LilycoveCity_DepartmentStore_2F_EventScript_Sailor::
-    msgbox LilycoveCity_DepartmentStore_2F_Text_StockUpOnItems, MSGBOX_NPC
-    end
-
-LilycoveCity_DepartmentStore_2F_EventScript_ClerkLeft::
+script LilycoveCity_DepartmentStore_2F_EventScript_ClerkLeft {
     lock
     faceplayer
-    message gText_HowMayIServeYou
+    message(gText_HowMayIServeYou)
     waitmessage
-    pokemart LilycoveCity_DepartmentStore_2F_Pokemart1
-    msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+    pokemart(LilycoveCity_DepartmentStore_2F_Pokemart1)
+    msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
     release
-    end
+}
 
-LilycoveCity_DepartmentStore_2F_EventScript_ClerkRight::
+script LilycoveCity_DepartmentStore_2F_EventScript_ClerkRight {
     lock
     faceplayer
-    message gText_HowMayIServeYou
+    message(gText_HowMayIServeYou)
     waitmessage
-    pokemart LilycoveCity_DepartmentStore_2F_Pokemart2
-    msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+    pokemart(LilycoveCity_DepartmentStore_2F_Pokemart2)
+    msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
     release
-    end
-`
+}
 
 mart LilycoveCity_DepartmentStore_2F_Pokemart1 {
     ITEM_POKE_BALL
@@ -52,6 +39,9 @@ mart LilycoveCity_DepartmentStore_2F_Pokemart2 {
     ITEM_HYPER_POTION
     ITEM_MAX_POTION
     ITEM_REVIVE
+    ITEM_LURE
+    ITEM_SUPER_LURE
+    ITEM_MAX_LURE
     ITEM_REPEL
     ITEM_SUPER_REPEL
     ITEM_MAX_REPEL
@@ -59,17 +49,18 @@ mart LilycoveCity_DepartmentStore_2F_Pokemart2 {
     ITEM_MECH_MAIL
 }
 
-text LilycoveCity_DepartmentStore_2F_Text_LearnToUseItemsProperly {
-    format("Learn to use items properly.\n"
-    "That's basic, really.")
+script LilycoveCity_DepartmentStore_2F_EventScript_Cook {
+    msgbox(format("Learn to use items properly.\n"
+        "That's basic, really."), MSGBOX_NPC)
 }
 
-text LilycoveCity_DepartmentStore_2F_Text_GoodGiftForHusband {
-    format("My husband is waiting at home.\n"
-    "What would make a good gift for him?")
+script LilycoveCity_DepartmentStore_2F_EventScript_PokefanF {
+    msgbox(format("My husband is waiting at home.\n"
+        "What would make a good gift for him?"), MSGBOX_NPC)
 }
 
-text LilycoveCity_DepartmentStore_2F_Text_StockUpOnItems {
-    format("I'm leaving on a long journey soon.\n"
-    "I need to stock up on items.")
+script LilycoveCity_DepartmentStore_2F_EventScript_Sailor {
+    msgbox(format("I'm leaving on a long journey soon.\n"
+        "I need to stock up on items."), MSGBOX_NPC)
 }
+

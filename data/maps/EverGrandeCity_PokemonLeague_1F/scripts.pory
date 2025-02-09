@@ -37,17 +37,6 @@ EverGrandeCity_PokemonLeague_1F_EventScript_Clerk::
 	release
 	end
 
-	.align 2
-EverGrandeCity_PokemonLeague_1F_Pokemart:
-	.2byte ITEM_ULTRA_BALL
-	.2byte ITEM_HYPER_POTION
-	.2byte ITEM_MAX_POTION
-	.2byte ITEM_FULL_RESTORE
-	.2byte ITEM_FULL_HEAL
-	.2byte ITEM_REVIVE
-	.2byte ITEM_MAX_REPEL
-	pokemartlistend
-
 @ The door guards only check for FLAG_BADGE06_GET because Winonas badge is the only one that can be skipped
 @ Its assumed the player has the remaining badges
 EverGrandeCity_PokemonLeague_1F_EventScript_DoorGuard::
@@ -125,19 +114,40 @@ EverGrandeCity_PokemonLeague_1F_Movement_RightGuardOutOfWay:
 	step_end
 
 EverGrandeCity_PokemonLeague_1F_Text_MustHaveAllGymBadges:
-	.string "Beyond this point, only those TRAINERS\n"
-	.string "who have collected all the GYM BADGES\l"
+	.string "Beyond this point, only those Trainers\n"
+	.string "who have collected all the Gym Badges\l"
 	.string "are permitted to enter.\p"
-	.string "TRAINER, let us confirm that you have\n"
-	.string "all the GYM BADGES.$"
+	.string "Trainer, let us confirm that you have\n"
+	.string "all the Gym Badges.$"
 
 EverGrandeCity_PokemonLeague_1F_Text_HaventObtainedAllBadges:
-	.string "You haven't obtained all the BADGES.\p"
-	.string "If you're bound for the POKéMON\n"
-	.string "LEAGUE, you must return with them.$"
+	.string "You haven't obtained all the Badges.\p"
+	.string "If you're bound for the Pokémon\n"
+	.string "League, you must return with them.$"
 
 EverGrandeCity_PokemonLeague_1F_Text_GoForth:
-	.string "TRAINER! Believe in yourself and your\n"
-	.string "POKéMON, and go forth!$"
+	.string "Trainer! Believe in yourself and your\n"
+	.string "Pokémon, and go forth!$"
 
 `
+
+mart EverGrandeCity_PokemonLeague_1F_Pokemart {
+	ITEM_ULTRA_BALL
+	ITEM_HEAL_BALL
+	ITEM_NET_BALL
+	ITEM_REPEAT_BALL
+	ITEM_NEST_BALL
+	ITEM_LUXURY_BALL
+	ITEM_DIVE_BALL
+	ITEM_QUICK_BALL
+	ITEM_DUSK_BALL
+	ITEM_TIMER_BALL
+	ITEM_HYPER_POTION
+	ITEM_MAX_POTION
+	ITEM_FULL_RESTORE
+	ITEM_FULL_HEAL
+	ITEM_REVIVE
+	ITEM_MAX_LURE
+	ITEM_MAX_REPEL
+}
+

@@ -1,11 +1,23 @@
 mapscripts SootopolisCity_Mart_MapScripts {}
 
+script SootopolisCity_Mart_EventScript_Clerk {
+    lock
+    faceplayer
+    message(gText_HowMayIServeYou)
+    waitmessage
+    pokemart(SootopolisCity_Mart_Pokemart)
+    msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
+    release
+}
+
 mart SootopolisCity_Mart_Pokemart {
     ITEM_ULTRA_BALL
     ITEM_HYPER_POTION
     ITEM_MAX_POTION
     ITEM_FULL_HEAL
+    ITEM_PP_UP
     ITEM_REVIVE
+    ITEM_MAX_LURE
     ITEM_MAX_REPEL
     ITEM_ABSORB_BULB
     ITEM_LUMINOUS_MOSS
@@ -18,15 +30,6 @@ mart SootopolisCity_Mart_Pokemart {
 }
 
 raw `
-SootopolisCity_Mart_EventScript_Clerk::
-	lock
-	faceplayer
-	message gText_HowMayIServeYou
-	waitmessage
-	pokemart SootopolisCity_Mart_Pokemart
-	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
-	release
-	end
 
 SootopolisCity_Mart_EventScript_FatMan::
 	lock
@@ -34,11 +37,6 @@ SootopolisCity_Mart_EventScript_FatMan::
 	goto_if_ge VAR_SKY_PILLAR_STATE, 2, SootopolisCity_Mart_EventScript_FatManNoLegendaries
 	goto_if_unset FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, SootopolisCity_Mart_EventScript_FatManNoLegendaries
 	msgbox SootopolisCity_Mart_Text_TooScaryOutside, MSGBOX_DEFAULT
-	release
-	end
-
-SootopolisCity_Mart_EventScript_FatManNoLegendaries::
-	msgbox SootopolisCity_Mart_Text_PPUpIsGreat, MSGBOX_DEFAULT
 	release
 	end
 
@@ -51,30 +49,28 @@ SootopolisCity_Mart_EventScript_Gentleman::
 	release
 	end
 
-SootopolisCity_Mart_EventScript_GentlemanNoLegendaries::
-	msgbox SootopolisCity_Mart_Text_FullRestoreItemOfDreams, MSGBOX_DEFAULT
-	release
-	end
-
-SootopolisCity_Mart_Text_PPUpIsGreat:
-	.string "PP UP is great!\p"
-	.string "It raises the Power Points, the PP,\n"
-	.string "of a Pokémon move.$"
-
 SootopolisCity_Mart_Text_TooScaryOutside:
 	.string "What…\n"
 	.string "What is happening?\p"
 	.string "I really want to know, but it's too\n"
 	.string "scary to go outside.$"
 
-SootopolisCity_Mart_Text_FullRestoreItemOfDreams:
-	.string "Do you know Full Restore?\p"
-	.string "Full restoration of HP!\n"
-	.string "Eradication of all status problems!\p"
-	.string "It's truly an item of your dreams!$"
-
 SootopolisCity_Mart_Text_DidSomethingAwaken:
 	.string "This weather…\n"
 	.string "Did something awaken?$"
 
 `
+
+script SootopolisCity_Mart_EventScript_FatManNoLegendaries {
+    msgbox(format("Wow, PP Ups are amazing!\p"
+        "I wonder if there's an even stronger version?"), MSGBOX_DEFAULT)
+    release
+}
+
+script SootopolisCity_Mart_EventScript_GentlemanNoLegendaries {
+    msgbox(format("Do you know Full Restore?\p"
+        "Full restoration of HP!\n"
+        "Eradication of all status problems!\p"
+        "It's truly an item of your dreams!"), MSGBOX_DEFAULT)
+	release
+}
