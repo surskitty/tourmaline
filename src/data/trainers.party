@@ -4740,31 +4740,41 @@ Ability: Snow Warning
 - Blizzard
 - Dazzling Gleam
 
-Glalie
-Level: 50
-Ability: Moody
-- Protect
-- Substitute
-- Icy Wind
-- Crunch
+Cetitan
+Level: 52
+- Ice Spinner
+- Play Rough
+- Hard Press
+- Yawn
+
+Baxcalibur @ Loaded Dice
+Level: 52
+- Glaive Rush
+- Breaking Swipe
+- Icicle Spear
+- Bulldoze
 
 Froslass @ Light Clay
 Level: 52
+Nature: Modest
 - Blizzard
 - Aurora Veil
 - Snowscape
-
-Glalie @ Glalitite
-Level: 52
 - Shadow Ball
-- Facade
-- Body Slam
 
 Walrein @ Sitrus Berry
 Level: 53
-- Surf
+- Chilling Water
 - Body Slam
 - Ice Beam
+
+Glalie @ Glalitite
+Level: 52
+Ability: Moody
+- Protect
+- Crunch
+- Shadow Ball
+- Facade
 
 === TRAINER_DRAKE ===
 Name: Drake
@@ -4777,9 +4787,8 @@ Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Blue
 
-Shelgon
+Baxcalibur
 Level: 52
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Rock Tomb
 - Dragon Claw
 - Protect
@@ -4787,7 +4796,6 @@ IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 
 Altaria
 Level: 54
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Double Edge
 - Dragon Breath
 - Dragon Dance
@@ -4795,7 +4803,6 @@ IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 
 Kingdra
 Level: 53
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Smokescreen
 - Dragon Dance
 - Surf
@@ -4803,13 +4810,12 @@ IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 
 Flygon
 Level: 53
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Flamethrower
 - Crunch
 - Dragon Breath
 - Earthquake
 
-Salamence @ Sitrus Berry
+Salamence @ Salamencite
 Level: 55
 - Flamethrower
 - Dragon Claw
@@ -5912,7 +5918,7 @@ Level: 60
 - Shadow Ball
 
 === TRAINER_WINONA_1 ===
-Name: WINONA
+Name: Winona
 Class: Leader
 Pic: Leader Winona
 Gender: Female
@@ -5953,12 +5959,213 @@ IVs: 26 HP / 26 Atk / 26 Def / 26 SpA / 26 SpD / 26 Spe
 - Steel Wing
 - Aerial Ace
 
-Altaria @ Oran Berry
+Altaria @ Altarianite
 Level: 33
-- Earthquake
-- Dragon Breath
-- Dragon Dance
+- Hyper Voice
+- Cotton Guard
+- Dragon Pulse
+- Flamethrower
+
+=== TRAINER_WINONA_2 ===
+Name: Winona
+Class: Leader
+Pic: Leader Winona
+Gender: Female
+Music: Female
+Items: Full Restore / Full Restore / Full Restore
+Double Battle: Yes
+AI: Basic Trainer / Risky
+
+Dratini @ Sitrus Berry
+Level: 40
+- Thunder Wave
+- Thunderbolt
+- Protect
+- Ice Beam
+
+Tropius
+Level: 38
+- Sunny Day
 - Aerial Ace
+- Solar Beam
+- Earthquake
+
+Pelipper
+Level: 41
+- Surf
+- Supersonic
+- Protect
+- Aerial Ace
+
+Skarmory
+Level: 43
+- Whirlwind
+- Spikes
+- Steel Wing
+- Aerial Ace
+
+Altaria @ Chesto Berry
+Level: 45
+- Aerial Ace
+- Rest
+- Dragon Dance
+- Earthquake
+
+=== TRAINER_WINONA_3 ===
+Name: Winona
+Class: Leader
+Pic: Leader Winona
+Gender: Female
+Music: Female
+Items: Full Restore / Full Restore / Full Restore
+Double Battle: Yes
+AI: Basic Trainer / Risky
+
+Hoothoot
+Level: 43
+- Hypnosis
+- Psychic
+- Reflect
+- Dream Eater
+
+Tropius
+Level: 43
+- Sunny Day
+- Aerial Ace
+- Solar Beam
+- Earthquake
+
+Dragonair @ Sitrus Berry
+Level: 45
+- Thunder Wave
+- Thunderbolt
+- Protect
+- Ice Beam
+
+Pelipper
+Level: 46
+- Surf
+- Supersonic
+- Protect
+- Aerial Ace
+
+Skarmory
+Level: 48
+- Whirlwind
+- Spikes
+- Steel Wing
+- Aerial Ace
+
+Altaria @ Chesto Berry
+Level: 50
+- Aerial Ace
+- Rest
+- Dragon Dance
+- Earthquake
+
+=== TRAINER_WINONA_4 ===
+Name: Winona
+Class: Leader
+Pic: Leader Winona
+Gender: Female
+Music: Female
+Items: Full Restore / Full Restore / Full Restore
+Double Battle: Yes
+AI: Basic Trainer / Risky
+
+Noctowl
+Level: 48
+- Hypnosis
+- Psychic
+- Reflect
+- Dream Eater
+
+Tropius
+Level: 49
+- Sunny Day
+- Aerial Ace
+- Solar Beam
+- Earthquake
+
+Dragonair @ Sitrus Berry
+Level: 50
+- Thunder Wave
+- Thunderbolt
+- Protect
+- Ice Beam
+
+Pelipper
+Level: 51
+- Surf
+- Supersonic
+- Protect
+- Aerial Ace
+
+Skarmory
+Level: 53
+- Whirlwind
+- Spikes
+- Steel Wing
+- Aerial Ace
+
+Altaria @ Chesto Berry
+Level: 55
+- Aerial Ace
+- Rest
+- Dragon Dance
+- Earthquake
+
+=== TRAINER_WINONA_5 ===
+Name: Winona
+Class: Leader
+Pic: Leader Winona
+Gender: Female
+Music: Female
+Items: Full Restore / Full Restore / Full Restore
+Double Battle: Yes
+AI: Basic Trainer / Risky
+
+Noctowl
+Level: 53
+- Hypnosis
+- Psychic
+- Reflect
+- Dream Eater
+
+Tropius
+Level: 54
+- Sunny Day
+- Aerial Ace
+- Solar Beam
+- Earthquake
+
+Pelipper
+Level: 55
+- Surf
+- Supersonic
+- Protect
+- Aerial Ace
+
+Dragonite @ Sitrus Berry
+Level: 55
+- Hyper Beam
+- Thunderbolt
+- Earthquake
+- Ice Beam
+
+Skarmory
+Level: 58
+- Whirlwind
+- Spikes
+- Steel Wing
+- Aerial Ace
+
+Altaria @ Chesto Berry
+Level: 60
+- Sky Attack
+- Rest
+- Dragon Dance
+- Earthquake
 
 === TRAINER_TATE_AND_LIZA_1 ===
 Name: Tate&Liza
@@ -15554,207 +15761,6 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 Vigoroth
 Level: 29
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-
-=== TRAINER_WINONA_2 ===
-Name: WINONA
-Class: Leader
-Pic: Leader Winona
-Gender: Female
-Music: Female
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Basic Trainer / Risky
-
-Dratini @ Sitrus Berry
-Level: 40
-- Thunder Wave
-- Thunderbolt
-- Protect
-- Ice Beam
-
-Tropius
-Level: 38
-- Sunny Day
-- Aerial Ace
-- Solar Beam
-- Earthquake
-
-Pelipper
-Level: 41
-- Surf
-- Supersonic
-- Protect
-- Aerial Ace
-
-Skarmory
-Level: 43
-- Whirlwind
-- Spikes
-- Steel Wing
-- Aerial Ace
-
-Altaria @ Chesto Berry
-Level: 45
-- Aerial Ace
-- Rest
-- Dragon Dance
-- Earthquake
-
-=== TRAINER_WINONA_3 ===
-Name: WINONA
-Class: Leader
-Pic: Leader Winona
-Gender: Female
-Music: Female
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Basic Trainer / Risky
-
-Hoothoot
-Level: 43
-- Hypnosis
-- Psychic
-- Reflect
-- Dream Eater
-
-Tropius
-Level: 43
-- Sunny Day
-- Aerial Ace
-- Solar Beam
-- Earthquake
-
-Dragonair @ Sitrus Berry
-Level: 45
-- Thunder Wave
-- Thunderbolt
-- Protect
-- Ice Beam
-
-Pelipper
-Level: 46
-- Surf
-- Supersonic
-- Protect
-- Aerial Ace
-
-Skarmory
-Level: 48
-- Whirlwind
-- Spikes
-- Steel Wing
-- Aerial Ace
-
-Altaria @ Chesto Berry
-Level: 50
-- Aerial Ace
-- Rest
-- Dragon Dance
-- Earthquake
-
-=== TRAINER_WINONA_4 ===
-Name: WINONA
-Class: Leader
-Pic: Leader Winona
-Gender: Female
-Music: Female
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Basic Trainer / Risky
-
-Noctowl
-Level: 48
-- Hypnosis
-- Psychic
-- Reflect
-- Dream Eater
-
-Tropius
-Level: 49
-- Sunny Day
-- Aerial Ace
-- Solar Beam
-- Earthquake
-
-Dragonair @ Sitrus Berry
-Level: 50
-- Thunder Wave
-- Thunderbolt
-- Protect
-- Ice Beam
-
-Pelipper
-Level: 51
-- Surf
-- Supersonic
-- Protect
-- Aerial Ace
-
-Skarmory
-Level: 53
-- Whirlwind
-- Spikes
-- Steel Wing
-- Aerial Ace
-
-Altaria @ Chesto Berry
-Level: 55
-- Aerial Ace
-- Rest
-- Dragon Dance
-- Earthquake
-
-=== TRAINER_WINONA_5 ===
-Name: WINONA
-Class: Leader
-Pic: Leader Winona
-Gender: Female
-Music: Female
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Basic Trainer / Risky
-
-Noctowl
-Level: 53
-- Hypnosis
-- Psychic
-- Reflect
-- Dream Eater
-
-Tropius
-Level: 54
-- Sunny Day
-- Aerial Ace
-- Solar Beam
-- Earthquake
-
-Pelipper
-Level: 55
-- Surf
-- Supersonic
-- Protect
-- Aerial Ace
-
-Dragonite @ Sitrus Berry
-Level: 55
-- Hyper Beam
-- Thunderbolt
-- Earthquake
-- Ice Beam
-
-Skarmory
-Level: 58
-- Whirlwind
-- Spikes
-- Steel Wing
-- Aerial Ace
-
-Altaria @ Chesto Berry
-Level: 60
-- Sky Attack
-- Rest
-- Dragon Dance
-- Earthquake
 
 === TRAINER_JUAN_2 ===
 Name: Juan

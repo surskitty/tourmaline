@@ -6169,7 +6169,7 @@ const struct TrainerMon gBattleFrontierMons[NUM_FRONTIER_MONS] =
     },
     [FRONTIER_MON_SUICUNE_6] = {
         .species = SPECIES_REGIDRAGO,
-        .moves = {MOVE_SURF, MOVE_ICE_BEAM, MOVE_CALM_MIND, MOVE_REST},
+        .moves = {MOVE_DRAGON_ENERGY, MOVE_EARTH_POWER, MOVE_DRAGON_BREATH, MOVE_REST},
         .heldItem = ITEM_CHESTO_BERRY,
         .ev = TRAINER_PARTY_EVS(170, 0, 170, 0, 0, 170),
         .nature = NATURE_MODEST
