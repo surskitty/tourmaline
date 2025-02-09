@@ -16622,7 +16622,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_NONE, ABILITY_NONE, ABILITY_ADAPTABILITY, },
+        .abilities = { ABILITY_ANTICIPATION, ABILITY_NONE, ABILITY_ADAPTABILITY, },
         .innates = { ABILITY_RUN_AWAY, ABILITY_ANTICIPATION },
 #else
         .abilities = { ABILITY_RUN_AWAY, ABILITY_ADAPTABILITY, ABILITY_ANTICIPATION },
@@ -16975,7 +16975,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_NONE, ABILITY_NONE, ABILITY_ADAPTABILITY },
+        .abilities = { ABILITY_FLASH_FIRE, ABILITY_NONE, ABILITY_ADAPTABILITY },
         .innates = { ABILITY_FLASH_FIRE, ABILITY_GUTS, ABILITY_FLAME_BODY },
 #else
         .abilities = { ABILITY_FLASH_FIRE, ABILITY_FLASH_FIRE, ABILITY_GUTS },
@@ -17042,7 +17042,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_NONE, ABILITY_NONE, ABILITY_ADAPTABILITY },
+        .abilities = { ABILITY_SYNCHRONIZE, ABILITY_NONE, ABILITY_ADAPTABILITY },
         .innates = { ABILITY_FOREWARN, ABILITY_SYNCHRONIZE, ABILITY_MAGIC_BOUNCE },
 #else
         .abilities = { ABILITY_SYNCHRONIZE, ABILITY_SYNCHRONIZE, ABILITY_MAGIC_BOUNCE },
@@ -17242,7 +17242,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_NONE, ABILITY_NONE, ABILITY_ADAPTABILITY, },
+        .abilities = { ABILITY_SNOW_CLOAK, ABILITY_NONE, ABILITY_ADAPTABILITY, },
         .innates = { ABILITY_ANTICIPATION, ABILITY_ICE_BODY, ABILITY_SNOW_CLOAK },
 #else
         .abilities = { ABILITY_SNOW_CLOAK, ABILITY_SNOW_CLOAK, ABILITY_ICE_BODY },
@@ -17310,7 +17310,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_NONE, ABILITY_NONE, ABILITY_ADAPTABILITY, },
+        .abilities = { ABILITY_ANTICIPATION, ABILITY_NONE, ABILITY_ADAPTABILITY, },
         .innates = { ABILITY_ANTICIPATION, ABILITY_CUTE_CHARM, ABILITY_PIXILATE },
 #else
         .abilities = { ABILITY_CUTE_CHARM, ABILITY_CUTE_CHARM, ABILITY_PIXILATE },
