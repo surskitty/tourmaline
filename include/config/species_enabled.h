@@ -60,8 +60,8 @@
 #define P_FAMILY_BULBASAUR               FALSE
 #define P_FAMILY_CHARMANDER              FALSE
 #define P_FAMILY_SQUIRTLE                FALSE
-#define P_FAMILY_CATERPIE                P_GEN_1_POKEMON
-#define P_FAMILY_WEEDLE                  P_GEN_1_POKEMON
+#define P_FAMILY_CATERPIE                FALSE
+#define P_FAMILY_WEEDLE                  FALSE
 #define P_FAMILY_PIDGEY                  P_GEN_1_POKEMON
 #define P_FAMILY_RATTATA                 P_GEN_1_POKEMON
 #define P_FAMILY_SPEAROW                 P_GEN_1_POKEMON
@@ -179,9 +179,9 @@
 #define P_FAMILY_STANTLER                P_GEN_2_POKEMON // altering cave/safari zone
 #define P_FAMILY_SMEARGLE                P_GEN_2_POKEMON // altering cave/safari zone
 #define P_FAMILY_MILTANK                 P_GEN_2_POKEMON
-#define P_FAMILY_RAIKOU                  P_GEN_2_POKEMON
-#define P_FAMILY_ENTEI                   P_GEN_2_POKEMON
-#define P_FAMILY_SUICUNE                 P_GEN_2_POKEMON
+#define P_FAMILY_RAIKOU                  FALSE
+#define P_FAMILY_ENTEI                   FALSE
+#define P_FAMILY_SUICUNE                 FALSE
 #define P_FAMILY_LARVITAR                P_GEN_2_POKEMON
 #define P_FAMILY_LUGIA                   P_GEN_2_POKEMON
 #define P_FAMILY_HO_OH                   P_GEN_2_POKEMON
@@ -324,8 +324,8 @@
 #define P_FAMILY_AUDINO                  P_GEN_5_POKEMON // rusturf
 #define P_FAMILY_TIMBURR                 FALSE
 #define P_FAMILY_TYMPOLE                 P_GEN_5_POKEMON // route 102
-#define P_FAMILY_THROH                   P_GEN_5_POKEMON // route 112
-#define P_FAMILY_SAWK                    P_GEN_5_POKEMON // route 112
+#define P_FAMILY_THROH                   FALSE
+#define P_FAMILY_SAWK                    FALSE
 #define P_FAMILY_SEWADDLE                P_GEN_5_POKEMON // route 101
 #define P_FAMILY_VENIPEDE                P_GEN_5_POKEMON
 #define P_FAMILY_COTTONEE                P_GEN_5_POKEMON
