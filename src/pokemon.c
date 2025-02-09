@@ -5946,14 +5946,14 @@ static s32 GetWildMonTableIdInAlteringCave(u16 species)
 
 static inline bool32 CanFirstMonBoostHeldItemRarity(void)
 {
-    u32 ability;
+    //u32 ability;
     if (GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
         return FALSE;
 
-    ability = GetMonAbility(&gPlayerParty[0]);
-    if (ability == ABILITY_COMPOUND_EYES)
+    //ability = GetMonAbility(&gPlayerParty[0]);
+    if (MonHasTrait(&gPlayerParty[0], ABILITY_COMPOUND_EYES, TRUE))
         return TRUE;
-    else if ((OW_SUPER_LUCK >= GEN_8) && ability == ABILITY_SUPER_LUCK)
+    else if ((OW_SUPER_LUCK >= GEN_8) && MonHasTrait(&gPlayerParty[0], ABILITY_SUPER_LUCK, TRUE))
         return TRUE;
     return FALSE;
 }

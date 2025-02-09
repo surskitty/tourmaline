@@ -83,7 +83,7 @@ static bool32 ShouldSwitchIfHasBadOdds(u32 battler)
     //Variable initialization
     u8 opposingPosition, atkType1, atkType2, defType1, defType2, effectiveness;
     s32 i, damageDealt = 0, maxDamageDealt = 0, damageTaken = 0, maxDamageTaken = 0;
-    u32 aiMove, playerMove, aiBestMove = MOVE_NONE, aiAbility = AI_DATA->abilities[battler], opposingBattler, weather = AI_GetWeather(AI_DATA);
+    u32 aiMove, playerMove, aiBestMove = MOVE_NONE, opposingBattler, weather = AI_GetWeather(AI_DATA); //aiAbility = AI_DATA->abilities[battler]
     bool32 getsOneShot = FALSE, hasStatusMove = FALSE, hasSuperEffectiveMove = FALSE;
     u16 typeEffectiveness = UQ_4_12(1.0), aiMoveEffect; //baseline typing damage
 
@@ -223,7 +223,7 @@ static bool32 ShouldSwitchIfHasBadOdds(u32 battler)
 static bool32 ShouldSwitchIfTruant(u32 battler)
 {
     // Switch if mon with truant is bodied by Protect or invulnerability spam
-    if (AI_DATA->abilities[battler] == ABILITY_TRUANT
+    if (AI_BATTLER_HAS_TRAIT(battler, ABILITY_TRUANT)
         && IsTruantMonVulnerable(battler, gBattlerTarget)
         && gDisableStructs[battler].truantCounter
         && gBattleMons[battler].hp >= gBattleMons[battler].maxHP / 2
@@ -531,7 +531,7 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
                 && AISearchTraits(AIBattlerTraits, ABILITY_UNAWARE)
                 && AISearchTraits(AIBattlerTraits, ABILITY_KEEN_EYE)
                 && AISearchTraits(AIBattlerTraits, ABILITY_MINDS_EYE)
-                && (B_ILLUMINATE_EFFECT >= GEN_9 && AI_DATA->abilities[opposingBattler] != ABILITY_ILLUMINATE)
+                && (B_ILLUMINATE_EFFECT >= GEN_9 && !AI_BATTLER_HAS_TRAIT(opposingBattler, ABILITY_ILLUMINATE))
                 && !(gBattleMons[battler].status2 & STATUS2_FORESIGHT)
                 && !(gStatuses3[battler] & STATUS3_MIRACLE_EYED))
                 switchMon = FALSE;
@@ -759,7 +759,7 @@ static bool32 CanMonSurviveHazardSwitchin(u32 battler)
 {
     u32 battlerIn1, battlerIn2;
     u32 hazardDamage = 0, battlerHp = gBattleMons[battler].hp;
-    u32 ability = AI_DATA->abilities[battler], aiMove;
+    u32 aiMove; //ability = AI_DATA->abilities[battler]
     s32 firstId, lastId, i, j;
     struct Pokemon *party;
 
@@ -1537,7 +1537,7 @@ static u32 GetSwitchinHitsToKO(s32 damageTaken, u32 battler)
     u16 maxHP = AI_DATA->switchinCandidate.battleMon.maxHP, item = AI_DATA->switchinCandidate.battleMon.item, heldItemEffect = ItemId_GetHoldEffect(item);
     u8 weatherDuration = gWishFutureKnock.weatherDuration, holdEffectParam = ItemId_GetHoldEffectParam(item);
     u32 opposingBattler = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerPosition(battler)));
-    u32 opposingAbility = gBattleMons[opposingBattler].ability, ability = AI_DATA->switchinCandidate.battleMon.ability;
+    u32 ability = AI_DATA->switchinCandidate.battleMon.ability; //opposingAbility = gBattleMons[opposingBattler].ability
     bool32 usedSingleUseHealingItem = FALSE, opponentCanBreakMold = HasMoldBreakerTypeAbility(opposingBattler);
     s32 currentHP = startingHP;
 
@@ -1560,7 +1560,7 @@ static u32 GetSwitchinHitsToKO(s32 damageTaken, u32 battler)
         currentHP = currentHP - damageTaken;
 
         // One shot prevention effects
-        if (damageTaken >= maxHP && currentHP == maxHP && (heldItemEffect == HOLD_EFFECT_FOCUS_SASH || (!opponentCanBreakMold && B_STURDY >= GEN_5 && ability == ABILITY_STURDY)))
+        if (damageTaken >= maxHP && currentHP == maxHP && (heldItemEffect == HOLD_EFFECT_FOCUS_SASH || (!opponentCanBreakMold && B_STURDY >= GEN_5 && (ability == ABILITY_STURDY || SpeciesHasInnate(AI_DATA->switchinCandidate.battleMon.species, ABILITY_STURDY, AI_DATA->switchinCandidate.battleMon.personality, TRUE)))))
             currentHP = 1;
 
         // If mon is still alive, apply weather impact first, as it might KO the mon before it can heal with its item (order is weather -> item -> status)
@@ -2024,7 +2024,7 @@ u32 GetMostSuitableMonToSwitchInto(u32 battler, bool32 switchAfterMonKOd)
                 || gBattlerPartyIndexes[battlerIn2] == i
                 || i == gBattleStruct->monToSwitchIntoId[battlerIn1]
                 || i == gBattleStruct->monToSwitchIntoId[battlerIn2]
-                || (GetMonAbility(&party[i]) == ABILITY_TRUANT && IsTruantMonVulnerable(battler, opposingBattler))) // While not really invalid per se, not really wise to switch into this mon.
+                || (MonHasTrait(&party[i], ABILITY_TRUANT, TRUE) && IsTruantMonVulnerable(battler, opposingBattler))) // While not really invalid per se, not really wise to switch into this mon.
             {
                 invalidMons |= 1u << i;
             }

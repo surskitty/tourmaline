@@ -3167,7 +3167,7 @@ static void IllusionNickHack(u32 battler, u32 partyId, u8 *dst)
     // we know it's gEnemyParty
     struct Pokemon *mon = &gEnemyParty[partyId], *partnerMon;
 
-    if (GetMonAbility(mon) == ABILITY_ILLUSION)
+    if (MonHasTrait(mon, ABILITY_ILLUSION, TRUE))
     {
         if (IsBattlerAlive(BATTLE_PARTNER(battler)))
             partnerMon = &gEnemyParty[gBattlerPartyIndexes[BATTLE_PARTNER(battler)]];

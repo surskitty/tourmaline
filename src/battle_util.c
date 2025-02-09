@@ -56,7 +56,7 @@ match the ROM; this is also why sSoundMovesTable's declaration is in the middle 
 functions instead of at the top of the file with the other declarations.
 */
 
-static bool32 TryRemoveScreens(u32 battler);
+//static bool32 TryRemoveScreens(u32 battler);
 static bool32 IsUnnerveAbilityOnOpposingSide(u32 battler);
 static u32 GetFlingPowerFromItemId(u32 itemId);
 static void SetRandomMultiHitCounter();
@@ -126,7 +126,7 @@ bool32 IsAffectedByFollowMe(u32 battlerAtk, u32 defSide, u32 move)
 // Functions
 void HandleAction_UseMove(void)
 {
-    u32 battler, i, side, moveType, ability, var = MAX_BATTLERS_COUNT;
+    u32 battler, i, side, moveType, var = MAX_BATTLERS_COUNT; //ability
     u16 moveTarget;
 
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
@@ -217,7 +217,7 @@ void HandleAction_UseMove(void)
 
     // choose target
     side = BATTLE_OPPOSITE(GetBattlerSide(gBattlerAttacker));
-    ability = GetBattlerAbility(gBattleStruct->moveTarget[gBattlerAttacker]);
+    //ability = GetBattlerAbility(gBattleStruct->moveTarget[gBattlerAttacker]);
     if (IsAffectedByFollowMe(gBattlerAttacker, side, gCurrentMove)
         && moveTarget == MOVE_TARGET_SELECTED
         && GetBattlerSide(gBattlerAttacker) != GetBattlerSide(gSideTimers[side].followmeTarget))
@@ -233,7 +233,7 @@ void HandleAction_UseMove(void)
         // Find first battler that redirects the move (in turn order)
         for (battler = 0; battler < gBattlersCount; battler++)
         {
-            ability = GetBattlerAbility(battler);
+            //ability = GetBattlerAbility(battler);
             if ((B_REDIRECT_ABILITY_ALLIES >= GEN_4 || !IsAlly(gBattlerAttacker, battler))
                 && battler != gBattlerAttacker
                 && gBattleStruct->moveTarget[gBattlerAttacker] != battler
@@ -276,9 +276,9 @@ void HandleAction_UseMove(void)
         }
         else
         {
-            u16 battlerAbility;
+            //u16 battlerAbility;
             battler = gBattlerByTurnOrder[var];
-            battlerAbility = GetBattlerAbility(battler);
+            //battlerAbility = GetBattlerAbility(battler);
 
             RecordAbilityBattle(battler, gBattleMons[battler].ability);
             if (BattlerHasTrait(battler, ABILITY_LIGHTNING_ROD) && gCurrentMove != MOVE_TEATIME)
@@ -1084,8 +1084,8 @@ bool32 WasUnableToUseMove(u32 battler)
 void PrepareStringBattle(u16 stringId, u32 battler)
 {
     u32 targetSide = GetBattlerSide(gBattlerTarget);
-    u16 battlerAbility = GetBattlerAbility(battler);
-    u16 targetAbility = GetBattlerAbility(gBattlerTarget);
+    //u16 battlerAbility = GetBattlerAbility(battler);
+    //u16 targetAbility = GetBattlerAbility(gBattlerTarget);
     u16 battlerTraits[MAX_MON_TRAITS];
     STORE_BATTLER_TRAITS(gBattlerTarget);
     // Support for Contrary ability.
@@ -2333,7 +2333,7 @@ u8 DoBattlerEndTurnEffects(void)
             continue;
         }
 
-        ability = GetBattlerAbility(battler);
+        //ability = GetBattlerAbility(battler);
 
         u16 battlerTraits[MAX_MON_TRAITS];
         STORE_BATTLER_TRAITS(battler);
@@ -2341,7 +2341,7 @@ u8 DoBattlerEndTurnEffects(void)
         switch (gBattleStruct->turnEffectsTracker)
         {
         case ENDTURN_WEATHER_DAMAGE:
-            ability = GetBattlerAbility(battler);
+            //ability = GetBattlerAbility(battler);
             if (!IsBattlerAlive(battler) || !WEATHER_HAS_EFFECT || BattlerHasTrait(battler, ABILITY_MAGIC_GUARD))
             {
                 gBattleStruct->turnEffectsTracker++;
@@ -2459,7 +2459,7 @@ u8 DoBattlerEndTurnEffects(void)
                 gBattleScripting.animArg2 = gBattlerAttacker;
                 gBattleMoveDamage = max(1, GetNonDynamaxMaxHP(battler) / 8);
                 gHitMarker |= HITMARKER_IGNORE_SUBSTITUTE | HITMARKER_PASSIVE_DAMAGE;
-                if (GetBattlerAbility(battler) == ABILITY_LIQUID_OOZE)
+                if (BattlerHasTrait(battler, ABILITY_LIQUID_OOZE))
                 {
                     gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_LEECH_SEED_OOZE;
                     BattleScriptExecute(BattleScript_LeechSeedTurnDrainLiquidOoze);
@@ -2787,7 +2787,7 @@ u8 DoBattlerEndTurnEffects(void)
         case ENDTURN_YAWN:  // yawn
             if (gStatuses3[battler] & STATUS3_YAWN)
             {
-                u16 battlerAbility = GetBattlerAbility(battler);
+                //u16 battlerAbility = GetBattlerAbility(battler);
                 gStatuses3[battler] -= STATUS3_YAWN_TURN(1);
                 if (!(gStatuses3[battler] & STATUS3_YAWN) && !(gBattleMons[battler].status1 & STATUS1_ANY)
                  && !SearchTraits(battlerTraits, ABILITY_VITAL_SPIRIT)
@@ -3527,7 +3527,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
         case CANCELLER_PARALYSED: // paralysis
             if (!gBattleStruct->isAtkCancelerForCalledMove
              && gBattleMons[gBattlerAttacker].status1 & STATUS1_PARALYSIS
-             && !(B_MAGIC_GUARD == GEN_4 && GetBattlerAbility(gBattlerAttacker) == ABILITY_MAGIC_GUARD)
+             && !(B_MAGIC_GUARD == GEN_4 && BattlerHasTrait(gBattlerAttacker, ABILITY_MAGIC_GUARD))
              && !RandomPercentage(RNG_PARALYSIS, 75))
             {
                 gProtectStructs[gBattlerAttacker].prlzImmobility = TRUE;
@@ -3730,7 +3730,7 @@ u8 AtkCanceller_UnableToUseMove(u32 moveType)
         case CANCELLER_MULTIHIT_MOVES:
             if (gMovesInfo[gCurrentMove].effect == EFFECT_MULTI_HIT)
             {
-                u32 ability = GetBattlerAbility(gBattlerAttacker);
+                //u32 ability = GetBattlerAbility(gBattlerAttacker);
 
                 if (BattlerHasTrait(gBattlerAttacker, ABILITY_SKILL_LINK))
                 {
@@ -3997,7 +3997,7 @@ static const u16 sWeatherFlagsInfo[][3] =
 
 bool32 TryChangeBattleWeather(u32 battler, u32 weatherEnumId, bool32 viaAbility)
 {
-    u16 battlerAbility = GetBattlerAbility(battler);
+    //u16 battlerAbility = GetBattlerAbility(battler);
     u16 battlerTraits[MAX_MON_TRAITS];
     STORE_BATTLER_TRAITS(battler);
     if (gBattleWeather & B_WEATHER_PRIMAL_ANY
@@ -6913,14 +6913,14 @@ bool32 IsNeutralizingGasOnField(void)
     return FALSE;
 }
 
-bool32 IsMoldBreakerTypeAbility(u32 battler, u32 ability)
+/* bool32 IsMoldBreakerTypeAbility(u32 battler, u32 ability)
 {
     if (gStatuses3[battler] & STATUS3_GASTRO_ACID)
         return FALSE;
 
     return (ability == ABILITY_MOLD_BREAKER || ability == ABILITY_TERAVOLT || ability == ABILITY_TURBOBLAZE
         || (ability == ABILITY_MYCELIUM_MIGHT && IS_MOVE_STATUS(gCurrentMove)));
-}
+} */
 
 bool32 HasMoldBreakerTypeAbility(u32 battler)
 {
@@ -7321,7 +7321,7 @@ static enum ItemEffect RandomStatRaiseBerry(u32 battler, u32 itemId, enum ItemCa
     }
     if (i != NUM_STATS - 1 && HasEnoughHpToEatBerry(battler, GetBattlerItemHoldEffectParam(battler, itemId), itemId))
     {
-        u16 battlerAbility = GetBattlerAbility(battler);
+        //u16 battlerAbility = GetBattlerAbility(battler);
         do
         {
             i = Random() % (NUM_STATS - 1);
@@ -8461,7 +8461,7 @@ u32 ItemBattleEffects(enum ItemCaseId caseID, u32 battler, bool32 moveTurn)
         {
         case HOLD_EFFECT_FLINCH:
             {
-                u16 ability = GetBattlerAbility(gBattlerAttacker);
+                //u16 ability = GetBattlerAbility(gBattlerAttacker);
                 if (B_SERENE_GRACE_BOOST >= GEN_5 && BattlerHasTrait(gBattlerAttacker, ABILITY_SERENE_GRACE))
                     atkHoldEffectParam *= 2;
                 if (gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_RAINBOW && gCurrentMove != MOVE_SECRET_POWER)
@@ -9194,7 +9194,7 @@ u32 GetBattlerWeight(u32 battler)
 {
     u32 i;
     u32 weight = GetSpeciesWeight(gBattleMons[battler].species);
-    u32 ability = GetBattlerAbility(battler);
+    //u32 ability = GetBattlerAbility(battler);
     u32 holdEffect = GetBattlerHoldEffect(battler, TRUE);
 
     if (BattlerHasTrait(battler, ABILITY_HEAVY_METAL))
@@ -10824,7 +10824,7 @@ s32 CalculateMoveDamageVars(struct DamageCalculationData *damageCalcData, u32 fi
 static inline void MulByTypeEffectiveness(uq4_12_t *modifier, u32 move, u32 moveType, u32 battlerDef, u32 defType, u32 battlerAtk, bool32 recordAbilities)
 {
     uq4_12_t mod = GetTypeModifier(moveType, defType);
-    u32 abilityAtk = GetBattlerAbility(battlerAtk);
+    //u32 abilityAtk = GetBattlerAbility(battlerAtk);
     u16 battlerTraits[MAX_MON_TRAITS];
     STORE_BATTLER_TRAITS(battlerAtk);
 
@@ -11008,9 +11008,9 @@ uq4_12_t CalcPartyMonTypeEffectivenessMultiplier(u16 move, u16 speciesDef, u16 d
         if (gSpeciesInfo[speciesDef].types[1] != gSpeciesInfo[speciesDef].types[0])
             MulByTypeEffectiveness(&modifier, move, moveType, 0, gSpeciesInfo[speciesDef].types[1], 0, FALSE);
 
-        if (moveType == TYPE_GROUND && defAbility == ABILITY_LEVITATE && !(gFieldStatuses & STATUS_FIELD_GRAVITY))
+        if (moveType == TYPE_GROUND && BattlerHasTrait(battlerDef, ABILITY_LEVITATE) && !(gFieldStatuses & STATUS_FIELD_GRAVITY))
             modifier = UQ_4_12(0.0);
-        if (defAbility == ABILITY_WONDER_GUARD && modifier <= UQ_4_12(1.0) && gMovesInfo[move].power)
+        if (BattlerHasTrait(battlerDef, ABILITY_WONDER_GUARD) && modifier <= UQ_4_12(1.0) && gMovesInfo[move].power)
             modifier = UQ_4_12(0.0);
     }
 
@@ -11036,7 +11036,7 @@ static uq4_12_t GetInverseTypeMultiplier(uq4_12_t multiplier)
 uq4_12_t GetOverworldTypeEffectiveness(struct Pokemon *mon, u8 moveType)
 {
     uq4_12_t modifier = UQ_4_12(1.0);
-    u16 abilityDef = GetMonAbility(mon);
+    //u16 abilityDef = GetMonAbility(mon);
     u16 speciesDef = GetMonData(mon, MON_DATA_SPECIES);
     u8 type1 = gSpeciesInfo[speciesDef].types[0];
     u8 type2 = gSpeciesInfo[speciesDef].types[1];
@@ -11622,7 +11622,7 @@ u8 GetBattleMoveCategory(u32 moveId)
     return gTypesInfo[GetMoveType(moveId)].damageCategory;
 }
 
-static bool32 TryRemoveScreens(u32 battler)
+/*static bool32 TryRemoveScreens(u32 battler)
 {
     bool32 removed = FALSE;
     u32 battlerSide = GetBattlerSide(battler);
@@ -11649,7 +11649,7 @@ static bool32 TryRemoveScreens(u32 battler)
     }
 
     return removed;
-}
+}*/
 
 static bool32 IsUnnerveAbilityOnOpposingSide(u32 battler)
 {
@@ -12223,7 +12223,7 @@ bool32 MoveIsAffectedBySheerForce(u32 move)
 bool8 CanMonParticipateInSkyBattle(struct Pokemon *mon)
 {
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
-    u16 monAbilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM, NULL);
+    //u16 monAbilityNum = GetMonData(mon, MON_DATA_ABILITY_NUM, NULL);
 
     bool8 hasLevitateAbility = (MonHasTrait(mon, ABILITY_LEVITATE, TRUE));
     bool8 isFlyingType = gSpeciesInfo[species].types[0] == TYPE_FLYING || gSpeciesInfo[species].types[1] == TYPE_FLYING;

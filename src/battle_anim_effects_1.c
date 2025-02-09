@@ -6778,7 +6778,7 @@ static void AnimTask_AllySwitchDataSwap(u8 taskId)
     // For Snipe Shot and abilities Stalwart/Propeller Tail - keep the original target.
     for (i = 0; i < MAX_BATTLERS_COUNT; i++)
     {
-        u16 ability = GetBattlerAbility(i);
+        //u16 ability = GetBattlerAbility(i);
         if (gChosenMoveByBattler[i] == MOVE_SNIPE_SHOT || BattlerHasTrait(i, ABILITY_PROPELLER_TAIL) || BattlerHasTrait(i, ABILITY_STALWART))
             gBattleStruct->moveTarget[i] ^= BIT_FLANK;
     }
