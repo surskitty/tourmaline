@@ -4512,7 +4512,7 @@ Level: 43
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 === TRAINER_WALTER_1 ===
-Name: WALTER
+Name: Walter
 Class: Gentleman
 Pic: Gentleman
 Gender: Male
@@ -4525,7 +4525,7 @@ Level: 29
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MICAH ===
-Name: MICAH
+Name: Micah
 Class: Gentleman
 Pic: Gentleman
 Gender: Male
@@ -4542,7 +4542,7 @@ Level: 44
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_THOMAS ===
-Name: THOMAS
+Name: Thomas
 Class: Gentleman
 Pic: Gentleman
 Gender: Male
@@ -4555,7 +4555,7 @@ Level: 45
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_WALTER_2 ===
-Name: WALTER
+Name: Walter
 Class: Gentleman
 Pic: Gentleman
 Gender: Male
@@ -4585,7 +4585,7 @@ Level: 36
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 === TRAINER_WALTER_4 ===
-Name: WALTER
+Name: Walter
 Class: Gentleman
 Pic: Gentleman
 Gender: Male
@@ -4600,7 +4600,7 @@ Manectric
 Level: 39
 
 === TRAINER_WALTER_5 ===
-Name: WALTER
+Name: Walter
 Class: Gentleman
 Pic: Gentleman
 Gender: Male
@@ -4683,7 +4683,7 @@ Gender: Female
 Music: Elite Four
 Items: Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Green
 
 Dusclops
@@ -4722,14 +4722,14 @@ Level: 51
 - Earthquake
 
 === TRAINER_GLACIA ===
-Name: GLACIA
+Name: Glacia
 Class: Elite Four
 Pic: Elite Four Glacia
 Gender: Female
 Music: Elite Four
 Items: Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Pink
 
 Ninetales Alola @ Icy Rock
@@ -4767,14 +4767,14 @@ Level: 53
 - Ice Beam
 
 === TRAINER_DRAKE ===
-Name: DRAKE
+Name: Drake
 Class: Elite Four
 Pic: Elite Four Drake
 Gender: Male
 Music: Elite Four
 Items: Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
 Mugshot: Blue
 
 Shelgon
@@ -5360,7 +5360,7 @@ Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
 AI: Basic Trainer
 
-Raichu
+Raichu Alola
 Level: 44
 - Thunder
 - Slam
@@ -5412,7 +5412,7 @@ Level: 50
 - Thunder Punch
 - Light Screen
 
-Raichu
+Raichu Alola
 Level: 51
 - Thunder
 - Slam
@@ -10665,7 +10665,6 @@ AI: Check Bad Move / HP Aware
 Ariel (Eevee) (F) @ Chople Berry
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-Ability: Anticipation
 - Tackle
 - Growl
 - Helping Hand
@@ -10685,7 +10684,6 @@ Double Battle: Yes
 AI: Basic Trainer / Force Setup First Turn
 
 Ariel (Eevee) (F) @ Chople Berry
-Ability: Anticipation
 Level: 15
 - Quick Attack
 - Helping Hand
@@ -10789,7 +10787,6 @@ AI: Check Bad Move / HP Aware
 Ariel (Eevee) (F) @ Chople Berry
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-Ability: Anticipation
 - Tackle
 - Growl
 - Helping Hand
@@ -10810,7 +10807,6 @@ AI: Basic Trainer / Force Setup First Turn
 
 Ariel (Eevee) (F) @ Chople Berry
 Level: 15
-Ability: Anticipation
 - Quick Attack
 - Helping Hand
 - Wish
@@ -10915,7 +10911,6 @@ AI: Check Bad Move / HP Aware
 Ariel (Eevee) (F) @ Chople Berry
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-Ability: Anticipation
 - Tackle
 - Growl
 - Helping Hand
@@ -10936,7 +10931,6 @@ AI: Basic Trainer / Force Setup First Turn
 
 Ariel (Eevee) (F) @ Chople Berry
 Level: 15
-Ability: Anticipation
 - Quick Attack
 - Helping Hand
 - Wish
@@ -11035,7 +11029,6 @@ AI: Check Bad Move / HP Aware
 Bebe (Eevee) (F)  @ Chople Berry
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-Ability: Anticipation
 - Tackle
 - Growl
 - Helping Hand
@@ -11056,7 +11049,6 @@ AI: Basic Trainer / Force Setup First Turn
 
 Bebe (Eevee) (F) @ Chople Berry
 Level: 15
-Ability: Anticipation
 - Quick Attack
 - Helping Hand
 - Wish
@@ -11153,7 +11145,6 @@ AI: Check Bad Move / HP Aware
 Bebe (Eevee) (F) @ Chople Berry
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-Ability: Anticipation
 - Tackle
 - Growl
 - Helping Hand
@@ -11174,7 +11165,6 @@ AI: Basic Trainer / Force Setup First Turn
 
 Bebe (Eevee) (F) @ Chople Berry
 Level: 15
-Ability: Anticipation
 - Quick Attack
 - Helping Hand
 - Wish
@@ -11275,7 +11265,6 @@ AI: Check Bad Move / HP Aware
 Bebe (Eevee) (F) @ Chople Berry
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-Ability: Anticipation
 - Tackle
 - Growl
 - Helping Hand
@@ -11296,7 +11285,6 @@ AI: Basic Trainer / Force Setup First Turn
 
 Bebe (Eevee) (F) @ Chople Berry
 Level: 15
-Ability: Anticipation
 - Quick Attack
 - Helping Hand
 - Wish
