@@ -7,17 +7,16 @@ gText_Birch_Welcome::
 	.string "$"
 
 gText_Birch_MainSpeech::
-	.string "If Pokémon could speak, I feel\n"
-	.string "this Venonat would thank you\l"
-	.string "for trying this game.\p"
+	.string "Its roundness shows its gratitude\n"
+	.string "that you are trying this game.\p"
 	.string "$"
 
 gText_Birch_AndYouAre::
-	.string "And you are?$"
+	.string "What shape are you?$"
 
 gText_Birch_BoyOrGirl::
-	.string "Do you like pants?\n"
-	.string "Or do you like skirts?$"
+	.string "Do you prefer to wear pants?\n"
+	.string "Or skirts?$"
 
 gText_Birch_WhatsYourName::
 	.string "All right.\n"
