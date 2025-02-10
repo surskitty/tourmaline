@@ -5,11 +5,10 @@ mapscripts RusturfTunnel_MapScripts {
             setobjectxyperm(LOCALID_GRUNT, 13, 5)
         }
     }
-    MAP_SCRIPT_ON_FRAME_TABLE {
-        if ((var(VAR_RUSTURF_TUNNEL_STATE) == 4) || (var(VAR_RUSTURF_TUNNEL_STATE) == 5)) {
-        call(RusturfTunnel_EventScript_ClearTunnelScene)
-        }
-    }
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_RUSTURF_TUNNEL_STATE, 4: RusturfTunnel_EventScript_ClearTunnelScene
+        VAR_RUSTURF_TUNNEL_STATE, 5: RusturfTunnel_EventScript_ClearTunnelScene
+    ]
 }
 
 raw `
@@ -499,7 +498,7 @@ RusturfTunnel_Text_ExplainStrength:
     .string "large boulders.$"
 
 RusturfTunnel_Text_WandaReunion:
-    .string "WANDA!\n"
+    .string "Wanda!\n"
     .string "Now I can see you anytime!\p"
     .string "WANDA: That's…wonderful.\p"
     .string "Please, take some rest at my home.$"

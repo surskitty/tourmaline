@@ -1,6 +1,6 @@
+mapscripts Route133_MapScripts {}
+
 raw `
-Route133_MapScripts::
-	.byte 0
 
 Route133_EventScript_Franklin::
 	trainerbattle_single TRAINER_FRANKLIN, Route133_Text_FranklinIntro, Route133_Text_FranklinDefeat
