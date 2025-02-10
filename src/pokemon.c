@@ -860,9 +860,10 @@ static const s8 sFriendshipEventModifiers[][3] =
 
 #define HM_MOVES_END 0xFFFF
 
+// rock smash is not treated as an HM because it is a common level up move
 static const u16 sHMMoves[] =
 {
-    MOVE_CUT, MOVE_SURF, MOVE_STRENGTH, MOVE_ROCK_SMASH, MOVE_WATERFALL, MOVE_DIVE, HM_MOVES_END
+    MOVE_CUT, MOVE_SURF, MOVE_STRENGTH, MOVE_WATERFALL, MOVE_DIVE, HM_MOVES_END
 };
 
 static const struct SpeciesItem sAlteringCaveWildMonHeldItems[] =
