@@ -28,16 +28,6 @@ FallarborTown_EventScript_Gentleman::
 	msgbox FallarborTown_Text_HaveYouChallengedFlannery, MSGBOX_NPC
 	end
 
-FallarborTown_EventScript_Azurill::
-	lock
-	faceplayer
-	waitse
-	playmoncry SPECIES_AZURILL, CRY_MODE_NORMAL
-	msgbox FallarborTown_Text_Azurill, MSGBOX_DEFAULT
-	waitmoncry
-	release
-	end
-
 FallarborTown_Text_ShadyCharactersCozmosHome:
 	.string "Something's happening,\n"
 	.string "and I don't like it!\p"
@@ -55,9 +45,6 @@ FallarborTown_Text_MyPreciousAzurill:
 	.string "This is my precious Azurill!\p"
 	.string "It's slick and smooth and plushy, too!$"
 
-FallarborTown_Text_Azurill:
-	.string "AZURILL: Rooreelooo.$"
-
 FallarborTown_Text_HaveYouChallengedFlannery:
 	.string "Have you already challenged Flannery,\n"
 	.string "the Leader of Lavaridge Gym?\p"
@@ -70,17 +57,29 @@ FallarborTown_Text_HaveYouChallengedFlannery:
 
 `
 
+script FallarborTown_EventScript_Azurill {
+	lock
+	faceplayer
+	waitse
+	setseenmon(SPECIES_AZURILL)
+	playmoncry(SPECIES_AZURILL, CRY_MODE_NORMAL)
+	msgbox("AZURILL: Rooreelooo.", MSGBOX_DEFAULT)
+	waitmoncry
+	release
+}
+
+
 script FallarborTown_EventScript_BattleTentSign {
     msgbox("Battle Tent Fallabor Site\n"
-        "“May the Greatest Teams Gather!”$", MSGBOX_SIGN)
+        "“May the Greatest Teams Gather!”", MSGBOX_SIGN)
 }
 
 script FallarborTown_EventScript_TownSign {
     msgbox("Fallabor Town\n"
-        "“A farm community with small gardens.”$", MSGBOX_SIGN)
+        "“A farm community with small gardens.”", MSGBOX_SIGN)
 }
 
 script FallarborTown_EventScript_MoveTutorSign {
     msgbox("Egg Move Tutor's House\n"
-        "“New moves taught to Pokémon.”$", MSGBOX_SIGN)
+        "“New moves taught to Pokémon.”", MSGBOX_SIGN)
 }

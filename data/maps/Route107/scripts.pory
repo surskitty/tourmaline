@@ -1,7 +1,6 @@
-raw `
-Route107_MapScripts::
-	.byte 0
+mapscripts Route107_MapScripts {}
 
+raw `
 Route107_EventScript_Darrin::
 	trainerbattle_single TRAINER_DARRIN, Route107_Text_DarrinIntro, Route107_Text_DarrinDefeated
 	msgbox Route107_Text_DarrinPostBattle, MSGBOX_AUTOCLOSE

@@ -1,7 +1,6 @@
-raw `
-VerdanturfTown_WandasHouse_MapScripts::
-	.byte 0
+mapscripts VerdanturfTown_WandasHouse_MapScripts {}
 
+raw `
 VerdanturfTown_WandasHouse_EventScript_Wally::
 	lock
 	faceplayer

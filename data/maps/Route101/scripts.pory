@@ -255,6 +255,7 @@ text Route101_Text_PleaseHelp {
     "Please! Help!\p"
     "In my Bag!\n"
     "I have Pokémon!"
+}
 
 text Route101_Text_DontLeaveMe {
     "Wh-Where are you going?!\n"

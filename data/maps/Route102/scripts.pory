@@ -89,8 +89,9 @@ Route102_Text_WatchMeCatchPokemon:
 
 Route102_Text_WallyIDidIt:
     .string "WALLY: I did it… It's my…\n"
-    .string "My pokémon!$"
+    .string "My Pokémon!$"
 
 Route102_Text_LetsGoBack:
     .string "{PLAYER}, thank you!\n"
     .string "Let's go back to the Gym!$"
+`
