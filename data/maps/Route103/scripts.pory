@@ -116,6 +116,7 @@ script Route103_EventScript_Rival {
         setflag(FLAG_DEFEATED_RIVAL_ROUTE103)
         msgbox(Route103_Text_BrendanTimeToHeadBack, MSGBOX_DEFAULT)
     }
+    special(HealPlayerParty)
     closemessage
     if (var(VAR_FACING) == DIR_SOUTH) {
         applymovement(LOCALID_RIVAL, Route103_Movement_RivalExit1)
