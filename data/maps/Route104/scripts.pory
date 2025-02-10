@@ -1,10 +1,10 @@
 mapscripts Route104_MapScripts {
-    MAP_SCRIPT_ON_FRAME_TABLE {
-    if (var(VAR_BOARD_BRINEY_BOAT_STATE) == 1) {
-        lockall
-        goto(Route104_EventScript_SailToDewford)
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_BOARD_BRINEY_BOAT_STATE, 1 {
+            lockall
+            goto(Route104_EventScript_SailToDewford)
         }
-    }
+    ]
     MAP_SCRIPT_ON_TRANSITION {
         call(Common_EventScript_SetupRivalGfxId)
         call(Route104_EventScript_TrySetRivalPos)
@@ -655,32 +655,33 @@ Route104_EventScript_Darian::
     msgbox Route104_Text_DarianPostBattle, MSGBOX_AUTOCLOSE
     end
 
-Route104_Text_MayHowsYourPokedex:
-    .string "MAY: Oh, by the way, {PLAYER}{KUN},\n"
-    .string "how's your Pokédex coming along?$"
-
-Route104_Text_MayMinesDecentLetsBattle:
-    .string "Mine's looking pretty decent.\n"
-    .string "So…\l"
-    .string "How about a little battle?$"
-
-Route104_Text_MayLetsBattle:
-    .string "MAY: So, what do you think?\n"
-    .string "How about a little battle here?$"
-
-Route104_Text_MayDefeat:
-    .string "Yikes!\n"
-    .string "You're better than I expected!$"
-
-Route104_Text_MayPostBattle:
-    .string "MAY: I can tell you've gotten pretty\n"
-    .string "good with the way you handle Pokémon.\p"
-    .string "But instead of only making them\n"
-    .string "battle, you should be like MR. BRINEY.\p"
-    .string "It's important to become friends with\n"
-    .string "Pokémon, too.$"
-
 `
+text Route104_Text_MayHowsYourPokedex {
+    format("MAY: Oh, by the way, {PLAYER}{KUN}, how's your Pokédex coming along?")
+}
+
+text Route104_Text_MayMinesDecentLetsBattle {
+    "Mine's looking pretty decent.\n"
+    "So…\l"
+    "How about a little battle?"
+}
+
+text Route104_Text_MayLetsBattle {
+    "MAY: So, what do you think?\n"
+    "How about a little battle here?"
+}
+
+text Route104_Text_MayDefeat {
+    "Yikes!\n"
+    "You're better than I expected!"
+}
+
+text Route104_Text_MayPostBattle {
+    format("MAY: I can tell you've gotten pretty good with the way you handle Pokémon.\p"
+        "But instead of only making them battle, you should be like Mr. Briney.\p"
+        "It's important to become friends with Pokémon, too.")
+}
+
 text Route104_Text_MayHaventRaisedPokemon {
     format("MAY: Oh, what's the matter?\p"
         "Haven't you caught or raised your Pokémon very much?\p"
