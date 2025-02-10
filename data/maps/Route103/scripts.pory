@@ -1,10 +1,10 @@
-raw `
-.set LOCALID_RIVAL, 2
-`
+const LOCALID_RIVAL = 2
+const LOCALID_RIVALS_STARTER = 3
 
 mapscripts Route103_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
        call(Common_EventScript_SetupRivalGfxId)
+       call(Route103_EventScript_SetupRivalStarterGfx)
        call(ProfBirch_EventScript_UpdateLocation)
     }
     MAP_SCRIPT_ON_LOAD {
@@ -15,40 +15,39 @@ mapscripts Route103_MapScripts {
     }
 }
 
-text Route103_Text_MayLetsBattle {
-    format("Now you're ready for a quick battle!\p"
-        "I'll give you a taste of what being a Trainer is like.")
+script Route103_EventScript_SetupRivalStarterGfx {
+    if (var(VAR_STARTER_MON) == 0) {
+        setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_SPECIES(TORCHIC))
+    } elif (var(VAR_STARTER_MON) == 1) {
+        setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_SPECIES(MUDKIP))
+    } else {
+        setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_SPECIES(TREECKO))
+    }
 }
 
-text Route103_Text_MayDefeated {
-    "Wow! That's great!\n"
-    "{PLAYER}{KUN}, you're pretty good!"
+script Route103_EventScript_RivalStarter {
+    applymovement(LOCALID_RIVALS_STARTER, Common_Movement_ExclamationMark)
+    faceplayer
+    waitse
+    if (var(VAR_STARTER_MON) == 0) {
+        playmoncry(SPECIES_TORCHIC, CRY_MODE_NORMAL)
+        msgbox(format("TORCHIC: Ca-caw!"), MSGBOX_DEFAULT)
+        waitmovement(0)
+        waitmoncry
+    } elif (var(VAR_STARTER_MON) == 1) {
+        playmoncry(SPECIES_MUDKIP, CRY_MODE_NORMAL)
+        msgbox(format("MUDKIP: Kippa?"), MSGBOX_DEFAULT)
+        waitmovement(0)
+        waitmoncry
+    } else {
+        playmoncry(SPECIES_TREECKO, CRY_MODE_NORMAL)
+        msgbox(format("TREECKO: Gugugugu!"), MSGBOX_DEFAULT)
+        waitmovement(0)
+        waitmoncry
+    }
+    msgbox(format("Its Trainer is too busy to notice you."), MSGBOX_DEFAULT)
+    release
 }
-
-text Route103_Text_MayTimeToHeadBack {
-    format("MAY: I think I know why my dad has an eye out for you now.\p"
-        "I mean, you just got that Pokémon, but it already likes you.\p"
-        "You might be able to befriend any kind of Pokémon easily.\p"
-        "Well, it's time to head back to the Lab.")
-}
-
-text Route103_Text_BrendanLetsBattle {
-    format("Since we're here, how about a little battle?\p"
-        "I'll teach you what being a Trainer's about!")
-}
-
-text Route103_Text_BrendanDefeated {
-    "Huh, {PLAYER}, you're not too shabby."
-}
-
-text Route103_Text_BrendanTimeToHeadBack {
-    format("BRENDAN: I think I get it.\n"
-        "I think I know why my dad has his eye out for you now.\p"
-        "Look, your Pokémon already like you,\n even though you just got them.\p"
-        "{PLAYER}, I get the feeling that you could befriend any Pokémon with ease.\p"
-        "We should head back to the Lab.")
-}
-
 
 script Route103_EventScript_Rival {
     lockall
@@ -98,6 +97,9 @@ script Route103_EventScript_Rival {
             case 2: 
                 trainerbattle_no_intro(TRAINER_MAY_ROUTE_103_MUDKIP, Route103_Text_MayDefeated)
         }
+        applymovement(LOCALID_RIVALS_STARTER, EnterPokeballMovement)
+        waitmovement(0)
+        setflag(FLAG_DEFEATED_RIVAL_ROUTE103)
         msgbox(Route103_Text_MayTimeToHeadBack, MSGBOX_DEFAULT)
     } else {
         msgbox(Route103_Text_BrendanLetsBattle, MSGBOX_DEFAULT)
@@ -109,6 +111,9 @@ script Route103_EventScript_Rival {
             case 2:
                 trainerbattle_no_intro(TRAINER_BRENDAN_ROUTE_103_MUDKIP, Route103_Text_BrendanDefeated) 
         }
+        applymovement(LOCALID_RIVALS_STARTER, EnterPokeballMovement)
+        waitmovement(0)
+        setflag(FLAG_DEFEATED_RIVAL_ROUTE103)
         msgbox(Route103_Text_BrendanTimeToHeadBack, MSGBOX_DEFAULT)
     }
     closemessage
@@ -135,13 +140,15 @@ script Route103_EventScript_Rival {
     removeobject(LOCALID_RIVAL)
     setvar(VAR_BIRCH_LAB_STATE, 4)
     clearflag(FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_RIVAL)
-    setflag(FLAG_DEFEATED_RIVAL_ROUTE103)
     setvar(VAR_OLDALE_RIVAL_STATE, 1)
     clearflag(FLAG_HIDE_OLDALE_TOWN_RIVAL)
     savebgm(MUS_DUMMY)
     fadedefaultbgm
     releaseall    
 }
+
+
+
 
 
 raw `
@@ -289,3 +296,36 @@ script Route103_EventScript_RouteSign {
         "{DOWN_ARROW} Oldale Town", MSGBOX_SIGN)
 }
 
+text Route103_Text_MayLetsBattle {
+    format("Now you're ready for a quick battle!\p"
+        "I'll give you a taste of what being a Trainer is like.")
+}
+
+text Route103_Text_MayDefeated {
+    "Wow! That's great!\n"
+    "{PLAYER}{KUN}, you're pretty good!"
+}
+
+text Route103_Text_MayTimeToHeadBack {
+    format("MAY: I think I know why my dad has an eye out for you now.\p"
+        "I mean, you just got that Pokémon, but it already likes you.\p"
+        "You might be able to befriend any kind of Pokémon easily.\p"
+        "Well, it's time to head back to the Lab.")
+}
+
+text Route103_Text_BrendanLetsBattle {
+    format("Since we're here, how about a little battle?\p"
+        "I'll teach you what being a Trainer's about!")
+}
+
+text Route103_Text_BrendanDefeated {
+    "Huh, {PLAYER}, you're not too shabby."
+}
+
+text Route103_Text_BrendanTimeToHeadBack {
+    format("BRENDAN: I think I get it.\n"
+        "I think I know why my dad has his eye out for you now.\p"
+        "Look, your Pokémon already like you,\n even though you just got them.\p"
+        "{PLAYER}, I get the feeling that you could befriend any Pokémon with ease.\p"
+        "We should head back to the Lab.")
+}

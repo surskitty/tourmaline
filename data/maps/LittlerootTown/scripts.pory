@@ -258,48 +258,7 @@ LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeFemale::
     setobjectxy LOCALID_RIVAL, 13, 10
     setobjectxy LOCALID_BIRCH, 14, 10
     end
-`
 
-script LittlerootTown_EventScript_FatMan {
-    msgbox(format("If you use a PC, you can store items and Pokémon.\p"
-        "The power of science is staggering!"), MSGBOX_NPC)
-}
-
-script LittlerootTown_EventScript_Boy {
-    msgbox(format("Prof. Birch spends days in his Lab studying, then he'll suddenly go out in the wild to do more research…\p"
-        "When does Prof. Birch spend time at home?"), MSGBOX_NPC)
-}
-
-script LittlerootTown_EventScript_Taillow {
-    playmoncry(SPECIES_TAILLOW, CRY_MODE_NORMAL)
-    setseenmon(SPECIES_TAILLOW)
-    msgbox(format("Prrrt?"), MSGBOX_NPC)
-}
-
-script LittlerootTown_EventScript_Twin {
-    lock
-    faceplayer
-    if(flag(FLAG_ADVENTURE_STARTED)) {
-        msgbox("Are you going to catch Pokémon?\n"
-               "Good luck!", MSGBOX_DEFAULT)
-    } elif (flag(FLAG_RESCUED_BIRCH)) {
-        special(GetPlayerBigGuyGirlString)
-        msgbox("You saved Prof. Birch!\n"
-               "I'm so glad!", MSGBOX_DEFAULT)
-    } elif (var(VAR_LITTLEROOT_TOWN_STATE) != 0) {
-        special(GetPlayerBigGuyGirlString)
-        msgbox(LittlerootTown_Text_CanYouGoSeeWhatsHappening, MSGBOX_DEFAULT)
-        closemessage
-        applymovement(LOCALID_TWIN, Common_Movement_FaceOriginalDirection)
-        waitmovement(0)
-        setvar(VAR_LITTLEROOT_TOWN_STATE, 2)
-    } else {
-    msgbox(LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut, MSGBOX_DEFAULT)
-    }
-    release
-}
-
-raw `
 LittlerootTown_EventScript_NeedPokemonTriggerLeft::
     lockall
     applymovement LOCALID_TWIN, LittlerootTown_Movement_TwinApproachPlayerLeft
@@ -972,8 +931,6 @@ LittlerootTown_Text_ComeHomeIfAnythingHappens:
     .string "If anything happens, you can come home.\p"
     .string "Go on, go get them, honey!$"
 
-
-
 LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut:
     .string "Um, um, um!\p"
     .string "If you go outside and go in the grass,\n"
@@ -1017,3 +974,47 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
     .string "Let's go to my Lab.$"
 
 `
+
+script LittlerootTown_EventScript_FatMan {
+    msgbox(format("If you use a PC, you can store items and Pokémon.\p"
+        "The power of science is staggering!"), MSGBOX_NPC)
+}
+
+script LittlerootTown_EventScript_Boy {
+    msgbox(format("Prof. Birch spends days in his Lab studying, then he'll suddenly go out in the wild to do more research…\p"
+        "When does Prof. Birch spend time at home?"), MSGBOX_NPC)
+}
+
+script LittlerootTown_EventScript_Taillow {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_TAILLOW, CRY_MODE_NORMAL)
+    setseenmon(SPECIES_TAILLOW)
+    msgbox(format("TAILLOW: Pree-ree?"), MSGBOX_DEFAULT)
+    waitmoncry
+    release
+}
+
+script LittlerootTown_EventScript_Twin {
+    lock
+    faceplayer
+    if(flag(FLAG_ADVENTURE_STARTED)) {
+        msgbox("Are you going to catch Pokémon?\n"
+               "Good luck!", MSGBOX_DEFAULT)
+    } elif (flag(FLAG_RESCUED_BIRCH)) {
+        special(GetPlayerBigGuyGirlString)
+        msgbox("You saved Prof. Birch!\n"
+               "I'm so glad!", MSGBOX_DEFAULT)
+    } elif (var(VAR_LITTLEROOT_TOWN_STATE) != 0) {
+        special(GetPlayerBigGuyGirlString)
+        msgbox(LittlerootTown_Text_CanYouGoSeeWhatsHappening, MSGBOX_DEFAULT)
+        closemessage
+        applymovement(LOCALID_TWIN, Common_Movement_FaceOriginalDirection)
+        waitmovement(0)
+        setvar(VAR_LITTLEROOT_TOWN_STATE, 2)
+    } else {
+    msgbox(LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut, MSGBOX_DEFAULT)
+    }
+    release
+}

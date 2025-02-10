@@ -670,7 +670,7 @@ text LittlerootTown_ProfessorBirchsLab_Text_ExplainPokedex {
     "tool that automatically makes a record\l"
     "of any Pokémon you meet or catch.\p"
     "My kid, {RIVAL}, goes everywhere with it.\p"
-    "Whenever my kid catches a rare Pokémon\n and records its data in the POKéDEX, why, {RIVAL} looks for me while I'm out doing fieldwork, and shows me.")
+    "Whenever my kid catches a rare Pokémon\n and records its data in the Pokédex, why, {RIVAL} looks for me while I'm out doing fieldwork, and shows me.")
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_CountlessPokemonAwait {
