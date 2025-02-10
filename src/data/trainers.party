@@ -7271,19 +7271,21 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer
 
-Cooper (Poochyena) (M)
+Bugsy (Blipbug) (M)
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-Ability: Quick Feet
 
 Bailey (Zorua) (F)
+Level: 5
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Cooper (Poochyena) (M)
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Teddy (Lillipup) (M)
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-Ability: Quick Feet
 
 === TRAINER_CALVIN_2 ===
 Name: Calvin
@@ -7301,13 +7303,14 @@ Ability: Intimidate
 Bailey (Zorua) (F)
 Level: 27
 
+Bugsy (Dottler) (M)
+Level: 27
+
 Teddy (Herdier) (M)
 Level: 27
-Ability: Sand Rush
 
 Tweety (Swellow) (F)
 Level: 27
-Ability: Scrappy
 
 === TRAINER_CALVIN_3 ===
 Name: Calvin
@@ -7325,13 +7328,14 @@ Ability: Intimidate
 Bailey (Zoroark) (F)
 Level: 31
 
+Bugsy (Orbeetle) (M)
+Level: 31
+
 Teddy (Herdier) (M)
 Level: 31
-Ability: Sand Rush
 
 Tweety (Swellow) (F)
 Level: 31
-Ability: Scrappy
 
 === TRAINER_CALVIN_4 ===
 Name: Calvin
@@ -7349,13 +7353,14 @@ Ability: Intimidate
 Bailey (Zoroark) (F)
 Level: 37
 
+Bugsy (Orbeetle) (M)
+Level: 37
+
 Teddy (Herdier) (M)
 Level: 37
-Ability: Sand Rush
 
 Tweety (Swellow) (F)
 Level: 37
-Ability: Scrappy
 
 === TRAINER_CALVIN_5 ===
 Name: Calvin
@@ -7373,13 +7378,14 @@ Ability: Intimidate
 Bailey (Zoroark) (F)
 Level: 42
 
+Bugsy (Orbeetle) (M)
+Level: 42
+
 Teddy (Stoutland) (M)
 Level: 42
-Ability: Sand Rush
 
 Tweety (Swellow) (F)
 Level: 42
-Ability: Scrappy
 
 === TRAINER_BILLY ===
 Name: Billy
@@ -7578,15 +7584,15 @@ Double Battle: Yes
 AI: Basic Trainer
 
 Zigzagoon
-Level: 4
+Level: 6
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Taillow
-Level: 3
+Level: 6
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_TIMMY ===
-Name: TIMMY
+Name: Timmy
 Class: Youngster
 Pic: Youngster
 Gender: Male
@@ -12749,12 +12755,12 @@ Double Battle: Yes
 AI: Basic Trainer
 
 Gothita
-Level: 4
+Level: 6
 Ability: Frisk
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Tarountula
-Level: 4
+Level: 6
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_HALEY_1 ===
@@ -12992,11 +12998,11 @@ Double Battle: Yes
 AI: Basic Trainer
 
 Wurmple
-Level: 4
+Level: 6
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Blipbug
-Level: 4
+Sewaddle
+Level: 6
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_LYLE ===

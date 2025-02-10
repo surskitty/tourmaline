@@ -846,8 +846,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_VITAL_SPIRIT, ABILITY_PICKUP, ABILITY_NONE },
-        .innates = { ABILITY_RUN_AWAY },
+        .abilities = { ABILITY_VITAL_SPIRIT, ABILITY_NONE, ABILITY_NONE },
+        .innates = { ABILITY_RUN_AWAY, ABILITY_PICKUP },
 #else
         .abilities = { ABILITY_VITAL_SPIRIT, ABILITY_PICKUP, ABILITY_RUN_AWAY },
 #endif
@@ -914,8 +914,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_INTIMIDATE, ABILITY_SAND_RUSH, ABILITY_NONE},
-        .innates = { ABILITY_SCRAPPY },
+        .abilities = { ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_NONE},
+        .innates = { ABILITY_SCRAPPY, ABILITY_PICKUP, ABILITY_SAND_RUSH },
 #else
         .abilities = { ABILITY_INTIMIDATE, ABILITY_SAND_RUSH, ABILITY_SCRAPPY },
 #endif
@@ -987,8 +987,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
 #ifdef P_TRAITS
-        .abilities = { ABILITY_INTIMIDATE, ABILITY_SAND_RUSH, ABILITY_GUARD_DOG },
-        .innates = { ABILITY_SCRAPPY },
+        .abilities = { ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_GUARD_DOG },
+        .innates = { ABILITY_SCRAPPY, ABILITY_PICKUP, ABILITY_SAND_RUSH },
 #else
         .abilities = { ABILITY_INTIMIDATE, ABILITY_SAND_RUSH, ABILITY_SCRAPPY },
 #endif
