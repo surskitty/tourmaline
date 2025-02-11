@@ -593,18 +593,18 @@
           "land_mons": {
             "encounter_rate": 10,
             "mons": [
-              { "min_level": 5, "max_level": 7, "species": "SPECIES_WHISMUR" },
-              { "min_level": 5, "max_level": 7, "species": "SPECIES_WHISMUR" },
-              { "min_level": 6, "max_level": 8, "species": "SPECIES_AUDINO" },
-              { "min_level": 6, "max_level": 8, "species": "SPECIES_AUDINO" },
-              { "min_level": 6, "max_level": 8, "species": "SPECIES_WHISMUR" },
-              { "min_level": 6, "max_level": 8, "species": "SPECIES_WHISMUR" },
-              { "min_level": 6, "max_level": 8, "species": "SPECIES_WHISMUR" },
-              { "min_level": 6, "max_level": 8, "species": "SPECIES_NACLI" },
-              { "min_level": 6, "max_level": 8, "species": "SPECIES_AUDINO" },
-              { "min_level": 6, "max_level": 8, "species": "SPECIES_SKITTY" },
-              { "min_level": 6, "max_level": 8, "species": "SPECIES_JOLTIK" },
-              { "min_level": 6, "max_level": 8, "species": "SPECIES_ABRA" }
+              { "min_level": 8, "max_level": 10, "species": "SPECIES_WHISMUR" },
+              { "min_level": 8, "max_level": 10, "species": "SPECIES_WHISMUR" },
+              { "min_level": 8, "max_level": 10, "species": "SPECIES_AUDINO" },
+              { "min_level": 8, "max_level": 10, "species": "SPECIES_AUDINO" },
+              { "min_level": 8, "max_level": 10, "species": "SPECIES_WHISMUR" },
+              { "min_level": 8, "max_level": 10, "species": "SPECIES_WHISMUR" },
+              { "min_level": 8, "max_level": 10, "species": "SPECIES_WHISMUR" },
+              { "min_level": 8, "max_level": 10, "species": "SPECIES_NACLI" },
+              { "min_level": 8, "max_level": 10, "species": "SPECIES_AUDINO" },
+              { "min_level": 8, "max_level": 10, "species": "SPECIES_SKITTY" },
+              { "min_level": 8, "max_level": 10, "species": "SPECIES_JOLTIK" },
+              { "min_level": 8, "max_level": 10, "species": "SPECIES_ABRA" }
             ]
           }
         },

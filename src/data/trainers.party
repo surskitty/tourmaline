@@ -79,7 +79,7 @@ Class: Pkmn Trainer 1
 Pic: Hiker
 Gender: Male
 Music: Male
-Double Battle: Yes
+Double Battle: No
 
 === TRAINER_SAWYER_1 ===
 Name: SAWYER
@@ -4789,10 +4789,6 @@ Mugshot: Blue
 
 Baxcalibur
 Level: 52
-- Rock Tomb
-- Dragon Claw
-- Protect
-- Double Edge
 
 Altaria
 Level: 54
@@ -4831,8 +4827,9 @@ Music: Female
 Items: Potion / Potion
 Double Battle: Yes
 AI: Smart Trainer
+Mugshot: Yellow
 
-Shuckle @ Smooth Rock
+Pumice (Shuckle) @ Smooth Rock
 Level: 12
 Ability: Contrary
 - Struggle Bug
@@ -4840,7 +4837,7 @@ Ability: Contrary
 - Sandstorm
 - Helping Hand
 
-Geodude Alola @ Shuca Berry
+Magnetite (Geodude Alola) @ Shuca Berry
 Level: 12
 Ability: Sturdy
 - Bulldoze
@@ -4848,7 +4845,7 @@ Ability: Sturdy
 - Wide Guard
 - Sandstorm
 
-Geodude Alola @ Rindo Berry
+Hematite (Geodude Alola) @ Rindo Berry
 Level: 12
 Ability: Sturdy
 - Bulldoze
@@ -4856,7 +4853,7 @@ Ability: Sturdy
 - Wide Guard
 - Sandstorm
 
-Nosepass @ Oran Berry
+Basalt (Nosepass) @ Oran Berry
 Level: 15
 Ability: Sand Force
 - Block
@@ -4872,35 +4869,26 @@ Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
+Mugshot: Yellow
 
-Golem
+Quartz (Gigalith) @ Smooth Rock
 Level: 32
-- Protect
-- Rollout
-- Magnitude
-- Explosion
 
-Kabuto @ Sitrus Berry
+Hematite (Golem Alola) @ Shuca Berry
 Level: 35
-- Swords Dance
-- Ice Beam
-- Surf
-- Rock Slide
 
-Onix
+Feldspar (Cradily)
 Level: 35
-- Iron Tail
-- Explosion
-- Roar
-- Rock Slide
 
-Nosepass @ Sitrus Berry
+Limestone (Armaldo)
+Level: 35
+
+Basalt (Probopass) @ Oran Berry
 Level: 37
-- Double Team
-- Explosion
-- Protect
-- Rock Slide
+
+Siderite (Aggron) @ Aggronite
+Level: 37
 
 === TRAINER_ROXANNE_3 ===
 Name: Roxanne
@@ -4910,42 +4898,26 @@ Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
+Mugshot: Yellow
 
-Omanyte
-Level: 37
-- Protect
-- Ice Beam
-- Rock Slide
-- Surf
+Quartz (Gigalith) @ Smooth Rock
+Level: 38
 
-Golem
-Level: 37
-- Protect
-- Rollout
-- Magnitude
-- Explosion
+Hematite (Golem Alola) @ Shuca Berry
+Level: 38
 
-Kabutops @ Sitrus Berry
+Feldspar (Cradily)
 Level: 40
-- Swords Dance
-- Ice Beam
-- Surf
-- Rock Slide
 
-Onix
+Limestone (Armaldo)
 Level: 40
-- Iron Tail
-- Explosion
-- Roar
-- Rock Slide
 
-Nosepass @ Sitrus Berry
+Basalt (Probopass) @ Oran Berry
 Level: 42
-- Double Team
-- Explosion
-- Protect
-- Rock Slide
+
+Siderite (Aggron) @ Aggronite
+Level: 42
 
 === TRAINER_ROXANNE_4 ===
 Name: Roxanne
@@ -4955,42 +4927,26 @@ Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
+Mugshot: Yellow
 
-Omastar
-Level: 42
-- Protect
-- Ice Beam
-- Rock Slide
-- Surf
+Quartz (Gigalith) @ Smooth Rock
+Level: 44
 
-Golem
-Level: 42
-- Protect
-- Rollout
-- Earthquake
-- Explosion
+Hematite (Golem Alola) @ Shuca Berry
+Level: 44
 
-Kabutops @ Sitrus Berry
-Level: 45
-- Swords Dance
-- Ice Beam
-- Surf
-- Rock Slide
+Feldspar (Cradily)
+Level: 46
 
-Onix
-Level: 45
-- Iron Tail
-- Explosion
-- Roar
-- Rock Slide
+Limestone (Armaldo)
+Level: 46
 
-Nosepass @ Sitrus Berry
-Level: 47
-- Double Team
-- Explosion
-- Protect
-- Rock Slide
+Basalt (Probopass) @ Oran Berry
+Level: 48
+
+Siderite (Aggron) @ Aggronite
+Level: 48
 
 === TRAINER_ROXANNE_5 ===
 Name: Roxanne
@@ -5000,49 +4956,26 @@ Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
+Mugshot: Yellow
 
-Aerodactyl
-Level: 47
-- Rock Slide
-- Hyper Beam
-- Supersonic
-- Protect
+Quartz (Gigalith) @ Smooth Rock
+Level: 55
 
-Golem
-Level: 47
-- Focus Punch
-- Rollout
-- Earthquake
-- Explosion
+Hematite (Golem Alola) @ Shuca Berry
+Level: 53
 
-Omastar
-Level: 47
-- Protect
-- Ice Beam
-- Rock Slide
-- Surf
+Feldspar (Cradily)
+Level: 53
 
-Kabutops @ Sitrus Berry
-Level: 50
-- Swords Dance
-- Ice Beam
-- Surf
-- Rock Slide
+Limestone (Armaldo)
+Level: 53
 
-Steelix
-Level: 50
-- Iron Tail
-- Explosion
-- Roar
-- Rock Slide
+Basalt (Probopass) @ Oran Berry
+Level: 55
 
-Nosepass @ Sitrus Berry
-Level: 52
-- Double Team
-- Explosion
-- Protect
-- Rock Slide
+Siderite (Aggron) @ Aggronite
+Level: 55
 
 === TRAINER_BRAWLY_1 ===
 Name: Brawly
@@ -5053,6 +4986,7 @@ Music: Male
 Items: Super Potion / Super Potion
 Double Battle: Yes
 AI: Smart Trainer
+Mugshot: Blue
 
 Muay Thai (Stufful) (F)
 Level: 16
@@ -5086,7 +5020,8 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
+Mugshot: Blue
 
 Meditite
 Level: 33
@@ -5117,7 +5052,8 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
+Mugshot: Blue
 
 Medicham
 Level: 38
@@ -5148,7 +5084,8 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
+Mugshot: Blue
 
 Hitmonchan
 Level: 40
@@ -5186,7 +5123,8 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
+Mugshot: Blue
 
 Hitmonlee
 Level: 46
@@ -5232,6 +5170,7 @@ Music: Male
 Items: Super Potion / Super Potion
 Double Battle: Yes
 AI: Smart Trainer
+Mugshot: Green
 
 Pincurchin @ Terrain Extender
 Level: 20
@@ -5281,7 +5220,8 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
+Mugshot: Green
 
 Mareep
 Level: 36
@@ -5319,7 +5259,8 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
+Mugshot: Green
 
 Pikachu
 Level: 39
@@ -5364,7 +5305,8 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
+Mugshot: Green
 
 Raichu Alola
 Level: 44
@@ -5410,6 +5352,7 @@ Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer
+Mugshot: Green
 
 Electabuzz
 Level: 50
@@ -5462,6 +5405,7 @@ Music: Female
 Items: Hyper Potion / Hyper Potion
 Double Battle: Yes
 AI: Smart Trainer
+Mugshot: Purple
 
 Torkoal @ Heat Rock
 Level: 29
@@ -5509,7 +5453,8 @@ Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
+Mugshot: Purple
 
 Magcargo @ White Herb
 Level: 38
@@ -5547,7 +5492,8 @@ Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
+Mugshot: Purple
 
 Growlithe
 Level: 41
@@ -5592,7 +5538,8 @@ Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
+Mugshot: Purple
 
 Houndour
 Level: 46
@@ -5644,7 +5591,8 @@ Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
+Mugshot: Purple
 
 Arcanine
 Level: 51
@@ -5696,6 +5644,7 @@ Gender: Male
 Music: Male
 Items: Hyper Potion / Hyper Potion
 Double Battle: Yes
+Mugshot: Pink
 AI: Smart Trainer / Double Ace Pokemon
 
 Spinda
@@ -5746,6 +5695,7 @@ Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer
+Mugshot: Pink
 
 Chansey
 Level: 42
@@ -5784,6 +5734,7 @@ Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer
+Mugshot: Pink
 
 Slaking @ Sitrus Berry
 Level: 47
@@ -5829,6 +5780,7 @@ Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer
+Mugshot: Pink
 
 Slaking @ Sitrus Berry
 Level: 52
@@ -5874,6 +5826,7 @@ Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer
+Mugshot: Pink
 
 Slaking @ Sitrus Berry
 Level: 57
@@ -5926,6 +5879,7 @@ Music: Female
 Items: Hyper Potion / Hyper Potion
 Double Battle: Yes
 AI: Smart Trainer / Risky
+Mugshot: Blue
 
 Swablu
 Level: 29
@@ -5974,7 +5928,8 @@ Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer / Risky
+AI: Smart Trainer / Risky
+Mugshot: Blue
 
 Dratini @ Sitrus Berry
 Level: 40
@@ -6019,7 +5974,8 @@ Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer / Risky
+AI: Smart Trainer / Risky
+Mugshot: Blue
 
 Hoothoot
 Level: 43
@@ -6071,7 +6027,8 @@ Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer / Risky
+AI: Smart Trainer / Risky
+Mugshot: Blue
 
 Noctowl
 Level: 48
@@ -6123,7 +6080,8 @@ Gender: Female
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer / Risky
+AI: Smart Trainer / Risky
+Mugshot: Blue
 
 Noctowl
 Level: 53
@@ -10817,7 +10775,7 @@ Level: 35
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_WALLY_VR_1 ===
-Name: WALLY
+Name: Wally
 Class: Rival
 Pic: Wally
 Gender: Male
@@ -13831,7 +13789,7 @@ Level: 27
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_WALLY_MAUVILLE ===
-Name: WALLY
+Name: Wally
 Class: Rival
 Pic: Wally
 Gender: Male
@@ -13844,18 +13802,17 @@ Level: 16
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 === TRAINER_WALLY_VR_2 ===
-Name: WALLY
+Name: Wally
 Class: Rival
 Pic: Wally
 Gender: Male
 Music: Male
 Items: Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
 
 Altaria
 Level: 47
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 - Aerial Ace
 - Safeguard
 - Dragon Breath
@@ -13863,23 +13820,20 @@ IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Delcatty
 Level: 46
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 - Sing
 - Assist
 - Charm
 - Feint Attack
 
-Roselia
+Roserade
 Level: 47
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 - Magical Leaf
 - Leech Seed
 - Giga Drain
 - Toxic
 
-Magneton
+Magnezone
 Level: 44
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 - Supersonic
 - Thunderbolt
 - Tri Attack
@@ -13887,25 +13841,23 @@ IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Gardevoir
 Level: 48
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Double Team
 - Calm Mind
 - Psychic
 - Future Sight
 
 === TRAINER_WALLY_VR_3 ===
-Name: WALLY
+Name: Wally
 Class: Rival
 Pic: Wally
 Gender: Male
 Music: Male
 Items: Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
 
 Altaria
 Level: 50
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 - Aerial Ace
 - Safeguard
 - Dragon Breath
@@ -13913,23 +13865,20 @@ IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Delcatty
 Level: 49
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 - Sing
 - Assist
 - Charm
 - Feint Attack
 
-Roselia
+Roserade
 Level: 50
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 - Magical Leaf
 - Leech Seed
 - Giga Drain
 - Toxic
 
-Magneton
+Magnezone
 Level: 47
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 - Supersonic
 - Thunderbolt
 - Tri Attack
@@ -13937,25 +13886,23 @@ IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Gardevoir
 Level: 51
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Double Team
 - Calm Mind
 - Psychic
 - Future Sight
 
 === TRAINER_WALLY_VR_4 ===
-Name: WALLY
+Name: Wally
 Class: Rival
 Pic: Wally
 Gender: Male
 Music: Male
 Items: Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
 
 Altaria
 Level: 53
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 - Aerial Ace
 - Safeguard
 - Dragon Breath
@@ -13963,23 +13910,20 @@ IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Delcatty
 Level: 52
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 - Sing
 - Assist
 - Charm
 - Feint Attack
 
-Roselia
+Roserade
 Level: 53
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 - Magical Leaf
 - Leech Seed
 - Giga Drain
 - Toxic
 
-Magneton
+Magnezone
 Level: 50
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 - Supersonic
 - Thunderbolt
 - Tri Attack
@@ -13987,25 +13931,23 @@ IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Gardevoir
 Level: 54
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Double Team
 - Calm Mind
 - Psychic
 - Future Sight
 
 === TRAINER_WALLY_VR_5 ===
-Name: WALLY
+Name: Wally
 Class: Rival
 Pic: Wally
 Gender: Male
 Music: Male
 Items: Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
 
 Altaria
 Level: 56
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 - Aerial Ace
 - Safeguard
 - Dragon Breath
@@ -14013,23 +13955,20 @@ IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Delcatty
 Level: 55
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 - Sing
 - Assist
 - Charm
 - Feint Attack
 
-Roselia
+Roserade
 Level: 56
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 - Magical Leaf
 - Leech Seed
 - Giga Drain
 - Toxic
 
-Magneton
+Magnezone
 Level: 53
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 - Supersonic
 - Thunderbolt
 - Tri Attack
@@ -14037,14 +13976,13 @@ IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 Gardevoir
 Level: 57
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Double Team
 - Calm Mind
 - Psychic
 - Future Sight
 
 === TRAINER_JONAH ===
-Name: JONAH
+Name: Jonah
 Class: Fisherman
 Pic: Fisherman
 Gender: Male
@@ -14054,15 +13992,12 @@ AI: Basic Trainer
 
 Wailmer
 Level: 30
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Tentacool
 Level: 31
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Sharpedo
 Level: 32
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_HENRY ===
 Name: HENRY
@@ -14075,14 +14010,12 @@ AI: Basic Trainer
 
 Carvanha
 Level: 31
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Tentacruel
 Level: 34
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ROGER ===
-Name: ROGER
+Name: Roger
 Class: Fisherman
 Pic: Fisherman
 Gender: Male
@@ -14103,7 +14036,7 @@ Level: 35
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ALEXA ===
-Name: ALEXA
+Name: Alexa
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Female
@@ -14114,14 +14047,12 @@ AI: Basic Trainer
 
 Gloom
 Level: 34
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Azumarill
 Level: 34
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_RUBEN ===
-Name: RUBEN
+Name: Ruben
 Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
@@ -14132,14 +14063,12 @@ AI: Basic Trainer
 
 Shiftry
 Level: 34
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Nosepass
 Level: 34
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_KOJI_1 ===
-Name: KOJI
+Name: Koji
 Class: Black Belt
 Pic: Black Belt
 Gender: Male
@@ -14149,10 +14078,9 @@ AI: Basic Trainer
 
 Mienfoo
 Level: 34
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_WAYNE ===
-Name: WAYNE
+Name: Wayne
 Class: Fisherman
 Pic: Fisherman
 Gender: Male
@@ -15270,7 +15198,7 @@ Level: 26
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_CORY_1 ===
-Name: CORY
+Name: Cory
 Class: Sailor
 Pic: Sailor
 Gender: Male
@@ -16224,7 +16152,7 @@ Level: 37
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 === TRAINER_CORY_2 ===
-Name: CORY
+Name: Cory
 Class: Sailor
 Pic: Sailor
 Gender: Male
@@ -16266,7 +16194,7 @@ Level: 32
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 === TRAINER_CORY_4 ===
-Name: CORY
+Name: Cory
 Class: Sailor
 Pic: Sailor
 Gender: Male
@@ -16287,7 +16215,7 @@ Level: 34
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 === TRAINER_CORY_5 ===
-Name: CORY
+Name: Cory
 Class: Sailor
 Pic: Sailor
 Gender: Male
