@@ -16896,7 +16896,7 @@ Level: 41
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_RED ===
-Name: RED
+Name: Red
 Class: Rival
 Pic: Red
 Gender: Male
@@ -16908,7 +16908,7 @@ Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_LEAF ===
-Name: LEAF
+Name: Leaf
 Class: Rival
 Pic: Leaf
 Gender: Female

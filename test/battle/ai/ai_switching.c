@@ -81,11 +81,11 @@ AI_DOUBLE_BATTLE_TEST("AI will not try to switch for the same pokemon for 2 spot
     } WHEN {
         TURN { EXPECT_SWITCH(opponentLeft, 3); };
     } SCENE {
-        MESSAGE("{PKMN} TRAINER LEAF withdrew Linoone!");
-        MESSAGE("{PKMN} TRAINER LEAF sent out Gengar!");
+        MESSAGE("{PKMN} Trainer Leaf withdrew Linoone!");
+        MESSAGE("{PKMN} Trainer Leaf sent out Gengar!");
         NONE_OF {
-            MESSAGE("{PKMN} TRAINER LEAF withdrew Zigzagoon!");
-            MESSAGE("{PKMN} TRAINER LEAF sent out Gengar!");
+            MESSAGE("{PKMN} Trainer Leaf withdrew Zigzagoon!");
+            MESSAGE("{PKMN} Trainer Leaf sent out Gengar!");
         }
     }
 }

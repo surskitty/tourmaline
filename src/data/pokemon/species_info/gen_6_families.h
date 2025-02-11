@@ -2670,7 +2670,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_HEALER, ABILITY_NONE, ABILITY_AROMA_VEIL },
         .innates = { },
 #else
@@ -2740,7 +2740,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_HEALER, ABILITY_NONE, ABILITY_AROMA_VEIL },
         .innates = { },
 #else
@@ -2808,7 +2808,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_SWEET_VEIL, ABILITY_NONE, ABILITY_UNBURDEN },
         .innates = { },
 #else
@@ -2877,7 +2877,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_SWEET_VEIL, ABILITY_NONE, ABILITY_UNBURDEN },
         .innates = { },
 #else
@@ -2945,7 +2945,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_WATER_2),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_CONTRARY, ABILITY_SUCTION_CUPS, ABILITY_INFILTRATOR },
         .innates = { },
 #else
@@ -3014,7 +3014,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_WATER_2),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_CONTRARY, ABILITY_SUCTION_CUPS, ABILITY_INFILTRATOR },
         .innates = { },
 #else
@@ -3082,7 +3082,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_3),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_TOUGH_CLAWS, ABILITY_SNIPER, ABILITY_NONE },
         .innates = { ABILITY_PICKPOCKET },
 #else
@@ -3150,7 +3150,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_3),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_TOUGH_CLAWS, ABILITY_SNIPER, ABILITY_NONE },
         .innates = { ABILITY_PICKPOCKET },
 #else
@@ -3219,7 +3219,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_DRAGON),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_POISON_POINT, ABILITY_POISON_TOUCH, ABILITY_NONE },
         .innates = { ABILITY_ADAPTABILITY },
 #else
@@ -3287,7 +3287,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_DRAGON),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_POISON_POINT, ABILITY_POISON_TOUCH, ABILITY_NONE },
         .innates = { ABILITY_ADAPTABILITY },
 #else
@@ -3355,7 +3355,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_WATER_3),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_MEGA_LAUNCHER, ABILITY_NONE, ABILITY_NONE },
         .innates = { ABILITY_MEGA_LAUNCHER, ABILITY_SNIPER },
 #else
@@ -3424,7 +3424,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_WATER_3),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_MEGA_LAUNCHER, ABILITY_NONE, ABILITY_NONE },
         .innates = { ABILITY_MEGA_LAUNCHER, ABILITY_SNIPER },
 #else
@@ -3493,7 +3493,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_DRAGON),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_DRY_SKIN, ABILITY_SOLAR_POWER, ABILITY_NONE },
         .innates = { ABILITY_SAND_VEIL },
 #else
@@ -3562,7 +3562,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_DRAGON),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_DRY_SKIN, ABILITY_SOLAR_POWER, ABILITY_NONE },
         .innates = { ABILITY_SAND_VEIL },
 #else
@@ -3951,7 +3951,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_FAIRY),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_PICKUP, ABILITY_PLUS, ABILITY_NONE },
         .innates = { ABILITY_CHEEK_POUCH },
 #else
@@ -4021,7 +4021,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY, EGG_GROUP_MINERAL),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_CLEAR_BODY, ABILITY_NONE, ABILITY_STURDY },
         .innates = { },
 #else
@@ -4091,7 +4091,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = 35,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_DRAGON),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_SAP_SIPPER, ABILITY_HYDRATION, ABILITY_GOOEY },
         .innates = { },
 #else
@@ -4161,7 +4161,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = 35,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_DRAGON),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_SAP_SIPPER, ABILITY_HYDRATION, ABILITY_GOOEY },
         .innates = { },
 #else
@@ -4230,7 +4230,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = 35,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_DRAGON),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_SAP_SIPPER, ABILITY_HYDRATION, ABILITY_GOOEY },
         .innates = { },
 #else
@@ -4299,7 +4299,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = 35,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_DRAGON),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_SAP_SIPPER, ABILITY_SHELL_ARMOR, ABILITY_GOOEY },
         .innates = { },
 #else
@@ -4369,7 +4369,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = 35,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_DRAGON),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_SAP_SIPPER, ABILITY_SHELL_ARMOR, ABILITY_GOOEY },
         .innates = { },
 #else
@@ -4440,7 +4440,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_PRANKSTER, ABILITY_NONE, ABILITY_MAGICIAN },
         .innates = { },
 #else
@@ -4511,7 +4511,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS, EGG_GROUP_AMORPHOUS),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_NATURAL_CURE, ABILITY_FRISK, ABILITY_NONE },
         .innates = { ABILITY_HARVEST },
 #else
@@ -4581,7 +4581,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS, EGG_GROUP_AMORPHOUS),
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_NATURAL_CURE, ABILITY_FRISK, ABILITY_NONE },
         .innates = { ABILITY_HARVEST },
 #else
@@ -5166,7 +5166,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = BERGMITE_EGG_GROUPS,
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_OWN_TEMPO, ABILITY_STURDY, ABILITY_NONE },
         .innates = { ABILITY_ICE_BODY },
 #else
@@ -5235,7 +5235,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = BERGMITE_EGG_GROUPS,
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_OWN_TEMPO, ABILITY_STURDY, ABILITY_NONE },
         .innates = { ABILITY_ICE_BODY },
 #else
@@ -5303,7 +5303,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = BERGMITE_EGG_GROUPS,
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_STRONG_JAW, ABILITY_STURDY, ABILITY_NONE },
         .innates = { ABILITY_ICE_BODY },
 #else
@@ -5377,7 +5377,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
     #else
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
     #endif
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_FRISK, ABILITY_INFILTRATOR, ABILITY_TELEPATHY },
         .innates = { },
 #else
@@ -5450,7 +5450,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
     #else
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
     #endif
-#ifdef P_TRAITS
+#if !TESTING
         .abilities = { ABILITY_FRISK, ABILITY_INFILTRATOR, ABILITY_TELEPATHY },
         .innates = { },
 #else
