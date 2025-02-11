@@ -10503,8 +10503,8 @@ const struct Item gItemsInfo[] =
         .name = _("TM07"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Creates a snowstorm\n"
-            "that raises Defense\n"
+            "Starts a snowstorm\n"
+            "to raise Defense\n"
             "of Ice types."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,

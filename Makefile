@@ -34,7 +34,7 @@ endif
 all: rom
 
 # Toolchain selection
-TOOLCHAIN := $(DEVKITARM)
+TOOLCHAIN := $(WONDERFUL_TOOLCHAIN)
 # don't use dkP's base_tools anymore
 # because the redefinition of $(CC) conflicts
 # with when we want to use $(CC) to preprocess files

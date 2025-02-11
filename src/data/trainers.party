@@ -16913,7 +16913,7 @@ Class: Rival
 Pic: Leaf
 Gender: Female
 Music: Male
-Double Battle: Yes
+Double Battle: No
 
 Bulbasaur
 Level: 5
@@ -16925,7 +16925,7 @@ Class: RS Protag
 Pic: RS Brendan
 Gender: Male
 Music: Male
-Double Battle: Yes
+Double Battle: No
 
 Groudon
 Level: 5
@@ -16937,7 +16937,7 @@ Class: RS Protag
 Pic: RS May
 Gender: Female
 Music: Male
-Double Battle: Yes
+Double Battle: No
 
 Kyogre
 Level: 5
