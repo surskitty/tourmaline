@@ -1,26 +1,16 @@
-raw `
-RustboroCity_Flat2_1F_MapScripts::
-	.byte 0
+mapscripts RustboroCity_Flat2_1F_MapScripts {}
 
-RustboroCity_Flat2_1F_EventScript_OldWoman::
-	msgbox RustboroCity_Flat2_1F_Text_DevonWorkersLiveHere, MSGBOX_NPC
-	end
+script RustboroCity_Flat2_1F_EventScript_OldWoman {
+	msgbox(format("Devon Corporation's workers live in this building."), MSGBOX_NPC)
+}
 
-RustboroCity_Flat2_1F_EventScript_Skitty::
+script RustboroCity_Flat2_1F_EventScript_Skitty {
 	lock
 	faceplayer
+	setseenmon(SPECIES_SKITTY)
 	waitse
-	playmoncry SPECIES_SKITTY, CRY_MODE_NORMAL
-	msgbox RustboroCity_Flat2_1F_Text_Skitty, MSGBOX_DEFAULT
+	playmoncry(SPECIES_SKITTY, CRY_MODE_NORMAL)
+	msgbox("SKITTY: Gyaaaah!", MSGBOX_DEFAULT)
 	waitmoncry
 	release
-	end
-
-RustboroCity_Flat2_1F_Text_DevonWorkersLiveHere:
-	.string "DEVON CORPORATION's workers live in\n"
-	.string "this building.$"
-
-RustboroCity_Flat2_1F_Text_Skitty:
-	.string "SKITTY: Gyaaaah!$"
-
-`
+}

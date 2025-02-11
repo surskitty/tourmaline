@@ -1,12 +1,10 @@
+mapscripts Route114_FossilManiacsHouse_MapScripts {
+	MAP_SCRIPT_ON_TRANSITION {
+	    setflag(FLAG_LANDMARK_FOSSIL_MANIACS_HOUSE)
+	}
+}
+
 raw `
-Route114_FossilManiacsHouse_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, Route114_FossilManiacsHouse_OnTransition
-	.byte 0
-
-Route114_FossilManiacsHouse_OnTransition:
-	setflag FLAG_LANDMARK_FOSSIL_MANIACS_HOUSE
-	end
-
 Route114_FossilManiacsHouse_EventScript_FossilManiacsBrother::
 	lock
 	faceplayer
@@ -23,34 +21,57 @@ Route114_FossilManiacsHouse_EventScript_ReceivedDig::
 	release
 	end
 
-Route114_FossilManiacsHouse_EventScript_RockDisplay::
-	msgbox Route114_FossilManiacsHouse_Text_RocksFillDisplayCase, MSGBOX_SIGN
-	end
-
 Route114_FossilManiacsHouse_EventScript_Bookshelf::
 	msgbox Route114_FossilManiacsHouse_Text_CrammedWithBooks, MSGBOX_SIGN
 	end
 
-Route114_FossilManiacsHouse_Text_HaveThisToDigLikeMyBrother:
-	.string "My big brother's the FOSSIL MANIAC…\n"
-	.string "He's a nice guy who loves FOSSILS…\p"
-	.string "He loves digging holes, too…\n"
-	.string "He dug this hole by himself…\p"
-	.string "You can have this, so you can DIG\n"
-	.string "holes just like my big brother…$"
-
-Route114_FossilManiacsHouse_Text_DigReturnsYouToEntrance:
-	.string "If you make a POKéMON DIG inside a\n"
-	.string "cave, you're returned to the entrance…$"
-
-Route114_FossilManiacsHouse_Text_RocksFillDisplayCase:
-	.string "Rocks in peculiar shapes fill\n"
-	.string "the display case…$"
-
-Route114_FossilManiacsHouse_Text_CrammedWithBooks:
-	.string "THE COMPOSITION OF STRATA…\n"
-	.string "HOW RAIN SHAPES THE LAND…\l"
-	.string "STONES, SOIL, AND ROCK…\p"
-	.string "It's crammed with books.$"
-
 `
+
+text Route114_FossilManiacsHouse_Text_HaveThisToDigLikeMyBrother {
+	"My big brother's the Fossil Maniac…\n"
+	"He's a nice guy who loves Fossils…\p"
+	"He loves digging holes, too…\n"
+	"He dug this hole by himself…\p"
+	"You can have this, so you can Dig\n"
+	"holes just like my big brother…$"
+}
+
+text Route114_FossilManiacsHouse_Text_DigReturnsYouToEntrance {
+	"If you make a Pokémon Dig inside a\n"
+	"cave, you're returned to the entrance…$"
+}
+
+text Route114_FossilManiacsHouse_Text_CrammedWithBooks {
+	"The Composition of Strata…\n"
+	"How Rain Shapes the Land…\l"
+	"Stones, Soil, and Rock…\p"
+	"It's crammed with books.$"
+}
+
+script Route114_FossilManiacsHouse_EventScript_RockDisplay {
+	msgbox(format("Rocks in peculiar shapes fill the display case…"), MSGBOX_SIGN)
+}
+
+script Route114_FossilManiacsHouse_Anorith {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_ANORITH, CRY_MODE_NORMAL)
+    setseenmon(SPECIES_ANORITH)
+    msgbox(format("ANORITH: Skreef!\pIt tries to show you how big its claws are."), MSGBOX_DEFAULT)
+    waitmoncry
+    release
+}
+
+script Route114_FossilManiacsHouse_Lileep {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_LILEEP, CRY_MODE_NORMAL)
+    setseenmon(SPECIES_LILEEP)
+    msgbox(format("It rustles noisily."), MSGBOX_DEFAULT)
+    waitmoncry
+    release
+}
+
+

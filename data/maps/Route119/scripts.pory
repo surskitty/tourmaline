@@ -459,18 +459,6 @@ Route119_EventScript_BridgeAquaGrunt2::
     release
     end
 
-Route119_EventScript_Boy1::
-    msgbox Route119_Text_ThoughtFlyByCatchingBirdMons, MSGBOX_NPC
-    end
-
-Route119_EventScript_Boy2::
-    msgbox Route119_Text_CanYourMonMakeSecretBase, MSGBOX_NPC
-    end
-
-Route119_EventScript_TrainerTipsDecoration::
-    msgbox Route119_Text_TrainerTipsDecoration, MSGBOX_SIGN
-    end
-
 Route119_EventScript_ScottWonAtFortreeGymCall::
     lockall
     pokenavcall Route119_Text_ScottYouWonAtFortreeGym
@@ -493,33 +481,25 @@ text Route119_Text_MayIntro {
 text Route119_Text_MayDefeat {
    format("Achah!\n"
     "{PLAYER}{KUN}, you're strong!\p"
-    "I was worried that you might be\n"
-    "struggling with your training.")
+    "I was worried that you might be struggling with your training.")
 }
 
 text Route119_Text_MayPresentForYou {
-   format("MAY: But I had absolutely nothing to\n"
-    "worry about! Keep it up!\p"
+   format("MAY: But I had absolutely nothing to worry about! Keep it up!\p"
     "And, here! I have a present for you.")
 }
 
 text Route119_Text_MayExplainFly {
-   format("MAY: Use Fly, and your Pokémon will\n"
-    "instantly carry you to any town you've\l"
-    "already visited.\p"
-    "But, to use FLY, you have to get\n"
-    "the Gym Badge from Fortree City.\l"
+   format("MAY: Use Fly, and your Pokémon will instantly carry you to any town you've already visited.\p"
+    "But, to use Fly, you have to get the Gym Badge from Fortree City.\l"
     "That's important, so don't forget.\p"
-    "You should Fly home and visit\n"
-    "Littleroot for a change.\p"
-    "I bet your mom's worried about you,\n"
-    "{PLAYER}{KUN}.\p"
+    "You should Fly home and visit Littleroot for a change.\p"
+    "I bet your mom's worried about you, {PLAYER}{KUN}.\p"
     "Well, let's meet again somewhere!")
 }
 
 text Route119_Text_BrendanIntro {
-   format("BRENDAN: {PLAYER}! So this is where\n"
-    "you've been looking for Pokémon?\p"
+   format("BRENDAN: {PLAYER}! So this is where you've been looking for Pokémon?\p"
     "Let me see how good you got.\n"
     "I'll test you!\p"
     "Now!\n"
@@ -532,30 +512,24 @@ text Route119_Text_BrendanDefeat {
 }
 
 text Route119_Text_BrendanIllGiveYouThis {
-   format("BRENDAN: I'd say you're good enough\n"
-    "to search for Pokémon anywhere.\p"
+   format("BRENDAN: I'd say you're good enough to search for Pokémon anywhere.\p"
     "Here, I'll give you this.\n"
     "Try it out.")
 }
 
 text Route119_Text_BrendanExplainFly {
-   format("BRENDAN: Use Fly, and your Pokémon\n"
-    "instantly carries you to any town\l"
-    "you've already visited.\p"
-    "But you need the Fortree Gym Badge\n"
-    "to do that.\p"
+   format("BRENDAN: Use Fly, and your Pokémon instantly carries you to any town you've already visited.\p"
+    "But you need the Fortree Gym Badge to do that.\p"
     "Anyway, I have to move along.")
 }
 
 text Route119_Text_ScottWayToGoBeSeeingYou {
    format("SCOTT: Hahahah!\n"
     "Way to go, {PLAYER}{KUN}!\p"
-    "I just passed by a Trainer riding\n"
-    "a Bike.\p"
+    "I just passed by a Trainer riding a Bike.\p"
     "You just beat that Trainer, didn't you?\n"
     "It was pretty obvious that you did.\p"
-    "The kid looked really upset with\n"
-    "a face all red from anger.\p"
+    "The kid looked really upset with a face all red from anger.\p"
     "I sure seem to run into you often.\n"
     "Are you off to Fortree Gym next?\p"
     "I expect that you'll do well at the Gym.\n"
@@ -585,18 +559,7 @@ text Route119_Text_StayAwayFromWeatherInstitute {
 
 text Route119_Text_DontGoNearWeatherInstitute {
    format("Lookout duty is surprisingly boring.\p"
-    "Hey, you! Please don't go near the\n"
-    "Weather Institute.")
-}
-
-text Route119_Text_ThoughtFlyByCatchingBirdMons {
-   format("I thought you Fly by catching a whole\n"
-    "flock of bird Pokémon, and then\l"
-    "hanging on to them somehow.\p"
-    "But it turns out there's an HM move\n"
-    "called Fly!\p"
-    "I wish I'd known about that a long\n"
-    "time ago…")
+    "Hey, you! Please don't go near the Weather Institute.")
 }
 
 text Route119_Text_TallGrassSnaresBikeTires {
@@ -604,12 +567,6 @@ text Route119_Text_TallGrassSnaresBikeTires {
     "It's a no-go…\p"
     "The tall grass snares Bike tires.\n"
     "There's no way you can cycle here.")
-}
-
-text Route119_Text_CanYourMonMakeSecretBase {
-   format("Can your Pokémon use its Secret Power\n"
-    "on a big pile of grass and make a\l"
-    "Secret Base?")
 }
 
 text Route119_Text_RouteSignFortree {
@@ -621,12 +578,18 @@ text Route119_Text_WeatherInstitute {
    format("Weather Institute")
 }
 
-text Route119_Text_TrainerTipsDecoration {
-   format("TRAINER TIPS\p"
-    "Up to sixteen decorations and\n"
-    "furniture items can be placed in\l"
-    "a Secret Base.\p"
-    "Pick your favorite items and create\n"
-    "your very own Secret Base exactly the\l"
-    "way you want.")
+script Route119_EventScript_Boy1 {
+    msgbox(format("I thought you Fly by catching a whole flock of bird Pokémon, and then hanging on to them somehow.\p"
+        "But it turns out there's an HM move called Fly!\p"
+        "I wish I'd known about that a long time ago…"), MSGBOX_NPC)
+}
+
+script Route119_EventScript_Boy2 {
+    msgbox(format("Can your Pokémon use its Secret Power on a big pile of grass and make a Secret Base?"), MSGBOX_NPC)
+}
+
+script Route119_EventScript_TrainerTipsDecoration {
+    msgbox(format("TRAINER TIPS\p"
+        "Up to sixteen decorations and furniture items can be placed in a Secret Base.\p"
+        "Pick your favorite items and create your very own Secret Base exactly the way you want."), MSGBOX_SIGN)
 }
