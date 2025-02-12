@@ -6,20 +6,20 @@
     F(DRAGON_CLAW) \
     F(WATER_PULSE) \
     F(CALM_MIND) \
-    F(ROAR) \
+    F(STOMPING_TANTRUM) \
     F(TOXIC) \
-    F(SNOWSCAPE) \
+    F(ICE_SPINNER) \
     F(BULK_UP) \
     F(BULLET_SEED) \
     F(HIDDEN_POWER) \
-    F(SUNNY_DAY) \
+    F(BURNING_JEALOUSY) \
     F(TAUNT) \
     F(ICE_BEAM) \
     F(BLIZZARD) \
     F(HYPER_BEAM) \
     F(LIGHT_SCREEN) \
     F(PROTECT) \
-    F(RAIN_DANCE) \
+    F(LIQUIDATION) \
     F(GIGA_DRAIN) \
     F(SAFEGUARD) \
     F(FRUSTRATION) \
@@ -38,7 +38,7 @@
     F(SHOCK_WAVE) \
     F(FLAMETHROWER) \
     F(SLUDGE_BOMB) \
-    F(SANDSTORM) \
+    F(STEALTH_ROCK) \
     F(FIRE_BLAST) \
     F(ROCK_TOMB) \
     F(AERIAL_ACE) \

@@ -10468,19 +10468,19 @@ const struct Item gItemsInfo[] =
         .secondaryId = MOVE_CALM_MIND,
     },
 
-    [ITEM_TM_ROAR] =
+    [ITEM_TM_STOMPING_TANTRUM] =
     {
         .name = _("TM05"),
         .price = 1000,
         .description = COMPOUND_STRING(
-            "A savage roar that\n"
-            "makes the foe flee \n"
-            "to end the battle."),
+            "Doubles damage if\n"
+            "previous move had\n"
+            "failed or missed."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_ROAR,
+        .secondaryId = MOVE_STOMPING_TANTRUM,
     },
 
     [ITEM_TM_TOXIC] =
@@ -10498,19 +10498,19 @@ const struct Item gItemsInfo[] =
         .secondaryId = MOVE_TOXIC,
     },
 
-    [ITEM_TM_SNOWSCAPE] =
+    [ITEM_TM_ICE_SPINNER] =
     {
         .name = _("TM07"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Starts a snowstorm\n"
-            "to raise Defense\n"
-            "of Ice types."),
+            "Twirls around in\n"
+            "Ice to destroy\n"
+            "the terrain."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_SNOWSCAPE,
+        .secondaryId = MOVE_ICE_SPINNER,
     },
 
     [ITEM_TM_BULK_UP] =
@@ -10558,19 +10558,19 @@ const struct Item gItemsInfo[] =
         .secondaryId = MOVE_HIDDEN_POWER,
     },
 
-    [ITEM_TM_SUNNY_DAY] =
+    [ITEM_TM_BURNING_JEALOUSY] =
     {
         .name = _("TM11"),
         .price = 2000,
         .description = COMPOUND_STRING(
-            "Raises the power of\n"
-            "Fire-type moves\n"
-            "for 5 turns."),
+            "Damages all enemies\n"
+            "and burns any who\n"
+            "raised stats."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_SUNNY_DAY,
+        .secondaryId = MOVE_BURNING_JEALOUSY,
     },
 
     [ITEM_TM_TAUNT] =
@@ -10673,19 +10673,19 @@ const struct Item gItemsInfo[] =
         .secondaryId = MOVE_PROTECT,
     },
 
-    [ITEM_TM_RAIN_DANCE] =
+    [ITEM_TM_LIQUIDATION] =
     {
         .name = _("TM18"),
         .price = 2000,
         .description = COMPOUND_STRING(
-            "Raises the power of\n"
-            "Water-type moves\n"
-            "for 5 turns."),
+            "Water-type move\n"
+            "that may lower\n"
+            "Defense."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_RAIN_DANCE,
+        .secondaryId = MOVE_LIQUIDATION,
     },
 
     [ITEM_TM_GIGA_DRAIN] =
@@ -10958,19 +10958,19 @@ const struct Item gItemsInfo[] =
         .secondaryId = MOVE_SLUDGE_BOMB,
     },
 
-    [ITEM_TM_SANDSTORM] =
+    [ITEM_TM_STEALTH_ROCK] =
     {
         .name = _("TM37"),
         .price = 2000,
         .description = COMPOUND_STRING(
-            "Causes a sandstorm\n"
-            "that hits the foe\n"
-            "over several turns."),
+            "Pointed rocks float\n"
+            "in the air, hurting\n"
+            "foes switching in."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
-        .secondaryId = MOVE_SANDSTORM,
+        .secondaryId = ITEM_TM_STEALTH_ROCK,
     },
 
     [ITEM_TM_FIRE_BLAST] =

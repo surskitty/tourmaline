@@ -1,5 +1,1 @@
-raw `
-ShoalCave_LowTideIceRoom_MapScripts::
-	.byte 0
-
-`
+mapscripts ShoalCave_LowTideIceRoom_MapScripts {}
