@@ -30,13 +30,13 @@ script AbandonedShip_Corridors_B1F_EventScript_StorageRoomDoor {
     checkitem(ITEM_STORAGE_KEY, 1)
     if (var(VAR_RESULT) == FALSE) {
         msgbox("The door is locked.\p"
-               "“STORAGE” is painted on the door.")
+               "“Storage” is painted on the door.")
         releaseall
         return
     }
     msgbox("{PLAYER} inserted and turned the\n"
-           "STORAGE KEY.\p"
-           "The inserted KEY stuck fast,\n"
+           "Storage Key.\p"
+           "The inserted Key stuck fast,\n"
            "but the door opened.")
     playse(SE_PIN)
     removeitem(ITEM_STORAGE_KEY)

@@ -1,11 +1,10 @@
+mapscripts Route111_WinstrateFamilysHouse_MapScripts {}
 raw `
 .set LOCALID_VIVI, 1
 .set LOCALID_VICTOR, 2
 .set LOCALID_VICTORIA, 3
 .set LOCALID_VICKY, 4
 
-Route111_WinstrateFamilysHouse_MapScripts::
-	.byte 0
 
 Route111_WinstrateFamilysHouse_EventScript_Victor::
 	lock
@@ -61,49 +60,40 @@ Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection::
 	waitmovement 0
 	release
 	end
-
-Route111_WinstrateFamilysHouse_Text_MySonIsStrongerThanYou:
-	.string "You're the first TRAINER I've seen who\n"
-	.string "deploys POKéMON so masterfully.\p"
-	.string "But, I should tell you--my son is\n"
-	.string "stronger than you.\p"
-	.string "He even took the POKéMON LEAGUE\n"
-	.string "challenge, I'll have you know.$"
-
-Route111_WinstrateFamilysHouse_Text_LikeYouToHaveMachoBrace:
-	.string "We use this MACHO BRACE to more\n"
-	.string "effectively strengthen our POKéMON\l"
-	.string "in training.\p"
-	.string "Since you've beaten all of us here,\n"
-	.string "I don't know if you need it, but we\l"
-	.string "would like you to have our MACHO BRACE.$"
-
-Route111_WinstrateFamilysHouse_Text_PassionateAboutBattles:
-	.string "When it comes to POKéMON battles,\n"
-	.string "we tend to be pretty passionate.$"
-
-Route111_WinstrateFamilysHouse_Text_StrongerFamilyMembers:
-	.string "Mommy is stronger than Daddy.\p"
-	.string "I'm stronger than Mommy.\p"
-	.string "And Grandma's stronger than me!\p"
-	.string "But my big brother is even stronger\n"
-	.string "than Grandma.$"
-
-Route111_WinstrateFamilysHouse_Text_GrandsonStrong:
-	.string "There's no question that you're strong.\p"
-	.string "But if you were to battle my grandson,\n"
-	.string "you'd end up crying in frustration.\p"
-	.string "He's much stronger than any TRAINER\n"
-	.string "our family knows.\p"
-	.string "He must be challenging the POKéMON\n"
-	.string "LEAGUE CHAMPION by now.\p"
-	.string "Knowing my grandson, he could be the\n"
-	.string "CHAMPION already!$"
-
-Route111_WinstrateFamilysHouse_Text_GrandsonStrongShort:
-	.string "My grandson must be challenging the\n"
-	.string "POKéMON LEAGUE CHAMPION by now.\p"
-	.string "Knowing my grandson, he could be the\n"
-	.string "CHAMPION already!$"
-
 `
+
+text Route111_WinstrateFamilysHouse_Text_MySonIsStrongerThanYou {
+	format("You're the first Trainer I've seen who deploys Pokémon so masterfully.\p"
+	"But, I should tell you--my son is stronger than you.\p"
+	"He even took the Pokémon League challenge, I'll have you know.")
+}
+
+text Route111_WinstrateFamilysHouse_Text_LikeYouToHaveMachoBrace {
+	format("We use this Macho Brace to more effectively strengthen our Pokémon in training.\p"
+	"Since you've beaten all of us here, I don't know if you need it, but we would like you to have our Macho Brace.")
+}
+
+text Route111_WinstrateFamilysHouse_Text_PassionateAboutBattles {
+	format("When it comes to Pokémon battles, we tend to be pretty passionate.")
+}
+
+text Route111_WinstrateFamilysHouse_Text_StrongerFamilyMembers {
+	format("Mommy is stronger than Daddy.\p"
+	"I'm stronger than Mommy.\p"
+	"And Grandma's stronger than me!\p"
+	"But my big brother is even stronger than Grandma.")
+}
+
+text Route111_WinstrateFamilysHouse_Text_GrandsonStrong {
+	format("There's no question that you're strong.\p"
+	"But if you were to battle my grandson, you'd end up crying in frustration.\p"
+	"He's much stronger than any Trainer our family knows.\p"
+	"He must be challenging the Pokémon League Champion by now.\p"
+	"Knowing my grandson, he could be the Champion already!")
+}
+
+text Route111_WinstrateFamilysHouse_Text_GrandsonStrongShort {
+	format("My grandson must be challenging the Pokémon League Champion by now.\p"
+	"Knowing my grandson, he could be the Champion already!")
+}
+
