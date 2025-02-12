@@ -1387,7 +1387,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
 #if !TESTING
         .abilities = { ABILITY_SHIELD_DUST, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_RUN_AWAY },
+        .innates = { ABILITY_RUN_AWAY, ABILITY_SHIELD_DUST },
 #else
         .abilities = { ABILITY_SHIELD_DUST, ABILITY_NONE, ABILITY_RUN_AWAY },
 #endif
@@ -1456,7 +1456,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
 #if !TESTING
         .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_SHED_SKIN },
+        .innates = { ABILITY_SHIELD_DUST, ABILITY_SHED_SKIN },
 #else
         .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_NONE },
 #endif
@@ -1533,7 +1533,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
 #if !TESTING
         .abilities = { ABILITY_SWARM, ABILITY_NONE, ABILITY_RIVALRY },
-        .innates = { ABILITY_BERSERK },
+        .innates = { ABILITY_BERSERK, ABILITY_SHIELD_DUST },
 #else
         .abilities = { ABILITY_SWARM, ABILITY_NONE, ABILITY_RIVALRY },
 #endif
@@ -1618,7 +1618,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
 #if !TESTING
         .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_SHED_SKIN },
+        .innates = { ABILITY_SHIELD_DUST, ABILITY_SHED_SKIN },
 #else
         .abilities = { ABILITY_SHED_SKIN, ABILITY_NONE, ABILITY_NONE },
 #endif
@@ -1697,7 +1697,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
 #if !TESTING
         .abilities = { ABILITY_SHIELD_DUST, ABILITY_NONE, ABILITY_COMPOUND_EYES },
-        .innates = { ABILITY_TOXIC_DEBRIS },
+        .innates = { ABILITY_TOXIC_DEBRIS, ABILITY_SHIELD_DUST },
 #else
         .abilities = { ABILITY_SHIELD_DUST, ABILITY_NONE, ABILITY_COMPOUND_EYES },
 #endif
@@ -2238,7 +2238,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
 #if !TESTING
         .abilities = { ABILITY_GUTS, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_SCRAPPY },
+        .innates = { ABILITY_SCRAPPY, ABILITY_WIMP_OUT },
 #else
         .abilities = { ABILITY_GUTS, ABILITY_NONE, ABILITY_SCRAPPY },
 #endif
@@ -6742,11 +6742,11 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE),
-#if !TESTING
+#if TESTING
+        .abilities = { ABILITY_OWN_TEMPO, ABILITY_TANGLED_FEET, ABILITY_CONTRARY },
+#else
         .abilities = { ABILITY_OWN_TEMPO, ABILITY_FLUFFY, ABILITY_CONTRARY },
         .innates = { ABILITY_TANGLED_FEET, ABILITY_SIMPLE },
-#else
-        .abilities = { ABILITY_OWN_TEMPO, ABILITY_TANGLED_FEET, ABILITY_CONTRARY },
 #endif
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = TRUE,
