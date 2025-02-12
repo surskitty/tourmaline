@@ -10208,19 +10208,19 @@ Double Battle: Yes
 AI: Basic Trainer
 
 Tympole
-Level: 6
+Level: 7
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Sewaddle
-Level: 6
+Level: 7
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Seedot
-Level: 6
+Level: 7
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Lotad
-Level: 6
+Level: 7
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MIU_AND_YUKI ===
@@ -12731,16 +12731,16 @@ Double Battle: Yes
 AI: Basic Trainer
 
 Ruri (Azurill) (F)
-Level: 6
+Level: 7
 Ability: Sap Sipper
 
 Haz (Lotad) (M)
-Level: 6
+Level: 7
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Ability: Own Tempo
 
 Ran (Shellos) (F)
-Level: 6
+Level: 7
 Ability: Sand Force
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -13059,7 +13059,6 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - String Shot
 - Tackle
 - Poison Sting
-- Electroweb
 
 Nibbles (Nincada) (F)
 Level: 6

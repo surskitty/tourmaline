@@ -3682,8 +3682,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS, EGG_GROUP_FAIRY),
 #if !TESTING
-        .abilities = { ABILITY_PRANKSTER, ABILITY_INFILTRATOR, ABILITY_NONE },
-        .innates = { ABILITY_CHLOROPHYLL },
+        .abilities = { ABILITY_PRANKSTER, ABILITY_NONE, ABILITY_NONE },
+        .innates = { ABILITY_CHLOROPHYLL, ABILITY_INFILTRATOR },
 #else
         .abilities = { ABILITY_PRANKSTER, ABILITY_INFILTRATOR, ABILITY_CHLOROPHYLL },
 #endif
@@ -3751,8 +3751,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS, EGG_GROUP_FAIRY),
 #if !TESTING
-        .abilities = { ABILITY_PRANKSTER, ABILITY_INFILTRATOR, ABILITY_NONE },
-        .innates = { ABILITY_CHLOROPHYLL, ABILITY_COTTON_DOWN },
+        .abilities = { ABILITY_PRANKSTER, ABILITY_NONE, ABILITY_NONE },
+        .innates = { ABILITY_CHLOROPHYLL, ABILITY_INFILTRATOR, ABILITY_COTTON_DOWN },
 #else
         .abilities = { ABILITY_PRANKSTER, ABILITY_INFILTRATOR, ABILITY_CHLOROPHYLL },
 #endif

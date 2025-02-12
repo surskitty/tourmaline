@@ -4513,7 +4513,7 @@ const struct SpeciesInfo gSpeciesInfoGen6[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS, EGG_GROUP_AMORPHOUS),
 #if !TESTING
         .abilities = { ABILITY_NATURAL_CURE, ABILITY_FRISK, ABILITY_NONE },
-        .innates = { ABILITY_HARVEST },
+        .innates = { ABILITY_HARVEST, ABILITY_RATTLED },
 #else
         .abilities = { ABILITY_NATURAL_CURE, ABILITY_FRISK, ABILITY_HARVEST },
 #endif
