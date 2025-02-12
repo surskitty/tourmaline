@@ -1,5 +1,1 @@
-raw `
-MagmaHideout_2F_3R_MapScripts::
-	.byte 0
-
-`
+mapscripts MagmaHideout_2F_3R_MapScripts {}

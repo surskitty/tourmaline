@@ -1,7 +1,6 @@
-raw `
-MauvilleCity_BikeShop_MapScripts::
-	.byte 0
+mapscripts MauvilleCity_BikeShop_MapScripts {}
 
+raw `
 MauvilleCity_BikeShop_EventScript_Rydel::
 	lock
 	faceplayer

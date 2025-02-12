@@ -310,7 +310,7 @@ script Route104_EventScript_TrainerTipsDoubleBattles {
 }
 
 script Route104_EventScript_Boy1 {
-    msgbox(format("I heard it's easier to catch Pokémon the more Pokémon you have experience with."), MSGBOX_NPC)
+    msgbox(format("I heard it's easier to catch Pokémon when you're more experienced with them."), MSGBOX_NPC)
 }
 
 script Route104_EventScript_Woman {
@@ -322,10 +322,7 @@ script Route104_EventScript_Boy2 {
     lock
     faceplayer
     if (flag(FLAG_RECEIVED_TM_BULLET_SEED)) {
-        msgbox(format("A word of advice!\p"
-            "A TM, Technical Machine, is good only for one-time use.\p"
-            "Once you use it, it's gone.\n"
-            "Think twice before using it!"), MSGBOX_DEFAULT)
+        msgbox(format("Some Marill like to eat all the seeds…"), MSGBOX_DEFAULT)
         release
     } else {
         msgbox(format("I like filling my mouth with seeds, then spitting them out fast!\p"
