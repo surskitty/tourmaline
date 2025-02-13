@@ -10963,8 +10963,8 @@ const struct Item gItemsInfo[] =
         .name = _("TM37"),
         .price = 2000,
         .description = COMPOUND_STRING(
-            "Pointed rocks float\n"
-            "in the air, hurting\n"
+            "Pointed rocks hang\n"
+            "in the air to hurt\n"
             "foes switching in."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
