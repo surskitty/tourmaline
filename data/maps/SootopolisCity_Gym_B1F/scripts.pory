@@ -1,7 +1,6 @@
-raw `
-SootopolisCity_Gym_B1F_MapScripts::
-	.byte 0
+mapscripts SootopolisCity_Gym_B1F_MapScripts {}
 
+raw `
 SootopolisCity_Gym_B1F_EventScript_Andrea::
 	trainerbattle_single TRAINER_ANDREA, SootopolisCity_Gym_B1F_Text_AndreaIntro, SootopolisCity_Gym_B1F_Text_AndreaDefeat
 	msgbox SootopolisCity_Gym_B1F_Text_AndreaPostBattle, MSGBOX_AUTOCLOSE
@@ -55,11 +54,11 @@ SootopolisCity_Gym_B1F_EventScript_Daphne::
 
 text SootopolisCity_Gym_B1F_Text_AndreaIntro {
 	format("I'll show you the sublime techniques\n"
-	"I learned from our LEADER JUAN!")
+	"I learned from our Leader Juan!")
 }
 
 text SootopolisCity_Gym_B1F_Text_AndreaDefeat {
-	format("Please forgive me, JUAN…")
+	format("Please forgive me, Juan…")
 }
 
 text SootopolisCity_Gym_B1F_Text_AndreaPostBattle {
@@ -69,7 +68,7 @@ text SootopolisCity_Gym_B1F_Text_AndreaPostBattle {
 
 text SootopolisCity_Gym_B1F_Text_CrissyIntro {
 	format("You came all the way here, but you won't\n"
-	"get to see JUAN.\p"
+	"get to see Juan.\p"
 	"Not if you lose to me, you won't!")
 }
 
@@ -80,14 +79,14 @@ text SootopolisCity_Gym_B1F_Text_CrissyDefeat {
 
 text SootopolisCity_Gym_B1F_Text_CrissyPostBattle {
 	format("You might be good enough to avoid\n"
-	"being wiped out in one hit by JUAN.")
+	"being wiped out in one hit by Juan.")
 }
 
 text SootopolisCity_Gym_B1F_Text_DaphneIntro {
-	format("The sight of JUAN conducting\n"
+	format("The sight of Juan conducting\n"
 	"a battle…\p"
 	"The very beauty of it compelled me to\n"
-	"become a TRAINER.")
+	"become a Trainer.")
 }
 
 text SootopolisCity_Gym_B1F_Text_DaphneDefeat {
@@ -114,14 +113,14 @@ text SootopolisCity_Gym_B1F_Text_ConnieDefeat {
 
 text SootopolisCity_Gym_B1F_Text_ConniePostBattle {
 	format("I'll tell you something good.\p"
-	"If you want to reach JUAN, you\n"
+	"If you want to reach Juan, you\n"
 	"need to walk on each floor tile once.")
 }
 
 text SootopolisCity_Gym_B1F_Text_BridgetIntro {
-	format("The Pokémon GYM of the highest level\n"
-	"in the HOENN region…\p"
-	"That's the SOOTOPOLIS GYM.")
+	format("The Pokémon Gym of the highest level\n"
+	"in the Hoenn region…\p"
+	"That's the Sootopolis Gym.")
 }
 
 text SootopolisCity_Gym_B1F_Text_BridgetDefeat {
@@ -130,14 +129,13 @@ text SootopolisCity_Gym_B1F_Text_BridgetDefeat {
 
 text SootopolisCity_Gym_B1F_Text_BridgetPostBattle {
 	format("Rather than being satisfied by being\n"
-	"in a strong GYM, I imagine training in\l"
+	"in a strong Gym, I imagine training in\l"
 	"other places will make you stronger.\l"
 	"But above all, it looks more fun.")
 }
 
 text SootopolisCity_Gym_B1F_Text_OliviaIntro {
-	format("I train my Pokémon together with\n"
-	"JUAN.\p"
+	format("I train my Pokémon together with Juan.\p"
 	"Don't think I'm a pushover.")
 }
 
@@ -153,7 +151,7 @@ text SootopolisCity_Gym_B1F_Text_OliviaPostBattle {
 text SootopolisCity_Gym_B1F_Text_TiffanyIntro {
 	format("A graceful glide across the ice while\n"
 	"crossing no lines…\p"
-	"A TRAINER putting on that performance\n"
+	"A Trainer putting on that performance\n"
 	"would be elegantly beautiful!")
 }
 

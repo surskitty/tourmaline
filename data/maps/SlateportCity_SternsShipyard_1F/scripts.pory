@@ -1,9 +1,7 @@
+mapscripts SlateportCity_SternsShipyard_1F_MapScripts {}
+
 raw `
 .set LOCALID_DOCK, 1
-
-SlateportCity_SternsShipyard_1F_MapScripts::
-	.byte 0
-
 SlateportCity_SternsShipyard_1F_EventScript_Dock::
 	lockall
 	goto_if_set FLAG_SYS_GAME_CLEAR, SlateportCity_SternsShipyard_1F_EventScript_FerryReady
