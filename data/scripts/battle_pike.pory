@@ -1,3 +1,4 @@
+raw `
 @ Note: LOCALIDs shared with BattleFrontier_BattlePikeRoomNormal
 BattleFrontier_BattlePikeRoom_MapScripts:
 	map_script MAP_SCRIPT_ON_TRANSITION, BattleFrontier_BattlePikeRoom_OnTransition
@@ -242,3 +243,4 @@ BattleFrontier_BattlePikeRoom_EventScript_ResetSketchedMoves::
 BattleFrontier_BattlePikeRoom_Movement_HidePlayer:
 	set_invisible
 	step_end
+`

@@ -1,3 +1,5 @@
+raw `
+
 EventScript_UseSurf::
 	checkpartymove MOVE_SURF
 	goto_if_eq VAR_RESULT, PARTY_SIZE, EventScript_EndUseSurf
@@ -12,3 +14,5 @@ EventScript_ReleaseUseSurf::
 	releaseall
 EventScript_EndUseSurf::
 	end
+	
+`

@@ -1,3 +1,5 @@
+raw `
+
 Roulette_EventScript_Table1::
 	checkitem ITEM_COIN_CASE
 	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoCoinCase
@@ -65,3 +67,5 @@ Roulette_Text_YouDontHaveACoinCase::
 Roulette_Text_CoinCaseIsFull::
 	.string "Your COIN CASE is full!\n"
 	.string "Coins can be exchanged for prizes.$"
+	
+`

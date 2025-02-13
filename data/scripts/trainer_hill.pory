@@ -1,3 +1,5 @@
+raw `
+
 TrainerHill_OnResume:
 	setvar VAR_TEMP_2, 0
 	trainerhill_resumetimer
@@ -66,3 +68,4 @@ TrainerHill_EventScript_TrainerBattle::
 	waitbuttonpress
 	closemessage
 	end
+`

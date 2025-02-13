@@ -1,3 +1,5 @@
+raw `
+
 Std_MsgboxNPC:
 	lock
 	faceplayer
@@ -47,3 +49,5 @@ Common_EventScript_SaveGame::
 	special SaveGame
 	waitstate
 	return
+	
+`
