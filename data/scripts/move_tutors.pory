@@ -1,3 +1,11 @@
+script MoveTutor_EventScript_OpenPartyMenu {
+	special(ChooseMonForMoveTutor)
+	waitstate
+	lock
+	faceplayer
+	return
+}
+
 script SlateportCity_NameRatersHouse_EventScript_NameRater {
     lock
     faceplayer
@@ -60,76 +68,195 @@ script SlateportCity_NameRatersHouse_EventScript_TutorDeclined {
     release
 }
 
+script FallarborTown_Mart_EventScript_MetronomeTutor {
+    lock
+    faceplayer
+    msgbox(FallarborTown_Mart_Text_TutorIntro)
 
+    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Ally Switch", "Baton Pass", "Encore", "Gravity",  "Helping Hand", "Metronome", "Pain Split", "Psych Up", "Tailwind", "Trick Room")
+    switch (var(VAR_RESULT)) {
+    case 0:
+        setvar(VAR_0x8005, MOVE_ALLY_SWITCH)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 1:
+        setvar(VAR_0x8005, MOVE_BATON_PASS)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 2:
+        setvar(VAR_0x8005, MOVE_ENCORE)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 3:
+        setvar(VAR_0x8005, MOVE_GRAVITY)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 4:
+        setvar(VAR_0x8005, MOVE_HELPING_HAND)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 5:
+        setvar(VAR_0x8005, MOVE_METRONOME)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 6:
+        setvar(VAR_0x8005, MOVE_PAIN_SPLIT)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 7:
+        setvar(VAR_0x8005, MOVE_PSYCH_UP)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 8:
+        setvar(VAR_0x8005, MOVE_TAILWIND)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 9:
+        setvar(VAR_0x8005, MOVE_TRICK_ROOM)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    default:
+        msgbox(format("Okay. I'll be here if you change your mind."), MSGBOX_DEFAULT)
+        release
+    }
+}
 
+text FallarborTown_Mart_Text_TutorIntro {
+    format("I want all sorts of things!\n"
+    "But I used up my allowance…\p"
+    "I wish I could cast a spell to make money appear, but all I can do is teach your Pokémon.\p"
+    "What should I teach them?")
+}
+
+script SlateportCity_PokemonFanClub_EventScript_SwaggerTutor {
+    lock
+    faceplayer
+    msgbox(SlateportCity_PokemonFanClub_EventScript_TutorIntro)
+
+    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Charm", "Coaching", "Fake Tears", "Nasty Plot", "Scary Face", "Swords Dance", "Swagger")
+    switch (var(VAR_RESULT)) {
+    case 0:
+        setvar(VAR_0x8005, MOVE_CHARM)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 1:
+        setvar(VAR_0x8005, MOVE_COACHING)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 2:
+        setvar(VAR_0x8005, MOVE_FAKE_TEARS)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 3:
+        setvar(VAR_0x8005, MOVE_NASTY_PLOT)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 4:
+        setvar(VAR_0x8005, MOVE_SCARY_FACE)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 5:
+        setvar(VAR_0x8005, MOVE_SWORDS_DANCE)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 6:
+        setvar(VAR_0x8005, MOVE_SWAGGER)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    default:
+        msgbox(format("What, no? Can't you get into the spirit of things?"), MSGBOX_DEFAULT)
+        release
+    }
+}
+
+text SlateportCity_PokemonFanClub_EventScript_TutorIntro {
+    format("Heh! My Pokémon totally rules!\n"
+    "It's cooler than any Pokémon!\p"
+    "I was lipping off with a swagger in my step like that when the Chairman chewed me out.\p"
+    "I needed some fake tears to get out of that one.\p"
+    "If you'd like, I'll teach my moves to a Pokémon of yours.")
+}
+
+script PacifidlogTown_PokemonCenter_1F_EventScript_ExplosionTutor {
+    lock
+    faceplayer
+    msgbox(PacifidlogTown_PokemonCenter_1F_EventScript_TutorIntro)
+
+    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Alluring Voice", "Dragon Cheer", "Explosion", "Hyper Voice", "Psychic Noise", "Snarl")
+    switch (var(VAR_RESULT)) {
+    case 0:
+        setvar(VAR_0x8005, MOVE_ALLURING_VOICE)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 1:
+        setvar(VAR_0x8005, MOVE_DRAGON_CHEER)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 2:
+        setvar(VAR_0x8005, MOVE_EXPLOSION)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 3:
+        setvar(VAR_0x8005, MOVE_HYPER_VOICE)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 4:
+        setvar(VAR_0x8005, MOVE_PSYCHIC_NOISE)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 5:
+        setvar(VAR_0x8005, MOVE_SNARL)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    default:
+        msgbox(format("Gaah! You're turning me down because I live in the country?"), MSGBOX_DEFAULT)
+        release
+    }
+}
+
+text PacifidlogTown_PokemonCenter_1F_EventScript_TutorIntro {
+    format("I don't intend to be going nowhere fast in the sticks like this forever.\p"
+    "You watch me, I'll get out to the city and become a huge hit.\p"
+    "If you overheard that, I'll happily teach something to your Pokémon!")
+}
+
+script MauvilleCity_EventScript_RolloutTutor {
+	lock
+	faceplayer
+	msgbox(MauvilleCity_EventScript_RolloutTutor_TutorIntro)
+    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Flame Charge", "Flip Turn", "Rapid Spin", "Rollout", "Trailblaze", "U-Turn")
+    switch (var(VAR_RESULT)) {
+    case 0:
+        setvar(VAR_0x8005, MOVE_FLAME_CHARGE)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 1:
+        setvar(VAR_0x8005, MOVE_FLIP_TURN)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 2:
+        setvar(VAR_0x8005, MOVE_RAPID_SPIN)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 3:
+        setvar(VAR_0x8005, MOVE_ROLLOUT)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 4:
+        setvar(VAR_0x8005, MOVE_TRAILBLAZE)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 5:
+        setvar(VAR_0x8005, MOVE_U_TURN)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    default:
+        msgbox(format("You don't need to be shy about it.\nLet's roll!"), MSGBOX_DEFAULT)
+        release
+    }
+}
+
+script VerdanturfTown_PokemonCenter_1F_EventScript_FuryCutterTutor {
+	lock
+	faceplayer
+	msgbox(format("I love seeing Pokémon keep going and going and going.\p"
+	    "Do you want me to teach them how?"), MSGBOX_DEFAULT)
+    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Echoed Voice", "Fury Cutter", "Icicle Spear", "Rock Blast", "Round")
+    switch (var(VAR_RESULT)) {
+    case 0:
+        setvar(VAR_0x8005, MOVE_ECHOED_VOICE)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 1:
+        setvar(VAR_0x8005, MOVE_FURY_CUTTER)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 2:
+        setvar(VAR_0x8005, MOVE_ICICLE_SPEAR)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 3:
+        setvar(VAR_0x8005, MOVE_ROCK_BLAST)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 4:
+        setvar(VAR_0x8005, MOVE_ROUND)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    default:
+        msgbox(format("We're not on the same wavelength."), MSGBOX_DEFAULT)
+        release
+    }
+}
 
 raw `
 
-SlateportCity_PokemonFanClub_EventScript_SwaggerTutor::
-	lock
-	faceplayer
-	msgbox MoveTutor_Text_SwaggerTeach, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, MoveTutor_EventScript_SwaggerDeclined
-	msgbox MoveTutor_Text_SwaggerWhichMon, MSGBOX_DEFAULT
-	setvar VAR_0x8005, MOVE_SWAGGER
-	call MoveTutor_EventScript_OpenPartyMenu
-	goto_if_eq VAR_RESULT, 0, MoveTutor_EventScript_SwaggerDeclined
-	goto MoveTutor_EventScript_SwaggerTaught
-	end
-
-MoveTutor_EventScript_SwaggerDeclined::
-	msgbox MoveTutor_Text_SwaggerDeclined, MSGBOX_DEFAULT
-	release
-	end
-
-MoveTutor_EventScript_SwaggerTaught::
-	msgbox MoveTutor_Text_SwaggerTaught, MSGBOX_DEFAULT
-	release
-	end
-
-MauvilleCity_EventScript_RolloutTutor::
-	lock
-	faceplayer
-	msgbox MoveTutor_Text_RolloutTeach, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, MoveTutor_EventScript_RolloutDeclined
-	msgbox MoveTutor_Text_RolloutWhichMon, MSGBOX_DEFAULT
-	setvar VAR_0x8005, MOVE_ROLLOUT
-	call MoveTutor_EventScript_OpenPartyMenu
-	goto_if_eq VAR_RESULT, 0, MoveTutor_EventScript_RolloutDeclined
-	goto MoveTutor_EventScript_RolloutTaught
-	end
-
-MoveTutor_EventScript_RolloutDeclined::
-	msgbox MoveTutor_Text_RolloutDeclined, MSGBOX_DEFAULT
-	release
-	end
-
-MoveTutor_EventScript_RolloutTaught::
-	msgbox MoveTutor_Text_RolloutTaught, MSGBOX_DEFAULT
-	release
-	end
-
-VerdanturfTown_PokemonCenter_1F_EventScript_FuryCutterTutor::
-	lock
-	faceplayer
-	msgbox MoveTutor_Text_FuryCutterTeach, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, MoveTutor_EventScript_FuryCutterDeclined
-	msgbox MoveTutor_Text_FuryCutterWhichMon, MSGBOX_DEFAULT
-	setvar VAR_0x8005, MOVE_FURY_CUTTER
-	call MoveTutor_EventScript_OpenPartyMenu
-	goto_if_eq VAR_RESULT, 0, MoveTutor_EventScript_FuryCutterDeclined
-	goto MoveTutor_EventScript_FuryCutterTaught
-	end
-
-MoveTutor_EventScript_FuryCutterDeclined::
-	msgbox MoveTutor_Text_FuryCutterDeclined, MSGBOX_DEFAULT
-	release
-	end
-
-MoveTutor_EventScript_FuryCutterTaught::
-	msgbox MoveTutor_Text_FuryCutterTaught, MSGBOX_DEFAULT
-	release
-	end
 
 LavaridgeTown_House_EventScript_MimicTutor::
 	lock
@@ -240,38 +367,150 @@ MoveTutor_EventScript_DoubleEdgeTaught::
 	msgbox MoveTutor_Text_DoubleEdgeTaught, MSGBOX_DEFAULT
 	release
 	end
-
-PacifidlogTown_PokemonCenter_1F_EventScript_ExplosionTutor::
-	lock
-	faceplayer
-	msgbox MoveTutor_Text_ExplosionTeach, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, MoveTutor_EventScript_ExplosionDeclined
-	msgbox MoveTutor_Text_ExplosionWhichMon, MSGBOX_DEFAULT
-	setvar VAR_0x8005, MOVE_EXPLOSION
-	call MoveTutor_EventScript_OpenPartyMenu
-	goto_if_eq VAR_RESULT, 0, MoveTutor_EventScript_ExplosionDeclined
-	goto MoveTutor_EventScript_ExplosionTaught
-	end
-
-MoveTutor_EventScript_ExplosionDeclined::
-	msgbox MoveTutor_Text_ExplosionDeclined, MSGBOX_DEFAULT
-	release
-	end
-
-MoveTutor_EventScript_ExplosionTaught::
-	msgbox MoveTutor_Text_ExplosionTaught, MSGBOX_DEFAULT
-	release
-	end
-
-MoveTutor_EventScript_OpenPartyMenu::
-	special ChooseMonForMoveTutor
-	waitstate
-	lock
-	faceplayer
-	return
-
-MoveTutor_EventScript_CanOnlyBeLearnedOnce::
-	msgbox MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce, MSGBOX_YESNO
-	return
-
 `
+
+text MauvilleCity_EventScript_RolloutTutor_TutorIntro {
+    format("Did you know that you can go from here a long way in that direction without changing direction?\p"
+    "I might even be able to roll that way.\p"
+    "Do you think your Pokémon will want to roll, too?\p"
+    "I can teach them if you'd like.")
+}
+
+text MoveTutor_MimicTeach {
+    format("Ah, young one!\p"
+    "I am also a young one, but I mimic\n"
+    "the styles and speech of the elderly\l"
+    "folks of this town.\p"
+    "What do you say, young one?\n"
+    "Would you agree to it if I were to\l"
+    "offer to teach the move MIMIC?")
+}
+
+text MoveTutor_MimicDeclined {
+    format("Oh, boo! I wanted to teach MIMIC\n"
+    "to your Pokémon!")
+}
+
+text MoveTutor_Text_MimicWhichMon {
+    format("Fwofwo! And so I shall!\n"
+    "Let me see the Pokémon\l"
+    "you wish me to teach.")
+}
+
+text MoveTutor_Text_MimicTaught {
+    format("MIMIC is a move of great depth.\p"
+    "Could you execute it to perfection\n"
+    "as well as me…?")
+}
+
+text MoveTutor_Text_SleepTalkTeach {
+    format("Humph! My wife relies on HIDDEN\n"
+    "POWER to stay awake.\p"
+    "She should just take a nap like I do,\n"
+    "and SLEEP TALK.\p"
+    "I can teach your Pokémon how to\n"
+    "SLEEP TALK instead. Interested?")
+}
+
+text MoveTutor_Text_SleepTalkDeclined {
+    format("Oh, fine, fine. You want to stay awake\n"
+    "with HIDDEN POWER, too…")
+}
+
+text MoveTutor_Text_SleepTalkWhichMon {
+    format("Ah, an appreciative child!\n"
+    "Which Pokémon should I teach?")
+}
+
+text MoveTutor_Text_SleepTalkTaught {
+    format("I've never once gotten my wife's\n"
+    "coin trick right.\p"
+    "I would be happy if I got it right\n"
+    "even as I SLEEP TALK…")
+}
+
+text MoveTutor_Text_SubstituteTeach {
+    format("When I see the wide world from up\n"
+    "here on the roof…\p"
+    "I think about how nice it would be\n"
+    "if there were more than just one me\l"
+    "so I could enjoy all sorts of lives.\p"
+    "Of course it's not possible.\n"
+    "Giggle…\p"
+    "I know! Would you be interested in\n"
+    "having a Pokémon learn SUBSTITUTE?")
+}
+
+text MoveTutor_Text_SubstituteDeclined {
+    format("Oh, no?\p"
+    "A Pokémon can make a copy of\n"
+    "itself using it, you know.")
+}
+
+text MoveTutor_Text_SubstituteWhichMon {
+    format("Giggle…\n"
+    "Which Pokémon do you want me to\l"
+    "teach Substitute?")
+}
+
+text MoveTutor_Text_SubstituteTaught {
+    format("We human beings should enjoy our own lives to the utmost!\p"
+    "I hope you'll get that way, too!")
+}
+
+text MoveTutor_Text_DynamicPunchTeach {
+    format("I can't do this anymore!\p"
+    "It's utterly hopeless!\p"
+    "I'm a Fighting-type Trainer,\n"
+    "so I can't win at the Mossdeep Gym\l"
+    "no matter how hard I try!\p"
+    "Argh! Punch! Punch! Punch!\n"
+    "Punch! Punch! Punch!\p"
+    "What, don't look at me that way!\n"
+    "I'm only hitting the ground!\p"
+    "Or do you want me to teach your\n"
+    "Pokémon to Punch?")
+}
+
+text MoveTutor_Text_DynamicPunchDeclined {
+    format("Darn! You're even making fun of me?\n"
+    "Punch! Punch! Punch!")
+}
+
+text MoveTutor_Text_DynamicPunchWhichMon {
+    format("What? You do? You're a good person!\n"
+    "Which Pokémon should I teach?")
+}
+
+text MoveTutor_Text_DynamicPunchTaught {
+    format("I want you to win at the MOSSDEEP GYM\n"
+    "using that DYNAMICPUNCH!")
+}
+
+text MoveTutor_Text_DoubleEdgeTeach {
+    format("Sigh…\p"
+    "SOOTOPOLIS's GYM LEADER is really\n"
+    "lovably admirable.\p"
+    "But that also means I have many\n"
+    "rivals for his attention.\p"
+    "He's got appeal with a DOUBLE-EDGE.\n"
+    "I couldn't even catch his eye.\p"
+    "Please, let me teach your Pokémon\n"
+    "the move DOUBLE-EDGE!")
+}
+
+text MoveTutor_Text_DoubleEdgeDeclined {
+    format("Oh…\n"
+    "Even you rejected me…")
+}
+
+text MoveTutor_Text_DoubleEdgeWhichMon {
+    format("Okay, which Pokémon should I teach DOUBLE-EDGE?")
+}
+
+text MoveTutor_Text_DoubleEdgeTaught {
+    format("I won't live for love anymore!\n"
+    "I'll become tough!")
+}
+
+
