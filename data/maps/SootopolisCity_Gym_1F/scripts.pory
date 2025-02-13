@@ -81,9 +81,11 @@ SootopolisCity_Gym_1F_Movement_FallThroughIce:
 	step_end
 
 SootopolisCity_Gym_1F_EventScript_Juan::
+	special HealPlayerParty
 	trainerbattle_single TRAINER_JUAN_1, SootopolisCity_Gym_1F_Text_JuanIntro, SootopolisCity_Gym_1F_Text_JuanDefeat, SootopolisCity_Gym_1F_EventScript_JuanDefeated, NO_MUSIC
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, SootopolisCity_Gym_1F_EventScript_JuanRematch
+	msgbox SootopolisCity_Gym_1F_Text_JuanDefeat2, MSGBOX_DEFAULT
 	goto_if_unset FLAG_RECEIVED_TM_WATER_PULSE, SootopolisCity_Gym_1F_EventScript_GiveWaterPulse2
 	goto_if_unset FLAG_BADGE06_GET, SootopolisCity_Gym_1F_EventScript_GoGetFortreeBadge
 	msgbox SootopolisCity_Gym_1F_Text_JuanPostBattle, MSGBOX_DEFAULT
@@ -214,15 +216,13 @@ SootopolisCity_Gym_1F_Text_JuanIntro:
 	.string "A grand illusion of water sculpted\n"
 	.string "by Pokémon and myself!$"
 
-@ NOTE: This defeat text actually causes a buffer overflow. It's about 50 bytes too long for
-@ the gDisplayedStringBattle buffer that it's put into, and it stomps all over the gBattleTextBuffs
-@ after, as well as the otherwise unused array after that. One wonders if that's the reason for
-@ the existence of that unused array of ints.
 SootopolisCity_Gym_1F_Text_JuanDefeat:
 	.string "Ahahaha, excellent!\n"
 	.string "Very well, you are the winner.\p"
 	.string "From you, I sense the brilliant shine\n"
-	.string "of skill that will overcome all.\p"
+	.string "of skill that will overcome all.$"
+
+SootopolisCity_Gym_1F_Text_JuanDefeat2:
 	.string "However, compared with me or even\n"
 	.string "Wallace, you are lacking in elegance.\p"
 	.string "Perhaps I should make you a loan\n"
@@ -304,14 +304,14 @@ SootopolisCity_Gym_1F_Text_JuanRematchNeedTwoMons:
 `
 
 text SootopolisCity_Gym_1F_Text_JuanPostBattle {
-	format("The TRAINERS who have gathered all the Gym Badges of Hoenn should make way to the ultimate destination.\p"
+	format("The Trainers who have gathered all the Gym Badges of Hoenn should make way to the ultimate destination.\p"
 	"The Pokémon League.\p"
 	"Travel to the easternmost reaches of Hoenn, to the island Ever Grande.\p"
 	"There, you shall find the Pokémon League.")
 }
 
 text SootopolisCity_Gym_1F_Text_GoGetFortreeBadge {
-	format("There remains but one BADGE to obtain in Hoenn.\p"
+	format("There remains but one Badge to obtain in Hoenn.\p"
 	"If you wish to challenge the Pokémon League, you must obtain the last Badge from the Gym in Fortress.")
 }
 

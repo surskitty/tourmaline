@@ -376,13 +376,14 @@ PetalburgCity_Gym_EventScript_GiveEnigmaBerry::
 
 script PetalburgCity_Gym_EventScript_NormanBattle {
     msgbox(format("DAD: Hm…\n"
-        "So, you did get four GYM BADGES.\p"
+        "So, you did get four Gym Badges.\p"
         "Fine, as I promised, we will have a Pokémon battle.\p"
         "{PLAYER}…\p"
         "I'm so happy that I can have a real battle with my own child.\p"
         "But a battle is a battle!\p"
         "I will do everything in my power as a Gym Leader to win.\p"
         "{PLAYER}, you'd better give it your best shot, too!"), MSGBOX_DEFAULT)
+    special(HealPlayerParty)
     trainerbattle_no_intro(TRAINER_NORMAN_1, PetalburgCity_Gym_Text_NormanDefeat)
     message(format("{PLAYER} received the Balance Badge from Dad!"))
     waitmessage
