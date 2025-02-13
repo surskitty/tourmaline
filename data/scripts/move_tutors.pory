@@ -1,3 +1,70 @@
+script SlateportCity_NameRatersHouse_EventScript_NameRater {
+    lock
+    faceplayer
+    msgbox(format("Now that you can nickname Pokémon within the Summary menu, no one wants a Name Rater.\p"
+        "Would you like to learn a splendid combat move instead?"), MSGBOX_DEFAULT)
+    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Acid Spray", "Bulldoze", "Chilling Water", "Draining Kiss", "Electroweb", "Flame Charge", "Hex," "Icy Wind", "Pounce", "Snarl", "Stored Power", "Struggle Bug", "Trailblaze", "Triple Axel", "Vacuum Wave")
+    switch (var(VAR_RESULT)) {
+    case 0:
+        setvar(VAR_0x8005, MOVE_ACID_SPRAY)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 1:
+        setvar(VAR_0x8005, MOVE_BULLDOZE)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 2:
+        setvar(VAR_0x8005, MOVE_CHILLING_WATER)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 3:
+        setvar(VAR_0x8005, MOVE_DRAINING_KISS)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 4:
+        setvar(VAR_0x8005, MOVE_ELECTROWEB)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 5:
+        setvar(VAR_0x8005, MOVE_FLAME_CHARGE)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 6:
+        setvar(VAR_0x8005, MOVE_HEX)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 7:
+        setvar(VAR_0x8005, MOVE_ICY_WIND)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 8:
+        setvar(VAR_0x8005, MOVE_POUNCE)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 9:
+        setvar(VAR_0x8005, MOVE_SNARL)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 10:
+        setvar(VAR_0x8005, MOVE_STORED_POWER)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 11:
+        setvar(VAR_0x8005, MOVE_STRUGGLE_BUG)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 12:
+        setvar(VAR_0x8005, MOVE_TRAILBLAZE)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 13:
+        setvar(VAR_0x8005, MOVE_TRIPLE_AXEL)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 14:
+        setvar(VAR_0x8005, MOVE_VACUUM_WAVE)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    default:
+        goto(SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
+    }
+}
+
+script SlateportCity_NameRatersHouse_EventScript_TutorDeclined {
+    msgbox(format("Hmph. Come back if you change your mind."), MSGBOX_DEFAULT)
+    release
+}
+
+
+
+
+raw `
+
 SlateportCity_PokemonFanClub_EventScript_SwaggerTutor::
 	lock
 	faceplayer
@@ -206,3 +273,5 @@ MoveTutor_EventScript_OpenPartyMenu::
 MoveTutor_EventScript_CanOnlyBeLearnedOnce::
 	msgbox MoveTutor_Text_ThisMoveCanOnlyBeLearnedOnce, MSGBOX_YESNO
 	return
+
+`
