@@ -1,0 +1,3271 @@
+text MatchCall_WildBattleText1 {
+	format("Hi! {PLAYER}{KUN}, hello!\n"
+	"This is {STR_VAR_1}.\p"
+	"I saw this {STR_VAR_2} a while back\n"
+	"but I couldn't catch it.\p"
+	"It was so close, too!\n"
+	"Well, see you again!")
+}
+
+text MatchCall_WildBattleText2 {
+	format("Hello, {PLAYER}{KUN}.\n"
+	"It's {STR_VAR_1}.\p"
+	"I tried to catch a nice {STR_VAR_2}\n"
+	"a little while ago.\p"
+	"But, it got away.\n"
+	"I was sure disappointed!\p"
+	"Okay, bye!")
+}
+
+text MatchCall_WildBattleText3 {
+	format("Hey there, {PLAYER}!\n"
+	"It's me, {STR_VAR_1}.\p"
+	"I just took a shot at catching\n"
+	"this {STR_VAR_2}, but it took off.\p"
+	"I came oh so close, too!\p"
+	"It spoiled my day…\n"
+	"All right, see you!")
+}
+
+text MatchCall_WildBattleText4 {
+	format("Hey, {PLAYER}{KUN}.\n"
+	"{STR_VAR_1} here.\p"
+	"You know the Pokémon {STR_VAR_2}?\n"
+	"I came close to getting one.\p"
+	"It was just a while back.\n"
+	"I thought I had it but it escaped.\p"
+	"If I see it again, I'll get it for\n"
+	"sure, though.\p"
+	"Okay, catch you later.")
+}
+
+text MatchCall_WildBattleText5 {
+	format("Hiya, {PLAYER}{KUN}!\n"
+	"It's {STR_VAR_1}.\l"
+	"Catching any Pokémon lately?\p"
+	"A little while ago I came close to\n"
+	"nabbing one, but it got loose.\p"
+	"Right, take care!")
+}
+
+text MatchCall_WildBattleText6 {
+	format("Hey, {PLAYER}{KUN}.\n"
+	"{STR_VAR_1} here.\l"
+	"Caught any Pokémon lately?\p"
+	"I nearly nabbed one the other day.\n"
+	"But it evaded me somehow.\p"
+	"You take care.")
+}
+
+text MatchCall_WildBattleText7 {
+	format("…Uh, {PLAYER}{KUN}?\n"
+	"It's me, {STR_VAR_1}.\p"
+	"Oh, wait! Wait!\n"
+	"I can catch this {STR_VAR_2}…\p"
+	"Aaarrrgh! It bolted loose!\n"
+	"That wasn't just close!")
+}
+
+text MatchCall_WildBattleText8 {
+	format("Oh, {PLAYER}{KUN}, how do you do?\n"
+	"This is {STR_VAR_1} speaking.\p"
+	"Have you had success catching\n"
+	"Pokémon lately?\p"
+	"I came very close a little while\n"
+	"ago, but my target got free.\p"
+	"I need to try harder!\n"
+	"See you again!")
+}
+
+text MatchCall_WildBattleText9 {
+	format("Oh, {PLAYER}{KUN}, hi there!\n"
+	"This is {STR_VAR_1}!\p"
+	"So? Are you getting more Pokémon\n"
+	"together?\p"
+	"I'm having a rotten time of it!\n"
+	"They all get away from me!\p"
+	"See you!")
+}
+
+text MatchCall_WildBattleText10 {
+	format("Oh, {PLAYER}{KUN}, hello…\n"
+	"This is {STR_VAR_1}.\p"
+	"Listen, I came within a whisker of\n"
+	"catching this {STR_VAR_2}…\p"
+	"But, it gave me the slip…\p"
+	"I need to try harder.\n"
+	"See you around.")
+}
+
+text MatchCall_WildBattleText11 {
+	format("Ah, {PLAYER}{KUN}.\n"
+	"This is {STR_VAR_1}.\l"
+	"How are things with you?\p"
+	"I tried to catch a wild {STR_VAR_2}\n"
+	"earlier, but it managed to flee.\p"
+	"I feel defeated…")
+}
+
+text MatchCall_WildBattleText12 {
+	format("Hello, {PLAYER}{KUN}.\n"
+	"It's me, {STR_VAR_1}.\l"
+	"Are you still catching Pokémon?\p"
+	"I've been trying to catch them\n"
+	"myself, but it's not so easy.\p"
+	"The way of Pokémon is deep!")
+}
+
+text MatchCall_WildBattleText13 {
+	format("Ah, hello, {PLAYER}{KUN}!\n"
+	"This is {STR_VAR_1}!\l"
+	"Have you been catching Pokémon?\p"
+	"I've been trying to catch them\n"
+	"myself, but with little success.\p"
+	"The way of Pokémon is deep!")
+}
+
+text MatchCall_WildBattleText14 {
+	format("Oh, hi, {PLAYER}{KUN}, how do you do?\n"
+	"This is {STR_VAR_1}.\p"
+	"Just now, I tried to catch a cute\n"
+	"{STR_VAR_2}.\p"
+	"It got away, though!\n"
+	"Oh, you bet I was disappointed!\p"
+	"Bye-bye!")
+}
+
+text MatchCall_WildBattleText15 {
+	format("Hey, {PLAYER}!\n"
+	"This is {STR_VAR_1}!\p"
+	"I've been thinking about trying\n"
+	"to catch me some Pokémon.\p"
+	"But I can't seem to find any.\n"
+	"It's a real puzzler for me!\p"
+	"I'm at my wit's end!\n"
+	"See you around!")
+}
+
+text MatchCall_NegativeBattleText1 {
+	format("Hi! {PLAYER}{KUN}, hello!\n"
+	"This is {STR_VAR_1}.\p"
+	"I tried battling another TRAINER,\n"
+	"but I lost.\p"
+	"It was really disappointing.\n"
+	"Well, see you again!")
+}
+
+text MatchCall_NegativeBattleText2 {
+	format("Hello, {PLAYER}{KUN}.\n"
+	"It's {STR_VAR_1}.\p"
+	"I challenged someone else after\n"
+	"we battled.\p"
+	"I came close, but I ended up\n"
+	"losing. Oh, well!")
+}
+
+text MatchCall_NegativeBattleText3 {
+	format("Hey there, {PLAYER}!\n"
+	"It's me, {STR_VAR_1}.\p"
+	"I just got cleaned in a battle.\p"
+	"I guess I need to raise my team\n"
+	"some more!")
+}
+
+text MatchCall_NegativeBattleText4 {
+	format("Hey, {PLAYER}.\n"
+	"{STR_VAR_1} here.\p"
+	"I tried another battle yesterday,\n"
+	"but I couldn't pull out the win.\p"
+	"My team needs more raising.\n"
+	"Okay, catch you later.")
+}
+
+text MatchCall_NegativeBattleText5 {
+	format("Hiya, {PLAYER}!\n"
+	"It's {STR_VAR_1}.\p"
+	"How are things with you?\p"
+	"I've been battling on,\n"
+	"but I haven't won very often.\p"
+	"I can't get it together.\n"
+	"Right, take care!")
+}
+
+text MatchCall_NegativeBattleText6 {
+	format("Hey, {PLAYER}.\n"
+	"{STR_VAR_1} here.\p"
+	"How's it going for you?\p"
+	"I've been battling hard lately,\n"
+	"but to little success.\p"
+	"I can't get into the groove.\n"
+	"You take care.")
+}
+
+text MatchCall_NegativeBattleText7 {
+	format("{STR_VAR_1} here.\n"
+	"How's it going lately?\p"
+	"I lost a battle yesterday,\n"
+	"and it's filled my thoughts.\p"
+	"I have to devise a plan…\n"
+	"See you.")
+}
+
+text MatchCall_NegativeBattleText8 {
+	format("Oh, {PLAYER}{KUN}, how do you do?\n"
+	"This is {STR_VAR_1} speaking.\p"
+	"How are your Pokémon doing?\n"
+	"I lost a match the other day.\p"
+	"I need to try harder!\n"
+	"See you again!")
+}
+
+text MatchCall_NegativeBattleText9 {
+	format("Oh, {PLAYER}{KUN}, hi there!\n"
+	"This is {STR_VAR_1}!\p"
+	"Listen, listen, you have to hear\n"
+	"this!\p"
+	"I had a Pokémon battle earlier,\n"
+	"but I lost at the last second.\p"
+	"Oh, it burns me up!")
+}
+
+text MatchCall_NegativeBattleText10 {
+	format("Oh, {PLAYER}{KUN}, hello…\n"
+	"This is {STR_VAR_1}.\p"
+	"A little earlier, I was in a battle.\n"
+	"I lost, though.\p"
+	"I need to raise my Pokémon more.\n"
+	"See you around.")
+}
+
+text MatchCall_NegativeBattleText11 {
+	format("Ah, {PLAYER}{KUN}.\n"
+	"This is {STR_VAR_1}.\l"
+	"How are your Pokémon?\p"
+	"I just lost yet another battle.\p"
+	"Well, see you!")
+}
+
+text MatchCall_NegativeBattleText12 {
+	format("Hello, {PLAYER}{KUN}.\n"
+	"It's me, {STR_VAR_1}.\l"
+	"Are you still battling hard?\p"
+	"As for me, I lost recently, so I've\n"
+	"been training my team all over.\p"
+	"Let's meet again.")
+}
+
+text MatchCall_NegativeBattleText13 {
+	format("Ah, hello, {PLAYER}{KUN}!\n"
+	"This is {STR_VAR_1}!\p"
+	"I hope you've been keeping well.\p"
+	"I was in a battle just a little\n"
+	"while before this.\p"
+	"{PLAYER}{KUN}, try to be active like me.\n"
+	"See you again!")
+}
+
+text MatchCall_NegativeBattleText14 {
+	format("Oh, hi, {PLAYER}{KUN}.\n"
+	"This is {STR_VAR_1}.\p"
+	"Are you doing good?\p"
+	"You should go home every so often,\n"
+	"though.\p"
+	"Bye-bye!")
+}
+
+text MatchCall_PositiveBattleText1 {
+	format("Hi! {PLAYER}{KUN}, hello!\n"
+	"This is {STR_VAR_1}!\p"
+	"I battled another TRAINER earlier.\n"
+	"I won! I won!\p"
+	"My {STR_VAR_2} really worked hard\n"
+	"for me. This is so great!")
+}
+
+text MatchCall_PositiveBattleText2 {
+	format("Hello, {PLAYER}{KUN}!\n"
+	"It's {STR_VAR_1}!\p"
+	"I had a battle yesterday and\n"
+	"I won! It's fantastic!")
+}
+
+text MatchCall_PositiveBattleText3 {
+	format("Hey there, {PLAYER}!\n"
+	"It's me, {STR_VAR_1}!\l"
+	"How's your battling?\p"
+	"Me, I had a battle the other day,\n"
+	"and my {STR_VAR_2} came up huge!\p"
+	"The next time I battle you,\n"
+	"{PLAYER}, it won't be me losing!")
+}
+
+text MatchCall_PositiveBattleText4 {
+	format("Hey, {PLAYER}.\n"
+	"{STR_VAR_1} here.\p"
+	"I had a match earlier.\n"
+	"I managed to win, but it was close.\p"
+	"My {STR_VAR_2} put on one\n"
+	"inspired showing.")
+}
+
+text MatchCall_PositiveBattleText5 {
+	format("Hiya, {PLAYER}{KUN}!\n"
+	"It's {STR_VAR_1}.\p"
+	"How are things with you?\n"
+	"Battling much?\p"
+	"I just won a while back!\n"
+	"My {STR_VAR_2} was brilliant!\p"
+	"You wait. I'm going to beat you\n"
+	"next time! Right, take care!")
+}
+
+text MatchCall_PositiveBattleText6 {
+	format("Hey, {PLAYER}{KUN}.\n"
+	"{STR_VAR_1} here.\p"
+	"How's it going for you?\p"
+	"I've been riding a hot streak.\n"
+	"Why, I just won a battle.\p"
+	"When we have our next battle,\n"
+	"I'm sure not going to lose!")
+}
+
+text MatchCall_PositiveBattleText7 {
+	format("{PLAYER}{KUN}?\n"
+	"{STR_VAR_1} here.\p"
+	"My {STR_VAR_2} is a force!\n"
+	"It won me another battle just now!\p"
+	"I can't wait to have a rematch\n"
+	"with you.")
+}
+
+text MatchCall_PositiveBattleText8 {
+	format("Oh, {PLAYER}{KUN}, how do you do?\n"
+	"This is {STR_VAR_1} speaking.\p"
+	"I hope you've been well.\n"
+	"I wanted to tell you I just won.\p"
+	"My {STR_VAR_2} worked especially\n"
+	"hard to get the win.\p"
+	"See you again!")
+}
+
+text MatchCall_PositiveBattleText9 {
+	format("Oh, {PLAYER}{KUN}, hi there!\n"
+	"This is {STR_VAR_1}!\p"
+	"How are your Pokémon holding up?\n"
+	"Mine just won a battle!\p"
+	"My {STR_VAR_2} was spectacular,\n"
+	"I must say!\p"
+	"I wish I could've shown you!\n"
+	"See you again!")
+}
+
+text MatchCall_PositiveBattleText10 {
+	format("Oh, {PLAYER}{KUN}, hello…\n"
+	"This is {STR_VAR_1}.\p"
+	"How has life been treating you?\p"
+	"My Pokémon appear to be charged\n"
+	"with energy.\p"
+	"I just won a battle with them.\n"
+	"See you around.")
+}
+
+text MatchCall_PositiveBattleText11 {
+	format("Ah, {PLAYER}{KUN}.\n"
+	"This is {STR_VAR_1}.\p"
+	"Been in any battles lately?\n"
+	"I just won another one today!\p"
+	"I'm on a roll! Gahahaha!\n"
+	"Well, see you!")
+}
+
+text MatchCall_PositiveBattleText12 {
+	format("Hello, {PLAYER}{KUN}.\n"
+	"It's me, {STR_VAR_1}.\p"
+	"I trust you've been well?\n"
+	"I'm still bursting with life!\p"
+	"Why, just now, I won another match.\n"
+	"I'm not stepping aside to you\l"
+	"youngsters yet!")
+}
+
+text MatchCall_PositiveBattleText13 {
+	format("Ah, hello, {PLAYER}{KUN}!\n"
+	"This is {STR_VAR_1}!\p"
+	"I hope you've been keeping well.\n"
+	"I still have a bounce in my step!\p"
+	"Why, I just won a battle yet again.\n"
+	"Oh, I won't lose to young people\l"
+	"quite yet!\p"
+	"See you again!")
+}
+
+text MatchCall_PositiveBattleText14 {
+	format("Oh, hi, {PLAYER}{KUN}.\n"
+	"This is {STR_VAR_1}.\p"
+	"I was in a battle recently, and my\n"
+	"{STR_VAR_2} was exceptional!\p"
+	"I wish you could have seen it,\n"
+	"{PLAYER}{KUN}. Bye-bye!")
+}
+
+text MatchCall_SameRouteBattleRequestText1 {
+	format("Hi! {PLAYER}, hello!\n"
+	"This is {STR_VAR_1}.\p"
+	"Huh? Wait, you're near\n"
+	"{STR_VAR_2}?\p"
+	"Oh, wow, we have to battle, then!\n"
+	"I'll be waiting! See you!")
+}
+
+text MatchCall_SameRouteBattleRequestText2 {
+	format("Hello, {PLAYER}!\n"
+	"It's {STR_VAR_1}.\p"
+	"Oh? You happen to be around\n"
+	"{STR_VAR_2} right now?\p"
+	"Would you like to battle now?\n"
+	"I'll wait for you! See you!")
+}
+
+text MatchCall_SameRouteBattleRequestText3 {
+	format("Hey there, {PLAYER}!\n"
+	"It's me, {STR_VAR_1}.\p"
+	"Oh, hey, are you near\n"
+	"{STR_VAR_2} right now?\p"
+	"How would you like to battle with\n"
+	"me right now?\p"
+	"I'm not losing again!\n"
+	"I'll be waiting! Catch you soon!")
+}
+
+text MatchCall_SameRouteBattleRequestText4 {
+	format("Hey, {PLAYER}{KUN}.\n"
+	"{STR_VAR_1} here.\p"
+	"Whereabouts are you now?\n"
+	"Huh? {STR_VAR_2}?\p"
+	"Want to battle now?\n"
+	"I'll wait for you. See you!")
+}
+
+text MatchCall_SameRouteBattleRequestText5 {
+	format("Hiya, {PLAYER}{KUN}!\n"
+	"It's {STR_VAR_1}.\l"
+	"How are things with you?\p"
+	"You're where now?\n"
+	"{STR_VAR_2}?\p"
+	"Well, how about we have a quick\n"
+	"rematch right away?\p"
+	"I'll keep an eye out for you.\n"
+	"See you soon!")
+}
+
+text MatchCall_SameRouteBattleRequestText6 {
+	format("Hey, {PLAYER}{KUN}.\n"
+	"{STR_VAR_1} here.\l"
+	"How are your Pokémon keeping?\p"
+	"Oh, is that right? You're around\n"
+	"{STR_VAR_2}?\p"
+	"Well, then, we'd better have\n"
+	"a rematch.\p"
+	"I can wait, sure.\n"
+	"See you!")
+}
+
+text MatchCall_SameRouteBattleRequestText7 {
+	format("…Er, {PLAYER}{KUN}?\n"
+	"{STR_VAR_1} here…\p"
+	"Oh, you happen to be around\n"
+	"{STR_VAR_2}?\p"
+	"Then, let's battle.\n"
+	"Right away, I mean.\p"
+	"I'll show you my Pokémon.\n"
+	"I'll wait for you.")
+}
+
+text MatchCall_SameRouteBattleRequestText8 {
+	format("Oh, {PLAYER}{KUN}, how do you do?\n"
+	"This is {STR_VAR_1} speaking.\p"
+	"I hope you're doing well.\n"
+	"Oh, you're near {STR_VAR_2}.\p"
+	"Would you like to have a battle\n"
+	"with me, then?\p"
+	"I'll wait for you.\n"
+	"See you soon!")
+}
+
+text MatchCall_SameRouteBattleRequestText9 {
+	format("Oh, {PLAYER}{KUN}, hi there!\n"
+	"This is {STR_VAR_1}!\p"
+	"Are you keeping up?\n"
+	"Oh, you're near {STR_VAR_2}?\p"
+	"Oh, well, then don't you think we\n"
+	"should battle?\p"
+	"Don't keep me waiting too long!")
+}
+
+text MatchCall_SameRouteBattleRequestText10 {
+	format("Oh, {PLAYER}{KUN}, hello…\n"
+	"This is {STR_VAR_1}.\p"
+	"How are things with you?\n"
+	"Oh, you're near {STR_VAR_2}.\p"
+	"We should have a battle now, then.\p"
+	"I'm ready and waiting.\n"
+	"Be quick!")
+}
+
+text MatchCall_SameRouteBattleRequestText11 {
+	format("Ah, {PLAYER}{KUN}.\n"
+	"This is {STR_VAR_1}.\p"
+	"Ah, so where you are now is\n"
+	"{STR_VAR_2}?\p"
+	"Well, then, we just have to have\n"
+	"a battle, don't you think?\p"
+	"I'll wait around for you!\n"
+	"See you real quick!")
+}
+
+text MatchCall_SameRouteBattleRequestText12 {
+	format("Hello, {PLAYER}{KUN}.\n"
+	"It's me, {STR_VAR_1}.\l"
+	"Where might you be now?\p"
+	"{STR_VAR_2}?\n"
+	"That's quite close by!\p"
+	"What do you say we have a battle\n"
+	"now?\p"
+	"I can wait.\n"
+	"See you!")
+}
+
+text MatchCall_SameRouteBattleRequestText13 {
+	format("Ah, hello, {PLAYER}{KUN}!\n"
+	"This is {STR_VAR_1}!\p"
+	"I hope you've been keeping well.\n"
+	"Oh, you're near {STR_VAR_2}?\p"
+	"Since that's not very far away,\n"
+	"come see me for a battle.\p"
+	"I'll wait for you.\n"
+	"Bye for now.")
+}
+
+text MatchCall_SameRouteBattleRequestText14 {
+	format("Oh, hi, {PLAYER}{KUN}.\n"
+	"This is {STR_VAR_1}.\p"
+	"You're what? …{STR_VAR_2}?\n"
+	"That's very close.\p"
+	"Don't you think we ought to have\n"
+	"a battle?\p"
+	"I'll be looking for you!\n"
+	"Bye-bye!")
+}
+
+text MatchCall_DifferentRouteBattleRequestText1 {
+	format("Hi! {PLAYER}, hello!\n"
+	"This is {STR_VAR_1}.\p"
+	"Want to have a battle with me?\p"
+	"I'll be waiting for you around\n"
+	"{STR_VAR_2}!")
+}
+
+text MatchCall_DifferentRouteBattleRequestText2 {
+	format("Hello, {PLAYER}!\n"
+	"It's {STR_VAR_1}.\p"
+	"Would you like to have a battle\n"
+	"with me again?\p"
+	"You can find me around\n"
+	"{STR_VAR_2}. I'll be waiting!")
+}
+
+text MatchCall_DifferentRouteBattleRequestText3 {
+	format("Hey there, {PLAYER}!\n"
+	"It's me, {STR_VAR_1}.\p"
+	"My Pokémon have grown a lot\n"
+	"tougher since last time.\p"
+	"I want to see how strong they've\n"
+	"become with your Pokémon, {PLAYER}.\p"
+	"So, let's have a battle!\p"
+	"I'll be waiting for you around\n"
+	"{STR_VAR_2}.")
+}
+
+text MatchCall_DifferentRouteBattleRequestText4 {
+	format("Hey, {PLAYER}{KUN}.\n"
+	"{STR_VAR_1} here.\l"
+	"How are things with you?\p"
+	"My Pokémon have grown pretty\n"
+	"tough lately.\p"
+	"Hey, how would you like to have\n"
+	"another battle with me?\p"
+	"Let's meet up around\n"
+	"{STR_VAR_2}, okay?")
+}
+
+text MatchCall_DifferentRouteBattleRequestText5 {
+	format("Hiya, {PLAYER}{KUN}!\n"
+	"It's {STR_VAR_1}.\p"
+	"My Pokémon are growing up in\n"
+	"decent ways.\p"
+	"I'd really like to have another\n"
+	"battle with you.\p"
+	"I'll keep an eye out for you around\n"
+	"{STR_VAR_2}. See you soon!")
+}
+
+text MatchCall_DifferentRouteBattleRequestText6 {
+	format("Hey, {PLAYER}{KUN}.\n"
+	"{STR_VAR_1} here.\l"
+	"I hope you're on top of things.\p"
+	"I was thinking I'd like another\n"
+	"battle with you. What do you say?\p"
+	"If you feel like a battle,\n"
+	"come to {STR_VAR_2}.\p"
+	"See you!")
+}
+
+text MatchCall_DifferentRouteBattleRequestText7 {
+	format("…Er, {PLAYER}{KUN}?\n"
+	"{STR_VAR_1} here…\l"
+	"So? Are your Pokémon growing?\p"
+	"Mine sure got stronger.\n"
+	"I'd like to show you.\p"
+	"I'll be around {STR_VAR_2}.\n"
+	"Come see me for a match.\p"
+	"See you around.")
+}
+
+text MatchCall_DifferentRouteBattleRequestText8 {
+	format("Oh, {PLAYER}{KUN}, how do you do?\n"
+	"This is {STR_VAR_1} speaking.\p"
+	"I hope you're doing well.\n"
+	"My Pokémon are very frisky.\p"
+	"If you're ever in the area, please\n"
+	"give me a rematch.\p"
+	"I'll be around {STR_VAR_2}.\n"
+	"Until then, good-bye!")
+}
+
+text MatchCall_DifferentRouteBattleRequestText9 {
+	format("Oh, {PLAYER}{KUN}, hi there!\n"
+	"This is {STR_VAR_1}!\l"
+	"How are your Pokémon doing?\p"
+	"My Pokémon keep getting better.\n"
+	"I'd like to show you, {PLAYER}{KUN}.\p"
+	"I'm around {STR_VAR_2} now,\n"
+	"so let's battle if you're close by.\p"
+	"Hope I see you soon!")
+}
+
+text MatchCall_DifferentRouteBattleRequestText10 {
+	format("Oh, {PLAYER}{KUN}, hello…\n"
+	"This is {STR_VAR_1}.\l"
+	"So, how are things with you?\p"
+	"My Pokémon have grown much\n"
+	"stronger than before.\p"
+	"I'd love another battle with you,\n"
+	"{PLAYER}{KUN}.\p"
+	"I'll be around {STR_VAR_2}.\n"
+	"Come see me if you're close.")
+}
+
+text MatchCall_DifferentRouteBattleRequestText11 {
+	format("Ah, {PLAYER}{KUN}.\n"
+	"This is {STR_VAR_1}.\l"
+	"Where might you be now?\p"
+	"My Pokémon are full of life.\n"
+	"They appear to be looking forward\l"
+	"to seeing your Pokémon, {PLAYER}{KUN}.\p"
+	"I'm around {STR_VAR_2} now.\n"
+	"I hope you'll seek us out.")
+}
+
+text MatchCall_DifferentRouteBattleRequestText12 {
+	format("Hello, {PLAYER}{KUN}.\n"
+	"It's me, {STR_VAR_1}.\p"
+	"I should tell you, my Pokémon have\n"
+	"grown to be quite robust lately.\p"
+	"I would like to see them in a battle\n"
+	"with you, {PLAYER}{KUN}.\p"
+	"We'll be around {STR_VAR_2}.\n"
+	"Come see us anytime!")
+}
+
+text MatchCall_DifferentRouteBattleRequestText13 {
+	format("Ah, hello, {PLAYER}{KUN}!\n"
+	"This is {STR_VAR_1}!\l"
+	"Are your Pokémon keeping well?\p"
+	"My Pokémon have been so healthy,\n"
+	"they don't look capable of losing!\p"
+	"I would surely love to have another\n"
+	"battle with you.\p"
+	"If you're near {STR_VAR_2},\n"
+	"do come see us.")
+}
+
+text MatchCall_DifferentRouteBattleRequestText14 {
+	format("Oh, hi, {PLAYER}{KUN}.\n"
+	"This is {STR_VAR_1}.\l"
+	"Keeping well, I hope.\p"
+	"Oh, yes! My Pokémon are\n"
+	"much stronger than before.\p"
+	"Don't you think we ought to have\n"
+	"a battle, {PLAYER}{KUN}?\p"
+	"We'll be waiting for you around\n"
+	"{STR_VAR_2}.\p"
+	"Come see us anytime, okay?")
+}
+
+text MatchCall_PersonalizedText1 {
+	format("It's me, the mountain-loving\n"
+	"{STR_VAR_1}!\p"
+	"Well, since we met, have you grown\n"
+	"to appreciate the mountains more?\p"
+	"I rarely see you in the mountains…\p"
+	"Next time, we'll meet somewhere\n"
+	"around {STR_VAR_2}.")
+}
+
+text MatchCall_PersonalizedText2 {
+	format("This is {STR_VAR_1}.\n"
+	"Hello.\p"
+	"I was just telling a new TRAINER\n"
+	"about you.\p"
+	"I told her about a strong TRAINER\n"
+	"who raises Pokémon with care.\p"
+	"I hope you'll become a TRAINER\n"
+	"that everyone will admire.\p"
+	"I hope we meet again!")
+}
+
+text MatchCall_PersonalizedText3 {
+	format("Hello! It's {STR_VAR_1}.\p"
+	"I love where I am now.\n"
+	"It's pleasant with sweet aromas!\p"
+	"I think someone planted BERRIES,\n"
+	"and they burst into bloom.\p"
+	"See you again sometime!")
+}
+
+text MatchCall_PersonalizedText4 {
+	format("Hello! Thirty years of exploration,\n"
+	"{STR_VAR_1} at your service!\p"
+	"It seems that you're energetically\n"
+	"traveling here and there.\p"
+	"Have you discovered any new ruins?\n"
+	"Please tell if you have!\p"
+	"Now, if you'll excuse me,\n"
+	"I have ruins to explore.")
+}
+
+text MatchCall_PersonalizedText5 {
+	format("It's {STR_VAR_1}!\p"
+	"Know what I'm doing today?\n"
+	"Looking at waves from the beach!\p"
+	"Sigh… The waves are all sparkly.\n"
+	"The sea is the prettiest from here.\l"
+	"I'm getting hungry, so bye-bye!")
+}
+
+text MatchCall_PersonalizedText6 {
+	format("Munch-chew…\n"
+	"Oh, hi, it's {STR_VAR_1}.\l"
+	"I love eating on the beach.\p"
+	"My Pokémon and I have been doing\n"
+	"great. We're fully fueled!\l"
+	"I'm going for a swim. Bye!")
+}
+
+text MatchCall_PersonalizedText7 {
+	format("Hello, this is {STR_VAR_1}…\p"
+	"I've grown a little jaded with this\n"
+	"whole COOLTRAINER thing…\p"
+	"Everyone thinks I'm a perfect\n"
+	"TRAINER, and that makes me try to\l"
+	"live up to that expectation.\p"
+	"But I guess that goes with being\n"
+	"a COOLTRAINER.\p"
+	"I'll just have to buckle down…\n"
+	"and grin and bear it.\p"
+	"You're the only person that I could\n"
+	"confide in like this.\p"
+	"But when I see you next,\n"
+	"don't worry, I won't whine!")
+}
+
+text MatchCall_PersonalizedText8 {
+	format("Yahoo, it's {STR_VAR_1}!\n"
+	"How do you do?\p"
+	"I've been raising my Pokémon with\n"
+	"you as the target.\p"
+	"I don't intend to lose when we\n"
+	"battle again.\p"
+	"Isn't it great to have TRAINER\n"
+	"friends? Let's meet again!")
+}
+
+text MatchCall_PersonalizedText9 {
+	format("It's {STR_VAR_1}…\n"
+	"Right now, behind you…\l"
+	"Wasn't there something…?\p"
+	"The power of the Pokémon that\n"
+	"sleep here at MT. PYRE…\p"
+	"It's telling me about you…\p"
+	"You should walk away quickly and\n"
+	"never once look back…\p"
+	"Giggle…\n"
+	"Farewell…")
+}
+
+text MatchCall_PersonalizedText10 {
+	format("This is {STR_VAR_1}.\n"
+	"How do you do?\p"
+	"Isn't it convenient that we can\n"
+	"chat like this at a distance?\p"
+	"Before, if I wanted to speak with\n"
+	"anyone, I had to have my father\l"
+	"drive me…\p"
+	"I should be going now.\n"
+	"I'm glad we had this chat.")
+}
+
+text MatchCall_PersonalizedText11 {
+	format("It's {STR_VAR_1}!\n"
+	"Will you listen to this?\p"
+	"I like the SAFARI ZONE a lot,\n"
+	"but whenever I go, I get lost!\p"
+	"All that tall grass!\n"
+	"And it's much too spread out!\p"
+	"I feel better getting that off\n"
+	"my chest!\p"
+	"I'm off to the SAFARI ZONE again!\n"
+	"Catch you!")
+}
+
+text MatchCall_PersonalizedText12 {
+	format("Hello, {STR_VAR_1} here.\n"
+	"Yes, correct, I am rich, yes.\p"
+	"I should tell you, my wealth has\n"
+	"grown since we last met.\p"
+	"What's more, my Pokémon have also\n"
+	"grown stronger.\p"
+	"I can't shake the feeling that\n"
+	"this world exists for me!\p"
+	"Oh, no need to say a word!\n"
+	"Everyone knows it's true!\p"
+	"Oh, you must excuse me, I have this\n"
+	"formal dinner to attend.")
+}
+
+text MatchCall_PersonalizedText13 {
+	format("Ufufufufu…\n"
+	"It's me, {STR_VAR_1}…\p"
+	"Can you guess what I'm seeing?\n"
+	"A pair of {STR_VAR_2} in a battle.\p"
+	"Maybe I'll try catching the winner…\n"
+	"Ufufufufufu…\p"
+	"I… I'm kind of busy now.\n"
+	"I have to go.")
+}
+
+text MatchCall_PersonalizedText14 {
+	format("Oh, it's {STR_VAR_1}!\p"
+	"I was just thinking I'm getting\n"
+	"bored of the ABANDONED SHIP.\p"
+	"But since I'm already here,\n"
+	"and I want to beat you once,\l"
+	"I'll be sticking around a bit more.\p"
+	"If you feel compelled, why don't\n"
+	"you come see me?\p"
+	"I think today will be the day that\n"
+	"I finally challenge the man next\l"
+	"door to a match.\p"
+	"Be seeing you!")
+}
+
+text MatchCall_PersonalizedText15 {
+	format("I'm {STR_VAR_1}!\n"
+	"The man of the sea!\p"
+	"You know what I think?\p"
+	"The TRAINERS out at sea are\n"
+	"the toughest of the tough!\p"
+	"You should learn from me and train\n"
+	"in the sea…\p"
+	"Whoops, giant surf rising!\p"
+	"It's a great training opportunity!\n"
+	"Sorry, but I have to go!")
+}
+
+text MatchCall_PersonalizedText16 {
+	format("It's {STR_VAR_1}! Listen, I've been\n"
+	"teaching karate to my Pokémon.\p"
+	"But now they're better than me!\n"
+	"I've done nothing but lose to them!\p"
+	"But even though I may lose to\n"
+	"Pokémon, I won't lose to another\l"
+	"TRAINER, no sir!\p"
+	"We have to battle again!\n"
+	"Ugwaah!")
+}
+
+text MatchCall_PersonalizedText17 {
+	format("It's me, {STR_VAR_1}.\n"
+	"How're your travels unwinding?\p"
+	"…Whoa, is that right?\n"
+	"Sounds awfully stimulating!\p"
+	"I think I could write a song about\n"
+	"one of your episodes.\p"
+	"…Oh, hey, I'm feeling it.\n"
+	"I hear the riffs in my head.\p"
+	"I'd better get this tune properly\n"
+	"written, so I've got to fly! Later!")
+}
+
+text MatchCall_PersonalizedText18 {
+	format("This is {STR_VAR_1}…\n"
+	"Hear my new song.\p"
+	"Lalala, {STR_VAR_2}, {STR_VAR_2}!\n"
+	"Why are you that {STR_VAR_2}?\l"
+	"Why can't I be you, {STR_VAR_2}?\l"
+	"Lala, {STR_VAR_2} and {STR_VAR_1},\l"
+	"{STR_VAR_1} and {STR_VAR_2}…\p"
+	"Repeat chorus, fade…")
+}
+
+text MatchCall_PersonalizedText19 {
+	format("I'm {STR_VAR_1}, you know,\n"
+	"the camping expert!\p"
+	"When we battled, I couldn't help\n"
+	"but lose to you.\p"
+	"After all, my expertise is in\n"
+	"camping.\p"
+	"But win or lose, I like to battle\n"
+	"when I'm camping.\p"
+	"Battle with us again, okay?\n"
+	"Oh, and let's go camping, too!")
+}
+
+text MatchCall_PersonalizedText20 {
+	format("It's me, me, {STR_VAR_1}!\p"
+	"I'd like to climb other mountains\n"
+	"than this one, to be honest.\p"
+	"But I'm not sure if there'd be any\n"
+	"ladies like on MT. CHIMNEY.\p"
+	"If you know any other mountain\n"
+	"with ladies around, let me know!\p"
+	"Ehehehe, see you around!")
+}
+
+text MatchCall_PersonalizedText21 {
+	format("… … … … … …\n"
+	"… … … … … …\l"
+	"It's {STR_VAR_1}…\p"
+	"… … … … … …\n"
+	"… … … … … …\l"
+	"That's all today…")
+}
+
+text MatchCall_PersonalizedText22 {
+	format("This is {STR_VAR_1}. Today, I had\n"
+	"this feeling I would chat with you.\p"
+	"My desire to defeat you builds\n"
+	"by day and by night.\p"
+	"You have a rival like that, yes?\n"
+	"I wish it were me…\p"
+	"I'm glad you heard me out.\n"
+	"See you!")
+}
+
+text MatchCall_PersonalizedText23 {
+	format("It's {STR_VAR_1}.\p"
+	"When there's a strong TRAINER\n"
+	"nearby, I can sometimes sense that\l"
+	"somehow.\p"
+	"Did you pass close by, {PLAYER}{KUN}?\n"
+	"Maybe it was you.\p"
+	"I'll be waiting for your visit.\n"
+	"Bye!")
+}
+
+text MatchCall_PersonalizedText24 {
+	format("Hello, this is {STR_VAR_1}.\n"
+	"You sound well, {PLAYER}{KUN}.\p"
+	"I've traveled around the world,\n"
+	"but I must say I've taken a great\l"
+	"shine to this region.\p"
+	"I plan to stay here a while.\n"
+	"Perhaps we can meet again?\p"
+	"I've not forgotten your dazzling\n"
+	"techniques.\p"
+	"I do hope for a rematch.")
+}
+
+text MatchCall_PersonalizedText25 {
+	format("Snivel… It's… {STR_VAR_1}…\n"
+	"…Sob…\p"
+	"ROXANNE chewed me out in class\n"
+	"today.\p"
+	"But I don't dislike her or anything.\p"
+	"ROXANNE tells me exactly what\n"
+	"I did wrong so I can learn from it.\p"
+	"You bet I'll be going to\n"
+	"the TRAINER'S SCHOOL tomorrow!\p"
+	"See you later!")
+}
+
+text MatchCall_PersonalizedText26 {
+	format("It's {STR_VAR_1}!\p"
+	"ROXANNE let me battle with her\n"
+	"yesterday.\p"
+	"The results…\n"
+	"Terrible, like you needed to ask.\p"
+	"But I was delighted that ROXANNE\n"
+	"would even let me challenge her!\p"
+	"You wouldn't believe how much\n"
+	"more I admire her!\p"
+	"I'm going to really focus and work!\n"
+	"I'd better go!")
+}
+
+text MatchCall_PersonalizedText27 {
+	format("Hi, it's ANNA! I'm with my junior\n"
+	"partner MEG again today.\p"
+	"I really love caring for MEG and\n"
+	"Pokémon. They're so cute!\p"
+	"I wish I could look after them\n"
+	"as if they were my siblings!\p"
+	"Oh, hi, MEG!\n"
+	"Did you get the buns?\p"
+	"Huh? No, no, I'm not treating you\n"
+	"like my personal slave!\p"
+	"You lost the match, so you have\n"
+	"to go buy the bread as punishment!\p"
+	"I wouldn't treat you like a slave,\n"
+	"MEG! You're too special to me!\p"
+	"I have to go now.\n"
+	"It's time for our snack!")
+}
+
+text MatchCall_PersonalizedText28 {
+	format("I love Pokémon!\n"
+	"It's {STR_VAR_1} from the FAN CLUB!\p"
+	"You have to hear this!\n"
+	"My sweet Pokémon…\p"
+	"Snort! Wahaha!\n"
+	"I can't say any more! It's a secret!\l"
+	"It's just too cute for words!\p"
+	"Oh, my sweet {STR_VAR_2} is begging\n"
+	"for a {POKEBLOCK}!\p"
+	"It's the picture of cuteness!\p"
+	"Sorry, but I can't talk now!\n"
+	"You'll have to hear this next time!")
+}
+
+text MatchCall_PersonalizedText29 {
+	format("Ohoho!\p"
+	"This is {STR_VAR_1}! I can't wait to\n"
+	"tell you about my darling Pokémon!\p"
+	"Please, you must listen to this.\n"
+	"It's about my darling {STR_VAR_2}.\p"
+	"Whenever anyone picks it up,\n"
+	"it leaps straight into my arms!\p"
+	"Oh… Oh… Could there be anything\n"
+	"more blissful?\p"
+	"Oh, it feels so heavenly!\p"
+	"I'm so glad I could share some of\n"
+	"my happiness with you.\p"
+	"Well, I must be going.\n"
+	"Bye, now!")
+}
+
+text MatchCall_PersonalizedText30 {
+	format("I am… {STR_VAR_1}.\n"
+	"People call me an EXPERT.\p"
+	"But there is one thing I know.\n"
+	"I could not be an EXPERT on my own\l"
+	"power.\p"
+	"Only with the help of Pokémon can\n"
+	"a TRAINER become an EXPERT.\p"
+	"Humph! I believe I may have said\n"
+	"something deep and profound!\p"
+	"I shall leave you in good spirits!")
+}
+
+text MatchCall_PersonalizedText31 {
+	format("It's {STR_VAR_1}.\n"
+	"I'm glad to chat with you!\p"
+	"I am feeling alive and refreshed\n"
+	"soaking in this hot-spring tub.\p"
+	"I've been battling young TRAINERS\n"
+	"since we met, but you're still\l"
+	"the best of the lot.\p"
+	"I imagine you'll become an EXPERT\n"
+	"in your old age! Ohohoho…")
+}
+
+text MatchCall_PersonalizedText32 {
+	format("Yay! This is {STR_VAR_1}!\n"
+	"What's up?\p"
+	"I might be imagining this, but when\n"
+	"I win battles, my shorts seem to\l"
+	"feel, like, better. Materially.\p"
+	"What do I mean by that?\n"
+	"It's kind of hard to explain, but…\l"
+	"How would I say this now…\l"
+	"My shorts feel silkier!\p"
+	"And when I battled you, {PLAYER}{KUN},\n"
+	"my shorts felt icky and coarse.\p"
+	"… … … … … …\n"
+	"You didn't really believe that?\l"
+	"Ehehehe, that's all! Bye now!")
+}
+
+text MatchCall_PersonalizedText33 {
+	format("Ahoy!\n"
+	"{STR_VAR_1} here!\p"
+	"As always, I'm fishing with wild\n"
+	"abandon!\p"
+	"Are there other places I can fish\n"
+	"than the sea and rivers?\p"
+	"I get these powerful urges to\n"
+	"fish just about anywhere!\p"
+	"Oh, gosh, darn it!\n"
+	"My line's tangled up!\p"
+	"Gotta go!\n"
+	"Find me some new fishing spots!")
+}
+
+text MatchCall_PersonalizedText34 {
+	format("Hey, there! It's {STR_VAR_1}.\n"
+	"Are you taking it casually?\p"
+	"Ever since I was a kid, you know,\n"
+	"I've always been placid, huh?\p"
+	"I never was much for getting all\n"
+	"stressed or rushing things.\p"
+	"But wouldn't you know it,\n"
+	"I'm now a TRIATHLETE.\p"
+	"You just can't tell where life will\n"
+	"take you, if you get my drift.\p"
+	"You're a TRAINER now, but who\n"
+	"knows what the future holds, huh?\p"
+	"Imagine yourself as a teacher,\n"
+	"or maybe an artist. Cool, huh?\p"
+	"But, hey, be cool. Take it casual.\n"
+	"See you around.")
+}
+
+text MatchCall_PersonalizedText35 {
+	format("This is {STR_VAR_1}!\n"
+	"I'm cycling right now.\p"
+	"I love swimming and running,\n"
+	"but cycling is my first love!\p"
+	"It makes my whole body feel as if\n"
+	"I'm one with the wind.\p"
+	"It exhilarates me as if I were\n"
+	"flying!\p"
+	"Okay! Today, I'm going to set a new\n"
+	"CYCLING ROAD record!\p"
+	"You should make the challenge, too!\n"
+	"See you!")
+}
+
+text MatchCall_PersonalizedText36 {
+	format("Yo, this is {STR_VAR_1}! I'm smack\n"
+	"in the middle of a triathlon!\p"
+	"But, hey, I've always got time to\n"
+	"shoot the breeze!\p"
+	"Working out with Pokémon feels\n"
+	"mighty good!\p"
+	"Without exchanging words, we synch\n"
+	"as if we shared a heart.\p"
+	"It's inspiring!\p"
+	"Gasp… Chatting while running…\n"
+	"I'm getting run down…\l"
+	"Gasp… Have…to…go…")
+}
+
+text MatchCall_PersonalizedText37 {
+	format("Hi, it's {STR_VAR_1}.\n"
+	"If you want to improve endurance,\l"
+	"high-altitude training is it!\p"
+	"Try running on a mountaintop.\n"
+	"You'll be gasping in no time!\p"
+	"I'm getting oxygen starved, too!\n"
+	"See you!")
+}
+
+text MatchCall_PersonalizedText38 {
+	format("Oh, it's {STR_VAR_1}, hello.\p"
+	"I've been swimming a lot but I still\n"
+	"can't seem to reach EVERGRANDE.\p"
+	"Maybe I'm just going in circles.\p"
+	"No, no, that can't be possible.\n"
+	"Wahahaha.\l"
+	"Take care!")
+}
+
+text MatchCall_PersonalizedText39 {
+	format("Hey, it's {STR_VAR_1}…\n"
+	"Whoops!\p"
+	"Splash!\p"
+	"Blug-blug-blug-blug…\p"
+	"Sploosh!\p"
+	"Whiff-whiff! Whiff-whiff!\p"
+	"Hey! Sorry about that!\n"
+	"I just put on some suntan oil.\p"
+	"So my POKéNAV went whoopsy\n"
+	"out of my hand into the water!\p"
+	"But, boy, DEVON's POKéNAV is built\n"
+	"tough. It survived that dunking!\p"
+	"Anyways, I'm busy sunbathing,\n"
+	"so let's chat another time.")
+}
+
+text MatchCall_PersonalizedText40 {
+	format("Hello, this is {STR_VAR_1}.\p"
+	"Out of the three triathlon events,\n"
+	"I like swimming best.\p"
+	"But if I stay in the sea too long,\n"
+	"won't I get all prune-like?\p"
+	"Ooh, triathlon is such a grueling\n"
+	"test of human endurance! Bye!")
+}
+
+text MatchCall_PersonalizedText41 {
+	format("Hello, {PLAYER}{KUN}.\n"
+	"{STR_VAR_1} here.\p"
+	"How are your Pokémon doing?\p"
+	"My DRAGON Pokémon appear to be\n"
+	"in peak form. Bye for now.")
+}
+
+text MatchCall_PersonalizedText42 {
+	format("{STR_VAR_1} here.\p"
+	"My {STR_VAR_2} has grown even more\n"
+	"tough than that last time.\p"
+	"I'm not going to lose again to you.\n"
+	"You wait till next time!\p"
+	"See you around!")
+}
+
+text MatchCall_PersonalizedText43 {
+	format("It is {STR_VAR_1} here.\p"
+	"I have continued with my studies\n"
+	"in the art of concealment.\p"
+	"But I have been too successful.\n"
+	"No one has been able to find me.\l"
+	"My success makes me lonely…\p"
+	"Like smoke I disappear!\n"
+	"Farewell!")
+}
+
+text MatchCall_PersonalizedText44 {
+	format("This is {STR_VAR_1}.\n"
+	"I kept up my training since we met.\p"
+	"My {STR_VAR_2} is getting pretty\n"
+	"tough.\p"
+	"Training on a beach is effective,\n"
+	"just as I thought. Bye now!")
+}
+
+text MatchCall_PersonalizedText45 {
+	format("How do you do?\n"
+	"This is {STR_VAR_1}.\p"
+	"I wonder when this yucky volcanic\n"
+	"ash will stop falling?\p"
+	"If it gets too deep, it will cover\n"
+	"up the pattern on my parasol…\p"
+	"Let's promise to meet again!")
+}
+
+text MatchCall_PersonalizedText46 {
+	format("Hi, {STR_VAR_1} here.\p"
+	"Did you know that it's easier to\n"
+	"float in the sea than a pool?\p"
+	"Just by lying still, your body will\n"
+	"float on its own.\p"
+	"But if you float for too long,\n"
+	"watch that you don't get carried\l"
+	"off too far out.\p"
+	"…Where am I, anyway?\n"
+	"I'd better go!")
+}
+
+text MatchCall_PersonalizedText47 {
+	format("Oh, {PLAYER}{KUN}, hello!\n"
+	"This is {STR_VAR_1}.\l"
+	"I'm up in the mountains now.\p"
+	"But the ground is too bumpy.\n"
+	"I can't pitch my tent here…\p"
+	"Oh, I had a brilliant idea!\p"
+	"Maybe I can get my Pokémon to tamp\n"
+	"the ground flat here!\p"
+	"I'm going to try that!\n"
+	"Bye-bye!")
+}
+
+text MatchCall_PersonalizedText48 {
+	format("Oh, hi, hi, this is {STR_VAR_1}!\p"
+	"I'm raising Pokémon with LIV!\n"
+	"We're trying very hard!\p"
+	"If we try harder, can we become\n"
+	"number one? Bye-bye!")
+}
+
+text MatchCall_PersonalizedText49 {
+	format("{STR_VAR_1} here!\p"
+	"I'm a SAILOR, but I'm not on a boat\n"
+	"now.\p"
+	"It makes me wonder--what should\n"
+	"a SAILOR on land be called?\p"
+	"That's what I've been thinking\n"
+	"while staring out across the waves.\p"
+	"All right, next time!")
+}
+
+text MatchCall_PersonalizedText50 {
+	format("It's {STR_VAR_1}.\n"
+	"So? Get any more Pokémon?\p"
+	"If you catch a new Pokémon,\n"
+	"you have to come show me.\p"
+	"I won't whine for it, honest.\n"
+	"I'll be waiting. See you.")
+}
+
+text MatchCall_PersonalizedText51 {
+	format("This is {STR_VAR_1}.\p"
+	"Are you raising your Pokémon\n"
+	"in the optimal way?\p"
+	"The air is clean where I am.\n"
+	"It's the perfect environment for\l"
+	"raising Pokémon.\p"
+	"If you're going to focus on raising\n"
+	"Pokémon, you should come out to\l"
+	"{STR_VAR_2}. Take care now.")
+}
+
+text MatchCall_PersonalizedText52 {
+	format("Hi, this is {STR_VAR_1}.\p"
+	"I gave a {POKEBLOCK} to my {STR_VAR_2}.\n"
+	"It seemed to enjoy it very much.\p"
+	"It looks like Pokémon have their\n"
+	"likes and dislikes with {POKEBLOCK}S.\p"
+	"I find that quite fascinating.\n"
+	"Please do take care.")
+}
+
+text MatchCall_PersonalizedText53 {
+	format("{STR_VAR_1} here.\p"
+	"If you cooperate with Pokémon,\n"
+	"one can be comfortable in the wild.\p"
+	"Everyone should realize that and\n"
+	"cooperate with Pokémon more.\p"
+	"That would be ideal.\n"
+	"I really think so.\p"
+	"I think you're on the right track!\n"
+	"Catch you later!")
+}
+
+text MatchCall_PersonalizedText54 {
+	format("Hi, it's {STR_VAR_1}. You know,\n"
+	"the TRAINER who's always prepared!\p"
+	"{PLAYER}{KUN}, do you have enough items?\n"
+	"Are your Pokémon fit for action?\p"
+	"Keeping everything perfect around\n"
+	"you all the time is the secret to\l"
+	"keeping your journey going.\p"
+	"I'd better go check my own\n"
+	"supplies! Be vigilant!")
+}
+
+text MatchCall_PersonalizedText55 {
+	format("It's {STR_VAR_1}!\n"
+	"It's {STR_VAR_1}!\p"
+	"{STR_VAR_2} is a very busy\n"
+	"thoroughfare, so I get challenged\l"
+	"by all kinds of TRAINERS every day.\p"
+	"Today, I won five battles and lost\n"
+	"only three!\p"
+	"How did you do today?\n"
+	"Tell me about it next time, okay?")
+}
+
+text MatchCall_PersonalizedText56 {
+	format("It's me, {STR_VAR_1}.\p"
+	"I'm popular because I have lots\n"
+	"of BUG Pokémon, right?\p"
+	"Well, I took a bunch of my fave\n"
+	"bugs to school today.\p"
+	"This girl I like started crying!\n"
+	"Go ahead and laugh if you want.\p"
+	"I have to try teaching her what\n"
+	"makes BUG Pokémon so appealing.\p"
+	"Snivel…\n"
+	"See you!")
+}
+
+text MatchCall_PersonalizedText57 {
+	format("Hah! Hah! Hah! Hah!\p"
+	"Hi! It's {STR_VAR_1}! Hah! Hah!\p"
+	"Trying to chat…\n"
+	"While climbing…\l"
+	"Is harsh exercise… Hah! Hah!\p"
+	"Urgh! Oof…\n"
+	"It's steeper now…\l"
+	"We'll chat…another time…\l"
+	"Hah! Hah! Hah!")
+}
+
+text MatchCall_PersonalizedText58 {
+	format("Oh, hi!\p"
+	"I'm still searching for treasures\n"
+	"with KIRA!\p"
+	"Maybe there isn't any treasure\n"
+	"here at all…\p"
+	"But the important thing is for me\n"
+	"to search alongside KIRA.\p"
+	"Oh, hey, KIRA!\n"
+	"Wh-why are you angry?\p"
+	"I'm not ignoring you, honey!\n"
+	"You're my one and only!\p"
+	"…{PLAYER}, I have to go, bye!")
+}
+
+text MatchCall_PersonalizedText59 {
+	format("This is {STR_VAR_1}!\p"
+	"I went to DEWFORD's GYM again\n"
+	"for training.\p"
+	"BRAWLY, the GYM LEADER, seems\n"
+	"to be tougher now.\p"
+	"Something about being toughened\n"
+	"by the wild waves…\p"
+	"But he's still as cool as ever.\n"
+	"The ladies adore him!\l"
+	"It makes me envious, frankly.\p"
+	"I wonder… Is his friend BRUNO\n"
+	"the same way as BRAWLY?\p"
+	"You know, all sweaty or smelly,\n"
+	"and prone to calling people\l"
+	"“big wave,” that sort of thing.\p"
+	"But, hey, this jealousy thing isn't\n"
+	"very seemly, is it?\p"
+	"Forget this chat ever happened,\n"
+	"how about it? So long!")
+}
+
+text MatchCall_PersonalizedText60 {
+	format("It's a pleasure to chat with\n"
+	"a young TRAINER like you.\p"
+	"I imagine that you will continue to\n"
+	"enjoy Pokémon whatever your age.\p"
+	"Wouldn't it be good if you had\n"
+	"a partnership like ours?\p"
+	"Of course, {PLAYER}{KUN}, you already\n"
+	"enjoy the trust and companionship\l"
+	"of your Pokémon now.\p"
+	"You have the makings of long and\n"
+	"enduring relationships already!\p"
+	"Hahaha!\n"
+	"Never be discouraged!")
+}
+
+text MatchCall_PersonalizedText61 {
+	format("Hi, this is {STR_VAR_1}!\n"
+	"We just won a battle!\p"
+	"We don't win often, but it was this\n"
+	"cool SWIMMER guy.\p"
+	"My sister was steamed!\p"
+	"She wanted to pretend that she\n"
+	"was weak to make an impression!\p"
+	"She always chews me out whether\n"
+	"we win or lose!\p"
+	"{PLAYER}{KUN}, can you say something\n"
+	"to her next time?\p"
+	"Okay, see you!")
+}
+
+text MatchCall_PersonalizedText62 {
+	format("{STR_VAR_1} here, yes.\n"
+	"I headed out to sea yesterday.\p"
+	"I had been hoping to find a new\n"
+	"ruin to explore.\p"
+	"But the tides somehow seemed to\n"
+	"carry me back where I started.\p"
+	"I'm still weak at battling, too…\n"
+	"Feel free to mock me…\l"
+	"But I won't give up.\p"
+	"My day will come when I discover\n"
+	"a new ruin!\p"
+	"That's all I have to say!\n"
+	"Farewell for now!")
+}
+
+text MatchCall_PersonalizedText63 {
+	format("Ahoy there!\n"
+	"It's me, {STR_VAR_1}!\l"
+	"I'm out on ROUTE 108 now!\l"
+	"In other words, where I always am!\p"
+	"Today, a gorgeous SWIMMER \n"
+	"swam by me!\p"
+	"So I startled her with a shout!\p"
+	"And she gave me a nasty glare!\p"
+	"That's all from ROUTE 108!\n"
+	"Brought to you by {STR_VAR_1}!")
+}
+
+text MatchCall_PersonalizedText64 {
+	format("It's {STR_VAR_1}!\p"
+	"I'm kind of busy, but I figured\n"
+	"I should let you know that I've\l"
+	"beaten five TRAINERS again today.\p"
+	"If I keep this pace up, I can\n"
+	"probably beat you next time.\p"
+	"I think we'll be good rivals,\n"
+	"you and I. Good-bye for now!")
+}
+
+text MatchCall_BattleFrontierStreakText1 {
+	format("Hi! This is {STR_VAR_1}.\n"
+	"I heard the news!\p"
+	"They say you did excellent at\n"
+	"the {STR_VAR_2}.\p"
+	"It's awesome, {STR_VAR_3} straight wins?\n"
+	"See you!")
+}
+
+text MatchCall_BattleFrontierStreakText2 {
+	format("Hello, it's {STR_VAR_1}!\n"
+	"I heard about you!\p"
+	"They said you won {STR_VAR_3} straight\n"
+	"battles at the {STR_VAR_2}.\p"
+	"That's special! I should try\n"
+	"harder, too! See you!")
+}
+
+text MatchCall_BattleFrontierStreakText3 {
+	format("Hey there, {PLAYER}!\n"
+	"It's me, {STR_VAR_1}.\p"
+	"I heard you went on a tear at\n"
+	"the {STR_VAR_2}!\p"
+	"A big {STR_VAR_3}-win streak…\n"
+	"That is a big record, isn't it?\p"
+	"I'd better get it together, too!\n"
+	"Catch you soon!")
+}
+
+text MatchCall_BattleFrontierStreakText4 {
+	format("Hey, {PLAYER}{KUN}.\n"
+	"{STR_VAR_1} here. What's up?\p"
+	"There's a rumor going around that\n"
+	"you strung together {STR_VAR_3} straight\l"
+	"wins at the {STR_VAR_2}.\p"
+	"I'd better step it up, too.\n"
+	"See you!")
+}
+
+text MatchCall_BattleFrontierStreakText5 {
+	format("Hiya, {PLAYER}{KUN}!\n"
+	"It's {STR_VAR_1}.\p"
+	"You were at the {STR_VAR_2}\n"
+	"and won {STR_VAR_3} battles in a row?\l"
+	"Isn't that something!\p"
+	"I'd better work on my Pokémon more.\n"
+	"See you soon!")
+}
+
+text MatchCall_BattleFrontierStreakText6 {
+	format("Hey, {PLAYER}{KUN}.\n"
+	"{STR_VAR_1} here. How are you?\p"
+	"By the way, I heard you pulled off\n"
+	"the feat of {STR_VAR_3} straight wins at\l"
+	"the {STR_VAR_2}.\p"
+	"That inspires me to focus on\n"
+	"raising my team.")
+}
+
+text MatchCall_BattleFrontierStreakText7 {
+	format("…Er, {PLAYER}{KUN}?\n"
+	"{STR_VAR_1} here…\p"
+	"Oh, yeah, you were over at\n"
+	"the {STR_VAR_2}, right?\p"
+	"And you won {STR_VAR_3} battles in a row.\p"
+	"Oh, there goes a rare Pokémon!\n"
+	"I have to go!")
+}
+
+text MatchCall_BattleFrontierStreakText8 {
+	format("Oh, {PLAYER}{KUN}, how do you do?\n"
+	"This is {STR_VAR_1} speaking.\l"
+	"I hope you're doing well.\p"
+	"Oh, but, you are. I've heard that\n"
+	"you won {STR_VAR_3} matches in a row at\l"
+	"the {STR_VAR_2}.\p"
+	"That's very impressive!\n"
+	"I hope you stay successful.")
+}
+
+text MatchCall_BattleFrontierStreakText9 {
+	format("Oh, {PLAYER}{KUN}, hi there!\n"
+	"This is {STR_VAR_1}!\p"
+	"I heard! Your {STR_VAR_3}-win streak at\n"
+	"the {STR_VAR_2}!\p"
+	"That is so cool!\n"
+	"I'd better try harder, too!")
+}
+
+text MatchCall_BattleFrontierStreakText10 {
+	format("Oh, {PLAYER}{KUN}, hello…\n"
+	"This is {STR_VAR_1}.\p"
+	"You won {STR_VAR_3} straight battles at\n"
+	"the {STR_VAR_2}?\p"
+	"That's quite the accomplishment.\n"
+	"I need to work harder.")
+}
+
+text MatchCall_BattleFrontierStreakText11 {
+	format("Ah, {PLAYER}{KUN}.\n"
+	"This is {STR_VAR_1}.\p"
+	"I hear you're the terror of\n"
+	"the {STR_VAR_2}?\p"
+	"You won, what, {STR_VAR_3} matches in\n"
+	"a row?\p"
+	"You're good, you.\n"
+	"I wonder how many I can win?")
+}
+
+text MatchCall_BattleFrontierStreakText12 {
+	format("Hello, {PLAYER}{KUN}.\n"
+	"It's me, {STR_VAR_1}.\l"
+	"Are you keeping well?\p"
+	"Someone passed on word about you.\n"
+	"How you won {STR_VAR_3} straight battles\l"
+	"at a place named {STR_VAR_2}?\p"
+	"That's quite the tale.\n"
+	"See you!")
+}
+
+text MatchCall_BattleFrontierStreakText13 {
+	format("Ah, hello, {PLAYER}{KUN}!\n"
+	"This is {STR_VAR_1}!\l"
+	"I hope you've been keeping well.\p"
+	"They say you won {STR_VAR_3} straight\n"
+	"battles at the {STR_VAR_2}.\p"
+	"I admire your energy!\n"
+	"Bye now.")
+}
+
+text MatchCall_BattleFrontierStreakText14 {
+	format("Oh, hi, {PLAYER}{KUN}.\n"
+	"This is {STR_VAR_1}.\p"
+	"I heard about you!\n"
+	"Didn't you just win {STR_VAR_3} battles in\l"
+	"a row at the {STR_VAR_2}?\p"
+	"You're an inspiration!\n"
+	"Bye-bye!")
+}
+
+text MatchCall_BattleFrontierRecordStreakText1 {
+	format("Hi! This is {STR_VAR_1}.\n"
+	"I heard the news!\p"
+	"They say you did excellent at\n"
+	"the {STR_VAR_2}.\p"
+	"It's awesome--{STR_VAR_3} straight wins?\n"
+	"See you!")
+}
+
+text MatchCall_BattleFrontierRecordStreakText2 {
+	format("Hello, it's {STR_VAR_1}!\n"
+	"I heard about you!\p"
+	"They said you won {STR_VAR_3} straight\n"
+	"battles at the {STR_VAR_2}.\p"
+	"That's special! I should try\n"
+	"harder, too! See you!")
+}
+
+text MatchCall_BattleFrontierRecordStreakText3 {
+	format("Hey there, {PLAYER}!\n"
+	"It's me, {STR_VAR_1}.\p"
+	"I heard you went on a tear at\n"
+	"the {STR_VAR_2}!\p"
+	"A big {STR_VAR_3}-win streak…\n"
+	"That is a big record, isn't it?\p"
+	"I'd better get it together, too!\n"
+	"Catch you soon!")
+}
+
+text MatchCall_BattleFrontierRecordStreakText4 {
+	format("Hey, {PLAYER}{KUN}.\n"
+	"{STR_VAR_1} here. What's up?\p"
+	"There's a rumor going around that\n"
+	"you strung together {STR_VAR_3} straight\l"
+	"wins at the {STR_VAR_2}.\p"
+	"I'd better step it up, too.\n"
+	"See you!")
+}
+
+text MatchCall_BattleFrontierRecordStreakText5 {
+	format("Hiya, {PLAYER}{KUN}!\n"
+	"It's {STR_VAR_1}.\p"
+	"You were at the {STR_VAR_2}\n"
+	"and won {STR_VAR_3} battles in a row?\l"
+	"Isn't that something!\p"
+	"Me? I'd say I'm coming along.\n"
+	"See you soon!")
+}
+
+text MatchCall_BattleFrontierRecordStreakText6 {
+	format("Hey, {PLAYER}{KUN}.\n"
+	"{STR_VAR_1} here. How are you?\p"
+	"By the way, I heard you pulled off\n"
+	"the feat of {STR_VAR_3} straight wins at\l"
+	"the {STR_VAR_2}.\p"
+	"I'd better try harder myself!\n"
+	"See you soon!")
+}
+
+text MatchCall_BattleFrontierRecordStreakText7 {
+	format("…Er, {PLAYER}{KUN}?\n"
+	"{STR_VAR_1} here…\p"
+	"Oh, yeah, you were over at\n"
+	"the {STR_VAR_2}, right?\p"
+	"And you won {STR_VAR_3} battles in a row.\p"
+	"Oh, there goes a rare Pokémon!\n"
+	"I have to go!")
+}
+
+text MatchCall_BattleFrontierRecordStreakText8 {
+	format("Oh, {PLAYER}{KUN}, how do you do?\n"
+	"This is {STR_VAR_1} speaking.\l"
+	"I hope you're doing well.\p"
+	"Oh, but, you are. I've heard that\n"
+	"you won {STR_VAR_3} matches in a row at\l"
+	"the {STR_VAR_2}.\p"
+	"That's very impressive!\n"
+	"I'd better work on my Pokémon, too!")
+}
+
+text MatchCall_BattleFrontierRecordStreakText9 {
+	format("Oh, {PLAYER}{KUN}, hi there!\n"
+	"This is {STR_VAR_1}!\p"
+	"I heard! Your {STR_VAR_3}-win streak at\n"
+	"the {STR_VAR_2}!\p"
+	"That is so cool!\n"
+	"I'd better try harder, too!")
+}
+
+text MatchCall_BattleFrontierRecordStreakText10 {
+	format("Oh, {PLAYER}{KUN}, hello…\n"
+	"This is {STR_VAR_1}.\p"
+	"You won {STR_VAR_3} straight battles at\n"
+	"the {STR_VAR_2}?\p"
+	"That's quite the accomplishment.\n"
+	"I need to work harder.")
+}
+
+text MatchCall_BattleFrontierRecordStreakText11 {
+	format("Ah, {PLAYER}{KUN}.\n"
+	"This is {STR_VAR_1}.\p"
+	"I hear you're the terror of\n"
+	"the {STR_VAR_2}?\p"
+	"You won, what, {STR_VAR_3} matches in\n"
+	"a row?\p"
+	"You're good, you.\n"
+	"I wonder how many I can win?")
+}
+
+text MatchCall_BattleFrontierRecordStreakText12 {
+	format("Hello, {PLAYER}{KUN}.\n"
+	"It's me, {STR_VAR_1}.\l"
+	"Are you keeping well?\p"
+	"Someone passed on word about you.\n"
+	"How you won {STR_VAR_3} straight battles\l"
+	"at a place named {STR_VAR_2}?\p"
+	"That's quite the tale.\n"
+	"See you!")
+}
+
+text MatchCall_BattleFrontierRecordStreakText13 {
+	format("Ah, hello, {PLAYER}{KUN}!\n"
+	"This is {STR_VAR_1}!\l"
+	"I hope you've been keeping well.\p"
+	"They say you won {STR_VAR_3} straight\n"
+	"battles at the {STR_VAR_2}.\p"
+	"I admire your energy!\n"
+	"Bye now.")
+}
+
+text MatchCall_BattleFrontierRecordStreakText14 {
+	format("Oh, hi, {PLAYER}{KUN}.\n"
+	"This is {STR_VAR_1}.\l"
+	"I heard about you!\p"
+	"Didn't you just win {STR_VAR_3} battles in\n"
+	"a row at the {STR_VAR_2}?\p"
+	"You're an inspiration!\n"
+	"Bye-bye!")
+}
+
+text MatchCall_BattleDomeText1 {
+	format("Hi! {PLAYER}?\n"
+	"Hello, this is {STR_VAR_1}!\l"
+	"I heard the news!\p"
+	"You became the champion at\n"
+	"the {STR_VAR_2} {STR_VAR_3} times?\p"
+	"It's awesome! I have to do better!\n"
+	"See you!")
+}
+
+text MatchCall_BattleDomeText2 {
+	format("Hello, it's {STR_VAR_1}!\n"
+	"I heard about you!\p"
+	"They said you won {STR_VAR_3} titles\n"
+	"at the {STR_VAR_2}.\p"
+	"That's super! I wonder if I can\n"
+	"become a champion?")
+}
+
+text MatchCall_BattleDomeText3 {
+	format("Hey there, {PLAYER}!\n"
+	"It's me, {STR_VAR_1}.\l"
+	"How's it going?\p"
+	"I heard you won events {STR_VAR_3} times\n"
+	"at the {STR_VAR_2}!\p"
+	"Make it one more next time!\n"
+	"Catch you soon!")
+}
+
+text MatchCall_BattleDomeText4 {
+	format("Hey, {PLAYER}{KUN}.\n"
+	"{STR_VAR_1} here.\p"
+	"I heard you became the champion\n"
+	"at the {STR_VAR_2} {STR_VAR_3} times.\p"
+	"Sounds like you're working hard.\n"
+	"I'll try to keep up!")
+}
+
+text MatchCall_BattleDomeText5 {
+	format("Hiya, {PLAYER}{KUN}!\n"
+	"It's {STR_VAR_1}.\p"
+	"I heard you won {STR_VAR_3} times\n"
+	"outright at the {STR_VAR_2}.\p"
+	"I'd better get with it, too!\n"
+	"See you soon!")
+}
+
+text MatchCall_BattleDomeText6 {
+	format("Hey, {PLAYER}{KUN}?\n"
+	"{STR_VAR_1} here. How are you?\p"
+	"By the way, I heard you became\n"
+	"the champion {STR_VAR_3} times at\l"
+	"the {STR_VAR_2}.\p"
+	"I'd better raise my Pokémon before\n"
+	"you pull farther ahead.")
+}
+
+text MatchCall_BattleDomeText7 {
+	format("{PLAYER}{KUN}?\n"
+	"{STR_VAR_1} here.\p"
+	"You were at the {STR_VAR_2}\n"
+	"and became the champ {STR_VAR_3} times?\p"
+	"That's neat. By the way, have you\n"
+	"caught any rare Pokémon lately?\p"
+	"Oh, is that right.\n"
+	"Okay, bye.")
+}
+
+text MatchCall_BattleDomeText8 {
+	format("Oh, {PLAYER}{KUN}, how do you do?\n"
+	"This is {STR_VAR_1} speaking.\l"
+	"I hope you're doing well.\l"
+	"Oh, but, you are.\p"
+	"I've heard that you won {STR_VAR_3} titles\n"
+	"at the {STR_VAR_2}.\p"
+	"I must raise my Pokémon like you.\n"
+	"See you again.")
+}
+
+text MatchCall_BattleDomeText9 {
+	format("Oh, {PLAYER}{KUN}, hi there!\n"
+	"This is {STR_VAR_1}!\p"
+	"I heard! You took the title\n"
+	"{STR_VAR_3} times at the {STR_VAR_2}!\p"
+	"That is so cool!\n"
+	"I'd better try harder, too!")
+}
+
+text MatchCall_BattleDomeText10 {
+	format("Oh, {PLAYER}{KUN}, hello.\n"
+	"This is {STR_VAR_1}.\p"
+	"You won {STR_VAR_3} straight times at\n"
+	"the {STR_VAR_2}?\p"
+	"That's quite the accomplishment.\n"
+	"I need to work harder.")
+}
+
+text MatchCall_BattleDomeText11 {
+	format("Ah, {PLAYER}{KUN}.\n"
+	"This is {STR_VAR_1}.\p"
+	"I hear you're the terror of\n"
+	"the {STR_VAR_2}?\p"
+	"You won, what, {STR_VAR_3} straight times\n"
+	"now?\p"
+	"I wonder if I can ever become\n"
+	"a champion?\p"
+	"…Pretty well impossible?\n"
+	"Well, see you!")
+}
+
+text MatchCall_BattleDomeText12 {
+	format("Hello, {PLAYER}{KUN}.\n"
+	"It's me, {STR_VAR_1}.\l"
+	"Are you keeping well?\p"
+	"You've won {STR_VAR_3} events at a place\n"
+	"named {STR_VAR_2}?\p"
+	"That's quite the tale.\n"
+	"See you!")
+}
+
+text MatchCall_BattleDomeText13 {
+	format("Ah, hello, {PLAYER}{KUN}!\n"
+	"This is {STR_VAR_1}!\l"
+	"I hope you've been keeping well.\p"
+	"They say you won {STR_VAR_3} events\n"
+	"at the {STR_VAR_2}?\p"
+	"I admire your energy!\n"
+	"Bye now.")
+}
+
+text MatchCall_BattleDomeText14 {
+	format("Oh, hi, {PLAYER}{KUN}.\n"
+	"This is {STR_VAR_1}.\l"
+	"I heard about you!\p"
+	"Didn't you win {STR_VAR_3} titles\n"
+	"at the {STR_VAR_2}?\p"
+	"You're an inspiration!\n"
+	"See you again!")
+}
+
+text MatchCall_BattlePikeText1 {
+	format("Hi! {PLAYER}?\n"
+	"Hello, this is {STR_VAR_1}!\l"
+	"I heard the news!\p"
+	"You got through {STR_VAR_3} rooms\n"
+	"at the {STR_VAR_2}!\p"
+	"That's awesome!\n"
+	"See you!")
+}
+
+text MatchCall_BattlePikeText2 {
+	format("Hello, it's {STR_VAR_1}!\n"
+	"I heard about you!\p"
+	"They said you won your way through\n"
+	"{STR_VAR_3} rooms at the {STR_VAR_2}.\p"
+	"I have to try much harder!\n"
+	"Bye!")
+}
+
+text MatchCall_BattlePikeText3 {
+	format("Hey there, {PLAYER}!\n"
+	"It's me, {STR_VAR_1}.\l"
+	"How's it going?\p"
+	"I heard you won through {STR_VAR_3} rooms\n"
+	"at the {STR_VAR_2}!\p"
+	"Try to do even better next time!\n"
+	"Catch you soon!")
+}
+
+text MatchCall_BattlePikeText4 {
+	format("Hey, {PLAYER}{KUN}.\n"
+	"{STR_VAR_1} here.\p"
+	"I heard you blew through {STR_VAR_3} rooms\n"
+	"at the {STR_VAR_2}.\p"
+	"I'd better train my Pokémon and\n"
+	"try to keep up!")
+}
+
+text MatchCall_BattlePikeText5 {
+	format("Hiya, {PLAYER}{KUN}!\n"
+	"It's {STR_VAR_1}.\p"
+	"I heard you got past {STR_VAR_3} rooms\n"
+	"at the {STR_VAR_2}.\p"
+	"I'd better get with it, too!\n"
+	"See you soon!")
+}
+
+text MatchCall_BattlePikeText6 {
+	format("Hey, {PLAYER}{KUN}?\n"
+	"{STR_VAR_1} here. How are you?\p"
+	"By the way, I heard you got through\n"
+	"{STR_VAR_3} rooms at the {STR_VAR_2}.\p"
+	"I'd better raise my Pokémon before\n"
+	"you pull further ahead.")
+}
+
+text MatchCall_BattlePikeText7 {
+	format("{PLAYER}{KUN}?\n"
+	"{STR_VAR_1} here.\p"
+	"You were at the {STR_VAR_2}\n"
+	"and won your way past {STR_VAR_3} rooms?\p"
+	"That's wicked.\p"
+	"Oh, there goes a rare Pokémon!\n"
+	"Okay, bye.")
+}
+
+text MatchCall_BattlePikeText8 {
+	format("Oh, {PLAYER}{KUN}, how do you do?\n"
+	"This is {STR_VAR_1} speaking.\l"
+	"I hope you're doing well.\l"
+	"Oh, but, you are.\p"
+	"I've heard that you got through\n"
+	"{STR_VAR_3} rooms at the {STR_VAR_2}.\p"
+	"That's quite impressive!\n"
+	"I must raise my Pokémon like you.\l"
+	"See you again.")
+}
+
+text MatchCall_BattlePikeText9 {
+	format("Oh, {PLAYER}{KUN}, hi there!\n"
+	"This is {STR_VAR_1}!\p"
+	"I heard! You won your way through\n"
+	"{STR_VAR_3} rooms at the {STR_VAR_2}!\p"
+	"That is so cool!\n"
+	"I'd better try harder, too!")
+}
+
+text MatchCall_BattlePikeText10 {
+	format("Oh, {PLAYER}{KUN}, hello.\n"
+	"This is {STR_VAR_1}.\p"
+	"You won your way past {STR_VAR_3} rooms\n"
+	"at the {STR_VAR_2}?\p"
+	"That's quite the accomplishment.\n"
+	"I need to work harder.")
+}
+
+text MatchCall_BattlePikeText11 {
+	format("Ah, {PLAYER}{KUN}.\n"
+	"This is {STR_VAR_1}.\p"
+	"I hear you're the terror of\n"
+	"the {STR_VAR_2}?\p"
+	"You got through, what, {STR_VAR_3} rooms?\n"
+	"That's gotta count for something.\p"
+	"I wonder if I can ever become\n"
+	"a champion?\p"
+	"…Pretty well impossible?\n"
+	"Well, see you!")
+}
+
+text MatchCall_BattlePikeText12 {
+	format("Hello, {PLAYER}{KUN}.\n"
+	"It's me, {STR_VAR_1}.\l"
+	"Are you keeping well?\p"
+	"You've won through {STR_VAR_3} rooms at\n"
+	"a place named {STR_VAR_2}?\p"
+	"That's quite the tale.\n"
+	"See you!")
+}
+
+text MatchCall_BattlePikeText13 {
+	format("Ah, hello, {PLAYER}{KUN}!\n"
+	"This is {STR_VAR_1}!\l"
+	"I hope you've been keeping well.\p"
+	"They say you won in {STR_VAR_3} rooms\n"
+	"at the {STR_VAR_2}?\p"
+	"I admire your energy!\n"
+	"Bye now.")
+}
+
+text MatchCall_BattlePikeText14 {
+	format("Oh, hi, {PLAYER}{KUN}.\n"
+	"This is {STR_VAR_1}.\l"
+	"I heard about you!\p"
+	"Didn't you get through {STR_VAR_3} rooms\n"
+	"at the {STR_VAR_2}?\p"
+	"You're an inspiration!\n"
+	"See you again!")
+}
+
+text MatchCall_BattlePyramidText1 {
+	format("Hi! {PLAYER}?\n"
+	"Hello, this is {STR_VAR_1}!\l"
+	"I heard the news!\p"
+	"You climbed {STR_VAR_3} floors inside\n"
+	"the {STR_VAR_2}, right?\p"
+	"That's awesome!\n"
+	"I should try that challenge.")
+}
+
+text MatchCall_BattlePyramidText2 {
+	format("Hello, it's {STR_VAR_1}!\n"
+	"I heard about you!\p"
+	"They said you won your way through\n"
+	"{STR_VAR_3} floors in the {STR_VAR_2}.\p"
+	"Wow, that's fantastic!\n"
+	"I'd better raise my Pokémon, too!")
+}
+
+text MatchCall_BattlePyramidText3 {
+	format("Hey there, {PLAYER}!\n"
+	"It's me, {STR_VAR_1}.\l"
+	"How's it going?\p"
+	"I heard you climbed {STR_VAR_3} floors\n"
+	"in the {STR_VAR_2}!\p"
+	"Try to do even better next time!\n"
+	"Catch you soon!")
+}
+
+text MatchCall_BattlePyramidText4 {
+	format("Hey, {PLAYER}{KUN}.\n"
+	"{STR_VAR_1} here.\p"
+	"I heard you scaled {STR_VAR_3} floors\n"
+	"in the {STR_VAR_2}.\p"
+	"I'd better work hard and try\n"
+	"to keep up!")
+}
+
+text MatchCall_BattlePyramidText5 {
+	format("Hiya, {PLAYER}{KUN}!\n"
+	"It's {STR_VAR_1}.\p"
+	"I heard you climbed {STR_VAR_3} floors\n"
+	"in the {STR_VAR_2}.\p"
+	"I'd better get with it, too!\n"
+	"See you soon!")
+}
+
+text MatchCall_BattlePyramidText6 {
+	format("Hey, {PLAYER}{KUN}?\n"
+	"{STR_VAR_1} here. How are you?\p"
+	"By the way, I heard you got through\n"
+	"{STR_VAR_3} floors in the {STR_VAR_2}.\p"
+	"I'd better raise my Pokémon before\n"
+	"you pull further ahead.")
+}
+
+text MatchCall_BattlePyramidText7 {
+	format("{PLAYER}{KUN}?\n"
+	"{STR_VAR_1} here.\p"
+	"You were at the {STR_VAR_2}\n"
+	"and won your way up {STR_VAR_3} floors?\p"
+	"Neat. Were there any rare Pokémon\n"
+	"there?\p"
+	"No, huh?\n"
+	"Okay, bye.")
+}
+
+text MatchCall_BattlePyramidText8 {
+	format("Oh, {PLAYER}{KUN}, how do you do?\n"
+	"This is {STR_VAR_1} speaking.\l"
+	"I hope you're doing well.\l"
+	"Oh, but, you are.\p"
+	"I've heard that you got through\n"
+	"{STR_VAR_3} floors in the {STR_VAR_2}.\p"
+	"That's quite impressive!\n"
+	"I must raise my Pokémon like you.\l"
+	"See you again.")
+}
+
+text MatchCall_BattlePyramidText9 {
+	format("Oh, {PLAYER}{KUN}, hi there!\n"
+	"This is {STR_VAR_1}!\p"
+	"I heard! You won your way through\n"
+	"{STR_VAR_3} floors in the {STR_VAR_2}!\p"
+	"That is so cool!\n"
+	"I'd better try harder, too!")
+}
+
+text MatchCall_BattlePyramidText10 {
+	format("Oh, {PLAYER}{KUN}, hello.\n"
+	"This is {STR_VAR_1}.\p"
+	"You climbed {STR_VAR_3} floors inside\n"
+	"the {STR_VAR_2}?\p"
+	"That's quite the accomplishment.\n"
+	"I need to work harder.")
+}
+
+text MatchCall_BattlePyramidText11 {
+	format("Ah, {PLAYER}{KUN}.\n"
+	"This is {STR_VAR_1}.\p"
+	"I hear you're the terror of\n"
+	"the {STR_VAR_2}?\p"
+	"You rose through, what, {STR_VAR_3} floors?\n"
+	"That's gotta count for something.\p"
+	"I wonder if I can ever become\n"
+	"a champion?\p"
+	"…Pretty well impossible?\n"
+	"Well, see you!")
+}
+
+text MatchCall_BattlePyramidText12 {
+	format("Hello, {PLAYER}{KUN}.\n"
+	"It's me, {STR_VAR_1}.\l"
+	"Are you keeping well?\p"
+	"You've won through {STR_VAR_3} floors in\n"
+	"a place named {STR_VAR_2}?\p"
+	"That's quite the tale.\n"
+	"See you!")
+}
+
+text MatchCall_BattlePyramidText13 {
+	format("Ah, hello, {PLAYER}{KUN}!\n"
+	"This is {STR_VAR_1}!\l"
+	"I hope you've been keeping well.\p"
+	"They say you climbed {STR_VAR_3} floors\n"
+	"in the {STR_VAR_2}?\p"
+	"I admire your energy!\n"
+	"Bye now.")
+}
+
+text MatchCall_BattlePyramidText14 {
+	format("Oh, hi, {PLAYER}{KUN}.\n"
+	"This is {STR_VAR_1}.\l"
+	"I heard about you!\p"
+	"Didn't you get through {STR_VAR_3} floors\n"
+	"in the {STR_VAR_2}?\p"
+	"You're an inspiration!\n"
+	"See you again!")
+}
+
+text MatchCall_Text_Mom1 {
+	format("MOM: Your father and you…\n"
+	"Everyone is captivated by Pokémon.\p"
+	"What is the charm of Pokémon?\p"
+	"Me?\n"
+	"I adore Pokémon that help me with\l"
+	"my everyday chores.")
+}
+
+text MatchCall_Text_Mom2 {
+	format("MOM: Hi, {PLAYER}!\n"
+	"Your father keeps himself locked\l"
+	"away in the PETALBURG GYM.\p"
+	"He comes home every so often.\n"
+	"But he goes back to the GYM when\l"
+	"he's eaten everything he can.\p"
+	"I'm guessing that losing to you\n"
+	"was a big blow to his pride!")
+}
+
+text MatchCall_Text_Mom3 {
+	format("MOM: {PLAYER}…\n"
+	"Don't worry about me or the house.\p"
+	"Wear those RUNNING SHOES until\n"
+	"they fall apart, honey!")
+}
+
+text MatchCall_Text_Roxanne1 {
+	format("ROXANNE: Oh, hello, {PLAYER}!\p"
+	"I've been hard at work retraining\n"
+	"since we met.\p"
+	"I will still need some more time\n"
+	"before I can reopen the GYM.\p"
+	"But when I do, please visit my GYM\n"
+	"for a rematch!")
+}
+
+text MatchCall_Text_Roxanne2 {
+	format("ROXANNE: Is this {PLAYER}?\n"
+	"Congratulations!\l"
+	"I've been hearing about you!\p"
+	"As for me, I need some more time\n"
+	"before I can reopen the GYM.\p"
+	"But when I do, please visit my GYM\n"
+	"for a rematch!")
+}
+
+text MatchCall_Text_Roxanne3 {
+	format("ROXANNE: {PLAYER}!\n"
+	"My GYM is ready!\p"
+	"Please visit RUSTBORO whenever\n"
+	"you can!")
+}
+
+text MatchCall_Text_Roxanne4 {
+	format("ROXANNE: At the RUSTBORO GYM,\n"
+	"the fact that we battled, {PLAYER},\l"
+	"is a matter of pride.")
+}
+
+text MatchCall_Text_Brawly1 {
+	format("BRAWLY: Hey, there, {PLAYER}{KUN}!\p"
+	"I learned a lot from the battle we\n"
+	"had together.\p"
+	"I intend to do my training over,\n"
+	"then reopen the GYM.\p"
+	"It's going to take some time before\n"
+	"I'm ready to run the GYM again.\p"
+	"But if I can reopen the GYM,\n"
+	"I want you to challenge us again.")
+}
+
+text MatchCall_Text_Brawly2 {
+	format("BRAWLY: Hey, {PLAYER}{KUN}!\n"
+	"Congratulations!\p"
+	"Word about your exploits arrived\n"
+	"on tidal winds!\p"
+	"It appears as if I need to work on\n"
+	"my training some more.\p"
+	"It's going to take some time before\n"
+	"I'm ready to run the GYM again.\p"
+	"But if I can reopen the GYM,\n"
+	"I want you to challenge us again.")
+}
+
+text MatchCall_Text_Brawly3 {
+	format("BRAWLY: Hey, {PLAYER}{KUN}!\n"
+	"My GYM's ready for action!\p"
+	"Come back to DEWFORD anytime\n"
+	"for another challenge!")
+}
+
+text MatchCall_Text_Brawly4 {
+	format("BRAWLY: {PLAYER}{KUN}, I don't think\n"
+	"I'll ever get bored of battling you!")
+}
+
+text MatchCall_Text_Wattson1 {
+	format("WATTSON: Oh, it's you!\p"
+	"After you left, I've been redoing\n"
+	"my training from scratch.\p"
+	"I'd say I could use a wee bit more\n"
+	"time to reopen my GYM.\p"
+	"You'll have to wait till then!\n"
+	"Wahahahaha!")
+}
+
+text MatchCall_Text_Wattson2 {
+	format("WATTSON: Wahahahaha!\p"
+	"You've really done it, haven't you?\n"
+	"I've been getting word about you!\p"
+	"It seems I need to retrain some\n"
+	"more still.\p"
+	"I'd say I could use a wee bit more\n"
+	"time to reopen my GYM.\p"
+	"You'll have to wait till then!\n"
+	"Wahahahaha!")
+}
+
+text MatchCall_Text_Wattson3 {
+	format("WATTSON: Oh, it's you!\n"
+	"My GYM's ready!\p"
+	"Visit MAUVILLE anytime!\n"
+	"Wahahahaha!")
+}
+
+text MatchCall_Text_Wattson4 {
+	format("WATTSON: Wahahaha!\p"
+	"A battle with you is always charged\n"
+	"with shocking power!")
+}
+
+text MatchCall_Text_Flannery1 {
+	format("FLANNERY: {PLAYER}…\p"
+	"When we battled, I learned exactly\n"
+	"how immature I was.\p"
+	"But I'm not done yet!\p"
+	"I'm going to redo my training and\n"
+	"reopen the GYM.\p"
+	"When the time comes, {PLAYER},\n"
+	"please challenge us again.")
+}
+
+text MatchCall_Text_Flannery2 {
+	format("FLANNERY: Hello, {PLAYER}?\n"
+	"Congratulations!\p"
+	"Word of your success has reached\n"
+	"us like the heat of a volcano!\p"
+	"Our training is coming along very\n"
+	"well here.\p"
+	"When the GYM's ready, a mark will\n"
+	"appear beside my name in the\l"
+	"MATCH CALL list.")
+}
+
+text MatchCall_Text_Flannery3 {
+	format("FLANNERY: Oh, {PLAYER}?\n"
+	"Our GYM's ready!\p"
+	"Come to LAVARIDGE for a soak\n"
+	"in the hot spring and a challenge!")
+}
+
+text MatchCall_Text_Flannery4 {
+	format("FLANNERY: {PLAYER}…\n"
+	"I'm positive that you keep getting\l"
+	"better at training every time.")
+}
+
+text MatchCall_Text_Winona1 {
+	format("WINONA: Hello, {PLAYER}!\p"
+	"Thanks to our battle, I've come\n"
+	"to understand my weak points!\p"
+	"When I reopen the GYM, I won't go\n"
+	"down in defeat again!")
+}
+
+text MatchCall_Text_Winona2 {
+	format("WINONA: You've done it, {PLAYER}!\p"
+	"News about the new CHAMPION\n"
+	"has reached us in FORTREE!\p"
+	"But… The next time we battle,\n"
+	"it's not going to end the same way.")
+}
+
+text MatchCall_Text_Winona3 {
+	format("WINONA: Is this {PLAYER}?\n"
+	"Our GYM is back in operation!\p"
+	"We're waiting for you in FORTREE!")
+}
+
+text MatchCall_Text_Winona4 {
+	format("WINONA: {PLAYER}…\n"
+	"Though I have lost, my wings will\l"
+	"never break.\p"
+	"Yes, in exactly the same way that\n"
+	"you never lost sight of your dream.")
+}
+
+text MatchCall_Text_TateLiza1 {
+	format("TATE: Oh! You're…\n"
+	"LIZA: {PLAYER}!\p"
+	"TATE: We're in training again…\n"
+	"LIZA: So we can reopen our GYM!\p"
+	"TATE: When our GYM is ready…\n"
+	"LIZA: When our GYM is ready…\p"
+	"TATE: A mark'll appear by our name…\n"
+	"LIZA: On the MATCH CALL list.")
+}
+
+text MatchCall_Text_TateLiza2 {
+	format("TATE: {PLAYER}, congratulations!\n"
+	"LIZA: {PLAYER}, congratulations!\p"
+	"TATE: The two of us are…\n"
+	"LIZA: Still in training!\p"
+	"TATE: We need some more time, but…\n"
+	"LIZA: When our GYM is ready…\p"
+	"TATE: A mark'll appear by our name…\n"
+	"LIZA: On the MATCH CALL list.")
+}
+
+text MatchCall_Text_TateLiza3 {
+	format("TATE: {PLAYER}!\n"
+	"LIZA: {PLAYER}!\p"
+	"TATE: Our GYM is ready!\n"
+	"LIZA: Our GYM is ready!\p"
+	"TATE: Please come visit…\n"
+	"LIZA: MOSSDEEP anytime!")
+}
+
+text MatchCall_Text_TateLiza4 {
+	format("TATE: {PLAYER}, the battle we had…\n"
+	"LIZA: Is an invaluable experience.\p"
+	"TATE: It would be nice if…\n"
+	"LIZA: We could all battle again!")
+}
+
+text MatchCall_Text_Juan1 {
+	format("JUAN: Hmm…\n"
+	"{PLAYER}{KUN}… Was it?\p"
+	"Our battle together--it brought\n"
+	"to me memories of when I first\l"
+	"encountered WALLACE.\p"
+	"Perhaps you are a genius who may\n"
+	"yet surpass WALLACE!")
+}
+
+text MatchCall_Text_Juan2 {
+	format("JUAN: Fufu… {PLAYER}{KUN}…\n"
+	"You've finally achieved your goal.\p"
+	"My eye for appraising talent wasn't\n"
+	"mistaken…\p"
+	"I wish for another chance to meet\n"
+	"you, for you have scaled the peak\l"
+	"of power and prestige.")
+}
+
+text MatchCall_Text_Juan3 {
+	format("JUAN: Hoho… {PLAYER}{KUN}…\p"
+	"Our SOOTOPOLIS GYM has finally\n"
+	"reopened.\p"
+	"If you wish to see me, you are\n"
+	"welcome to visit anytime.")
+}
+
+text MatchCall_Text_Juan4 {
+	format("JUAN: {PLAYER}{KUN}…\p"
+	"Like the finest music, the battles\n"
+	"we wage together strike chords\l"
+	"of inspiration in my heart…\p"
+	"When I close my eyes, I see visions\n"
+	"of you soaring with the melody…")
+}
+
+text MatchCall_Text_Sidney {
+	format("SIDNEY: Yo, {PLAYER}!\p"
+	"If you want to battle with me\n"
+	"again, you come on back whenever\l"
+	"you like to the Pokémon LEAGUE.\p"
+	"I'll always be here!\n"
+	"I'll be waiting!")
+}
+
+text MatchCall_Text_Phoebe {
+	format("PHOEBE: Hi, {PLAYER}!\p"
+	"How about coming back here again\n"
+	"sometime?\p"
+	"I'd like to see how much tighter\n"
+	"your bond has grown with your\l"
+	"Pokémon.")
+}
+
+text MatchCall_Text_Glacia {
+	format("GLACIA: Hello, {PLAYER}.\p"
+	"I trust you haven't become\n"
+	"complacent with your power?\p"
+	"If you feel the need to cool your\n"
+	"hot emotions just a little, do come\l"
+	"to the Pokémon LEAGUE…")
+}
+
+text MatchCall_Text_Drake {
+	format("DRAKE: That voice… {PLAYER}, is it?\n"
+	"You sound well…\p"
+	"I understand that there is now\n"
+	"a facility called the BATTLE\l"
+	"FRONTIER that tests the skills of\l"
+	"TRAINERS.\p"
+	"However, if you wish to have real\n"
+	"battles, there is no substitute for\l"
+	"the Pokémon LEAGUE!\p"
+	"Don't you agree, {PLAYER}?")
+}
+
+text MatchCall_Text_Wallace {
+	format("WALLACE: Hello, {PLAYER}{KUN}.\n"
+	"Have you met STEVEN?\p"
+	"He is…\n"
+	"Actually incredibly skilled.\p"
+	"However, he's an odd soul who\n"
+	"rarely battles.\p"
+	"Instead, he would rather look for\n"
+	"rare stones.\p"
+	"I'm sure he's digging in a cave or\n"
+	"a craggy mountain somewhere.\p"
+	"But what is a rare stone exactly?\n"
+	"All I can think of is a METEORITE…")
+}
+
+text MatchCall_Text_MayRayquazaCall {
+	format("… … … … … …\n"
+	"… … … … … Beep!\p"
+	"MAY: Hi, {PLAYER}{KUN}!\p"
+	"I was just in PACIFIDLOG a little\n"
+	"while ago.\p"
+	"I saw a giant green Pokémon\n"
+	"flying high in the sky.\p"
+	"I…\n"
+	"I've never seen anything like it.\p"
+	"I wonder what it was.\n"
+	"Is this maybe a major discovery?\p"
+	"… … … … … …\n"
+	"… … … … … Click!")
+}
+
+text MatchCall_Text_BrendanRayquazaCall {
+	format("… … … … … …\n"
+	"… … … … … Beep!\p"
+	"BRENDAN: Hey, {PLAYER}!\n"
+	"I was in PACIFIDLOG just now.\p"
+	"I saw this huge green Pokémon\n"
+	"flying across the sky.\p"
+	"I've never seen anything that\n"
+	"amazing before.\p"
+	"I wish you could've seen it,\n"
+	"{PLAYER}.\p"
+	"… … … … … …\n"
+	"… … … … … Click!")
+}
+
+text MatchCall_Text_May1 {
+	format("MAY: Hi, {PLAYER}{KUN}!\p"
+	"MR. BRINEY retired as a SAILOR,\n"
+	"but I still see him out on the sea\l"
+	"with his pet PEEKO sometimes.\p"
+	"He must love the sea still.")
+}
+
+text MatchCall_Text_May2 {
+	format("MAY: Hi, {PLAYER}{KUN}!\p"
+	"You know how little towns like\n"
+	"PETALBURG and DEWFORD have GYMS?\p"
+	"For some reason, the big port of\n"
+	"SLATEPORT doesn't have a GYM.\p"
+	"When they finally build a GYM there,\n"
+	"I should apply to be the LEADER.")
+}
+
+text MatchCall_Text_May3 {
+	format("MAY: Hi, {PLAYER}{KUN}!\p"
+	"Do you remember a man named\n"
+	"the CUTTER in RUSTBORO?\l"
+	"He had a house there, remember?\p"
+	"Well, I found out his younger\n"
+	"brother lives in MAUVILLE.\p"
+	"Can you guess his name?\p"
+	"… … … … … …\n"
+	"… … … … … …\p"
+	"The ROCK SMASH GUY!")
+}
+
+text MatchCall_Text_May4 {
+	format("MAY: {PLAYER}{KUN}?\p"
+	"RUSTURF TUNNEL…\n"
+	"They named it that because it\l"
+	"joins RUSTBORO and VERDANTURF.")
+}
+
+text MatchCall_Text_May5 {
+	format("MAY: {PLAYER}{KUN}, how are you?\p"
+	"I'm out on ROUTE 111 now.\p"
+	"I'm going to get a rest at an old\n"
+	"lady's house.\p"
+	"She lives just north of\n"
+	"the desert.")
+}
+
+text MatchCall_Text_May6 {
+	format("MAY: Hi, {PLAYER}{KUN}!\p"
+	"Did you know about the MIRAGE\n"
+	"TOWER in the desert?\p"
+	"They say, like a mirage, it seems\n"
+	"to mysteriously come and go.\p"
+	"I wish I could see it.")
+}
+
+text MatchCall_Text_May7 {
+	format("MAY: {PLAYER}{KUN}, yahoo!\n"
+	"I'm on ROUTE 119 now.\p"
+	"There's a big river here, and\n"
+	"it often rains.\p"
+	"I got soaked!")
+}
+
+text MatchCall_Text_May8 {
+	format("MAY: {PLAYER}{KUN}, hi.\p"
+	"MT. PYRE is a memorial to Pokémon\n"
+	"whose lives have ended.\p"
+	"Maybe as a result, it's infested\n"
+	"with many GHOST-type Pokémon!")
+}
+
+text MatchCall_Text_May9 {
+	format("MAY: Hi, {PLAYER}{KUN}!\p"
+	"I was thinking of going to the hot\n"
+	"spring in LAVARIDGE.\p"
+	"But on the way, around JAGGED\n"
+	"PASS, I ran into some bad-looking\l"
+	"characters. The mood was ugly!")
+}
+
+text MatchCall_Text_May10 {
+	format("MAY: Hi, {PLAYER}{KUN}!\n"
+	"Did you see the news?\p"
+	"They say CAPT. STERN discovered\n"
+	"the SEAFLOOR CAVERN while on his\l"
+	"submarine expedition.")
+}
+
+text MatchCall_Text_May11 {
+	format("MAY: Hi, {PLAYER}{KUN}!\n"
+	"Don't you think it's neat?\p"
+	"Even if you don't have a boat,\n"
+	"you can cross the sea using\l"
+	"a Pokémon's move.\p"
+	"Did you know there's more?\p"
+	"There's a Pokémon move that lets\n"
+	"you go to the bottom of the sea.")
+}
+
+text MatchCall_Text_May12 {
+	format("MAY: Hi, {PLAYER}{KUN}!\n"
+	"Hope things are okay!\p"
+	"Have you been on the sea and\n"
+	"found your way to the other side\l"
+	"blocked?\p"
+	"Try diving deep underwater and\n"
+	"following trenches.\p"
+	"When you get to the other side,\n"
+	"come up to the surface. Easy!")
+}
+
+text MatchCall_Text_May13 {
+	format("MAY: Hi, {PLAYER}{KUN}!\p"
+	"How's it going?\n"
+	"Are you filling your POKéDEX?\p"
+	"I heard a rumor that there are\n"
+	"super-ancient Pokémon out there.\l"
+	"And there are three of them!\p"
+	"I would love to see even one…")
+}
+
+text MatchCall_Text_May14 {
+	format("MAY: {PLAYER}{KUN}!\n"
+	"I heard the rumors!\p"
+	"You beat the SOOTOPOLIS GYM\n"
+	"LEADER?\p"
+	"That means you don't have far\n"
+	"to go, do you?")
+}
+
+text MatchCall_Text_May15 {
+	format("MAY: There isn't a single TRAINER\n"
+	"left in HOENN who doesn't know who\l"
+	"you are, {PLAYER}{KUN}!\p"
+	"When I tell people that I'm friends\n"
+	"with you, {PLAYER}{KUN}, they're all\l"
+	"surprised!")
+}
+
+text MatchCall_Text_Brendan1 {
+	format("BRENDAN: Hey, {PLAYER}!\p"
+	"MR. BRINEY retired as a SAILOR,\n"
+	"but I still see him out on the sea\l"
+	"with his pet PEEKO sometimes.\p"
+	"I guess he must love\n"
+	"the sea still.")
+}
+
+text MatchCall_Text_Brendan2 {
+	format("BRENDAN: Hey, {PLAYER}!\p"
+	"I don't get how little towns like\n"
+	"PETALBURG and DEWFORD have GYMS.\p"
+	"I mean, not when the big port of\n"
+	"SLATEPORT doesn't have a GYM.\p"
+	"When they finally build a GYM there,\n"
+	"I should apply to be the LEADER.")
+}
+
+text MatchCall_Text_Brendan3 {
+	format("BRENDAN: Yo, {PLAYER}!\p"
+	"Do you remember a guy named\n"
+	"the CUTTER in RUSTBORO?\l"
+	"He had a house there, right?\p"
+	"Well, it turns out his little\n"
+	"brother lives in MAUVILLE.\p"
+	"Can you guess his name?\p"
+	"… … … … … …\n"
+	"… … … … … …\p"
+	"The ROCK SMASH GUY!")
+}
+
+text MatchCall_Text_Brendan4 {
+	format("BRENDAN: This voice… {PLAYER}?\p"
+	"They gave RUSTURF TUNNEL its name\n"
+	"because it joins RUSTBORO and\l"
+	"VERDANTURF.\p"
+	"Did you know that?")
+}
+
+text MatchCall_Text_Brendan5 {
+	format("BRENDAN: {PLAYER}, what's up?\p"
+	"Hey, I'm out on ROUTE 111 now.\p"
+	"I'm going to rest up at an old\n"
+	"lady's house north of the desert.\p"
+	"If you're in the area, you should\n"
+	"visit her, too.")
+}
+
+text MatchCall_Text_Brendan6 {
+	format("BRENDAN: Hey, {PLAYER}!\p"
+	"Did you know about the MIRAGE\n"
+	"TOWER in the desert?\p"
+	"They say, like a mirage, it can be\n"
+	"seen only sometimes.\p"
+	"I'd like to see that!")
+}
+
+text MatchCall_Text_Brendan7 {
+	format("BRENDAN: Who's this? Oh, {PLAYER}?\n"
+	"Guess what? I'm on ROUTE 119 now.\p"
+	"There's a big river here, and\n"
+	"it rains all the time.\p"
+	"I got soaked to the bone!")
+}
+
+text MatchCall_Text_Brendan8 {
+	format("BRENDAN: {PLAYER}!\p"
+	"MT. PYRE is a memorial to Pokémon\n"
+	"whose lives have ended.\p"
+	"That's probably why it's infested\n"
+	"with many GHOST-type Pokémon!")
+}
+
+text MatchCall_Text_Brendan9 {
+	format("BRENDAN: Hey there, {PLAYER}.\p"
+	"I was on my way back to the hot\n"
+	"spring in LAVARIDGE.\p"
+	"But around JAGGED PASS, I ran into\n"
+	"some nasty-looking characters.\p"
+	"Those creeps…\n"
+	"I think they were TEAM MAGMA.")
+}
+
+text MatchCall_Text_Brendan10 {
+	format("BRENDAN: Hi, {PLAYER}!\n"
+	"Did you catch the news?\p"
+	"They say CAPT. STERN discovered\n"
+	"the SEAFLOOR CAVERN while on his\l"
+	"submarine expedition.")
+}
+
+text MatchCall_Text_Brendan11 {
+	format("BRENDAN: Hey there, {PLAYER}!\n"
+	"Don't you think it's awesome?\p"
+	"Even if you don't have a boat,\n"
+	"you can cross the sea using\l"
+	"a Pokémon's move.\p"
+	"And, there's a move that lets you\n"
+	"travel to the bottom of the sea.\p"
+	"Man, Pokémon can do anything!")
+}
+
+text MatchCall_Text_Brendan12 {
+	format("BRENDAN: Howdy, {PLAYER}!\n"
+	"How are you holding up?\p"
+	"Ever found your way to the other\n"
+	"side blocked while on the sea?\p"
+	"Try diving deep underwater and\n"
+	"following trenches at the bottom.\p"
+	"When you get to the other side,\n"
+	"come up to the surface. Simple!")
+}
+
+text MatchCall_Text_Brendan13 {
+	format("BRENDAN: Hey there, {PLAYER}!\p"
+	"How's it going? Filling up your\n"
+	"POKéDEX successfully?\p"
+	"I heard a rumor that there are\n"
+	"super-ancient Pokémon out there.\l"
+	"And not just one--three!\p"
+	"I'd love to catch even one…")
+}
+
+text MatchCall_Text_Brendan14 {
+	format("BRENDAN: {PLAYER}!\n"
+	"I heard the rumors!\p"
+	"You beat the SOOTOPOLIS GYM\n"
+	"LEADER? Awesome!\p"
+	"You're getting awful close now!")
+}
+
+text MatchCall_Text_Brendan15 {
+	format("BRENDAN: There isn't a TRAINER in\n"
+	"all of HOENN who doesn't know who\l"
+	"you are, {PLAYER}!\p"
+	"When I tell people that I'm friends\n"
+	"with you, {PLAYER}, they get pretty\l"
+	"envious!")
+}
+
+text MatchCall_Text_Wally1 {
+	format("WALLY: Oh, {PLAYER}!\p"
+	"I've been getting healthier and\n"
+	"more physically fit.\p"
+	"I hope I can become a TRAINER like\n"
+	"you soon, {PLAYER}!")
+}
+
+text MatchCall_Text_Wally2 {
+	format("WALLY: {PLAYER}, hello!\p"
+	"After RUSTURF TUNNEL went\n"
+	"through, WANDA's been very happy!")
+}
+
+text MatchCall_Text_Wally3 {
+	format("WALLY: Oh, {PLAYER}!\p"
+	"I… I left my uncle's place in\n"
+	"VERDANTURF without telling anyone.\p"
+	"I wonder if he's furious with me…\p"
+	"{PLAYER}, you understand how\n"
+	"I feel, don't you?")
+}
+
+text MatchCall_Text_Wally4 {
+	format("WALLY: {PLAYER}?\n"
+	"It's me, WALLY!\p"
+	"The world of TRAINERS is amazing!\p"
+	"When I have my Pokémon with me,\n"
+	"all sorts of people say hi!\p"
+	"It's as if everyone's getting\n"
+	"connected through Pokémon!")
+}
+
+text MatchCall_Text_Wally5 {
+	format("WALLY: {PLAYER}? It's awesome!\n"
+	"That RALTS we caught together?\l"
+	"It evolved, {PLAYER}!\p"
+	"Maybe I'm talented…\p"
+	"Oh, but I shouldn't get a big head\n"
+	"like that!\p"
+	"After all, it's the Pokémon that\n"
+	"should be praised!")
+}
+
+text MatchCall_Text_Wally6 {
+	format("… … … … … …\n"
+	"… … … … … …\p"
+	"WALLY appears to be out of\n"
+	"the POKéNAV's service area…")
+}
+
+text MatchCall_Text_Wally7 {
+	format("WALLY: Oh, {PLAYER}!\p"
+	"Before I met you, I hardly ever\n"
+	"left my house…\p"
+	"But now, I'm on an adventure with\n"
+	"my very own Pokémon…\p"
+	"{PLAYER}…\n"
+	"Thank you…")
+}
+
+text MatchCall_Text_Scott1 {
+	format("SCOTT: Howdy, {PLAYER}{KUN}!\p"
+	"You know how Pokémon can be found\n"
+	"everywhere?\p"
+	"Like in the mountains, in the sea,\n"
+	"in tall grass anywhere?\p"
+	"Just like Pokémon, you can find\n"
+	"TRAINERS everywhere, too.\p"
+	"As a result, I have to hurry\n"
+	"everywhere, too. Busy, busy!")
+}
+
+text MatchCall_Text_Scott2 {
+	format("SCOTT: I'm on ROUTE 119 right now.\n"
+	"It's teeming with TRAINERS!\p"
+	"It's also overgrown with tall grass\n"
+	"everywhere, it seems.\p"
+	"Walking around in shorts here\n"
+	"makes me all ticklish!")
+}
+
+text MatchCall_Text_Scott3 {
+	format("SCOTT: Hi, hi, {PLAYER}{KUN}!\p"
+	"Have you had the chance to climb\n"
+	"MT. PYRE?\p"
+	"The place is a memorial to Pokémon\n"
+	"that have passed away.\p"
+	"It's somewhere every TRAINER\n"
+	"should climb to the top of once.")
+}
+
+text MatchCall_Text_Scott4 {
+	format("SCOTT: Hi, {PLAYER}{KUN}!\p"
+	"I've been hearing about these odd\n"
+	"gangs being a nuisance.\p"
+	"TEAM MAGMA and TEAM AQUA,\n"
+	"I think they were.\p"
+	"I would think there'd be some\n"
+	"skilled TRAINERS among them.\p"
+	"…But if they're thugs…")
+}
+
+text MatchCall_Text_Scott5 {
+	format("SCOTT: Oh, hi, {PLAYER}{KUN}.\p"
+	"Might there be tough TRAINERS\n"
+	"at the bottom of the sea?\p"
+	"I can't go check for myself.\n"
+	"I can't swim, for one.\l"
+	"And I don't raise Pokémon…")
+}
+
+text MatchCall_Text_Scott6 {
+	format("SCOTT: Hi, hi, {PLAYER}{KUN}!\p"
+	"You know that you can challenge\n"
+	"the Pokémon LEAGUE when you've\l"
+	"collected all the GYM BADGES?\p"
+	"With your talent, becoming the\n"
+	"CHAMPION isn't a pipe dream.\p"
+	"But did you know?\n"
+	"There's somewhere even better.\p"
+	"But, that's all I'm willing to say\n"
+	"for the time being.\p"
+	"It's something you can look\n"
+	"forward to.\p"
+	"When you've won your way through\n"
+	"the Pokémon LEAGUE into the HALL\l"
+	"OF FAME!")
+}
+
+text MatchCall_Text_Scott7 {
+	format("… … … … … …\n"
+	"… … … … … …\p"
+	"SCOTT appears to be out of\n"
+	"the POKéNAV's service area…")
+}
+
+text MatchCall_Text_Norman1 {
+	format("DAD: In RUSTBORO, there's a man\n"
+	"that goes by the odd name of\l"
+	"the CUTTER.\p"
+	"If you're in the area, you should\n"
+	"pay him a visit.")
+}
+
+text MatchCall_Text_Norman2 {
+	format("DAD: Hm… Little by little, but also\n"
+	"very surely, you're getting\l"
+	"tougher, {PLAYER}.\p"
+	"The stronger you get, the farther\n"
+	"and higher you soar from Mother\l"
+	"and me…\p"
+	"This feeling is hard to explain.")
+}
+
+text MatchCall_Text_Norman3 {
+	format("DAD: I see…\n"
+	"You've collected four GYM BADGES…\p"
+	"There's no avoiding it now.\n"
+	"We will battle like I promised.\p"
+	"Come anytime.\n"
+	"We'll all be waiting for you!")
+}
+
+text MatchCall_Text_Norman4 {
+	format("DAD: {PLAYER}! You'd better go visit\n"
+	"Mother every so often.\p"
+	"I'm going to remain here and\n"
+	"redouble my training.\p"
+	"The way of battling is deep\n"
+	"and unforgiving!")
+}
+
+text MatchCall_Text_Norman5 {
+	format("DAD: Oh, hi, {PLAYER}!\p"
+	"What's that? MAGMA EMBLEM?\n"
+	"I don't know what that's about.\p"
+	"But with a name like that, it may\n"
+	"be somehow linked to a volcano!")
+}
+
+text MatchCall_Text_Norman6 {
+	format("DAD: Hiyah! Haah! Dwah!\p"
+	"…Oh? {PLAYER}!\p"
+	"You caught me right in the middle\n"
+	"of a Pokémon training session!")
+}
+
+text MatchCall_Text_Norman7 {
+	format("DAD: {PLAYER}!\p"
+	"Who would've thought you'd become\n"
+	"the Pokémon LEAGUE CHAMPION…\p"
+	"Okay!\n"
+	"I won't be left behind!")
+}
+
+text MatchCall_Text_Norman8 {
+	format("DAD: Hm? {PLAYER}?\n"
+	"What good timing!\p"
+	"This time, I'm going to challenge\n"
+	"you to battle.\p"
+	"I'm waiting in the PETALBURG GYM.\n"
+	"Accept my challenge anytime!")
+}
+
+text MatchCall_Text_Norman9 {
+	format("DAD: …You amaze me, {PLAYER}.\n"
+	"How much higher will you soar?")
+}
+
+text MatchCall_Text_Steven1 {
+	format("STEVEN: Hi, {PLAYER}{KUN}!\p"
+	"Have you been to MAUVILLE\n"
+	"already?\p"
+	"You should visit the BIKE SHOP\n"
+	"and get a MACH BIKE.\p"
+	"Then, try exploring the GRANITE\n"
+	"CAVE thoroughly.\p"
+	"You may make a new discovery\n"
+	"there.")
+}
+
+text MatchCall_Text_Steven2 {
+	format("STEVEN: Hi, {PLAYER}{KUN}!\p"
+	"I've met a lot of different\n"
+	"TRAINERS so far.\p"
+	"But you're one of a kind.\n"
+	"You're not like anyone else.")
+}
+
+text MatchCall_Text_Steven3 {
+	format("STEVEN: Hi, {PLAYER}{KUN}!\p"
+	"When you're on an adventure with\n"
+	"your Pokémon, what do you think?\p"
+	"Do you consider them to be strong\n"
+	"partners?\p"
+	"Do you think of them as fun\n"
+	"companions?\p"
+	"Depending on how you think, your\n"
+	"adventure's significance changes.")
+}
+
+text MatchCall_Text_Steven4 {
+	format("STEVEN: Hello?\n"
+	"{PLAYER}{KUN}?\p"
+	"I'm involved in a spot of trouble\n"
+	"at the SPACE CENTER.\p"
+	"I'm sorry, but I can't talk now.\n"
+	"Bye!")
+}
+
+text MatchCall_Text_Steven5 {
+	format("STEVEN: Oh!\n"
+	"{PLAYER}{KUN}!\p"
+	"There's no need to talk.\n"
+	"It's past time for talking.\p"
+	"You have to believe in yourself\n"
+	"and do what's right.")
+}
+
+text MatchCall_Text_Steven6 {
+	format("… … … … … …\p"
+	"STEVEN appears not to be getting\n"
+	"the call…")
+}
+
+text MatchCall_Text_Steven7 {
+	format("STEVEN: {PLAYER}{KUN}… Congratulations\n"
+	"for entering the HALL OF FAME.\p"
+	"… … … … … …\n"
+	"… … … … … …\p"
+	"I hope we can meet again\n"
+	"somewhere!")
+}
+
+text MatchCall_Text_BirchRegisterCall {
+	format("PROF. BIRCH: Oh, {PLAYER}{KUN}!\n"
+	"I've already heard about you!\p"
+	"It seems your POKéNAV's been\n"
+	"upgraded with MATCH CALL.\p"
+	"Well, I should register, too!\p"
+	"That way, I'd be able to examine\n"
+	"your POKéDEX even while you're\l"
+	"out in the field.\p"
+	"… … … … … …")
+}
+
+text MatchCall_Text_RegisteredBirch {
+	format("Registered PROF. BIRCH\n"
+	"in the POKéNAV.")
+}
+
+text MatchCall_Text_UnusedProfBirch {
+	format("PROF. BIRCH: When one has both\n"
+	"the POKéDEX and POKéNAV, studying\l"
+	"Pokémon becomes more fun, eh?")
+}
+
+text MatchCall_Text_MrStone1 {
+	format("MR. STONE: Oh? {PLAYER}{KUN}!\p"
+	"Since you called me, the POKéNAV\n"
+	"must be working properly!\p"
+	"Other people will be registered,\n"
+	"so try calling them up, too!\p"
+	"Good! Good!\n"
+	"You seem to be quite happy!\p"
+	"Hm…\n"
+	"How could I know that?\p"
+	"It's because I'm looking down at\n"
+	"you from my office window!\p"
+	"Wahahaha!\n"
+	"See you again!")
+}
+
+text MatchCall_Text_MrStone2 {
+	format("MR. STONE: Oh? {PLAYER}{KUN}!\p"
+	"What's wrong? Have you forgotten\n"
+	"about that little errand of mine?\p"
+	"I need you to deliver my letter\n"
+	"to STEVEN in DEWFORD.\p"
+	"After that, deliver our parcel to\n"
+	"CAPT. STERN in SLATEPORT.\p"
+	"You remember, don't you?\p"
+	"Now, since I am a busy PRESIDENT,\n"
+	"I have to go! Bye-bye!")
+}
+
+text MatchCall_Text_MrStone3 {
+	format("MR. STONE: Oh! {PLAYER}{KUN}!\p"
+	"Ah, so you've met STEVEN!\n"
+	"I'd better reward you, then!\p"
+	"When you visit RUSTBORO again,\n"
+	"come see me at my office.\p"
+	"I'll be waiting for you!")
+}
+
+text MatchCall_Text_MrStone4 {
+	format("MR. STONE: Oh! {PLAYER}{KUN}!\p"
+	"Did you know that DEVON was\n"
+	"digging the RUSTURF TUNNEL?\p"
+	"But we shut down the operation to\n"
+	"protect the Pokémon in the area.\p"
+	"It's a no-brainer, really.\p"
+	"It's more important to let Pokémon\n"
+	"live in peace than worry about our\l"
+	"own convenience.")
+}
+
+text MatchCall_Text_MrStone5 {
+	format("MR. STONE: Hello, hello, {PLAYER}{KUN}!\p"
+	"I heard from someone in PETALBURG\n"
+	"that you're NORMAN's child!\p"
+	"No wonder you're such a capable\n"
+	"being!")
+}
+
+text MatchCall_Text_MrStone6 {
+	format("MR. STONE: What's that?\p"
+	"You battled your own father and\n"
+	"defeated him?\p"
+	"That's astounding!\p"
+	"I had no idea that I befriended\n"
+	"someone so special! Wahaha!")
+}
+
+text MatchCall_Text_MrStone7 {
+	format("Hello!\n"
+	"This is DEVON CORPORATI…\l"
+	"Oh, hello, {PLAYER}!\p"
+	"Our PRESIDENT was here a little\n"
+	"while ago, but he's gone out.\p"
+	"Our PRESIDENT is busy, but you\n"
+	"seem to be just as busy, {PLAYER}.")
+}
+
+text MatchCall_Text_MrStone8 {
+	format("…Huh? …What's that?\p"
+	"GROU… Yes? …DON?\p"
+	"You're breaking up…\n"
+	"…can't hear…\p"
+	"BZZZZ…")
+}
+
+text MatchCall_Text_MrStone9 {
+	format("…Huh? …What's that?\p"
+	"Seaflo… Yes? …Caver…?\p"
+	"You're breaking up…\n"
+	"…can't hear…\p"
+	"BZZZZ…")
+}
+
+text MatchCall_Text_MrStone10 {
+	format("MR. STONE: {PLAYER}{KUN}! It's me!\p"
+	"You were apparently involved in all\n"
+	"sorts of things, but I, being busy,\l"
+	"haven't a clue exactly what!\p"
+	"However, I urge you to take\n"
+	"the road you believe in and walk it.\p"
+	"I'll always be in your corner!\n"
+	"Take care!")
+}
+
+text MatchCall_Text_MrStone11 {
+	format("MR. STONE: … … … … … …\n"
+	"Is this maybe {PLAYER}{KUN}?\p"
+	"Your voice is so full of confidence,\n"
+	"I didn't recognize you right off!\p"
+	"Hm! You must come visit us at DEVON\n"
+	"sometime!")
+}
