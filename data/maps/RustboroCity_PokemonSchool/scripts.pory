@@ -29,20 +29,17 @@ script RustboroCity_PokemonSchool_EventScript_ChooseBlackboardTopic {
 
 text RustboroCity_PokemonSchool_Text_ExplainPoison {
     format("When most Pokémon are poisoned, they steadily lose HP.\p"
-        "Some Shroomish are restored by poison instead.\p"
-        "Salandit can poison even Steel or Poison-type Pokémon, who are otherwise immune.\p"
-        "Toxapex are extremely dangerous to poisoned Pokémon.")
+        "Most Shroomish find poisons nourishing.\p"
+        "Salandit and Seviper can poison even other Poison-type Pokémon.")
 }
 
 text RustboroCity_PokemonSchool_Text_ExplainParalysis {
     format("When most Pokémon become paralyzed, their Speed drops.\p"
-        "Some Poochyena, Zigzagoon, and Shroomish speed up instead.\p"
-        "Also, Electric-type Pokémon cannot be paralyzed.")
+        "Poochyena run faster instead, and Electric-type Pokémon can't be paralyzed at all.")
 }
 
 text RustboroCity_PokemonSchool_Text_ExplainSleep {
-    format("If a Pokémon falls asleep, it will be unable to attack except with Sleep Talk.\p"
-        "Pokémon cannot fall asleep in Electric Terrain, such as in thunderstorms.")
+    format("If a Pokémon falls asleep, it will be unable to attack, but they can't sleep in high electricity.")
 }
 
 text RustboroCity_PokemonSchool_Text_ExplainBurn {
