@@ -36,17 +36,10 @@ Underwater_SeafloorCavern_EventScript_SetSubmarineGoneMetatiles::
 Underwater_SeafloorCavern_OnResume:
 	setdivewarp MAP_SEAFLOOR_CAVERN_ENTRANCE, 10, 17
 	end
-
-Underwater_SeafloorCavern_EventScript_CheckStolenSub::
-	msgbox Underwater_SeafloorCavern_Text_SubExplorer1, MSGBOX_SIGN
-	end
-
-Underwater_SeafloorCavern_Text_SubExplorer1:
-	.string "“SUBMARINE EXPLORER 1” is painted\n"
-	.string "on the hull.\p"
-	.string "This is the submarine TEAM AQUA\n"
-	.string "stole in SLATEPORT!\p"
-	.string "TEAM AQUA must have gone\n"
-	.string "ashore here.$"
-
 `
+
+script Underwater_SeafloorCavern_EventScript_CheckStolenSub {
+	msgbox(format("“Submarine Explorer 1” is painted on the hull.\p"
+	"This is the submarine Team Aqua stole in Slateport!\p"
+	"Team Aqua must have gone ashore here.$"), MSGBOX_SIGN)
+}

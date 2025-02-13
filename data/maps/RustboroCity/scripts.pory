@@ -1016,8 +1016,8 @@ RustboroCity_EventScript_Boy1::
 `
 
 text RustboroCity_Text_WeShortenItToDevon {
-	format("The DEVON CORPORATION…\n"
-	"We all just shorten it to DEVON.\p"
+	format("The Devon Corporation…\n"
+	"We all just shorten it to Devon.\p"
 	"That company makes all sorts of\n"
 	"convenient products.")
 }

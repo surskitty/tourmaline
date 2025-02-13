@@ -1,7 +1,6 @@
-raw `
-SSTidalLowerDeck_MapScripts::
-	.byte 0
+mapscripts SSTidalLowerDeck_MapScripts {}
 
+raw `
 SSTidalLowerDeck_EventScript_Phillip::
 	trainerbattle_single TRAINER_PHILLIP, SSTidalLowerDeck_Text_PhillipIntro, SSTidalLowerDeck_Text_PhillipDefeat
 	msgbox SSTidalLowerDeck_Text_PhillipPostBattle, MSGBOX_AUTOCLOSE
