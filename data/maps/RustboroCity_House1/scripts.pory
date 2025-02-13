@@ -1,6 +1,34 @@
-mapscripts RustboroCity_House1_MapScripts {}
+mapscripts RustboroCity_House1_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        call(RustboroCity_House1_EventScript_SetupZigzagoonGfx)
+    }
+    MAP_SCRIPT_ON_RESUME {
+        call(RustboroCity_House1_EventScript_SetupZigzagoonGfx)
+    }
+}
+
+script RustboroCity_House1_EventScript_SetupZigzagoonGfx {
+    if (flag(FLAG_RUSTBORO_NPC_TRADE_COMPLETED)) {
+        clearflag(FLAG_MET_RIVAL_MOM)
+    } else {
+        setflag(FLAG_MET_RIVAL_MOM)
+    }
+}
+
+script RustboroCity_House1_EventScript_Zigzagoon {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_ZIGZAGOON, CRY_MODE_NORMAL)
+    msgbox("ZIGZAGOON: Guguuh!", MSGBOX_DEFAULT)
+    waitmoncry
+    release
+}
 
 raw `
+
+.set LOCALID_ZIGZAGOON_GALAR, 3
+.set LOCALID_ZIGZAGOON_HOENN, 4
 
 RustboroCity_House1_EventScript_Trader::
     lock
@@ -23,10 +51,13 @@ RustboroCity_House1_EventScript_Trader::
     copyvar VAR_0x8004, VAR_0x8008
     copyvar VAR_0x8005, VAR_0x800A
     special CreateInGameTradePokemon
+    setflag FLAG_RUSTBORO_NPC_TRADE_COMPLETED
+    clearflag FLAG_MET_RIVAL_MOM
     special DoInGameTradeScene
+    removeobject LOCALID_ZIGZAGOON_GALAR 
+    addobject LOCALID_ZIGZAGOON_HOENN
     waitstate
     msgbox RustboroCity_House1_Text_PleaseBeGoodToMyPokemon, MSGBOX_DEFAULT
-    setflag FLAG_RUSTBORO_NPC_TRADE_COMPLETED
     release
     end
 
@@ -46,18 +77,13 @@ RustboroCity_House1_EventScript_TradeCompleted::
     release
     end
 
-RustboroCity_House1_EventScript_Hiker::
-    msgbox RustboroCity_House1_Text_AllSortsOfPlaces, MSGBOX_NPC
-    end
 `
 
 text RustboroCity_House1_Text_IllTradeIfYouWant {
    format("Huh? My Pokémon is cute?\n"
     "Sure, I knew that.\p"
-    "But if you really want, I'm willing\n"
-    "to trade it to you.\p"
-    "I'll trade you my {STR_VAR_2} for\n"
-    "a {STR_VAR_1} if you want.")
+    "But if you really want, I'm willing to trade it to you.\p"
+    "I'll trade you my {STR_VAR_2} for a {STR_VAR_1} if you want.")
 }
 
 text RustboroCity_House1_Text_PleaseBeGoodToMyPokemon {
@@ -66,8 +92,7 @@ text RustboroCity_House1_Text_PleaseBeGoodToMyPokemon {
 }
 
 text RustboroCity_House1_Text_DoesntLookLikeMonToMe {
-   format("Huh? That doesn't look anything like\n"
-    "a {STR_VAR_1} to me.")
+   format("Huh? That doesn't look anything like a {STR_VAR_1} to me.")
 }
 
 text RustboroCity_House1_Text_YouDontWantToThatsOkay {
@@ -76,14 +101,11 @@ text RustboroCity_House1_Text_YouDontWantToThatsOkay {
 }
 
 text RustboroCity_House1_Text_AnyPokemonCanBeCute {
-   format("Any Pokémon can be cute if you raise\n"
-    "it with care and kindness.")
+   format("Any Pokémon can be cute if you raise it with care and kindness.")
 }
 
-text RustboroCity_House1_Text_AllSortsOfPlaces {
-   format("In all sorts of places, there are all\n"
-    "sorts of Pokémon and people.\p"
-    "I find that fascinating, so I go to all\n"
-    "sorts of places.")
+script RustboroCity_House1_EventScript_Hiker {
+    msgbox(format("In all sorts of places, there are all sorts of Pokémon and people.\p"
+    "I find that fascinating, so I go to all sorts of places."), MSGBOX_NPC)
 }
 
