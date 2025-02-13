@@ -10025,8 +10025,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
 #if !TESTING
-        .abilities = { ABILITY_STURDY, ABILITY_ANALYTIC, ABILITY_NONE },
-        .innates = { ABILITY_MAGNET_PULL },
+        .abilities = { ABILITY_STURDY, ABILITY_NONE, ABILITY_NONE },
+        .innates = { ABILITY_MAGNET_PULL, ABILITY_ANALYTIC },
 #else
         .abilities = { ABILITY_MAGNET_PULL, ABILITY_STURDY, ABILITY_ANALYTIC },
 #endif
@@ -12105,7 +12105,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
 #if !TESTING
         .abilities = { ABILITY_SOUNDPROOF, ABILITY_STATIC, ABILITY_NONE },
-        .innates = { ABILITY_AFTERMATH },
+        .innates = { ABILITY_AFTERMATH, ABILITY_SURGE_SURFER },
 #else
         .abilities = { ABILITY_SOUNDPROOF, ABILITY_STATIC, ABILITY_AFTERMATH },
 #endif
@@ -12174,7 +12174,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
 #if !TESTING
         .abilities = { ABILITY_SOUNDPROOF, ABILITY_STATIC, ABILITY_NONE },
-        .innates = { ABILITY_AFTERMATH },
+        .innates = { ABILITY_AFTERMATH, ABILITY_SURGE_SURFER },
 #else
         .abilities = { ABILITY_SOUNDPROOF, ABILITY_STATIC, ABILITY_AFTERMATH },
 #endif
@@ -14489,8 +14489,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_3),
 #if !TESTING
-        .abilities = { ABILITY_NATURAL_CURE, ABILITY_ANALYTIC, ABILITY_NONE },
-        .innates = { ABILITY_ILLUMINATE },
+        .abilities = { ABILITY_ANALYTIC, ABILITY_NONE, ABILITY_NONE },
+        .innates = { ABILITY_ILLUMINATE, ABILITY_NATURAL_CURE, ABILITY_REGENERATOR },
 #else
         .abilities = { ABILITY_ILLUMINATE, ABILITY_NATURAL_CURE, ABILITY_ANALYTIC },
 #endif
@@ -14559,8 +14559,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_3),
 #if !TESTING
-        .abilities = { ABILITY_NATURAL_CURE, ABILITY_ANALYTIC, ABILITY_NONE },
-        .innates = { ABILITY_ILLUMINATE },
+        .abilities = { ABILITY_ANALYTIC, ABILITY_NONE, ABILITY_NONE },
+        .innates = { ABILITY_ILLUMINATE, ABILITY_NATURAL_CURE, ABILITY_REGENERATOR },
 #else
         .abilities = { ABILITY_ILLUMINATE, ABILITY_NATURAL_CURE, ABILITY_ANALYTIC },
 #endif
@@ -16187,7 +16187,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_2, EGG_GROUP_DRAGON),
 #if !TESTING
         .abilities = { ABILITY_SWIFT_SWIM, ABILITY_NONE, ABILITY_RATTLED },
-        .innates = { },
+        .innates = { ABILITY_RATTLED },
 #else
         .abilities = { ABILITY_SWIFT_SWIM, ABILITY_NONE, ABILITY_RATTLED },
 #endif
@@ -16267,7 +16267,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_2, EGG_GROUP_DRAGON),
 #if !TESTING
         .abilities = { ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_MOXIE },
-        .innates = { },
+        .innates = { ABILITY_WIND_RIDER },
 #else
         .abilities = { ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_MOXIE },
 #endif
@@ -16348,7 +16348,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_2, EGG_GROUP_DRAGON),
 #if !TESTING
         .abilities = { ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_MOXIE },
-        .innates = { ABILITY_MOLD_BREAKER },
+        .innates = { ABILITY_WIND_RIDER, ABILITY_MOLD_BREAKER },
 #else
         .abilities = { ABILITY_MOLD_BREAKER, ABILITY_MOLD_BREAKER, ABILITY_MOLD_BREAKER },
 #endif

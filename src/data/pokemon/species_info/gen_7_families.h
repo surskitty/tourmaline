@@ -2926,8 +2926,8 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS),
 #if !TESTING
-        .abilities = { ABILITY_MYCELIUM_MIGHT, ABILITY_EFFECT_SPORE, ABILITY_NONE },
-        .innates = { ABILITY_ILLUMINATE, ABILITY_RAIN_DISH },
+        .abilities = { ABILITY_EFFECT_SPORE, ABILITY_NONE, ABILITY_NONE },
+        .innates = { ABILITY_ILLUMINATE, ABILITY_RAIN_DISH, ABILITY_MYCELIUM_MIGHT },
 #else
         .abilities = { ABILITY_ILLUMINATE, ABILITY_EFFECT_SPORE, ABILITY_RAIN_DISH },
 #endif
@@ -2996,8 +2996,8 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS),
 #if !TESTING
-        .abilities = { ABILITY_MYCELIUM_MIGHT, ABILITY_EFFECT_SPORE, ABILITY_NONE },
-        .innates = { ABILITY_ILLUMINATE, ABILITY_RAIN_DISH },
+        .abilities = { ABILITY_EFFECT_SPORE, ABILITY_NONE, ABILITY_NONE },
+        .innates = { ABILITY_ILLUMINATE, ABILITY_RAIN_DISH, ABILITY_MYCELIUM_MIGHT },
 #else
         .abilities = { ABILITY_ILLUMINATE, ABILITY_EFFECT_SPORE, ABILITY_RAIN_DISH },
 #endif

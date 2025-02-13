@@ -1309,8 +1309,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
 #if !TESTING
-        .abilities = { ABILITY_RECKLESS, ABILITY_GUTS, ABILITY_DEFIANT },
-        .innates = { ABILITY_PICKUP, ABILITY_FRISK },
+        .abilities = { ABILITY_GUTS, ABILITY_DEFIANT, ABILITY_NONE },
+        .innates = { ABILITY_PICKUP, ABILITY_FRISK, ABILITY_RECKLESS },
 #else
         .abilities = { ABILITY_RECKLESS, ABILITY_GUTS, ABILITY_DEFIANT },
 #endif

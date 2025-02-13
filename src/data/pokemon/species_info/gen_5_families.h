@@ -6174,7 +6174,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
 #if !TESTING
         .abilities = { ABILITY_ILLUSION, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_ILLUSION, ABILITY_MAGICIAN, ABILITY_WIMP_OUT },
+        .innates = { ABILITY_ILLUSION, ABILITY_WIMP_OUT },
 #else
         .abilities = { ABILITY_ILLUSION, ABILITY_NONE, ABILITY_NONE },
 #endif
@@ -6243,7 +6243,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
 #if !TESTING
         .abilities = { ABILITY_ILLUSION, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_ILLUSION, ABILITY_MAGICIAN, ABILITY_INFILTRATOR },
+        .innates = { ABILITY_ILLUSION, ABILITY_EMERGENCY_EXIT, ABILITY_REGENERATOR },
 #else
         .abilities = { ABILITY_ILLUSION, ABILITY_NONE, ABILITY_NONE },
 #endif
