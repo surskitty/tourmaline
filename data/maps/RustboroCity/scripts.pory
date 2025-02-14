@@ -9,7 +9,12 @@ raw `
 RustboroCity_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, RustboroCity_OnFrame
+	map_script MAP_SCRIPT_ON_LOAD, RustboroCity_OnLoad
 	.byte 0
+
+RustboroCity_OnLoad:
+    special SetRoofBirds
+    return
 
 RustboroCity_OnTransition:
 	setflag FLAG_VISITED_RUSTBORO_CITY

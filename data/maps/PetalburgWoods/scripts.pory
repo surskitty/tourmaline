@@ -1,4 +1,9 @@
-mapscripts PetalburgWoods_MapScripts {}
+mapscripts PetalburgWoods_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        special(SetStationaryWilds)
+        setvar(VAR_WILD_SYMBOL_LEVEL, 8)
+    }
+}
 
 raw `
 .set LOCALID_GRUNT, 3

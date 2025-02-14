@@ -519,11 +519,9 @@ script Route109_EventScript_Herdier {
 script Route109_EventScript_Sandygast {
     lock
     faceplayer
-    setseenmon(SPECIES_SANDYGAST)
     waitse
     playmoncry(SPECIES_SANDYGAST, CRY_MODE_ENCOUNTER)
     msgbox("The sandcastle attacks!", MSGBOX_DEFAULT)
-    delay(40)
     waitmoncry
     setwildbattle(SPECIES_SANDYGAST, 15)
     setflag(FLAG_SYS_CTRL_OBJ_DELETE)
