@@ -262,13 +262,8 @@ PAL_TAG_ARCTOVISH_SURF,
 PAL_TAG_DRAKLOAK_SURF,
 PAL_TAG_DRAGAPULT_SURF,
 PAL_TAG_BASCULEGION_SURF,
-<<<<<<< HEAD
-PAL_TAG_OVERQWIL_SURF,
+// PAL_TAG_OVERQWIL_SURF,
 PAL_TAG_DONDOZO_SURF,
-// PAL_TAG_KYOGRE_PRIMAL_SURF,
-=======
-//PAL_TAG_OVERQWIL_SURF,
->>>>>>> 6fa0f5f4ae (Fix issue where fishing while surfing breaks the overlay offset)
 };
 
 const struct SpritePalette sSurfablePokemonPalettes[] = {
