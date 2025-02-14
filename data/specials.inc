@@ -554,3 +554,6 @@ gSpecials::
 	def_special Script_GetChosenMonOffensiveIVs
 	def_special Script_GetChosenMonDefensiveIVs
 	def_special UseBlankMessageToCancelPokemonPic
+	def_special SetRoofBirds
+	def_special SetStationaryWilds
+	def_special GetSpeciesFromStationaryEncounter

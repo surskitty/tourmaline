@@ -66,10 +66,13 @@
 #include "constants/moves.h"
 #include "constants/party_menu.h"
 #include "constants/battle_frontier.h"
+#include "constants/trainer_types.h"
 #include "constants/weather.h"
 #include "constants/metatile_labels.h"
 #include "palette.h"
 #include "battle_util.h"
+#include "battle_pyramid.h"
+#include "trainer_hill.h"
 
 #define TAG_ITEM_ICON 5500
 
@@ -4334,4 +4337,121 @@ void UseBlankMessageToCancelPokemonPic(void)
     u8 t = EOS;
     AddTextPrinterParameterized(0, FONT_NORMAL, &t, 0, 1, 0, NULL);
     ScriptMenu_HidePokemonPic();
+}
+
+#define MAX_POKEMON_SPOTS 10
+
+static const u8 randomPokemonArray[MAX_POKEMON_SPOTS + 1][4] =
+{
+    [0]  = { 0, 0, 0, 0 },
+    [1]  = { 1, 0, 1, 0 },
+    [2]  = { 1, 0, 1, 0 },
+    [3]  = { 2, 1, 1, 0 },
+    [4]  = { 2, 1, 1, 0 },
+    [5]  = { 2, 1, 2, 0 },
+    [6]  = { 3, 2, 2, 1 },
+    [7]  = { 3, 2, 3, 2 },
+    [8]  = { 4, 2, 3, 2 },
+    [9]  = { 4, 3, 3, 2 },
+    [10] = { 4, 3, 4, 3 },
+};
+
+void SetRoofBirds(void)
+{
+    u8 i;
+    u8 objectEventCount;
+    struct ObjectEventTemplate *template;
+    u8 birdIndexes[MAX_POKEMON_SPOTS + 1] = {0};
+    u32 birdCount = 0;
+    if (gMapHeader.events != NULL)
+    {
+        if (InBattlePyramid())
+           objectEventCount = GetNumBattlePyramidObjectEvents();
+        else if (InTrainerHill())
+           objectEventCount = HILL_TRAINERS_PER_FLOOR;
+        else
+           objectEventCount = gMapHeader.events->objectEventCount;
+
+        for (i = 0; i < objectEventCount; i++)
+        {
+            template = &gSaveBlock1Ptr->objectEventTemplates[i];
+            if (template->trainerType == TRAINER_TYPE_BIRD && birdCount <= MAX_POKEMON_SPOTS)
+            {
+                birdIndexes[birdCount] = i; // Store index of bird
+                birdCount++;
+            }
+        }
+    
+        if (birdCount > 0)
+        {
+            u8 visibleCount = randomPokemonArray[birdCount][Random() % 4];
+            Shuffle8(birdIndexes, birdCount);
+
+            // Mark visible birds as Seen in the Pokedex
+            for (i = 0; i < visibleCount; i++)
+            {
+                u8 birdIndex = birdIndexes[i];
+                template = &gSaveBlock1Ptr->objectEventTemplates[birdIndex];
+
+                // Find the SPECIES constant from the graphicsId
+                u32 speciesId = template->graphicsId - OBJ_EVENT_GFX_MON_BASE;
+                GetSetPokedexFlag(speciesId, FLAG_SET_SEEN);
+            }
+
+            // Hide random birds until only `visibleCount` remain
+            for (i = visibleCount; i < birdCount; i++)
+            {
+                u8 birdIndex = birdIndexes[i];
+                template = &gSaveBlock1Ptr->objectEventTemplates[birdIndex];
+                FlagSet(template->flagId);
+            }
+            
+        }
+    }
+}
+
+void SetStationaryWilds(void)
+{
+    u8 i;
+    u8 objectEventCount;
+    struct ObjectEventTemplate *template;
+    u8 wildIndexes[MAX_POKEMON_SPOTS + 1] = {0};
+    u32 wildCount = 0;
+    if (gMapHeader.events != NULL)
+    {
+        if (InBattlePyramid())
+           objectEventCount = GetNumBattlePyramidObjectEvents();
+        else if (InTrainerHill())
+           objectEventCount = HILL_TRAINERS_PER_FLOOR;
+        else
+           objectEventCount = gMapHeader.events->objectEventCount;
+
+        for (i = 0; i < objectEventCount; i++)
+        {
+            template = &gSaveBlock1Ptr->objectEventTemplates[i];
+            if (template->trainerType == TRAINER_TYPE_WILD_POKEMON && wildCount <= MAX_POKEMON_SPOTS)
+            {
+                wildIndexes[wildCount] = i; // Store index of wild Pokemon
+                wildCount++;
+            }
+        }
+    
+        if (wildCount > 0)
+        {
+            u8 visibleCount = randomPokemonArray[wildCount][Random() % 4];
+            Shuffle8(wildIndexes, wildCount);
+            // Hide random wild Pokemon until only `visibleCount` remain
+            for (i = visibleCount; i < wildCount; i++)
+            {
+                u8 wildIndex = wildIndexes[i];
+                template = &gSaveBlock1Ptr->objectEventTemplates[wildIndex];
+                FlagSet(template->flagId);
+            }
+        }
+    }
+}
+
+u16 GetSpeciesFromStationaryEncounter(u16 localId)
+{
+    return (GetObjectEventTemplateByLocalIdAndMap(localId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup)->graphicsId) - OBJ_EVENT_GFX_MON_BASE;
 }
