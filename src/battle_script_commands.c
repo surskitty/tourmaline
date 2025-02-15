@@ -9705,7 +9705,7 @@ static void Cmd_various(void)
     {
         VARIOUS_ARGS();
         gSpecialStatuses[battler].switchInAbilityDone = FALSE;
-        for(i=0; i<=MAX_MON_INNATES+1; i++)
+        for(i=0; i<=MAX_MON_INNATES; i++)
             gSpecialStatuses[battler].switchInTraitDone[i] = FALSE;
         break;
     }
