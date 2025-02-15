@@ -435,6 +435,10 @@ const struct RideablePokemon gSurfablePokemon[] =
         .trainerPose = 0,
     },
     {
+        .species = SPECIES_KYOGRE_PRIMAL,
+        .trainerPose = 0,
+    },
+    {
         .species = SPECIES_RAYQUAZA,
         .trainerPose = 0,
     },
@@ -1027,10 +1031,6 @@ const struct RideablePokemon gSurfablePokemon[] =
         .species = SPECIES_OVERQWIL,
         .trainerPose = 0,
     },
-/*    {
-        .species = SPECIES_KYOGRE_PRIMAL,
-        .trainerPose = 0,
-    }, */
 {
         .species = SPECIES_DONDOZO,
         .trainerPose = 0,

@@ -20,6 +20,7 @@ extern const struct SpriteTemplate *const gFieldEffectObjectTemplatePointers[];
 
 extern void SynchroniseSurfAnim(struct ObjectEvent *playerObj, struct Sprite *sprite);
 extern void SynchroniseSurfPosition(struct ObjectEvent *playerObj, struct Sprite *sprite);
+extern void UpdateBobbingEffect(struct ObjectEvent *playerObj, struct Sprite *playerSprite, struct Sprite *sprite);
 
 static void CreateOverlaySprite(void);
 static void UpdateSurfMonOverlay(struct Sprite *sprite);
@@ -49,6 +50,7 @@ static u16 GetSurfMonSpecies(void)
 
 static u16 GetSurfablePokemonSprite(void)
 {
+	//moved this from u8 to u32, was causing a crash with later mons
     u32 i;
     u16 mon = GetSurfMonSpecies();
 
@@ -138,16 +140,25 @@ static void UpdateSurfMonOverlay(struct Sprite *sprite)
 	
     playerObj = &gObjectEvents[gPlayerAvatar.objectEventId];
     linkedSprite = &gSprites[playerObj->spriteId];
-
+	
+    // Fix for Fishing whilst surfing having overlay sprite "bob" up and down appropriately, unfortunately breaks proper "jump" onto Surfing Pokemon - Needs further investigation to fix.
+	if (VarGet(VAR_FREEZESURFBLOB) == 1)
+	{
+		SynchroniseSurfAnim(playerObj, sprite);
+		SynchroniseSurfPosition(playerObj, sprite);
+	}
+	else
+	{
     SynchroniseSurfAnim(playerObj, sprite);
     SynchroniseSurfPosition(playerObj, sprite);
+	UpdateBobbingEffect(playerObj, linkedSprite, sprite);
+	}
 
     // Reset the subpriority for the overlay sprite so it shows on top of the player
     // We need this here so the subprio is correct after a screen transition (e.g. after exiting a battle)
     subpriority = gSprites[gPlayerAvatar.spriteId].subpriority - 1;
     sprite->subpriority = subpriority;
 
-if (linkedSprite->animNum < MOVEMENT_ACTION_DELAY_16)
     if (linkedSprite->animNum < MOVEMENT_ACTION_DELAY_16)
     {
         sprite->x = linkedSprite->x;
