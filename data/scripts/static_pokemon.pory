@@ -1,0 +1,40 @@
+script Common_EventScript_StationaryWild {
+    lock
+    faceplayer
+    applymovement(VAR_LAST_TALKED, Common_Movement_ExclamationMark)    
+    waitse
+    callnative(StartStationaryEncounter)
+    playmoncry(VAR_0x8004, CRY_MODE_ENCOUNTER)
+	bufferspeciesname(STR_VAR_1, VAR_0x8004)
+	msgbox(format("The {STR_VAR_1} meets your eyes!"), MSGBOX_DEFAULT)
+	msgbox("The wild Pokémon attacked!", MSGBOX_DEFAULT)
+    waitmoncry
+    waitmessage
+    setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+	dowildbattle
+	clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+	specialvar(VAR_RESULT, GetBattleOutcome)
+	goto_if_eq(VAR_RESULT, B_OUTCOME_RAN, Common_EventScript_RanFromStaticPokemon)
+    goto(Common_EventScript_RemoveStaticPokemon)
+}
+
+script Common_EventScript_RanFromStaticPokemon {
+    msgbox(format("You backed away and gave it space."), MSGBOX_DEFAULT)
+    release
+}
+
+script Common_EventScript_RemoveStaticPokemon {
+	fadescreenswapbuffers(FADE_TO_BLACK)
+	removeobject(VAR_LAST_TALKED)
+	fadescreenswapbuffers(FADE_FROM_BLACK)
+	release
+}
+
+script Common_EventScript_LegendaryFlewAway {
+	fadescreenswapbuffers(FADE_TO_BLACK)
+	removeobject(VAR_LAST_TALKED)
+	fadescreenswapbuffers(FADE_FROM_BLACK)
+	bufferspeciesname(STR_VAR_1, VAR_0x8004)
+	msgbox(gText_LegendaryFlewAway, MSGBOX_DEFAULT)
+	release
+}

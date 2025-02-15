@@ -556,4 +556,3 @@ gSpecials::
 	def_special UseBlankMessageToCancelPokemonPic
 	def_special SetRoofBirds
 	def_special SetStationaryWilds
-	def_special GetSpeciesFromStationaryEncounter

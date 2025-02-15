@@ -4451,7 +4451,3 @@ void SetStationaryWilds(void)
     }
 }
 
-u16 GetSpeciesFromStationaryEncounter(u16 localId)
-{
-    return (GetObjectEventTemplateByLocalIdAndMap(localId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup)->graphicsId) - OBJ_EVENT_GFX_MON_BASE;
-}

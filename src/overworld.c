@@ -65,6 +65,7 @@
 #include "vs_seeker.h"
 #include "frontier_util.h"
 #include "constants/abilities.h"
+#include "constants/event_objects.h"
 #include "constants/layouts.h"
 #include "constants/map_types.h"
 #include "constants/region_map_sections.h"
@@ -3505,4 +3506,62 @@ void ScriptHideItemDescription(struct ScriptContext *ctx)
 }
 #endif // OW_SHOW_ITEM_DESCRIPTIONS
 
+void StartStationaryEncounter(void) {
+    const struct ObjectEventTemplate *objectEventTemplate;
+    objectEventTemplate = GetObjectEventTemplateByLocalIdAndMap(VarGet(VAR_LAST_TALKED), gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
 
+    u32 species = (objectEventTemplate->graphicsId) - OBJ_EVENT_GFX_MON_BASE;
+    u8 level;
+    u16 heldItem = objectEventTemplate->trainerRange_berryTreeId;
+    u8 rand;
+
+    VarSet(VAR_0x8004, species);
+    
+    u8 nBadges = 0;
+    for (int i = FLAG_BADGE01_GET, nBadges = 0; i < FLAG_BADGE01_GET + NUM_BADGES; i++)
+    {
+        if (FlagGet(i))
+            nBadges++;
+    }
+
+    // Generate level of pokemon by badges obtained.
+    switch (nBadges)
+    {
+        case 0: level = 7; break;
+        case 1: level = 12; break;
+        case 2: level = 15; break;
+        case 3: level = 20; break;
+        case 4: level = 25; break;
+        case 5: level = 30; break;
+        case 6: level = 35; break;
+        case 7: level = 45; break;
+        case 8: level = 60; break;
+    }
+    
+    // Raise the level of the wild pokemon, scaling by number of badges.
+    // up to +2 with no badges, up to +18 with all eight.
+    rand = Random() % ((nBadges + 1) * 2);
+    level = level + rand;
+    
+    // if the Pokemon does not have a held item specified, generate an appropriate berry
+    if (heldItem == ITEM_NONE) {
+        static const u8 BERRY_ODDS = 12;
+        
+        // lower numbers are better; scaling for game progression
+        rand = Random() % (BERRY_ODDS - nBadges);
+        if (rand == 0) {
+            if (nBadges > 5) {
+                rand = Random() % NUM_BERRY_MASTER_BERRIES;
+                heldItem = rand + FIRST_BERRY_MASTER_BERRY;
+            } else {
+                rand = Random() % NUM_BERRY_MASTER_WIFE_BERRIES;
+                heldItem = rand + FIRST_BERRY_MASTER_WIFE_BERRY;
+            }
+       } else if (rand < (BERRY_ODDS / 2)) {
+            rand = Random() % 8; // the number of unexciting status healy berries
+            heldItem = rand + FIRST_BERRY_INDEX;
+       }
+    }
+
+    CreateScriptedWildMon(species, level, heldItem);
+}
