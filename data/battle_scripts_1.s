@@ -4689,6 +4689,10 @@ BattleScript_NotAffectedAbilityPopUp::
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
+BattleScript_GenerateAbilityPopUp::
+	call BattleScript_AbilityPopUp
+	return
+
 BattleScript_EffectUproar::
 	attackcanceler
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
@@ -7861,11 +7865,11 @@ BattleScript_IntimidateContrary:
 	call BattleScript_AbilityPopUpTarget
 	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, B_MSG_STAT_WONT_INCREASE, BattleScript_IntimidateContrary_WontIncrease
 	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
-	printfromtable gStatUpStringIds
-	goto BattleScript_IntimidateEffect_WaitString
+	printstring STRINGID_PKMNCUTSATTACKWITH
+	goto BattleScript_IntimidateLoopIncrement
 BattleScript_IntimidateContrary_WontIncrease:
 	printstring STRINGID_TARGETSTATWONTGOHIGHER
-	goto BattleScript_IntimidateEffect_WaitString
+	goto BattleScript_IntimidateLoopIncrement
 
 BattleScript_IntimidateInReverse:
 	copybyte sBATTLER, gBattlerTarget
