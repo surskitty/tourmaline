@@ -262,6 +262,8 @@ PAL_TAG_DRAKLOAK_SURF,
 PAL_TAG_DRAGAPULT_SURF,
 PAL_TAG_BASCULEGION_SURF,
 PAL_TAG_OVERQWIL_SURF,
+PAL_TAG_DONDOZO_SURF,
+// PAL_TAG_KYOGRE_PRIMAL_SURF,
 };
 
 const struct SpritePalette sSurfablePokemonPalettes[] = {
@@ -527,9 +529,10 @@ const struct SpritePalette sSurfablePokemonPalettes[] = {
 {gSurfablePokemonPalette_Dragapult,  PAL_TAG_DRAGAPULT_SURF},
 {gSurfablePokemonPalette_Basculegion,  PAL_TAG_BASCULEGION_SURF},
 {gSurfablePokemonPalette_Overqwil,  PAL_TAG_OVERQWIL_SURF},
-//#ifdef POKEMON_EXPANSION
-//    {gSurfablePokemonPalette_KyogrePrimal,    PAL_TAG_KYOGRE_PRIMAL_SURF},
-//#endif
+// {gSurfablePokemonPalette_KyogrePrimal,    PAL_TAG_KYOGRE_PRIMAL_SURF},
+
+{gSurfablePokemonPalette_Dondozo,   PAL_TAG_DONDOZO_SURF},
+
 };
 
 const struct SpritePalette sSurfablePokemonShinyPalettes[] = {
@@ -795,9 +798,8 @@ const struct SpritePalette sSurfablePokemonShinyPalettes[] = {
 {gSurfablePokemonShinyPalette_Dragapult,  PAL_TAG_DRAGAPULT_SURF},
 {gSurfablePokemonShinyPalette_Basculegion,  PAL_TAG_BASCULEGION_SURF},
 {gSurfablePokemonShinyPalette_Overqwil,  PAL_TAG_OVERQWIL_SURF},
-//#ifdef POKEMON_EXPANSION
-//    {gSurfablePokemonShinyPalette_KyogrePrimal,    PAL_TAG_KYOGRE_PRIMAL_SURF},
-//#endif
+{gSurfablePokemonShinyPalette_Dondozo,    PAL_TAG_DONDOZO_SURF},
+// {gSurfablePokemonShinyPalette_KyogrePrimal,    PAL_TAG_KYOGRE_PRIMAL_SURF},
 };
 
 const union AnimCmd gSurfablePokemonAnim_FaceSouth[] =
@@ -1115,9 +1117,9 @@ const struct SpriteTemplate gSurfablePokemonOverworldSprites[] =
     {0xFFFF, PAL_TAG_DRAGAPULT_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Dragapult,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
     {0xFFFF, PAL_TAG_BASCULEGION_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Basculegion,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
     {0xFFFF, PAL_TAG_OVERQWIL_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Overqwil,  gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
-//#ifdef POKEMON_EXPANSION
-//    {0xFFFF, PAL_TAG_KYOGRE_PRIMAL_SURF,    &gObjectEventBaseOam_64x64, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_KyogrePrimal,    gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
-//#endif
+    {0xFFFF, PAL_TAG_DONDOZO_SURF,   &gObjectEventBaseOam_64x64, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_Dondozo,   gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+//     {0xFFFF, PAL_TAG_KYOGRE_PRIMAL_SURF,    &gObjectEventBaseOam_64x64, gSurfablePokemonAnimTable, gSurfingOverworldPicTable_KyogrePrimal,    gDummySpriteAffineAnimTable, UpdateSurfBlobFieldEffect},
+
 };
 
 #define NO_OVERLAY {0, 0, NULL, NULL, NULL, NULL, NULL}
@@ -1385,8 +1387,6 @@ const struct SpriteTemplate gSurfablePokemonOverlaySprites[] =
 {0xFFFF, PAL_TAG_DRAGAPULT_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Dragapult,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
 {0xFFFF, PAL_TAG_BASCULEGION_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Basculegion,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
 {0xFFFF, PAL_TAG_OVERQWIL_SURF,  &gObjectEventBaseOam_32x32, gSurfablePokemonAnimTable, gSurfingOverlayPicTable_Overqwil,  gDummySpriteAffineAnimTable, UpdateSurfMonOverlay},
-
-#ifdef POKEMON_EXPANSION
-    NO_OVERLAY, // Primal Kyogre
-#endif
+NO_OVERLAY, // Dondozo
+// NO_OVERLAY, // Primal Kyogre
 };

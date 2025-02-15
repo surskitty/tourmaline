@@ -442,9 +442,11 @@ const u32 gSurfablePokemonPic_Kyogre[] = INCBIN_U32("graphics/object_events/pics
 const u16 gSurfablePokemonPalette_Kyogre[] = INCBIN_U16("graphics/object_events/pics/pokemon/surfable/0382_kyogre.gbapal");
 const u16 gSurfablePokemonShinyPalette_Kyogre[] = INCBIN_U16("graphics/object_events/pics/pokemon/surfable/0382_kyogre_shiny.gbapal");
 
+/*
 const u32 gSurfablePokemonPic_KyogrePrimal[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/0382_kyogre_primal.4bpp");
 const u16 gSurfablePokemonPalette_KyogrePrimal[] = INCBIN_U16("graphics/object_events/pics/pokemon/surfable/0382_kyogre_primal.gbapal");
 const u16 gSurfablePokemonShinyPalette_KyogrePrimal[] = INCBIN_U16("graphics/object_events/pics/pokemon/surfable/0382_kyogre_primal_shiny.gbapal");
+*/
 
 const u32 gSurfablePokemonPic_Rayquaza[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/0384_rayquaza.4bpp");
 const u16 gSurfablePokemonPalette_Rayquaza[] = INCBIN_U16("graphics/object_events/pics/pokemon/surfable/0384_rayquaza.gbapal");
@@ -1039,3 +1041,7 @@ const u16 gSurfablePokemonShinyPalette_Basculegion[] = INCBIN_U16("graphics/poke
 const u32 gSurfablePokemonPic_Overqwil[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/overqwil.4bpp");
 const u16 gSurfablePokemonPalette_Overqwil[] = INCBIN_U16("graphics/pokemon/overqwil/overworld_normal.gbapal");
 const u16 gSurfablePokemonShinyPalette_Overqwil[] = INCBIN_U16("graphics/pokemon/overqwil/overworld_shiny.gbapal");
+
+const u32 gSurfablePokemonPic_Dondozo[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/0977_dondozo.4bpp");
+const u16 gSurfablePokemonPalette_Dondozo[] = INCBIN_U16("graphics/pokemon/dondozo/normal.gbapal");
+const u16 gSurfablePokemonShinyPalette_Dondozo[] = INCBIN_U16("graphics/pokemon/dondozo/shiny.gbapal");
