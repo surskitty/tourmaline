@@ -3565,3 +3565,4 @@ void StartStationaryEncounter(void) {
 
     CreateScriptedWildMon(species, level, heldItem);
 }
+

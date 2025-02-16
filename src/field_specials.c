@@ -4451,3 +4451,10 @@ void SetStationaryWilds(void)
     }
 }
 
+u32 GetSpeciesFromOverworldPokemon(void) {
+    const struct ObjectEventTemplate *objectEventTemplate;
+    objectEventTemplate = GetObjectEventTemplateByLocalIdAndMap(VarGet(VAR_LAST_TALKED), gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+
+    u32 species = (objectEventTemplate->graphicsId) - OBJ_EVENT_GFX_MON_BASE;
+    return species;
+}

@@ -38,3 +38,31 @@ script Common_EventScript_LegendaryFlewAway {
 	msgbox(gText_LegendaryFlewAway, MSGBOX_DEFAULT)
 	release
 }
+
+script Common_EventScript_PetPokemon {
+    lock
+    faceplayer
+    specialvar(VAR_0x8004, GetSpeciesFromOverworldPokemon)
+    setseenmon(VAR_0x8004)
+	bufferspeciesname(STR_VAR_1, VAR_0x8004)
+	msgbox(format("The {STR_VAR_1} looks friendly.\nPet it?"), MSGBOX_YESNO)
+	if (var(VAR_RESULT)) {
+	    playmoncry(VAR_0x8004, CRY_MODE_NORMAL)
+	    applymovement(VAR_LAST_TALKED, ContestHall_Movement_Heart)
+    	waitse
+    	waitmovement(0)
+	    msgbox("It's very happy!", MSGBOX_DEFAULT)
+	    setvar(VAR_0x8004, VAR_TIMES_PET_PEACEFUL_POKEMON)
+	    addvar(VAR_0x8004, 1)
+	    if (var(VAR_0x8004) > 0) {
+    	    setvar(VAR_TIMES_PET_PEACEFUL_POKEMON, VAR_0x8004)
+	    }
+	} else {
+	    playmoncry(VAR_0x8004, CRY_MODE_WEAK)
+	    applymovement(VAR_LAST_TALKED, Common_Movement_QuestionMark)
+    	waitse
+    	waitmovement(0)
+	    msgbox("It seems disappointed somehow.", MSGBOX_DEFAULT)
+	}
+	release
+}
