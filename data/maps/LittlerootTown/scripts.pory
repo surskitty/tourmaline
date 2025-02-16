@@ -1,13 +1,17 @@
+mapscripts LittlerootTown_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION: LittlerootTown_OnTransition
+    MAP_SCRIPT_ON_FRAME_TABLE: LittlerootTown_OnFrame
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE: LittlerootTown_OnWarp
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+    }
+}
+
 raw `
 .set LOCALID_TWIN, 1
 .set LOCALID_MOM, 4
 .set LOCALID_RIVAL, 7
 .set LOCALID_BIRCH, 8
-LittlerootTown_MapScripts:: @ 81E7DCB
-    map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_OnTransition
-    map_script MAP_SCRIPT_ON_FRAME_TABLE, LittlerootTown_OnFrame
-    map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LittlerootTown_OnWarp
-    .byte 0
 
     @ State descriptions for VAR_LITTLEROOT_TOWN_STATE
     @ 1: Met Rival
@@ -883,97 +887,111 @@ LittlerootTown_EventScript_GiveRunningShoes::
     delay 30
     return
 
-LittlerootTown_Text_OurNewHomeLetsGoInside:
-    .string "MOM: {PLAYER}, we're here, honey!\p"
-    .string "It must be tiring riding with our things\n"
-    .string "in the moving truck.\p"
-    .string "Well, this is Littleroot Town.\p"
-    .string "How do you like it?\n"
-    .string "This is our new home!\p"
-    .string "It has a quaint feel, but it seems to be\n"
-    .string "an easy place to live, don't you think?\p"
-    .string "And you get your own room, {PLAYER}!\n"
-    .string "Let's go inside.$"
-
-LittlerootTown_Text_WaitPlayer:
-    .string "MOM: Wait, {PLAYER}!$"
-
-LittlerootTown_Text_WearTheseRunningShoes:
-    .string "MOM: {PLAYER}! {PLAYER}! Did you\n"
-    .string "introduce yourself to Prof. Birch?\p"
-    .string "Oh! What an adorable Pokémon!\n"
-    .string "You got it from Prof. Birch. How nice!\p"
-    .string "You're your father's child, all right.\n"
-    .string "You look good together with Pokémon!\p"
-    .string "Here, honey! If you're going out on an\n"
-    .string "adventure, wear these Running Shoes.\p"
-    .string "They'll put a zip in your step!$"
-
-LittlerootTown_Text_SwitchShoesWithRunningShoes:
-    .string "{PLAYER} switched shoes with the\n"
-    .string "Running Shoes.$"
-
-LittlerootTown_Text_ExplainRunningShoes:
-    .string "MOM: {PLAYER}, those shoes came with\n"
-    .string "instructions.\p"
-    .string "“Press the B Button while wearing these\n"
-    .string "Running Shoes to run extra-fast!\p"
-    .string "“Slip on these Running Shoes and race\n"
-    .string "in the great outdoors!”$"
-
-LittlerootTown_Text_ComeHomeIfAnythingHappens:
-    .string "… … … … … … … …\n"
-    .string "… … … … … … … …\p"
-    .string "To think that you have your very own\n"
-    .string "Pokémon now…\l"
-    .string "Your father will be overjoyed.\p"
-    .string "…But please be careful.\n"
-    .string "If anything happens, you can come home.\p"
-    .string "Go on, go get them, honey!$"
-
-LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut:
-    .string "Um, um, um!\p"
-    .string "If you go outside and go in the grass,\n"
-    .string "wild Pokémon will jump out!$"
-
-LittlerootTown_Text_DangerousIfYouDontHavePokemon:
-    .string "It's dangerous if you don't have\n"
-    .string "your own Pokémon.$"
-
-LittlerootTown_Text_CanYouGoSeeWhatsHappening:
-    .string "Um, hi!\p"
-    .string "There are scary Pokémon outside!\n"
-    .string "I can hear their cries!\p"
-    .string "I want to go see what's going on,\n"
-    .string "but I don't have any Pokémon…\p"
-    .string "Can you go see what's happening\n"
-    .string "for me?$"
-
-LittlerootTown_Text_TownSign:
-    .string "Littleroot Town\n"
-    .string "“A town that can't be shaded any hue.”$"
-
-LittlerootTown_Text_ProfBirchsLab:
-    .string "Prof. Birch's Pokémon Lab$"
-
-LittlerootTown_Text_PlayersHouse:
-    .string "{PLAYER}'s House$"
-
-LittlerootTown_Text_ProfBirchsHouse:
-    .string "Prof. Birch's House$"
-
-LittlerootTown_Text_BirchSomethingToShowYouAtLab:
-    .string "PROF. BIRCH: Well, well, {PLAYER}{KUN}!\n"
-    .string "That was good work out there!\p"
-    .string "I knew there was something special\n"
-    .string "about you when I first saw you,\l"
-    .string "but I never expected this.\p"
-    .string "Oh, yes. Do you still have the Pokédex\n"
-    .string "I gave you?\p"
-    .string "I have something to show you.\n"
-    .string "Let's go to my Lab.$"
-
 `
+
+text LittlerootTown_Text_OurNewHomeLetsGoInside {
+	format("MOM: {PLAYER}, we're here, honey!\p"
+    "It must be tiring riding with our things\n"
+    "in the moving truck.\p"
+    "Well, this is Littleroot Town.\p"
+    "How do you like it?\n"
+    "This is our new home!\p"
+    "It has a quaint feel, but it seems to be\n"
+    "an easy place to live, don't you think?\p"
+    "And you get your own room, {PLAYER}!\n"
+    "Let's go inside.")
+}
+
+text LittlerootTown_Text_WaitPlayer {
+	format("MOM: Wait, {PLAYER}!")
+}
+
+text LittlerootTown_Text_WearTheseRunningShoes {
+	format("MOM: {PLAYER}! {PLAYER}! Did you\n"
+    "introduce yourself to Prof. Birch?\p"
+    "Oh! What an adorable Pokémon!\n"
+    "You got it from Prof. Birch. How nice!\p"
+    "You're your father's child, all right.\n"
+    "You look good together with Pokémon!\p"
+    "Here, honey! If you're going out on an\n"
+    "adventure, wear these Running Shoes.\p"
+    "They'll put a zip in your step!")
+}
+
+text LittlerootTown_Text_SwitchShoesWithRunningShoes {
+	format("{PLAYER} switched shoes with the\n"
+    "Running Shoes.")
+}
+
+text LittlerootTown_Text_ExplainRunningShoes {
+	format("MOM: {PLAYER}, those shoes came with\n"
+    "instructions.\p"
+    "“Press the B Button while wearing these\n"
+    "Running Shoes to run extra-fast!\p"
+    "“Slip on these Running Shoes and race\n"
+    "in the great outdoors!”")
+}
+
+text LittlerootTown_Text_ComeHomeIfAnythingHappens {
+	format("… … … … … … … …\n"
+    "… … … … … … … …\p"
+    "To think that you have your very own\n"
+    "Pokémon now…\l"
+    "Your father will be overjoyed.\p"
+    "…But please be careful.\n"
+    "If anything happens, you can come home.\p"
+    "Go on, go get them, honey!")
+}
+
+text LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut {
+	format("Um, um, um!\p"
+    "If you go outside and go in the grass,\n"
+    "wild Pokémon will jump out!")
+}
+
+text LittlerootTown_Text_DangerousIfYouDontHavePokemon {
+	format("It's dangerous if you don't have\n"
+    "your own Pokémon.")
+}
+
+text LittlerootTown_Text_CanYouGoSeeWhatsHappening {
+	format("Um, hi!\p"
+    "There are scary Pokémon outside!\n"
+    "I can hear their cries!\p"
+    "I want to go see what's going on,\n"
+    "but I don't have any Pokémon…\p"
+    "Can you go see what's happening\n"
+    "for me?")
+}
+
+text LittlerootTown_Text_TownSign {
+	format("Littleroot Town\n"
+    "“A town that can't be shaded any hue.”")
+}
+
+text LittlerootTown_Text_ProfBirchsLab {
+	format("Prof. Birch's Pokémon Lab")
+}
+
+text LittlerootTown_Text_PlayersHouse {
+	format("{PLAYER}'s House")
+}
+
+text LittlerootTown_Text_ProfBirchsHouse {
+	format("Prof. Birch's House")
+}
+
+text LittlerootTown_Text_BirchSomethingToShowYouAtLab {
+	format("PROF. BIRCH: Well, well, {PLAYER}{KUN}!\n"
+    "That was good work out there!\p"
+    "I knew there was something special\n"
+    "about you when I first saw you,\l"
+    "but I never expected this.\p"
+    "Oh, yes. Do you still have the Pokédex\n"
+    "I gave you?\p"
+    "I have something to show you.\n"
+    "Let's go to my Lab.")
+}
 
 script LittlerootTown_EventScript_FatMan {
     msgbox(format("If you use a PC, you can store items and Pokémon.\p"
@@ -983,17 +1001,6 @@ script LittlerootTown_EventScript_FatMan {
 script LittlerootTown_EventScript_Boy {
     msgbox(format("Prof. Birch spends days in his Lab studying, then he'll suddenly go out in the wild to do more research…\p"
         "When does Prof. Birch spend time at home?"), MSGBOX_NPC)
-}
-
-script LittlerootTown_EventScript_Taillow {
-    lock
-    faceplayer
-    waitse
-    playmoncry(SPECIES_TAILLOW, CRY_MODE_NORMAL)
-    setseenmon(SPECIES_TAILLOW)
-    msgbox(format("TAILLOW: Pree-ree?"), MSGBOX_DEFAULT)
-    waitmoncry
-    release
 }
 
 script LittlerootTown_EventScript_Twin {

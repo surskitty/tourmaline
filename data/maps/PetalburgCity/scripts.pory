@@ -12,6 +12,9 @@ mapscripts PetalburgCity_MapScripts {
         VAR_PETALBURG_CITY_STATE, 2: PetalburgCity_EventScript_WallyTutorial
         VAR_PETALBURG_CITY_STATE, 4: PetalburgCity_EventScript_WalkToWallyHouse
     ]
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+    }
 }
 
 script PetalburgCity_OnTransition {
@@ -133,28 +136,8 @@ movement PetalburgCity_Movement_WalkInsideHouseWallysDad {
 movement PetalburgCity_Movement_WallyTutorialPlayer {
     delay_8
     walk_down * 8
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_up
-    walk_up
+    walk_right * 20
+    walk_up * 2
     walk_in_place_faster_right
 }
 
@@ -625,21 +608,6 @@ PetalburgCity_Movement_PlayerWatchScottExit2:
     walk_in_place_faster_left
     step_end
 
-PetalburgCity_Movement_ScottExit3:
-    walk_up
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    step_end
-
 PetalburgCity_Movement_PlayerWatchScottExit3:
     delay_16
     walk_in_place_faster_up
@@ -647,31 +615,40 @@ PetalburgCity_Movement_PlayerWatchScottExit3:
     delay_8
     walk_in_place_faster_left
     step_end
-
-PetalburgCity_Text_ThisIsPetalburgGym:
-    .string "See? This is Petalburg City's Gym.$"
-
-PetalburgCity_Text_ThisIsGymSign:
-    .string "This is the Gym's sign. Look for it\n"
-    .string "whenever you're looking for a Gym.$"
-
-PetalburgCity_Text_AreYouATrainer:
-    .string "Excuse me!\p"
-    .string "Let me guess, from the way you're\n"
-    .string "dressed, are you a Pokémon Trainer?$"
-
-PetalburgCity_Text_WellMaybeNot:
-    .string "… … … … … …\p"
-    .string "Well, maybe not.\n"
-    .string "Your clothes aren't all that dirty.\p"
-    .string "You're either a rookie Trainer,\n"
-    .string "or maybe you're just an ordinary kid.$"
-
-PetalburgCity_Text_ImLookingForTalentedTrainers:
-    .string "I'm roaming the land in search of\n"
-    .string "talented Trainers.\p"
-    .string "I'm sorry to have taken your time.$"
 `
+movement PetalburgCity_Movement_ScottExit3 {
+    walk_up
+    walk_left * 11
+}
+
+text PetalburgCity_Text_ThisIsPetalburgGym {
+	format("See? This is Petalburg City's Gym.")
+}
+
+text PetalburgCity_Text_ThisIsGymSign {
+	format("This is the Gym's sign. Look for it\n"
+    "whenever you're looking for a Gym.")
+}
+
+text PetalburgCity_Text_AreYouATrainer {
+	format("Excuse me!\p"
+    "Let me guess, from the way you're\n"
+    "dressed, are you a Pokémon Trainer?")
+}
+
+text PetalburgCity_Text_WellMaybeNot {
+	format("… … … … … …\p"
+    "Well, maybe not.\n"
+    "Your clothes aren't all that dirty.\p"
+    "You're either a rookie Trainer,\n"
+    "or maybe you're just an ordinary kid.")
+}
+
+text PetalburgCity_Text_ImLookingForTalentedTrainers {
+	format("I'm roaming the land in search of\n"
+    "talented Trainers.\p"
+    "I'm sorry to have taken your time.")
+}
 
 script PetalburgCity_EventScript_GymBoy {
     msgbox(PetalburgCity_Text_AreYouRookieTrainer, MSGBOX_NPC)

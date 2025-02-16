@@ -1,18 +1,16 @@
-raw `
-PacifidlogTown_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, PacifidlogTown_OnTransition
-	map_script MAP_SCRIPT_ON_RESUME, PacifidlogTown_OnResume
-	.byte 0
-
-PacifidlogTown_OnTransition:
-	setflag FLAG_VISITED_PACIFIDLOG_TOWN
-	end
-
-PacifidlogTown_OnResume:
-	setstepcallback STEP_CB_PACIFIDLOG_BRIDGE
-	end
-`
-
+mapscripts PacifidlogTown_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+    	setflag(FLAG_VISITED_PACIFIDLOG_TOWN)
+    }
+    MAP_SCRIPT_ON_RESUME {
+    	setstepcallback(STEP_CB_PACIFIDLOG_BRIDGE)
+    }
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
+    
 script PacifidlogTown_EventScript_NinjaBoy {
 	msgbox(format("See, isn't it neat?\n"
 		"These houses are on water!\p"
@@ -42,7 +40,12 @@ text PacifidlogTown_Text_SkyPillarTooScary {
 }
 
 script PacifidlogTown_EventScript_Corsola {
+	lock
+	waitse
+	playmoncry(SPECIES_CORSOLA, CRY_MODE_NORMAL)
 	msgbox("Cor-cor?", MSGBOX_NPC)
 	setseenmon(SPECIES_CORSOLA)
+    waitmoncry
+    release
 }
 

@@ -2,6 +2,10 @@ mapscripts EverGrandeCity_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         call_if_set(FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather)
     }
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
 }
 
 script EverGrandeCity_EventScript_VictoryRoadSign {

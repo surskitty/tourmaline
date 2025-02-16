@@ -1,11 +1,14 @@
+mapscripts LavaridgeTown_MapScripts {
+	MAP_SCRIPT_ON_TRANSITION: LavaridgeTown_OnTransition
+	MAP_SCRIPT_ON_FRAME_TABLE: LavaridgeTown_OnFrame
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+    }
+}
+
 raw `
 .set LOCALID_RIVAL_ON_BIKE, 7
 .set LOCALID_RIVAL, 8
-
-LavaridgeTown_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, LavaridgeTown_OnTransition
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, LavaridgeTown_OnFrame
-	.byte 0
 
 LavaridgeTown_OnTransition:
 	setflag FLAG_VISITED_LAVARIDGE_TOWN

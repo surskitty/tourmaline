@@ -1,3 +1,11 @@
+mapscripts RustboroCity_MapScripts {
+	MAP_SCRIPT_ON_TRANSITION: RustboroCity_OnTransition
+	MAP_SCRIPT_ON_FRAME_TABLE: RustboroCity_OnFrame
+	MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+    }
+}
+
 raw `
 .set LOCALID_LITTLE_BOY, 7
 .set LOCALID_LITTLE_GIRL, 8
@@ -5,16 +13,6 @@ raw `
 .set LOCALID_GRUNT, 10
 .set LOCALID_RIVAL, 14
 .set LOCALID_SCIENTIST, 15
-
-RustboroCity_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_OnTransition
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, RustboroCity_OnFrame
-	map_script MAP_SCRIPT_ON_LOAD, RustboroCity_OnLoad
-	.byte 0
-
-RustboroCity_OnLoad:
-    special SetRoofBirds
-    return
 
 RustboroCity_OnTransition:
 	setflag FLAG_VISITED_RUSTBORO_CITY

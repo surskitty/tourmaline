@@ -8,6 +8,9 @@ mapscripts MauvilleCity_MapScripts {
 	    setvar(VAR_MAUVILLE_GYM_STATE, 0)
 	    call_if_set(FLAG_GOT_TM_THUNDERBOLT_FROM_WATTSON, MauvilleCity_EventScript_MoveWattsonBackToGym)
     }
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+    }
 }
 
 raw `

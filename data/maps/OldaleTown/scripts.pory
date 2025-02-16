@@ -1,11 +1,14 @@
+mapscripts OldaleTown_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION: OldaleTown_OnTransition
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+    }
+}
+
 raw `
 .set LOCALID_MART_EMPLOYEE, 2
 .set LOCALID_FOOTPRINTS_MAN, 3
 .set LOCALID_RIVAL, 4
-
-OldaleTown_MapScripts::
-    map_script MAP_SCRIPT_ON_TRANSITION, OldaleTown_OnTransition
-    .byte 0
 
 OldaleTown_OnTransition:
     call Common_EventScript_SetupRivalGfxId
@@ -29,14 +32,6 @@ OldaleTown_EventScript_MoveMartEmployee::
     setobjectxyperm LOCALID_MART_EMPLOYEE, 13, 14
     setobjectmovementtype LOCALID_MART_EMPLOYEE, MOVEMENT_TYPE_FACE_DOWN
     return
-
-OldaleTown_EventScript_TownSign::
-    msgbox OldaleTown_Text_TownSign, MSGBOX_SIGN
-    end
-
-OldaleTown_EventScript_Girl::
-    msgbox OldaleTown_Text_SavingMyProgress, MSGBOX_NPC
-    end
 
 OldaleTown_EventScript_MartEmployee::
     lock
@@ -345,10 +340,6 @@ OldaleTown_Movement_ReturnToOriginalPosition:
     step_end
 `
 
-text OldaleTown_Text_SavingMyProgress {
-    format("I want to take a rest, so I'm saving my progress.")
-}
-
 text OldaleTown_Text_IWorkAtPokemonMart {
     format("Hi!\n"
     "I work at a Pokémon Mart.\p"
@@ -395,8 +386,12 @@ text OldaleTown_Text_BrendanLetsGoBack {
     "{PLAYER}, you should hustle back, too.")
 }
 
-text OldaleTown_Text_TownSign {
-    format("Oldale Town\n"
-    "“Where things start off scarce.”")
+script OldaleTown_EventScript_TownSign {
+    msgbox(format("Oldale Town\n"
+    "“Where things start off scarce.”"), MSGBOX_SIGN)
+} 
+
+script OldaleTown_EventScript_Girl {
+    msgbox(format("I want to take a rest, so I'm saving my progress."), MSGBOX_NPC)
 }
 
