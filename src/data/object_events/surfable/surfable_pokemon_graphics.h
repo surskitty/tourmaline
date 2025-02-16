@@ -973,8 +973,8 @@ const u16 gSurfablePokemonPalette_Inteleon[] = INCBIN_U16("graphics/pokemon/inte
 const u16 gSurfablePokemonShinyPalette_Inteleon[] = INCBIN_U16("graphics/pokemon/inteleon/overworld_shiny.gbapal");
 
 const u32 gSurfablePokemonPic_Chewtle[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/0833_chewtle.4bpp");
-const u16 gSurfablePokemonPalette_Chewtle[] = INCBIN_U16("graphics/pokemon/chewtle/overworld_normal.gbapal");
-const u16 gSurfablePokemonShinyPalette_Chewtle[] = INCBIN_U16("graphics/pokemon/chewtle/overworld_shiny.gbapal");
+const u16 gSurfablePokemonPalette_Chewtle[] = INCBIN_U16("graphics/pokemon/chewtle/normal.gbapal");
+const u16 gSurfablePokemonShinyPalette_Chewtle[] = INCBIN_U16("graphics/pokemon/chewtle/shiny.gbapal");
 
 const u32 gSurfablePokemonPic_Drednaw[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/drednaw.4bpp");
 const u16 gSurfablePokemonPalette_Drednaw[] = INCBIN_U16("graphics/pokemon/drednaw/overworld_normal.gbapal");
