@@ -2,7 +2,7 @@ mapscripts OldaleTown_MapScripts {
     MAP_SCRIPT_ON_TRANSITION: OldaleTown_OnTransition
     MAP_SCRIPT_ON_LOAD {
         special(SetRoofBirds)
-    }
+            }
 }
 
 raw `
@@ -23,9 +23,11 @@ OldaleTown_EventScript_SetOldaleState::
     setvar VAR_OLDALE_TOWN_STATE, 1
     return
 
+@ FLAG_TEMP_3 is the zigzagoon that runs through town.
 OldaleTown_EventScript_BlockWestEntrance::
     setobjectxyperm LOCALID_FOOTPRINTS_MAN, 1, 11
     setobjectmovementtype LOCALID_FOOTPRINTS_MAN, MOVEMENT_TYPE_FACE_LEFT
+    setflag FLAG_TEMP_3
     return
 
 OldaleTown_EventScript_MoveMartEmployee::

@@ -505,31 +505,6 @@ script Route109_EventScript_OldMan {
     "If we pollute the sea, it all comes back to haunt us eventually."), MSGBOX_NPC)
 }
 
-script Route109_EventScript_Herdier {
-    lock
-    faceplayer
-    setseenmon(SPECIES_HERDIER)
-    waitse
-    playmoncry(SPECIES_HERDIER, CRY_MODE_NORMAL)
-    msgbox("HERDIER: Awoowuff.", MSGBOX_DEFAULT)
-    waitmoncry
-    release
-}
-
-script Route109_EventScript_Sandygast {
-    lock
-    faceplayer
-    waitse
-    playmoncry(SPECIES_SANDYGAST, CRY_MODE_ENCOUNTER)
-    msgbox("The sandcastle attacks!", MSGBOX_DEFAULT)
-    waitmoncry
-    setwildbattle(SPECIES_SANDYGAST, 15)
-    setflag(FLAG_SYS_CTRL_OBJ_DELETE)
-    dowildbattle
-    clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
-    goto(Common_EventScript_RemoveStaticPokemon)
-}
-
 script Route109_EventScript_SeashoreHouseSign {
     msgbox(format("Seashore Horse\p"
         "“May hot battles rage on hot sands! The place for hot Trainers!”"), MSGBOX_SIGN)
