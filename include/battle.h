@@ -207,7 +207,8 @@ struct ProtectStruct
     u32 specialDmg;
     u8 physicalBattlerId;
     u8 specialBattlerId;
-
+    u8 contraryDefiant; // 1 - Contrary + Defiant triggered (do not repeat). 0 - abilities not triggered together yet
+    u8 contraryCompetitive; // 1 - Contrary + Competitive triggered (do not repeat). 0 - abilities not triggered together yet
 };
 
 struct SpecialStatus
@@ -229,7 +230,7 @@ struct SpecialStatus
     u8 sturdied:1;
     u8 stormDrainRedirected:1;
     u8 switchInAbilityDone:1;
-    bool8 switchInTraitDone[MAX_MON_TRAITS + 1];
+    bool8 switchInTraitDone[MAX_MON_TRAITS];
     u8 switchInItemDone:1;
     u8 instructedChosenTarget:3;
     u8 berryReduced:1;
