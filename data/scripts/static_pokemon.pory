@@ -52,11 +52,31 @@ script Common_EventScript_PetPokemon {
     	waitse
     	waitmovement(0)
 	    msgbox("It's very happy!", MSGBOX_DEFAULT)
-	    setvar(VAR_0x8004, VAR_TIMES_PET_PEACEFUL_POKEMON)
-	    addvar(VAR_0x8004, 1)
-	    if (var(VAR_0x8004) > 0) {
-    	    setvar(VAR_TIMES_PET_PEACEFUL_POKEMON, VAR_0x8004)
-	    }
+	    addvar(VAR_TIMES_PET_PEACEFUL_POKEMON, 1)
+	    if (flag(FLAG_PET_MANY_DOGS)) {
+	        random(5)
+	        switch (var(VAR_RESULT)) {
+            case 0:
+                msgbox(Common_EventScript_PetPokemon_GiftText, MSGBOX_DEFAULT)
+                giveitem(ITEM_RARE_BONE)
+            case 1:
+                msgbox(Common_EventScript_PetPokemon_GiftText, MSGBOX_DEFAULT)
+                giveitem(ITEM_PRETTY_FEATHER)
+            }
+	    } else {
+	        if (var(VAR_TIMES_PET_PEACEFUL_POKEMON) == 50) {
+        	    setflag(FLAG_PET_MANY_DOGS)
+    	    }
+	        random(10)
+	        switch (var(VAR_RESULT)) {
+            case 0:
+                msgbox(Common_EventScript_PetPokemon_GiftText, MSGBOX_DEFAULT)
+                giveitem(ITEM_RARE_BONE)
+            case 1:
+                msgbox(Common_EventScript_PetPokemon_GiftText, MSGBOX_DEFAULT)
+                giveitem(ITEM_PRETTY_FEATHER)
+            }
+        }
 	} else {
 	    playmoncry(VAR_0x8004, CRY_MODE_WEAK)
 	    applymovement(VAR_LAST_TALKED, Common_Movement_QuestionMark)
@@ -65,4 +85,8 @@ script Common_EventScript_PetPokemon {
 	    msgbox("It seems disappointed somehow.", MSGBOX_DEFAULT)
 	}
 	release
+}
+
+text Common_EventScript_PetPokemon_GiftText {
+    format("It gave you an item it was carrying!")
 }
