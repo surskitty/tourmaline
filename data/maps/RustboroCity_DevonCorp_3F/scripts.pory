@@ -194,103 +194,97 @@ RustboroCity_DevonCorp_3F_EventScript_EmployeeBalls::
 	release
 	end
 
-RustboroCity_DevonCorp_3F_Text_MrStoneIHaveFavor:
-	.string "I'm Mr. Stone, the President of\n"
-	.string "the Devon Corporation.\p"
-	.string "I'd just got word about you!\p"
-	.string "You saved our staff not just once,\n"
-	.string "but twice!\p"
-	.string "I have a favor to ask of an amazing\n"
-	.string "person like you.\p"
-	.string "I understand that you're delivering\n"
-	.string "a package to Slateport's Shipyard.\p"
-	.string "Well, on the way, could you stop off in\n"
-	.string "Dewford Town?\p"
-	.string "I was hoping that you'd deliver a\n"
-	.string "Letter to Steven in Dewford.$"
-
-RustboroCity_DevonCorp_3F_Text_MrStoneWantYouToHaveThis:
-	.string "MR. STONE: Now, you should know that\n"
-	.string "I am a great President.\p"
-	.string "So, I'd never be so cheap as to ask\n"
-	.string "a favor for nothing in return.\p"
-	.string "That's why I want you to have this!$"
-
-RustboroCity_DevonCorp_3F_Text_ReceivedPokenav:
-	.string "{PLAYER} received a Pokénav.$"
-
-RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp:
-	.string "MR. STONE: That device…\p"
-	.string "It's a Pokémon Navigator, or Pokénav\n"
-	.string "for short.\p"
-	.string "It's an indispensable tool for any\n"
-	.string "Trainer on an adventure.\p"
-	.string "It has a map of the Hoenn region.\p"
-	.string "You can check the locations of\n"
-	.string "Dewford and Slateport easily!\p"
-	.string "By the way, I've heard that sinister\n"
-	.string "criminals--Magma and Aqua, I believe--\l"
-	.string "have been making trouble far and wide.\p"
-	.string "I think it would be best if you rested\n"
-	.string "up before you go on your way.$"
-
-RustboroCity_DevonCorp_3F_Text_MrStoneGoWithCautionAndCare:
-	.string "MR. STONE: Well, then, {PLAYER}{KUN},\n"
-	.string "go with caution and care!$"
-
-RustboroCity_DevonCorp_3F_Text_CountingOnYou:
-	.string "MR. STONE: I'm counting on you!$"
-
-RustboroCity_DevonCorp_3F_Text_ThankYouForDeliveringLetter:
-	.string "MR. STONE: You delivered my Letter?\n"
-	.string "Thank you kindly!\p"
-	.string "This is my way of thanking you.\n"
-	.string "It should help you, a Trainer.$"
-
-RustboroCity_DevonCorp_3F_Text_NotFamiliarWithTrends:
-	.string "MR. STONE: Since my youth, I've immersed\n"
-	.string "myself in work.\p"
-	.string "Consequently, I'm not familiar with\n"
-	.string "trends and that sort of thing.\p"
-	.string "But do young people all want to be\n"
-	.string "Trainers in the Pokémon League?$"
-
-RustboroCity_DevonCorp_3F_Text_ThisIs3rdFloorWaitHere:
-	.string "This is the Devon Corporation's\n"
-	.string "third floor.\p"
-	.string "Our President's Office is on\n"
-	.string "this floor.\p"
-	.string "Anyway, I can't tell you how much I'm\n"
-	.string "grateful for what you've done.\p"
-	.string "Um… By the way, that parcel\n"
-	.string "you got back for us…\p"
-	.string "Could I get you to deliver that to\n"
-	.string "the Shipyard in Slateport?\p"
-	.string "It would be awful if those robbers\n"
-	.string "tried to take it again.\p"
-	.string "Uh… Hehehe, so, uh, could I count\n"
-	.string "on you to do that for me?\p"
-	.string "Oh, that's right.\n"
-	.string "Could you wait here a second?$"
-
-RustboroCity_DevonCorp_3F_Text_WordWithPresidentComeWithMe:
-	.string "Our President would like to have\n"
-	.string "a word with you.\p"
-	.string "Please come with me.$"
-
-RustboroCity_DevonCorp_3F_Text_PleaseGoAhead:
-	.string "Please, go ahead.$"
-
-RustboroCity_DevonCorp_3F_Text_VisitCaptSternShipyard:
-	.string "If you visit the Shipyard in Slateport,\n"
-	.string "you should go see Capt. Stern.$"
-
-RustboroCity_DevonCorp_3F_Text_RepeatAndTimerHugelyPopular:
-	.string "Devon's new products, the Repeat Ball\n"
-	.string "and Timer Ball, have become hugely\l"
-	.string "popular among Trainers.$"
-
 `
+
+text RustboroCity_DevonCorp_3F_Text_MrStoneIHaveFavor {
+	format("I'm Mr. Stone, the President of the Devon Corporation.\p"
+	"I'd just got word about you!\p"
+	"You saved our staff not just once, but twice!\p"
+	"I have a favor to ask of an amazing person like you.\p"
+	"I understand that you're delivering a package to Slateport's Shipyard.\p"
+	"Well, on the way, could you stop off in Dewford Town?\p"
+	"I was hoping that you'd deliver a Letter to Steven in Dewford.")
+}
+
+text RustboroCity_DevonCorp_3F_Text_MrStoneWantYouToHaveThis {
+	format("MR. STONE: Now, you should know that I am a great President.\p"
+	"I'd never be so cheap as to ask a favor for nothing in return.\p"
+	"I'd like you to try our new product.")
+}
+
+text RustboroCity_DevonCorp_3F_Text_ReceivedPokenav {
+	format("{PLAYER} received a Pokénav.")
+}
+
+text RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp {
+	format("MR. STONE: That device…\p"
+	"It's a Pokémon Navigator, or Pokénav\n"
+	"for short.\p"
+	"It's an indispensable tool for any\n"
+	"Trainer on an adventure.\p"
+	"It has a map of the Hoenn region.\p"
+	"You can check the locations of\n"
+	"Dewford and Slateport easily!\p"
+	"By the way, I've heard that sinister\n"
+	"criminals--Magma and Aqua, I believe--\l"
+	"have been making trouble far and wide.\p"
+	"I think it would be best if you rested\n"
+	"up before you go on your way.")
+}
+
+text RustboroCity_DevonCorp_3F_Text_MrStoneGoWithCautionAndCare {
+	format("MR. STONE: Well, then, {PLAYER}{KUN},\n"
+	"go with caution and care!")
+}
+
+text RustboroCity_DevonCorp_3F_Text_CountingOnYou {
+	format("MR. STONE: I'm counting on you!")
+}
+
+text RustboroCity_DevonCorp_3F_Text_ThankYouForDeliveringLetter {
+	format("MR. STONE: You delivered my Letter?\n"
+	"Thank you kindly!\p"
+	"This is my way of thanking you.\n"
+	"It should help you, a Trainer.")
+}
+
+text RustboroCity_DevonCorp_3F_Text_NotFamiliarWithTrends {
+	format("MR. STONE: Since my youth, I've immersed myself in work.\p"
+	"Consequently, I'm not familiar with trends and that sort of thing.\p"
+	"But do young people all want to be Trainers in the Pokémon League?")
+}
+
+text RustboroCity_DevonCorp_3F_Text_ThisIs3rdFloorWaitHere {
+	format("This is the Devon Corporation's third floor.\p"
+	"Our President's Office is on this floor.\p"
+	"Anyway, I can't tell you how much I'm grateful for what you've done.\p"
+	"Um… By the way, that parcel you got back for us…\p"
+	"Could I get you to deliver that to the Shipyard in Slateport?\p"
+	"It would be awful if those robbers tried to take it again.\p"
+	"Uh… Hehehe, so, uh, could I count on you to do that for me?\p"
+	"Oh, that's right.\n"
+	"Could you wait here a second?")
+}
+
+text RustboroCity_DevonCorp_3F_Text_WordWithPresidentComeWithMe {
+	format("Our President would like to have a word with you.\p"
+	"Please come with me.")
+}
+
+text RustboroCity_DevonCorp_3F_Text_PleaseGoAhead {
+	format("Please, go ahead.")
+}
+
+text RustboroCity_DevonCorp_3F_Text_VisitCaptSternShipyard {
+	format("If you visit the Shipyard in Slateport,\n"
+	"you should go see Capt. Stern.")
+}
+
+text RustboroCity_DevonCorp_3F_Text_RepeatAndTimerHugelyPopular {
+	format("Devon's new products, the Repeat Ball\n"
+	"and Timer Ball, have become hugely\l"
+	"popular among Trainers.")
+}
 
 script RustboroCity_DevonCorp_3F_EventScript_RareRocksDisplay {
 	msgbox(format("It's a collection of rare rocks and stones assembled by the President."), MSGBOX_SIGN)

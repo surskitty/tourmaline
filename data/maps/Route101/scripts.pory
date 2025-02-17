@@ -1,7 +1,3 @@
-raw `.set LOCALID_BIRCH, 2
-.set LOCALID_ZIGZAGOON, 4
-`
-
 mapscripts Route101_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         call(ProfBirch_EventScript_UpdateLocation)
@@ -12,9 +8,15 @@ mapscripts Route101_MapScripts {
             setvar(VAR_ROUTE101_STATE, 1)        
         }
     ]
+    MAP_SCRIPT_ON_LOAD {
+        if (var(VAR_ROUTE101_STATE) == 3) {
+            special(SetStationaryWilds)
+        }
+    }
 }
 
-raw `
+raw `.set LOCALID_BIRCH, 2
+.set LOCALID_ZIGZAGOON, 4
 
 Route101_EventScript_StartBirchRescue::
     lockall

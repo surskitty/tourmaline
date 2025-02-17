@@ -1,4 +1,9 @@
-mapscripts Route109_MapScripts {}
+mapscripts Route109_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
 
 // NOTE: Route 109's sail to Dewford script references local IDs from Dewford's map.
 //  These are labeled in DewfordTown/scripts.inc
@@ -65,182 +70,6 @@ Route109_EventScript_DoSailToDewford::
     copyobjectxytoperm LOCALID_BRINEY_DEWFORD
     release
     end
-
-Route109_Movement_SailToDewford:
-    walk_in_place_faster_down
-    walk_down
-    walk_down
-    walk_fast_down
-    walk_fast_down
-    walk_faster_down
-    walk_faster_down
-    walk_faster_down
-    walk_faster_down
-    walk_faster_down
-    walk_faster_down
-    walk_faster_down
-    walk_faster_down
-    walk_faster_down
-    walk_faster_down
-    walk_faster_down
-    walk_faster_down
-    walk_faster_down
-    walk_faster_down
-    walk_faster_down
-    walk_faster_down
-    walk_fast_down
-    walk_fast_down
-    walk_fast_left
-    walk_fast_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_faster_left
-    walk_fast_left
-    walk_fast_left
-    walk_fast_left
-    walk_fast_left
-    walk_fast_left
-    walk_fast_left
-    walk_fast_left
-    walk_fast_left
-    walk_fast_left
-    walk_left
-    walk_left
-    walk_in_place_faster_down
-    step_end
 
 Route109_Movement_PlayerEnterBoatSouth:
     walk_down
@@ -414,45 +243,46 @@ Route109_EventScript_Elijah::
     trainerbattle_single TRAINER_ELIJAH, Route109_Text_ElijahIntro, Route109_Text_ElijahDefeated
     msgbox Route109_Text_ElijahPostBattle, MSGBOX_AUTOCLOSE
     end
-
-DewfordTown_Text_BrineyLandedInSlateportDeliverGoods:
-    .string "MR. BRINEY: Ahoy!\n"
-    .string "We've made land in Slateport!\p"
-    .string "I suppose you're going to visit Capt.\n"
-    .string "Stern and deliver the Devon Goods?$"
-
-Route109_Text_BrineySailToDewfordQuestion:
-    .string "MR. BRINEY: I thought you're supposed\n"
-    .string "to deliver the Devon Goods.\p"
-    .string "Would you like to sail back to\n"
-    .string "Dewford, then?$"
-
-Route109_Text_BrineyDewfordItIs:
-    .string "MR. BRINEY: Dewford it is, then!\p"
-    .string "Anchors aweigh!\n"
-    .string "Peeko, we're setting sail, my darling!$"
-
-Route109_Text_BrineyDeliverDevonGoods:
-    .string "MR. BRINEY: Then you go on and deliver\n"
-    .string "the Devon Goods. I'll be waiting.$"
-
-DewfordTown_Text_BrineyLandedInSlateport:
-    .string "MR. BRINEY: Ahoy! We've made land in\n"
-    .string "Slateport!\p"
-    .string "You just go on and tell me whenever\n"
-    .string "you want to set sail again!$"
-
-Route109_Text_BrineyWhereAreWeBound:
-    .string "MR. BRINEY: Ahoy!\n"
-    .string "For you, I'll go out to sea anytime!\p"
-    .string "Now, my friend, where are we bound?$"
-
-Route109_Text_BrineyTellMeWhenYouNeedToSail:
-    .string "MR. BRINEY: You just tell me whenever\n"
-    .string "you need to set sail again!$"
-
 `
 
+text DewfordTown_Text_BrineyLandedInSlateportDeliverGoods {
+	format("MR. BRINEY: Ahoy!\n"
+    "We've made land in Slateport!\p"
+    "I suppose you're going to visit Capt.\n"
+    "Stern and deliver the Devon Goods?")
+}
+
+text Route109_Text_BrineySailToDewfordQuestion {
+	format("MR. BRINEY: I thought you're supposed\n"
+    "to deliver the Devon Goods.\p"
+    "Would you like to sail back to\n"
+    "Dewford, then?")
+}
+
+text Route109_Text_BrineyDewfordItIs {
+	format("MR. BRINEY: Dewford it is, then!\p"
+    "Anchors aweigh!\n"
+    "Peeko, we're setting sail, my darling!")
+}
+
+text Route109_Text_BrineyDeliverDevonGoods {
+	format("MR. BRINEY: Then you go on and deliver the Devon Goods. I'll be waiting.")
+}
+
+text DewfordTown_Text_BrineyLandedInSlateport {
+	format("MR. BRINEY: Ahoy! We've made land in Slateport!\p"
+    "You just go on and tell me whenever you want to set sail again!")
+}
+
+text Route109_Text_BrineyWhereAreWeBound {
+	format("MR. BRINEY: Ahoy!\n"
+    "For you, I'll go out to sea anytime!\p"
+    "Now, my friend, where are we bound?")
+}
+
+text Route109_Text_BrineyTellMeWhenYouNeedToSail {
+	format("MR. BRINEY: You just tell me whenever you need to set sail again!")
+}
 
 script Route109_EventScript_SeashoreHouseGirl {
     msgbox("Yo, Trainers!\n"
@@ -516,3 +346,15 @@ script Route109_EventScript_TrainerTipsSign {
         "Pokémon raised by Trainers are said to grow stronger than wild Pokémon."), MSGBOX_SIGN)
 }
 
+movement Route109_Movement_SailToDewford {
+    walk_in_place_faster_down
+    walk_down * 2
+    walk_fast_down * 2
+    walk_faster_down * 16
+    walk_fast_down * 2
+    walk_fast_left * 2
+    walk_faster_left * 136
+    walk_fast_left * 9
+    walk_left * 2
+    walk_in_place_faster_down
+}

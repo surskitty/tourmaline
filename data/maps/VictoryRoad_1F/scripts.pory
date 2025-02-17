@@ -1,15 +1,18 @@
-raw `
-.set LOCALID_WALLY_ENTRANCE, 4
-
-`
 mapscripts VictoryRoad_1F_MapScripts {
 	MAP_SCRIPT_ON_TRANSITION {
         call_if_eq(VAR_VICTORY_ROAD_1F_STATE, 1, VictoryRoad_1F_EventScript_SetEntranceWallyPos1)
         call_if_eq(VAR_VICTORY_ROAD_1F_STATE, 2, VictoryRoad_1F_EventScript_SetEntranceWallyPos2)
 	}
+	MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
 }
 
 raw `
+
+.set LOCALID_WALLY_ENTRANCE, 4
+
 VictoryRoad_1F_EventScript_SetEntranceWallyPos1::
 	setobjectxyperm LOCALID_WALLY_ENTRANCE, 2, 24
 	setobjectmovementtype LOCALID_WALLY_ENTRANCE, MOVEMENT_TYPE_FACE_DOWN
@@ -120,103 +123,124 @@ VictoryRoad_1F_EventScript_Katelynn::
 	trainerbattle_single TRAINER_KATELYNN, VictoryRoad_1F_Text_KatelynnIntro, VictoryRoad_1F_Text_KatelynnDefeat
 	msgbox VictoryRoad_1F_Text_KatelynnPostBattle, MSGBOX_AUTOCLOSE
 	end
-
-VictoryRoad_1F_Text_WallyNotGoingToLoseAnymore:
-	.string "WALLY: Hi! {PLAYER}!\p"
-	.string "I bet you're surprised to see me here!\p"
-	.string "I made it all the way here, and it's\n"
-	.string "all thanks to you!\p"
-	.string "{PLAYER}, losing to you that time\n"
-	.string "made me stronger!\p"
-	.string "But I'm not going to lose anymore!\p"
-	.string "I'm going to win! For the Pokémon who\n"
-	.string "gave me courage and strength!\p"
-	.string "Okay… Here I come!$"
-
-VictoryRoad_1F_Text_WallyEntranceDefeat:
-	.string "Wow!\n"
-	.string "{PLAYER}, you are strong, after all!$"
-
-VictoryRoad_1F_Text_WallyPostEntranceBattle:
-	.string "WALLY: I couldn't beat you today,\n"
-	.string "{PLAYER}, but one of these days, I'll\l"
-	.string "catch up to you!$"
-
-VictoryRoad_1F_Text_WallyIntro:
-	.string "WALLY: Hi! {PLAYER}!\p"
-	.string "I've gotten stronger since that last\n"
-	.string "time! I wanted to show you, {PLAYER}!\p"
-	.string "Okay… Here I come!$"
-
-VictoryRoad_1F_Text_WallyDefeat:
-	.string "Wow!\n"
-	.string "{PLAYER}, you are strong, after all!$"
-
-VictoryRoad_1F_Text_WallyPostBattle:
-	.string "WALLY: I couldn't beat you this time,\n"
-	.string "too… But one of these days, {PLAYER},\l"
-	.string "I'm going to catch up to you…\p"
-	.string "And challenge the Pokémon League!$"
-
-VictoryRoad_1F_Text_EdgarIntro:
-	.string "I've made it this far a couple times,\n"
-	.string "but the last stretch is so long…$"
-
-VictoryRoad_1F_Text_EdgarDefeat:
-	.string "My dream ends here again…$"
-
-VictoryRoad_1F_Text_EdgarPostBattle:
-	.string "You've made it this far. Keep the\n"
-	.string "momentum going and become the\l"
-	.string "Champion! If anyone can, it's you!$"
-
-VictoryRoad_1F_Text_AlbertIntro:
-	.string "I didn't come all this way to lose now.\n"
-	.string "That possibility doesn't exist!$"
-
-VictoryRoad_1F_Text_AlbertDefeat:
-	.string "Impossible…\n"
-	.string "I lost?$"
-
-VictoryRoad_1F_Text_AlbertPostBattle:
-	.string "I lost here…\p"
-	.string "That means I lack the qualifications\n"
-	.string "to become the Champion…$"
-
-VictoryRoad_1F_Text_HopeIntro:
-	.string "This seemingly infinite and harsh road\n"
-	.string "lives up to its name of Victory.$"
-
-VictoryRoad_1F_Text_HopeDefeat:
-	.string "Your battle style is fantastic…$"
-
-VictoryRoad_1F_Text_HopePostBattle:
-	.string "You seem to have the potential for\n"
-	.string "becoming the Champion.$"
-
-VictoryRoad_1F_Text_QuincyIntro:
-	.string "What is the Victory Road?\n"
-	.string "I'll tell you if you win!$"
-
-VictoryRoad_1F_Text_QuincyDefeat:
-	.string "Okay!\n"
-	.string "Well done!$"
-
-VictoryRoad_1F_Text_QuincyPostBattle:
-	.string "Getting through here safely--that's\n"
-	.string "the final test for any Trainer aiming\l"
-	.string "to become the Pokémon Champion.\p"
-	.string "That's why it's called the Victory\n"
-	.string "Road.$"
-
-VictoryRoad_1F_Text_KatelynnIntro:
-	.string "I have nothing to say to anyone\n"
-	.string "that's come this far. Come on!$"
-
-VictoryRoad_1F_Text_KatelynnDefeat:
-	.string "This is a disgrace…$"
-
-VictoryRoad_1F_Text_KatelynnPostBattle:
-	.string "Humph, go right on ahead.\n"
-	.string "See if I care.$"
 `
+
+text VictoryRoad_1F_Text_WallyNotGoingToLoseAnymore {
+	format("WALLY: Hi! {PLAYER}!\p"
+	"I bet you're surprised to see me here!\p"
+	"I made it all the way here, and it's\n"
+	"all thanks to you!\p"
+	"{PLAYER}, losing to you that time\n"
+	"made me stronger!\p"
+	"But I'm not going to lose anymore!\p"
+	"I'm going to win! For the Pokémon who\n"
+	"gave me courage and strength!\p"
+	"Okay… Here I come!")
+}
+
+text VictoryRoad_1F_Text_WallyEntranceDefeat {
+	format("Wow!\n"
+	"{PLAYER}, you are strong, after all!")
+}
+
+text VictoryRoad_1F_Text_WallyPostEntranceBattle {
+	format("WALLY: I couldn't beat you today,\n"
+	"{PLAYER}, but one of these days, I'll\l"
+	"catch up to you!")
+}
+
+text VictoryRoad_1F_Text_WallyIntro {
+	format("WALLY: Hi! {PLAYER}!\p"
+	"I've gotten stronger since that last\n"
+	"time! I wanted to show you, {PLAYER}!\p"
+	"Okay… Here I come!")
+}
+
+text VictoryRoad_1F_Text_WallyDefeat {
+	format("Wow!\n"
+	"{PLAYER}, you are strong, after all!")
+}
+
+text VictoryRoad_1F_Text_WallyPostBattle {
+	format("WALLY: I couldn't beat you this time,\n"
+	"too… But one of these days, {PLAYER},\l"
+	"I'm going to catch up to you…\p"
+	"And challenge the Pokémon League!")
+}
+
+text VictoryRoad_1F_Text_EdgarIntro {
+	format("I've made it this far a couple times,\n"
+	"but the last stretch is so long…")
+}
+
+text VictoryRoad_1F_Text_EdgarDefeat {
+	format("My dream ends here again…")
+}
+
+text VictoryRoad_1F_Text_EdgarPostBattle {
+	format("You've made it this far. Keep the\n"
+	"momentum going and become the\l"
+	"Champion! If anyone can, it's you!")
+}
+
+text VictoryRoad_1F_Text_AlbertIntro {
+	format("I didn't come all this way to lose now.\n"
+	"That possibility doesn't exist!")
+}
+
+text VictoryRoad_1F_Text_AlbertDefeat {
+	format("Impossible…\n"
+	"I lost?")
+}
+
+text VictoryRoad_1F_Text_AlbertPostBattle {
+	format("I lost here…\p"
+	"That means I lack the qualifications\n"
+	"to become the Champion…")
+}
+
+text VictoryRoad_1F_Text_HopeIntro {
+	format("This seemingly infinite and harsh road\n"
+	"lives up to its name of Victory.")
+}
+
+text VictoryRoad_1F_Text_HopeDefeat {
+	format("Your battle style is fantastic…")
+}
+
+text VictoryRoad_1F_Text_HopePostBattle {
+	format("You seem to have the potential for\n"
+	"becoming the Champion.")
+}
+
+text VictoryRoad_1F_Text_QuincyIntro {
+	format("What is the Victory Road?\n"
+	"I'll tell you if you win!")
+}
+
+text VictoryRoad_1F_Text_QuincyDefeat {
+	format("Okay!\n"
+	"Well done!")
+}
+
+text VictoryRoad_1F_Text_QuincyPostBattle {
+	format("Getting through here safely--that's\n"
+	"the final test for any Trainer aiming\l"
+	"to become the Pokémon Champion.\p"
+	"That's why it's called the Victory\n"
+	"Road.")
+}
+
+text VictoryRoad_1F_Text_KatelynnIntro {
+	format("I have nothing to say to anyone\n"
+	"that's come this far. Come on!")
+}
+
+text VictoryRoad_1F_Text_KatelynnDefeat {
+	format("This is a disgrace…")
+}
+
+text VictoryRoad_1F_Text_KatelynnPostBattle {
+	format("Humph, go right on ahead.\n"
+	"See if I care.")
+}
