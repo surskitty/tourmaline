@@ -1172,8 +1172,7 @@ text RustboroCity_Text_MayPassedBrineyWantToBattle {
 
 text RustboroCity_Text_MayOhHaventRaisedPokemonEnough {
 	format("MAY: Oh, what's the matter?\p"
-	"Haven't you caught or raised your\n"
-	"Pokémon very much?\p"
+	"Haven't you caught or raised your Pokémon very much?\p"
 	"That's not very good for a Trainer!")
 }
 
@@ -1214,20 +1213,16 @@ text RustboroCity_Text_RegisteredBrendan {
 }
 
 text RustboroCity_Text_BrendanPassedBrineyWantToBattle {
-	format("BRENDAN: By the way, {PLAYER}, I walked\n"
-	"by Mr. Briney in Petalburg Woods.\p"
-	"I bet he was on his way home to his\n"
-	"cottage by the sea.\p"
+	format("BRENDAN: By the way, {PLAYER}, I walked by Mr. Briney in Petalburg Woods.\p"
+	"I bet he was on his way home to his cottage by the sea.\p"
 	"{PLAYER}, how's your Pokédex?\n"
 	"Have you filled in any pages yet?\p"
 	"Mine rules.\p"
-	"Want to have a battle to test how\n"
-	"far you've progressed?")
+	"Want to have a battle to test how far you've progressed?")
 }
 
 text RustboroCity_Text_BrendanNoConfidenceInPokemon {
-	format("BRENDAN: What's the matter? Don't have\n"
-	"any confidence in your Pokémon?")
+	format("BRENDAN: What's the matter? Don't have any confidence in your Pokémon?")
 }
 
 text RustboroCity_Text_BrendanWantToBattle {
@@ -1285,8 +1280,7 @@ text RustboroCity_Text_TrainersSchoolSign {
 }
 
 text RustboroCity_Text_DevelopedNewPokenavFeature {
-	format("I've been developing an added feature\n"
-	"for the Pokénav…\p"
+	format("I've been developing an added feature for the Pokénav…\p"
 	"And it turned out great!\p"
 	"{PLAYER}, may I see that Pokénav?\n"
 	"The one our President gave you?")
@@ -1294,13 +1288,11 @@ text RustboroCity_Text_DevelopedNewPokenavFeature {
 
 text RustboroCity_Text_AddedMatchCallPleaseCallMrStone {
 	format("There you go, {PLAYER}!\p"
-	"I added a new feature named\n"
-	"Match Call to your Pokénav.\p"
+	"I added a new feature named Match Call to your Pokénav.\p"
 	"Using the Match Call feature,\n"
 	"you can chat with people who have\l"
 	"been registered in your Pokénav.\p"
-	"{PLAYER}, our President Stone should\n"
-	"be registered in your Pokénav.\p"
+	"{PLAYER}, our President Stone should be registered in your Pokénav.\p"
 	"Test it out.\n"
 	"Please give our President a call.")
 }

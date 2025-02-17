@@ -1,15 +1,17 @@
+mapscripts Route112_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+    	clearflag(FLAG_FORCE_MIRAGE_TOWER_VISIBLE)
+        setvar(VAR_JAGGED_PASS_ASH_WEATHER, 0)
+    }
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
+
 raw `
 .set LOCALID_GRUNT_1, 1
 .set LOCALID_GRUNT_2, 6
-
-Route112_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, Route112_OnTransition
-	.byte 0
-
-Route112_OnTransition:
-	clearflag FLAG_FORCE_MIRAGE_TOWER_VISIBLE
-	setvar VAR_JAGGED_PASS_ASH_WEATHER, 0
-	end
 
 Route112_EventScript_MagmaGrunts::
 	lockall
@@ -109,39 +111,42 @@ Route112_EventScript_Shayla::
 	trainerbattle_single TRAINER_SHAYLA, Route112_Text_ShaylaIntro, Route112_Text_ShaylaDefeat
 	msgbox Route112_Text_ShaylaPostBattle, MSGBOX_AUTOCLOSE
 	end
-
-Route112_Text_LeaderGoingToAwakenThing:
-	.string "Hey, man, is our leader really going\n"
-	.string "to awaken that thing?$"
-
-Route112_Text_YeahWeNeedMeteorite:
-	.string "Sounds like it, yeah. But I heard\n"
-	.string "we need a METEORITE to do it.$"
-
-Route112_Text_OhThatsWhyCrewWentToFallarbor:
-	.string "Oh, I get it now. That's why the rest\n"
-	.string "of the crew went out to FALLARBOR.$"
-
-Route112_Text_CantLetAnyonePassUntilTheyreBack:
-	.string "You got it. And until they come back,\n"
-	.string "we're not to let anyone pass, right.$"
-
-Route112_Text_NotEasyToGetBackToLavaridge:
-	.string "Eh, I'd like to get to MAUVILLE, but if\n"
-	.string "I went down these ledges, it'd be no\l"
-	.string "easy matter to get back to LAVARIDGE.$"
-
-Route112_Text_MtChimneyCableCarSign:
-	.string "MT. CHIMNEY CABLE CAR\n"
-	.string "“A short walk {UP_ARROW} way!”$"
-
-Route112_Text_MtChimneySign:
-	.string "MT. CHIMNEY\p"
-	.string "“For LAVARIDGE TOWN or the summit,\n"
-	.string "please take the CABLE CAR.”$"
-
-Route112_Text_RouteSignLavaridge:
-	.string "ROUTE 112\n"
-	.string "{LEFT_ARROW} LAVARIDGE TOWN$"
-
 `
+
+text Route112_Text_LeaderGoingToAwakenThing {
+	format("Hey, man, is our leader really going to awaken that thing?")
+}
+
+text Route112_Text_YeahWeNeedMeteorite {
+	format("Sounds like it, yeah. But I heard we need a Meteorite to do it.")
+}
+
+text Route112_Text_OhThatsWhyCrewWentToFallarbor {
+	format("Oh, I get it now. That's why the rest of the crew went out to Fallarbor.")
+}
+
+text Route112_Text_CantLetAnyonePassUntilTheyreBack {
+	format("You got it. And until they come back, we're not to let anyone pass, right.")
+}
+
+text Route112_Text_NotEasyToGetBackToLavaridge {
+	format("Eh, I'd like to get to Mauville, but if\n"
+	"I went down these ledges, it'd be no\l"
+	"easy matter to get back to Lavaridge.")
+}
+
+text Route112_Text_MtChimneyCableCarSign {
+	format("Mt. Chimney Cable Car\n"
+	"“A short walk {UP_ARROW} way!”")
+}
+
+text Route112_Text_MtChimneySign {
+	format("Mt. Chimney\p"
+	"“For Lavaridge Town or the summit,\n"
+	"please take the Cable Car.”")
+}
+
+text Route112_Text_RouteSignLavaridge {
+	format("Route 112\n"
+	"{LEFT_ARROW} Lavaridge Town")
+}

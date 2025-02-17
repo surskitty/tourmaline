@@ -147,26 +147,7 @@ movement PetalburgCity_Movement_WallyTutorialPlayer {
 movement PetalburgCity_Movement_WallyTutorialWally {
     delay_8
     walk_down * 7
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
+    walk_right * 20
     walk_up
     walk_up
     walk_right

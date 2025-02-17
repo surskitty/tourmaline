@@ -1,26 +1,8 @@
-mapscripts Route102_MapScripts {}
-
-script Route102_EventScript_LittleBoy {
-    msgbox(format("I'm…not very tall, so I sink right into tall grass.\p"
-        "The grass goes up my nose and…\n"
-        "Fwafwafwafwafwa…\p"
-        "Fwatchoo!"), MSGBOX_NPC)
+mapscripts Route102_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        special(SetStationaryWilds)
+    }
 }
-
-script Route102_EventScript_RouteSignOldale {
-    msgbox("Route 102\n"
-        "{RIGHT_ARROW} Oldale Town", MSGBOX_SIGN)
-}
-
-script Route102_EventScript_RouteSignPetalburg {
-    msgbox("Route 102\n"
-        "{LEFT_ARROW} Petalburg City$", MSGBOX_SIGN)
-}
-
-script Route102_EventScript_Boy {
-    msgbox(format("I'm going to catch a whole bunch of Pokémon!"), MSGBOX_NPC)
-}
-
 
 raw `
 Route102_EventScript_Calvin::
@@ -78,20 +60,43 @@ Route102_EventScript_Allen::
     trainerbattle_single TRAINER_ALLEN, Route102_Text_AllenIntro, Route102_Text_AllenDefeated
     msgbox Route102_Text_AllenPostBattle, MSGBOX_AUTOCLOSE
     end
-
-Route102_Text_WatchMeCatchPokemon:
-    .string "WALLY: {PLAYER}…\n"
-    .string "Pokémon hide in tall grass like this,\l"
-    .string "don't they?\p"
-    .string "Please watch me and see if I can\n"
-    .string "catch one properly.\p"
-    .string "…Whoa!$"
-
-Route102_Text_WallyIDidIt:
-    .string "WALLY: I did it… It's my…\n"
-    .string "My Pokémon!$"
-
-Route102_Text_LetsGoBack:
-    .string "{PLAYER}, thank you!\n"
-    .string "Let's go back to the Gym!$"
 `
+
+text Route102_Text_WatchMeCatchPokemon {
+	format("WALLY: {PLAYER}…\n"
+    "Pokémon hide in tall grass like this,\l"
+    "don't they?\p"
+    "Please me watch and see if I can catch one properly.\p"
+    "…Whoa!")
+}
+
+text Route102_Text_WallyIDidIt {
+	format("WALLY: I did it… It's my…\n"
+    "My Pokémon!")
+}
+
+text Route102_Text_LetsGoBack {
+	format("{PLAYER}, thank you!\n"
+    "Let's go back to the Gym!")
+}
+
+script Route102_EventScript_LittleBoy {
+    msgbox(format("I'm…not very tall, so I sink right into tall grass.\p"
+        "The grass goes up my nose and…\n"
+        "Fwafwafwafwafwa…\p"
+        "Fwatchoo!"), MSGBOX_NPC)
+}
+
+script Route102_EventScript_RouteSignOldale {
+    msgbox("Route 102\n"
+        "{RIGHT_ARROW} Oldale Town", MSGBOX_SIGN)
+}
+
+script Route102_EventScript_RouteSignPetalburg {
+    msgbox("Route 102\n"
+        "{LEFT_ARROW} Petalburg City$", MSGBOX_SIGN)
+}
+
+script Route102_EventScript_Boy {
+    msgbox(format("I'm going to catch a whole bunch of Pokémon!"), MSGBOX_NPC)
+}

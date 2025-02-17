@@ -1,18 +1,18 @@
+mapscripts Route113_MapScripts {
+    MAP_SCRIPT_ON_RESUME {
+        setstepcallback(STEP_CB_ASH)
+    }
+    MAP_SCRIPT_ON_TRANSITION {
+        clearflag(FLAG_FORCE_MIRAGE_TOWER_VISIBLE)
+        call(Route113_EventScript_CheckSetAshWeather)
+    }
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
+
 raw `
-Route113_MapScripts::
-	map_script MAP_SCRIPT_ON_RESUME, Route113_OnResume
-	map_script MAP_SCRIPT_ON_TRANSITION, Route113_OnTransition
-	.byte 0
-
-Route113_OnResume:
-	setstepcallback STEP_CB_ASH
-	end
-
-Route113_OnTransition:
-	clearflag FLAG_FORCE_MIRAGE_TOWER_VISIBLE
-	call Route113_EventScript_CheckSetAshWeather
-	end
-
 Route113_EventScript_CheckSetAshWeather::
 	getplayerxy VAR_TEMP_0, VAR_TEMP_1
 	goto_if_lt VAR_TEMP_0, 19, Route113_EventScript_DontSetAshWeather
@@ -133,36 +133,42 @@ Route113_EventScript_Wyatt::
 	trainerbattle_single TRAINER_WYATT, Route113_Text_WyattIntro, Route113_Text_WyattDefeat
 	msgbox Route113_Text_WyattPostBattle, MSGBOX_AUTOCLOSE
 	end
-
-Route113_Text_AshCanBeFashionedIntoGlass:
-	.string "Wahahaha! Today's technology is a\n"
-	.string "wondrous thing!\p"
-	.string "Take this volcanic ash here.\n"
-	.string "It can be fashioned into glass.$"
-
-Route113_Text_FunWalkingThroughAsh:
-	.string "It's fun walking through the volcano's\n"
-	.string "ashes on the ground and grass.\p"
-	.string "You can see where you walked--it's\n"
-	.string "really neat!$"
-
-Route113_Text_RouteSign111:
-	.string "ROUTE 113\n"
-	.string "{RIGHT_ARROW} ROUTE 111$"
-
-Route113_Text_RouteSignFallarbor:
-	.string "ROUTE 113\n"
-	.string "{LEFT_ARROW} FALLARBOR TOWN$"
-
-Route113_Text_TrainerTipsRegisterKeyItems:
-	.string "TRAINER TIPS\p"
-	.string "You may register one of the KEY ITEMS\n"
-	.string "in your BAG as SELECT.\p"
-	.string "Simply press SELECT to use\n"
-	.string "the registered item conveniently.$"
-
-Route113_Text_GlassWorkshopSign:
-	.string "GLASS WORKSHOP\n"
-	.string "“Turning Volcanic Ash into Glass Items”$"
-
 `
+
+text Route113_Text_AshCanBeFashionedIntoGlass {
+	format("Wahahaha! Today's technology is a\n"
+	"wondrous thing!\p"
+	"Take this volcanic ash here.\n"
+	"It can be fashioned into glass.")
+}
+
+text Route113_Text_FunWalkingThroughAsh {
+	format("It's fun walking through the volcano's\n"
+	"ashes on the ground and grass.\p"
+	"You can see where you walked--it's\n"
+	"really neat!")
+}
+
+text Route113_Text_RouteSign111 {
+	format("ROUTE 113\n"
+	"{RIGHT_ARROW} ROUTE 111")
+}
+
+text Route113_Text_RouteSignFallarbor {
+	format("ROUTE 113\n"
+	"{LEFT_ARROW} FALLARBOR TOWN")
+}
+
+text Route113_Text_TrainerTipsRegisterKeyItems {
+	format("TRAINER TIPS\p"
+	"You may register one of the KEY ITEMS\n"
+	"in your BAG as SELECT.\p"
+	"Simply press SELECT to use\n"
+	"the registered item conveniently.")
+}
+
+text Route113_Text_GlassWorkshopSign {
+	format("GLASS WORKSHOP\n"
+	"“Turning Volcanic Ash into Glass Items”")
+}
+

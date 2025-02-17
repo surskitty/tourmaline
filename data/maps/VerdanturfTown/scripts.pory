@@ -1,14 +1,16 @@
+mapscripts VerdanturfTown_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_VISITED_VERDANTURF_TOWN)
+        setvar(VAR_CONTEST_HALL_STATE, 0)
+    }
+	MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
+
 raw `
 .set LOCALID_TWIN, 2
-
-VerdanturfTown_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, VerdanturfTown_OnTransition
-	.byte 0
-
-VerdanturfTown_OnTransition:
-	setflag FLAG_VISITED_VERDANTURF_TOWN
-	setvar VAR_CONTEST_HALL_STATE, 0
-	end
 
 VerdanturfTown_EventScript_Twin::
 	lock
