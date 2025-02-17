@@ -690,8 +690,12 @@ static void Task_OpenRegisteredPokeblockCase(u8 taskId)
 
 void ItemUseOutOfBattle_PokemonBoxLink(u8 taskId)
 {
-    sItemUseOnFieldCB = Task_AccessPokemonBoxLink;
-    SetUpItemUseOnFieldCallback(taskId);
+    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(EVER_GRANDE_CITY)) {
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    } else {
+        sItemUseOnFieldCB = Task_AccessPokemonBoxLink;
+        SetUpItemUseOnFieldCallback(taskId);
+    }
 }
 
 static void Task_AccessPokemonBoxLink(u8 taskId)
