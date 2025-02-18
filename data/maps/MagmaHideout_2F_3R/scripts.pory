@@ -1,1 +1,6 @@
-mapscripts MagmaHideout_2F_3R_MapScripts {}
+mapscripts MagmaHideout_2F_3R_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}

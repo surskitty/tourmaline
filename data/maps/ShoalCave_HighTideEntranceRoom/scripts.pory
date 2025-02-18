@@ -1,5 +1,6 @@
-raw `
-ShoalCave_HighTideEntranceRoom_MapScripts::
-	.byte 0
-
-`
+mapscripts ShoalCave_HighTideEntranceRoom_MapScripts {
+	MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}

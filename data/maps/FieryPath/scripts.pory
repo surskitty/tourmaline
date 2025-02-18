@@ -6,4 +6,8 @@ mapscripts FieryPath_MapScripts{
             setflag(FLAG_LANDMARK_FIERY_PATH)
         }
     }
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
 }

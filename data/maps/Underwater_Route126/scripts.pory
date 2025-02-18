@@ -1,1 +1,5 @@
-mapscripts Underwater_Route126_MapScripts {}
+mapscripts Underwater_Route126_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        special(SetStationaryWilds)
+    }
+}

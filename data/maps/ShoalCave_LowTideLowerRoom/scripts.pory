@@ -1,12 +1,12 @@
+mapscripts ShoalCave_LowTideLowerRoom_MapScripts {
+	MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+        call(ShoalCave_LowTideLowerRoom_EventScript_SetShoalItemMetatiles)
+    }
+}
+
 raw `
-ShoalCave_LowTideLowerRoom_MapScripts::
-	map_script MAP_SCRIPT_ON_LOAD, ShoalCave_LowTideLowerRoom_OnLoad
-	.byte 0
-
-ShoalCave_LowTideLowerRoom_OnLoad:
-	call ShoalCave_LowTideLowerRoom_EventScript_SetShoalItemMetatiles
-	end
-
 ShoalCave_LowTideLowerRoom_EventScript_SetShoalItemMetatiles::
 	goto_if_set FLAG_RECEIVED_SHOAL_SALT_4, ShoalCave_LowTideLowerRoom_EventScript_SetShoalItemMetatilesEnd
 	setmetatile 18, 2, METATILE_Cave_ShoalCave_DirtPile_Large, TRUE

@@ -62,8 +62,7 @@ text AbandonedShip_Corridors_B1F_Text_DuncanDefeat {
 }
 
 text AbandonedShip_Corridors_B1F_Text_DuncanPostBattle {
-    "The ship's bottom has sunk into the\n"
-    "depths.\p"
+    "The ship's bottom has sunk into the depths.\p"
     "If a Pokémon knew how to go underwater,\n"
     "we might make some progress…"
 }

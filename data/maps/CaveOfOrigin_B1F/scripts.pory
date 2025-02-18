@@ -1,8 +1,6 @@
+mapscripts CaveOfOrigin_B1F_MapScripts {}
 raw `
 .set LOCALID_WALLACE, 1
-
-CaveOfOrigin_B1F_MapScripts::
-	.byte 0
 
 CaveOfOrigin_B1F_EventScript_Wallace::
 	lock
@@ -61,62 +59,68 @@ CaveOfOrigin_B1F_EventScript_AtSkyPillar::
 	fadescreen FADE_FROM_BLACK
 	release
 	end
-
-CaveOfOrigin_B1F_Text_WallaceStory:
-	.string "Ah, so you are {PLAYER}{KUN}?\n"
-	.string "I've heard tales of your exploits.\p"
-	.string "My name is WALLACE.\p"
-	.string "I was once the GYM LEADER of\n"
-	.string "SOOTOPOLIS, but something came up.\p"
-	.string "So now, I've entrusted my mentor JUAN\n"
-	.string "with the GYM's operation.\p"
-	.string "… … … … … …\n"
-	.string "… … … … … …\p"
-	.string "GROUDON and KYOGRE, the two POKéMON\n"
-	.string "wreaking havoc here, are considered\l"
-	.string "to be super-ancient POKéMON.\p"
-	.string "But there aren't just two super-\n"
-	.string "ancient POKéMON.\p"
-	.string "There is one more somewhere.\p"
-	.string "Somewhere, there is a super-\n"
-	.string "ancient POKéMON named RAYQUAZA.\p"
-	.string "It's said that it was RAYQUAZA that\n"
-	.string "becalmed the two combatants in\l"
-	.string "the distant past.\p"
-	.string "But even I have no clue as to\n"
-	.string "RAYQUAZA's whereabouts…$"
-
-CaveOfOrigin_B1F_Text_WhereIsRayquaza:
-	.string "WALLACE: {PLAYER}{KUN}, do you perhaps\n"
-	.string "know where RAYQUAZA is now?\p"
-	.string "If you do, please tell me.$"
-
-CaveOfOrigin_B1F_Text_ButWereInCaveOfOrigin:
-	.string "WALLACE: The CAVE OF ORIGIN?\p"
-	.string "But that's right here!\n"
-	.string "I need you to do better than that!\p"
-	.string "Please, I need you to think about\n"
-	.string "where RAYQUAZA might be right now.$"
-
-CaveOfOrigin_B1F_Text_OldLadyDidntMentionThat:
-	.string "WALLACE: MT. PYRE?\p"
-	.string "But when I met the old lady there\n"
-	.string "earlier, she made no mention of it.\p"
-	.string "I very much doubt that the old lady\n"
-	.string "would try to hide something from me…\p"
-	.string "{PLAYER}{KUN}, could you think about this\n"
-	.string "more carefully for me?$"
-
-CaveOfOrigin_B1F_Text_CantYouRememberSomehow:
-	.string "WALLACE: Huh? You don't remember?\n"
-	.string "Hmm… That's a problem…\p"
-	.string "Can't you remember somehow?$"
-
-CaveOfOrigin_B1F_Text_WellHeadToSkyPillar:
-	.string "WALLACE: The SKY PILLAR?\p"
-	.string "That's it!\n"
-	.string "It must be the SKY PILLAR!\p"
-	.string "{PLAYER}{KUN}, there's not a moment to lose!\n"
-	.string "We'll head to the SKY PILLAR right away!$"
-
 `
+
+text CaveOfOrigin_B1F_Text_WallaceStory {
+	format("Ah, so you are {PLAYER}{KUN}?\n"
+	"I've heard tales of your exploits.\p"
+	"My name is WALLACE.\p"
+	"I was once the GYM LEADER of\n"
+	"SOOTOPOLIS, but something came up.\p"
+	"So now, I've entrusted my mentor JUAN\n"
+	"with the GYM's operation.\p"
+	"… … … … … …\n"
+	"… … … … … …\p"
+	"GROUDON and KYOGRE, the two POKéMON\n"
+	"wreaking havoc here, are considered\l"
+	"to be super-ancient POKéMON.\p"
+	"But there aren't just two super-\n"
+	"ancient POKéMON.\p"
+	"There is one more somewhere.\p"
+	"Somewhere, there is a super-\n"
+	"ancient POKéMON named RAYQUAZA.\p"
+	"It's said that it was RAYQUAZA that\n"
+	"becalmed the two combatants in\l"
+	"the distant past.\p"
+	"But even I have no clue as to\n"
+	"RAYQUAZA's whereabouts…")
+}
+
+text CaveOfOrigin_B1F_Text_WhereIsRayquaza {
+	format("WALLACE: {PLAYER}{KUN}, do you perhaps\n"
+	"know where RAYQUAZA is now?\p"
+	"If you do, please tell me.")
+}
+
+text CaveOfOrigin_B1F_Text_ButWereInCaveOfOrigin {
+	format("WALLACE: The CAVE OF ORIGIN?\p"
+	"But that's right here!\n"
+	"I need you to do better than that!\p"
+	"Please, I need you to think about\n"
+	"where RAYQUAZA might be right now.")
+}
+
+text CaveOfOrigin_B1F_Text_OldLadyDidntMentionThat {
+	format("WALLACE: MT. PYRE?\p"
+	"But when I met the old lady there\n"
+	"earlier, she made no mention of it.\p"
+	"I very much doubt that the old lady\n"
+	"would try to hide something from me…\p"
+	"{PLAYER}{KUN}, could you think about this\n"
+	"more carefully for me?")
+}
+
+text CaveOfOrigin_B1F_Text_CantYouRememberSomehow {
+	format("WALLACE: Huh? You don't remember?\n"
+	"Hmm… That's a problem…\p"
+	"Can't you remember somehow?")
+}
+
+text CaveOfOrigin_B1F_Text_WellHeadToSkyPillar {
+	format("WALLACE: The SKY PILLAR?\p"
+	"That's it!\n"
+	"It must be the SKY PILLAR!\p"
+	"{PLAYER}{KUN}, there's not a moment to lose!\n"
+	"We'll head to the SKY PILLAR right away!")
+}
+

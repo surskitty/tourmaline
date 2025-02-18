@@ -1,7 +1,11 @@
-raw `
-MtPyre_6F_MapScripts::
-	.byte 0
+mapscripts MtPyre_6F_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
 
+raw `
 MtPyre_6F_EventScript_Valerie::
 	trainerbattle_single TRAINER_VALERIE_1, MtPyre_6F_Text_ValerieIntro, MtPyre_6F_Text_ValerieDefeat, MtPyre_6F_EventScript_RegisterValerie
 	specialvar VAR_RESULT, ShouldTryRematchBattle

@@ -1,4 +1,9 @@
-mapscripts Route132_MapScripts {}
+mapscripts Route132_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
 
 raw `
 

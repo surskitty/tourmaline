@@ -1,7 +1,11 @@
-raw `
-MtPyre_1F_MapScripts::
-	.byte 0
+mapscripts MtPyre_1F_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
 
+raw `
 MtPyre_1F_EventScript_CleanseTagWoman::
 	lock
 	faceplayer

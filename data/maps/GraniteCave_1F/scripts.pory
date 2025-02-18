@@ -1,4 +1,9 @@
-mapscripts GraniteCave_1F_MapScripts {}
+mapscripts GraniteCave_1F_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
 
 script GraniteCave_1F_EventScript_Hiker {
     lock

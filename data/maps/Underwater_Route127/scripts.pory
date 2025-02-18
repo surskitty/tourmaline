@@ -2,4 +2,7 @@ mapscripts Underwater_Route127_MapScripts {
 	MAP_SCRIPT_ON_RESUME {
 		call(AbnormalWeather_Underwater_SetupEscapeWarp)
     }
+    MAP_SCRIPT_ON_LOAD {
+        special(SetStationaryWilds)
+    }
 }

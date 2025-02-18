@@ -1,16 +1,20 @@
+mapscripts JaggedPass_MapScripts {
+    MAP_SCRIPT_ON_RESUME {
+        setstepcallback(STEP_CB_ASH)
+        call_if_eq(VAR_JAGGED_PASS_STATE, 0, JaggedPass_EventScript_CheckHasMagmaEmblem)
+    }
+    MAP_SCRIPT_ON_TRANSITION {
+        call_if_eq(VAR_JAGGED_PASS_ASH_WEATHER, 1, JaggedPass_EventScript_SetWeatherAsh)
+    }
+    MAP_SCRIPT_ON_LOAD {
+        goto_if_le(VAR_JAGGED_PASS_STATE, 1, JaggedPass_EventScript_ConcealHideoutEntrance)
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
+
 raw `
 .set LOCALID_HIDEOUT_GUARD, 5
-
-JaggedPass_MapScripts::
-	map_script MAP_SCRIPT_ON_RESUME, JaggedPass_OnResume
-	map_script MAP_SCRIPT_ON_TRANSITION, JaggedPass_OnTransition
-	map_script MAP_SCRIPT_ON_LOAD, JaggedPass_OnLoad
-	.byte 0
-
-JaggedPass_OnResume:
-	setstepcallback STEP_CB_ASH
-	call_if_eq VAR_JAGGED_PASS_STATE, 0, JaggedPass_EventScript_CheckHasMagmaEmblem
-	end
 
 JaggedPass_EventScript_CheckHasMagmaEmblem::
 	checkitem ITEM_MAGMA_EMBLEM
@@ -21,18 +25,10 @@ JaggedPass_EventScript_SetReadyToOpenHideout::
 	setvar VAR_JAGGED_PASS_STATE, 1
 	return
 
-JaggedPass_OnTransition:
-	call_if_eq VAR_JAGGED_PASS_ASH_WEATHER, 1, JaggedPass_EventScript_SetWeatherAsh
-	end
-
 JaggedPass_EventScript_SetWeatherAsh::
 	setweather WEATHER_VOLCANIC_ASH
 	doweather
 	return
-
-JaggedPass_OnLoad:
-	goto_if_le VAR_JAGGED_PASS_STATE, 1, JaggedPass_EventScript_ConcealHideoutEntrance
-	end
 
 JaggedPass_EventScript_ConcealHideoutEntrance::
 	setmetatile 16, 17, METATILE_Lavaridge_RockWall, TRUE
@@ -149,122 +145,144 @@ JaggedPass_EventScript_Autumn::
 	trainerbattle_single TRAINER_AUTUMN, JaggedPass_Text_AutumnIntro, JaggedPass_Text_AutumnDefeat
 	msgbox JaggedPass_Text_AutumnPostBattle, MSGBOX_AUTOCLOSE
 	end
-
-JaggedPass_Text_EricIntro:
-	.string "Mt. Chimney's Jagged Pass…\p"
-	.string "Now this is what I've always wanted\n"
-	.string "in a mountain.\p"
-	.string "This jagged bumpiness…\n"
-	.string "It rocks my soul!$"
-
-JaggedPass_Text_EricDefeat:
-	.string "Losing left me bitter!$"
-
-JaggedPass_Text_EricPostBattle:
-	.string "Yes, I did lose at Pokémon…\p"
-	.string "But, when it comes to the love of\n"
-	.string "the mountains, I have you beat!$"
-
-JaggedPass_Text_DianaIntro:
-	.string "This place isn't your casual hike.\n"
-	.string "It's not suited for a picnic.$"
-
-JaggedPass_Text_DianaDefeat:
-	.string "Ohhh, no!\n"
-	.string "The ground is too bumpy…$"
-
-JaggedPass_Text_DianaPostBattle:
-	.string "Did you know?\p"
-	.string "Some people cleverly ride their\n"
-	.string "bicycles up this horribly bumpy pass.$"
-
-JaggedPass_Text_DianaRegister:
-	.string "Will you ever be back in this area?\n"
-	.string "If you do return, I'd like a rematch.$"
-
-JaggedPass_Text_DianaRematchIntro:
-	.string "Picnics are fun wherever you go.\n"
-	.string "Just like Pokémon!$"
-
-JaggedPass_Text_DianaRematchDefeat:
-	.string "I only lost because the ground is\n"
-	.string "too bumpy!$"
-
-JaggedPass_Text_DianaPostRematch:
-	.string "I'll forget about losing and just\n"
-	.string "enjoy this bumpy hike.$"
-
-JaggedPass_Text_EthanIntro:
-	.string "Jagged Pass is hard to walk on.\n"
-	.string "It's a good place for training.$"
-
-JaggedPass_Text_EthanDefeat:
-	.string "It was all over while we were still\n"
-	.string "trying to find a good footing…$"
-
-JaggedPass_Text_EthanPostBattle:
-	.string "If I had an Acro Bike, I'd be able to\n"
-	.string "jump ledges.$"
-
-JaggedPass_Text_EthanRegister:
-	.string "When I get more used to this bumpiness,\n"
-	.string "I'll be sure to win!\p"
-	.string "Can you register me in your Pokénav?$"
-
-JaggedPass_Text_EthanRematchIntro:
-	.string "I got used to this bumpiness.\n"
-	.string "I sing while I climb now.$"
-
-JaggedPass_Text_EthanRematchDefeat:
-	.string "It's still not easy to battle on this\n"
-	.string "bumpy ground…$"
-
-JaggedPass_Text_EthanPostRematch:
-	.string "I should get an Acro Bike from Rydel\n"
-	.string "in Mauville City…$"
-
-JaggedPass_Text_GruntIntro:
-	.string "Wah!\n"
-	.string "What are you doing here?\p"
-	.string "What am I doing in a place like this?\p"
-	.string "What business is it of yours?$"
-
-JaggedPass_Text_GruntDefeat:
-	.string "Urrrgh…\p"
-	.string "I should've ducked into our Hideout\n"
-	.string "right away…$"
-
-JaggedPass_Text_GoWhereverYouWant:
-	.string "Okay, oh-kay!\n"
-	.string "I admit it--you're strong!\p"
-	.string "Don't worry about me.\n"
-	.string "Go wherever you want!$"
-
-JaggedPass_Text_BoulderShakingInResponseToEmblem:
-	.string "Oh! This boulder is shaking in response\n"
-	.string "to the Magma Emblem!$"
-
-JaggedPass_Text_JulioIntro:
-	.string "Aiyeeh! It's awfully scary to shoot\n"
-	.string "down the mountain in one go!$"
-
-JaggedPass_Text_JulioDefeat:
-	.string "I feel like I'm falling apart…$"
-
-JaggedPass_Text_JulioPostBattle:
-	.string "My bicycle bounced around so much,\n"
-	.string "my rear end's sore…$"
-
-JaggedPass_Text_AutumnIntro:
-	.string "I climb this hill every day.\n"
-	.string "I have confidence in my strength!$"
-
-JaggedPass_Text_AutumnDefeat:
-	.string "Hmm…\n"
-	.string "What went wrong?$"
-
-JaggedPass_Text_AutumnPostBattle:
-	.string "What is that odd rock protrusion\n"
-	.string "a little up the hill from here?$"
-
 `
+
+text JaggedPass_Text_EricIntro {
+	format("Mt. Chimney's Jagged Pass…\p"
+	"Now this is what I've always wanted\n"
+	"in a mountain.\p"
+	"This jagged bumpiness…\n"
+	"It rocks my soul!")
+}
+
+text JaggedPass_Text_EricDefeat {
+	format("Losing left me bitter!")
+}
+
+text JaggedPass_Text_EricPostBattle {
+	format("Yes, I did lose at Pokémon…\p"
+	"But, when it comes to the love of\n"
+	"the mountains, I have you beat!")
+}
+
+text JaggedPass_Text_DianaIntro {
+	format("This place isn't your casual hike.\n"
+	"It's not suited for a picnic.")
+}
+
+text JaggedPass_Text_DianaDefeat {
+	format("Ohhh, no!\n"
+	"The ground is too bumpy…")
+}
+
+text JaggedPass_Text_DianaPostBattle {
+	format("Did you know?\p"
+	"Some people cleverly ride their\n"
+	"bicycles up this horribly bumpy pass.")
+}
+
+text JaggedPass_Text_DianaRegister {
+	format("Will you ever be back in this area?\n"
+	"If you do return, I'd like a rematch.")
+}
+
+text JaggedPass_Text_DianaRematchIntro {
+	format("Picnics are fun wherever you go.\n"
+	"Just like Pokémon!")
+}
+
+text JaggedPass_Text_DianaRematchDefeat {
+	format("I only lost because the ground is\n"
+	"too bumpy!")
+}
+
+text JaggedPass_Text_DianaPostRematch {
+	format("I'll forget about losing and just\n"
+	"enjoy this bumpy hike.")
+}
+
+text JaggedPass_Text_EthanIntro {
+	format("Jagged Pass is hard to walk on.\n"
+	"It's a good place for training.")
+}
+
+text JaggedPass_Text_EthanDefeat {
+	format("It was all over while we were still\n"
+	"trying to find a good footing…")
+}
+
+text JaggedPass_Text_EthanPostBattle {
+	format("If I had an Acro Bike, I'd be able to\n"
+	"jump ledges.")
+}
+
+text JaggedPass_Text_EthanRegister {
+	format("When I get more used to this bumpiness,\n"
+	"I'll be sure to win!\p"
+	"Can you register me in your Pokénav?")
+}
+
+text JaggedPass_Text_EthanRematchIntro {
+	format("I got used to this bumpiness.\n"
+	"I sing while I climb now.")
+}
+
+text JaggedPass_Text_EthanRematchDefeat {
+	format("It's still not easy to battle on this\n"
+	"bumpy ground…")
+}
+
+text JaggedPass_Text_EthanPostRematch {
+	format("I should get an Acro Bike from Rydel\n"
+	"in Mauville City…")
+}
+
+text JaggedPass_Text_GruntIntro {
+	format("Wah!\n"
+	"What are you doing here?\p"
+	"What am I doing in a place like this?\p"
+	"What business is it of yours?")
+}
+
+text JaggedPass_Text_GruntDefeat {
+	format("Urrrgh…\p"
+	"I should've ducked into our Hideout right away…")
+}
+
+text JaggedPass_Text_GoWhereverYouWant {
+	format("Okay, oh-kay!\n"
+	"I admit it--you're strong!\p"
+	"Don't worry about me.\n"
+	"Go wherever you want!")
+}
+
+text JaggedPass_Text_BoulderShakingInResponseToEmblem {
+	format("Oh! This boulder is shaking in response to the Magma Emblem!")
+}
+
+text JaggedPass_Text_JulioIntro {
+	format("Aiyeeh! It's awfully scary to shoot down the mountain in one go!")
+}
+
+text JaggedPass_Text_JulioDefeat {
+	format("I feel like I'm falling apart…")
+}
+
+text JaggedPass_Text_JulioPostBattle {
+	format("My bicycle bounced around so much, my rear end's sore…")
+}
+
+text JaggedPass_Text_AutumnIntro {
+	format("I climb this hill every day.\n"
+	"I have confidence in my strength!")
+}
+
+text JaggedPass_Text_AutumnDefeat {
+	format("Hmm…\n"
+	"What went wrong?")
+}
+
+text JaggedPass_Text_AutumnPostBattle {
+	format("What is that odd rock protrusion a little up the hill from here?")
+}
+
