@@ -232,6 +232,10 @@ const u32 gSurfablePokemonPic_Wooper[] = INCBIN_U32("graphics/object_events/pics
 const u16 gSurfablePokemonPalette_Wooper[] = INCBIN_U16("graphics/object_events/pics/pokemon/surfable/0194_wooper.gbapal");
 const u16 gSurfablePokemonShinyPalette_Wooper[] = INCBIN_U16("graphics/object_events/pics/pokemon/surfable/0194_wooper_shiny.gbapal");
 
+const u32 gSurfablePokemonPic_WooperPaldea[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/0194_wooper_paldea.4bpp");
+const u16 gSurfablePokemonPalette_WooperPaldea[] = INCBIN_U16("graphics/pokemon/wooper/paldea/normal.gbapal");
+const u16 gSurfablePokemonShinyPalette_WooperPaldea[] = INCBIN_U16("graphics/pokemon/wooper/paldea/shiny.gbapal");
+
 const u32 gSurfablePokemonPic_Quagsire[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/0195_quagsire.4bpp");
 const u16 gSurfablePokemonPalette_Quagsire[] = INCBIN_U16("graphics/object_events/pics/pokemon/surfable/0195_quagsire.gbapal");
 const u16 gSurfablePokemonShinyPalette_Quagsire[] = INCBIN_U16("graphics/object_events/pics/pokemon/surfable/0195_quagsire_shiny.gbapal");
