@@ -226,6 +226,10 @@ const struct RideablePokemon gSurfablePokemon[] =
         .trainerPose = 0,
     },
     {
+        .species = SPECIES_WOOPER_PALDEA,
+        .trainerPose = 0,
+    },
+    {
         .species = SPECIES_QUAGSIRE,
         .trainerPose = 0,
     },

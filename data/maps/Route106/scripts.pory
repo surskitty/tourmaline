@@ -1,4 +1,9 @@
-mapscripts Route106_MapScripts {}
+mapscripts Route106_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
 
 script Route106_EventScript_TrainerTipsSign {
 	msgbox(format("Trainer Tips\p"

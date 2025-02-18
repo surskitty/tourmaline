@@ -999,6 +999,15 @@ const struct SpriteFrameImage gSurfingOverworldPicTable_Wooper[] = {
     overworld_frame(gSurfablePokemonPic_Wooper, 4, 4, 5),
 };
 
+const struct SpriteFrameImage gSurfingOverworldPicTable_WooperPaldea[] = {
+    overworld_frame(gSurfablePokemonPic_WooperPaldea, 4, 4, 0),
+    overworld_frame(gSurfablePokemonPic_WooperPaldea, 4, 4, 1),
+    overworld_frame(gSurfablePokemonPic_WooperPaldea, 4, 4, 2),
+    overworld_frame(gSurfablePokemonPic_WooperPaldea, 4, 4, 3),
+    overworld_frame(gSurfablePokemonPic_WooperPaldea, 4, 4, 4),
+    overworld_frame(gSurfablePokemonPic_WooperPaldea, 4, 4, 5),
+};
+
 const struct SpriteFrameImage gSurfingOverlayPicTable_Wooper[] = {
     overworld_frame(gSurfablePokemonPic_Wooper, 4, 4, 6),
     overworld_frame(gSurfablePokemonPic_Wooper, 4, 4, 7),
@@ -1006,6 +1015,15 @@ const struct SpriteFrameImage gSurfingOverlayPicTable_Wooper[] = {
     overworld_frame(gSurfablePokemonPic_Wooper, 4, 4, 9),
     overworld_frame(gSurfablePokemonPic_Wooper, 4, 4, 10),
     overworld_frame(gSurfablePokemonPic_Wooper, 4, 4, 11),
+};
+
+const struct SpriteFrameImage gSurfingOverlayPicTable_WooperPaldea[] = {
+    overworld_frame(gSurfablePokemonPic_WooperPaldea, 4, 4, 6),
+    overworld_frame(gSurfablePokemonPic_WooperPaldea, 4, 4, 7),
+    overworld_frame(gSurfablePokemonPic_WooperPaldea, 4, 4, 8),
+    overworld_frame(gSurfablePokemonPic_WooperPaldea, 4, 4, 9),
+    overworld_frame(gSurfablePokemonPic_WooperPaldea, 4, 4, 10),
+    overworld_frame(gSurfablePokemonPic_WooperPaldea, 4, 4, 11),
 };
 
 const struct SpriteFrameImage gSurfingOverworldPicTable_Quagsire[] = {

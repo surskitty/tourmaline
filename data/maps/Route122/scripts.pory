@@ -1,5 +1,6 @@
-raw `
-Route122_MapScripts::
-	.byte 0
-
-`
+mapscripts Route122_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}

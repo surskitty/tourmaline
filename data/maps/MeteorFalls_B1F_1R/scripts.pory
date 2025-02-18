@@ -1,5 +1,6 @@
-raw `
-MeteorFalls_B1F_1R_MapScripts::
-	.byte 0
-
-`
+mapscripts MeteorFalls_B1F_1R_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}

@@ -1,7 +1,11 @@
-raw `
-MtPyre_5F_MapScripts::
-	.byte 0
+mapscripts MtPyre_5F_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
 
+raw `
 @ Seems like the scripts for the 4F and 5F were swapped
 
 MtPyre_4F_EventScript_Tasha::

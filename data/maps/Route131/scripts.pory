@@ -3,6 +3,10 @@ mapscripts Route131_MapScripts {
         call_if_ge(VAR_SOOTOPOLIS_CITY_STATE, 4, Route131_EventScript_CheckSetAbnormalWeather)
         call(Route131_EventScript_SetLayout)
     }
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
 }
 
 raw `

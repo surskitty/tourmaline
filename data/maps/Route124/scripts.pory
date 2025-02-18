@@ -1,16 +1,18 @@
+mapscripts Route124_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        call_if_set(FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather)
+    }
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
+
+script Route124_EventScript_HuntersHouseSign {
+	msgbox("Hunter's House", MSGBOX_SIGN)
+}
+
 raw `
-Route124_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, Route124_OnTransition
-	.byte 0
-
-Route124_OnTransition:
-	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
-	end
-
-Route124_EventScript_HuntersHouseSign::
-	msgbox Route124_Text_HuntersHouse, MSGBOX_SIGN
-	end
-
 Route124_EventScript_Spencer::
 	trainerbattle_single TRAINER_SPENCER, Route124_Text_SpencerIntro, Route124_Text_SpencerDefeat
 	msgbox Route124_Text_SpencerPostBattle, MSGBOX_AUTOCLOSE
@@ -99,8 +101,5 @@ Route124_EventScript_Isabella::
 	trainerbattle_single TRAINER_ISABELLA, Route124_Text_IsabellaIntro, Route124_Text_IsabellaDefeat
 	msgbox Route124_Text_IsabellaPostBattle, MSGBOX_AUTOCLOSE
 	end
-
-Route124_Text_HuntersHouse:
-	.string "HUNTER'S HOUSE$"
-
 `
+

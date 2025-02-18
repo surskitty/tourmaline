@@ -1,12 +1,16 @@
+
+mapscripts SkyPillar_Outside_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION: SkyPillar_Outside_OnTransition
+	MAP_SCRIPT_ON_LOAD {
+        call_if_set(FLAG_WALLACE_GOES_TO_SKY_PILLAR, SkyPillar_Outside_EventScript_OpenDoor)
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE: SkyPillar_Outside_OnFrame
+}
+
 raw `
 .set LOCALID_WALLACE, 1
-
-SkyPillar_Outside_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, SkyPillar_Outside_OnTransition
-	map_script MAP_SCRIPT_ON_LOAD, SkyPillar_Outside_OnLoad
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, SkyPillar_Outside_OnFrame
-	.byte 0
-
 SkyPillar_Outside_OnTransition:
 	call_if_eq VAR_SOOTOPOLIS_CITY_STATE, 3, SkyPillar_Outside_EventScript_HideMapNamePopup
 	call_if_ge VAR_SOOTOPOLIS_CITY_STATE, 4, SkyPillar_Outside_EventScript_CheckSetAbnormalWeather
@@ -19,10 +23,6 @@ SkyPillar_Outside_EventScript_HideMapNamePopup::
 SkyPillar_Outside_EventScript_CheckSetAbnormalWeather::
 	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
 	return
-
-SkyPillar_Outside_OnLoad:
-	call_if_set FLAG_WALLACE_GOES_TO_SKY_PILLAR, SkyPillar_Outside_EventScript_OpenDoor
-	end
 
 SkyPillar_Outside_EventScript_OpenDoor::
 	setmetatile 14, 4, METATILE_Pacifidlog_SkyPillar_DoorOpen_Top, FALSE

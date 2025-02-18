@@ -1,22 +1,25 @@
+mapscripts Route117_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        call(Route117_EventScript_TryMoveDayCareMan)
+        // set flags for OW daycare mons
+        setflag(FLAG_TEMP_1)
+        setflag(FLAG_TEMP_2)
+        getdaycaregfx(VAR_OBJ_GFX_ID_0, VAR_OBJ_GFX_ID_1, VAR_TEMP_0, VAR_TEMP_1)
+        switch (var(VAR_RESULT)) {
+            case 2: call(Route117_EventScript_ShowDaycareMon1)
+            case 1: call(Route117_EventScript_ShowDaycareMon0)
+        }
+    }
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
+
 raw `
 .set LOCALID_DAYCARE_MAN, 3
 .set LOCALID_DAYCARE_MON_0, 25
 .set LOCALID_DAYCARE_MON_1, 26
-
-Route117_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, Route117_OnTransition
-	.byte 0
-
-Route117_OnTransition:
-	call Route117_EventScript_TryMoveDayCareMan
-	@ set flags for OW daycare mons
-	setflag FLAG_TEMP_1
-	setflag FLAG_TEMP_2
-	getdaycaregfx VAR_OBJ_GFX_ID_0, VAR_OBJ_GFX_ID_1, VAR_TEMP_0, VAR_TEMP_1
-	switch VAR_RESULT
-	case 2, Route117_EventScript_ShowDaycareMon1
-	case 1, Route117_EventScript_ShowDaycareMon0
-	end
 
 Route117_EventScript_ShowDaycareMon1:
 	@ set pokemon movement type based on compatibility

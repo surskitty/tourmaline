@@ -141,17 +141,6 @@ Route111_EventScript_RootFossilDisappeared::
 	releaseall
 	end
 
-@ Unused
-Route111_Movement_PlayerFall::
-	lock_anim
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	step_end
-
 Route111_EventScript_Girl::
 	lock
 	faceplayer
@@ -367,38 +356,6 @@ Route111_Movement_WaitForNextWinstrate:
 	delay_16
 	step_end
 
-Route111_EventScript_RouteSignMauville::
-	msgbox Route111_Text_RouteSignMauville, MSGBOX_SIGN
-	end
-
-Route111_EventScript_WinstrateHouseSign::
-	msgbox Route111_Text_WinstrateHouseSign, MSGBOX_SIGN
-	end
-
-Route111_EventScript_RouteSign112::
-	msgbox Route111_Text_RouteSign112, MSGBOX_SIGN
-	end
-
-Route111_EventScript_RouteSign113::
-	msgbox Route111_Text_RouteSign113, MSGBOX_SIGN
-	end
-
-Route111_EventScript_OldLadysRestStopSign::
-	msgbox Route111_Text_OldLadysRestStopSign, MSGBOX_SIGN
-	end
-
-Route111_EventScript_TrainerTipsSpAtkSpDef::
-	msgbox Route111_Text_TrainerTipsSpAtkSpDef, MSGBOX_SIGN
-	end
-
-Route111_EventScript_Man1::
-	msgbox Route111_Text_ToughToKeepWinningUpTheRanks, MSGBOX_NPC
-	end
-
-Route111_EventScript_Man2::
-	msgbox Route111_Text_WinstrateFamilyDestroyedMe, MSGBOX_NPC
-	end
-
 Route111_EventScript_Hiker::
 	lock
 	faceplayer
@@ -567,10 +524,6 @@ Route111_EventScript_Branden::
 	trainerbattle_single TRAINER_BRANDEN, Route111_Text_BrandenIntro, Route111_Text_BrandenDefeat
 	msgbox Route111_Text_BrandenPostBattle, MSGBOX_AUTOCLOSE
 	end
-
-Route111_EventScript_TrainerHillSign::
-	msgbox Route111_Text_TrainerHillSign, MSGBOX_SIGN
-	end
 `
 
 text Route111_Text_BattleOurFamily {
@@ -632,8 +585,7 @@ text Route111_Text_ViviPostBattle {
 }
 
 text Route111_Text_VickyIntro {
-	format("How dare you make my granddaughter\n"
-	"cry!\p"
+	format("How dare you make my granddaughter cry!\p"
 	"For that, I'm going to smack you!\n"
 	"Prepare to lose!")
 }
@@ -644,116 +596,95 @@ text Route111_Text_VickyDefeat {
 }
 
 text Route111_Text_VickyPostBattle {
-	format("If you're not in any hurry,\n"
-	"visit with us awhile.")
-}
-
-text Route111_Text_ToughToKeepWinningUpTheRanks {
-	format("If you don't raise your Pokémon some\n"
-	"more, it could be tough to keep winning\l"
-	"up through the ranks.\p"
-	"I've heard the Pokémon LEAGUE's\n"
-	"ELITE FOUR are far stronger than\l"
-	"any GYM LEADER.")
-}
-
-text Route111_Text_WinstrateFamilyDestroyedMe {
-	format("I challenged the WINSTRATE family,\n"
-	"but four matches in a row is tough\l"
-	"going… They destroyed me.")
-}
-
-text Route111_Text_RouteSignMauville {
-	format("ROUTE 111\n"
-	"{DOWN_ARROW} MAUVILLE CITY")
-}
-
-text Route111_Text_WinstrateHouseSign {
-	format("“Our family's hearts beat as one!”\n"
-	"THE WINSTRATE'S HOUSE")
-}
-
-text Route111_Text_RouteSign112 {
-	format("ROUTE 111\n"
-	"{LEFT_ARROW} ROUTE 112")
-}
-
-text Route111_Text_RouteSign113 {
-	format("ROUTE 111\n"
-	"{LEFT_ARROW} ROUTE 113")
-}
-
-text Route111_Text_OldLadysRestStopSign {
-	format("OLD LADY'S REST STOP\n"
-	"“Come in and rest your tired bones.”")
-}
-
-text Route111_Text_TrainerTipsSpAtkSpDef {
-	format("TRAINER TIPS\p"
-	"One of the indicators of a Pokémon's\n"
-	"powerfulness is SP. ATK. It stands for\l"
-	"“SPECIAL ATTACK.”\p"
-	"Likewise, SP. DEF stands for “SPECIAL\n"
-	"DEFENSE.”")
+	format("If you're not in any hurry, visit with us awhile.")
 }
 
 text Route111_Text_ShouldBeMirageTowerAroundHere {
-	format("There should be a tower made of sand\n"
-	"around here somewhere.\p"
-	"But for some reason, it can be seen\n"
-	"sometimes, and sometimes not.\p"
-	"That's why I call it the MIRAGE TOWER.")
+	format("There should be a tower made of sand around here somewhere.\p"
+	"But for some reason, it can be seen sometimes, and sometimes not.\p"
+	"That's why I call it the Mirage Tower.")
 }
 
 text Route111_Text_MirageTowerClearlyVisible {
 	format("I see it!\n"
 	"The tower of sand!\p"
-	"The sand tower they called a mirage\n"
-	"is clearly visible!\p"
+	"The sand tower they called a mirage is clearly visible!\p"
 	"But it looks so fragile…\n"
 	"It could crumble away anytime…\p"
-	"I want to go inside it, but I can't\n"
-	"get my courage up for it…")
+	"I want to go inside it, but I can't get my courage up for it…")
 }
 
 text Route111_Text_ThatWasShockingSandRainedDown {
 	format("Whoa…\n"
 	"That was shocking.\p"
-	"Sand rained down in chunks all of\n"
-	"a sudden.\p"
+	"Sand rained down in chunks all of a sudden.\p"
 	"What was it like inside?\n"
 	"Were there sandy ghosts and such?")
 }
 
 text Route111_Text_MirageTowerHasntBeenSeenSince {
-	format("Since I spoke to you, the tower of sand\n"
-	"hasn't been seen.\p"
-	"Perhaps it really was\n"
-	"the MIRAGE TOWER…")
+	format("Since I spoke to you, the tower of sand hasn't been seen.\p"
+	"Perhaps it really was the Mirage Tower…")
 }
 
 text Route111_Text_ClawFossilDisappeared {
-	format("The CLAW FOSSIL disappeared into\n"
-	"the sand…")
+	format("The Claw Fossil disappeared into the sand…")
 }
 
 text Route111_Text_RootFossilDisappeared {
-	format("The ROOT FOSSIL disappeared into\n"
-	"the sand…")
+	format("The Root Fossil disappeared into the sand…")
 }
 
 text Route111_Text_MauvilleUncleToldMeToTakeRockSmash {
 	format("Oh, no!\p"
-	"My uncle in MAUVILLE told me to take\n"
-	"ROCK SMASH with me if I was going to\l"
-	"ROUTE 111!\p"
-	"My uncle? He lives across from\n"
-	"the bike shop in MAUVILLE.")
+	"My uncle in Mauville told me to take Rock Smash with me if I was going to\l"
+	"Route 111!\p"
+	"My uncle? He lives across from the bike shop in Mauville.")
 }
 
-text Route111_Text_TrainerHillSign {
-	format("{RIGHT_ARROW} TRAINER HILL ENTRANCE\p"
-	"“Scale the heights, you hot-blooded\n"
-	"TRAINERS!”")
+script Route111_EventScript_RouteSignMauville {
+	msgbox(format("Route 111\n"
+	"{DOWN_ARROW} Mauville City"), MSGBOX_SIGN)
 }
 
+script Route111_EventScript_WinstrateHouseSign {
+	msgbox(format("“Our family's hearts beat as one!”\n"
+	"The Winstrate's House"), MSGBOX_SIGN)
+}
+
+script Route111_EventScript_TrainerTipsSpAtkSpDef {
+	msgbox(format("Trainer Tips\p"
+	"One of the indicators of a Pokémon's\n"
+	"powerfulness is SP. ATK. It stands for\l"
+	"“SPECIAL ATTACK.”\p"
+	"Likewise, SP. DEF stands for “SPECIAL\n"
+	"DEFENSE.”"), MSGBOX_SIGN)
+}
+
+script Route111_EventScript_Man1 {
+	msgbox(format("If you don't raise your Pokémon some more, it could be tough to keep winning up through the ranks.\p"
+	"I've heard the Pokémon League's Elite Four are far stronger than any Gym Leader."), MSGBOX_NPC)
+}
+
+script Route111_EventScript_Man2 {
+	msgbox(format("I challenged the Winstrate family, but four matches in a row is tough going… They destroyed me."), MSGBOX_NPC)
+}
+
+script Route111_EventScript_TrainerHillSign {
+    msgbox(format("{RIGHT_ARROW} Trainer Hill Entrance\p"
+        "“Scale the heights, you hot-blooded Trainers!”"), MSGBOX_SIGN)
+}
+script Route111_EventScript_RouteSign112 {
+	msgbox(format("ROUTE 111\n"
+	"{LEFT_ARROW} ROUTE 112"), MSGBOX_SIGN)
+}
+
+script Route111_EventScript_RouteSign113 {
+	msgbox(format("ROUTE 111\n"
+	"{LEFT_ARROW} ROUTE 113"), MSGBOX_SIGN)
+}
+
+script Route111_EventScript_OldLadysRestStopSign {
+	msgbox(format("Old Lady's Rest Stop\n"
+	"“Come in and rest your tired bones.”"), MSGBOX_SIGN)
+}

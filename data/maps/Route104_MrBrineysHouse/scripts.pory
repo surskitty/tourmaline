@@ -1,16 +1,14 @@
+mapscripts Route104_MrBrineysHouse_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_LANDMARK_MR_BRINEY_HOUSE)
+        call_if_eq(VAR_BRINEY_HOUSE_STATE, 1, Route104_MrBrineysHouse_EventScript_SetBrineyPeekoPos)
+        call_if_set(FLAG_RECEIVED_POKENAV, Route104_MrBrineysHouse_EventScript_HideRustboroRival)
+    }
+}
+
 raw `
 .set LOCALID_BRINEY, 1
 .set LOCALID_PEEKO, 2
-
-Route104_MrBrineysHouse_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, Route104_MrBrineysHouse_OnTransition
-	.byte 0
-
-Route104_MrBrineysHouse_OnTransition:
-	setflag FLAG_LANDMARK_MR_BRINEY_HOUSE
-	call_if_eq VAR_BRINEY_HOUSE_STATE, 1, Route104_MrBrineysHouse_EventScript_SetBrineyPeekoPos
-	call_if_set FLAG_RECEIVED_POKENAV, Route104_MrBrineysHouse_EventScript_HideRustboroRival
-	end
 
 Route104_MrBrineysHouse_EventScript_HideRustboroRival::
 	setflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
@@ -97,67 +95,68 @@ Route104_MrBrineysHouse_EventScript_Peeko::
 	waitmoncry
 	release
 	end
-
-Route104_MrBrineysHouse_Text_WaitUpPeeko:
-	.string "MR. BRINEY: Hold on, lass!\n"
-	.string "Wait up, Peeko!$"
-
-Route104_MrBrineysHouse_Text_ItsYouLetsSailToDewford:
-	.string "Hm? You're {PLAYER}{KUN}!\n"
-	.string "You saved my darling Peeko!\l"
-	.string "We owe so much to you!\p"
-	.string "What's that?\n"
-	.string "You want to sail with me?\p"
-	.string "Hmhm…\p"
-	.string "You have a Letter bound for Dewford\n"
-	.string "and a package for Slateport, then?\p"
-	.string "Quite the busy life you must lead!\p"
-	.string "But, certainly, what you're asking is\n"
-	.string "no problem at all.\p"
-	.string "You've come to the right man!\n"
-	.string "We'll set sail for Dewford.$"
-
-Route104_MrBrineysHouse_Text_SetSailForDewford:
-	.string "MR. BRINEY: Dewford it is, then!\p"
-	.string "Anchors aweigh!\n"
-	.string "Peeko, we're setting sail, my darling!$"
-
-Route104_MrBrineysHouse_Text_DeclineDeliverySail:
-	.string "MR. BRINEY: Is that so?\n"
-	.string "Your deliveries can wait?\p"
-	.string "You just go on and tell me whenever\n"
-	.string "you want to set sail!$"
-
-Route104_MrBrineysHouse_Text_NeedToMakeDeliveriesSailToDewford:
-	.string "MR. BRINEY: Ahoy!\n"
-	.string "I know exactly what you want to say!\p"
-	.string "You're to deliver a Letter to Dewford\n"
-	.string "and a package to Slateport.\p"
-	.string "What you need me to do is no problem\n"
-	.string "at all--I'm the man for the job!\p"
-	.string "First, we'll set sail for Dewford.$"
-
-Route104_MrBrineysHouse_Text_NeedToDeliverPackageSailToDewford:
-	.string "MR. BRINEY: Ahoy!\n"
-	.string "I know exactly what you want to say!\p"
-	.string "You're to deliver a package to\n"
-	.string "Capt. Stern in Slateport.\p"
-	.string "What you need me to do is no problem\n"
-	.string "at all--I'm the man for the job!\p"
-	.string "First, we'll set sail for Dewford.$"
-
-Route104_MrBrineysHouse_Text_WhereAreWeBound:
-	.string "MR. BRINEY: Ahoy!\n"
-	.string "For you, I'll go out to sea anytime!\p"
-	.string "Now, my friend, where are we bound?$"
-
-Route104_MrBrineysHouse_Text_TellMeWheneverYouWantToSail:
-	.string "MR. BRINEY: Is that so?\n"
-	.string "Well, Peeko owes her life to you.\p"
-	.string "You just go on and tell me whenever\n"
-	.string "you want to set sail!$"
-
-Route104_MrBrineysHouse_Text_Peeko:
-	.string "PEEKO: Pii piihyoro!$"
-
 `
+
+text Route104_MrBrineysHouse_Text_WaitUpPeeko {
+	format("MR. BRINEY: Hold on, lass!\n"
+	"Wait up, Peeko!")
+}
+
+text Route104_MrBrineysHouse_Text_ItsYouLetsSailToDewford {
+	format("Hm? You're {PLAYER}{KUN}!\n"
+	"You saved my darling Peeko!\l"
+	"We owe so much to you!\p"
+	"What's that?\n"
+	"You want to sail with me?\p"
+	"Hmhm…\p"
+	"You have a Letter bound for Dewford and a package for Slateport, then?\p"
+	"Quite the busy life you must lead!\p"
+	"But what you're asking is no problem at all.\p"
+	"You've come to the right man!\n"
+	"We'll set sail for Dewford.")
+}
+
+text Route104_MrBrineysHouse_Text_SetSailForDewford {
+	format("MR. BRINEY: Dewford it is, then!\p"
+	"Anchors aweigh!\n"
+	"Peeko, we're setting sail, my darling!")
+}
+
+text Route104_MrBrineysHouse_Text_DeclineDeliverySail {
+	format("MR. BRINEY: Is that so?\n"
+	"Your deliveries can wait?\p"
+	"You just go on and tell me whenever you want to set sail!")
+}
+
+text Route104_MrBrineysHouse_Text_NeedToMakeDeliveriesSailToDewford {
+	format("MR. BRINEY: Ahoy!\n"
+	"I know exactly what you want to say!\p"
+	"You're to deliver a Letter to Dewford and a package to Slateport.\p"
+	"What you need me to do is no problem at all--I'm the man for the job!\p"
+	"First, we'll set sail for Dewford.")
+}
+
+text Route104_MrBrineysHouse_Text_NeedToDeliverPackageSailToDewford {
+	format("MR. BRINEY: Ahoy!\n"
+	"I know exactly what you want to say!\p"
+	"You're to deliver a package to Capt. Stern in Slateport.\p"
+	"What you need me to do is no problem at all--I'm the man for the job!\p"
+	"First, we'll set sail for Dewford.")
+}
+
+text Route104_MrBrineysHouse_Text_WhereAreWeBound {
+	format("MR. BRINEY: Ahoy!\n"
+	"For you, I'll go out to sea anytime!\p"
+	"Now, my friend, where are we bound?")
+}
+
+text Route104_MrBrineysHouse_Text_TellMeWheneverYouWantToSail {
+	format("MR. BRINEY: Is that so?\n"
+	"Well, Peeko owes her life to you.\p"
+	"You just go on and tell me whenever you want to set sail!")
+}
+
+text Route104_MrBrineysHouse_Text_Peeko {
+	format("PEEKO: Pii piihyoro!")
+}
+

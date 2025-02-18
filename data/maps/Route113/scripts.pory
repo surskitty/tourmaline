@@ -23,30 +23,6 @@ Route113_EventScript_CheckSetAshWeather::
 Route113_EventScript_DontSetAshWeather::
 	return
 
-Route113_EventScript_Gentleman::
-	msgbox Route113_Text_AshCanBeFashionedIntoGlass, MSGBOX_NPC
-	end
-
-Route113_EventScript_NinjaBoy::
-	msgbox Route113_Text_FunWalkingThroughAsh, MSGBOX_NPC
-	end
-
-Route113_EventScript_RouteSign111::
-	msgbox Route113_Text_RouteSign111, MSGBOX_SIGN
-	end
-
-Route113_EventScript_RouteSignFallarbor::
-	msgbox Route113_Text_RouteSignFallarbor, MSGBOX_SIGN
-	end
-
-Route113_EventScript_GlassWorkshopSign::
-	msgbox Route113_Text_GlassWorkshopSign, MSGBOX_SIGN
-	end
-
-Route113_EventScript_TrainerTipsRegisterKeyItems::
-	msgbox Route113_Text_TrainerTipsRegisterKeyItems, MSGBOX_SIGN
-	end
-
 Route113_EventScript_Jaylen::
 	trainerbattle_single TRAINER_JAYLEN, Route113_Text_JaylenIntro, Route113_Text_JaylenDefeat
 	msgbox Route113_Text_JaylenPostBattle, MSGBOX_AUTOCLOSE
@@ -135,40 +111,33 @@ Route113_EventScript_Wyatt::
 	end
 `
 
-text Route113_Text_AshCanBeFashionedIntoGlass {
-	format("Wahahaha! Today's technology is a\n"
-	"wondrous thing!\p"
+script Route113_EventScript_Gentleman {
+	msgbox(format("Wahahaha! Today's technology is a wondrous thing!\p"
 	"Take this volcanic ash here.\n"
-	"It can be fashioned into glass.")
+	"It can be fashioned into glass."), MSGBOX_NPC)
 }
 
-text Route113_Text_FunWalkingThroughAsh {
-	format("It's fun walking through the volcano's\n"
-	"ashes on the ground and grass.\p"
-	"You can see where you walked--it's\n"
-	"really neat!")
+script Route113_EventScript_NinjaBoy {
+	msgbox(format("It's fun walking through the volcano's ashes on the ground and grass.\p"
+        "You can see where you walked--it's really neat!"), MSGBOX_NPC)
 }
 
-text Route113_Text_RouteSign111 {
-	format("ROUTE 113\n"
-	"{RIGHT_ARROW} ROUTE 111")
+script Route113_EventScript_RouteSign111 {
+	msgbox(format("ROUTE 113\n"
+	"{RIGHT_ARROW} ROUTE 111"), MSGBOX_SIGN)
 }
 
-text Route113_Text_RouteSignFallarbor {
-	format("ROUTE 113\n"
-	"{LEFT_ARROW} FALLARBOR TOWN")
+script Route113_EventScript_RouteSignFallarbor {
+	msgbox(format("ROUTE 113\n"
+	"{LEFT_ARROW} FALLARBOR TOWN"), MSGBOX_SIGN)
 }
 
-text Route113_Text_TrainerTipsRegisterKeyItems {
-	format("TRAINER TIPS\p"
-	"You may register one of the KEY ITEMS\n"
-	"in your BAG as SELECT.\p"
-	"Simply press SELECT to use\n"
-	"the registered item conveniently.")
+script Route113_EventScript_GlassWorkshopSign {
+	msgbox(format("GLASS WORKSHOP\n"
+        "“Turning Volcanic Ash into Glass Items”"), MSGBOX_SIGN)
 }
 
-text Route113_Text_GlassWorkshopSign {
-	format("GLASS WORKSHOP\n"
-	"“Turning Volcanic Ash into Glass Items”")
+script Route113_EventScript_TrainerTipsRegisterKeyItems {
+	msgbox(format("TRAINER TIPS\p"
+	"Items a Pokémon holds and uses are restored after battle.\p"), MSGBOX_SIGN)
 }
-

@@ -1,27 +1,23 @@
+mapscripts Route118_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+    	call(GabbyAndTy_EventScript_UpdateLocation)
+        call_if_eq(VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_HideMapNamePopup)
+        call_if_eq(VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_118_EAST, AbnormalWeather_StartGroudonWeather)
+        call_if_eq(VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_118_WEST, AbnormalWeather_StartGroudonWeather)
+    }
+    MAP_SCRIPT_ON_LOAD {
+        call_if_eq(VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_118_EAST, AbnormalWeather_EventScript_PlaceTilesRoute118East)
+        call_if_eq(VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_118_WEST, AbnormalWeather_EventScript_PlaceTilesRoute118West)
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_SHOULD_END_ABNORMAL_WEATHER, 1: AbnormalWeather_EventScript_EndEventAndCleanup_1
+    ]
+}
+
 raw `
 .set LOCALID_STEVEN, 19
-
-Route118_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, Route118_OnTransition
-	map_script MAP_SCRIPT_ON_LOAD, Route118_OnLoad
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route118_OnFrame
-	.byte 0
-
-Route118_OnTransition:
-	call GabbyAndTy_EventScript_UpdateLocation
-	call_if_eq VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_HideMapNamePopup
-	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_118_EAST, AbnormalWeather_StartGroudonWeather
-	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_118_WEST, AbnormalWeather_StartGroudonWeather
-	end
-
-Route118_OnLoad:
-	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_118_EAST, AbnormalWeather_EventScript_PlaceTilesRoute118East
-	call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_118_WEST, AbnormalWeather_EventScript_PlaceTilesRoute118West
-	end
-
-Route118_OnFrame:
-	map_script_2 VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_EndEventAndCleanup_1
-	.2byte 0
 
 Route118_EventScript_GoodRodFisherman::
 	lock
@@ -245,60 +241,67 @@ Route118_EventScript_Deandre::
 	trainerbattle_single TRAINER_DEANDRE, Route118_Text_DeandreIntro, Route118_Text_DeandreDefeat
 	msgbox Route118_Text_DeandrePostBattle, MSGBOX_AUTOCLOSE
 	end
-
-Route118_Text_StevenQuestions:
-	.string "STEVEN: Hi, {PLAYER}{KUN}!\p"
-	.string "It's me, Steven!\n"
-	.string "We met in the cave near Dewford.\p"
-	.string "Have you met many kinds of Pokémon\n"
-	.string "since I last saw you?\p"
-	.string "There are many, many kinds of Pokémon\n"
-	.string "in this wide world of ours.\p"
-	.string "If you wanted to raise only your\n"
-	.string "favorites, that's fine.\p"
-	.string "Perhaps you find it more fun to raise\n"
-	.string "all sorts of Pokémon.\p"
-	.string "As a Trainer of Pokémon,\n"
-	.string "what do you think?\p"
-	.string "Of course, it's not any of my business.\p"
-	.string "It would be nice if we were to meet\n"
-	.string "again somewhere.$"
-
-Route118_Text_YouAgreeGoodRodIsGood:
-	.string "Hmm!\n"
-	.string "A Good Rod is really good!\p"
-	.string "Wouldn't you agree?$"
-
-Route118_Text_IdenticalMindsTakeThis:
-	.string "Hmm!\n"
-	.string "We're of identical minds!\p"
-	.string "Hmm!\n"
-	.string "Take this Good Rod!$"
-
-Route118_Text_TryYourLuckFishing:
-	.string "Wherever there's water, try your luck\n"
-	.string "at fishing.$"
-
-Route118_Text_DontYouLikeToFish:
-	.string "Don't you like to fish?$"
-
-Route118_Text_TryCatchingMonWithGoodRod:
-	.string "Try catching all sorts of Pokémon\n"
-	.string "with your Good Rod.$"
-
-Route118_Text_CanCrossRiversWithSurf:
-	.string "Even if there isn't a boat, you can\n"
-	.string "cross rivers and the sea if you have\l"
-	.string "a Pokémon that knows Surf.\p"
-	.string "Pokémon can be counted on to do so\n"
-	.string "much!$"
-
-Route118_Text_RouteSignMauville:
-	.string "Route 118\n"
-	.string "{LEFT_ARROW} MAUVILLE CITY$"
-
-Route118_Text_RouteSign119:
-	.string "Route 118\n"
-	.string "{UP_ARROW} ROUTE 119$"
-
 `
+
+text Route118_Text_StevenQuestions {
+	format("STEVEN: Hi, {PLAYER}{KUN}!\p"
+	"It's me, Steven!\n"
+	"We met in the cave near Dewford.\p"
+	"Have you met many kinds of Pokémon\n"
+	"since I last saw you?\p"
+	"There are many, many kinds of Pokémon\n"
+	"in this wide world of ours.\p"
+	"If you wanted to raise only your\n"
+	"favorites, that's fine.\p"
+	"Perhaps you find it more fun to raise\n"
+	"all sorts of Pokémon.\p"
+	"As a Trainer of Pokémon,\n"
+	"what do you think?\p"
+	"Of course, it's not any of my business.\p"
+	"It would be nice if we were to meet\n"
+	"again somewhere.")
+}
+
+text Route118_Text_YouAgreeGoodRodIsGood {
+	format("Hmm!\n"
+	"A Good Rod is really good!\p"
+	"Wouldn't you agree?")
+}
+
+text Route118_Text_IdenticalMindsTakeThis {
+	format("Hmm!\n"
+	"We're of identical minds!\p"
+	"Hmm!\n"
+	"Take this Good Rod!")
+}
+
+text Route118_Text_TryYourLuckFishing {
+	format("Wherever there's water, try your luck at fishing.")
+}
+
+text Route118_Text_DontYouLikeToFish {
+	format("Don't you like to fish?")
+}
+
+text Route118_Text_TryCatchingMonWithGoodRod {
+	format("Try catching all sorts of Pokémon with your Good Rod.")
+}
+
+text Route118_Text_CanCrossRiversWithSurf {
+	format("Even if there isn't a boat, you can\n"
+	"cross rivers and the sea if you have\l"
+	"a Pokémon that knows Surf.\p"
+	"Pokémon can be counted on to do so\n"
+	"much!")
+}
+
+text Route118_Text_RouteSignMauville {
+	format("Route 118\n"
+	"{LEFT_ARROW} MAUVILLE CITY")
+}
+
+text Route118_Text_RouteSign119 {
+	format("Route 118\n"
+	"{UP_ARROW} ROUTE 119")
+}
+

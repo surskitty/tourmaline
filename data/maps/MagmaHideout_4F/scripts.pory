@@ -1,4 +1,9 @@
-mapscripts MagmaHideout_4F_MapScripts {}
+mapscripts MagmaHideout_4F_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
 
 raw `
 .set LOCALID_GROUDON, 1
@@ -132,102 +137,119 @@ MagmaHideout_4F_EventScript_Tabitha::
 	trainerbattle_single TRAINER_TABITHA_MAGMA_HIDEOUT, MagmaHideout_4F_Text_TabithaIntro, MagmaHideout_4F_Text_TabithaDefeat
 	msgbox MagmaHideout_4F_Text_TabithaPostBattle, MSGBOX_AUTOCLOSE
 	end
-
-MagmaHideout_4F_Text_Grunt11Intro:
-	.string "I want to see Groudon, too, but they\n"
-	.string "won't let me see even its tail…\p"
-	.string "It's got me feeling really frustrated.\p"
-	.string "Oh, no!\n"
-	.string "I blabbed about Groudon!$"
-
-MagmaHideout_4F_Text_Grunt11Defeat:
-	.string "I guess it's impossible to win if one\n"
-	.string "doesn't have a calm mind…$"
-
-MagmaHideout_4F_Text_Grunt11PostBattle:
-	.string "I wonder if Groudon even has a tail?$"
-
-MagmaHideout_4F_Text_Grunt12Intro:
-	.string "Fuhahaha!\n"
-	.string "Soon! Very soon!\l"
-	.string "Our grand objective will be achieved!$"
-
-MagmaHideout_4F_Text_Grunt12Defeat:
-	.string "Grrr…\n"
-	.string "I've come so far, but now this?$"
-
-MagmaHideout_4F_Text_Grunt12PostBattle:
-	.string "MAXIE, sir!\n"
-	.string "An intruder is headed your way!$"
-
-MagmaHideout_4F_Text_Grunt13Intro:
-	.string "You're not finished yet!\n"
-	.string "You're not getting by me easily!$"
-
-MagmaHideout_4F_Text_Grunt13Defeat:
-	.string "Was I that easy to knock down?$"
-
-MagmaHideout_4F_Text_Grunt13PostBattle:
-	.string "C-come on, one more match…$"
-
-MagmaHideout_4F_Text_TabithaIntro:
-	.string "Hehehe!\n"
-	.string "You made it this far, so I'll tell you!\p"
-	.string "That's right!\n"
-	.string "Up ahead, Groudon is sleeping!\p"
-	.string "Maxie went to Groudon just seconds\n"
-	.string "ago!\p"
-	.string "It's going to awaken real soon!\n"
-	.string "Hehe! Hehehe!$"
-
-MagmaHideout_4F_Text_TabithaDefeat:
-	.string "Taken down again…\n"
-	.string "Hehe…$"
-
-MagmaHideout_4F_Text_TabithaPostBattle:
-	.string "…And while you wasted time with me,\n"
-	.string "Maxie should have awakened Groudon…$"
-
-MagmaHideout_4F_Text_MaxieAwakenGroudon:
-	.string "MAXIE: Groudon…\p"
-	.string "Nothing could awaken you from your\n"
-	.string "sleep bathed in magma…\p"
-	.string "This Blue Orb is what you sought.\n"
-	.string "Wasn't it?\p"
-	.string "I have brought you the Blue Orb.\n"
-	.string "Let its shine awaken you!\p"
-	.string "And show me…\n"
-	.string "Show me the full extent of your power!$"
-
-MagmaHideout_4F_Text_MaxieGroudonWhatsWrong:
-	.string "MAXIE: Groudon!\n"
-	.string "What's wrong?\p"
-	.string "Wasn't the Blue Orb the key?\p"
-	.string "Groudon!\n"
-	.string "Where have you gone…$"
-
-MagmaHideout_4F_Text_MaxieOhItWasYou:
-	.string "MAXIE: Oh, so it was you?\p"
-	.string "I've seen you poking around uninvited\n"
-	.string "here and there…\p"
-	.string "I get it now!\n"
-	.string "You must have pulled a cheap stunt!$"
-
-MagmaHideout_4F_Text_MaxieDefeat:
-	.string "What makes you so adept at handling\n"
-	.string "Pokémon?$"
-
-MagmaHideout_4F_Text_MaxieImGoingAfterGroudon:
-	.string "MAXIE: There has to be some reason\n"
-	.string "why Groudon fled…\p"
-	.string "That's what you're trying to say,\n"
-	.string "aren't you?\p"
-	.string "… … … … … …\n"
-	.string "… … … … … …\p"
-	.string "Humph…\n"
-	.string "You think I didn't know that?\p"
-	.string "With Groudon gone, there is no longer\n"
-	.string "any need for this blasted volcano.\p"
-	.string "I am going after Groudon, so this\n"
-	.string "is where we part!$"
 `
+
+text MagmaHideout_4F_Text_Grunt11Intro {
+	format("I want to see Groudon, too, but they\n"
+	"won't let me see even its tail…\p"
+	"It's got me feeling really frustrated.\p"
+	"Oh, no!\n"
+	"I blabbed about Groudon!")
+}
+
+text MagmaHideout_4F_Text_Grunt11Defeat {
+	format("I guess it's impossible to win if one\n"
+	"doesn't have a calm mind…")
+}
+
+text MagmaHideout_4F_Text_Grunt11PostBattle {
+	format("I wonder if Groudon even has a tail?")
+}
+
+text MagmaHideout_4F_Text_Grunt12Intro {
+	format("Fuhahaha!\n"
+	"Soon! Very soon!\l"
+	"Our grand objective will be achieved!")
+}
+
+text MagmaHideout_4F_Text_Grunt12Defeat {
+	format("Grrr…\n"
+	"I've come so far, but now this?")
+}
+
+text MagmaHideout_4F_Text_Grunt12PostBattle {
+	format("MAXIE, sir!\n"
+	"An intruder is headed your way!")
+}
+
+text MagmaHideout_4F_Text_Grunt13Intro {
+	format("You're not finished yet!\n"
+	"You're not getting by me easily!")
+}
+
+text MagmaHideout_4F_Text_Grunt13Defeat {
+	format("Was I that easy to knock down?")
+}
+
+text MagmaHideout_4F_Text_Grunt13PostBattle {
+	format("C-come on, one more match…")
+}
+
+text MagmaHideout_4F_Text_TabithaIntro {
+	format("Hehehe!\n"
+	"You made it this far, so I'll tell you!\p"
+	"That's right!\n"
+	"Up ahead, Groudon is sleeping!\p"
+	"Maxie went to Groudon just seconds\n"
+	"ago!\p"
+	"It's going to awaken real soon!\n"
+	"Hehe! Hehehe!")
+}
+
+text MagmaHideout_4F_Text_TabithaDefeat {
+	format("Taken down again…\n"
+	"Hehe…")
+}
+
+text MagmaHideout_4F_Text_TabithaPostBattle {
+	format("…And while you wasted time with me,\n"
+	"Maxie should have awakened Groudon…")
+}
+
+text MagmaHideout_4F_Text_MaxieAwakenGroudon {
+	format("MAXIE: Groudon…\p"
+	"Nothing could awaken you from your\n"
+	"sleep bathed in magma…\p"
+	"This Blue Orb is what you sought.\n"
+	"Wasn't it?\p"
+	"I have brought you the Blue Orb.\n"
+	"Let its shine awaken you!\p"
+	"And show me…\n"
+	"Show me the full extent of your power!")
+}
+
+text MagmaHideout_4F_Text_MaxieGroudonWhatsWrong {
+	format("MAXIE: Groudon!\n"
+	"What's wrong?\p"
+	"Wasn't the Blue Orb the key?\p"
+	"Groudon!\n"
+	"Where have you gone…")
+}
+
+text MagmaHideout_4F_Text_MaxieOhItWasYou {
+	format("MAXIE: Oh, so it was you?\p"
+	"I've seen you poking around uninvited\n"
+	"here and there…\p"
+	"I get it now!\n"
+	"You must have pulled a cheap stunt!")
+}
+
+text MagmaHideout_4F_Text_MaxieDefeat {
+	format("What makes you so adept at handling\n"
+	"Pokémon?")
+}
+
+text MagmaHideout_4F_Text_MaxieImGoingAfterGroudon {
+	format("MAXIE: There has to be some reason\n"
+	"why Groudon fled…\p"
+	"That's what you're trying to say,\n"
+	"aren't you?\p"
+	"… … … … … …\n"
+	"… … … … … …\p"
+	"Humph…\n"
+	"You think I didn't know that?\p"
+	"With Groudon gone, there is no longer\n"
+	"any need for this blasted volcano.\p"
+	"I am going after Groudon, so this\n"
+	"is where we part!")
+}

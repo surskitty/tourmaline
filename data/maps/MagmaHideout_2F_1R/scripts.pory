@@ -1,4 +1,9 @@
-mapscripts MagmaHideout_2F_1R_MapScripts {}
+mapscripts MagmaHideout_2F_1R_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
 
 raw `
 
@@ -21,57 +26,68 @@ MagmaHideout_2F_1R_EventScript_Grunt5::
 	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_5, MagmaHideout_2F_1R_Text_Grunt5Intro, MagmaHideout_2F_1R_Text_Grunt5Defeat
 	msgbox MagmaHideout_2F_1R_Text_Grunt5PostBattle, MSGBOX_AUTOCLOSE
 	end
-
-MagmaHideout_2F_1R_Text_Grunt14Intro:
-	.string "What, what, what?\p"
-	.string "Only Team Magma members are supposed\n"
-	.string "to be in here!\p"
-	.string "But you're not dressed in Team Magma's\n"
-	.string "uniform…\p"
-	.string "You rouse my suspicion!\n"
-	.string "Battle with me!$"
-
-MagmaHideout_2F_1R_Text_Grunt14Defeat:
-	.string "Aiyiyi…\n"
-	.string "My pride as a Team Magma member…$"
-
-MagmaHideout_2F_1R_Text_Grunt14PostBattle:
-	.string "If you suffer from chills, you should\n"
-	.string "join Team Magma.$"
-
-MagmaHideout_2F_1R_Text_Grunt3Intro:
-	.string "Hold it right there!\p"
-	.string "You don't really expect me to keep\n"
-	.string "my trap shut and let you waltz by me?$"
-
-MagmaHideout_2F_1R_Text_Grunt3Defeat:
-	.string "Ooh wow!\n"
-	.string "I concede!$"
-
-MagmaHideout_2F_1R_Text_Grunt3PostBattle:
-	.string "Maybe it would've been better if I did\n"
-	.string "just let you go unchallenged…$"
-
-MagmaHideout_2F_1R_Text_Grunt4Intro:
-	.string "Ahah!\n"
-	.string "An intruder!$"
-
-MagmaHideout_2F_1R_Text_Grunt4Defeat:
-	.string "Graaah!$"
-
-MagmaHideout_2F_1R_Text_Grunt4PostBattle:
-	.string "I've already lost.\p"
-	.string "Do I really need to keep running\n"
-	.string "around in a circle?$"
-
-MagmaHideout_2F_1R_Text_Grunt5Intro:
-	.string "Oh, oh!\n"
-	.string "An intruder!$"
-
-MagmaHideout_2F_1R_Text_Grunt5Defeat:
-	.string "Mutter…$"
-
-MagmaHideout_2F_1R_Text_Grunt5PostBattle:
-	.string "Actually, I'm no expert at battling…$"
-
 `
+
+text MagmaHideout_2F_1R_Text_Grunt14Intro {
+	format("What, what, what?\p"
+	"Only Team Magma members are supposed\n"
+	"to be in here!\p"
+	"But you're not dressed in Team Magma's\n"
+	"uniform…\p"
+	"You rouse my suspicion!\n"
+	"Battle with me!")
+}
+
+text MagmaHideout_2F_1R_Text_Grunt14Defeat {
+	format("Aiyiyi…\n"
+	"My pride as a Team Magma member…")
+}
+
+text MagmaHideout_2F_1R_Text_Grunt14PostBattle {
+	format("If you suffer from chills, you should\n"
+	"join Team Magma.")
+}
+
+text MagmaHideout_2F_1R_Text_Grunt3Intro {
+	format("Hold it right there!\p"
+	"You don't really expect me to keep\n"
+	"my trap shut and let you waltz by me?")
+}
+
+text MagmaHideout_2F_1R_Text_Grunt3Defeat {
+	format("Ooh wow!\n"
+	"I concede!")
+}
+
+text MagmaHideout_2F_1R_Text_Grunt3PostBattle {
+	format("Maybe it would've been better if I did\n"
+	"just let you go unchallenged…")
+}
+
+text MagmaHideout_2F_1R_Text_Grunt4Intro {
+	format("Ahah!\n"
+	"An intruder!")
+}
+
+text MagmaHideout_2F_1R_Text_Grunt4Defeat {
+	format("Graaah!")
+}
+
+text MagmaHideout_2F_1R_Text_Grunt4PostBattle {
+	format("I've already lost.\p"
+	"Do I really need to keep running\n"
+	"around in a circle?")
+}
+
+text MagmaHideout_2F_1R_Text_Grunt5Intro {
+	format("Oh, oh!\n"
+	"An intruder!")
+}
+
+text MagmaHideout_2F_1R_Text_Grunt5Defeat {
+	format("Mutter…")
+}
+
+text MagmaHideout_2F_1R_Text_Grunt5PostBattle {
+	format("Actually, I'm no expert at battling…")
+}

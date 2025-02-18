@@ -1,23 +1,20 @@
-raw `
-AquaHideout_B1F_MapScripts::
-	map_script MAP_SCRIPT_ON_RESUME, AquaHideout_B1F_OnResume
-	map_script MAP_SCRIPT_ON_TRANSITION, AquaHideout_B1F_OnTransition
-	.byte 0
+mapscripts AquaHideout_B1F_MapScripts {
+    MAP_SCRIPT_ON_RESUME {
+        call_if_set(FLAG_SYS_CTRL_OBJ_DELETE, AquaHideout_B1F_EventScript_TryRemoveElectrode)
+    }
+	MAP_SCRIPT_ON_TRANSITION {
+        call_if_unset(FLAG_DEFEATED_ELECTRODE_1_AQUA_HIDEOUT, AquaHideout_B1F_EventScript_ShowElectrode1)
+        call_if_unset(FLAG_DEFEATED_ELECTRODE_2_AQUA_HIDEOUT, AquaHideout_B1F_EventScript_ShowElectrode2)
+    }
+}
 
-AquaHideout_B1F_OnResume:
-	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, AquaHideout_B1F_EventScript_TryRemoveElectrode
-	end
+raw `
 
 AquaHideout_B1F_EventScript_TryRemoveElectrode::
 	specialvar VAR_RESULT, GetBattleOutcome
 	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn
 	removeobject VAR_LAST_TALKED
 	return
-
-AquaHideout_B1F_OnTransition:
-	call_if_unset FLAG_DEFEATED_ELECTRODE_1_AQUA_HIDEOUT, AquaHideout_B1F_EventScript_ShowElectrode1
-	call_if_unset FLAG_DEFEATED_ELECTRODE_2_AQUA_HIDEOUT, AquaHideout_B1F_EventScript_ShowElectrode2
-	end
 
 AquaHideout_B1F_EventScript_ShowElectrode1::
 	clearflag FLAG_HIDE_AQUA_HIDEOUT_B1F_ELECTRODE_1
@@ -100,57 +97,67 @@ AquaHideout_B1F_EventScript_Grunt7::
 	trainerbattle_single TRAINER_GRUNT_AQUA_HIDEOUT_7, AquaHideout_B1F_Text_Grunt7Intro, AquaHideout_B1F_Text_Grunt7Defeat
 	msgbox AquaHideout_B1F_Text_Grunt7PostBattle, MSGBOX_AUTOCLOSE
 	end
-
-AquaHideout_B1F_Text_Grunt2Intro:
-	.string "If you want to know the secret about\n"
-	.string "our Hideout, you have me to beat!$"
-
-AquaHideout_B1F_Text_Grunt2Defeat:
-	.string "I can't win at all…$"
-
-AquaHideout_B1F_Text_Grunt2PostBattle:
-	.string "Our Hideout's secret?\p"
-	.string "Well, let's just say…\n"
-	.string "There's a submarine at the far end!\p"
-	.string "But, by now…\n"
-	.string "Kekekeke…$"
-
-AquaHideout_B1F_Text_Grunt3Intro:
-	.string "Fuel supply loaded A-OK!\n"
-	.string "In-cruise snacks loaded A-OK!\p"
-	.string "Nothing left to do but KO a pesky\n"
-	.string "meddler!$"
-
-AquaHideout_B1F_Text_Grunt3Defeat:
-	.string "I took a serious licking!$"
-
-AquaHideout_B1F_Text_Grunt3PostBattle:
-	.string "Humph!\n"
-	.string "This was supposed to happen!\p"
-	.string "My mission was to just hold you up!$"
-
-AquaHideout_B1F_Text_Grunt5Intro:
-	.string "Yawn… Keeping watch over the\n"
-	.string "Hideout bores me. I'll take you on.$"
-
-AquaHideout_B1F_Text_Grunt5Defeat:
-	.string "Yawn…\n"
-	.string "Oh, I lost…$"
-
-AquaHideout_B1F_Text_Grunt5PostBattle:
-	.string "If you scurry too much, other Team\n"
-	.string "Aqua members might get you.$"
-
-AquaHideout_B1F_Text_Grunt7Intro:
-	.string "Hey!\n"
-	.string "You there!\p"
-	.string "Which do you think is cooler?\n"
-	.string "Team Aqua's uniform or Team Magma's?$"
-
-AquaHideout_B1F_Text_Grunt7Defeat:
-	.string "I lost in a cool way…$"
-
-AquaHideout_B1F_Text_Grunt7PostBattle:
-	.string "If you have a cool uniform, you look\n"
-	.string "good even in a loss, don't you think?$"
 `
+
+text AquaHideout_B1F_Text_Grunt2Intro {
+	format("If you want to know the secret about our Hideout, you have me to beat!")
+}
+
+text AquaHideout_B1F_Text_Grunt2Defeat {
+	format("I can't win at all…")
+}
+
+text AquaHideout_B1F_Text_Grunt2PostBattle {
+	format("Our Hideout's secret?\p"
+	"Well, let's just say…\n"
+	"There's a submarine at the far end!\p"
+	"But, by now…\n"
+	"Kekekeke…")
+}
+
+text AquaHideout_B1F_Text_Grunt3Intro {
+	format("Fuel supply loaded A-OK!\n"
+	"In-cruise snacks loaded A-OK!\p"
+	"Nothing left to do but KO a pesky meddler!")
+}
+
+text AquaHideout_B1F_Text_Grunt3Defeat {
+	format("I took a serious licking!")
+}
+
+text AquaHideout_B1F_Text_Grunt3PostBattle {
+	format("Humph!\n"
+	"This was supposed to happen!\p"
+	"My mission was to just hold you up!")
+}
+
+text AquaHideout_B1F_Text_Grunt5Intro {
+	format("Yawn… Keeping watch over the\n"
+	"Hideout bores me. I'll take you on.")
+}
+
+text AquaHideout_B1F_Text_Grunt5Defeat {
+	format("Yawn…\n"
+	"Oh, I lost…")
+}
+
+text AquaHideout_B1F_Text_Grunt5PostBattle {
+	format("If you scurry too much, other Team\n"
+	"Aqua members might get you.")
+}
+
+text AquaHideout_B1F_Text_Grunt7Intro {
+	format("Hey!\n"
+	"You there!\p"
+	"Which do you think is cooler?\n"
+	"Team Aqua's uniform or Team Magma's?")
+}
+
+text AquaHideout_B1F_Text_Grunt7Defeat {
+	format("I lost in a cool way…")
+}
+
+text AquaHideout_B1F_Text_Grunt7PostBattle {
+	format("If you have a cool uniform, you look\n"
+	"good even in a loss, don't you think?")
+}

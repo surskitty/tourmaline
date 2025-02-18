@@ -1,7 +1,7 @@
 script Common_EventScript_StationaryWild {
     lock
     faceplayer
-    applymovement(VAR_LAST_TALKED, Common_Movement_ExclamationMark)    
+    applymovement(VAR_LAST_TALKED, Common_Movement_ExclamationMark)
     waitse
     callnative(StartStationaryEncounter)
     playmoncry(VAR_0x8004, CRY_MODE_ENCOUNTER)
@@ -89,4 +89,40 @@ script Common_EventScript_PetPokemon {
 
 text Common_EventScript_PetPokemon_GiftText {
     format("It gave you an item it was carrying!")
+}
+
+script Common_EventScript_InvisibleWild {
+    lock
+    faceplayer
+    applymovement(VAR_LAST_TALKED, Movement_PokemonAppears)
+    waitse
+    callnative(StartStationaryEncounter)
+    playmoncry(VAR_0x8004, CRY_MODE_ENCOUNTER)
+	bufferspeciesname(STR_VAR_1, VAR_0x8004)
+	msgbox(format("You startled the {STR_VAR_1}!"), MSGBOX_DEFAULT)
+    waitmoncry
+    waitmessage
+    setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+	dowildbattle
+	clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+	specialvar(VAR_RESULT, GetBattleOutcome)
+	goto_if_eq(VAR_RESULT, B_OUTCOME_RAN, Common_EventScript_RanFromStaticPokemon)
+    goto(Common_EventScript_RemoveStaticPokemon)
+}
+
+movement Movement_PokemonAppears {
+	set_visible
+	face_player
+	emote_exclamation_mark
+	set_invisible
+	delay_4
+	set_visible
+	delay_4
+	set_invisible
+	delay_4
+	set_visible
+	delay_8
+	set_invisible
+	delay_8
+	set_visible
 }

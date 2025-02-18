@@ -1,4 +1,9 @@
-mapscripts Route107_MapScripts {}
+mapscripts Route107_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
 
 raw `
 Route107_EventScript_Darrin::

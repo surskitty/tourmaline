@@ -1,4 +1,9 @@
-mapscripts MagmaHideout_2F_2R_MapScripts {}
+mapscripts MagmaHideout_2F_2R_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
 
 raw `
 MagmaHideout_2F_2R_EventScript_Grunt15::
@@ -20,60 +25,71 @@ MagmaHideout_2F_2R_EventScript_Grunt8::
 	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_8, MagmaHideout_2F_2R_Text_Grunt8Intro, MagmaHideout_2F_2R_Text_Grunt8Defeat
 	msgbox MagmaHideout_2F_2R_Text_Grunt8PostBattle, MSGBOX_AUTOCLOSE
 	end
-
-MagmaHideout_2F_2R_Text_Grunt15Intro:
-	.string "I don't have a bone to pick with you.\n"
-	.string "I'm just following orders!$"
-
-MagmaHideout_2F_2R_Text_Grunt15Defeat:
-	.string "I may have lost, but…$"
-
-MagmaHideout_2F_2R_Text_Grunt15PostBattle:
-	.string "We dug up something beyond belief!\n"
-	.string "And, we got the Blue Orb!\p"
-	.string "All that's left is for our leader to…\n"
-	.string "Fufufu… Fwahahaha!$"
-
-MagmaHideout_2F_2R_Text_Grunt6Intro:
-	.string "I can't stand heat. Maybe I should've\n"
-	.string "joined Team Aqua instead…$"
-
-MagmaHideout_2F_2R_Text_Grunt6Defeat:
-	.string "Yeah, I really may not be right for\n"
-	.string "Team Magma…$"
-
-MagmaHideout_2F_2R_Text_Grunt6PostBattle:
-	.string "Don't you get lonely for the sea\n"
-	.string "being in a place like this?$"
-
-MagmaHideout_2F_2R_Text_Grunt7Intro:
-	.string "You can hear tremors here sometimes.\p"
-	.string "Could it be the volcano rattling?\n"
-	.string "Or is it Grou…\p"
-	.string "Whoops!\n"
-	.string "No, no, never mind!$"
-
-MagmaHideout_2F_2R_Text_Grunt7Defeat:
-	.string "You're a fiery battler.\n"
-	.string "Just like a volcano!$"
-
-MagmaHideout_2F_2R_Text_Grunt7PostBattle:
-	.string "You just happened to win this time,\n"
-	.string "but that doesn't matter.\p"
-	.string "Team Magma's goal is about to be\n"
-	.string "reached!$"
-
-MagmaHideout_2F_2R_Text_Grunt8Intro:
-	.string "One of our guys was freaking out that\n"
-	.string "he lost his Magma Emblem…\p"
-	.string "Wait a minute!\n"
-	.string "Was it you who found it?$"
-
-MagmaHideout_2F_2R_Text_Grunt8Defeat:
-	.string "I'm having trouble believing this…$"
-
-MagmaHideout_2F_2R_Text_Grunt8PostBattle:
-	.string "I'm getting this feeling that our plan\n"
-	.string "is going to end in failure…$"
-
 `
+
+text MagmaHideout_2F_2R_Text_Grunt15Intro {
+	format("I don't have a bone to pick with you.\n"
+	"I'm just following orders!")
+}
+
+text MagmaHideout_2F_2R_Text_Grunt15Defeat {
+	format("I may have lost, but…")
+}
+
+text MagmaHideout_2F_2R_Text_Grunt15PostBattle {
+	format("We dug up something beyond belief!\n"
+	"And, we got the Blue Orb!\p"
+	"All that's left is for our leader to…\n"
+	"Fufufu… Fwahahaha!")
+}
+
+text MagmaHideout_2F_2R_Text_Grunt6Intro {
+	format("I can't stand heat. Maybe I should've\n"
+	"joined Team Aqua instead…")
+}
+
+text MagmaHideout_2F_2R_Text_Grunt6Defeat {
+	format("Yeah, I really may not be right for\n"
+	"Team Magma…")
+}
+
+text MagmaHideout_2F_2R_Text_Grunt6PostBattle {
+	format("Don't you get lonely for the sea\n"
+	"being in a place like this?")
+}
+
+text MagmaHideout_2F_2R_Text_Grunt7Intro {
+	format("You can hear tremors here sometimes.\p"
+	"Could it be the volcano rattling?\n"
+	"Or is it Grou…\p"
+	"Whoops!\n"
+	"No, no, never mind!")
+}
+
+text MagmaHideout_2F_2R_Text_Grunt7Defeat {
+	format("You're a fiery battler.\n"
+	"Just like a volcano!")
+}
+
+text MagmaHideout_2F_2R_Text_Grunt7PostBattle {
+	format("You just happened to win this time,\n"
+	"but that doesn't matter.\p"
+	"Team Magma's goal is about to be\n"
+	"reached!")
+}
+
+text MagmaHideout_2F_2R_Text_Grunt8Intro {
+	format("One of our guys was freaking out that\n"
+	"he lost his Magma Emblem…\p"
+	"Wait a minute!\n"
+	"Was it you who found it?")
+}
+
+text MagmaHideout_2F_2R_Text_Grunt8Defeat {
+	format("I'm having trouble believing this…")
+}
+
+text MagmaHideout_2F_2R_Text_Grunt8PostBattle {
+	format("I'm getting this feeling that our plan\n"
+	"is going to end in failure…")
+}

@@ -1,12 +1,14 @@
+mapscripts Route126_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        call_if_set(FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather)
+    }
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
+
 raw `
-Route126_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, Route126_OnTransition
-	.byte 0
-
-Route126_OnTransition:
-	call_if_set FLAG_SYS_WEATHER_CTRL, Common_EventScript_SetAbnormalWeather
-	end
-
 Route126_EventScript_Barry::
 	trainerbattle_single TRAINER_BARRY, Route126_Text_BarryIntro, Route126_Text_BarryDefeat
 	msgbox Route126_Text_BarryPostBattle, MSGBOX_AUTOCLOSE

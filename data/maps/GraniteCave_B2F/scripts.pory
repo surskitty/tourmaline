@@ -1,1 +1,6 @@
-mapscripts GraniteCave_B2F_MapScripts {}
+mapscripts GraniteCave_B2F_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}

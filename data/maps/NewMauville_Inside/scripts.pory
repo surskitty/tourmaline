@@ -1,29 +1,29 @@
+mapscripts NewMauville_Inside_MapScripts {
+    MAP_SCRIPT_ON_RESUME {
+        call_if_eq(VAR_TEMP_1, 1, NewMauville_Inside_EventScript_SetBarrierStateBlueButton)
+        call_if_eq(VAR_TEMP_2, 1, NewMauville_Inside_EventScript_SetBarrierStateGreenButton)
+        call_if_set(FLAG_SYS_CTRL_OBJ_DELETE, NewMauville_Inside_EventScript_TryRemoveVoltorb)
+    }
+    MAP_SCRIPT_ON_TRANSITION {
+        setvar(VAR_TEMP_1, 0)
+        setvar(VAR_TEMP_2, 0)
+        call_if_unset(FLAG_DEFEATED_VOLTORB_1_NEW_MAUVILLE, NewMauville_Inside_EventScript_ShowVoltorb1)
+        call_if_unset(FLAG_DEFEATED_VOLTORB_2_NEW_MAUVILLE, NewMauville_Inside_EventScript_ShowVoltorb2)
+        call_if_unset(FLAG_DEFEATED_VOLTORB_3_NEW_MAUVILLE, NewMauville_Inside_EventScript_ShowVoltorb3)
+    }
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+        call_if_eq(VAR_NEW_MAUVILLE_STATE, 2, NewMauville_Inside_EventScript_SetGeneratorOffMetatiles)
+    }
+}
+
 raw `
-NewMauville_Inside_MapScripts::
-	map_script MAP_SCRIPT_ON_RESUME, NewMauville_Inside_OnResume
-	map_script MAP_SCRIPT_ON_TRANSITION, NewMauville_Inside_OnTransition
-	map_script MAP_SCRIPT_ON_LOAD, NewMauville_Inside_OnLoad
-	.byte 0
-
-NewMauville_Inside_OnResume:
-	call_if_eq VAR_TEMP_1, 1, NewMauville_Inside_EventScript_SetBarrierStateBlueButton
-	call_if_eq VAR_TEMP_2, 1, NewMauville_Inside_EventScript_SetBarrierStateGreenButton
-	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, NewMauville_Inside_EventScript_TryRemoveVoltorb
-	end
-
 NewMauville_Inside_EventScript_TryRemoveVoltorb::
 	specialvar VAR_RESULT, GetBattleOutcome
 	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn
 	removeobject VAR_LAST_TALKED
 	return
-
-NewMauville_Inside_OnTransition:
-	setvar VAR_TEMP_1, 0
-	setvar VAR_TEMP_2, 0
-	call_if_unset FLAG_DEFEATED_VOLTORB_1_NEW_MAUVILLE, NewMauville_Inside_EventScript_ShowVoltorb1
-	call_if_unset FLAG_DEFEATED_VOLTORB_2_NEW_MAUVILLE, NewMauville_Inside_EventScript_ShowVoltorb2
-	call_if_unset FLAG_DEFEATED_VOLTORB_3_NEW_MAUVILLE, NewMauville_Inside_EventScript_ShowVoltorb3
-	end
 
 NewMauville_Inside_EventScript_ShowVoltorb1::
 	clearflag FLAG_HIDE_NEW_MAUVILLE_VOLTORB_1
@@ -36,10 +36,6 @@ NewMauville_Inside_EventScript_ShowVoltorb2::
 NewMauville_Inside_EventScript_ShowVoltorb3::
 	clearflag FLAG_HIDE_NEW_MAUVILLE_VOLTORB_3
 	return
-
-NewMauville_Inside_OnLoad:
-	call_if_eq VAR_NEW_MAUVILLE_STATE, 2, NewMauville_Inside_EventScript_SetGeneratorOffMetatiles
-	end
 
 NewMauville_Inside_EventScript_BlueButton::
 	lockall

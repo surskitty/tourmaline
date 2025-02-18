@@ -1,15 +1,17 @@
+mapscripts MtPyre_2F_MapScripts {
+    MAP_SCRIPT_ON_FRAME_TABLE: CaveHole_CheckFallDownHole
+    MAP_SCRIPT_ON_TRANSITION: CaveHole_FixCrackedGround
+    MAP_SCRIPT_ON_RESUME {
+        setstepcallback(STEP_CB_CRACKED_FLOOR)
+        setholewarp(MAP_MT_PYRE_1F)
+    }
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
+
 raw `
-MtPyre_2F_MapScripts::
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, CaveHole_CheckFallDownHole
-	map_script MAP_SCRIPT_ON_TRANSITION, CaveHole_FixCrackedGround
-	map_script MAP_SCRIPT_ON_RESUME, MtPyre_2F_SetHoleWarp
-	.byte 0
-
-MtPyre_2F_SetHoleWarp:
-	setstepcallback STEP_CB_CRACKED_FLOOR
-	setholewarp MAP_MT_PYRE_1F
-	end
-
 MtPyre_2F_EventScript_Woman::
 	msgbox MtPyre_2F_Text_MemoriesOfSkitty, MSGBOX_NPC
 	end
@@ -42,96 +44,115 @@ MtPyre_2F_EventScript_Zander::
 	trainerbattle_single TRAINER_ZANDER, MtPyre_2F_Text_ZanderIntro, MtPyre_2F_Text_ZanderDefeat
 	msgbox MtPyre_2F_Text_ZanderPostBattle, MSGBOX_AUTOCLOSE
 	end
-
-MtPyre_2F_Text_MemoriesOfSkitty:
-	.string "Memories of my darling SKITTY…\n"
-	.string "My eyes overflow thinking about it.$"
-
-MtPyre_2F_Text_TumbledFromFloorAbove:
-	.string "Ooch, ouch… There are holes in the\n"
-	.string "ground here and there.\p"
-	.string "I didn't notice and took a tumble from\n"
-	.string "the floor above.$"
-
-MtPyre_2F_Text_MarkIntro:
-	.string "Hey! Are you searching for POKéMON?\n"
-	.string "You came along after me! You're rude!$"
-
-MtPyre_2F_Text_MarkDefeat:
-	.string "Ayieeeeh!\n"
-	.string "I'm sorry, forgive me, please!$"
-
-MtPyre_2F_Text_MarkPostBattle:
-	.string "People don't come here often, so\n"
-	.string "I thought there'd be rare POKéMON.$"
-
-MtPyre_2F_Text_LukeIntro:
-	.string "LUKE: We're here on a dare.\p"
-	.string "Heheh, if I show her how cool I am,\n"
-	.string "she'll fall for me. I know it!\p"
-	.string "I know! I'll cream you and show her\n"
-	.string "how cool I am!$"
-
-MtPyre_2F_Text_LukeDefeat:
-	.string "LUKE: Whoopsie!$"
-
-MtPyre_2F_Text_LukePostBattle:
-	.string "LUKE: Well, we lost but that's okay!\n"
-	.string "I'm right here by your side.\l"
-	.string "We'll make it through this dare!$"
-
-MtPyre_2F_Text_LukeNotEnoughMons:
-	.string "LUKE: If you want to take me on,\n"
-	.string "bring some more POKéMON.\p"
-	.string "If you don't, I won't be able to show\n"
-	.string "off to my girl how cool I am!$"
-
-MtPyre_2F_Text_DezIntro:
-	.string "DEZ: I came here on a dare with my\n"
-	.string "boyfriend.\p"
-	.string "It's really scary, but I'm with my\n"
-	.string "boyfriend. It's okay.\p"
-	.string "I know! I'll get my boyfriend to look\n"
-	.string "cool by beating you!$"
-
-MtPyre_2F_Text_DezDefeat:
-	.string "DEZ: Waaaah! I'm scared!$"
-
-MtPyre_2F_Text_DezPostBattle:
-	.string "DEZ: We're lovey-dovey, so we don't\n"
-	.string "care if we lose!$"
-
-MtPyre_2F_Text_DezNotEnoughMons:
-	.string "DEZ: If you want to challenge us, you\n"
-	.string "should bring at least two POKéMON.\p"
-	.string "My boyfriend's strong.\n"
-	.string "Just one POKéMON won't do at all.$"
-
-MtPyre_2F_Text_LeahIntro:
-	.string "You are an unfamiliar sight…\n"
-	.string "Depart before anything befalls you!$"
-
-MtPyre_2F_Text_LeahDefeat:
-	.string "Hmm…\n"
-	.string "You're durable.$"
-
-MtPyre_2F_Text_LeahPostBattle:
-	.string "Our family has been TRAINERS here\n"
-	.string "since my great-grandmother's time…\p"
-	.string "It is my duty to protect this\n"
-	.string "mountain…$"
-
-MtPyre_2F_Text_ZanderIntro:
-	.string "Kiyaaaaah!\n"
-	.string "I'm terrified!$"
-
-MtPyre_2F_Text_ZanderDefeat:
-	.string "Nooooooo!\n"
-	.string "I lost my wits!$"
-
-MtPyre_2F_Text_ZanderPostBattle:
-	.string "I get freaked out every time I see\n"
-	.string "anything move…\p"
-	.string "I shouldn't have come here to train…$"
-
 `
+
+text MtPyre_2F_Text_MemoriesOfSkitty {
+	format("Memories of my darling Skitty…\n"
+	"My eyes overflow thinking about it.")
+}
+
+text MtPyre_2F_Text_TumbledFromFloorAbove {
+	format("Ooch, ouch… There are holes in the\n"
+	"ground here and there.\p"
+	"I didn't notice and took a tumble from\n"
+	"the floor above.")
+}
+
+text MtPyre_2F_Text_MarkIntro {
+	format("Hey! Are you searching for Pokémon?\n"
+	"You came along after me! You're rude!")
+}
+
+text MtPyre_2F_Text_MarkDefeat {
+	format("Ayieeeeh!\n"
+	"I'm sorry, forgive me, please!")
+}
+
+text MtPyre_2F_Text_MarkPostBattle {
+	format("People don't come here often, so\n"
+	"I thought there'd be rare Pokémon.")
+}
+
+text MtPyre_2F_Text_LukeIntro {
+	format("LUKE: We're here on a dare.\p"
+	"Heheh, if I show her how cool I am,\n"
+	"she'll fall for me. I know it!\p"
+	"I know! I'll cream you and show her\n"
+	"how cool I am!")
+}
+
+text MtPyre_2F_Text_LukeDefeat {
+	format("LUKE: Whoopsie!")
+}
+
+text MtPyre_2F_Text_LukePostBattle {
+	format("LUKE: Well, we lost but that's okay!\n"
+	"I'm right here by your side.\l"
+	"We'll make it through this dare!")
+}
+
+text MtPyre_2F_Text_LukeNotEnoughMons {
+	format("LUKE: If you want to take me on,\n"
+	"bring some more Pokémon.\p"
+	"If you don't, I won't be able to show\n"
+	"off to my girl how cool I am!")
+}
+
+text MtPyre_2F_Text_DezIntro {
+	format("DEZ: I came here on a dare with my\n"
+	"boyfriend.\p"
+	"It's really scary, but I'm with my\n"
+	"boyfriend. It's okay.\p"
+	"I know! I'll get my boyfriend to look\n"
+	"cool by beating you!")
+}
+
+text MtPyre_2F_Text_DezDefeat {
+	format("DEZ: Waaaah! I'm scared!")
+}
+
+text MtPyre_2F_Text_DezPostBattle {
+	format("DEZ: We're lovey-dovey, so we don't\n"
+	"care if we lose!")
+}
+
+text MtPyre_2F_Text_DezNotEnoughMons {
+	format("DEZ: If you want to challenge us, you\n"
+	"should bring at least two Pokémon.\p"
+	"My boyfriend's strong.\n"
+	"Just one Pokémon won't do at all.")
+}
+
+text MtPyre_2F_Text_LeahIntro {
+	format("You are an unfamiliar sight…\n"
+	"Depart before anything befalls you!")
+}
+
+text MtPyre_2F_Text_LeahDefeat {
+	format("Hmm…\n"
+	"You're durable.")
+}
+
+text MtPyre_2F_Text_LeahPostBattle {
+	format("Our family has been TRAINERS here\n"
+	"since my great-grandmother's time…\p"
+	"It is my duty to protect this\n"
+	"mountain…")
+}
+
+text MtPyre_2F_Text_ZanderIntro {
+	format("Kiyaaaaah!\n"
+	"I'm terrified!")
+}
+
+text MtPyre_2F_Text_ZanderDefeat {
+	format("Nooooooo!\n"
+	"I lost my wits!")
+}
+
+text MtPyre_2F_Text_ZanderPostBattle {
+	format("I get freaked out every time I see\n"
+	"anything move…\p"
+	"I shouldn't have come here to train…")
+}
+

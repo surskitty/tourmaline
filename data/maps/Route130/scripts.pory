@@ -1,4 +1,8 @@
 mapscripts Route130_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
     MAP_SCRIPT_ON_TRANSITION {
         call_if_ge(VAR_SOOTOPOLIS_CITY_STATE, 4, Route130_EventScript_CheckSetAbnormalWeather)
         specialvar(VAR_RESULT, IsMirageIslandPresent)

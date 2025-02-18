@@ -1,1 +1,6 @@
-mapscripts ShoalCave_LowTideIceRoom_MapScripts {}
+mapscripts ShoalCave_LowTideIceRoom_MapScripts {
+	MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
