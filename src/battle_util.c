@@ -1102,6 +1102,7 @@ void PrepareStringBattle(u16 stringId, u32 battler)
     u16 battlerTraits[MAX_MON_TRAITS];
     STORE_BATTLER_TRAITS(gBattlerTarget);
     bool32 hasContrary = (BattlerHasTrait(gBattlerTarget, ABILITY_CONTRARY));
+    bool8 test1 = FALSE;
 
     // Support for Contrary ability.
     // If a move attempted to raise stat - print "won't increase".
@@ -1115,12 +1116,12 @@ void PrepareStringBattle(u16 stringId, u32 battler)
     else if (stringId == STRINGID_STATSWONTINCREASE2 && hasContrary)
         stringId = STRINGID_STATSWONTDECREASE2;
 
-    // Generate ability popup for Contrary, only when a status change happens outside of Defiant/Competitive
-    if ((hasContrary 
-        && (stringId == STRINGID_DEFENDERSSTATFELL || stringId == STRINGID_STATSWONTINCREASE || stringId == STRINGID_STATSWONTDECREASE || stringId == STRINGID_STATSWONTINCREASE2 || stringId == STRINGID_STATSWONTDECREASE2))
-        || (stringId == STRINGID_DEFENDERSSTATROSE && !(hasContrary
-        && gSpecialStatuses[gBattlerTarget].changedStatsBattlerId != BATTLE_PARTNER(gBattlerTarget) 
-        && gSpecialStatuses[gBattlerTarget].changedStatsBattlerId != gBattlerTarget)))
+    // Generate ability popup for Contrary, only when a status change happens outside of Defiant/Competitive wich have their own popup calls
+    if (hasContrary
+        && ((stringId == STRINGID_DEFENDERSSTATFELL || stringId == STRINGID_STATSWONTINCREASE || stringId == STRINGID_STATSWONTDECREASE || stringId == STRINGID_STATSWONTINCREASE2 || stringId == STRINGID_STATSWONTDECREASE2)
+        || (stringId == STRINGID_DEFENDERSSTATROSE
+        && !((SearchTraits(battlerTraits, ABILITY_DEFIANT) || SearchTraits(battlerTraits, ABILITY_COMPETITIVE))
+        && (gSpecialStatuses[gBattlerTarget].changedStatsBattlerId != BATTLE_PARTNER(gBattlerTarget) || gSpecialStatuses[gBattlerTarget].changedStatsBattlerId != gBattlerTarget)))))
     {
         PushTraitStack(gBattlerTarget, ABILITY_CONTRARY);
         BattleScriptPushCursor();
@@ -1239,6 +1240,9 @@ void PrepareStringBattle(u16 stringId, u32 battler)
                 stringId = STRINGID_STATSWONTDECREASE;
             }
         }
+        PushTraitStack(gBattlerTarget, ABILITY_CONTRARY);
+        BattleScriptPushCursor();
+        gBattlescriptCurrInstr = BattleScript_GenerateAbilityPopUp;
     }
     else if (B_UPDATED_INTIMIDATE >= GEN_8 && stringId == STRINGID_PKMNCUTSATTACKWITH && SearchTraits(battlerTraits, ABILITY_RATTLED)
             && CompareStat(gBattlerTarget, STAT_SPEED, MAX_STAT_STAGE, CMP_LESS_THAN))
