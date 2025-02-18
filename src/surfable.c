@@ -27,7 +27,7 @@ static void UpdateSurfMonOverlay(struct Sprite *sprite);
 
 struct RideablePokemon
 {
-    u16 species;
+    u32 species;
     u8 trainerPose;
 };
 
@@ -38,21 +38,20 @@ struct RideablePokemon
 
 static EWRAM_DATA u16 sCurrentSurfMon = {0};
 
-static u16 GetSurfMonSpecies(void)
+static u32 GetSurfMonSpecies(void)
 {
     u8 i;
-	u16 species;
+	u32 species;
 	
 	i = VarGet(VAR_SURF_MON_SLOT);
 	species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES);
     return species;
 }
 
-static u16 GetSurfablePokemonSprite(void)
+static u32 GetSurfablePokemonSprite(void)
 {
-	//moved this from u8 to u32, was causing a crash with later mons
     u32 i;
-    u16 mon = GetSurfMonSpecies();
+    u32 mon = GetSurfMonSpecies();
 
     for (i = 0; i < ARRAY_COUNT(gSurfablePokemon); i++)
     {

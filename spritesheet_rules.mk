@@ -4945,6 +4945,9 @@ $(OBJEVENTGFXDIR)/pokemon/surfable/0186_politoed.4bpp: %.4bpp: %.png
 $(OBJEVENTGFXDIR)/pokemon/surfable/0194_wooper.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
+$(OBJEVENTGFXDIR)/pokemon/surfable/0194_wooper_paldea.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+
 $(OBJEVENTGFXDIR)/pokemon/surfable/0195_quagsire.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
@@ -5448,7 +5451,7 @@ $(OBJEVENTGFXDIR)/pokemon/surfable/drizzile.4bpp: %.4bpp: %.png
 $(OBJEVENTGFXDIR)/pokemon/surfable/inteleon.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
-$(OBJEVENTGFXDIR)/pokemon/surfable/chewtle.4bpp: %.4bpp: %.png
+$(OBJEVENTGFXDIR)/pokemon/surfable/0833_chewtle.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
 $(OBJEVENTGFXDIR)/pokemon/surfable/drednaw.4bpp: %.4bpp: %.png
