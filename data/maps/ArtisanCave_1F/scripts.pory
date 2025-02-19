@@ -1,1 +1,5 @@
-mapscripts ArtisanCave_1F_MapScripts {}
+mapscripts ArtisanCave_1F_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        special(SetStationaryWilds)
+    }
+}

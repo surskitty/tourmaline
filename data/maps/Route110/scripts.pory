@@ -1011,10 +1011,8 @@ text Route110_Text_HeardYouInstallMatchCall {
 	format("Oh, I see!\n"
 	"You two are running separately.\l"
 	"Well, that's fine.\p"
-	"Oh, yes, I heard that your Pokénav\n"
-	"had the MATCH CALL system installed.\p"
-	"Well, then, I should register you in\n"
-	"my Pokénav as well.\p"
+	"Oh, yes, I heard that your Pokénav had the Match Call system installed.\p"
+	"Well, then, I should register you in my Pokénav as well.\p"
 	"That way, even when we're apart,\n"
 	"I can rate your Pokédex anytime.\p"
 	"… … … … … …")
