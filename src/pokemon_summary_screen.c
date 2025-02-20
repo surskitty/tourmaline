@@ -96,7 +96,10 @@
 #define PSS_DATA_WINDOW_INFO_MEMO 3
 
 //Dynamic fields for the Pokemon Traits page
-#define PSS_DATA_WINDOW_TRAITS 0
+#define PSS_DATA_WINDOW_TRAITS1 0
+#define PSS_DATA_WINDOW_TRAITS2 1
+#define PSS_DATA_WINDOW_TRAITS3 2
+#define PSS_DATA_WINDOW_TRAITS4 3
 
 // Dynamic fields for the Pokémon Skills page
 #define PSS_DATA_WINDOW_SKILLS_HELD_ITEM 0
@@ -648,14 +651,41 @@ static const struct WindowTemplate sPageInfoTemplate[] =
 };
 static const struct WindowTemplate sPageTraitsTemplate[] =
 {
-	[PSS_DATA_WINDOW_TRAITS] = {
+	[PSS_DATA_WINDOW_TRAITS1] = {
 		.bg = 0,
 		.tilemapLeft = 11,
 		.tilemapTop = 4,
 		.width = 18,
-		.height = 16,
+		.height = 4,
 		.paletteNum = 6,
 		.baseBlock = 495 + TempOffset,
+	},
+    [PSS_DATA_WINDOW_TRAITS2] = {
+		.bg = 0,
+		.tilemapLeft = 11,
+		.tilemapTop = 8,
+		.width = 18,
+		.height = 4,
+		.paletteNum = 6,
+		.baseBlock = 495 + TempOffset + 72,
+	},
+    [PSS_DATA_WINDOW_TRAITS3] = {
+		.bg = 0,
+		.tilemapLeft = 11,
+		.tilemapTop = 12,
+		.width = 18,
+		.height = 4,
+		.paletteNum = 6,
+		.baseBlock = 495 + TempOffset + 72 + 72,
+	},
+    [PSS_DATA_WINDOW_TRAITS4] = {
+		.bg = 0,
+		.tilemapLeft = 11,
+		.tilemapTop = 16,
+		.width = 18,
+		.height = 4,
+		.paletteNum = 6,
+		.baseBlock = 495 + TempOffset + 72 + 72 + 72,
 	},
 };
 static const struct WindowTemplate sPageSkillsTemplate[] =
@@ -1212,7 +1242,6 @@ static void DestroyCategoryIcon(void)
 void ShowPokemonSummaryScreen(u8 mode, void *mons, u8 monIndex, u8 maxMonIndex, void (*callback)(void))
 {
     sMonSummaryScreen = AllocZeroed(sizeof(*sMonSummaryScreen));
-    DebugPrintf("Size: %d", sizeof(*sMonSummaryScreen));
     
     sMonSummaryScreen->mode = mode;
     sMonSummaryScreen->monList.mons = mons;
@@ -1731,7 +1760,9 @@ static void Task_HandleInput(u8 taskId)
         }
         else if (JOY_NEW(A_BUTTON))
         {
-            if (sMonSummaryScreen->currPageIndex != PSS_PAGE_SKILLS)
+            if (sMonSummaryScreen->currPageIndex != PSS_PAGE_SKILLS
+                 && sMonSummaryScreen->currPageIndex != PSS_PAGE_TRAITS
+                 && sMonSummaryScreen->currPageIndex != PSS_PAGE_MEMOS)
             {
                 if (sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO)
                 {
@@ -3599,13 +3630,20 @@ static void PrintMonTraits(u8 innateIndex)
         trait = GetAbilityBySpecies(sMonSummaryScreen->summary.species, sMonSummaryScreen->summary.abilityNum);
     else if (innateIndex <= MAX_MON_INNATES)
         trait = gSpeciesInfo[sum->species].innates[innateIndex-1];
-    
+        
     int x = GetStringRightAlignXOffset(FONT_NORMAL, gAbilitiesInfo[trait].name, 18*8);
-    int y = innateIndex * 32;
-    PrintTextOnWindow(AddWindowFromTemplateList(sPageTraitsTemplate, PSS_DATA_WINDOW_TRAITS), gAbilitiesInfo[trait].name, x, y, 0, 1);
-    y += 16;
-    if (trait != 0)
-    PrintTextOnWindow(AddWindowFromTemplateList(sPageTraitsTemplate, PSS_DATA_WINDOW_TRAITS), gAbilitiesInfo[trait].description, 0, y, 0, 0);
+
+    if (trait == 0)
+    {
+        StringCopy(gStringVar1, gText_Blank);
+        PrintTextOnWindow(AddWindowFromTemplateList(sPageTraitsTemplate, innateIndex), gStringVar1, x, 1, 0, 1);
+        PrintTextOnWindow(AddWindowFromTemplateList(sPageTraitsTemplate, innateIndex), gStringVar1, 0, 17, 0, 0);
+    }
+    else
+    {
+        PrintTextOnWindow(AddWindowFromTemplateList(sPageTraitsTemplate, innateIndex), gAbilitiesInfo[trait].name, x, 1, 0, 1);
+        PrintTextOnWindow(AddWindowFromTemplateList(sPageTraitsTemplate, innateIndex), gAbilitiesInfo[trait].description, 0, 17, 0, 0);
+    }
 }
 
 
