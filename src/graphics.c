@@ -2096,4 +2096,3 @@ const u32 gBattleIcons_Pal2[] = INCBIN_U32("graphics/types/battle_icons2.gbapal.
 
 //New Summary Pages
 const u32 gSummaryPage_Traits_Tilemap[]      = INCBIN_U32("graphics/summary_screen/page_traits.bin.lz");
-const u32 gSummaryPage_Memos_Tilemap[]          = INCBIN_U32("graphics/summary_screen/page_memos.bin.lz");

@@ -60,34 +60,33 @@
 #define PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE 2
 #define PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE 3
 #define PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE 4
-#define PSS_LABEL_WINDOW_POKEMON_MEMOS_TITLE 5
 
 // Button control text (upper right)
-#define PSS_LABEL_WINDOW_PROMPT_CANCEL 6 // Also handles the "rename" prompt if P_SUMMARY_SCREEN_RENAME is true
-#define PSS_LABEL_WINDOW_PROMPT_INFO 7
-#define PSS_LABEL_WINDOW_PROMPT_SWITCH 8
-#define PSS_LABEL_WINDOW_UNUSED1 9
+#define PSS_LABEL_WINDOW_PROMPT_CANCEL 5 // Also handles the "rename" prompt if P_SUMMARY_SCREEN_RENAME is true
+#define PSS_LABEL_WINDOW_PROMPT_INFO 6
+#define PSS_LABEL_WINDOW_PROMPT_SWITCH 7
+#define PSS_LABEL_WINDOW_UNUSED1 8
 
 // Info screen
-#define PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL 10
-#define PSS_LABEL_WINDOW_POKEMON_INFO_TYPE 11
+#define PSS_LABEL_WINDOW_POKEMON_INFO_RENTAL 9
+#define PSS_LABEL_WINDOW_POKEMON_INFO_TYPE 10
 
 // Skills screen
-#define PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT 12 // HP, Attack, Defense
-#define PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT 13 // Sp. Attack, Sp. Defense, Speed
-#define PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP 14 // EXP, Next Level
-#define PSS_LABEL_WINDOW_POKEMON_SKILLS_STATUS 15
+#define PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT 11 // HP, Attack, Defense
+#define PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT 12 // Sp. Attack, Sp. Defense, Speed
+#define PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP 13 // EXP, Next Level
+#define PSS_LABEL_WINDOW_POKEMON_SKILLS_STATUS 14
 
 // Moves screen
-#define PSS_LABEL_WINDOW_MOVES_POWER_ACC 16 // Also contains the power and accuracy values
-#define PSS_LABEL_WINDOW_MOVES_APPEAL_JAM 17
-#define PSS_LABEL_WINDOW_PROMPT_RELEARN 18
+#define PSS_LABEL_WINDOW_MOVES_POWER_ACC 15 // Also contains the power and accuracy values
+#define PSS_LABEL_WINDOW_MOVES_APPEAL_JAM 16
+#define PSS_LABEL_WINDOW_PROMPT_RELEARN 17
 
 // Above/below the pokemon's portrait (left)
-#define PSS_LABEL_WINDOW_PORTRAIT_DEX_NUMBER 19
-#define PSS_LABEL_WINDOW_PORTRAIT_NICKNAME 20 // The upper name
-#define PSS_LABEL_WINDOW_PORTRAIT_SPECIES 21 // The lower name
-#define PSS_LABEL_WINDOW_END 22
+#define PSS_LABEL_WINDOW_PORTRAIT_DEX_NUMBER 18
+#define PSS_LABEL_WINDOW_PORTRAIT_NICKNAME 19 // The upper name
+#define PSS_LABEL_WINDOW_PORTRAIT_SPECIES 20 // The lower name
+#define PSS_LABEL_WINDOW_END 21
 
 // Dynamic fields for the Pokémon Info page
 #define PSS_DATA_WINDOW_INFO_ORIGINAL_TRAINER 0
@@ -334,8 +333,6 @@ static void CB2_ReturnToSummaryScreenFromNamingScreen(void);
 static void CB2_PssChangePokemonNickname(void);
 static void PrintTraits(void);
 static void Task_PrintTraits(u8);
-static void PrintMemos(void);
-static void Task_PrintMemos(u8);
 
 
 static const struct BgTemplate sBgTemplates[] =
@@ -443,15 +440,6 @@ static const struct WindowTemplate sSummaryTemplate[] =
         .height = 2,
         .paletteNum = 6,
         .baseBlock = 67,
-    },
-    [PSS_LABEL_WINDOW_POKEMON_MEMOS_TITLE] = {
-        .bg = 0,
-        .tilemapLeft = 0,
-        .tilemapTop = 0,
-        .width = 11,
-        .height = 2,
-        .paletteNum = 6,
-        .baseBlock = 89,
     },
     [PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE] = {
         .bg = 0,
@@ -795,7 +783,6 @@ static void (*const sTextPrinterFunctions[])(void) =
     [PSS_PAGE_TRAITS] = PrintTraits,
     [PSS_PAGE_SKILLS] = PrintSkillsPageText,
     [PSS_PAGE_BATTLE_MOVES] = PrintBattleMoves,
-    [PSS_PAGE_MEMOS] = PrintMemos,
     [PSS_PAGE_CONTEST_MOVES] = PrintContestMoves
 };
 
@@ -805,7 +792,6 @@ static void (*const sTextPrinterTasks[])(u8 taskId) =
     [PSS_PAGE_TRAITS] = Task_PrintTraits,
     [PSS_PAGE_SKILLS] = Task_PrintSkillsPage,
     [PSS_PAGE_BATTLE_MOVES] = Task_PrintBattleMoves,
-    [PSS_PAGE_MEMOS] = Task_PrintMemos,
     [PSS_PAGE_CONTEST_MOVES] = Task_PrintContestMoves
 };
 
@@ -1459,8 +1445,6 @@ static void InitBGs(void)
     ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
     SetBgTilemapBuffer(1, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_BATTLE_MOVES][0]);
-    //SetBgTilemapBuffer(2, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_MEMOS][0]);
-    //SetBgTilemapBuffer(2, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_TRAITS][0]);
     SetBgTilemapBuffer(2, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_SKILLS][0]);
     SetBgTilemapBuffer(3, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_INFO][0]);
     ResetAllBgsCoordinates();
@@ -1512,35 +1496,31 @@ static bool8 DecompressGraphics(void)
         sMonSummaryScreen->switchCounter++;
         break;
     case 7:
-        LZDecompressWram(gSummaryPage_Memos_Tilemap, sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_MEMOS][1]);
-        sMonSummaryScreen->switchCounter++;
-        break;
-    case 8:
         LoadCompressedPalette(gSummaryScreen_Pal, BG_PLTT_ID(0), 8 * PLTT_SIZE_4BPP);
         LoadPalette(&gPPTextPalette, BG_PLTT_ID(8) + 1, PLTT_SIZEOF(16 - 1));
         sMonSummaryScreen->switchCounter++;
         break;
-    case 9:
+    case 8:
         LoadCompressedSpriteSheet(&gSpriteSheet_MoveTypes);
         sMonSummaryScreen->switchCounter++;
         break;
-    case 10:
+    case 9:
         LoadCompressedSpriteSheet(&sMoveSelectorSpriteSheet);
         sMonSummaryScreen->switchCounter++;
         break;
-    case 11:
+    case 10:
         LoadCompressedSpriteSheet(&sStatusIconsSpriteSheet);
         sMonSummaryScreen->switchCounter++;
         break;
-    case 12:
+    case 11:
         LoadCompressedSpritePalette(&sStatusIconsSpritePalette);
         sMonSummaryScreen->switchCounter++;
         break;
-    case 13:
+    case 12:
         LoadCompressedSpritePalette(&sMoveSelectorSpritePal);
         sMonSummaryScreen->switchCounter++;
         break;
-    case 14:
+    case 13:
         LoadCompressedPalette(gMoveTypes_Pal, OBJ_PLTT_ID(13), 3 * PLTT_SIZE_4BPP);
         LoadCompressedSpriteSheet(&gSpriteSheet_CategoryIcons);
         LoadSpritePalette(&gSpritePal_CategoryIcons);
@@ -1761,8 +1741,7 @@ static void Task_HandleInput(u8 taskId)
         else if (JOY_NEW(A_BUTTON))
         {
             if (sMonSummaryScreen->currPageIndex != PSS_PAGE_SKILLS
-                 && sMonSummaryScreen->currPageIndex != PSS_PAGE_TRAITS
-                 && sMonSummaryScreen->currPageIndex != PSS_PAGE_MEMOS)
+                 && sMonSummaryScreen->currPageIndex != PSS_PAGE_TRAITS)
             {
                 if (sMonSummaryScreen->currPageIndex == PSS_PAGE_INFO)
                 {
@@ -3108,7 +3087,6 @@ static void PrintPageNamesAndStats(void)
     PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE, gText_PkmnSkills, 2, 1, 0, 1);
     PrintTextOnWindow(PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE, gText_BattleMoves, 2, 1, 0, 1);
     PrintTextOnWindow(PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE, gText_ContestMoves, 2, 1, 0, 1);
-    PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_MEMOS_TITLE, gText_PkmnMemos, 2, 1, 0, 1);
 
     ShowCancelOrRenamePrompt();
 
@@ -3159,7 +3137,6 @@ static void PutPageWindowTilemaps(u8 page)
     ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_SKILLS_TITLE);
     ClearWindowTilemap(PSS_LABEL_WINDOW_BATTLE_MOVES_TITLE);
     ClearWindowTilemap(PSS_LABEL_WINDOW_CONTEST_MOVES_TITLE);
-    ClearWindowTilemap(PSS_LABEL_WINDOW_POKEMON_MEMOS_TITLE);
 
     switch (page)
     {
@@ -3207,9 +3184,6 @@ static void PutPageWindowTilemaps(u8 page)
                 PutWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);
         }
         break;
-    case PSS_PAGE_MEMOS:
-        PutWindowTilemap(PSS_LABEL_WINDOW_POKEMON_MEMOS_TITLE);
-        break;
     }
 
     for (i = 0; i < ARRAY_COUNT(sMonSummaryScreen->windowIds); i++)
@@ -3252,8 +3226,6 @@ static void ClearPageWindowTilemaps(u8 page)
             if (ShouldShowMoveRelearner())
                 ClearWindowTilemap(PSS_LABEL_WINDOW_PROMPT_RELEARN);
         }
-        break;
-    case PSS_PAGE_MEMOS:
         break;
     case PSS_PAGE_CONTEST_MOVES:
         if (sMonSummaryScreen->mode == SUMMARY_MODE_SELECT_MOVE)
@@ -3644,31 +3616,6 @@ static void PrintMonTraits(u8 innateIndex)
         PrintTextOnWindow(AddWindowFromTemplateList(sPageTraitsTemplate, innateIndex), gAbilitiesInfo[trait].name, x, 1, 0, 1);
         PrintTextOnWindow(AddWindowFromTemplateList(sPageTraitsTemplate, innateIndex), gAbilitiesInfo[trait].description, 0, 17, 0, 0);
     }
-}
-
-
-static void PrintMemos(void)
-{
-    PrintHeldItemName();
-    PrintRibbonCount();
-    BufferLeftColumnStats();
-    PrintLeftColumnStats();
-}
-
-static void Task_PrintMemos(u8 taskId)
-{
-    s16* data = gTasks[taskId].data;
-
-    switch (data[0])
-    {
-    case 1:
-        PrintHeldItemName();
-        break;
-    case 2:
-        DestroyTask(taskId);
-        return;
-    }
-    data[0]++;
 }
 
 static void PrintSkillsPageText(void)
