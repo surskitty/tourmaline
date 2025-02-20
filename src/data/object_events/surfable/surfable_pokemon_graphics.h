@@ -306,6 +306,10 @@ const u32 gSurfablePokemonPic_Zigzagoon[] = INCBIN_U32("graphics/object_events/p
 const u16 gSurfablePokemonPalette_Zigzagoon[] = INCBIN_U16("graphics/object_events/pics/pokemon/surfable/0263_zigzagoon.gbapal");
 const u16 gSurfablePokemonShinyPalette_Zigzagoon[] = INCBIN_U16("graphics/object_events/pics/pokemon/surfable/0263_zigzagoon_shiny.gbapal");
 
+const u32 gSurfablePokemonPic_ZigzagoonGalar[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/0263_zigzagoon_galar.4bpp");
+const u16 gSurfablePokemonPalette_ZigzagoonGalar[] = INCBIN_U16("graphics/pokemon/zigzagoon/galar/normal.gbapal");
+const u16 gSurfablePokemonShinyPalette_ZigzagoonGalar[] = INCBIN_U16("graphics/pokemon/zigzagoon/galar/shiny.gbapal");
+
 const u32 gSurfablePokemonPic_Linoone[] = INCBIN_U32("graphics/object_events/pics/pokemon/surfable/0264_linoone.4bpp");
 const u16 gSurfablePokemonPalette_Linoone[] = INCBIN_U16("graphics/object_events/pics/pokemon/surfable/0264_linoone.gbapal");
 const u16 gSurfablePokemonShinyPalette_Linoone[] = INCBIN_U16("graphics/object_events/pics/pokemon/surfable/0264_linoone_shiny.gbapal");
