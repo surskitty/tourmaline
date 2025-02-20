@@ -974,6 +974,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
     #else
         .abilities = { ABILITY_PICKUP, ABILITY_NONE, ABILITY_QUICK_FEET },
     #endif
+        .innates = { ABILITY_CONTRARY, ABILITY_DEFIANT, ABILITY_COMPETITIVE },
         .bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Zigzagoon"),
         .cryId = CRY_ZIGZAGOON,

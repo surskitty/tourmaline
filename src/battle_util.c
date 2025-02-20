@@ -1102,7 +1102,6 @@ void PrepareStringBattle(u16 stringId, u32 battler)
     u16 battlerTraits[MAX_MON_TRAITS];
     STORE_BATTLER_TRAITS(gBattlerTarget);
     bool32 hasContrary = (BattlerHasTrait(gBattlerTarget, ABILITY_CONTRARY));
-    bool8 test1 = FALSE;
 
     // Support for Contrary ability.
     // If a move attempted to raise stat - print "won't increase".
