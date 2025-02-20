@@ -1338,6 +1338,24 @@ const struct SpriteFrameImage gSurfingOverlayPicTable_Zigzagoon[] = {
     overworld_frame(gSurfablePokemonPic_Zigzagoon, 4, 4, 11),
 };
 
+const struct SpriteFrameImage gSurfingOverworldPicTable_ZigzagoonGalar[] = {
+    overworld_frame(gSurfablePokemonPic_ZigzagoonGalar, 4, 4, 0),
+    overworld_frame(gSurfablePokemonPic_ZigzagoonGalar, 4, 4, 1),
+    overworld_frame(gSurfablePokemonPic_ZigzagoonGalar, 4, 4, 2),
+    overworld_frame(gSurfablePokemonPic_ZigzagoonGalar, 4, 4, 3),
+    overworld_frame(gSurfablePokemonPic_ZigzagoonGalar, 4, 4, 4),
+    overworld_frame(gSurfablePokemonPic_ZigzagoonGalar, 4, 4, 5),
+};
+
+const struct SpriteFrameImage gSurfingOverlayPicTable_ZigzagoonGalar[] = {
+    overworld_frame(gSurfablePokemonPic_ZigzagoonGalar, 4, 4, 6),
+    overworld_frame(gSurfablePokemonPic_ZigzagoonGalar, 4, 4, 7),
+    overworld_frame(gSurfablePokemonPic_ZigzagoonGalar, 4, 4, 8),
+    overworld_frame(gSurfablePokemonPic_ZigzagoonGalar, 4, 4, 9),
+    overworld_frame(gSurfablePokemonPic_ZigzagoonGalar, 4, 4, 10),
+    overworld_frame(gSurfablePokemonPic_ZigzagoonGalar, 4, 4, 11),
+};
+
 const struct SpriteFrameImage gSurfingOverworldPicTable_Linoone[] = {
     overworld_frame(gSurfablePokemonPic_Linoone, 4, 4, 0),
     overworld_frame(gSurfablePokemonPic_Linoone, 4, 4, 1),
