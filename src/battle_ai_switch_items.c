@@ -1999,7 +1999,8 @@ u32 GetMostSuitableMonToSwitchInto(u32 battler, bool32 switchAfterMonKOd)
         bestMonId = GetNextMonInParty(party, firstId, lastId, battlerIn1, battlerIn2);
         return bestMonId;
     }
-    
+    DebugPrintf("TRAINER AI FLAG = %d", AI_THINKING_STRUCT->aiFlags[battler]);
+    DebugPrintf("TRAINER AI FLAG SMART PASS = %d", AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_MON_CHOICES);
     // Only use better mon selection if AI_FLAG_SMART_MON_CHOICES is set for the trainer.
     if (AI_THINKING_STRUCT->aiFlags[battler] & AI_FLAG_SMART_MON_CHOICES && !IsDoubleBattle()) // Double Battles aren't included in AI_FLAG_SMART_MON_CHOICE. Defaults to regular switch in logic
     {
