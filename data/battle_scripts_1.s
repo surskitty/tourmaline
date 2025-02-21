@@ -8589,7 +8589,7 @@ BattleScript_ActivateAsOne::
 	printfromtable gSwitchInAbilityStringIds
 	waitmessage B_WAIT_TIME_LONG
 	@ show unnerve
-	sethword sABILITY_OVERWRITE, ABILITY_UNNERVE
+	pushtraitstack BS_ABILITY_BATTLER ABILITY_UNNERVE
 	setbyte cMULTISTRING_CHOOSER, B_MSG_SWITCHIN_UNNERVE
 	call BattleScript_AbilityPopUp
 	printfromtable gSwitchInAbilityStringIds

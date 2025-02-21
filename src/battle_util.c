@@ -452,7 +452,7 @@ bool32 TryRunFromBattle(u32 battler)
             speedVar = (gBattleMons[battler].speed * pyramidMultiplier) / (gBattleMons[BATTLE_OPPOSITE(battler)].speed) + (gBattleStruct->runTries * 30);
             if (speedVar > (Random() & 0xFF))
             {
-                gLastUsedAbility = ABILITY_RUN_AWAY;
+                gLastUsedAbility = gDisplayAbility = ABILITY_RUN_AWAY;
                 PushTraitStack(battler, ABILITY_RUN_AWAY);
                 gProtectStructs[battler].fleeType = FLEE_ABILITY;
                 effect++;
@@ -460,7 +460,7 @@ bool32 TryRunFromBattle(u32 battler)
         }
         else
         {
-            gLastUsedAbility = ABILITY_RUN_AWAY;
+            gLastUsedAbility = gDisplayAbility = ABILITY_RUN_AWAY;
             PushTraitStack(battler, ABILITY_RUN_AWAY);
             gProtectStructs[battler].fleeType = FLEE_ABILITY;
             effect++;
@@ -4800,14 +4800,20 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
             effect += CommonSwitchInAbilities(battler, B_MSG_SWITCHIN_SLOWSTART, ABILITY_SLOW_START, traitCheck, 0);
         }
         if ((traitCheck = SearchTraits(battlerTraits, ABILITY_UNNERVE)) && !gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1])
+        {
+            gBattlerTarget = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerAtPosition(battler)));
             effect += CommonSwitchInAbilities(battler, B_MSG_SWITCHIN_UNNERVE, ABILITY_UNNERVE, traitCheck, 0);
-
+        }    
         if ((traitCheck = SearchTraits(battlerTraits, ABILITY_AS_ONE_ICE_RIDER)) && !gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1])
+        {   
+            gBattlerTarget = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerAtPosition(battler)));
             effect += CommonSwitchInAbilities(battler, B_MSG_SWITCHIN_ASONE, ABILITY_AS_ONE_ICE_RIDER, traitCheck, BattleScript_ActivateAsOne);
-
+        }
         if ((traitCheck = SearchTraits(battlerTraits, ABILITY_AS_ONE_SHADOW_RIDER)) && !gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1])
+        {
+            gBattlerTarget = GetBattlerAtPosition(BATTLE_OPPOSITE(GetBattlerAtPosition(battler)));
             effect += CommonSwitchInAbilities(battler, B_MSG_SWITCHIN_ASONE, ABILITY_AS_ONE_SHADOW_RIDER, traitCheck, BattleScript_ActivateAsOne);
-
+        }
         if ((traitCheck = SearchTraits(battlerTraits, ABILITY_CURIOUS_MEDICINE)) && !gSpecialStatuses[battler].switchInTraitDone[traitCheck - 1] && IsDoubleBattle() 
          && IsBattlerAlive(BATTLE_PARTNER(battler)) && TryResetBattlerStatChanges(BATTLE_PARTNER(battler)))
         {
