@@ -5966,8 +5966,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
 #if !TESTING
-        .abilities = { ABILITY_STENCH, ABILITY_STICKY_HOLD, ABILITY_AFTERMATH },
-        .innates = { },
+        .abilities = { ABILITY_STENCH, ABILITY_NONE, ABILITY_AFTERMATH },
+        .innates = { ABILITY_STICKY_HOLD, ABILITY_POISON_TOUCH },
 #else
         .abilities = { ABILITY_STENCH, ABILITY_STICKY_HOLD, ABILITY_AFTERMATH },
 #endif
@@ -6036,8 +6036,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
 #if !TESTING
-        .abilities = { ABILITY_STENCH, ABILITY_WEAK_ARMOR, ABILITY_AFTERMATH },
-        .innates = { },
+        .abilities = { ABILITY_STENCH, ABILITY_NONE, ABILITY_AFTERMATH },
+        .innates = { ABILITY_STICKY_HOLD, ABILITY_POISON_TOUCH },
 #else
         .abilities = { ABILITY_STENCH, ABILITY_WEAK_ARMOR, ABILITY_AFTERMATH },
 #endif
@@ -6107,8 +6107,8 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
 #if !TESTING
-        .abilities = { ABILITY_STENCH, ABILITY_WEAK_ARMOR, ABILITY_AFTERMATH },
-        .innates = { },
+        .abilities = { ABILITY_STENCH, ABILITY_NONE, ABILITY_AFTERMATH },
+        .innates = { ABILITY_STICKY_HOLD, ABILITY_POISON_TOUCH, ABILITY_MERCILESS },
 #else
         .abilities = { ABILITY_STENCH, ABILITY_WEAK_ARMOR, ABILITY_AFTERMATH },
 #endif

@@ -1275,7 +1275,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
 #if !TESTING
-        .abilities = { ABILITY_SWARM, ABILITY_FRISK, ABILITY_NONE },
+        .abilities = { ABILITY_SWARM, ABILITY_FRISK, ABILITY_PSYCHIC_SURGE },
         .innates = { ABILITY_TELEPATHY, ABILITY_ANALYTIC },
 #else
         .abilities = { ABILITY_SWARM, ABILITY_FRISK, ABILITY_TELEPATHY },
@@ -1345,8 +1345,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
 #if !TESTING
-        .abilities = { ABILITY_SWARM, ABILITY_FRISK, ABILITY_NONE },
-        .innates = { ABILITY_TELEPATHY },
+        .abilities = { ABILITY_SWARM, ABILITY_PSYCHIC_SURGE, ABILITY_PSYCHIC_SURGE },
+        .innates = { ABILITY_TELEPATHY, ABILITY_ANALYTIC },
 #else
         .abilities = { ABILITY_SWARM, ABILITY_FRISK, ABILITY_TELEPATHY },
 #endif
@@ -1920,8 +1920,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_WATER_1),
 #if !TESTING
-        .abilities = { ABILITY_STRONG_JAW, ABILITY_SHELL_ARMOR, ABILITY_SWIFT_SWIM },
-        .innates = { },
+        .abilities = { ABILITY_SHELL_ARMOR, ABILITY_SWIFT_SWIM, ABILITY_NONE },
+        .innates = { ABILITY_STRONG_JAW, ABILITY_SOLID_ROCK },
 #else
         .abilities = { ABILITY_STRONG_JAW, ABILITY_SHELL_ARMOR, ABILITY_SWIFT_SWIM },
 #endif
