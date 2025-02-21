@@ -6087,15 +6087,14 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .formChangeTable = sGarbodorFormChangeTable,
     },
 
-#if P_GIGANTAMAX_FORMS
-    [SPECIES_GARBODOR_GMAX] =
+    [SPECIES_GARBODOR_MEGA] =
     {
         .baseHP        = 80,
-        .baseAttack    = 95,
-        .baseDefense   = 82,
+        .baseAttack    = 95 + 50,
+        .baseDefense   = 82 + 25,
         .baseSpeed     = 75,
         .baseSpAttack  = 60,
-        .baseSpDefense = 82,
+        .baseSpDefense = 82 + 25,
         .types = MON_TYPES(TYPE_POISON),
         .catchRate = 60,
         .expYield = 166,
@@ -6145,13 +6144,12 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .iconPalIndex = 0,
         NO_SHADOW
         FOOTPRINT(Garbodor)
-        .isGigantamax = TRUE,
+        .isMegaEvolution = TRUE,
         .levelUpLearnset = sGarbodorLevelUpLearnset,
         .teachableLearnset = sGarbodorTeachableLearnset,
         .formSpeciesIdTable = sGarbodorFormSpeciesIdTable,
         .formChangeTable = sGarbodorFormChangeTable,
     },
-#endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_TRUBBISH
 
 #if P_FAMILY_ZORUA
