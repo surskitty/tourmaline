@@ -1261,9 +1261,9 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .baseHP        = 60,
         .baseAttack    = 45,
         .baseDefense   = 110,
-        .baseSpeed     = 90,
-        .baseSpAttack  = 80,
-        .baseSpDefense = 120,
+        .baseSpeed     = 90 + 20,
+        .baseSpAttack  = 80 + 50,
+        .baseSpDefense = 120 + 30,
         .types = MON_TYPES(TYPE_BUG, TYPE_PSYCHIC),
         .catchRate = 45,
         .expYield = 253,
@@ -1275,7 +1275,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
 #if !TESTING
-        .abilities = { ABILITY_SWARM, ABILITY_FRISK, ABILITY_NONE },
+        .abilities = { ABILITY_SWARM, ABILITY_FRISK, ABILITY_PSYCHIC_SURGE },
         .innates = { ABILITY_TELEPATHY, ABILITY_ANALYTIC },
 #else
         .abilities = { ABILITY_SWARM, ABILITY_FRISK, ABILITY_TELEPATHY },
@@ -1326,8 +1326,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .formChangeTable = sOrbeetleFormChangeTable,
     },
 
-#if P_GIGANTAMAX_FORMS
-    [SPECIES_ORBEETLE_GMAX] =
+    [SPECIES_ORBEETLE_MEGA] =
     {
         .baseHP        = 60,
         .baseAttack    = 45,
@@ -1346,8 +1345,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
 #if !TESTING
-        .abilities = { ABILITY_SWARM, ABILITY_FRISK, ABILITY_NONE },
-        .innates = { ABILITY_TELEPATHY },
+        .abilities = { ABILITY_SWARM, ABILITY_PSYCHIC_SURGE, ABILITY_PSYCHIC_SURGE },
+        .innates = { ABILITY_TELEPATHY, ABILITY_ANALYTIC },
 #else
         .abilities = { ABILITY_SWARM, ABILITY_FRISK, ABILITY_TELEPATHY },
 #endif
@@ -1382,13 +1381,12 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconPalIndex = 0,
         SHADOW(0, 12, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Orbeetle)
-        .isGigantamax = TRUE,
+        .isMegaEvolution = TRUE,
         .levelUpLearnset = sOrbeetleLevelUpLearnset,
         .teachableLearnset = sOrbeetleTeachableLearnset,
         .formSpeciesIdTable = sOrbeetleFormSpeciesIdTable,
         .formChangeTable = sOrbeetleFormChangeTable,
     },
-#endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_BLIPBUG
 
 #if P_FAMILY_NICKIT
@@ -1904,12 +1902,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .formChangeTable = sDrednawFormChangeTable,
     },
 
-#if P_GIGANTAMAX_FORMS
-    [SPECIES_DREDNAW_GMAX] =
+    [SPECIES_DREDNAW_MEGA] =
     {
         .baseHP        = 90,
-        .baseAttack    = 115,
-        .baseDefense   = 90,
+        .baseAttack    = 115 + 75,
+        .baseDefense   = 90 + 25,
         .baseSpeed     = 74,
         .baseSpAttack  = 48,
         .baseSpDefense = 68,
@@ -1923,8 +1920,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_WATER_1),
 #if !TESTING
-        .abilities = { ABILITY_STRONG_JAW, ABILITY_SHELL_ARMOR, ABILITY_SWIFT_SWIM },
-        .innates = { },
+        .abilities = { ABILITY_SHELL_ARMOR, ABILITY_SWIFT_SWIM, ABILITY_NONE },
+        .innates = { ABILITY_STRONG_JAW, ABILITY_SOLID_ROCK },
 #else
         .abilities = { ABILITY_STRONG_JAW, ABILITY_SHELL_ARMOR, ABILITY_SWIFT_SWIM },
 #endif
@@ -1959,13 +1956,12 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .iconPalIndex = 0,
         SHADOW(2, 12, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Drednaw)
-        .isGigantamax = TRUE,
+        .isMegaEvolution = TRUE,
         .levelUpLearnset = sDrednawLevelUpLearnset,
         .teachableLearnset = sDrednawTeachableLearnset,
         .formSpeciesIdTable = sDrednawFormSpeciesIdTable,
         .formChangeTable = sDrednawFormChangeTable,
     },
-#endif //P_GIGANTAMAX_FORMS
 #endif //P_FAMILY_CHEWTLE
 
 #if P_FAMILY_YAMPER

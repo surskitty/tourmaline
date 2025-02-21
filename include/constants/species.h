@@ -1610,14 +1610,14 @@
 #define SPECIES_LAPRAS_GMAX                             1498
 #define SPECIES_EEVEE_GMAX                              1499
 #define SPECIES_SNORLAX_GMAX                            1500
-#define SPECIES_GARBODOR_GMAX                           1501
+#define SPECIES_GARBODOR_MEGA                           1501
 #define SPECIES_MELMETAL_GMAX                           1502
 #define SPECIES_RILLABOOM_GMAX                          1503
 #define SPECIES_CINDERACE_GMAX                          1504
 #define SPECIES_INTELEON_GMAX                           1505
 #define SPECIES_CORVIKNIGHT_GMAX                        1506
-#define SPECIES_ORBEETLE_GMAX                           1507
-#define SPECIES_DREDNAW_GMAX                            1508
+#define SPECIES_ORBEETLE_MEGA                           1507
+#define SPECIES_DREDNAW_MEGA                            1508
 #define SPECIES_COALOSSAL_GMAX                          1509
 #define SPECIES_FLAPPLE_GMAX                            1510
 #define SPECIES_APPLETUN_GMAX                           1511
