@@ -137,6 +137,7 @@ DewfordTown_Gym_EventScript_Brawly::
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	goto_if_eq VAR_RESULT, TRUE, DewfordTown_Gym_EventScript_BrawlyRematch
 	goto_if_unset FLAG_RECEIVED_TM_BULK_UP, DewfordTown_Gym_EventScript_GiveBulkUp2
+	speakername DewfordTown_Gym_Text_Brawly
 	msgbox DewfordTown_Gym_Text_BrawlyPostBattle, MSGBOX_DEFAULT
 	release
 	end
@@ -146,6 +147,7 @@ DewfordTown_Gym_EventScript_BrawlyDefeated::
 	message DewfordTown_Gym_Text_ReceivedKnuckleBadge
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
+	speakername DewfordTown_Gym_Text_Brawly
 	msgbox DewfordTown_Gym_Text_KnuckleBadgeInfoTakeThis, MSGBOX_DEFAULT
 	setflag FLAG_DEFEATED_DEWFORD_GYM
 	setflag FLAG_BADGE02_GET
@@ -170,6 +172,7 @@ DewfordTown_Gym_EventScript_BrawlyDefeated::
 DewfordTown_Gym_EventScript_GiveBulkUp::
 	giveitem ITEM_TM_BULK_UP
 	goto_if_eq VAR_RESULT, 0, Common_EventScript_BagIsFull
+	speakername DewfordTown_Gym_Text_Brawly
 	msgbox DewfordTown_Gym_Text_ExplainBulkUp, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_TM_BULK_UP
 	return
@@ -177,6 +180,7 @@ DewfordTown_Gym_EventScript_GiveBulkUp::
 DewfordTown_Gym_EventScript_GiveBulkUp2:
 	giveitem ITEM_TM_BULK_UP
 	goto_if_eq VAR_RESULT, 0, Common_EventScript_ShowBagIsFull
+	speakername DewfordTown_Gym_Text_Brawly
 	msgbox DewfordTown_Gym_Text_ExplainBulkUp, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_TM_BULK_UP
 	release
@@ -281,180 +285,199 @@ DewfordTown_Gym_EventScript_GymStatue::
 	msgbox DewfordTown_Gym_Text_GymStatue, MSGBOX_DEFAULT
 	releaseall
 	end
-
-DewfordTown_Gym_Text_GymGuideAdvice:
-	.string "Hey, how's it going, Champion-\n"
-	.string "bound {PLAYER}?\p"
-	.string "Dewford's Gym Leader Brawly commands\n"
-	.string "Fighting-type Pokémon.\p"
-	.string "Going against him with Normal-type\n"
-	.string "Pokémon is asking for trouble.\p"
-	.string "Fighting Pokémon will lay a serious\n"
-	.string "smack down on Normal Pokémon,\l"
-	.string "so be careful!\p"
-	.string "What's worse, the Gym is as dark as\n"
-	.string "the ocean floor.\p"
-	.string "But it will get brighter after defeating\n"
-	.string "the Trainers in your way.\p"
-	.string "Hey, okay, go for it!$"
-
-DewfordTown_Gym_Text_GymGuidePostVictory:
-	.string "Whoah! It's turned too bright in here!\p"
-	.string "Your future is bright, too!$"
-
-DewfordTown_Gym_Text_TakaoIntro:
-	.string "Might is right!\n"
-	.string "Come on!$"
-
-DewfordTown_Gym_Text_TakaoDefeat:
-	.string "Not enough power…$"
-
-DewfordTown_Gym_Text_TakaoPostBattle:
-	.string "Your skill overcame my strength!\n"
-	.string "Your technique is commendable!$"
-
-DewfordTown_Gym_Text_JocelynIntro:
-	.string "There's no need for Brawly to be\n"
-	.string "involved!\p"
-	.string "I'll crush you!$"
-
-DewfordTown_Gym_Text_JocelynDefeat:
-	.string "But… How?\n"
-	.string "How could I lose so easily?$"
-
-DewfordTown_Gym_Text_JocelynPostBattle:
-	.string "I'm not going to waste this loss.\n"
-	.string "I'll use it to motivate me to train!\p"
-	.string "One day I'll become a Gym Leader…\p"
-	.string "No, I'll become the Pokémon League\n"
-	.string "Champion!$"
-
-DewfordTown_Gym_Text_LauraIntro:
-	.string "Don't you dare brush me off!\n"
-	.string "It's not my fault if you cry!$"
-
-DewfordTown_Gym_Text_LauraDefeat:
-	.string "Waaaaaaah!\n"
-	.string "I lost!$"
-
-DewfordTown_Gym_Text_LauraPostBattle:
-	.string "I battle in the dark to make my heart\n"
-	.string "stronger.\p"
-	.string "But because it's so dark, I can never\n"
-	.string "see Brawly's face…$"
-
-DewfordTown_Gym_Text_LilithIntro:
-	.string "Ufufu…\n"
-	.string "Are you stumbling around in the dark?$"
-
-DewfordTown_Gym_Text_LilithDefeat:
-	.string "Oh, you…\n"
-	.string "I don't want to know you!$"
-
-DewfordTown_Gym_Text_LilithPostBattle:
-	.string "You deserve to stay lost and end up\n"
-	.string "back at the entrance again!$"
-
-DewfordTown_Gym_Text_BrendenIntro:
-	.string "I'll show you the gumption of\n"
-	.string "a sailing man!$"
-
-DewfordTown_Gym_Text_BrendenDefeat:
-	.string "How'd this happen?\n"
-	.string "It's not like me to lose this way!$"
-
-DewfordTown_Gym_Text_BrendenPostBattle:
-	.string "Oh, aye! You're worthy of seeing\n"
-	.string "our GYM LEADER.$"
-
-DewfordTown_Gym_Text_CristianIntro:
-	.string "If you mean to pass, it has to be\n"
-	.string "through me!$"
-
-DewfordTown_Gym_Text_CristianDefeat:
-	.string "Grrrrr!\n"
-	.string "Vastly overpowered!$"
-
-DewfordTown_Gym_Text_CristianPostBattle:
-	.string "You win!\n"
-	.string "Go after that Badge!$"
-
-DewfordTown_Gym_Text_BrawlyIntro:
-	.string "I'm Brawly!\n"
-	.string "Dewford's Gym Leader!\p"
-	.string "I've been churned in the rough waves\n"
-	.string "of these parts, and I've grown tough\l"
-	.string "in the pitch-black cave!\p"
-	.string "So you wanted to challenge me?\n"
-	.string "Let me see what you're made of!$"
-
-DewfordTown_Gym_Text_BrawlyDefeat:
-	.string "Whoah, wow! You made a much bigger\n"
-	.string "splash than I expected!\p"
-	.string "You swamped me!\p"
-	.string "Okay, you've got me.\n"
-	.string "Take this Gym Badge!$"
-
-DewfordTown_Gym_Text_ReceivedKnuckleBadge:
-	.string "{PLAYER} received the Knuckle Badge\n"
-	.string "from Brawly.$"
-
-DewfordTown_Gym_Text_KnuckleBadgeInfoTakeThis:
-	.string "The Knuckle Badge makes all Pokémon\n"
-	.string "up to Level 30, even those you get in\l"
-	.string "trades, obey without question.\p"
-	.string "And, you'll be able to use the HM move\n"
-	.string "Flash outside of battle.\p"
-	.string "If you'd like, use this Technical\n"
-	.string "Machine, too.$"
-
-DewfordTown_Gym_Text_ExplainBulkUp:
-	.string "That TM08 contains BULK UP.\p"
-	.string "It's a move that raises both Attack\n"
-	.string "and Defense stats.\p"
-	.string "… … … … … …$"
-
-DewfordTown_Gym_Text_RegisteredBrawly:
-	.string "Registered Gym Leader Brawly\n"
-	.string "in the Pokénav.$"
-
-DewfordTown_Gym_Text_BrawlyPostBattle:
-	.string "I can see your talent becoming a giant\n"
-	.string "wave to cause a storm of astonishment\l"
-	.string "among Trainers one day!$"
-
-DewfordTown_Gym_Text_GymStatue:
-	.string "Dewford Town Pokémon Gym$"
-
-DewfordTown_Gym_Text_GymStatueCertified:
-	.string "Dewford Town Pokémon Gym\p"
-	.string "Brawly's Certified Trainers:\n"
-	.string "{PLAYER}$"
-
-DewfordTown_Gym_Text_BrawlyPreRematch:
-	.string "BRAWLY: A wave may draw back, but it\n"
-	.string "always returns to the shore.\p"
-	.string "A giant wave of a talent like you…\n"
-	.string "I knew you would return!\p"
-	.string "Show me how much higher\n"
-	.string "you've gone!$"
-
-DewfordTown_Gym_Text_BrawlyRematchDefeat:
-	.string "Wow!\n"
-	.string "Swamped again!$"
-
-DewfordTown_Gym_Text_BrawlyPostRematch:
-	.string "BRAWLY: Battling is vast and it's deep.\n"
-	.string "You can't see the bottom.\l"
-	.string "It's just like the sea of Hoenn!$"
-
-DewfordTown_Gym_Text_BrawlyRematchNeedTwoMons:
-	.string "BRAWLY: A wave may draw back, but it\n"
-	.string "always returns to the shore.\p"
-	.string "A giant wave of a talent like you…\n"
-	.string "I knew you would return!\p"
-	.string "Oh? You only have one Pokémon\n"
-	.string "that can battle.\p"
-	.string "I'm sorry, but I'd like you to come back\n"
-	.string "with at least two Pokémon.$"
 `
+
+text DewfordTown_Gym_Text_GymGuideAdvice {
+	format("Hey, how's it going, Champion-\n"
+	"bound {PLAYER}?\p"
+	"Dewford's Gym Leader Brawly commands Fighting-type Pokémon.\p"
+	"As an island Gym Leader, his Pokémon are prepared to fight Sandygast, too, no matter their Ghost-type.\p"
+	"What's worse, the Gym is as dark as the ocean floor.\p"
+	"But it will get brighter after defeating the Trainers in your way.\p"
+	"Hey, okay, go for it!")
+}
+
+text DewfordTown_Gym_Text_GymGuidePostVictory {
+	format("Whoah! It's turned too bright in here!\p"
+	"Your future is bright, too!")
+}
+
+text DewfordTown_Gym_Text_TakaoIntro {
+	format("Might is right!\n"
+	"Come on!")
+}
+
+text DewfordTown_Gym_Text_TakaoDefeat {
+	format("Not enough power…")
+}
+
+text DewfordTown_Gym_Text_TakaoPostBattle {
+	format("Your skill overcame my strength!\n"
+	"Your technique is commendable!")
+}
+
+text DewfordTown_Gym_Text_JocelynIntro {
+	format("There's no need for Brawly to be\n"
+	"involved!\p"
+	"I'll crush you!")
+}
+
+text DewfordTown_Gym_Text_JocelynDefeat {
+	format("But… How?\n"
+	"How could I lose so easily?")
+}
+
+text DewfordTown_Gym_Text_JocelynPostBattle {
+	format("I'm not going to waste this loss.\n"
+	"I'll use it to motivate me to train!\p"
+	"One day I'll become a Gym Leader…\p"
+	"No, I'll become the Pokémon League\n"
+	"Champion!")
+}
+
+text DewfordTown_Gym_Text_LauraIntro {
+	format("Don't you dare brush me off!\n"
+	"It's not my fault if you cry!")
+}
+
+text DewfordTown_Gym_Text_LauraDefeat {
+	format("Waaaaaaah!\n"
+	"I lost!")
+}
+
+text DewfordTown_Gym_Text_LauraPostBattle {
+	format("I battle in the dark to make my heart\n"
+	"stronger.\p"
+	"But because it's so dark, I can never\n"
+	"see Brawly's face…")
+}
+
+text DewfordTown_Gym_Text_LilithIntro {
+	format("Ufufu…\n"
+	"Are you stumbling around in the dark?")
+}
+
+text DewfordTown_Gym_Text_LilithDefeat {
+	format("Oh, you…\n"
+	"I don't want to know you!")
+}
+
+text DewfordTown_Gym_Text_LilithPostBattle {
+	format("You deserve to stay lost and end up\n"
+	"back at the entrance again!")
+}
+
+text DewfordTown_Gym_Text_BrendenIntro {
+	format("I'll show you the gumption of\n"
+	"a sailing man!")
+}
+
+text DewfordTown_Gym_Text_BrendenDefeat {
+	format("How'd this happen?\n"
+	"It's not like me to lose this way!")
+}
+
+text DewfordTown_Gym_Text_BrendenPostBattle {
+	format("Oh, aye! You're worthy of seeing\n"
+	"our Gym Leader.")
+}
+
+text DewfordTown_Gym_Text_CristianIntro {
+	format("If you mean to pass, it has to be through me!")
+}
+
+text DewfordTown_Gym_Text_CristianDefeat {
+	format("Grrrrr!\n"
+	"Vastly overpowered!")
+}
+
+text DewfordTown_Gym_Text_CristianPostBattle {
+	format("You win!\n"
+	"Go after that Badge!")
+}
+
+text DewfordTown_Gym_Text_BrawlyIntro {
+	format("I'm Brawly!\n"
+	"Dewford's Gym Leader!\p"
+	"I've been churned in the rough waves of these parts, and I've grown tough in the pitch-black cave!\p"
+	"So you wanted to challenge me?\n"
+	"Let me see what you're made of!")
+}
+
+text DewfordTown_Gym_Text_BrawlyDefeat {
+	format("Whoah, wow! You made a much bigger\n"
+	"splash than I expected!\p"
+	"You swamped me!\p"
+	"Okay, you've got me.\n"
+	"Take this Gym Badge!")
+}
+
+text DewfordTown_Gym_Text_ReceivedKnuckleBadge {
+	format("{PLAYER} received the Knuckle Badge from Brawly.")
+}
+
+text DewfordTown_Gym_Text_KnuckleBadgeInfoTakeThis {
+	format("The Knuckle Badge makes all Pokémon\n"
+	"up to Level 30, even those you get in\l"
+	"trades, obey without question.\p"
+	"And, you'll be able to use the HM move\n"
+	"Flash outside of battle.\p"
+	"If you'd like, use this Technical\n"
+	"Machine, too.")
+}
+
+text DewfordTown_Gym_Text_ExplainBulkUp {
+	format("That TM08 contains Bulk Up.\p"
+	"It's a move that raises both Attack and Defense stats.\p"
+	"… … … … … …")
+}
+
+text DewfordTown_Gym_Text_RegisteredBrawly {
+	format("Registered Gym Leader Brawly\n"
+	"in the Pokénav.")
+}
+
+text DewfordTown_Gym_Text_BrawlyPostBattle {
+	format("I can see your talent becoming a giant\n"
+	"wave to cause a storm of astonishment\l"
+	"among Trainers one day!")
+}
+
+text DewfordTown_Gym_Text_GymStatue {
+	format("Dewford Town Pokémon Gym")
+}
+
+text DewfordTown_Gym_Text_GymStatueCertified {
+	format("Dewford Town Pokémon Gym\p"
+	"Brawly's Certified Trainers:\n"
+	"{PLAYER}")
+}
+
+text DewfordTown_Gym_Text_BrawlyPreRematch {
+	format("A wave may draw back, but it always returns to the shore.\p"
+	"A giant wave of a talent like you…\n"
+	"I knew you would return!\p"
+	"Show me how much higher\n"
+	"you've gone!")
+}
+
+text DewfordTown_Gym_Text_BrawlyRematchDefeat {
+	format("Wow!\n"
+	"Swamped again!")
+}
+
+text DewfordTown_Gym_Text_BrawlyPostRematch {
+	format("Battling is vast and it's deep.\n"
+	"You can't see the bottom.\l"
+	"It's just like the sea of Hoenn!")
+}
+
+text DewfordTown_Gym_Text_BrawlyRematchNeedTwoMons {
+	format("A wave may draw back, but it always returns to the shore.\p"
+	"A giant wave of a talent like you…\n"
+	"I knew you would return!\p"
+	"Oh? You only have one Pokémon that can battle.\p"
+	"I'm sorry, but I'd like you to come back with at least two Pokémon.")
+}
+
+text DewfordTown_Gym_Text_Brawly { "Brawly" }

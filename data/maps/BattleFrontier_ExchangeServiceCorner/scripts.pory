@@ -1,7 +1,6 @@
-raw `
-BattleFrontier_ExchangeServiceCorner_MapScripts::
-	.byte 0
+mapscripts BattleFrontier_ExchangeServiceCorner_MapScripts {}
 
+raw `
 BattleFrontier_ExchangeServiceCorner_EventScript_ClerkWelcome::
 	msgbox BattleFrontier_ExchangeServiceCorner_Text_WelcomePleaseChoosePrize, MSGBOX_DEFAULT
 	special ShowBattlePointsWindow

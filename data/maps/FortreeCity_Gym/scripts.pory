@@ -1,17 +1,16 @@
+mapscripts FortreeCity_Gym_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        special(RotatingGate_InitPuzzle)
+        setflag(FLAG_TEMP_HIDE_FOLLOWER) // Hide follower bc of rotating gates
+    }
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
+        VAR_TEMP_0, VAR_TEMP_0: FortreeCity_Gym_EventScript_InitRotatingGates
+    ]
+}
+
+text FortreeCity_Gym_Text_Winona { "Winona" }
+
 raw `
-FortreeCity_Gym_MapScripts::
-    map_script MAP_SCRIPT_ON_TRANSITION, FortreeCity_Gym_OnTransition
-    map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, FortreeCity_Gym_OnWarp
-    .byte 0
-
-FortreeCity_Gym_OnTransition:
-    special RotatingGate_InitPuzzle
-    setflag FLAG_TEMP_HIDE_FOLLOWER @ Hide follower bc of rotating gates
-    end
-
-FortreeCity_Gym_OnWarp:
-    map_script_2 VAR_TEMP_0, VAR_TEMP_0, FortreeCity_Gym_EventScript_InitRotatingGates
-    .2byte 0
 
 @ NOTE: This rotating gate puzzle makes use of VAR_TEMP_0 - VAR_TEMP_3
 FortreeCity_Gym_EventScript_InitRotatingGates::
@@ -24,14 +23,17 @@ FortreeCity_Gym_EventScript_Winona::
     specialvar VAR_RESULT, ShouldTryRematchBattle
     goto_if_eq VAR_RESULT, TRUE, FortreeCity_Gym_EventScript_WinonaRematch
     goto_if_unset FLAG_RECEIVED_TM_AERIAL_ACE, FortreeCity_Gym_EventScript_GiveAerialAce2
+    speakername FortreeCity_Gym_Text_Winona
     msgbox FortreeCity_Gym_Text_WinonaPostBattle, MSGBOX_DEFAULT
     release
     end
 
 FortreeCity_Gym_EventScript_WinonaDefeated::
+    speakername FortreeCity_Gym_Text_Winona
     message FortreeCity_Gym_Text_ReceivedFeatherBadge
     waitmessage
     call Common_EventScript_PlayGymBadgeFanfare
+    speakername FortreeCity_Gym_Text_Winona
     msgbox FortreeCity_Gym_Text_ExplainFeatherBadgeTakeThis, MSGBOX_DEFAULT
     setflag FLAG_DEFEATED_FORTREE_GYM
     setflag FLAG_BADGE06_GET
@@ -54,6 +56,7 @@ FortreeCity_Gym_EventScript_WinonaDefeated::
 FortreeCity_Gym_EventScript_GiveAerialAce2::
     giveitem ITEM_TM_AERIAL_ACE
     goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+    speakername FortreeCity_Gym_Text_Winona
     msgbox FortreeCity_Gym_Text_ExplainAerialAce, MSGBOX_DEFAULT
     setflag FLAG_RECEIVED_TM_AERIAL_ACE
     release
@@ -62,6 +65,7 @@ FortreeCity_Gym_EventScript_GiveAerialAce2::
 FortreeCity_Gym_EventScript_GiveAerialAce::
     giveitem ITEM_TM_AERIAL_ACE
     goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
+    speakername FortreeCity_Gym_Text_Winona
     msgbox FortreeCity_Gym_Text_ExplainAerialAce, MSGBOX_DEFAULT
     setflag FLAG_RECEIVED_TM_AERIAL_ACE
     return
@@ -176,8 +180,7 @@ text FortreeCity_Gym_Text_EdwardoDefeat {
 
 text FortreeCity_Gym_Text_EdwardoPostBattle {
     format("The world is huge, and there are countless tough Trainers.\p"
-    "I'm going to keep training and make\n"
-    "myself even stronger.")
+    "I'm going to keep training and make myself even stronger.")
 }
 
 text FortreeCity_Gym_Text_FlintIntro {
@@ -235,8 +238,7 @@ text FortreeCity_Gym_Text_DariusDefeat {
 
 text FortreeCity_Gym_Text_DariusPostBattle {
     format("Sure, you beat me all right.\n"
-    "But you'd better watch it! Our Leader\l"
-    "Winona's Pokémon are all business.")
+    "But you'd better watch it! Our Leader Winona's Pokémon are all business.")
 }
 
 text FortreeCity_Gym_Text_WinonaIntro {
@@ -247,11 +249,8 @@ text FortreeCity_Gym_Text_WinonaIntro {
 }
 
 text FortreeCity_Gym_Text_WinonaDefeat {
-    format("Never before have I seen a Trainer\n"
-    "command Pokémon with more grace\l"
-    "than I…\p"
-    "In recognition of your prowess,\n"
-    "I present to you this Gym Badge.")
+    format("Never before have I seen a Trainer command Pokémon with more grace than I…\p"
+    "In recognition of your prowess, I present to you this Gym Badge.")
 }
 
 text FortreeCity_Gym_Text_ReceivedFeatherBadge {
@@ -259,11 +258,8 @@ text FortreeCity_Gym_Text_ReceivedFeatherBadge {
 }
 
 text FortreeCity_Gym_Text_ExplainFeatherBadgeTakeThis {
-    format("With the Feather Badge, all Pokémon up\n"
-    "to LV 70, even those received through\l"
-    "trades, will obey your every command.\p"
-    "You will also be able to use\n"
-    "the HM move Fly outside of battle.\p"
+    format("With the Feather Badge, all Pokémon up to LV 70, even those received through trades, will obey your every command.\p"
+    "You will also be able to use the HM move Fly outside of battle.\p"
     "And this…\n"
     "This is a gift from me.")
 }
@@ -294,8 +290,7 @@ text FortreeCity_Gym_Text_GymStatueCertified {
 }
 
 text FortreeCity_Gym_Text_WinonaPreRematch {
-    format("WINONA: We humans can never escape\n"
-    "gravity's pull on the ground.\p"
+    format("We humans can never escape gravity's pull on the ground.\p"
     "But by striving for excellence, we have the power to soar!\p"
     "You have scaled the pinnacle as the reigning Champion.\p"
     "Please, allow me to see your power at full flight!")
@@ -306,17 +301,16 @@ text FortreeCity_Gym_Text_WinonaRematchDefeat {
 }
 
 text FortreeCity_Gym_Text_WinonaPostRematch {
-    format("WINONA: Even though I have lost, the wings of my heart remain unbroken.\p"
+    format("Even though I have lost, the wings of my heart remain unbroken.\p"
     "I can rise and soar again and yet again.\p"
     "I am convinced of it!")
 }
 
 text FortreeCity_Gym_Text_WinonaRematchNeedTwoMons {
-    format("WINONA: We humans can never escape gravity's pull on the ground.\p"
+    format("We humans can never escape gravity's pull on the ground.\p"
     "But by striving for excellence, we have the power to soar!\p"
     "You have scaled the pinnacle as the reigning Champion.\p"
-    "Please, allow me to see your power\n"
-    "at full flight!\p"
+    "Please, allow me to see your power at full flight!\p"
     "Oh, no… Do you have but one Pokémon with you?\p"
     "Please return with two Pokémon at the very least.")
 }

@@ -86,6 +86,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendanNorth::
     waitmovement 0
     applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
     waitmovement 0
+    speakername CommonName_Text_Rival
     msgbox RivalsHouse_2F_Text_BrendanWhoAreYou, MSGBOX_DEFAULT
     closemessage
     applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_BrendansHouse_2F_Movement_PlayerWatchBrendanNorth
@@ -98,6 +99,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendanSouth::
     waitmovement 0
     applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
     waitmovement 0
+    speakername CommonName_Text_Rival
     msgbox RivalsHouse_2F_Text_BrendanWhoAreYou, MSGBOX_DEFAULT
     closemessage
     applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_BrendansHouse_2F_Movement_PlayerWatchBrendanSouth
@@ -110,6 +112,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendanWest::
     waitmovement 0
     applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
     waitmovement 0
+    speakername CommonName_Text_Rival
     msgbox RivalsHouse_2F_Text_BrendanWhoAreYou, MSGBOX_DEFAULT
     closemessage
     applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_BrendansHouse_2F_Movement_PlayerWatchBrendanWest
@@ -122,6 +125,7 @@ LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendanEast::
     waitmovement 0
     applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
     waitmovement 0
+    speakername CommonName_Text_Rival
     msgbox RivalsHouse_2F_Text_BrendanWhoAreYou, MSGBOX_DEFAULT
     closemessage
     applymovement LOCALID_RIVAL, LittlerootTown_BrendansHouse_2F_Movement_BrendanWalkToPCEast
@@ -286,7 +290,7 @@ text PlayersHouse_2F_Text_ClockIsStopped {
 }
 
 text PlayersHouse_2F_Text_HowDoYouLikeYourRoom {
-    format("MOM: {PLAYER}, how do you like your new room?\p"
+    format("{PLAYER}, how do you like your new room?\p"
         "Good! Everything's put away neatly!\p"
         "They finished moving everything in downstairs, too.\p"
         "Pokémon movers are so convenient!\p"

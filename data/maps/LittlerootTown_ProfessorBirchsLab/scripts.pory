@@ -118,10 +118,12 @@ LittlerootTown_ProfessorBirchsLab_OnFrame:
 LittlerootTown_ProfessorBirchsLab_EventScript_GiveStarterEvent::
     lockall
     bufferleadmonspeciesname STR_VAR_1
+    speakername CommonName_Text_ProfBirch
     message LittlerootTown_ProfessorBirchsLab_Text_LikeYouToHavePokemon
     waitmessage
     playfanfare MUS_OBTAIN_ITEM
     waitfanfare
+    speakername CommonName_Text_ProfBirch
     msgbox LittlerootTown_ProfessorBirchsLab_Text_WhyNotGiveNicknameToMon, MSGBOX_YESNO
     goto_if_eq VAR_RESULT, YES, LittlerootTown_ProfessorBirchsLab_EventScript_NicknameStarter
     goto_if_eq VAR_RESULT, NO, LittlerootTown_ProfessorBirchsLab_EventScript_GoSeeRival
@@ -134,12 +136,14 @@ LittlerootTown_ProfessorBirchsLab_EventScript_NicknameStarter::
     end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_GoSeeRival::
+    speakername CommonName_Text_ProfBirch
     msgbox LittlerootTown_ProfessorBirchsLab_Text_MightBeGoodIdeaToGoSeeRival, MSGBOX_YESNO
     goto_if_eq VAR_RESULT, YES, LittlerootTown_ProfessorBirchsLab_EventScript_AgreeToSeeRival
     goto_if_eq VAR_RESULT, NO, LittlerootTown_ProfessorBirchsLab_EventScript_DeclineSeeingRival
     end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_AgreeToSeeRival::
+    speakername CommonName_Text_ProfBirch
     msgbox LittlerootTown_ProfessorBirchsLab_Text_GetRivalToTeachYou, MSGBOX_DEFAULT
     clearflag FLAG_HIDE_ROUTE_101_BOY
     setvar VAR_BIRCH_LAB_STATE, 3
@@ -147,6 +151,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_AgreeToSeeRival::
     end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_DeclineSeeingRival::
+    speakername CommonName_Text_ProfBirch
     msgbox LittlerootTown_ProfessorBirchsLab_Text_DontBeThatWay, MSGBOX_YESNO
     goto_if_eq VAR_RESULT, YES, LittlerootTown_ProfessorBirchsLab_EventScript_AgreeToSeeRival
     goto_if_eq VAR_RESULT, NO, LittlerootTown_ProfessorBirchsLab_EventScript_DeclineSeeingRival
@@ -206,6 +211,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ChooseJohtoStarter::
     lockall
     applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_ProfessorBirchsLab_Movement_PlayerEnterLabForJohtoStarter
     waitmovement 0
+    speakername CommonName_Text_ProfBirch
     msgbox LittlerootTown_ProfessorBirchsLab_Text_CompletedDexChoosePokemon, MSGBOX_DEFAULT
     setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 5
     releaseall
@@ -247,6 +253,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_Cyndaquil::
     applymovement LOCALID_BIRCH, Common_Movement_WalkInPlaceFasterRight
     waitmovement 0
     showmonpic SPECIES_PANSEAR, 10, 3
+    speakername CommonName_Text_ProfBirch
     msgbox LittlerootTown_ProfessorBirchsLab_Text_YoullTakeCyndaquil, MSGBOX_YESNO
     goto_if_eq VAR_RESULT, NO, LittlerootTown_ProfessorBirchsLab_EventScript_TakeYourTime
     goto LittlerootTown_ProfessorBirchsLab_EventScript_GiveCyndaquil
@@ -258,6 +265,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_Totodile::
     applymovement LOCALID_BIRCH, Common_Movement_WalkInPlaceFasterRight
     waitmovement 0
     showmonpic SPECIES_PANPOUR, 10, 3
+    speakername CommonName_Text_ProfBirch
     msgbox LittlerootTown_ProfessorBirchsLab_Text_YoullTakeTotodile, MSGBOX_YESNO
     goto_if_eq VAR_RESULT, NO, LittlerootTown_ProfessorBirchsLab_EventScript_TakeYourTime
     goto LittlerootTown_ProfessorBirchsLab_EventScript_GiveTotodile
@@ -269,6 +277,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_Chikorita::
     applymovement LOCALID_BIRCH, Common_Movement_WalkInPlaceFasterRight
     waitmovement 0
     showmonpic SPECIES_PANSAGE, 10, 3
+    speakername CommonName_Text_ProfBirch
     msgbox LittlerootTown_ProfessorBirchsLab_Text_YoullTakeChikorita, MSGBOX_YESNO
     goto_if_eq VAR_RESULT, NO, LittlerootTown_ProfessorBirchsLab_EventScript_TakeYourTime
     goto LittlerootTown_ProfessorBirchsLab_EventScript_GiveChikorita
@@ -281,6 +290,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_AlreadyChoseJohtoStarter::
 
 LittlerootTown_ProfessorBirchsLab_EventScript_TakeYourTime::
     hidemonpic
+    speakername CommonName_Text_ProfBirch
     msgbox LittlerootTown_ProfessorBirchsLab_Text_TakeYourTimeAllInvaluable, MSGBOX_DEFAULT
     releaseall
     end
@@ -321,6 +331,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_CyndaquilTransferredToPC::
 
 LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedCyndaquil::
     hidemonpic
+    speakername CommonName_Text_ProfBirch
     msgbox LittlerootTown_ProfessorBirchsLab_Text_GrassyPatchWaiting, MSGBOX_DEFAULT
     setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6
     releaseall
@@ -362,6 +373,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_TotodileTransferredToPC::
 
 LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedTotodile::
     hidemonpic
+    speakername CommonName_Text_ProfBirch
     msgbox LittlerootTown_ProfessorBirchsLab_Text_GrassyPatchWaiting, MSGBOX_DEFAULT
     setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6
     releaseall
@@ -403,6 +415,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ChikoritaTransferredToPC::
 
 LittlerootTown_ProfessorBirchsLab_EventScript_ReceivedChikorita::
     hidemonpic
+    speakername CommonName_Text_ProfBirch
     msgbox LittlerootTown_ProfessorBirchsLab_Text_GrassyPatchWaiting, MSGBOX_DEFAULT
     setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6
     releaseall
@@ -426,11 +439,13 @@ LittlerootTown_ProfessorBirchsLab_EventScript_Birch::
     end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_CanHaveAnyOneOfRarePokemon::
+    speakername CommonName_Text_ProfBirch
     msgbox LittlerootTown_ProfessorBirchsLab_Text_CanHaveAnyOneOfRarePokemon, MSGBOX_DEFAULT
     release
     end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_GrassyPatchWaiting::
+    speakername CommonName_Text_ProfBirch
     msgbox LittlerootTown_ProfessorBirchsLab_Text_GrassyPatchWaiting2, MSGBOX_DEFAULT
     release
     end
@@ -440,6 +455,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_TryRatePokedexOrRegister::
     goto_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 3, ProfBirch_EventScript_RatePokedexOrRegister
     goto_if_ge VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6, ProfBirch_EventScript_RatePokedexOrRegister
     goto_if_eq VAR_BIRCH_LAB_STATE, 5, LittlerootTown_ProfessorBirchsLab_EventScript_PokemonAwait
+    speakername CommonName_Text_ProfBirch
     msgbox LittlerootTown_ProfessorBirchsLab_Text_BirchRivalGoneHome, MSGBOX_DEFAULT
     release
     end
@@ -459,9 +475,11 @@ EventScript_RegisterProfBirch::
     end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex::
+    speakername CommonName_Text_ProfBirch
     msgbox LittlerootTown_ProfessorBirchsLab_Text_HeardYouBeatRivalTakePokedex, MSGBOX_DEFAULT
     special HealPlayerParty
     call LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokedex
+    speakername CommonName_Text_ProfBirch
     msgbox LittlerootTown_ProfessorBirchsLab_Text_ExplainPokedex, MSGBOX_DEFAULT
     closemessage
     applymovement LOCALID_RIVAL, LittlerootTown_ProfessorBirchsLab_Movement_RivalApproachPlayer
@@ -480,17 +498,21 @@ LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex::
     end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_MayGivePokeBalls::
+    speakername CommonName_Text_May
     msgbox LittlerootTown_ProfessorBirchsLab_Text_MayGotPokedexTooTakeThese, MSGBOX_DEFAULT
     giveitem ITEM_POKE_BALL, 5
     call_if_eq VAR_RESULT, FALSE, LittlerootTown_ProfessorBirchsLab_EventScript_MayNoRoomForPokeBalls
+    speakername CommonName_Text_May
     msgbox LittlerootTown_ProfessorBirchsLab_Text_CatchCutePokemonWithPokeBalls, MSGBOX_DEFAULT
     setvar VAR_RESULT, 0
     return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_BrendanGivePokeBalls::
+    speakername CommonName_Text_Brendan
     msgbox LittlerootTown_ProfessorBirchsLab_Text_BrendanGotPokedexTooTakeThese, MSGBOX_DEFAULT
     giveitem ITEM_POKE_BALL, 5
     call_if_eq VAR_RESULT, FALSE, LittlerootTown_ProfessorBirchsLab_EventScript_BrendanNoRoomForPokeBalls
+    speakername CommonName_Text_Brendan
     msgbox LittlerootTown_ProfessorBirchsLab_Text_CatchCoolPokemonWithPokeBalls, MSGBOX_DEFAULT
     setvar VAR_RESULT, 1
     return
@@ -506,15 +528,18 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokedex::
     return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_PokemonAwait::
+    speakername CommonName_Text_ProfBirch
     msgbox LittlerootTown_ProfessorBirchsLab_Text_CountlessPokemonAwait, MSGBOX_DEFAULT
     release
     end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_MayNoRoomForPokeBalls::
+    speakername CommonName_Text_Rival
     msgbox LittlerootTown_ProfessorBirchsLab_Text_OhYourBagsFull, MSGBOX_DEFAULT
     return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_BrendanNoRoomForPokeBalls::
+    speakername CommonName_Text_Rival
     msgbox LittlerootTown_ProfessorBirchsLab_Text_HeyYourBagsFull, MSGBOX_DEFAULT
     return
 
@@ -543,10 +568,12 @@ LittlerootTown_ProfessorBirchsLab_EventScript_RivalFuturePlans::
     end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_MayWhatNextImStayingHere::
+    speakername CommonName_Text_Rival
     msgbox LittlerootTown_ProfessorBirchsLab_Text_MayWhatNextImStayingHere, MSGBOX_DEFAULT
     return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_BrendanPreferCollectingSlowly:
+    speakername CommonName_Text_Rival
     msgbox LittlerootTown_ProfessorBirchsLab_Text_BrendanPreferCollectingSlowly, MSGBOX_DEFAULT
     return
 
@@ -558,10 +585,12 @@ LittlerootTown_ProfessorBirchsLab_EventScript_RivalHaveYouGoneToBattleFrontier::
     end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_MayHaveYouGoneToBattleFrontier::
+    speakername CommonName_Text_Rival
     msgbox LittlerootTown_ProfessorBirchsLab_Text_MayHaveYouGoneToBattleFrontier, MSGBOX_DEFAULT
     return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_BrendanHaveYouGoneToBattleFrontier::
+    speakername CommonName_Text_Rival
     msgbox LittlerootTown_ProfessorBirchsLab_Text_BrendanHaveYouGoneToBattleFrontier, MSGBOX_DEFAULT
     return
 
@@ -573,10 +602,12 @@ LittlerootTown_ProfessorBirchsLab_EventScript_RivalTakeBreakFromFieldwork::
     end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_MayTakeBreakFromFieldwork::
+    speakername CommonName_Text_Rival
     msgbox LittlerootTown_ProfessorBirchsLab_Text_MayTakeBreakFromFieldwork, MSGBOX_DEFAULT
     return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_BrendanTakeBreakFromFieldwork::
+    speakername CommonName_Text_Rival
     msgbox LittlerootTown_ProfessorBirchsLab_Text_BrendanTakeBreakFromFieldwork, MSGBOX_DEFAULT
     return
 
@@ -611,7 +642,7 @@ text LittlerootTown_ProfessorBirchsLab_Text_BirchEnjoysRivalsHelpToo {
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_LikeYouToHavePokemon {
-    format("PROF. BIRCH: So, {PLAYER}{KUN}.\p"
+    format("So, {PLAYER}{KUN}.\p"
     "I've heard so much about you from your father.\p"
     "I've heard that you don't have your own Pokémon yet.\p"
     "But the way you battled earlier, you pulled it off with aplomb!\p"
@@ -623,11 +654,11 @@ text LittlerootTown_ProfessorBirchsLab_Text_LikeYouToHavePokemon {
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_WhyNotGiveNicknameToMon {
-    format("PROF. BIRCH: While you're at it, why not give a nickname to that {STR_VAR_1}?")
+    format("While you're at it, why not give a nickname to that {STR_VAR_1}?")
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_MightBeGoodIdeaToGoSeeRival {
-    format("PROF. BIRCH: If you work at Pokémon\n"
+    format("If you work at Pokémon\n"
     "and gain experience, I think you'll make\l"
     "an extremely good Trainer.\p"
     "My kid, {RIVAL}, is also studying\n"
@@ -637,25 +668,25 @@ text LittlerootTown_ProfessorBirchsLab_Text_MightBeGoodIdeaToGoSeeRival {
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_GetRivalToTeachYou {
-    format("PROF. BIRCH: Great!\n"
+    format("Great!\n"
     "{RIVAL} should be happy, too.\p"
     "Get {RIVAL} to teach you what it means to be a Trainer.")
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_DontBeThatWay {
-    format("PROF. BIRCH: Oh, don't be that way.\n"
+    format("Oh, don't be that way.\n"
     "You should go meet my kid.")
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_BirchRivalGoneHome {
-    format("PROF. BIRCH: {RIVAL}?\n"
+    format("{RIVAL}?\n"
     "Gone home, I think.\p"
     "Or maybe that kid's scrabbling around in tall grass again somewhere…\p"
     "If you or your Pokémon get tired, you should get some rest at home.")
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_HeardYouBeatRivalTakePokedex {
-    format("PROF. BIRCH: Oh, hi, {PLAYER}{KUN}!\p"
+    format("Oh, hi, {PLAYER}{KUN}!\p"
     "I heard you beat {RIVAL} on your first try. That's excellent!\p"
     "{RIVAL}'s been helping with my research for a long time.\p"
     "{RIVAL} has an extensive history as a Trainer already.\p"
@@ -667,7 +698,7 @@ text LittlerootTown_ProfessorBirchsLab_Text_ReceivedPokedex {
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_ExplainPokedex {
-    format("PROF. BIRCH: The Pokédex is a high-tech\n"
+    format("The Pokédex is a high-tech\n"
     "tool that automatically makes a record\l"
     "of any Pokémon you meet or catch.\p"
     "My kid, {RIVAL}, goes everywhere with it.\p"
@@ -675,19 +706,19 @@ text LittlerootTown_ProfessorBirchsLab_Text_ExplainPokedex {
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_CountlessPokemonAwait {
-    format("PROF. BIRCH: Countless Pokémon await you!\p"
+    format("Countless Pokémon await you!\p"
     "Argh, I'm getting the itch to get out and do fieldwork again!")
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_MayGotPokedexTooTakeThese {
-    format("MAY: Oh, wow, {PLAYER}{KUN}!\n"
+    format("Oh, wow, {PLAYER}{KUN}!\n"
     "You got a Pokédex, too!\p"
     "That's great! Just like me!\n"
     "I've got something for you, too!")
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_CatchCutePokemonWithPokeBalls {
-    format("MAY: It's fun if you can get a lot of Pokémon!\p"
+    format("It's fun if you can get a lot of Pokémon!\p"
     "I'm going to look all over the place because I want different Pokémon.\p"
     "If I find any cute Pokémon, I'll catch them with Poké Balls!")
 }
@@ -697,24 +728,26 @@ text LittlerootTown_ProfessorBirchsLab_Text_OhYourBagsFull {
 }
 
 script LittlerootTown_ProfessorBirchsLab_EventScript_MayWhereShouldIGoNext {
-    msgbox(format("MAY: I wonder where I should go look for Pokémon next?"), MSGBOX_DEFAULT)
+    speakername(CommonName_Text_Rival)
+    msgbox(format("I wonder where I should go look for Pokémon next?"), MSGBOX_DEFAULT)
     return
 }
 
 script LittlerootTown_ProfessorBirchsLab_EventScript_BrendanWhereShouldIGoNext {
-    msgbox(format("BRENDAN: Where should I look for Pokémon next…"), MSGBOX_DEFAULT)
+    speakername(CommonName_Text_Rival)
+    msgbox(format("Where should I look for Pokémon next…"), MSGBOX_DEFAULT)
     return
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_BrendanGotPokedexTooTakeThese {
-    format("BRENDAN: Huh…\n"
+    format("Huh…\n"
     "So you got a Pokédex, too.\p"
     "Well then, here.\n"
     "I'll give you these.")
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_CatchCoolPokemonWithPokeBalls {
-    format("BRENDAN: You know it's more fun to have a whole bunch of Pokémon.\p"
+    format("You know it's more fun to have a whole bunch of Pokémon.\p"
     "I'm going to explore all over the place to find different Pokémon.\p"
     "If I find any cool Pokémon, you bet I'll try to get them with Poké Balls.")
 }
@@ -742,24 +775,24 @@ script LittlerootTown_ProfessorBirchsLab_EventScript_Machine {
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_GrassyPatchWaiting2 {
-    format("PROF. BIRCH: But listen.\n"
+    format("But listen.\n"
     "You've become the Champion, but your Pokémon journey isn't over.\p"
     "There is no end to the road that is Pokémon.\p"
     "Somewhere, there is a grassy patch that's waiting for you!")
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_MayTakeBreakFromFieldwork {
-    format("MAY: I think I'll take a short break from fieldwork.\p"
+    format("I think I'll take a short break from fieldwork.\p"
     "I think I'll help the Prof here for a while.")
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_BrendanTakeBreakFromFieldwork {
-    format("BRENDAN: For the time being, I'm taking a break from fieldwork.\p"
+    format("For the time being, I'm taking a break from fieldwork.\p"
     "I'll be helping out the Prof here for a while.")
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_CompletedDexChoosePokemon {
-    format("PROF. BIRCH: Oh, {PLAYER}{KUN}!\n"
+    format("Oh, {PLAYER}{KUN}!\n"
     "Let's have a look at your Pokédex.\p"
     "… … … … … …\n"
     "… … … … … …\p"
@@ -773,35 +806,35 @@ text LittlerootTown_ProfessorBirchsLab_Text_CompletedDexChoosePokemon {
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_CanHaveAnyOneOfRarePokemon {
-    format("PROF. BIRCH: These are rare Pokémon only found in another region!\p"
+    format("These are rare Pokémon only found in another region!\p"
     "You can have any one of these three Pokémon!")
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_YoullTakeCyndaquil {
-    format("PROF. BIRCH: The Fire Pokémon Pansear caught your eye!\p"
+    format("The Fire Pokémon Pansear caught your eye!\p"
     "You're as sharp as ever!\p"
     "So the Pansear is your choice?")
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_YoullTakeTotodile {
-    format("PROF. BIRCH: The Water Pokémon Panpour is your choice!\p"
+    format("The Water Pokémon Panpour is your choice!\p"
     "You know how to pick a good one.\p"
     "So, you'll take the Panpour?")
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_YoullTakeChikorita {
-    format("PROF. BIRCH: The Grass Pokémon Pansage is your choice!\p"
+    format("The Grass Pokémon Pansage is your choice!\p"
     "You sure know what you're doing.\p"
     "So, you'll take the Pansage?")
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_TakeYourTimeAllInvaluable {
-    format("PROF. BIRCH: Take your time before you decide.\p"
+    format("Take your time before you decide.\p"
     "They're all invaluable Pokémon.")
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_PickedFinePokemon {
-    format("PROF. BIRCH: I see!\n"
+    format("I see!\n"
     "You picked a fine Pokémon!")
 }
 
@@ -840,21 +873,17 @@ text LittlerootTown_ProfessorBirchsLab_Text_MayWhatNextImStayingHere {
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_BrendanPreferCollectingSlowly {
-    format("BRENDAN: Rather than collecting\n"
-    "Pokémon, I prefer slowly and \l"
-    "steadily raising the one I chose.")
+    format("BRENDAN: Rather than collecting Pokémon, I prefer slowly and steadily raising the one I chose.")
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_MayHaveYouGoneToBattleFrontier {
-    format("MAY: Oh, hi, {PLAYER}{KUN}!\n"
-    "Have you gone to that place,\l"
-    "the Battle Frontier?")
+    format("Oh, hi, {PLAYER}{KUN}!\n"
+    "Have you gone to that place, the Battle Frontier?")
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_BrendanHaveYouGoneToBattleFrontier {
-    format("BRENDAN: Hey, {PLAYER}!\n"
-    "Have you gone out to that place,\l"
-    "the Battle Frontier?")
+    format("Hey, {PLAYER}!\n"
+    "Have you gone out to that place, the Battle Frontier?")
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_ScottAboardSSTidalCall {
@@ -877,7 +906,8 @@ text LittlerootTown_ProfessorBirchsLab_Text_ScottAboardSSTidalCall {
 script LittlerootTown_ProfessorBirchsLab_EventScript_UpgradeToNationalDex {
     lockall
     delay(30)
-    msgbox(format("PROF. BIRCH: Now…\p"
+    speakername(CommonName_Text_ProfBirch)
+    msgbox(format("Now…\p"
         "{PLAYER}{KUN} and {RIVAL}, I've had the two of you help me study Pokémon.\p"
         "Your accomplishments put me to shame, but that also pushes me to learn more.\p"
         "Here, let me see your Pokédex units."), MSGBOX_DEFAULT)
@@ -907,7 +937,8 @@ script LittlerootTown_ProfessorBirchsLab_EventScript_UpgradeToNationalDex {
     applymovement(LOCALID_RIVAL, Common_Movement_WalkInPlaceFasterUp)
     applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp)
     waitmovement(0)
-    msgbox(format("PROF. BIRCH: Okay, all done!"), MSGBOX_DEFAULT)
+    speakername(CommonName_Text_ProfBirch)
+    msgbox(format("Okay, all done!"), MSGBOX_DEFAULT)
     playfanfare(MUS_OBTAIN_ITEM)
     message(format("{PLAYER} received Pokédex charms!"))
     waitmessage
@@ -915,6 +946,7 @@ script LittlerootTown_ProfessorBirchsLab_EventScript_UpgradeToNationalDex {
     giveitem(ITEM_CATCHING_CHARM)
     giveitem(ITEM_OVAL_CHARM)
     giveitem(ITEM_SHINY_CHARM)
+    speakername(CommonName_Text_ProfBirch)
     msgbox(LittlerootTown_ProfessorBirchsLab_Text_GrassyPatchWaiting2, MSGBOX_DEFAULT)
     closemessage
     setflag(FLAG_HIDE_LITTLEROOT_TOWN_BIRCH)
@@ -926,7 +958,8 @@ script LittlerootTown_ProfessorBirchsLab_EventScript_UpgradeToNationalDex {
 }
 
 script LittlerootTown_ProfessorBirchsLab_EventScript_MayUpgradeComment {
-    msgbox(format("MAY: Eheheh!\p"
+    speakername(CommonName_Text_Rival)
+    msgbox(format("Eheheh!\p"
         "I wonder what he's going to do with my Pokédex?\p"
         "It's because you went out and caught so many Pokémon, {PLAYER}{KUN}!"), MSGBOX_DEFAULT)
     closemessage
@@ -934,6 +967,7 @@ script LittlerootTown_ProfessorBirchsLab_EventScript_MayUpgradeComment {
 }
 
 script LittlerootTown_ProfessorBirchsLab_EventScript_BrendanUpgradeComment {
+    speakername(CommonName_Text_Rival)
     msgbox(format("BRENDAN: I went out all over Hoenn and checked out Pokémon.\p"
         "You can thank me for whatever Dad does with the Pokédex.\p"
         "Yep, you're lucky, {PLAYER}!"), MSGBOX_DEFAULT)
@@ -963,19 +997,22 @@ script LittlerootTown_ProfessorBirchsLab_EventScript_UnchosenStarter {
     if (var(VAR_STARTER_MON) == 0) {
         setseenmon(SPECIES_MUDKIP)
         playmoncry(SPECIES_MUDKIP, CRY_MODE_NORMAL)
-        msgbox(format("MUDKIP: Kippa?"), MSGBOX_DEFAULT)
+        speakername("Mudkip")
+        msgbox(format("Kippa?"), MSGBOX_DEFAULT)
         waitmoncry
         release
     } elif (var(VAR_STARTER_MON) == 1) {
         setseenmon(SPECIES_TREECKO)
         playmoncry(SPECIES_TREECKO, CRY_MODE_NORMAL)
-        msgbox(format("TREECKO: Gugugugu!"), MSGBOX_DEFAULT)
+        speakername("Treecko")
+        msgbox(format("Gugugugu!"), MSGBOX_DEFAULT)
         waitmoncry
         release
     } else {
         setseenmon(SPECIES_TORCHIC)
         playmoncry(SPECIES_TORCHIC, CRY_MODE_NORMAL)
-        msgbox(format("TORCHIC: Ca-caw!"), MSGBOX_DEFAULT)
+        speakername("Torchic")
+        msgbox(format("Ca-caw!"), MSGBOX_DEFAULT)
         waitmoncry
         release
     }

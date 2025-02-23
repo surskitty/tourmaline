@@ -1,0 +1,38 @@
+text CommonName_Text_Mom { "Mom" }
+
+text CommonName_Text_Rival { "{RIVAL}" }
+
+text CommonName_Text_Dad { "Dad" }
+
+text CommonName_Text_Interviewer { "Interviewer" }
+
+text CommonName_Text_Brendan { "Brendan" }
+
+text CommonName_Text_May { "May" }
+
+text CommonName_Text_ProfBirch { "Prof. Birch" }
+
+text CommonName_Text_ProfCozmo { "Prof. Cozmo" }
+
+text CommonName_Text_Wallace { "Wallace" }
+
+text CommonName_Text_Steven { "Steven" }
+
+text CommonName_Text_Archie { "Archie" }
+
+text CommonName_Text_Matt { "Matt" }
+
+text CommonName_Text_Maxie { "Maxie" }
+
+text CommonName_Text_WallysDad { "Wally's Dad" }
+
+text CommonName_Text_Wally { "Wally" }
+
+text CommonName_Text_Scott { "Scott" }
+
+text CommonName_Text_MrBriney { "Mr. Briney" }
+
+text CommonName_Text_Clerk { "Clerk" }
+
+text CommonName_Text_Nurse { "Nurse" }
+

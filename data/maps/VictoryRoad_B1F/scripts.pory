@@ -78,8 +78,7 @@ text VictoryRoad_B1F_Text_MichellePostBattle {
 }
 
 text VictoryRoad_B1F_Text_MitchellIntro {
-	format("My Pokémon are cosmically\n"
-	"awe inspiring!")
+	format("My Pokémon are cosmically awe inspiring!")
 }
 
 text VictoryRoad_B1F_Text_MitchellDefeat {
@@ -87,9 +86,7 @@ text VictoryRoad_B1F_Text_MitchellDefeat {
 }
 
 text VictoryRoad_B1F_Text_MitchellPostBattle {
-	format("Even outside of battle, I sense\n"
-	"incredible power emanating from you\l"
-	"and your Pokémon.")
+	format("Even outside of battle, I sense incredible power emanating from you and your Pokémon.")
 }
 
 text VictoryRoad_B1F_Text_HalleIntro {
@@ -104,9 +101,7 @@ text VictoryRoad_B1F_Text_HalleDefeat {
 
 text VictoryRoad_B1F_Text_HallePostBattle {
 	format("Sure, this is Victory Road.\p"
-	"But it's not all that different from\n"
-	"the path you've taken so far.\p"
-	"Try to enjoy things the rest of\n"
-	"the way!")
+	"But it's not all that different from the path you've taken so far.\p"
+	"Try to enjoy things the rest of the way!")
 }
 

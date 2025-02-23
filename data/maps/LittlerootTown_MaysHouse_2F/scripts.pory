@@ -85,6 +85,7 @@ LittlerootTown_MaysHouse_2F_EventScript_MeetMayNorth::
     waitmovement 0
     applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
     waitmovement 0
+    speakername CommonName_Text_May
     msgbox RivalsHouse_2F_Text_MayWhoAreYou, MSGBOX_DEFAULT
     closemessage
     applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_MaysHouse_2F_Movement_PlayerWatchMayNorth
@@ -97,6 +98,7 @@ LittlerootTown_MaysHouse_2F_EventScript_MeetMaySouth::
     waitmovement 0
     applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
     waitmovement 0
+    speakername CommonName_Text_May
     msgbox RivalsHouse_2F_Text_MayWhoAreYou, MSGBOX_DEFAULT
     closemessage
     applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_MaysHouse_2F_Movement_PlayerWatchMaySouth
@@ -109,6 +111,7 @@ LittlerootTown_MaysHouse_2F_EventScript_MeetMayWest::
     waitmovement 0
     applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
     waitmovement 0
+    speakername CommonName_Text_May
     msgbox RivalsHouse_2F_Text_MayWhoAreYou, MSGBOX_DEFAULT
     closemessage
     applymovement LOCALID_RIVAL, LittlerootTown_MaysHouse_2F_Movement_MayWalkToPCWest
@@ -120,6 +123,7 @@ LittlerootTown_MaysHouse_2F_EventScript_MeetMayEast::
     waitmovement 0
     applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
     waitmovement 0
+    speakername CommonName_Text_May
     msgbox RivalsHouse_2F_Text_MayWhoAreYou, MSGBOX_DEFAULT
     closemessage
     applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_MaysHouse_2F_Movement_PlayerWatchMayEast
@@ -245,11 +249,13 @@ RivalsHouse_2F_EventScript_Rival::
     end
 
 RivalsHouse_2F_EventScript_May::
+    speakername CommonName_Text_May
     msgbox RivalsHouse_2F_Text_MayGettingReady, MSGBOX_DEFAULT
     releaseall
     end
 
 RivalsHouse_2F_EventScript_Brendan::
+    speakername CommonName_Text_Brendan
     msgbox RivalsHouse_2F_Text_BrendanGettingReady, MSGBOX_DEFAULT
     releaseall
     end
@@ -266,19 +272,23 @@ RivalsHouse_2F_EventScript_RivalPostLilycove::
 
 RivalsHouse_2F_EventScript_MayPostLilycove::
     goto_if_set FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE, RivalsHouse_2F_EventScript_MayWhereShouldIGoNext
+    speakername CommonName_Text_May
     msgbox RivalsHouse_2F_Text_MayJustCheckingMyPokedex, MSGBOX_DEFAULT
     return
 
 RivalsHouse_2F_EventScript_BrendanPostLilycove::
+    speakername CommonName_Text_Brendan
     goto_if_set FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE, RivalsHouse_2F_EventScript_BrendanWhereShouldIGoNext
     msgbox RivalsHouse_2F_Text_BrendanJustCheckingMyPokedex, MSGBOX_DEFAULT
     return
 
 RivalsHouse_2F_EventScript_MayWhereShouldIGoNext::
+    speakername CommonName_Text_May
     msgbox RivalsHouse_2F_Text_MayWhereShouldIGoNext, MSGBOX_DEFAULT
     return
 
 RivalsHouse_2F_EventScript_BrendanWhereShouldIGoNext::
+    speakername CommonName_Text_Brendan
     msgbox RivalsHouse_2F_Text_BrendanWhereShouldIGoNext, MSGBOX_DEFAULT
     return
 
@@ -367,7 +377,7 @@ text RivalsHouse_2F_Text_ItsRivalsPokeBall {
 }
 
 text RivalsHouse_2F_Text_MayJustCheckingMyPokedex {
-    format("MAY: {PLAYER}{KUN}!\p"
+    format("{PLAYER}{KUN}!\p"
         "I was just checking my Pokédex.\p"
         "There's still a lot of Pokémon that I've seen but haven't caught.\p"
         "And there are many others that I think will evolve.\p"
@@ -375,19 +385,19 @@ text RivalsHouse_2F_Text_MayJustCheckingMyPokedex {
 }
 
 text RivalsHouse_2F_Text_MayWhereShouldIGoNext {
-    format("MAY: I wonder where I should go catch some Pokémon next?\p"
+    format("I wonder where I should go catch some Pokémon next?\p"
         "Wouldn't it be funny if we ran into each other, {PLAYER}{KUN}?")
 }
 
 text RivalsHouse_2F_Text_BrendanJustCheckingMyPokedex {
-    format("BRENDAN: Hey, it's {PLAYER}.\p"
+    format("Hey, it's {PLAYER}.\p"
         "I was just checking out my Pokédex.\p"
         "There are still many Pokémon that I need to catch, I know, but this is looking pretty good.\p"
         "Checking this Pokédex out gives me the urge to hit the road again.")
 }
 
 text RivalsHouse_2F_Text_BrendanWhereShouldIGoNext {
-    format("BRENDAN: I'm having a hard time deciding where I should catch Pokémon next.\p"
+    format("I'm having a hard time deciding where I should catch Pokémon next.\p"
         "Hey, {PLAYER}, if I see you while I'm out catching Pokémon, I can pitch you a battle if you'd like.")
 }
 

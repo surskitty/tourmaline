@@ -39,6 +39,7 @@ ProfBirch_EventScript_RatePokedexOrRegister::
 	goto_if_unset FLAG_ENABLE_PROF_BIRCH_MATCH_CALL, EventScript_RegisterProfBirch
 
 ProfBirch_EventScript_AskRatePokedex::
+    speakername CommonName_Text_ProfBirch
 	msgbox gBirchDexRatingText_AreYouCurious, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, ProfBirch_EventScript_DeclineRating
 	call ProfBirch_EventScript_RatePokedex
@@ -46,6 +47,7 @@ ProfBirch_EventScript_AskRatePokedex::
 	end
 
 ProfBirch_EventScript_DeclineRating::
+    speakername CommonName_Text_ProfBirch
 	msgbox gBirchDexRatingText_Cancel, MSGBOX_DEFAULT
 	release
 	end
@@ -74,5 +76,6 @@ ProfBirch_EventScript_RatePokedex::
 	copyvar VAR_0x8009, VAR_0x8006
 	buffernumberstring STR_VAR_1, VAR_0x8008  @ Num National seen
 	buffernumberstring STR_VAR_2, VAR_0x8009  @ Num National caught
+    speakername CommonName_Text_ProfBirch
 	msgbox gBirchDexRatingText_OnANationwideBasis, MSGBOX_DEFAULT
 	return

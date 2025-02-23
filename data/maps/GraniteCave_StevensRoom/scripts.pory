@@ -11,13 +11,16 @@ raw `
 GraniteCave_StevensRoom_EventScript_Steven::
 	lock
 	faceplayer
+	speakername CommonName_Text_Steven
 	msgbox GraniteCave_StevensRoom_Text_ImStevenLetterForMe, MSGBOX_DEFAULT
 	setvar VAR_0x8004, ITEM_LETTER
 	call Common_EventScript_PlayerHandedOverTheItem
 	setflag FLAG_DELIVERED_STEVEN_LETTER
+	speakername CommonName_Text_Steven
 	msgbox GraniteCave_StevensRoom_Text_ThankYouTakeThis, MSGBOX_DEFAULT
 	giveitem ITEM_TM_STEEL_WING
 	call_if_eq VAR_RESULT, FALSE, GraniteCave_StevensRoom_EventScript_BagFull
+	speakername CommonName_Text_Steven
 	msgbox GraniteCave_StevensRoom_Text_CouldBecomeChampionLetsRegister, MSGBOX_DEFAULT
 	closemessage
 	delay 30
@@ -27,6 +30,7 @@ GraniteCave_StevensRoom_EventScript_Steven::
 	closemessage
 	delay 30
 	setflag FLAG_REGISTERED_STEVEN_POKENAV
+	speakername CommonName_Text_Steven
 	msgbox GraniteCave_StevensRoom_Text_IveGotToHurryAlong, MSGBOX_DEFAULT
 	closemessage
 	call_if_eq VAR_FACING, DIR_NORTH, GraniteCave_StevensRoom_EventScript_StevenExitNorth
@@ -89,37 +93,28 @@ GraniteCave_StevensRoom_Movement_StevenExitSouth:
 
 text GraniteCave_StevensRoom_Text_ImStevenLetterForMe {
 	format("My name is Steven.\p"
-	"I'm interested in rare stones,\n"
-	"so I travel here and there.\p"
+	"I'm interested in rare stones, so I travel here and there.\p"
 	"Oh?\n"
 	"A Letter for me?")
 }
 
 text GraniteCave_StevensRoom_Text_ThankYouTakeThis {
-	format("STEVEN: Okay, thank you.\p"
-	"You went through all this trouble to\n"
-	"deliver that. I need to thank you.\p"
+	format("Okay, thank you.\p"
+	"You went through all this trouble to deliver that. I need to thank you.\p"
 	"Let me see…\n"
 	"I'll give you this TM.\p"
-	"It contains my favorite move,\n"
-	"Steel Wing.")
+	"It contains my favorite move, Steel Wing.")
 }
 
 text GraniteCave_StevensRoom_Text_CouldBecomeChampionLetsRegister {
-	format("STEVEN: Your Pokémon appear quite\n"
-	"capable.\p"
-	"If you keep training, you could even\n"
-	"become the Champion of the Pokémon\l"
-	"League one day. That's what I think.\p"
-	"I know, since we've gotten to know each\n"
-	"other, let's register one another in\l"
-	"our Pokénavs.\p"
+	format("Your Pokémon appear quite capable.\p"
+	"If you keep training, you could even become the Champion of the Pokémon League one day. That's what I think.\p"
+	"I know, since we've gotten to know each other, let's register one another in our Pokénavs.\p"
 	"… … … … … …")
 }
 
 text GraniteCave_StevensRoom_Text_RegisteredSteven {
-	format("Registered Steven\n"
-	"in the Pokénav.")
+	format("Registered Steven in the Pokénav.")
 }
 
 text GraniteCave_StevensRoom_Text_IveGotToHurryAlong {

@@ -500,8 +500,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(AZURILL)",
-      "x": 28,
-      "y": 3,
+      "x": 21,
+      "y": 7,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 5,

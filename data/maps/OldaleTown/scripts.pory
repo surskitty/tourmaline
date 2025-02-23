@@ -256,6 +256,7 @@ OldaleTown_EventScript_RivalTrigger3::
     end
 
 OldaleTown_EventScript_ShowRivalMessage::
+    speakername CommonName_Text_Rival
     checkplayergender
     goto_if_eq VAR_RESULT, MALE, OldaleTown_EventScript_ShowMayMessage
     goto_if_eq VAR_RESULT, FEMALE, OldaleTown_EventScript_ShowBrendanMessage
@@ -377,14 +378,13 @@ text OldaleTown_Text_FinishedSketchingFootprints {
 }
 
 text OldaleTown_Text_MayLetsGoBack {
-    format("MAY: {PLAYER}{KUN}!\n"
+    format("{PLAYER}{KUN}!\n"
     "Over here!\l"
     "Let's hurry home!")
 }
 
 text OldaleTown_Text_BrendanLetsGoBack {
-    format("BRENDAN: I'm heading back to my dad's\n"
-    "Lab now.\l"
+    format("I'm heading back to my dad's Lab now.\n"
     "{PLAYER}, you should hustle back, too.")
 }
 

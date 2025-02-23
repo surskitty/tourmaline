@@ -32,17 +32,20 @@ script Route103_EventScript_RivalStarter {
     waitse
     if (var(VAR_STARTER_MON) == 0) {
         playmoncry(SPECIES_TORCHIC, CRY_MODE_NORMAL)
-        msgbox(format("TORCHIC: Ca-caw!"), MSGBOX_DEFAULT)
+        speakername("Torchic")
+        msgbox(format("Ca-caw!"), MSGBOX_DEFAULT)
         waitmovement(0)
         waitmoncry
     } elif (var(VAR_STARTER_MON) == 1) {
         playmoncry(SPECIES_MUDKIP, CRY_MODE_NORMAL)
-        msgbox(format("MUDKIP: Kippa?"), MSGBOX_DEFAULT)
+        speakername("Mudkip")
+        msgbox(format("Kippa?"), MSGBOX_DEFAULT)
         waitmovement(0)
         waitmoncry
     } else {
         playmoncry(SPECIES_TREECKO, CRY_MODE_NORMAL)
-        msgbox(format("TREECKO: Gugugugu!"), MSGBOX_DEFAULT)
+        speakername("Treecko")
+        msgbox(format("Gugugugu!"), MSGBOX_DEFAULT)
         waitmovement(0)
         waitmoncry
     }
@@ -53,12 +56,13 @@ script Route103_EventScript_RivalStarter {
 script Route103_EventScript_Rival {
     lockall
     checkplayergender
+    speakername(CommonName_Text_Rival)
     if (var(VAR_RESULT) == MALE) {
-        msgbox(format("MAY: Let's see… The Pokémon found on Route 103 include…"), MSGBOX_DEFAULT)
+        msgbox(format("Let's see… The Pokémon found on Route 103 include…"), MSGBOX_DEFAULT)
         closemessage
         playbgm(MUS_ENCOUNTER_MAY, TRUE)
     } else {
-        msgbox(format("BRENDAN: Okay, so it's this one and that one that live on Route 103…"), MSGBOX_DEFAULT)
+        msgbox(format("Okay, so it's this one and that one that live on Route 103…"), MSGBOX_DEFAULT)
         closemessage
         playbgm(MUS_ENCOUNTER_BRENDAN, TRUE)
     }
@@ -69,6 +73,7 @@ script Route103_EventScript_Rival {
     applymovement(LOCALID_RIVAL, Common_Movement_Delay48)
     waitmovement(0)
     getcaughtmon(SPECIES_EEVEE)
+    speakername(CommonName_Text_Rival)
     if (var(VAR_RESULT) == FALSE) {
         checkplayergender
         if (var(VAR_RESULT) == MALE) {
@@ -87,6 +92,7 @@ script Route103_EventScript_Rival {
         waitfanfare
     }
     special(HealPlayerParty)
+    speakername(CommonName_Text_Rival)
     checkplayergender
     if (var(VAR_RESULT) == MALE) {
         msgbox(Route103_Text_MayLetsBattle, MSGBOX_DEFAULT)
@@ -101,6 +107,7 @@ script Route103_EventScript_Rival {
         applymovement(LOCALID_RIVALS_STARTER, EnterPokeballMovement)
         waitmovement(0)
         setflag(FLAG_DEFEATED_RIVAL_ROUTE103)
+        speakername(CommonName_Text_Rival)
         msgbox(Route103_Text_MayTimeToHeadBack, MSGBOX_DEFAULT)
     } else {
         msgbox(Route103_Text_BrendanLetsBattle, MSGBOX_DEFAULT)
@@ -115,6 +122,7 @@ script Route103_EventScript_Rival {
         applymovement(LOCALID_RIVALS_STARTER, EnterPokeballMovement)
         waitmovement(0)
         setflag(FLAG_DEFEATED_RIVAL_ROUTE103)
+        speakername(CommonName_Text_Rival)
         msgbox(Route103_Text_BrendanTimeToHeadBack, MSGBOX_DEFAULT)
     }
     special(HealPlayerParty)
@@ -148,10 +156,6 @@ script Route103_EventScript_Rival {
     fadedefaultbgm
     releaseall    
 }
-
-
-
-
 
 raw `
 Route103_Movement_RivalExitFacingNorth1:
@@ -309,7 +313,7 @@ text Route103_Text_MayDefeated {
 }
 
 text Route103_Text_MayTimeToHeadBack {
-    format("MAY: I think I know why my dad has an eye out for you now.\p"
+    format("I think I know why my dad has an eye out for you now.\p"
         "I mean, you just got that Pokémon, but it already likes you.\p"
         "You might be able to befriend any kind of Pokémon easily.\p"
         "Well, it's time to head back to the Lab.")
@@ -325,7 +329,7 @@ text Route103_Text_BrendanDefeated {
 }
 
 text Route103_Text_BrendanTimeToHeadBack {
-    format("BRENDAN: I think I get it.\n"
+    format("I think I get it.\n"
         "I think I know why my dad has his eye out for you now.\p"
         "Look, your Pokémon already like you,\n even though you just got them.\p"
         "{PLAYER}, I get the feeling that you could befriend any Pokémon with ease.\p"

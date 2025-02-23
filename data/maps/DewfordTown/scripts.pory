@@ -26,8 +26,10 @@ DewfordTown_EventScript_Briney::
 	lock
 	faceplayer
 	goto_if_unset FLAG_DELIVERED_STEVEN_LETTER, DewfordTown_EventScript_ReturnToPetalburgPrompt
+	speakername CommonName_Text_MrBriney
 	message DewfordTown_Text_WhereAreWeBound
 	waitmessage
+	speakername CommonName_Text_MrBriney
 	multichoicedefault 21, 6, MULTI_BRINEY_ON_DEWFORD, 2, FALSE
 	switch VAR_RESULT
 	case 0, DewfordTown_EventScript_ChoosePetalburg
@@ -59,6 +61,7 @@ DewfordTown_EventScript_CancelSailSelect::
 DewfordTown_EventScript_ReturnToPetalburgPrompt::
 	msgbox DewfordTown_Text_SetSailBackToPetalburg, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, DewfordTown_EventScript_SailBackToPetalburg
+	speakername CommonName_Text_MrBriney
 	msgbox DewfordTown_Text_GoDeliverIllBeWaiting, MSGBOX_DEFAULT
 	release
 	end
@@ -642,167 +645,170 @@ DewfordTown_EventScript_PhraseNotTrendyEnough::
 	msgbox DewfordTown_Text_XHuhIThinkYIsCool, MSGBOX_DEFAULT
 	release
 	end
-
-DewfordTown_Text_TinyIslandCommunity:
-	.string "Dewford is a tiny island community.\n"
-	.string "If something gets trendy here,\l"
-	.string "everyone picks up on it right away.$"
-
-DewfordTown_Text_TownSign:
-	.string "Dewford Town\n"
-	.string "“A tiny island in the blue sea.”$"
-
-DewfordTown_Text_GymSign:
-	.string "Dewford Town Pokémon Gym\n"
-	.string "Leader: Brawly\l"
-	.string "“A big wave in fighting!”$"
-
-DewfordTown_Text_HallSign:
-	.string "Dewford Hall\n"
-	.string "“Everyone's information exchange!”$"
-
-Route104_Text_LandedInDewfordDeliverLetter:
-	.string "MR. BRINEY: Ahoy!\n"
-	.string "We've hit land in Dewford.\p"
-	.string "I suppose you're off to deliver that\n"
-	.string "Letter to, who was it now, Steven!$"
-
-DewfordTown_Text_SetSailBackToPetalburg:
-	.string "MR. BRINEY: Have you delivered your\n"
-	.string "Letter?\p"
-	.string "Or were you meaning to sail back to\n"
-	.string "Petalburg?$"
-
-DewfordTown_Text_PetalburgWereSettingSail2:
-	.string "MR. BRINEY: Petalburg it is, then!\p"
-	.string "Anchors aweigh!\n"
-	.string "Peeko, we're setting sail, my darling!$"
-
-DewfordTown_Text_GoDeliverIllBeWaiting:
-	.string "MR. BRINEY: Then you go on and deliver\n"
-	.string "the Letter. I'll be waiting.$"
-
-DewfordTown_Text_BrineyLandedInDewford:
-	.string "MR. BRINEY: Ahoy!\n"
-	.string "We've hit land in Dewford!\p"
-	.string "You just go on and tell me whenever\n"
-	.string "you want to set sail again!$"
-
-DewfordTown_Text_WhereAreWeBound:
-	.string "MR. BRINEY: Ahoy!\n"
-	.string "For you, I'll go out to sea anytime!\p"
-	.string "Now, my friend, where are we bound?$"
-
-DewfordTown_Text_PetalburgWereSettingSail:
-	.string "MR. BRINEY: Petalburg, is it?\p"
-	.string "Anchors aweigh!\n"
-	.string "Peeko, we're setting sail, my darling!$"
-
-DewfordTown_Text_SlateportWereSettingSail:
-	.string "MR. BRINEY: Slateport, is it?\p"
-	.string "Anchors aweigh!\n"
-	.string "Peeko, we're setting sail, my darling!$"
-
-DewfordTown_Text_JustTellMeWhenYouNeedToSetSail:
-	.string "MR. BRINEY: You just tell me whenever\n"
-	.string "you need to set sail again!$"
-
-DewfordTown_Text_GettingItchToFish:
-	.string "This is a renowned fishing spot.\n"
-	.string "Are you getting the itch to fish?$"
-
-DewfordTown_Text_GiveYouOneOfMyRods:
-	.string "I hear you, and I like what\n"
-	.string "you're saying!\p"
-	.string "I'll give you one of my fishing Rods.$"
-
-DewfordTown_Text_ThrowInFishingAdvice:
-	.string "And, as an added bonus, I'll even throw\n"
-	.string "in a little fishing advice!\p"
-	.string "First, you want to face the water,\n"
-	.string "then use the Rod.\p"
-	.string "Focus your mind…\n"
-	.string "If you get a bite, pull on the Rod.\p"
-	.string "Sometimes you can snag something\n"
-	.string "immediately, but with bigger catches,\l"
-	.string "you need to time the pulls on your Rod\l"
-	.string "to haul them in.$"
-
-DewfordTown_Text_ThatsTooBadThen:
-	.string "Oh, is that so?\n"
-	.string "That's too bad, then.$"
-
-DewfordTown_Text_HowsYourFishing:
-	.string "Yo!\n"
-	.string "How's your fishing?$"
-
-DewfordTown_Text_GreatHaulInSomeBigOnes:
-	.string "Is that right! That's great!\n"
-	.string "Haul in some big ones!$"
-
-DewfordTown_Text_FishingAdvice:
-	.string "Oh, hey, don't get down on yourself!\n"
-	.string "I'll give you a little fishing advice.\p"
-	.string "First, you want to face the water,\n"
-	.string "then use the Rod.\p"
-	.string "Focus your mind…\n"
-	.string "If you get a bite, pull the Rod.\p"
-	.string "Sometimes you can snag something\n"
-	.string "immediately, but with bigger catches,\l"
-	.string "you need to time the pulls on your Rod\l"
-	.string "to haul them in.$"
-
-DewfordTown_Text_XIsTheBiggestHappeningThingRight:
-	.string "I like what's hip, happening, and trendy.\n"
-	.string "I'm always checking it out.\p"
-	.string "Listen, have you heard about this new\n"
-	.string "“{STR_VAR_1}”?\p"
-	.string "That's right!\n"
-	.string "Of course you know!\p"
-	.string "I mean, sheesh,\n"
-	.string "“{STR_VAR_1}”…\l"
-	.string "It's the hottest thing in cool!\p"
-	.string "Wherever you're from,\n"
-	.string "“{STR_VAR_1}”\l"
-	.string "is the biggest happening thing, right?$"
-
-DewfordTown_Text_TellMeWhatsNewAndIn:
-	.string "Hunh?\n"
-	.string "It's not the hip and happening thing?\p"
-	.string "Well, hey, you have to tell me,\n"
-	.string "what's new and what's “in”?$"
-
-DewfordTown_Text_OfCourseIKnowAboutThat:
-	.string "Hunh?\n"
-	.string "“{STR_VAR_2}”?\p"
-	.string "… …\p"
-	.string "…Uh… Yeah! That's right!\n"
-	.string "Yeah, I knew that! Knew it all along!\p"
-	.string "Of course I know about that!\n"
-	.string "“{STR_VAR_2},” right?\p"
-	.string "Yeah, that's it, it's there!\n"
-	.string "Isn't “{STR_VAR_2}”\l"
-	.string "the coolest, or what?\p"
-	.string "It's the hippest thing in hip.\n"
-	.string "You think I'd not know about it?\p"
-	.string "“{STR_VAR_1}”…\n"
-	.string "It's, like, so five minutes ago.\p"
-	.string "Now, “{STR_VAR_2}” is\n"
-	.string "what's vital and in tune with the times!$"
-
-DewfordTown_Text_XHuhIThinkYIsCool:
-	.string "Hmm…\n"
-	.string "“{STR_VAR_2},” huh?\p"
-	.string "But personally, I think\n"
-	.string "“{STR_VAR_1}”\l"
-	.string "is what's real in cool.$"
-
-DewfordTown_Text_HearOfAnyTrendsComeShareWithMe:
-	.string "Well, if you hear of any happening new\n"
-	.string "trends, come share them with me, okay?$"
-
-DewfordTown_Text_YeahDefinitionOfInRightNow:
-	.string "Yeah, absolutely right!\p"
-	.string "“{STR_VAR_1}” is the\n"
-	.string "definition of “in” right now.$"
 `
+
+text DewfordTown_Text_TinyIslandCommunity {
+	format("Dewford is a tiny island community.\n"
+	"If something gets trendy here,\l"
+	"everyone picks up on it right away.")
+}
+
+text DewfordTown_Text_TownSign {
+	format("Dewford Town\n"
+	"“A tiny island in the blue sea.”")
+}
+
+text DewfordTown_Text_GymSign {
+	format("Dewford Town Pokémon Gym\n"
+	"Leader: Brawly\l"
+	"“A big wave in fighting!”")
+}
+
+text DewfordTown_Text_HallSign {
+	format("Dewford Hall\n"
+	"“Everyone's information exchange!”")
+}
+
+text Route104_Text_LandedInDewfordDeliverLetter {
+	format("Ahoy!\n"
+	"We've hit land in Dewford.\p"
+	"I suppose you're off to deliver that Letter to, who was it now, Steven!")
+}
+
+text DewfordTown_Text_SetSailBackToPetalburg {
+	format("Have you delivered your Letter?\p"
+	"Or were you meaning to sail back to Petalburg?")
+}
+
+text DewfordTown_Text_PetalburgWereSettingSail2 {
+	format("Petalburg it is, then!\p"
+	"Anchors aweigh!\n"
+	"Peeko, we're setting sail, my darling!")
+}
+
+text DewfordTown_Text_GoDeliverIllBeWaiting {
+	format("Then you go on and deliver the Letter. I'll be waiting.")
+}
+
+text DewfordTown_Text_BrineyLandedInDewford {
+	format("Ahoy!\n"
+	"We've hit land in Dewford!\p"
+	"You just go on and tell me whenever you want to set sail again!")
+}
+
+text DewfordTown_Text_WhereAreWeBound {
+	format("Ahoy!\n"
+	"For you, I'll go out to sea anytime!\p"
+	"Now, my friend, where are we bound?")
+}
+
+text DewfordTown_Text_PetalburgWereSettingSail {
+	format("Petalburg, is it?\p"
+	"Anchors aweigh!\n"
+	"Peeko, we're setting sail, my darling!")
+}
+
+text DewfordTown_Text_SlateportWereSettingSail {
+	format("Slateport, is it?\p"
+	"Anchors aweigh!\n"
+	"Peeko, we're setting sail, my darling!")
+}
+
+text DewfordTown_Text_JustTellMeWhenYouNeedToSetSail {
+	format("You just tell me whenever you need to set sail again!")
+}
+
+text DewfordTown_Text_GettingItchToFish {
+	format("This is a renowned fishing spot.\n"
+	"Are you getting the itch to fish?")
+}
+
+text DewfordTown_Text_GiveYouOneOfMyRods {
+	format("I hear you, and I like what you're saying!\p"
+	"I'll give you one of my fishing Rods.")
+}
+
+text DewfordTown_Text_ThrowInFishingAdvice {
+	format("And, as an added bonus, I'll even throw in a little fishing advice!\p"
+	"It's easier to catch fish if you're not standing near anybody.")
+}
+
+text DewfordTown_Text_ThatsTooBadThen {
+	format("Oh, is that so?\n"
+	"That's too bad, then.")
+}
+
+text DewfordTown_Text_HowsYourFishing {
+	format("Yo!\n"
+	"How's your fishing?")
+}
+
+text DewfordTown_Text_GreatHaulInSomeBigOnes {
+	format("Is that right! That's great!\n"
+	"Haul in some big ones!")
+}
+
+text DewfordTown_Text_FishingAdvice {
+	format("Oh, hey, don't get down on yourself!\n"
+	"I'll give you a little fishing advice.\p"
+	"It's easier to catch fish if you're not standing near anybody.")
+}
+
+text DewfordTown_Text_XIsTheBiggestHappeningThingRight {
+	format("I like what's hip, happening, and trendy.\n"
+	"I'm always checking it out.\p"
+	"Listen, have you heard about this new\n"
+	"“{STR_VAR_1}”?\p"
+	"That's right!\n"
+	"Of course you know!\p"
+	"I mean, sheesh,\n"
+	"“{STR_VAR_1}”…\l"
+	"It's the hottest thing in cool!\p"
+	"Wherever you're from,\n"
+	"“{STR_VAR_1}”\l"
+	"is the biggest happening thing, right?")
+}
+
+text DewfordTown_Text_TellMeWhatsNewAndIn {
+	format("Hunh?\n"
+	"It's not the hip and happening thing?\p"
+	"Well, hey, you have to tell me,\n"
+	"what's new and what's “in”?")
+}
+
+text DewfordTown_Text_OfCourseIKnowAboutThat {
+	format("Hunh?\n"
+	"“{STR_VAR_2}”?\p"
+	"… …\p"
+	"…Uh… Yeah! That's right!\n"
+	"Yeah, I knew that! Knew it all along!\p"
+	"Of course I know about that!\n"
+	"“{STR_VAR_2},” right?\p"
+	"Yeah, that's it, it's there!\n"
+	"Isn't “{STR_VAR_2}”\l"
+	"the coolest, or what?\p"
+	"It's the hippest thing in hip.\n"
+	"You think I'd not know about it?\p"
+	"“{STR_VAR_1}”…\n"
+	"It's, like, so five minutes ago.\p"
+	"Now, “{STR_VAR_2}” is\n"
+	"what's vital and in tune with the times!")
+}
+
+text DewfordTown_Text_XHuhIThinkYIsCool {
+	format("Hmm…\n"
+	"“{STR_VAR_2},” huh?\p"
+	"But personally, I think\n"
+	"“{STR_VAR_1}”\l"
+	"is what's real in cool.")
+}
+
+text DewfordTown_Text_HearOfAnyTrendsComeShareWithMe {
+	format("Well, if you hear of any happening new trends, come share them with me, okay?")
+}
+
+text DewfordTown_Text_YeahDefinitionOfInRightNow {
+	format("Yeah, absolutely right!\p"
+	"“{STR_VAR_1}” is the\n"
+	"definition of “in” right now.")
+}

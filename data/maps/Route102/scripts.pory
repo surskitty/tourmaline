@@ -63,7 +63,7 @@ Route102_EventScript_Allen::
 `
 
 text Route102_Text_WatchMeCatchPokemon {
-	format("WALLY: {PLAYER}…\n"
+	format("{PLAYER}…\n"
     "Pokémon hide in tall grass like this,\l"
     "don't they?\p"
     "Please me watch and see if I can catch one properly.\p"
@@ -71,7 +71,7 @@ text Route102_Text_WatchMeCatchPokemon {
 }
 
 text Route102_Text_WallyIDidIt {
-	format("WALLY: I did it… It's my…\n"
+	format("I did it… It's my…\n"
     "My Pokémon!")
 }
 
