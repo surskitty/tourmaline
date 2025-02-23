@@ -119,7 +119,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(ZIGZAGOON)",
       "x": 14,
-      "y": 13,
+      "y": 12,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WANDER_IN_GRASS",
       "movement_range_x": 4,
@@ -144,8 +144,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(LILLIPUP)",
-      "x": 15,
-      "y": 2,
+      "x": 13,
+      "y": 6,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WANDER_IN_GRASS",
       "movement_range_x": 4,
@@ -183,8 +183,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(TAROUNTULA)",
-      "x": 4,
-      "y": 3,
+      "x": 3,
+      "y": 6,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WANDER_IN_GRASS",
       "movement_range_x": 3,

@@ -219,6 +219,7 @@ Route101_EventScript_BirchsBag::
     waitstate
     applymovement LOCALID_BIRCH, Route101_Movement_BirchApproachPlayer
     waitmovement 0
+    speakername CommonName_Text_ProfBirch
     msgbox Route101_Text_YouSavedMe, MSGBOX_DEFAULT
     special HealPlayerParty
     setflag FLAG_HIDE_ROUTE_101_BIRCH_ZIGZAGOON_BATTLE
@@ -265,7 +266,7 @@ text Route101_Text_DontLeaveMe {
 }
 
 text Route101_Text_YouSavedMe {
-    format("Prof. Birch: Whew…\p"
+    format("Whew…\p"
     "I was in the tall grass studying wild Pokémon when I was jumped.\p"
     "You saved me.\nThanks a lot!\p"
     "Oh?\p"
