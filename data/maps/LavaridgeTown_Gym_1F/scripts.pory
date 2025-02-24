@@ -1,17 +1,15 @@
+mapscripts LavaridgeTown_Gym_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        call(LavaridgeTown_Gym_1F_EventScript_SetTrainerTempVars)
+        call(LavaridgeTown_Gym_1F_EventScript_CheckBuryTrainers)
+    }
+}
+
 raw `
 .set LOCALID_COLE, 2
 .set LOCALID_GERALD, 3
 .set LOCALID_AXLE, 4
 .set LOCALID_DANIELLE, 5
-
-LavaridgeTown_Gym_1F_MapScripts::
-    map_script MAP_SCRIPT_ON_TRANSITION, LavaridgeTown_Gym_1F_OnTransition
-    .byte 0
-
-LavaridgeTown_Gym_1F_OnTransition:
-    call LavaridgeTown_Gym_1F_EventScript_SetTrainerTempVars
-    call LavaridgeTown_Gym_1F_EventScript_CheckBuryTrainers
-    end
 
 @ Unclear where/if these temp vars are getting checked
 LavaridgeTown_Gym_1F_EventScript_SetTrainerTempVars::
@@ -55,6 +53,7 @@ LavaridgeTown_Gym_1F_EventScript_Flannery::
     specialvar VAR_RESULT, ShouldTryRematchBattle
     goto_if_eq VAR_RESULT, TRUE, LavaridgeTown_Gym_1F_EventScript_FlanneryRematch
     goto_if_unset FLAG_RECEIVED_TM_OVERHEAT, LavaridgeTown_Gym_1F_EventScript_GiveOverheat2
+    speakername LavaridgeTown_Gym_1F_Text_Flannery
     msgbox LavaridgeTown_Gym_1F_Text_FlanneryPostBattle, MSGBOX_DEFAULT
     release
     end
@@ -63,6 +62,7 @@ LavaridgeTown_Gym_1F_EventScript_FlanneryDefeated::
     message LavaridgeTown_Gym_1F_Text_ReceivedHeatBadge
     waitmessage
     call Common_EventScript_PlayGymBadgeFanfare
+    speakername LavaridgeTown_Gym_1F_Text_Flannery
     msgbox LavaridgeTown_Gym_1F_Text_ExplainHeatBadgeTakeThis, MSGBOX_DEFAULT
     setflag FLAG_WHITEOUT_TO_LAVARIDGE
     setflag FLAG_DEFEATED_LAVARIDGE_GYM
@@ -88,6 +88,7 @@ LavaridgeTown_Gym_1F_EventScript_FlanneryDefeated::
 LavaridgeTown_Gym_1F_EventScript_GiveOverheat2::
     giveitem ITEM_TM_OVERHEAT
     goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+    speakername LavaridgeTown_Gym_1F_Text_Flannery
     msgbox LavaridgeTown_Gym_1F_Text_ExplainOverheat, MSGBOX_DEFAULT
     setflag FLAG_RECEIVED_TM_OVERHEAT
     release
@@ -96,12 +97,14 @@ LavaridgeTown_Gym_1F_EventScript_GiveOverheat2::
 LavaridgeTown_Gym_1F_EventScript_GiveOverheat::
     giveitem ITEM_TM_OVERHEAT
     goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
+    speakername LavaridgeTown_Gym_1F_Text_Flannery
     msgbox LavaridgeTown_Gym_1F_Text_ExplainOverheat, MSGBOX_DEFAULT
     setflag FLAG_RECEIVED_TM_OVERHEAT
     return
 
 LavaridgeTown_Gym_1F_EventScript_FlanneryRematch::
     trainerbattle_rematch_double TRAINER_FLANNERY_1, LavaridgeTown_Gym_1F_Text_FlanneryPreRematch, LavaridgeTown_Gym_1F_Text_FlanneryRematchDefeat, LavaridgeTown_Gym_1F_Text_FlanneryRematchNeedTwoMons
+    speakername LavaridgeTown_Gym_1F_Text_Flannery
     msgbox LavaridgeTown_Gym_1F_Text_FlanneryPostRematch, MSGBOX_AUTOCLOSE
     end
 
@@ -318,10 +321,11 @@ text LavaridgeTown_Gym_B1F_Text_EliPostBattle {
     "Hehehehe.$"
 }
 
+text LavaridgeTown_Gym_1F_Text_Flannery { "Flannery" }
+
 text LavaridgeTown_Gym_1F_Text_FlanneryIntro {
-    "Welcome… No, wait.\p"
-    "Puny Trainer, how good to see you've\n"
-    "made it here!\p"
+    format("Welcome… No, wait.\p"
+    "Puny Trainer, how good to see you've made it here!\p"
     "I have been entrusted with the…\n"
     "No, wait.\p"
     "I am Flannery, and I'm the Gym Leader here!\p"
@@ -330,20 +334,18 @@ text LavaridgeTown_Gym_1F_Text_FlanneryIntro {
     "I have been Leader only a short time!\p"
     "With skills inherited from my grand-\n"
     "father, I shall, uh…demonstrate the\l"
-    "hot moves we have honed on this land!$"
+    "hot moves we have honed on this land!")
 }
 
 text LavaridgeTown_Gym_1F_Text_FlanneryDefeat {
-    "Oh…\n"
+    format("Oh…\n"
     "I guess I was trying too hard…\p"
-    "I… I've only recently become\n"
-    "a Gym Leader.\p"
-    "I tried too hard to be someone\n"
-    "I'm not.\p"
+    "I… I've only recently become a Gym Leader.\p"
+    "I tried too hard to be someone I'm not.\p"
     "I have to do things my natural way. If\n"
     "I don't, my Pokémon will be confused.\p"
     "Thanks for teaching me that.\n"
-    "For that, you deserve this.$"
+    "For that, you deserve this.$")
 }
 
 text LavaridgeTown_Gym_1F_Text_ReceivedHeatBadge {
@@ -369,8 +371,8 @@ text LavaridgeTown_Gym_1F_Text_RegisteredFlannery {
 }
 
 text LavaridgeTown_Gym_1F_Text_FlanneryPostBattle {
-    "Your power reminds me of someone…\p"
-    "Oh! I know! You battle like Norman, the Gym Leader of Petalburg.$"
+    format("Your power reminds me of someone…\p"
+    "Oh! I know! You battle like Norman, the Gym Leader of Petalburg.")
 }
 
 text LavaridgeTown_Gym_1F_Text_GymStatueCertified {
@@ -380,13 +382,11 @@ text LavaridgeTown_Gym_1F_Text_GymStatueCertified {
 }
 
 text LavaridgeTown_Gym_1F_Text_FlanneryPreRematch {
-    "FLANNERY: Losing a battle isn't going\n"
-    "to deflate me.\p"
+    format("Losing a battle isn't going to deflate me.\p"
     "I love Pokémon.\n"
     "I love to battle.\l"
-    "And… I love this GYM!\p"
-    "Let's exchange superhot moves\n"
-    "in another battle!$"
+    "And… I love this Gym!\p"
+    "Let's exchange superhot moves in another battle!")
 }
 
 text LavaridgeTown_Gym_1F_Text_FlanneryRematchDefeat {
@@ -395,14 +395,14 @@ text LavaridgeTown_Gym_1F_Text_FlanneryRematchDefeat {
 }
 
 text LavaridgeTown_Gym_1F_Text_FlanneryPostRematch {
-    format("FLANNERY: I lost the match,\n"
+    format("I lost the match,\n"
         "but I'm completely satisfied.\p"
         "It's not often I get to enjoy a battle this heated.\p"
         "Let's have another one like this again sometime!")
 }
 
 text LavaridgeTown_Gym_1F_Text_FlanneryRematchNeedTwoMons {
-    format("FLANNERY: Losing a battle isn't going to deflate me.\p"
+    format("Losing a battle isn't going to deflate me.\p"
         "I love Pokémon.\n"
         "I love to battle.\l"
         "And… I love this gym!\p"

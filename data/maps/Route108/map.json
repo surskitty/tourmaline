@@ -131,8 +131,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(TENTACOOL)",
-      "x": 56,
-      "y": 15,
+      "x": 40,
+      "y": 13,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 3,
@@ -183,8 +183,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(TENTACOOL)",
-      "x": 6,
-      "y": 5,
+      "x": 7,
+      "y": 6,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 3,

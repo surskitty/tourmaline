@@ -370,7 +370,6 @@ LittlerootTown_EventScript_GoSaveBirchTrigger::
     waitmovement 0
     applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
     waitmovement 0
-    special GetPlayerBigGuyGirlString
     msgbox LittlerootTown_Text_CanYouGoSeeWhatsHappening, MSGBOX_DEFAULT
     closemessage
     applymovement LOCALID_TWIN, Common_Movement_FaceOriginalDirection
@@ -863,7 +862,7 @@ LittlerootTown_EventScript_GiveRunningShoes::
 `
 
 text LittlerootTown_Text_WaitPlayer {
-	format("MOM: Wait, {PLAYER}!")
+	format("Wait, {PLAYER}!")
 }
 
 text LittlerootTown_Text_WearTheseRunningShoes {
@@ -942,11 +941,9 @@ script LittlerootTown_EventScript_Twin {
         msgbox("Are you going to catch Pokémon?\n"
                "Good luck!", MSGBOX_DEFAULT)
     } elif (flag(FLAG_RESCUED_BIRCH)) {
-        special(GetPlayerBigGuyGirlString)
         msgbox("You saved Prof. Birch!\n"
                "I'm so glad!", MSGBOX_DEFAULT)
     } elif (var(VAR_LITTLEROOT_TOWN_STATE) != 0) {
-        special(GetPlayerBigGuyGirlString)
         msgbox(LittlerootTown_Text_CanYouGoSeeWhatsHappening, MSGBOX_DEFAULT)
         closemessage
         applymovement(LOCALID_TWIN, Common_Movement_FaceOriginalDirection)

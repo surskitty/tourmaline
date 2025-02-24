@@ -1,8 +1,7 @@
+mapscripts FallarborTown_MoveRelearnersHouse_MapScripts {}
+
 raw `
 .set LOCALID_MOVE_RELEARNER, 1
-
-FallarborTown_MoveRelearnersHouse_MapScripts::
-    .byte 0
 
 FallarborTown_MoveRelearnersHouse_EventScript_MoveRelearner::
     lockall

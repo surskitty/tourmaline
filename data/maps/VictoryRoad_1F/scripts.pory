@@ -44,8 +44,10 @@ VictoryRoad_1F_EventScript_WallyBattleTrigger2::
 VictoryRoad_1F_EventScript_WallyEntranceBattle::
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
+	speakername CommonName_Text_Wally
 	msgbox VictoryRoad_1F_Text_WallyNotGoingToLoseAnymore, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_WALLY_VR_1, VictoryRoad_1F_Text_WallyEntranceDefeat
+	speakername CommonName_Text_Wally
 	msgbox VictoryRoad_1F_Text_WallyPostEntranceBattle, MSGBOX_DEFAULT
 	clearflag FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY
 	copyobjectxytoperm LOCALID_WALLY_ENTRANCE
@@ -126,7 +128,7 @@ VictoryRoad_1F_EventScript_Katelynn::
 `
 
 text VictoryRoad_1F_Text_WallyNotGoingToLoseAnymore {
-	format("WALLY: Hi! {PLAYER}!\p"
+	format("Hi! {PLAYER}!\p"
 	"I bet you're surprised to see me here!\p"
 	"I made it all the way here, and it's\n"
 	"all thanks to you!\p"
@@ -144,13 +146,13 @@ text VictoryRoad_1F_Text_WallyEntranceDefeat {
 }
 
 text VictoryRoad_1F_Text_WallyPostEntranceBattle {
-	format("WALLY: I couldn't beat you today,\n"
+	format("I couldn't beat you today,\n"
 	"{PLAYER}, but one of these days, I'll\l"
 	"catch up to you!")
 }
 
 text VictoryRoad_1F_Text_WallyIntro {
-	format("WALLY: Hi! {PLAYER}!\p"
+	format("Hi! {PLAYER}!\p"
 	"I've gotten stronger since that last\n"
 	"time! I wanted to show you, {PLAYER}!\p"
 	"Okay… Here I come!")
@@ -162,7 +164,7 @@ text VictoryRoad_1F_Text_WallyDefeat {
 }
 
 text VictoryRoad_1F_Text_WallyPostBattle {
-	format("WALLY: I couldn't beat you this time,\n"
+	format("I couldn't beat you this time,\n"
 	"too… But one of these days, {PLAYER},\l"
 	"I'm going to catch up to you…\p"
 	"And challenge the Pokémon League!")
@@ -178,9 +180,7 @@ text VictoryRoad_1F_Text_EdgarDefeat {
 }
 
 text VictoryRoad_1F_Text_EdgarPostBattle {
-	format("You've made it this far. Keep the\n"
-	"momentum going and become the\l"
-	"Champion! If anyone can, it's you!")
+	format("You've made it this far. Keep the momentum going and become the Champion! If anyone can, it's you!")
 }
 
 text VictoryRoad_1F_Text_AlbertIntro {
@@ -195,13 +195,11 @@ text VictoryRoad_1F_Text_AlbertDefeat {
 
 text VictoryRoad_1F_Text_AlbertPostBattle {
 	format("I lost here…\p"
-	"That means I lack the qualifications\n"
-	"to become the Champion…")
+	"That means I lack the qualifications to become the Champion…")
 }
 
 text VictoryRoad_1F_Text_HopeIntro {
-	format("This seemingly infinite and harsh road\n"
-	"lives up to its name of Victory.")
+	format("This seemingly infinite and harsh road lives up to its name of Victory.")
 }
 
 text VictoryRoad_1F_Text_HopeDefeat {
@@ -209,8 +207,7 @@ text VictoryRoad_1F_Text_HopeDefeat {
 }
 
 text VictoryRoad_1F_Text_HopePostBattle {
-	format("You seem to have the potential for\n"
-	"becoming the Champion.")
+	format("You seem to have the potential for becoming the Champion.")
 }
 
 text VictoryRoad_1F_Text_QuincyIntro {
@@ -224,11 +221,8 @@ text VictoryRoad_1F_Text_QuincyDefeat {
 }
 
 text VictoryRoad_1F_Text_QuincyPostBattle {
-	format("Getting through here safely--that's\n"
-	"the final test for any Trainer aiming\l"
-	"to become the Pokémon Champion.\p"
-	"That's why it's called the Victory\n"
-	"Road.")
+	format("Getting through here safely--that's the final test for any Trainer aiming to become the Pokémon Champion.\p"
+	"That's why it's called the Victory Road.")
 }
 
 text VictoryRoad_1F_Text_KatelynnIntro {

@@ -26,11 +26,11 @@ mart MossdeepCity_Mart_Pokemart {
     ITEM_GALLADITE
     ITEM_GARDEVOIRITE
     ITEM_GLALITITE
+    ITEM_ORBEETITE
 }
 
 script MossdeepCity_Mart_EventScript_Sailor {
-	msgbox(format("Devon Corp makes Net and Dive Balls,\n"
-	    "but only experts in Johto make Lure Balls.\p"
+	msgbox(format("Devon Corp makes Net and Dive Balls, but only experts in Johto make Lure Balls.\p"
 	    "I heard Lure Balls are better on hard to catch Water-type Pokémon, while Net Balls scoop up common ones."), MSGBOX_NPC)
 }
 

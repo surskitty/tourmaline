@@ -253,6 +253,7 @@ VerdanturfTown_BattleTentLobby_EventScript_Boy2::
 VerdanturfTown_BattleTentLobby_EventScript_Scott::
 	lock
 	faceplayer
+	speakername CommonName_Text_Scott
 	goto_if_set FLAG_MET_SCOTT_IN_VERDANTURF, VerdanturfTown_BattleTentLobby_EventScript_ScottAlreadySpokenTo
 	msgbox VerdanturfTown_BattleTentLobby_Text_ScottCanMeetToughTrainers, MSGBOX_DEFAULT
 	addvar VAR_SCOTT_STATE, 1
@@ -327,59 +328,49 @@ VerdanturfTown_BattleTentLobby_EventScript_RulesWhenInDanger::
 VerdanturfTown_BattleTentLobby_EventScript_ExitRules::
 	releaseall
 	end
-
-VerdanturfTown_BattleTentLobby_Text_MonsReluctantToUseDislikedMoves:
-	.string "If it doesn't like a certain move,\n"
-	.string "a POKéMON will be reluctant to use it.\p"
-	.string "It doesn't matter how strong it is,\n"
-	.string "either.\p"
-	.string "For example, a POKéMON with a GENTLE\n"
-	.string "nature probably won't enjoy hurting\l"
-	.string "its opponents.\p"
-	.string "If it can't seem to live up to its\n"
-	.string "potential, it's probably failing at\l"
-	.string "using a disliked move against its will.$"
-
-VerdanturfTown_BattleTentLobby_Text_GentleMonsScaryIfAngry:
-	.string "My big sister is gentle usually.\n"
-	.string "But when she gets angry,\l"
-	.string "she's really, really scary!\p"
-	.string "I bet a gentle POKéMON will be scary\n"
-	.string "if it gets angry!$"
-
-VerdanturfTown_BattleTentLobby_Text_AttractionRunsDeep:
-	.string "My feelings toward my POKéMON…\n"
-	.string "The attraction runs deep…\p"
-	.string "Oh, hi, you didn't see that, did you?\n"
-	.string "Well, it doesn't matter.\p"
-	.string "How would you like this TM for\n"
-	.string "your POKéMON?$"
-
-VerdanturfTown_BattleTentLobby_Text_AttractionMutual:
-	.string "My feelings toward my POKéMON…\n"
-	.string "I'm sure the attraction is mutual!\p"
-	.string "They battle exactly the way I want\n"
-	.string "them to!$"
-
-VerdanturfTown_BattleTentLobby_Text_TaughtWhatKindsOfMoves:
-	.string "What kind of moves have you taught\n"
-	.string "your POKéMON?\p"
-	.string "I think you would give yourself\n"
-	.string "an advantage if they knew how to\l"
-	.string "heal or protect themselves.$"
-
-VerdanturfTown_BattleTentLobby_Text_ScottCanMeetToughTrainers:
-	.string "SCOTT: Hey there, {PLAYER}{KUN}!\n"
-	.string "I thought I might see you here.\p"
-	.string "A BATTLE TENT's a place where\n"
-	.string "you can meet tough TRAINERS.\p"
-	.string "It doesn't matter what the rules are,\n"
-	.string "or how battles are waged, either.\p"
-	.string "{PLAYER}{KUN}, I expect you to do\n"
-	.string "the best you can!$"
-
-VerdanturfTown_BattleTentLobby_Text_ScottVisitRegularly:
-	.string "SCOTT: I visit here regularly in hopes\n"
-	.string "of seeing tough TRAINERS in action\l"
-	.string "in whatever the situation.$"
 `
+
+text VerdanturfTown_BattleTentLobby_Text_MonsReluctantToUseDislikedMoves {
+	format("If it doesn't like a certain move, a Pokémon will be reluctant to use it.\p"
+	"It doesn't matter how strong it is, either.\p"
+	"For example, a Pokémon with a Gentle nature probably won't enjoy hurting its opponents.\p"
+	"If it can't seem to live up to its potential, it's probably failing at using a disliked move against its will.")
+}
+
+text VerdanturfTown_BattleTentLobby_Text_GentleMonsScaryIfAngry {
+	format("My big sister is gentle usually.\n"
+	"But when she gets angry,\l"
+	"she's really, really scary!\p"
+	"I bet a gentle Pokémon will be scary if it gets angry!")
+}
+
+text VerdanturfTown_BattleTentLobby_Text_AttractionRunsDeep {
+	format("My feelings toward my Pokémon…\n"
+	"The attraction runs deep…\p"
+	"Oh, hi, you didn't see that, did you?\n"
+	"Well, it doesn't matter.\p"
+	"How would you like this TM for your Pokémon?")
+}
+
+text VerdanturfTown_BattleTentLobby_Text_AttractionMutual {
+	format("My feelings toward my Pokémon…\n"
+	"I'm sure the attraction is mutual!\p"
+	"They battle exactly the way I want them to!")
+}
+
+text VerdanturfTown_BattleTentLobby_Text_TaughtWhatKindsOfMoves {
+	format("What kind of moves have you taught your Pokémon?\p"
+	"I think you would give yourself an advantage if they knew how to heal or protect themselves.")
+}
+
+text VerdanturfTown_BattleTentLobby_Text_ScottCanMeetToughTrainers {
+	format("Hey there, {PLAYER}{KUN}!\n"
+	"I thought I might see you here.\p"
+	"A Battle Tent's a place where you can meet tough Trainers.\p"
+	"It doesn't matter what the rules are, or how battles are waged, either.\p"
+	"{PLAYER}{KUN}, I expect you to do the best you can!")
+}
+
+text VerdanturfTown_BattleTentLobby_Text_ScottVisitRegularly {
+	format("I visit here regularly in hopes of seeing tough Trainers in action in whatever the situation.")
+}

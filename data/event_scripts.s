@@ -687,6 +687,7 @@ EventScript_SetBrineyLocation_Route109::
 	setvar VAR_BRINEY_LOCATION, 3
 	return
 
+	.include "data/scripts/shop_npcs.inc"
 	.include "data/scripts/pkmn_center_nurse.inc"
 	.include "data/scripts/obtain_item.inc"
 	.include "data/scripts/record_mix.inc"
@@ -1129,5 +1130,6 @@ EventScript_VsSeekerChargingDone::
 	.include "data/scripts/trainer_hill.inc"
 	.include "data/scripts/test_signpost.inc"
 	.include "data/scripts/follower.inc"
+	.include "data/text/names.inc"
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"

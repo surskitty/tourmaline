@@ -132,8 +132,7 @@ text AquaHideout_B1F_Text_Grunt3PostBattle {
 }
 
 text AquaHideout_B1F_Text_Grunt5Intro {
-	format("Yawn… Keeping watch over the\n"
-	"Hideout bores me. I'll take you on.")
+	format("Yawn… Keeping watch over the Hideout bores me. I'll take you on.")
 }
 
 text AquaHideout_B1F_Text_Grunt5Defeat {
@@ -142,8 +141,7 @@ text AquaHideout_B1F_Text_Grunt5Defeat {
 }
 
 text AquaHideout_B1F_Text_Grunt5PostBattle {
-	format("If you scurry too much, other Team\n"
-	"Aqua members might get you.")
+	format("If you scurry too much, other Team Aqua members might get you.")
 }
 
 text AquaHideout_B1F_Text_Grunt7Intro {
@@ -158,6 +156,5 @@ text AquaHideout_B1F_Text_Grunt7Defeat {
 }
 
 text AquaHideout_B1F_Text_Grunt7PostBattle {
-	format("If you have a cool uniform, you look\n"
-	"good even in a loss, don't you think?")
+	format("If you have a cool uniform, you look good even in a loss, don't you think?")
 }

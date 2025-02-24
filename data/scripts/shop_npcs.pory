@@ -1,0 +1,161 @@
+script Common_EventScript_MegaStoneClerk {
+    lock
+    faceplayer
+    speakername("Mega Stoner")
+    if (flag(FLAG_BADGE05_GET)) {
+        message("Welcome!\nI am a fine purveyor of Mega Stones.\pHow may I serve you?")
+        waitmessage
+        pokemart(Common_Marts_MegaStones)
+        msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
+    } else {
+    message(format("Welcome!\p… I don't see a Mega Bracelet on you.\pCome back when you have a Mega Bracelet."))
+    }
+    release
+}
+
+mart Common_Marts_MegaStones {
+    ITEM_ALAKAZITE
+    ITEM_PIDGEOTITE
+    ITEM_GYARADOSITE
+    ITEM_AMPHAROSITE
+    ITEM_DREDNITE
+    ITEM_GARBINITE
+    ITEM_ORBEETITE
+    ITEM_AUDINITE
+    ITEM_SALAMENCITE
+    ITEM_METAGROSSITE
+    ITEM_GLALITITE
+    ITEM_ABSOLITE
+    ITEM_BANETTITE
+    ITEM_ALTARIANITE
+    ITEM_CAMERUPTITE
+    ITEM_SHARPEDONITE
+    ITEM_MEDICHAMITE
+    ITEM_AGGRONITE
+    ITEM_MAWILITE
+    ITEM_SABLENITE
+    ITEM_GALLADITE
+    ITEM_GARDEVOIRITE
+    ITEM_SWAMPERTITE
+    ITEM_BLAZIKENITE
+    ITEM_SCEPTILITE
+    ITEM_HOUNDOOMINITE
+    ITEM_PINSIRITE
+}
+
+script Common_EventScript_ItemClerk {
+    lock
+    faceplayer
+    speakername(CommonName_Text_Clerk)
+    message(gText_HowMayIServeYou)
+    waitmessage
+    if (flag(FLAG_SYS_GAME_CLEAR)) {
+        pokemart(Common_Marts_Postgame)    
+    } elif (flag(FLAG_ENTERED_ELITE_FOUR)) {
+        pokemart(Common_Marts_Endgame)
+    } elif (flag(FLAG_VISITED_MOSSDEEP_CITY)) {
+        pokemart(Common_Marts_PostLilycove)
+    } elif (flag(FLAG_BADGE05_GET)) {
+        pokemart(Common_Marts_PostNorman)
+    } elif (flag(FLAG_BADGE03_GET)) {
+        pokemart(Common_Marts_PostWattson)
+    } elif (flag(FLAG_BADGE02_GET)) {
+        pokemart(Common_Marts_PostBrawly)
+    } elif (flag(FLAG_BADGE01_GET)) {
+        pokemart(Common_Marts_PostRoxanne)
+    } else {
+        pokemart(Common_Marts_NoBadges)
+    }
+    speakername(CommonName_Text_Clerk)
+    msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
+    release
+}
+
+mart Common_Marts_NoBadges {
+    ITEM_POKE_BALL
+    ITEM_POTION
+    ITEM_REPEL
+    ITEM_LURE
+    ITEM_ANTIDOTE
+    ITEM_AWAKENING
+    ITEM_PARALYZE_HEAL
+}
+
+mart Common_Marts_PostRoxanne {
+    ITEM_POKE_BALL
+    ITEM_GREAT_BALL
+    ITEM_HEAL_BALL
+    ITEM_POTION
+    ITEM_SUPER_POTION
+    ITEM_REPEL
+    ITEM_LURE
+    ITEM_ANTIDOTE
+    ITEM_AWAKENING
+    ITEM_BURN_HEAL
+    ITEM_ICE_HEAL
+    ITEM_PARALYZE_HEAL
+}
+
+mart Common_Marts_PostBrawly {
+    ITEM_POKE_BALL
+    ITEM_GREAT_BALL
+    ITEM_HEAL_BALL
+    ITEM_NET_BALL
+    ITEM_POTION
+    ITEM_SUPER_POTION
+    ITEM_REPEL
+    ITEM_LURE
+    ITEM_ANTIDOTE
+    ITEM_AWAKENING
+    ITEM_BURN_HEAL
+    ITEM_ICE_HEAL
+    ITEM_PARALYZE_HEAL
+    ITEM_POKE_DOLL
+}
+
+mart Common_Marts_PostWattson {
+    ITEM_POKE_BALL
+    ITEM_GREAT_BALL
+    ITEM_HEAL_BALL
+    ITEM_NET_BALL
+    ITEM_NEST_BALL
+    ITEM_REPEAT_BALL
+    ITEM_POTION
+    ITEM_SUPER_POTION
+    ITEM_REPEL
+    ITEM_LURE
+    ITEM_ANTIDOTE
+    ITEM_AWAKENING
+    ITEM_BURN_HEAL
+    ITEM_ICE_HEAL
+    ITEM_PARALYZE_HEAL
+    ITEM_POKE_DOLL
+}
+
+mart Common_Marts_PostNorman {
+    ITEM_POKE_BALL
+    ITEM_GREAT_BALL
+    ITEM_ULTRA_BALL
+    ITEM_HEAL_BALL
+    ITEM_NET_BALL
+    ITEM_NEST_BALL
+    ITEM_REPEAT_BALL
+    ITEM_POTION
+    ITEM_SUPER_POTION
+    ITEM_HYPER_POTION
+    ITEM_REPEL
+    ITEM_SUPER_REPEL
+    ITEM_LURE
+    ITEM_SUPER_LURE
+    ITEM_ANTIDOTE
+    ITEM_AWAKENING
+    ITEM_BURN_HEAL
+    ITEM_ICE_HEAL
+    ITEM_PARALYZE_HEAL
+    ITEM_POKE_DOLL
+}
+
+mart Common_Marts_PostLilycove {}
+mart Common_Marts_Endgame {}
+mart Common_Marts_Postgame {}
+

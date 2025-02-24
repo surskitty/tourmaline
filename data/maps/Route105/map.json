@@ -137,7 +137,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(FRILLISH)",
       "x": 16,
-      "y": 75,
+      "y": 72,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 3,
@@ -189,7 +189,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(PELIPPER)",
       "x": 15,
-      "y": 4,
+      "y": 9,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 3,

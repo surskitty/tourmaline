@@ -1,7 +1,6 @@
-raw `
-FortreeCity_House1_MapScripts::
-	.byte 0
+mapscripts FortreeCity_House1_MapScripts {}
 
+raw `
 FortreeCity_House1_EventScript_Trader::
 	lock
 	faceplayer
@@ -60,41 +59,48 @@ FortreeCity_House1_EventScript_Zigzagoon::
 	waitmoncry
 	release
 	end
-
-FortreeCity_House1_Text_YouWillTradeWontYou:
-	.string "Wrooooaaar! I need it!\n"
-	.string "I have to get me a {STR_VAR_1}!\l"
-	.string "I'll do anything for it!\p"
-	.string "…Uh… Did you hear that?\n"
-	.string "My shout from the bottom of my heart?\p"
-	.string "Having heard that, you will trade\n"
-	.string "your {STR_VAR_1} for my {STR_VAR_2},\l"
-	.string "won't you?$"
-
-FortreeCity_House1_Text_MonYouTakeCare:
-	.string "Oh, yeah, right on!\p"
-	.string "{STR_VAR_1}, welcome!\n"
-	.string "{STR_VAR_2}, you take care!$"
-
-FortreeCity_House1_Text_ThisIsntAMon:
-	.string "Uh, no, I don't think so.\n"
-	.string "That isn't a {STR_VAR_1}.$"
-
-FortreeCity_House1_Text_YouWontTradeMe:
-	.string "No? You won't trade me?\n"
-	.string "Even after I bared my heart to you?$"
-
-FortreeCity_House1_Text_GoingToMakeVolbeatStrong:
-	.string "I'm going to make VOLBEAT super\n"
-	.string "strong from this moment on!\p"
-	.string "I hope you do the same with PLUSLE!$"
-
-FortreeCity_House1_Text_TradingMemoriesWithOthers:
-	.string "Trading POKéMON with others…\p"
-	.string "It's as if you're trading your own\n"
-	.string "memories with other people.$"
-
-FortreeCity_House1_Text_Zigzagoon:
-	.string "ZIGZAGOON: Gumomoh?$"
-
 `
+
+text FortreeCity_House1_Text_YouWillTradeWontYou {
+	format("Wrooooaaar! I need it!\n"
+	"I have to get me a {STR_VAR_1}!\l"
+	"I'll do anything for it!\p"
+	"…Uh… Did you hear that?\n"
+	"My shout from the bottom of my heart?\p"
+	"Having heard that, you will trade\n"
+	"your {STR_VAR_1} for my {STR_VAR_2},\l"
+	"won't you?")
+}
+
+text FortreeCity_House1_Text_MonYouTakeCare {
+	format("Oh, yeah, right on!\p"
+	"{STR_VAR_1}, welcome!\n"
+	"{STR_VAR_2}, you take care!")
+}
+
+text FortreeCity_House1_Text_ThisIsntAMon {
+	format("Uh, no, I don't think so.\n"
+	"That isn't a {STR_VAR_1}.")
+}
+
+text FortreeCity_House1_Text_YouWontTradeMe {
+	format("No? You won't trade me?\n"
+	"Even after I bared my heart to you?")
+}
+
+text FortreeCity_House1_Text_GoingToMakeVolbeatStrong {
+	format("I'm going to make Volbeat super\n"
+	"strong from this moment on!\p"
+	"I hope you do the same with Plusle!")
+}
+
+text FortreeCity_House1_Text_TradingMemoriesWithOthers {
+	format("Trading Pokémon with others…\p"
+	"It's as if you're trading your own\n"
+	"memories with other people.")
+}
+
+text FortreeCity_House1_Text_Zigzagoon {
+	format("ZIGZAGOON: Gumomoh?")
+}
+

@@ -18,6 +18,7 @@ script RustboroCity_Mart_EventScript_Clerk {
 
 mart RustboroCity_Mart_Pokemart_Basic {
     ITEM_POKE_BALL
+    ITEM_LUCKY_EGG
     ITEM_POTION
     ITEM_SUPER_POTION
     ITEM_ANTIDOTE

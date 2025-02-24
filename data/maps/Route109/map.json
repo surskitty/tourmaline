@@ -378,8 +378,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(WIGLETT)",
-      "x": 15,
-      "y": 3,
+      "x": 19,
+      "y": 6,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_BURIED",
       "movement_range_x": 1,
@@ -443,8 +443,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(WINGULL)",
-      "x": 13,
-      "y": 3,
+      "x": 21,
+      "y": 14,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,

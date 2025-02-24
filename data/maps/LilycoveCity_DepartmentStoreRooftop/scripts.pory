@@ -1,14 +1,12 @@
+mapscripts LilycoveCity_DepartmentStoreRooftop_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        getpokenewsactive(POKENEWS_LILYCOVE)
+        call_if_eq(VAR_RESULT, TRUE, LilycoveCity_DepartmentStoreRooftop_EventScript_ShowSaleWoman)
+        call_if_eq(VAR_RESULT, FALSE, LilycoveCity_DepartmentStoreRooftop_EventScript_HideSaleWoman)
+    }
+}
+
 raw `
-LilycoveCity_DepartmentStoreRooftop_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, LilycoveCity_DepartmentStoreRooftop_OnTransition
-	.byte 0
-
-LilycoveCity_DepartmentStoreRooftop_OnTransition:
-	getpokenewsactive POKENEWS_LILYCOVE
-	call_if_eq VAR_RESULT, TRUE, LilycoveCity_DepartmentStoreRooftop_EventScript_ShowSaleWoman
-	call_if_eq VAR_RESULT, FALSE, LilycoveCity_DepartmentStoreRooftop_EventScript_HideSaleWoman
-	end
-
 LilycoveCity_DepartmentStoreRooftop_EventScript_ShowSaleWoman::
 	clearflag FLAG_HIDE_LILYCOVE_DEPARTMENT_STORE_ROOFTOP_SALE_WOMAN
 	return
@@ -184,38 +182,42 @@ LilycoveCity_DepartmentStoreRooftop_EventScript_ExitVendingMachine::
 	hidemoneybox
 	releaseall
 	end
-
-LilycoveCity_DepartmentStoreRooftop_Text_SetDatesForClearOutSales:
-	.string "Don't they have set dates for their\n"
-	.string "clear-out sales?\p"
-	.string "I watch TV, but they never show any\n"
-	.string "commercials.$"
-
-LilycoveCity_DepartmentStoreRooftop_Text_BeenWaitingForClearOutSale:
-	.string "Yes! I've been waiting a long time for\n"
-	.string "this clear-out sale.\p"
-	.string "They have items that you can only get\n"
-	.string "here. I'm going to load up, that I am!$"
-
-LilycoveCity_DepartmentStoreRooftop_Text_BoneDryThirsty:
-	.string "Ohh… I'm bone-dry thirsty!$"
-
-LilycoveCity_DepartmentStoreRooftop_Text_WhichDrinkWouldYouLike:
-	.string "It's a Vending Machine.\n"
-	.string "Which drink would you like?$"
-
-LilycoveCity_DepartmentStoreRooftop_Text_CanOfDrinkDroppedDown:
-	.string "Clang!\p"
-	.string "A can of {STR_VAR_1} dropped down.$"
-
-LilycoveCity_DepartmentStoreRooftop_Text_ExtraCanOfDrinkDroppedDown:
-	.string "Clang!\p"
-	.string "Score! An extra can of {STR_VAR_1}\n"
-	.string "dropped down!$"
-
-LilycoveCity_DepartmentStoreRooftop_Text_NotEnoughMoney:
-	.string "Not enough money…$"
-
-LilycoveCity_DepartmentStoreRooftop_Text_DecidedAgainstBuyingDrink:
-	.string "Decided against buying a drink.$"
 `
+
+text LilycoveCity_DepartmentStoreRooftop_Text_SetDatesForClearOutSales {
+	format("Don't they have set dates for their clear-out sales?\p"
+	"I watch TV, but they never show any commercials.")
+}
+
+text LilycoveCity_DepartmentStoreRooftop_Text_BeenWaitingForClearOutSale {
+	format("Yes! I've been waiting a long time for this clear-out sale.\p"
+	"They have items that you can only get here. I'm going to load up, that I am!")
+}
+
+text LilycoveCity_DepartmentStoreRooftop_Text_BoneDryThirsty {
+	format("Ohh… I'm bone-dry thirsty!")
+}
+
+text LilycoveCity_DepartmentStoreRooftop_Text_WhichDrinkWouldYouLike {
+	format("It's a Vending Machine.\n"
+	"Which drink would you like?")
+}
+
+text LilycoveCity_DepartmentStoreRooftop_Text_CanOfDrinkDroppedDown {
+	format("Clang!\p"
+	"A can of {STR_VAR_1} dropped down.")
+}
+
+text LilycoveCity_DepartmentStoreRooftop_Text_ExtraCanOfDrinkDroppedDown {
+	format("Clang!\p"
+	"Score! An extra can of {STR_VAR_1}\n"
+	"dropped down!")
+}
+
+text LilycoveCity_DepartmentStoreRooftop_Text_NotEnoughMoney {
+	format("Not enough money…")
+}
+
+text LilycoveCity_DepartmentStoreRooftop_Text_DecidedAgainstBuyingDrink {
+	format("Decided against buying a drink.")
+}

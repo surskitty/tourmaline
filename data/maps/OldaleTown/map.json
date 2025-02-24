@@ -97,8 +97,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(ZIGZAGOON)",
-      "x": 9,
-      "y": 12,
+      "x": 10,
+      "y": 11,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 4,
