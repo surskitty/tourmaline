@@ -460,7 +460,7 @@ bool32 TryRunFromBattle(u32 battler)
         }
         else
         {
-            gLastUsedAbility = ABILITY_RUN_AWAY;
+            gLastUsedAbility = gDisplayAbility = ABILITY_RUN_AWAY;
             PushTraitStack(battler, ABILITY_RUN_AWAY);
             gProtectStructs[battler].fleeType = FLEE_ABILITY;
             effect++;
