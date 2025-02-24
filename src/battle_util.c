@@ -452,7 +452,7 @@ bool32 TryRunFromBattle(u32 battler)
             speedVar = (gBattleMons[battler].speed * pyramidMultiplier) / (gBattleMons[BATTLE_OPPOSITE(battler)].speed) + (gBattleStruct->runTries * 30);
             if (speedVar > (Random() & 0xFF))
             {
-                gLastUsedAbility = ABILITY_RUN_AWAY;
+                gLastUsedAbility = gDisplayAbility = ABILITY_RUN_AWAY;
                 PushTraitStack(battler, ABILITY_RUN_AWAY);
                 gProtectStructs[battler].fleeType = FLEE_ABILITY;
                 effect++;
