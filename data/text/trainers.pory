@@ -476,7 +476,8 @@ text Route104_Text_CindyIntro {
 }
 
 text Route104_Text_CindyDefeat {
-	format("Oh, my!")
+	format("Oh, my!\n"
+	    "May I please have my items back?")
 }
 
 text Route104_Text_CindyPostBattle {

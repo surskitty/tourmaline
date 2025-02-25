@@ -1,20 +1,18 @@
+mapscripts SlateportCity_Harbor_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+	    setescapewarp(MAP_SLATEPORT_CITY, 28, 13)
+	    setvar(VAR_TEMP_1, 0)
+	    call_if_eq(VAR_SLATEPORT_HARBOR_STATE, 1, SlateportCity_Harbor_EventScript_ReadyAquaEscapeScene)
+	    call_if_set(FLAG_SYS_GAME_CLEAR, SlateportCity_Harbor_EventScript_ShowSSTidal)
+    }
+}
+
 raw `
 .set LOCALID_CAPT_STERN, 4
 .set LOCALID_SS_TIDAL, 5
 .set LOCALID_GRUNT, 6
 .set LOCALID_ARCHIE, 7
 .set LOCALID_SUBMARINE, 8
-
-SlateportCity_Harbor_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, SlateportCity_Harbor_OnTransition
-	.byte 0
-
-SlateportCity_Harbor_OnTransition:
-	setescapewarp MAP_SLATEPORT_CITY, 28, 13
-	setvar VAR_TEMP_1, 0
-	call_if_eq VAR_SLATEPORT_HARBOR_STATE, 1, SlateportCity_Harbor_EventScript_ReadyAquaEscapeScene
-	call_if_set FLAG_SYS_GAME_CLEAR, SlateportCity_Harbor_EventScript_ShowSSTidal
-	end
 
 SlateportCity_Harbor_EventScript_ShowSSTidal::
 	clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_SS_TIDAL
@@ -59,6 +57,7 @@ SlateportCity_Harbor_EventScript_AquaEscapeScene::
 	applymovement LOCALID_GRUNT, Common_Movement_WalkInPlaceFasterDown
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
+	speakername CommonName_Text_Archie
 	msgbox SlateportCity_Harbor_Text_ArchieYouAgainHideoutInLilycove, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_GRUNT, SlateportCity_Harbor_Movement_AquaBoardSub
@@ -75,6 +74,7 @@ SlateportCity_Harbor_EventScript_AquaEscapeScene::
 	call_if_eq VAR_0x8008, 1, SlateportCity_Harbor_EventScript_SternApproachPlayer1
 	call_if_eq VAR_0x8008, 2, SlateportCity_Harbor_EventScript_SternApproachPlayer
 	call_if_eq VAR_0x8008, 3, SlateportCity_Harbor_EventScript_SternApproachPlayer
+	speakername CommonName_Text_CaptStern
 	msgbox SlateportCity_Harbor_Text_CaptSternWhyStealMySubmarine, MSGBOX_DEFAULT
 	closemessage
 	setflag FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_1_BLOCKING_ENTRANCE
@@ -276,11 +276,6 @@ SlateportCity_Harbor_EventScript_Sailor::
 	release
 	end
 
-SlateportCity_Harbor_EventScript_SailorNoAbnormalWeather::
-	msgbox SlateportCity_Harbor_Text_LoveToGoDeepUnderwaterSomeday, MSGBOX_DEFAULT
-	release
-	end
-
 SlateportCity_Harbor_EventScript_CountDefeatedLegendary::
 	addvar VAR_0x8004, 1
 	return
@@ -292,6 +287,7 @@ SlateportCity_Harbor_EventScript_FatMan::
 SlateportCity_Harbor_EventScript_CaptStern::
 	lock
 	faceplayer
+	speakername CommonName_Text_CaptStern
 	goto_if_set FLAG_BADGE07_GET, SlateportCity_Harbor_EventScript_CaptSternFerryOrScannerComment
 	goto_if_set FLAG_EVIL_TEAM_ESCAPED_STERN_SPOKE, SlateportCity_Harbor_EventScript_NeedDive
 	goto_if_set FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, SlateportCity_Harbor_EventScript_TeamAquaLeftNeedDive
@@ -324,22 +320,26 @@ SlateportCity_Harbor_EventScript_CaptSternFerryOrScannerComment::
 	checkitem ITEM_SCANNER
 	goto_if_eq VAR_RESULT, TRUE, SlateportCity_Harbor_EventScript_AskToTradeScanner
 	goto_if_set FLAG_SYS_GAME_CLEAR, SlateportCity_Harbor_EventScript_FerryFinished
+	speakername CommonName_Text_CaptStern
 	msgbox SlateportCity_Harbor_Text_WontBeLongBeforeWeFinishFerry, MSGBOX_DEFAULT
 	release
 	end
 
 SlateportCity_Harbor_EventScript_FerryFinished::
+	speakername CommonName_Text_CaptStern
 	msgbox SlateportCity_Harbor_Text_FinishedMakingFerry, MSGBOX_DEFAULT
 	release
 	end
 
 SlateportCity_Harbor_EventScript_AskToTradeScanner::
+	speakername CommonName_Text_CaptStern
 	message SlateportCity_Harbor_Text_WouldYouTradeScanner
 	waitmessage
 	goto SlateportCity_Harbor_EventScript_ChooseScannerTrade
 	end
 
 SlateportCity_Harbor_EventScript_ChooseScannerTrade::
+	speakername CommonName_Text_CaptStern
 	multichoice 0, 0, MULTI_STERN_DEEPSEA, FALSE
 	switch VAR_RESULT
 	case 0, SlateportCity_Harbor_EventScript_DeepSeaTooth
@@ -365,184 +365,177 @@ SlateportCity_Harbor_EventScript_DeepSeaScale::
 	giveitem ITEM_DEEP_SEA_SCALE
 	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
 	removeitem ITEM_SCANNER
+	speakername 0
 	msgbox SlateportCity_Harbor_Text_HandedScannerToStern, MSGBOX_DEFAULT
 	setflag FLAG_EXCHANGED_SCANNER
 	goto SlateportCity_Harbor_EventScript_TradedScanner
 	end
 
-SlateportCity_Harbor_EventScript_DeclineTrade::
-	msgbox SlateportCity_Harbor_Text_IfYouWantToTradeLetMeKnow, MSGBOX_DEFAULT
-	release
-	end
-
-SlateportCity_Harbor_EventScript_ChooseDifferentTrade::
-	message SlateportCity_Harbor_Text_WhichOneDoYouWant
-	waitmessage
-	goto SlateportCity_Harbor_EventScript_ChooseScannerTrade
-	end
-
-SlateportCity_Harbor_EventScript_TradedScanner::
-	setvar VAR_TEMP_1, 1
-	msgbox SlateportCity_Harbor_Text_ThisWillHelpResearch, MSGBOX_DEFAULT
-	release
-	end
-
-SlateportCity_Harbor_Text_FerryServiceUnavailable:
-	.string "I beg your pardon?\n"
-	.string "You're looking for a ship?\p"
-	.string "I'm sorry, the ferry service isn't\n"
-	.string "available at present…$"
-
-SlateportCity_Harbor_Text_MayISeeYourTicket:
-	.string "Hello, are you here for the ferry?\n"
-	.string "May I see your TICKET?$"
-
-SlateportCity_Harbor_Text_YouMustHaveTicket:
-	.string "{PLAYER} doesn't have the TICKET…\p"
-	.string "I'm terribly sorry.\p"
-	.string "You must have a TICKET to board\n"
-	.string "the ferry.$"
-
-SlateportCity_Harbor_Text_FlashedTicketWhereTo:
-	.string "{PLAYER} flashed the TICKET.\p"
-	.string "Perfect! That's all you need!\p"
-	.string "And where would you like to go?$"
-
-SlateportCity_Harbor_Text_SailAnotherTime:
-	.string "Please sail with us another time!$"
-
-SlateportCity_Harbor_Text_LilycoveItIs:
-	.string "LILYCOVE CITY it is, then!$"
-
-SlateportCity_Harbor_Text_BattleFrontierItIs:
-	.string "BATTLE FRONTIER it is, then!$"
-
-SlateportCity_Harbor_Text_PleaseBoardFerry:
-	.string "Please board the ferry and wait for\n"
-	.string "departure.$"
-
-SlateportCity_Harbor_Text_WhereWouldYouLikeToGo:
-	.string "Then, where would you like to go?$"
-
-SlateportCity_Harbor_Text_LoveToGoDeepUnderwaterSomeday:
-	.string "A journey to the bottom of the sea…\n"
-	.string "I wonder what it'd be like?\p"
-	.string "I'd love to go deep underwater like\n"
-	.string "that someday.$"
-
-SlateportCity_Harbor_Text_AbnormalWeather:
-	.string "For a ship to sail safely, we need to\n"
-	.string "know about the weather!\p"
-	.string "Speaking of weather, I heard something\n"
-	.string "from a guy at the WEATHER INSTITUTE.\p"
-	.string "He was saying abnormal weather has\n"
-	.string "been reported all over the place!\p"
-	.string "You should visit the WEATHER INSTITUTE\n"
-	.string "and ask around!$"
-
-SlateportCity_Harbor_Text_SubTooSmallForMe:
-	.string "I wanted to go with CAPT. STERN on\n"
-	.string "the ocean floor exploration.\p"
-	.string "But the sub's too small for me.\p"
-	.string "If I squeezed in, there wouldn't be\n"
-	.string "any room for the CAPTAIN…$"
-
-SlateportCity_Harbor_Text_SameThugsTriedToRobAtMuseum:
-	.string "CAPT. STERN: Those thugs…\p"
-	.string "They're the same lot who tried to rob\n"
-	.string "the DEVON GOODS at the MUSEUM.$"
-
-SlateportCity_Harbor_Text_ArchieYouAgainHideoutInLilycove:
-	.string "ARCHIE: Oh?\n"
-	.string "Not you again…\p"
-	.string "You are tenacious to track us here,\n"
-	.string "that much I will give you.\p"
-	.string "But now…\n"
-	.string "No one can stop us! No one!\p"
-	.string "Or, will you follow us back to our\n"
-	.string "HIDEOUT in LILYCOVE CITY?\p"
-	.string "Fwahahahaha…$"
-
-SlateportCity_Harbor_Text_CaptSternWhyStealMySubmarine:
-	.string "CAPT. STERN: Why…\p"
-	.string "Why would TEAM AQUA steal my\n"
-	.string "SUBMARINE EXPLORER 1?\p"
-	.string "They can't be after the slumbering\n"
-	.string "POKéMON at the bottom of the sea…\p"
-	.string "But even if I were to chase them,\n"
-	.string "I don't stand a chance against them…$"
-
-SlateportCity_Harbor_Text_TeamAquaLeftNeedDive:
-	.string "CAPT. STERN: Oh, {PLAYER}{KUN}…\p"
-	.string "Okay… So TEAM AQUA left before you\n"
-	.string "could stop them…\p"
-	.string "Oh, no, don't blame yourself.\n"
-	.string "You're not responsible for this.\p"
-	.string "Trying to catch a submarine…\n"
-	.string "It's impossible for most people.\p"
-	.string "You would need a POKéMON that knows\n"
-	.string "how to DIVE…\p"
-	.string "Perhaps if you went out to\n"
-	.string "MOSSDEEP CITY…\p"
-	.string "A lot of divers live out there, so\n"
-	.string "someone might teach you…$"
-
-SlateportCity_Harbor_Text_NeedDiveToCatchSub:
-	.string "CAPT. STERN: Trying to catch a\n"
-	.string "submarine… It's impossible.\p"
-	.string "You would need a POKéMON that knows\n"
-	.string "how to DIVE…\p"
-	.string "Perhaps if you went out to\n"
-	.string "MOSSDEEP CITY…\p"
-	.string "A lot of divers live out there, so\n"
-	.string "someone might teach you…$"
-
-SlateportCity_Harbor_Text_WontBeLongBeforeWeFinishFerry:
-	.string "CAPT. STERN: Oh, yes.\n"
-	.string "MR. BRINEY came to our SHIPYARD.\p"
-	.string "It won't be long now before we finish\n"
-	.string "making the ferry!$"
-
-SlateportCity_Harbor_Text_FinishedMakingFerry:
-	.string "CAPT. STERN: {PLAYER}{KUN}!\p"
-	.string "We finally finished making the ferry\n"
-	.string "S.S. TIDAL!\p"
-	.string "We couldn't have done it without\n"
-	.string "your friend MR. BRINEY.\p"
-	.string "Please go for a short cruise on it!$"
-
-SlateportCity_Harbor_Text_WouldYouTradeScanner:
-	.string "CAPT. STERN: Oh?\n"
-	.string "{PLAYER}{KUN}, that item you have…\p"
-	.string "That's a SCANNER! That would sure\n"
-	.string "help us on our explorations.\p"
-	.string "{PLAYER}{KUN}, would you trade your\n"
-	.string "SCANNER for something?\p"
-	.string "Like, say, a DEEPSEATOOTH or\n"
-	.string "a DEEPSEASCALE that I have?$"
-
-SlateportCity_Harbor_Text_IfYouWantToTradeLetMeKnow:
-	.string "CAPT. STERN: Are you certain?\n"
-	.string "It's useless to you, {PLAYER}{KUN}…\p"
-	.string "Well, okay, then. If you want to trade\n"
-	.string "your SCANNER, let me know.$"
-
-SlateportCity_Harbor_Text_TradeForDeepSeaTooth:
-	.string "CAPT. STERN: So you'll trade it for\n"
-	.string "my DEEPSEATOOTH?$"
-
-SlateportCity_Harbor_Text_TradeForDeepSeaScale:
-	.string "CAPT. STERN: So you'll trade it for\n"
-	.string "my DEEPSEASCALE?$"
-
-SlateportCity_Harbor_Text_WhichOneDoYouWant:
-	.string "CAPT. STERN: Which one do you want?$"
-
-SlateportCity_Harbor_Text_HandedScannerToStern:
-	.string "{PLAYER} handed the SCANNER to\n"
-	.string "CAPT. STERN.$"
-
-SlateportCity_Harbor_Text_ThisWillHelpResearch:
-	.string "CAPT. STERN: Thanks, {PLAYER}{KUN}!\n"
-	.string "This will help our research a lot!$"
 `
+script SlateportCity_Harbor_EventScript_DeclineTrade {
+	speakername(CommonName_Text_CaptStern)
+	msgbox(format("Are you certain?\n"
+	"It's useless to you, {PLAYER}{KUN}…\p"
+	"Well, okay, then. If you want to trade your Scanner, let me know."), MSGBOX_DEFAULT)
+	release
+}
+
+script SlateportCity_Harbor_EventScript_ChooseDifferentTrade {
+	speakername(CommonName_Text_CaptStern)
+	message(format("CAPT. STERN: Which one do you want?"))
+	waitmessage
+	goto(SlateportCity_Harbor_EventScript_ChooseScannerTrade)
+}
+
+script SlateportCity_Harbor_EventScript_TradedScanner {
+	setvar(VAR_TEMP_1, 1)
+	speakername(CommonName_Text_CaptStern)
+	msgbox(format("Thanks, {PLAYER}{KUN}!\n"
+	    "This will help our research a lot!"), MSGBOX_DEFAULT)
+	release
+}
+
+text SlateportCity_Harbor_Text_FerryServiceUnavailable {
+	format("I beg your pardon?\n"
+	"You're looking for a ship?\p"
+	"I'm sorry, the ferry service isn't available at present…")
+}
+
+text SlateportCity_Harbor_Text_MayISeeYourTicket {
+	format("Hello, are you here for the ferry?\n"
+	"May I see your TICKET?")
+}
+
+text SlateportCity_Harbor_Text_YouMustHaveTicket {
+	format("{PLAYER} doesn't have the TICKET…\p"
+	"I'm terribly sorry.\p"
+	"You must have a TICKET to board\n"
+	"the ferry.")
+}
+
+text SlateportCity_Harbor_Text_FlashedTicketWhereTo {
+	format("{PLAYER} flashed the TICKET.\p"
+	"Perfect! That's all you need!\p"
+	"And where would you like to go?")
+}
+
+text SlateportCity_Harbor_Text_SailAnotherTime {
+	format("Please sail with us another time!")
+}
+
+text SlateportCity_Harbor_Text_LilycoveItIs {
+	format("LILYCOVE CITY it is, then!")
+}
+
+text SlateportCity_Harbor_Text_BattleFrontierItIs {
+	format("BATTLE FRONTIER it is, then!")
+}
+
+text SlateportCity_Harbor_Text_PleaseBoardFerry {
+	format("Please board the ferry and wait for\n"
+	"departure.")
+}
+
+text SlateportCity_Harbor_Text_WhereWouldYouLikeToGo {
+	format("Then, where would you like to go?")
+}
+
+text SlateportCity_Harbor_Text_AbnormalWeather {
+	format("For a ship to sail safely, we need to\n"
+	"know about the weather!\p"
+	"Speaking of weather, I heard something\n"
+	"from a guy at the WEATHER INSTITUTE.\p"
+	"He was saying abnormal weather has\n"
+	"been reported all over the place!\p"
+	"You should visit the WEATHER INSTITUTE\n"
+	"and ask around!")
+}
+
+text SlateportCity_Harbor_Text_SubTooSmallForMe {
+	format("I wanted to go with CAPT. STERN on\n"
+	"the ocean floor exploration.\p"
+	"But the sub's too small for me.\p"
+	"If I squeezed in, there wouldn't be\n"
+	"any room for the CAPTAIN…")
+}
+
+text SlateportCity_Harbor_Text_SameThugsTriedToRobAtMuseum {
+	format("Those thugs…\p"
+	"They're the lot who tried to steal the Devon Goods at the Museum.")
+}
+
+text SlateportCity_Harbor_Text_ArchieYouAgainHideoutInLilycove {
+	format("Oh?\n"
+	"Not you again…\p"
+	"You are tenacious to track us here, that much I will give you.\p"
+	"But now…\n"
+	"No one can stop us! No one!\p"
+	"Or, will you follow us back to our Hideout in Lilycove City?\p"
+	"Fwahahahaha…")
+}
+
+text SlateportCity_Harbor_Text_CaptSternWhyStealMySubmarine {
+	format("Why…\n"
+	"Why would Team Aqua steal my Submarine Explorer 1?\p"
+	"They can't be after the slumbering Pokémon at the bottom of the sea…\p"
+	"But even if I were to chase them, I don't stand a chance against them…")
+}
+
+text SlateportCity_Harbor_Text_TeamAquaLeftNeedDive {
+	format("Oh, {PLAYER}{KUN}…\p"
+	"Okay… So Team Aqua left before you could stop them…\p"
+	"Oh, no, don't blame yourself.\n"
+	"You're not responsible for this.\p"
+	"Trying to catch a submarine…\n"
+	"It's impossible for most people.\p"
+	"You would need a Pokémon that knows how to Dive…\p"
+	"Perhaps if you went out to Mossdeep City…\p"
+	"A lot of divers live out there, so someone might teach you…")
+}
+
+text SlateportCity_Harbor_Text_NeedDiveToCatchSub {
+	format("Trying to catch a submarine… It's impossible.\p"
+	"You would need a Pokémon that knows how to Dive…\p"
+	"Perhaps if you went out to Mossdeep City…\p"
+	"A lot of divers live out there, so someone might teach you…")
+}
+
+text SlateportCity_Harbor_Text_WontBeLongBeforeWeFinishFerry {
+	format("Oh, yes.\n"
+	"Mr. Briney came to our Shipyard.\p"
+	"It won't be long now before we finish making the ferry!")
+}
+
+text SlateportCity_Harbor_Text_FinishedMakingFerry {
+	format("{PLAYER}{KUN}!\n"
+	"We finally finished making the ferry S.S. Tidal!\p"
+	"We couldn't have done it without your friend Mr. Briney.\p"
+	"Please go for a short cruise on it!")
+}
+
+text SlateportCity_Harbor_Text_WouldYouTradeScanner {
+	format("Oh?\n"
+	"{PLAYER}{KUN}, that item you have…\p"
+	"That's a Scanner! That would sure help us on our explorations.\p"
+	"{PLAYER}{KUN}, would you trade your Scanner for something?\p"
+	"Like, say, a Deep Sea Tooth or a Deep Sea Scale that I have?")
+}
+
+text SlateportCity_Harbor_Text_TradeForDeepSeaTooth {
+	format("So you'll trade it for my Deep Sea Tooth?")
+}
+
+text SlateportCity_Harbor_Text_TradeForDeepSeaScale {
+	format("So you'll trade it for my Deep Sea Scale?")
+}
+
+text SlateportCity_Harbor_Text_HandedScannerToStern {
+	format("{PLAYER} handed the Scanner to Capt. Stern.")
+}
+
+script SlateportCity_Harbor_EventScript_SailorNoAbnormalWeather {
+	msgbox(format("A journey to the bottom of the sea…\n"
+	"I wonder what it'd be like?\p"
+	"I'd love to go deep underwater like that someday."), MSGBOX_DEFAULT)
+	release
+}

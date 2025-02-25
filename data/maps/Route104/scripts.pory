@@ -82,11 +82,12 @@ Route104_EventScript_MayEncounter::
     goto_if_set FLAG_DEFEATED_RIVAL_ROUTE_104, Route104_EventScript_MayDefeated
     goto_if_set FLAG_REGISTER_RIVAL_POKENAV, Route104_EventScript_MayAskToBattle
     setflag FLAG_REGISTER_RIVAL_POKENAV
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_May
     msgbox Route104_Text_MayWeShouldRegister, MSGBOX_DEFAULT
     closemessage
     delay 30
     playfanfare MUS_REGISTER_MATCH_CALL
+    speakername 0
     msgbox Route104_Text_RegisteredMay, MSGBOX_DEFAULT
     waitfanfare
     closemessage
@@ -94,17 +95,17 @@ Route104_EventScript_MayEncounter::
     setflag FLAG_ENABLE_RIVAL_MATCH_CALL
     applymovement OBJ_EVENT_ID_PLAYER, Route104_Movement_PlayerFaceRival
     applymovement LOCALID_RIVAL, Route104_Movement_RivalWalkSlowLeft
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_May
     msgbox Route104_Text_MayHowsYourPokedex, MSGBOX_DEFAULT
     closemessage
     waitmovement 0
     applymovement LOCALID_RIVAL, Route104_Movement_RivalApproachPlayer
     waitmovement 0
     copyobjectxytoperm LOCALID_RIVAL
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_May
     msgbox Route104_Text_MayMinesDecentLetsBattle, MSGBOX_YESNO
     goto_if_eq VAR_RESULT, YES, Route104_EventScript_BattleMay
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_May
     msgbox Route104_Text_MayHaventRaisedPokemon, MSGBOX_DEFAULT
     call Route104_EventScript_RestoreMusic
     releaseall
@@ -125,16 +126,16 @@ Route104_Movement_PlayerFaceRival:
     step_end
 
 Route104_EventScript_MayAskToBattle::
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_May
     msgbox Route104_Text_MayLetsBattle, MSGBOX_YESNO
     goto_if_eq VAR_RESULT, YES, Route104_EventScript_BattleMay
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_May
     msgbox Route104_Text_MayHaventRaisedPokemon, MSGBOX_DEFAULT
     releaseall
     end
 
 Route104_EventScript_BattleMay::
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_May
     msgbox Route104_Text_MayIntro, MSGBOX_DEFAULT
     switch VAR_STARTER_MON
     case 0, Route104_EventScript_BattleMayTreecko
@@ -143,7 +144,7 @@ Route104_EventScript_BattleMay::
     end
 
 Route104_EventScript_MayDefeated::
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_May
     msgbox Route104_Text_MayPostBattle, MSGBOX_DEFAULT
     call_if_eq VAR_0x8008, 0, Route104_EventScript_RestoreMusic
     releaseall
@@ -176,7 +177,7 @@ Route104_EventScript_BrendanEncounter::
     goto_if_set FLAG_DEFEATED_RIVAL_ROUTE_104, Route104_EventScript_BrendanDefeated
     goto_if_set FLAG_REGISTER_RIVAL_POKENAV, Route104_EventScript_BrendanAskToBattle
     setflag FLAG_REGISTER_RIVAL_POKENAV
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_Brendan
     msgbox Route104_Text_BrendanWeShouldRegister, MSGBOX_DEFAULT
     closemessage
     delay 30
@@ -188,33 +189,33 @@ Route104_EventScript_BrendanEncounter::
     setflag FLAG_ENABLE_RIVAL_MATCH_CALL
     applymovement OBJ_EVENT_ID_PLAYER, Route104_Movement_PlayerFaceRival
     applymovement LOCALID_RIVAL, Route104_Movement_RivalWalkSlowLeft
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_Brendan
     msgbox Route104_Text_BrendanHowsYourPokedex, MSGBOX_DEFAULT
     closemessage
     waitmovement 0
     applymovement LOCALID_RIVAL, Route104_Movement_RivalApproachPlayer
     waitmovement 0
     copyobjectxytoperm LOCALID_RIVAL
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_Brendan
     msgbox Route104_Text_BrendanDoingGreatLetsBattle, MSGBOX_YESNO
     goto_if_eq VAR_RESULT, YES, Route104_EventScript_BattleBrendan
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_Brendan
     msgbox Route104_Text_BrendanNoConfidence, MSGBOX_DEFAULT
     call Route104_EventScript_RestoreMusic
     releaseall
     end
 
 Route104_EventScript_BrendanAskToBattle::
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_Brendan
     msgbox Route104_Text_BrendanLetsBattle, MSGBOX_YESNO
     goto_if_eq VAR_RESULT, YES, Route104_EventScript_BattleBrendan
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_Brendan
     msgbox Route104_Text_BrendanNoConfidence, MSGBOX_DEFAULT
     releaseall
     end
 
 Route104_EventScript_BattleBrendan::
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_Brendan
     msgbox Route104_Text_BrendanIntro, MSGBOX_DEFAULT
     switch VAR_STARTER_MON
     case 0, Route104_EventScript_BattleBrendanTreecko
@@ -223,7 +224,7 @@ Route104_EventScript_BattleBrendan::
     end
 
 Route104_EventScript_BrendanDefeated::
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_Brendan
     msgbox Route104_Text_BrendanPostBattle, MSGBOX_DEFAULT
     call_if_eq VAR_0x8008, 0, Route104_EventScript_RestoreMusic
     releaseall

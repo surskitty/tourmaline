@@ -1,6 +1,16 @@
 mapscripts LavaridgeTown_MapScripts {
-	MAP_SCRIPT_ON_TRANSITION: LavaridgeTown_OnTransition
-	MAP_SCRIPT_ON_FRAME_TABLE: LavaridgeTown_OnFrame
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_VISITED_LAVARIDGE_TOWN)
+        call_if_set(FLAG_WHITEOUT_TO_LAVARIDGE, LavaridgeTown_EventScript_ClearLavaridgeWhiteOut)
+        call_if_set(FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, LavaridgeTown_EventScript_ShowMtChimneyTrainers)
+        call(Common_EventScript_SetupRivalGfxId)
+        call(Common_EventScript_SetupRivalOnBikeGfxId)
+        call_if_eq(VAR_LAVARIDGE_TOWN_STATE, 1, LavaridgeTown_EventScript_CheckSetRivalPos)
+        call_if_eq(VAR_LAVARIDGE_TOWN_STATE, 1, LavaridgeTown_EventScript_HideMapNamePopup)
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_LAVARIDGE_TOWN_STATE, 1: LavaridgeTown_EventScript_RivalGiveGoGoggles
+    ]
     MAP_SCRIPT_ON_LOAD {
         special(SetRoofBirds)
     }
@@ -9,16 +19,6 @@ mapscripts LavaridgeTown_MapScripts {
 raw `
 .set LOCALID_RIVAL_ON_BIKE, 7
 .set LOCALID_RIVAL, 8
-
-LavaridgeTown_OnTransition:
-	setflag FLAG_VISITED_LAVARIDGE_TOWN
-	call_if_set FLAG_WHITEOUT_TO_LAVARIDGE, LavaridgeTown_EventScript_ClearLavaridgeWhiteOut
-	call_if_set FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, LavaridgeTown_EventScript_ShowMtChimneyTrainers
-	call Common_EventScript_SetupRivalGfxId
-	call Common_EventScript_SetupRivalOnBikeGfxId
-	call_if_eq VAR_LAVARIDGE_TOWN_STATE, 1, LavaridgeTown_EventScript_CheckSetRivalPos
-	call_if_eq VAR_LAVARIDGE_TOWN_STATE, 1, LavaridgeTown_EventScript_HideMapNamePopup
-	end
 
 LavaridgeTown_EventScript_ClearLavaridgeWhiteOut::
 	clearflag FLAG_WHITEOUT_TO_LAVARIDGE
@@ -44,10 +44,6 @@ LavaridgeTown_EventScript_HideMapNamePopup::
 	setflag FLAG_HIDE_MAP_NAME_POPUP
 	return
 
-LavaridgeTown_OnFrame:
-	map_script_2 VAR_LAVARIDGE_TOWN_STATE, 1, LavaridgeTown_EventScript_RivalGiveGoGoggles
-	.2byte 0
-
 LavaridgeTown_EventScript_RivalGiveGoGoggles::
 	lockall
 	getplayerxy VAR_0x8008, VAR_0x8009
@@ -65,6 +61,7 @@ LavaridgeTown_EventScript_RivalGiveGoGoggles::
 	end
 
 LavaridgeTown_EventScript_MayGiveGoGoggles::
+	speakername CommonName_Text_May
 	msgbox LavaridgeTown_Text_MayNiceBadgesTakeThis, MSGBOX_DEFAULT
 	giveitem ITEM_GO_GOGGLES
 	setflag FLAG_RECEIVED_GO_GOGGLES
@@ -73,6 +70,7 @@ LavaridgeTown_EventScript_MayGiveGoGoggles::
 	end
 
 LavaridgeTown_EventScript_BrendanGiveGoGoggles::
+	speakername CommonName_Text_Brendan
 	msgbox LavaridgeTown_Text_BrendanNiceBadgesTakeThis, MSGBOX_DEFAULT
 	giveitem ITEM_GO_GOGGLES
 	setflag FLAG_RECEIVED_GO_GOGGLES
@@ -97,10 +95,12 @@ LavaridgeTown_EventScript_RivalExit::
 
 LavaridgeTown_EventScript_PlayMayMusic::
 	playbgm MUS_ENCOUNTER_MAY, TRUE
+	speakername CommonName_Text_May
 	return
 
 LavaridgeTown_EventScript_PlayBrendanMusic::
 	playbgm MUS_ENCOUNTER_BRENDAN, TRUE
+	speakername CommonName_Text_Brendan
 	return
 
 LavaridgeTown_EventScript_RivalNoticePlayer::
@@ -212,30 +212,6 @@ LavaridgeTown_EventScript_EnteredHotSprings::
 	incrementgamestat GAME_STAT_ENTERED_HOT_SPRINGS
 	end
 
-LavaridgeTown_EventScript_ExpertM::
-	msgbox LavaridgeTown_Text_HotSpringsNeverRunDry, MSGBOX_NPC
-	end
-
-LavaridgeTown_EventScript_OldMan::
-	msgbox LavaridgeTown_Text_PokemonNippedBackside, MSGBOX_SIGN
-	end
-
-LavaridgeTown_EventScript_Twin::
-	msgbox LavaridgeTown_Text_BatheInHotSpringsEveryDay, MSGBOX_NPC
-	end
-
-LavaridgeTown_EventScript_HotSpringsOldWoman1::
-	msgbox LavaridgeTown_Text_IfPokemonInHotSprings, MSGBOX_NPC
-	end
-
-LavaridgeTown_EventScript_HotSpringsOldWoman2::
-	msgbox LavaridgeTown_Text_HotSpringsClaims, MSGBOX_NPC
-	end
-
-LavaridgeTown_EventScript_ExpertF::
-	msgbox LavaridgeTown_Text_OhYouLikeHotSprings, MSGBOX_NPC
-	end
-
 LavaridgeTown_EventScript_EggWoman::
 	lock
 	faceplayer
@@ -268,147 +244,127 @@ LavaridgeTown_EventScript_DeclineEgg::
 	release
 	end
 
-LavaridgeTown_EventScript_TownSign::
-	msgbox LavaridgeTown_Text_TownSign, MSGBOX_SIGN
-	end
-
-LavaridgeTown_EventScript_GymSign::
-	msgbox LavaridgeTown_Text_GymSign, MSGBOX_SIGN
-	end
-
-LavaridgeTown_EventScript_HerbShopSign::
-	msgbox LavaridgeTown_Text_HerbShopSign, MSGBOX_SIGN
-	end
-
-LavaridgeTown_Text_MayNiceBadgesTakeThis:
-	.string "MAY: {PLAYER}{KUN}! Long time no see!\p"
-	.string "Oh? While I visited the hot springs,\n"
-	.string "you got the Lavaridge Gym Badge.\p"
-	.string "You must have collected\n"
-	.string "good Pokémon…\l"
-	.string "No, I believe you raised some.\p"
-	.string "I guess it would be okay for you to\n"
-	.string "have this.$"
-
-LavaridgeTown_Text_MayExplainGoGogglesChallengeDad:
-	.string "MAY: With those Go-Goggles, you'll\n"
-	.string "have no trouble getting through the\l"
-	.string "desert near Route 111.\p"
-	.string "But, wow, {PLAYER}{KUN}…\n"
-	.string "Challenging Gyms…\p"
-	.string "You're trying hard because you don't\n"
-	.string "want to lose to me, I bet!\p"
-	.string "{PLAYER}{KUN}, I think I should challenge\n"
-	.string "your dad in Petalburg Gym.\p"
-	.string "See you again!$"
-
-LavaridgeTown_Text_BrendanNiceBadgesTakeThis:
-	.string "BRENDAN: {PLAYER}, hey, it's been a while.\n"
-	.string "How's it going?\p"
-	.string "Hmm…\n"
-	.string "That's a decent collection of Badges.\p"
-	.string "All right, then.\n"
-	.string "You may as well have this.$"
-
-LavaridgeTown_Text_BrendanExplainGoGogglesChallengeDad:
-	.string "BRENDAN: Keep those with you if you're\n"
-	.string "planning on going into that desert near\l"
-	.string "Route 111.\p"
-	.string "There should be some Pokémon that\n"
-	.string "are exclusively desert-dwellers.\l"
-	.string "You might look around for those.\p"
-	.string "As for me…\n"
-	.string "I'm considering challenging Norman,\l"
-	.string "the Gym Leader of Petalburg.\p"
-	.string "Unlike you, {PLAYER}, your dad looks like\n"
-	.string "he really is tough.\p"
-	.string "See you around!$"
-
-LavaridgeTown_Text_HaveEggWillYouTakeIt:
-	.string "I have here an Egg.\p"
-	.string "I'd hoped to hatch it by covering it in\n"
-	.string "hot sand by the hot springs.\l"
-	.string "But that doesn't seem to be enough…\p"
-	.string "I've heard it would be best if it were\n"
-	.string "kept together with Pokémon and\l"
-	.string "carried about.\p"
-	.string "You are a TRAINER, yes?\n"
-	.string "And your Pokémon radiate vitality.\p"
-	.string "So, what say you?\n"
-	.string "Will you take this Egg to hatch?$"
-
-LavaridgeTown_Text_HopeYoullWalkPlentyWithEgg:
-	.string "Good! I hope you'll walk plenty with\n"
-	.string "this here Egg!$"
-
-LavaridgeTown_Text_ReceivedTheEgg:
-	.string "{PLAYER} received the Egg.$"
-
-LavaridgeTown_Text_NoRoomForThisEgg:
-	.string "Oh? You've too many Pokémon.\n"
-	.string "There's no room for this Egg…$"
-
-LavaridgeTown_Text_AsYouWishThen:
-	.string "As you wish, then…\p"
-	.string "If you have a change of heart about\n"
-	.string "hatching this Egg, I will be here.$"
-
-LavaridgeTown_Text_EverySoOftenEggFoundAtDayCare:
-	.string "Every so often, an Egg will be found at\n"
-	.string "the Pokémon Day Care.\p"
-	.string "Or at least that's how the rumor goes.$"
-
-LavaridgeTown_Text_HotSpringsNeverRunDry:
-	.string "We draw as much hot water as we need,\n"
-	.string "and yet the hot springs never run dry.\p"
-	.string "Isn't it magical?\p"
-	.string "These hot springs appear near active\n"
-	.string "volcanoes. Veins of water under the\l"
-	.string "ground are heated by magma to well up\l"
-	.string "as hot springs.$"
-
-LavaridgeTown_Text_PokemonNippedBackside:
-	.string "Being buried in this hot sand is…\n"
-	.string "Sigh…\p"
-	.string "So warm and heavenly…\p"
-	.string "Eh? Gyaah! Ouch!\p"
-	.string "A Pokémon nipped my backside!$"
-
-LavaridgeTown_Text_OhYouLikeHotSprings:
-	.string "Oh, you like hot springs, do you?\p"
-	.string "That's surprising for one as young\n"
-	.string "as you.$"
-
-LavaridgeTown_Text_BatheInHotSpringsEveryDay:
-	.string "I bathe in the hot springs every day.\p"
-	.string "I want to become a beautiful and strong\n"
-	.string "Gym Leader like Flannery.$"
-
-LavaridgeTown_Text_IfPokemonInHotSprings:
-	.string "If people put Pokémon in hot springs,\n"
-	.string "it might be seriously strange.\p"
-	.string "Why, it might be an electric bath, or\n"
-	.string "a bubble bath, or even a lava bath…$"
-
-LavaridgeTown_Text_HotSpringsClaims:
-	.string "They're claiming that these hot springs\n"
-	.string "are good for calming nervous tension,\l"
-	.string "relieving aching muscles, solving\l"
-	.string "romantic problems, and attracting\l"
-	.string "money…$"
-
-LavaridgeTown_Text_TownSign:
-	.string "Lavaridge Town\p"
-	.string "“Pokémon Center Hot Springs\n"
-	.string "An excellent place for relaxing!”$"
-
-LavaridgeTown_Text_GymSign:
-	.string "Lavaridge Town Pokémon Gym\n"
-	.string "Leader: Flannery\l"
-	.string "“One with a fiery passion that burns!”$"
-
-LavaridgeTown_Text_HerbShopSign:
-	.string "Pokémon Herb Shop\n"
-	.string "“Bitter taste--better cure!”$"
-
 `
+text LavaridgeTown_Text_MayNiceBadgesTakeThis {
+	format("{PLAYER}{KUN}! Long time no see!\p"
+	"Oh? While I visited the hot springs,\n"
+	"you got the Lavaridge Gym Badge.\p"
+	"You must have collected\n"
+	"good Pokémon…\l"
+	"No, I believe you raised some.\p"
+	"I guess it would be okay for you to\n"
+	"have this.")
+}
+
+text LavaridgeTown_Text_MayExplainGoGogglesChallengeDad {
+	format("With those Go-Goggles, you'll have no trouble getting through the desert near Route 111.\p"
+	"But, wow, {PLAYER}{KUN}…\n"
+	"Challenging Gyms…\p"
+	"You're trying hard because you don't\n"
+	"want to lose to me, I bet!\p"
+	"{PLAYER}{KUN}, I think I should challenge\n"
+	"your dad in Petalburg Gym.\p"
+	"See you again!")
+}
+
+text LavaridgeTown_Text_BrendanNiceBadgesTakeThis {
+	format("{PLAYER}, hey, it's been a while.\n"
+	"How's it going?\p"
+	"Hmm…\n"
+	"That's a decent collection of Badges.\p"
+	"All right, then.\n"
+	"You may as well have this.")
+}
+
+text LavaridgeTown_Text_BrendanExplainGoGogglesChallengeDad {
+	format("Keep those with you if you're planning on going into that desert near Route 111.\p"
+	"There should be some Pokémon that are exclusively desert-dwellers.\l"
+	"You might look around for those.\p"
+	"As for me…\n"
+	"I'm considering challenging Norman, the Gym Leader of Petalburg.\p"
+	"Unlike you, {PLAYER}, your dad looks like he really is tough.\p"
+	"See you around!")
+}
+
+text LavaridgeTown_Text_HaveEggWillYouTakeIt {
+	format("I have here an Egg.\p"
+	"I'd hoped to hatch it by covering it in hot sand by the hot springs.\l"
+	"But that doesn't seem to be enough…\p"
+	"I've heard it would be best if it were kept together with Pokémon and carried about.\p"
+	"You are a Trainer, yes?\n"
+	"And your Pokémon radiate vitality.\p"
+	"So, what say you?\n"
+	"Will you take this Egg to hatch?")
+}
+
+text LavaridgeTown_Text_HopeYoullWalkPlentyWithEgg {
+	format("Good! I hope you'll walk plenty with this here Egg!")
+}
+
+text LavaridgeTown_Text_ReceivedTheEgg {
+	format("{PLAYER} received the Egg.")
+}
+
+text LavaridgeTown_Text_NoRoomForThisEgg {
+	format("Oh? You've too many Pokémon.\n"
+	"There's no room for this Egg…")
+}
+
+text LavaridgeTown_Text_AsYouWishThen {
+	format("As you wish, then…\p"
+	"If you have a change of heart about hatching this Egg, I will be here.")
+}
+
+text LavaridgeTown_Text_EverySoOftenEggFoundAtDayCare {
+	format("Every so often, an Egg will be found at the Pokémon Day Care.\p"
+	"Or at least that's how the rumor goes.")
+}
+
+script LavaridgeTown_EventScript_ExpertM {
+	msgbox(format("We draw as much hot water as we need, and yet the hot springs never run dry.\p"
+	"Isn't it magical?\p"
+	"These hot springs appear near active volcanoes. Veins of water under the ground are heated by magma to well up as hot springs."), MSGBOX_NPC)
+}
+
+script LavaridgeTown_EventScript_OldMan {
+	msgbox(format("Being buried in this hot sand is…\n"
+	"Sigh…\p"
+	"So warm and heavenly…\p"
+	"Eh? Gyaah! Ouch!\p"
+	"A Pokémon nipped my backside!"), MSGBOX_SIGN)
+}
+
+script LavaridgeTown_EventScript_Twin {
+	msgbox(format("I bathe in the hot springs every day.\p"
+	"I want to become a beautiful and strong Gym Leader like Flannery."), MSGBOX_NPC)
+}
+
+script LavaridgeTown_EventScript_HotSpringsOldWoman1 {
+	msgbox(format("If people put Pokémon in hot springs, it might be seriously strange.\p"
+	"Why, it might be an electric bath, or a bubble bath, or even a lava bath…"), MSGBOX_NPC)
+}
+
+script LavaridgeTown_EventScript_HotSpringsOldWoman2 {
+	msgbox(format("They're claiming that these hot springs are good for calming nervous tension, relieving aching muscles, solving romantic problems, and attracting money…"), MSGBOX_NPC)
+}
+
+script LavaridgeTown_EventScript_ExpertF {
+	msgbox(format("Oh, you like hot springs, do you?\p"
+	"That's surprising for one as young as you."), MSGBOX_NPC)
+}
+
+script LavaridgeTown_EventScript_TownSign {
+	msgbox(format("Lavaridge Town\p"
+	"“Pokémon Center Hot Springs\n"
+	"An excellent place for relaxing!”"), MSGBOX_SIGN)
+}
+
+script LavaridgeTown_EventScript_GymSign {
+	msgbox(format("Lavaridge Town Pokémon Gym Leader: Flannery\l"
+	"“One with a fiery passion that burns!”"), MSGBOX_SIGN)
+}
+
+script LavaridgeTown_EventScript_HerbShopSign {
+	msgbox(format("Pokémon Herb Shop\n"
+	"“Bitter taste--better cure!”"), MSGBOX_SIGN)
+}

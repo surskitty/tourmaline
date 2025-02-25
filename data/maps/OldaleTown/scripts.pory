@@ -256,18 +256,19 @@ OldaleTown_EventScript_RivalTrigger3::
     end
 
 OldaleTown_EventScript_ShowRivalMessage::
-    speakername CommonName_Text_Rival
     checkplayergender
     goto_if_eq VAR_RESULT, MALE, OldaleTown_EventScript_ShowMayMessage
     goto_if_eq VAR_RESULT, FEMALE, OldaleTown_EventScript_ShowBrendanMessage
     end
 
 OldaleTown_EventScript_ShowMayMessage::
+    speakername CommonName_Text_May
     msgbox OldaleTown_Text_MayLetsGoBack, MSGBOX_DEFAULT
     goto OldaleTown_EventScript_RivalFinish
     end
 
 OldaleTown_EventScript_ShowBrendanMessage::
+    speakername CommonName_Text_Brendan
     msgbox OldaleTown_Text_BrendanLetsGoBack, MSGBOX_DEFAULT
     goto OldaleTown_EventScript_RivalFinish
     end

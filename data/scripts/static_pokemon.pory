@@ -1,7 +1,9 @@
 script Common_EventScript_StationaryWild {
     lock
     faceplayer
+    waitmovement(0)
     applymovement(VAR_LAST_TALKED, Common_Movement_ExclamationMark)
+    waitmovement(0)
     waitse
     callnative(StartStationaryEncounter)
     playmoncry(VAR_0x8004, CRY_MODE_ENCOUNTER)

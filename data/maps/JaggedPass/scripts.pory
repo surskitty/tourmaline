@@ -177,8 +177,7 @@ text JaggedPass_Text_DianaDefeat {
 
 text JaggedPass_Text_DianaPostBattle {
 	format("Did you know?\p"
-	"Some people cleverly ride their\n"
-	"bicycles up this horribly bumpy pass.")
+	"Some people cleverly ride their bicycles up this horribly bumpy pass.")
 }
 
 text JaggedPass_Text_DianaRegister {
@@ -192,13 +191,11 @@ text JaggedPass_Text_DianaRematchIntro {
 }
 
 text JaggedPass_Text_DianaRematchDefeat {
-	format("I only lost because the ground is\n"
-	"too bumpy!")
+	format("I only lost because the ground is too bumpy!")
 }
 
 text JaggedPass_Text_DianaPostRematch {
-	format("I'll forget about losing and just\n"
-	"enjoy this bumpy hike.")
+	format("I'll forget about losing and just enjoy this bumpy hike.")
 }
 
 text JaggedPass_Text_EthanIntro {
@@ -207,18 +204,15 @@ text JaggedPass_Text_EthanIntro {
 }
 
 text JaggedPass_Text_EthanDefeat {
-	format("It was all over while we were still\n"
-	"trying to find a good footing…")
+	format("It was all over while we were still trying to find a good footing…")
 }
 
 text JaggedPass_Text_EthanPostBattle {
-	format("If I had an Acro Bike, I'd be able to\n"
-	"jump ledges.")
+	format("If I had an Acro Bike, I'd be able to jump ledges.")
 }
 
 text JaggedPass_Text_EthanRegister {
-	format("When I get more used to this bumpiness,\n"
-	"I'll be sure to win!\p"
+	format("When I get more used to this bumpiness, I'll be sure to win!\p"
 	"Can you register me in your Pokénav?")
 }
 
@@ -228,13 +222,11 @@ text JaggedPass_Text_EthanRematchIntro {
 }
 
 text JaggedPass_Text_EthanRematchDefeat {
-	format("It's still not easy to battle on this\n"
-	"bumpy ground…")
+	format("It's still not easy to battle on this bumpy ground…")
 }
 
 text JaggedPass_Text_EthanPostRematch {
-	format("I should get an Acro Bike from Rydel\n"
-	"in Mauville City…")
+	format("I should get an Acro Bike from Rydel in Mauville City…")
 }
 
 text JaggedPass_Text_GruntIntro {

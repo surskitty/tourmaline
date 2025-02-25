@@ -1508,11 +1508,13 @@ script PetalburgCity_Gym_EventScript_BeginWallyTutorial {
     call_if_eq(VAR_0x8008, 3, PetalburgCity_Gym_EventScript_NormanAddressWallyEast)
     speakername(CommonName_Text_Dad)
     msgbox("Wally, here, I'll loan you my Pokémon.", MSGBOX_DEFAULT)
+    speakername(0)
     msgbox("Wally received a Zigzagoon!", MSGBOX_DEFAULT)
     speakername(CommonName_Text_Wally)
     msgbox("Oh, wow!\nA Pokémon!", MSGBOX_DEFAULT)
     speakername(CommonName_Text_Dad)
     msgbox("Hm. I'll give you a Poké Ball, too.\nGo for it!", MSGBOX_DEFAULT)
+    speakername(0)
     msgbox("Wally received a Poké Ball!", MSGBOX_DEFAULT)
     speakername(CommonName_Text_Wally)
     msgbox("Oh, wow!\nThank you!", MSGBOX_DEFAULT)
@@ -1547,7 +1549,7 @@ script PetalburgCity_Gym_EventScript_BeginWallyTutorial {
 }
 
 text PetalburgCity_Gym_Text_DadYoureHereWithYourPokemon {
-    format("DAD: Hm?\p"
+    format("Hm?\p"
         "Well, if it isn't {PLAYER}!\n"
         "So you're all finished moving in?\p"
         "I'm surprised that you managed to get here by yourself.\p"

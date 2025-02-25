@@ -11967,7 +11967,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
 #if !TESTING
         .abilities = { ABILITY_SOUNDPROOF, ABILITY_STATIC, ABILITY_NONE },
-        .innates = { ABILITY_AFTERMATH },
+        .innates = { ABILITY_AFTERMATH, ABILITY_SURGE_SURFER },
 #else
         .abilities = { ABILITY_SOUNDPROOF, ABILITY_STATIC, ABILITY_AFTERMATH },
 #endif
@@ -12036,7 +12036,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
 #if !TESTING
         .abilities = { ABILITY_SOUNDPROOF, ABILITY_STATIC, ABILITY_NONE },
-        .innates = { ABILITY_AFTERMATH },
+        .innates = { ABILITY_AFTERMATH, ABILITY_SURGE_SURFER },
 #else
         .abilities = { ABILITY_SOUNDPROOF, ABILITY_STATIC, ABILITY_AFTERMATH },
 #endif

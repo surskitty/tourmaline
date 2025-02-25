@@ -534,12 +534,12 @@ LittlerootTown_ProfessorBirchsLab_EventScript_PokemonAwait::
     end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_MayNoRoomForPokeBalls::
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_May
     msgbox LittlerootTown_ProfessorBirchsLab_Text_OhYourBagsFull, MSGBOX_DEFAULT
     return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_BrendanNoRoomForPokeBalls::
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_Brendan
     msgbox LittlerootTown_ProfessorBirchsLab_Text_HeyYourBagsFull, MSGBOX_DEFAULT
     return
 
@@ -568,12 +568,12 @@ LittlerootTown_ProfessorBirchsLab_EventScript_RivalFuturePlans::
     end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_MayWhatNextImStayingHere::
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_May
     msgbox LittlerootTown_ProfessorBirchsLab_Text_MayWhatNextImStayingHere, MSGBOX_DEFAULT
     return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_BrendanPreferCollectingSlowly:
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_Brendan
     msgbox LittlerootTown_ProfessorBirchsLab_Text_BrendanPreferCollectingSlowly, MSGBOX_DEFAULT
     return
 
@@ -585,12 +585,12 @@ LittlerootTown_ProfessorBirchsLab_EventScript_RivalHaveYouGoneToBattleFrontier::
     end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_MayHaveYouGoneToBattleFrontier::
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_May
     msgbox LittlerootTown_ProfessorBirchsLab_Text_MayHaveYouGoneToBattleFrontier, MSGBOX_DEFAULT
     return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_BrendanHaveYouGoneToBattleFrontier::
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_Brendan
     msgbox LittlerootTown_ProfessorBirchsLab_Text_BrendanHaveYouGoneToBattleFrontier, MSGBOX_DEFAULT
     return
 
@@ -602,12 +602,12 @@ LittlerootTown_ProfessorBirchsLab_EventScript_RivalTakeBreakFromFieldwork::
     end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_MayTakeBreakFromFieldwork::
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_May
     msgbox LittlerootTown_ProfessorBirchsLab_Text_MayTakeBreakFromFieldwork, MSGBOX_DEFAULT
     return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_BrendanTakeBreakFromFieldwork::
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_Brendan
     msgbox LittlerootTown_ProfessorBirchsLab_Text_BrendanTakeBreakFromFieldwork, MSGBOX_DEFAULT
     return
 
@@ -728,13 +728,13 @@ text LittlerootTown_ProfessorBirchsLab_Text_OhYourBagsFull {
 }
 
 script LittlerootTown_ProfessorBirchsLab_EventScript_MayWhereShouldIGoNext {
-    speakername(CommonName_Text_Rival)
+    speakername(CommonName_Text_May)
     msgbox(format("I wonder where I should go look for Pokémon next?"), MSGBOX_DEFAULT)
     return
 }
 
 script LittlerootTown_ProfessorBirchsLab_EventScript_BrendanWhereShouldIGoNext {
-    speakername(CommonName_Text_Rival)
+    speakername(CommonName_Text_Brendan)
     msgbox(format("Where should I look for Pokémon next…"), MSGBOX_DEFAULT)
     return
 }
@@ -958,7 +958,7 @@ script LittlerootTown_ProfessorBirchsLab_EventScript_UpgradeToNationalDex {
 }
 
 script LittlerootTown_ProfessorBirchsLab_EventScript_MayUpgradeComment {
-    speakername(CommonName_Text_Rival)
+    speakername(CommonName_Text_May)
     msgbox(format("Eheheh!\p"
         "I wonder what he's going to do with my Pokédex?\p"
         "It's because you went out and caught so many Pokémon, {PLAYER}{KUN}!"), MSGBOX_DEFAULT)
@@ -967,8 +967,8 @@ script LittlerootTown_ProfessorBirchsLab_EventScript_MayUpgradeComment {
 }
 
 script LittlerootTown_ProfessorBirchsLab_EventScript_BrendanUpgradeComment {
-    speakername(CommonName_Text_Rival)
-    msgbox(format("BRENDAN: I went out all over Hoenn and checked out Pokémon.\p"
+    speakername(CommonName_Text_Brendan)
+    msgbox(format("I went out all over Hoenn and checked out Pokémon.\p"
         "You can thank me for whatever Dad does with the Pokédex.\p"
         "Yep, you're lucky, {PLAYER}!"), MSGBOX_DEFAULT)
     closemessage

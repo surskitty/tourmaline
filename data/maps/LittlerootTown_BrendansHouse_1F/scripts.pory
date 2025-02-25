@@ -156,7 +156,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_MeetRival::
     call_if_eq VAR_0x8008, 0, LittlerootTown_BrendansHouse_1F_EventScript_BrendanApproachPlayer0
     call_if_eq VAR_0x8008, 1, LittlerootTown_BrendansHouse_1F_EventScript_BrendanApproachPlayer1
     call_if_eq VAR_0x8008, 2, LittlerootTown_BrendansHouse_1F_EventScript_BrendanApproachPlayer2
-    speakername CommonName_Text_Rival
+    speakername CommonName_Text_Brendan
     msgbox RivalsHouse_1F_Text_BrendanWhoAreYou, MSGBOX_DEFAULT
     closemessage
     call_if_eq VAR_0x8008, 0, LittlerootTown_BrendansHouse_1F_EventScript_BrendanGoUpstairs0
@@ -315,17 +315,17 @@ text PlayersHouse_1F_Text_GoSetTheClock {
 }
 
 text PlayersHouse_1F_Text_OhComeQuickly {
-    format("MOM: Oh! {PLAYER}, {PLAYER}!\n"
+    format("Oh! {PLAYER}, {PLAYER}!\n"
     "Quick! Come quickly!")
 }
 
 text PlayersHouse_1F_Text_MaybeDadWillBeOn {
-    format("MOM: Look! It's Petalburg Gym!\n"
+    format("Look! It's Petalburg Gym!\n"
     "Maybe your Dad will be on!")
 }
 
 text PlayersHouse_1F_Text_ItsOverWeMissedHim {
-    format("MOM: Oh… It's over.\p"
+    format("Oh… It's over.\p"
     "I think your Dad was on, but we missed him.\n"
     "Too bad.")
 }
@@ -338,26 +338,25 @@ text PlayersHouse_1F_Text_GoIntroduceYourselfNextDoor {
 }
 
 text PlayersHouse_1F_Text_SeeYouHoney {
-    format("MOM: See you, honey!")
+    format("See you, honey!")
 }
 
 text PlayersHouse_1F_Text_DidYouMeetProfBirch {
-    format("MOM: Did you introduce yourself to\n"
-    "Prof. Birch?")
+    format("Did you introduce yourself to Prof. Birch?")
 }
 
 text PlayersHouse_1F_Text_YouShouldRestABit {
-    format("MOM: How are you doing, {PLAYER}?\n"
+    format("How are you doing, {PLAYER}?\n"
     "You look a little tired.\p"
     "I think you should rest a bit.")
 }
 
 text PlayersHouse_1F_Text_TakeCareHoney {
-    format("MOM: Take care, honey!")
+    format("Take care, honey!")
 }
 
 text PlayersHouse_1F_Text_GotDadsBadgeHeresSomethingFromMom {
-    format("MOM: Oh? Did your Dad give you that Badge?\p"
+    format("Oh? Did your Dad give you that Badge?\p"
     "Then here's something from your Mom!")
 }
 
@@ -368,7 +367,7 @@ text PlayersHouse_1F_Text_DontPushYourselfTooHard {
 }
 
 text PlayersHouse_1F_Text_IsThatAPokenav {
-    format("MOM: What is that, honey? A Pokénav?\n"
+    format("What is that, honey? A Pokénav?\n"
     "Someone from Devon gave it to you?\p"
     "Well, honey, how about registering your mom?\p"
     "… … …")
@@ -387,7 +386,7 @@ text PlayersHouse_1F_Text_Vigoroth2 {
 }
 
 text PlayersHouse_1F_Text_ReportFromPetalburgGym {
-    format("INTERVIEWER: …We brought you this report from in front of Petalburg Gym.")
+    format("…We brought you this report from in front of Petalburg Gym.")
 }
 
 text PlayersHouse_1F_Text_TheresAMovieOnTV {
@@ -404,7 +403,7 @@ text PlayersHouse_1F_Text_RunningShoesManual {
 }
 
 text PlayersHouse_1F_Text_TicketFromBrineyCameForYou {
-    format("DAD: Hm?\p"
+    format("Hm?\n"
     "Hey, it's {PLAYER}!\p"
     "It's been a while since I saw you, but you look…stronger, somehow.\p"
     "That's the impression I get.\n"
@@ -415,7 +414,7 @@ text PlayersHouse_1F_Text_TicketFromBrineyCameForYou {
 }
 
 text PlayersHouse_1F_Text_PortsInSlateportLilycove {
-    format("DAD: Hm, a Ticket for a ferry?\p"
+    format("Hm, a Ticket for a ferry?\p"
     "If I recall, there are ferry ports in Slateport and Lilycove.")
 }
 
@@ -425,14 +424,14 @@ text PlayersHouse_1F_Text_BetterGetBackToGym {
 }
 
 text PlayersHouse_1F_Text_DadShouldStayLonger {
-    format("MOM: That Dad of yours…\p"
+    format("That Dad of yours…\p"
     "He comes home for the first time in a\n"
     "while, but all he talks about is Pokémon.\p"
     "He should relax and stay a little longer.")
 }
 
 text PlayersHouse_1F_Text_IsThatABreakingStory {
-    format("MOM: Is that a breaking news story?")
+    format("Is that a breaking news story?")
 }
 
 text PlayersHouse_1F_Text_LatiEmergencyNewsFlash {
@@ -445,11 +444,11 @@ text PlayersHouse_1F_Text_LatiEmergencyNewsFlash {
 }
 
 text PlayersHouse_1F_Text_WhatColorDidTheySay {
-    format("MOM: {PLAYER}, did you catch that?\p"
+    format("{PLAYER}, did you catch that?\p"
     "What color did the announcer say that Pokémon was?")
 }
 
 text PlayersHouse_1F_Text_StillUnknownPokemon {
-    format("MOM: Well, isn't that something!\n"
+    format("Well, isn't that something!\n"
     "There are still unknown Pokémon.")
 }

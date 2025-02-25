@@ -1471,26 +1471,23 @@ Level: 43
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_SAMUEL ===
-Name: SAMUEL
+Name: Samuel
 Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
 Music: Cool
 Items: Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
 
 Swellow
 Level: 42
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-Mawile
+Mawile @ Mawilite
 Level: 42
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Kadabra
 Level: 42
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_VITO ===
 Name: VITO
@@ -1500,45 +1497,44 @@ Gender: Male
 Music: Cool
 Items: Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
 
-Chatot
+Chatot @ Throat Spray
 Level: 42
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-
-Kadabra
-Level: 42
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Nature: Timid
+- Tailwind
+- Boomburst
+- Air Cutter
+- Roost
 
 Electrode
 Level: 42
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Ability: Soundproof
+
+Alakazam @ Alakazite
+Level: 42
 
 Shiftry
 Level: 42
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_OWEN ===
-Name: OWEN
+Name: Owen
 Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
 Music: Cool
 Items: Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
 
 Kecleon
 Level: 42
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Graveler
 Level: 42
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Wailord
 Level: 42
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_WILTON_2 ===
 Name: WILTON
@@ -1662,7 +1658,7 @@ Level: 26
 - Shock Wave
 
 === TRAINER_ALEXIA ===
-Name: ALEXIA
+Name: Alexia
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Female
@@ -1678,7 +1674,7 @@ Level: 26
 - Shadow Ball
 
 === TRAINER_JODY ===
-Name: JODY
+Name: Jody
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Female
@@ -1795,21 +1791,20 @@ Level: 45
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_SHANNON ===
-Name: SHANNON
+Name: Shannon
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Female
 Music: Cool
 Items: Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
 
 Claydol
 Level: 45
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_MICHELLE ===
-Name: MICHELLE
+Name: Michelle
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Female
@@ -1820,18 +1815,15 @@ AI: Basic Trainer
 
 Torkoal
 Level: 42
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-Medicham
+Medicham @ Medichamite
 Level: 42
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Ludicolo
 Level: 42
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_CAROLINE ===
-Name: CAROLINE
+Name: Caroline
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Female
@@ -1842,14 +1834,12 @@ AI: Basic Trainer
 
 Skarmory
 Level: 43
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-Sableye
+Sableye @ Sablenite
 Level: 43
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_JULIE ===
-Name: JULIE
+Name: Julie
 Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Female
@@ -2117,7 +2107,7 @@ Items: Full Restore
 Double Battle: Yes
 AI: Basic Trainer
 
-Angel (Pidove) (M) @ Clear Amulet
+Angel (Taillow) (M) @ Clear Amulet
 Level: 7
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Ball: Luxury Ball
@@ -2137,7 +2127,7 @@ Items: Full Restore
 Double Battle: Yes
 AI: Basic Trainer
 
-Angel (Pidove) (M) @ Clear Amulet
+Angel (Taillow) (M) @ Clear Amulet
 Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Ball: Luxury Ball
@@ -2157,7 +2147,7 @@ Items: Full Restore
 Double Battle: Yes
 AI: Basic Trainer
 
-Angel (Tranquill) (M) @ Clear Amulet
+Angel (Swellow) (M) @ Clear Amulet
 Level: 27
 Ball: Luxury Ball
 
@@ -2175,7 +2165,7 @@ Items: Full Restore
 Double Battle: Yes
 AI: Basic Trainer
 
-Angel (Tranquill) (M) @ Clear Amulet
+Angel (Swellow) (M) @ Clear Amulet
 Level: 32
 Ball: Luxury Ball
 
@@ -2194,7 +2184,7 @@ Items: Full Restore
 Double Battle: Yes
 AI: Basic Trainer
 
-Angel (Unfezant) (M) @ Clear Amulet
+Angel (Swellow) (M) @ Clear Amulet
 Level: 36
 Ball: Luxury Ball
 
@@ -2212,7 +2202,7 @@ Items: Full Restore
 Double Battle: Yes
 AI: Basic Trainer
 
-Angel (Unfezant) (M) @ Clear Amulet
+Angel (Swellow) (M) @ Clear Amulet
 Level: 40
 Ball: Luxury Ball
 
@@ -2221,7 +2211,7 @@ Level: 40
 Ball: Luxury Ball
 
 === TRAINER_DAPHNE ===
-Name: DAPHNE
+Name: Daphne
 Class: Lady
 Pic: Lady
 Gender: Female
@@ -10985,7 +10975,6 @@ Ability: Wind Power
 
 Aegis (Orbeetle) (F)
 Level: 32
-Ability: Telepathy
 
 SPECIES_GASTRODON_WEST (M)
 Level: 32
@@ -11585,7 +11574,6 @@ Level: 32
 
 Aegis (Orbeetle) (F)
 Level: 32
-Ability: Telepathy
 
 Bebe (Espeon) (F)
 Level: 34
@@ -11647,11 +11635,13 @@ Pic: Cooltrainer M
 Gender: Male
 Music: Cool
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
+
+Orbeetle @ Orbeetite
+Level: 43
 
 Lunatone
 Level: 43
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Explosion
 - Reflect
 - Light Screen
@@ -11659,7 +11649,6 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Solrock
 Level: 43
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Explosion
 - Reflect
 - Light Screen
@@ -12259,7 +12248,7 @@ Mightyena
 Level: 35
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-Golbat
+Drednaw
 Level: 35
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
@@ -12464,6 +12453,10 @@ Zubat
 Level: 20
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
+Salandit
+Level: 20
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
 === TRAINER_CLARENCE ===
 Name: CLARENCE
 Class: Swimmer M
@@ -12555,7 +12548,7 @@ Zubat
 Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Poochyena
+Houndour
 Level: 31
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 

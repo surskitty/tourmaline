@@ -29,7 +29,86 @@
       "direction": "down"
     }
   ],
-  "object_events": [],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CHINCHOU)",
+      "x": 50,
+      "y": 43,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 5,
+      "movement_range_y": 5,
+      "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
+      "trainer_sight_or_berry_tree_id": "ITEM_RED_SHARD",
+      "script": "Common_EventScript_StationaryWild",
+      "flag": "FLAG_TEMP_1"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CHINCHOU)",
+      "x": 28,
+      "y": 50,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 5,
+      "movement_range_y": 5,
+      "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
+      "trainer_sight_or_berry_tree_id": "ITEM_YELLOW_SHARD",
+      "script": "Common_EventScript_StationaryWild",
+      "flag": "FLAG_TEMP_2"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(RELICANTH)",
+      "x": 32,
+      "y": 63,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 5,
+      "movement_range_y": 5,
+      "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
+      "trainer_sight_or_berry_tree_id": "ITEM_GREEN_SHARD",
+      "script": "Common_EventScript_StationaryWild",
+      "flag": "FLAG_TEMP_3"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(RELICANTH)",
+      "x": 27,
+      "y": 26,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 5,
+      "movement_range_y": 5,
+      "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
+      "trainer_sight_or_berry_tree_id": "ITEM_BLUE_SHARD",
+      "script": "Common_EventScript_StationaryWild",
+      "flag": "FLAG_TEMP_4"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(HUNTAIL)",
+      "x": 38,
+      "y": 40,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 5,
+      "movement_range_y": 5,
+      "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Common_EventScript_StationaryWild",
+      "flag": "FLAG_TEMP_5"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(GOREBYSS)",
+      "x": 16,
+      "y": 61,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 5,
+      "movement_range_y": 5,
+      "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Common_EventScript_StationaryWild",
+      "flag": "FLAG_TEMP_6"
+    }
+  ],
   "warp_events": [
     {
       "x": 57,
@@ -46,7 +125,9 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "hidden_item",

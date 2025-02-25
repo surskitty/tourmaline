@@ -4216,7 +4216,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_FAIRY),
 #if !TESTING
         .abilities = { ABILITY_CUTE_CHARM, ABILITY_NORMALIZE, ABILITY_NONE },
-        .innates = { ABILITY_WONDER_SKIN },
+        .innates = { ABILITY_WONDER_SKIN, ABILITY_ADAPTABILITY, ABILITY_SCRAPPY },
 #else
         .abilities = { ABILITY_CUTE_CHARM, ABILITY_NORMALIZE, ABILITY_WONDER_SKIN },
 #endif

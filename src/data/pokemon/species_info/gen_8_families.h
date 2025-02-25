@@ -1261,9 +1261,9 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .baseHP        = 60,
         .baseAttack    = 45,
         .baseDefense   = 110,
-        .baseSpeed     = 90 + 20,
-        .baseSpAttack  = 80 + 50,
-        .baseSpDefense = 120 + 30,
+        .baseSpeed     = 90,
+        .baseSpAttack  = 80,
+        .baseSpDefense = 120,
         .types = MON_TYPES(TYPE_BUG, TYPE_PSYCHIC),
         .catchRate = 45,
         .expYield = 253,
@@ -1275,7 +1275,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
 #if !TESTING
-        .abilities = { ABILITY_SWARM, ABILITY_FRISK, ABILITY_PSYCHIC_SURGE },
+        .abilities = { ABILITY_SWARM, ABILITY_FRISK, ABILITY_NONE },
         .innates = { ABILITY_TELEPATHY, ABILITY_ANALYTIC },
 #else
         .abilities = { ABILITY_SWARM, ABILITY_FRISK, ABILITY_TELEPATHY },
@@ -1329,11 +1329,11 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
     [SPECIES_ORBEETLE_MEGA] =
     {
         .baseHP        = 60,
-        .baseAttack    = 45,
-        .baseDefense   = 110,
-        .baseSpeed     = 90,
-        .baseSpAttack  = 80,
-        .baseSpDefense = 120,
+        .baseAttack    = 45 + 10,
+        .baseDefense   = 110 + 15,
+        .baseSpeed     = 90 + 5,
+        .baseSpAttack  = 80 + 30,
+        .baseSpDefense = 120 + 40,
         .types = MON_TYPES(TYPE_BUG, TYPE_PSYCHIC),
         .catchRate = 45,
         .expYield = 253,
@@ -1345,8 +1345,8 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
 #if !TESTING
-        .abilities = { ABILITY_SWARM, ABILITY_PSYCHIC_SURGE, ABILITY_PSYCHIC_SURGE },
-        .innates = { ABILITY_TELEPATHY, ABILITY_ANALYTIC },
+        .abilities = { ABILITY_SWARM, ABILITY_FRISK, ABILITY_NONE },
+        .innates = { ABILITY_TELEPATHY, ABILITY_ANALYTIC, ABILITY_PSYCHIC_SURGE },
 #else
         .abilities = { ABILITY_SWARM, ABILITY_FRISK, ABILITY_TELEPATHY },
 #endif

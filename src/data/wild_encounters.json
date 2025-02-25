@@ -242,6 +242,20 @@
           }
         },
         {
+          "map": "MAP_UNDERWATER_ROUTE105",
+          "base_label": "gUnderwater_Route105",
+          "water_mons": {
+            "encounter_rate": 4,
+            "mons": [
+              { "min_level": 20, "max_level": 30, "species": "SPECIES_SKRELP" },
+              { "min_level": 20, "max_level": 30, "species": "SPECIES_FRILLISH" },
+              { "min_level": 30, "max_level": 35, "species": "SPECIES_CLAMPERL" },
+              { "min_level": 30, "max_level": 35, "species": "SPECIES_CHINCHOU" },
+              { "min_level": 30, "max_level": 35, "species": "SPECIES_CLAUNCHER" }
+            ]
+          }
+        },
+        {
           "map": "MAP_ROUTE110",
           "base_label": "gRoute110",
           "land_mons": {

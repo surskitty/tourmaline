@@ -3541,44 +3541,75 @@ void StartStationaryEncounter(void) {
             nBadges++;
     }
 
-    // Generate level of pokemon by badges obtained.
+    // Generate level of pokemon.
+    // Applicable flags are sorted by badges, taking into account skipping badges. 
     switch (nBadges)
     {
-        case 0: level = 7; break;
-        case 1: level = 12; break;
-        case 2: level = 15; break;
-        case 3: level = 20; break;
-        case 4: level = 25; break;
-        case 5: level = 30; break;
-        case 6: level = 35; break;
-        case 7: level = 45; break;
-        case 8: level = 60; break;
+        case 0: 
+            if (FLAG_VISITED_RUSTBORO_CITY)         level = 7; 
+            else if (VAR_PETALBURG_CITY_STATE > 2)  level = 4;
+            else                                    level = 2;
+            break;
+        // brawly can be skipped until norman
+        case 1:
+        case 2:
+        case 3:
+            level = 10;
+            if (FLAG_DELIVERED_STEVEN_LETTER)   level += 2;
+            if (FLAG_BADGE02_GET)               level += 2;
+            if (FLAG_DOCK_REJECTED_DEVON_GOODS) level += 2;
+            if (FLAG_BADGE03_GET)               level += 3;
+            if (FLAG_BADGE04_GET)               level += 3;
+            break;
+        case 4:
+            level = 25;
+            break;
+        // winona can be skipped until evergrande. TODO: more on this.
+        case 5:
+        case 6:
+        case 7:
+            if (FLAG_BADGE08_GET) level = 55;
+            else {
+                level = 30;
+                if (FLAG_RECEIVED_DEVON_SCOPE)              level += 5;
+                if (FLAG_DEFEATED_MAGMA_SPACE_CENTER)       level += 2;
+                if (FLAG_MET_TEAM_AQUA_HARBOR)              level += 2;
+                if (FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT)    level += 2;
+            } 
+            break;
+        case 8: 
+            level = 60; 
+            break;
     }
     
+    // if the Pokemon does not have a held item specified, generate an appropriate berry
+    // in the event it does not give a pokemon a berry (roughly 50% chance)
+    // it will run the normal wild pokemon item generation upon battle start
+    if (heldItem == ITEM_NONE) {
+
+        // higher level pokemon have better odds of a good item
+        // low level pokemon still have a 50% chance of a bad item
+        // pokemon roll their normal held items after this.
+        rand = Random() % (MAX_LEVEL - level);
+        // low odds of stat boosting
+        if (rand < 3) {
+            rand = Random() % NUM_BERRY_MASTER_BERRIES;
+            heldItem = rand + FIRST_BERRY_MASTER_BERRY;
+        // 20% of remaining have a type reduction berry
+        } else if ((rand % 5) == 0) {
+            rand = Random() % NUM_BERRY_MASTER_WIFE_BERRIES;
+            heldItem = rand + FIRST_BERRY_MASTER_WIFE_BERRY;
+        // these are boring healing berries
+        } else if (rand % 2) {
+            rand = Random() % 8;
+            heldItem = rand + FIRST_BERRY_INDEX;
+        }
+    }
+
     // Raise the level of the wild pokemon, scaling by number of badges.
     // up to +2 with no badges, up to +18 with all eight.
     rand = Random() % ((nBadges + 1) * 2);
     level = level + rand;
-    
-    // if the Pokemon does not have a held item specified, generate an appropriate berry
-    if (heldItem == ITEM_NONE) {
-        static const u8 BERRY_ODDS = 12;
-        
-        // lower numbers are better; scaling for game progression
-        rand = Random() % (BERRY_ODDS - nBadges);
-        if (rand == 0) {
-            if (nBadges > 5) {
-                rand = Random() % NUM_BERRY_MASTER_BERRIES;
-                heldItem = rand + FIRST_BERRY_MASTER_BERRY;
-            } else {
-                rand = Random() % NUM_BERRY_MASTER_WIFE_BERRIES;
-                heldItem = rand + FIRST_BERRY_MASTER_WIFE_BERRY;
-            }
-       } else if (rand < (BERRY_ODDS / 2)) {
-            rand = Random() % 8; // the number of unexciting status healy berries
-            heldItem = rand + FIRST_BERRY_INDEX;
-       }
-    }
 
     CreateScriptedWildMon(species, level, heldItem);
 }

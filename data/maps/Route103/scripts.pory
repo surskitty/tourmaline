@@ -56,12 +56,13 @@ script Route103_EventScript_RivalStarter {
 script Route103_EventScript_Rival {
     lockall
     checkplayergender
-    speakername(CommonName_Text_Rival)
     if (var(VAR_RESULT) == MALE) {
+        speakername(CommonName_Text_May)
         msgbox(format("Let's see… The Pokémon found on Route 103 include…"), MSGBOX_DEFAULT)
         closemessage
         playbgm(MUS_ENCOUNTER_MAY, TRUE)
     } else {
+        speakername(CommonName_Text_Brendan)
         msgbox(format("Okay, so it's this one and that one that live on Route 103…"), MSGBOX_DEFAULT)
         closemessage
         playbgm(MUS_ENCOUNTER_BRENDAN, TRUE)
@@ -73,7 +74,6 @@ script Route103_EventScript_Rival {
     applymovement(LOCALID_RIVAL, Common_Movement_Delay48)
     waitmovement(0)
     getcaughtmon(SPECIES_EEVEE)
-    speakername(CommonName_Text_Rival)
     if (var(VAR_RESULT) == FALSE) {
         checkplayergender
         if (var(VAR_RESULT) == MALE) {
@@ -88,13 +88,14 @@ script Route103_EventScript_Rival {
         }
         givemon(SPECIES_EEVEE, 5, item=ITEM_ORAN_BERRY, abilityNum=0, move1=MOVE_COVET, move2=MOVE_HELPING_HAND, move3=MOVE_GROWL, move4=MOVE_TAIL_WHIP)
         playfanfare(MUS_OBTAIN_ITEM)
+        speakername(0)
         msgbox("{PLAYER} received Eevee!")
         waitfanfare
     }
     special(HealPlayerParty)
-    speakername(CommonName_Text_Rival)
     checkplayergender
     if (var(VAR_RESULT) == MALE) {
+        speakername(CommonName_Text_May)
         msgbox(Route103_Text_MayLetsBattle, MSGBOX_DEFAULT)
         switch (var(VAR_STARTER_MON)) {
             case 0: 
@@ -107,9 +108,9 @@ script Route103_EventScript_Rival {
         applymovement(LOCALID_RIVALS_STARTER, EnterPokeballMovement)
         waitmovement(0)
         setflag(FLAG_DEFEATED_RIVAL_ROUTE103)
-        speakername(CommonName_Text_Rival)
         msgbox(Route103_Text_MayTimeToHeadBack, MSGBOX_DEFAULT)
     } else {
+        speakername(CommonName_Text_Brendan)
         msgbox(Route103_Text_BrendanLetsBattle, MSGBOX_DEFAULT)
         switch (var(VAR_STARTER_MON)) {
             case 0:
@@ -122,7 +123,6 @@ script Route103_EventScript_Rival {
         applymovement(LOCALID_RIVALS_STARTER, EnterPokeballMovement)
         waitmovement(0)
         setflag(FLAG_DEFEATED_RIVAL_ROUTE103)
-        speakername(CommonName_Text_Rival)
         msgbox(Route103_Text_BrendanTimeToHeadBack, MSGBOX_DEFAULT)
     }
     special(HealPlayerParty)

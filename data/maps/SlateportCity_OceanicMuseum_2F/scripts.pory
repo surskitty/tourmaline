@@ -394,17 +394,13 @@ text SlateportCity_OceanicMuseum_2F_Text_WaterQualitySample1 {
 
 text SlateportCity_OceanicMuseum_2F_Text_WaterQualitySample2 {
 	format("“Water Quality Sample 2,” the label says.\p"
-	"Does the saltiness of seawater differ\n"
-	"by region, too?")
+	"Does the saltiness of seawater differ by region, too?")
 }
 
 text SlateportCity_OceanicMuseum_2F_Text_PressureExperiment {
-	format("A rubber ball is expanding and\n"
-	"shrinking.\p"
-	"“In the sea, the weight of water itself\n"
-	"exerts pressure.\p"
-	"“In shallow water, the pressure is not\n"
-	"very heavy.\p"
+	format("A rubber ball is expanding and shrinking.\p"
+	"“In the sea, the weight of water itself exerts pressure.\p"
+	"“In shallow water, the pressure is not very heavy.\p"
 	"“However, in extremely deep water,\n"
 	"the pressure can reach even tens of\l"
 	"thousands of tons on a small area.”")

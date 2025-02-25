@@ -96,8 +96,7 @@ text FortreeCity_House1_Text_GoingToMakeVolbeatStrong {
 
 text FortreeCity_House1_Text_TradingMemoriesWithOthers {
 	format("Trading Pokémon with others…\p"
-	"It's as if you're trading your own\n"
-	"memories with other people.")
+	"It's as if you're trading your own memories with other people.")
 }
 
 text FortreeCity_House1_Text_Zigzagoon {

@@ -277,6 +277,7 @@ BattleFrontier_BattleArenaBattleRoom_EventScript_BattleGreta::
 	playse SE_M_BELLY_DRUM
 	waitse
 	waitmovement 0
+	speakername CommonName_Text_Referee
 	msgbox BattleFrontier_BattleArenaBattleRoom_Text_PlayerStepForward, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_PLAYER, BattleFrontier_BattleArenaBattleRoom_Movement_PlayerStepForwardLong
@@ -285,6 +286,7 @@ BattleFrontier_BattleArenaBattleRoom_EventScript_BattleGreta::
 	playse SE_M_BELLY_DRUM
 	waitse
 	waitmovement 0
+	speakername CommonName_Text_Referee
 	msgbox BattleFrontier_BattleArenaBattleRoom_Text_MakeWayForGreta, MSGBOX_DEFAULT
 	closemessage
 	addobject LOCALID_OPPONENT
@@ -298,17 +300,21 @@ BattleFrontier_BattleArenaBattleRoom_EventScript_BattleGreta::
 	case FRONTIER_BRAIN_STREAK_LONG, BattleFrontier_BattleArenaBattleRoom_EventScript_BattleGretaGold
 	frontier_get FRONTIER_DATA_HEARD_BRAIN_SPEECH
 	goto_if_ne VAR_RESULT, FALSE, BattleFrontier_BattleArenaBattleRoom_EventScript_BattleGretaSilver
+	speakername BattleFrontier_BattleArenaBattleRoom_Text_Greta
 	msgbox BattleFrontier_BattleArenaBattleRoom_Text_GretaYoureChallenger, MSGBOX_DEFAULT
 	closemessage
 	frontier_set FRONTIER_DATA_HEARD_BRAIN_SPEECH
 	applymovement LOCALID_OPPONENT, BattleFrontier_BattleArenaBattleRoom_Movement_GretaLookAroundPlayer
 	waitmovement 0
+	speakername BattleFrontier_BattleArenaBattleRoom_Text_Greta
 	msgbox BattleFrontier_BattleArenaBattleRoom_Text_IsThatRight, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_OPPONENT, BattleFrontier_BattleArenaBattleRoom_Movement_GretaWalkBackToCenter
 	waitmovement 0
+	speakername BattleFrontier_BattleArenaBattleRoom_Text_Greta
 	msgbox BattleFrontier_BattleArenaBattleRoom_Text_YouLookWeakTakeThingsEasy, MSGBOX_DEFAULT
 BattleFrontier_BattleArenaBattleRoom_EventScript_BattleGretaSilver::
+	speakername BattleFrontier_BattleArenaBattleRoom_Text_Greta
 	msgbox BattleFrontier_BattleArenaBattleRoom_Text_IgniteMyPassionForBattle, MSGBOX_DEFAULT
 	call BattleFrontier_BattleArenaBattleRoom_EventScript_StartArenaBattle
 	goto_if_eq VAR_RESULT, 1, BattleFrontier_BattleArenaBattleRoom_EventScript_DefeatedGretaSilver
@@ -320,8 +326,10 @@ BattleFrontier_BattleArenaBattleRoom_EventScript_DefeatedGretaSilver::
 	goto_if_ne VAR_RESULT, 0, BattleFrontier_BattleArenaBattleRoom_EventScript_ReturnToLobbyWon
 	applymovement LOCALID_OPPONENT, BattleFrontier_BattleArenaBattleRoom_Movement_OpponentStepForwardLong
 	waitmovement 0
+	speakername BattleFrontier_BattleArenaBattleRoom_Text_Greta
 	msgbox BattleFrontier_BattleArenaBattleRoom_Text_GretaYoureToughAfterAll, MSGBOX_DEFAULT
 	playfanfare MUS_OBTAIN_SYMBOL
+	speakername 0
 	message BattleFrontier_BattleArenaBattleRoom_Text_ReceivedGutsSymbol
 	waitmessage
 	waitfanfare
@@ -332,17 +340,21 @@ BattleFrontier_BattleArenaBattleRoom_EventScript_DefeatedGretaSilver::
 BattleFrontier_BattleArenaBattleRoom_EventScript_IntroGretaGold::
 	frontier_get FRONTIER_DATA_HEARD_BRAIN_SPEECH
 	goto_if_ne VAR_RESULT, FALSE, BattleFrontier_BattleArenaBattleRoom_EventScript_BattleGretaGold
+	speakername BattleFrontier_BattleArenaBattleRoom_Text_Greta
 	msgbox BattleFrontier_BattleArenaBattleRoom_Text_GretaLookingForwardToSeeingAgain, MSGBOX_DEFAULT
 	closemessage
 	frontier_set FRONTIER_DATA_HEARD_BRAIN_SPEECH
 	applymovement LOCALID_OPPONENT, BattleFrontier_BattleArenaBattleRoom_Movement_GretaLookAroundPlayer
 	waitmovement 0
+	speakername BattleFrontier_BattleArenaBattleRoom_Text_Greta
 	msgbox BattleFrontier_BattleArenaBattleRoom_Text_SoAreYouReady, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_OPPONENT, BattleFrontier_BattleArenaBattleRoom_Movement_GretaWalkBackToCenter
 	waitmovement 0
+	speakername BattleFrontier_BattleArenaBattleRoom_Text_Greta
 	msgbox BattleFrontier_BattleArenaBattleRoom_Text_WontAllowHalfheartedEffort, MSGBOX_DEFAULT
 BattleFrontier_BattleArenaBattleRoom_EventScript_BattleGretaGold::
+	speakername BattleFrontier_BattleArenaBattleRoom_Text_Greta
 	msgbox BattleFrontier_BattleArenaBattleRoom_Text_LetsGetThisStarted, MSGBOX_DEFAULT
 	call BattleFrontier_BattleArenaBattleRoom_EventScript_StartArenaBattle
 	goto_if_eq VAR_RESULT, 1, BattleFrontier_BattleArenaBattleRoom_EventScript_DefeatedGretaGold
@@ -354,8 +366,10 @@ BattleFrontier_BattleArenaBattleRoom_EventScript_DefeatedGretaGold::
 	goto_if_eq VAR_RESULT, 2, BattleFrontier_BattleArenaBattleRoom_EventScript_ReturnToLobbyWon
 	applymovement LOCALID_OPPONENT, BattleFrontier_BattleArenaBattleRoom_Movement_OpponentStepForwardLong
 	waitmovement 0
+	speakername BattleFrontier_BattleArenaBattleRoom_Text_Greta
 	msgbox BattleFrontier_BattleArenaBattleRoom_Text_GretaBlownAway, MSGBOX_DEFAULT
 	playfanfare MUS_OBTAIN_SYMBOL
+	speakername 0
 	message BattleFrontier_BattleArenaBattleRoom_Text_GutsSymbolTookGoldenShine
 	waitmessage
 	waitfanfare
@@ -494,148 +508,181 @@ BattleFrontier_BattleArenaBattleRoom_Movement_GretaWalkBackToCenter:
 	walk_in_place_faster_left
 	step_end
 
-BattleFrontier_BattleArenaBattleRoom_Text_PlayerStepForward:
-	.string "REFEREE: TRAINER {PLAYER}!\n"
-	.string "Step forward, please!$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_OpponentStepForward:
-	.string "REFEREE: TRAINER {STR_VAR_1}!\n"
-	.string "Step forward, please!$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_SetKOTourneyBegin:
-	.string "REFEREE: Set KO Tourney!\n"
-	.string "Begin!$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_WinnerIsPlayer:
-	.string "REFEREE: The winner is {PLAYER}!$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_WinnerIsOpponent:
-	.string "REFEREE: The winner is {STR_VAR_1}!$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_MonsWillBeRestored:
-	.string "Your POKéMON will be restored to\n"
-	.string "full health.$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor2ndOpponent:
-	.string "Next up, your second opponent!\n"
-	.string "Are you ready to move on?$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor3rdOpponent:
-	.string "Next up, your third opponent!\n"
-	.string "Are you ready to move on?$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor4thOpponent:
-	.string "Next up, your fourth opponent!\n"
-	.string "Are you ready to move on?$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor5thOpponent:
-	.string "Next up, your fifth opponent!\n"
-	.string "Are you ready to move on?$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor6thOpponent:
-	.string "Next up, your sixth opponent!\n"
-	.string "Are you ready to move on?$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor7thOpponent:
-	.string "Next up, your seventh opponent!\n"
-	.string "Are you ready to move on?$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_SaveAndShutDown:
-	.string "Would you like to save the game and\n"
-	.string "shut down now?$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_RetireFromChallenge:
-	.string "Would you like to retire from your\n"
-	.string "Set KO Tourney challenge?$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_SavingPleaseWait:
-	.string "I am saving your game data.\n"
-	.string "Please wait.$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_RecordLastBattle:
-	.string "Would you like to record your last\n"
-	.string "battle on your FRONTIER PASS?$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_NowFaceTycoon:
-	.string "My dear challenger!\p"
-	.string "Your skill level is truly astounding!\p"
-	.string "We now would like you to face our\n"
-	.string "leader, the ARENA TYCOON!$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_PreparedForTycoon:
-	.string "A battle with the ARENA TYCOON!\n"
-	.string "Are you prepared?$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_MakeWayForGreta:
-	.string "REFEREE: The ARENA TYCOON!\n"
-	.string "Make way for GRETA!$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_GretaYoureChallenger:
-	.string "GRETA: Hey!\n"
-	.string "Howdy!\p"
-	.string "…Wait, are you the challenger?$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_IsThatRight:
-	.string "Is that right? Hmm…\n"
-	.string "Hmhm…$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_YouLookWeakTakeThingsEasy:
-	.string "I don't know how to say it, but…\n"
-	.string "To put it bluntly, you look pretty weak.\l"
-	.string "Are you sure you're up for me?\p"
-	.string "Hmm…\p"
-	.string "Well, all right!\n"
-	.string "We'll take things easy to start with!$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_IgniteMyPassionForBattle:
-	.string "Okay! Let's see you ignite my passion\n"
-	.string "for battle!$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_GretaYoureToughAfterAll:
-	.string "GRETA: Ow, wait a second!\n"
-	.string "You are tough after all!\p"
-	.string "I like you!\n"
-	.string "Let's see your FRONTIER PASS.$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_ReceivedGutsSymbol:
-	.string "The Guts Symbol was embossed on\n"
-	.string "the FRONTIER PASS!$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_GoingToBeFunNextTime:
-	.string "Hmm…\p"
-	.string "It's going to be fun the next time!\n"
-	.string "I'm looking forward to it!$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_GretaLookingForwardToSeeingAgain:
-	.string "GRETA: Hey! Howdy!\n"
-	.string "You finally won your way up to me!\p"
-	.string "I was getting worried waiting for you!\n"
-	.string "I was really looking forward to seeing\l"
-	.string "you again!$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_SoAreYouReady:
-	.string "… … …\n"
-	.string "So, are you ready?$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_WontAllowHalfheartedEffort:
-	.string "I won't allow a halfhearted effort!\n"
-	.string "Be ready for a thrashing!$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_LetsGetThisStarted:
-	.string "Come on, REFEREE!\n"
-	.string "Let's get this started!$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_GretaBlownAway:
-	.string "GRETA: Gaaah! Blown away!\n"
-	.string "Let's see your FRONTIER PASS!$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_GutsSymbolTookGoldenShine:
-	.string "The Guts Symbol took on\n"
-	.string "a golden shine!$"
-
-BattleFrontier_BattleArenaBattleRoom_Text_IfWeBattleAgainWontLose:
-	.string "Arrrgh!\n"
-	.string "This is so infuriating!\p"
-	.string "If we ever battle again, I won't lose!\n"
-	.string "Don't you forget it! Bye-bye!$"
 `
+text BattleFrontier_BattleArenaBattleRoom_Text_PlayerStepForward {
+	format("REFEREE: TRAINER {PLAYER}!\n"
+	"Step forward, please!")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_OpponentStepForward {
+	format("REFEREE: TRAINER {STR_VAR_1}!\n"
+	"Step forward, please!")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_SetKOTourneyBegin {
+	format("REFEREE: Set KO Tourney!\n"
+	"Begin!")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_WinnerIsPlayer {
+	format("REFEREE: The winner is {PLAYER}!")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_WinnerIsOpponent {
+	format("REFEREE: The winner is {STR_VAR_1}!")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_MonsWillBeRestored {
+	format("Your POKéMON will be restored to\n"
+	"full health.")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor2ndOpponent {
+	format("Next up, your second opponent!\n"
+	"Are you ready to move on?")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor3rdOpponent {
+	format("Next up, your third opponent!\n"
+	"Are you ready to move on?")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor4thOpponent {
+	format("Next up, your fourth opponent!\n"
+	"Are you ready to move on?")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor5thOpponent {
+	format("Next up, your fifth opponent!\n"
+	"Are you ready to move on?")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor6thOpponent {
+	format("Next up, your sixth opponent!\n"
+	"Are you ready to move on?")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_ReadyFor7thOpponent {
+	format("Next up, your seventh opponent!\n"
+	"Are you ready to move on?")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_SaveAndShutDown {
+	format("Would you like to save the game and\n"
+	"shut down now?")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_RetireFromChallenge {
+	format("Would you like to retire from your\n"
+	"Set KO Tourney challenge?")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_SavingPleaseWait {
+	format("I am saving your game data.\n"
+	"Please wait.")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_RecordLastBattle {
+	format("Would you like to record your last\n"
+	"battle on your Frontier Pass?")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_NowFaceTycoon {
+	format("My dear challenger!\p"
+	"Your skill level is truly astounding!\p"
+	"We now would like you to face our\n"
+	"leader, the Arena Tycoon!")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_PreparedForTycoon {
+	format("A battle with the Arena Tycoon!\n"
+	"Are you prepared?")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_MakeWayForGreta {
+	format("The Arena Tycoon!\n"
+	"Make way for Greta!")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_GretaYoureChallenger {
+	format("Hey!\n"
+	"Howdy!\p"
+	"…Wait, are you the challenger?")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_IsThatRight {
+	format("Is that right? Hmm…\n"
+	"Hmhm…")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_YouLookWeakTakeThingsEasy {
+	format("I don't know how to say it, but…\n"
+	"To put it bluntly, you look pretty weak.\l"
+	"Are you sure you're up for me?\p"
+	"Hmm…\p"
+	"Well, all right!\n"
+	"We'll take things easy to start with!")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_IgniteMyPassionForBattle {
+	format("Okay! Let's see you ignite my passion\n"
+	"for battle!")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_GretaYoureToughAfterAll {
+	format("Ow, wait a second!\n"
+	"You are tough after all!\p"
+	"I like you!\n"
+	"Let's see your Frontier Pass.")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_ReceivedGutsSymbol {
+	format("The Guts Symbol was embossed on the Frontier Pass!")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_GoingToBeFunNextTime {
+	format("Hmm…\p"
+	"It's going to be fun the next time!\n"
+	"I'm looking forward to it!")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_GretaLookingForwardToSeeingAgain {
+	format("Hey! Howdy!\n"
+	"You finally won your way up to me!\p"
+	"I was getting worried waiting for you!\n"
+	"I was really looking forward to seeing\l"
+	"you again!")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_SoAreYouReady {
+	format("… … …\n"
+	"So, are you ready?")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_WontAllowHalfheartedEffort {
+	format("I won't allow a halfhearted effort!\n"
+	"Be ready for a thrashing!")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_LetsGetThisStarted {
+	format("Come on, Referee!\n"
+	"Let's get this started!")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_GretaBlownAway {
+	format("Gaaah! Blown away!\n"
+	"Let's see your Frontier Pass!")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_GutsSymbolTookGoldenShine {
+	format("The Guts Symbol took on a golden shine!")
+}
+
+text BattleFrontier_BattleArenaBattleRoom_Text_Greta { "Greta" }
+
+text BattleFrontier_BattleArenaBattleRoom_Text_IfWeBattleAgainWontLose {
+	format("Arrrgh!\n"
+	"This is so infuriating!\p"
+	"If we ever battle again, I won't lose!\n"
+	"Don't you forget it! Bye-bye!")
+}
