@@ -405,8 +405,7 @@ text Route104_Text_HaleyRegister1 {
 }
 
 text Route104_Text_HaleyRegister2 {
-	format("You're strong, but should I register\n"
-	"you in my Pokénav?\l"
+	format("You're strong, but should I register you in my Pokénav?\l"
 	"Maybe I shouldn't…\p"
 	"Okay, sure, I will register you!")
 }
@@ -428,11 +427,12 @@ text Route104_Text_HaleyPostRematch {
 
 text Route104_Text_WinstonIntro {
 	format("Oh, sure, I'll accept your challenge.\n"
-	"I have a lot of money.")
+	"I've bought the best of items.")
 }
 
 text Route104_Text_WinstonDefeat {
-	format("Why couldn't I win?")
+	format("Why couldn't I win?\n"
+	    "I'll be taking my items back, now.")
 }
 
 text Route104_Text_WinstonPostBattle {
@@ -455,8 +455,7 @@ text Route104_Text_WinstonRegister2 {
 }
 
 text Route104_Text_WinstonRematchIntro {
-	format("After I lost to you, I learned a bunch\n"
-	"of things about Pokémon.")
+	format("After I lost to you, I learned a bunch of things about Pokémon.")
 }
 
 text Route104_Text_WinstonRematchDefeat {
@@ -465,8 +464,7 @@ text Route104_Text_WinstonRematchDefeat {
 }
 
 text Route104_Text_WinstonPostRematch {
-	format("I'm fabulously wealthy, but I can't\n"
-	"seem to win at Pokémon…\p"
+	format("I'm fabulously wealthy, but I can't seem to win at Pokémon…\p"
 	"It's so deep, the world of Pokémon…")
 }
 
@@ -487,15 +485,12 @@ text Route104_Text_CindyPostBattle {
 
 text Route104_Text_CindyRegister1 {
 	format("Hello, we meet again.\p"
-	"We seem to be drawn together. Let's\n"
-	"register each other in our Pokénavs.")
+	"We seem to be drawn together. Let's register each other in our Pokénavs.")
 }
 
 text Route104_Text_CindyRegister2 {
-	format("We should commemorate how we seem\n"
-	"to be drawn to each other.\p"
-	"Let's register each other in our\n"
-	"Pokénavs.")
+	format("We should commemorate how we seem to be drawn to each other.\p"
+	"Let's register each other in our Pokénavs.")
 }
 
 text Route104_Text_CindyRematchIntro {
@@ -5920,3 +5915,4 @@ text VSSeeker_Text_TrainersNotReady {
 	"to be ready for battle.\p"
 	"Let's wait till later.{PAUSE_UNTIL_PRESS}")
 }
+
