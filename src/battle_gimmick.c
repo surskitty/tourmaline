@@ -102,7 +102,17 @@ bool32 HasTrainerUsedGimmick(u32 battler, enum Gimmick gimmick)
         || ((gBattleStruct->gimmick.toActivate & (1u << BATTLE_PARTNER(battler))
         && gBattleStruct->gimmick.usableGimmick[BATTLE_PARTNER(battler)] == gimmick))))
     {
-        return TRUE;
+        // check if it's a trainer class that's two people
+        switch (GetTrainerClassFromId(battler)) {
+        case TRAINER_CLASS_LEADER:
+        case TRAINER_CLASS_TWINS:
+        case TRAINER_CLASS_YOUNG_COUPLE:
+        case TRAINER_CLASS_OLD_COUPLE:
+        case TRAINER_CLASS_SIS_AND_BRO:
+            return FALSE;
+        default: 
+            return TRUE;
+        }
     }
     // Otherwise, return whether current battler has used gimmick.
     else
