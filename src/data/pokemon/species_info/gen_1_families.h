@@ -7743,7 +7743,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_HUMAN_LIKE),
 #if !TESTING
         .abilities = { ABILITY_SYNCHRONIZE, ABILITY_MAGIC_GUARD, ABILITY_NONE },
-        .innates = { ABILITY_INNER_FOCUS },
+        .innates = { ABILITY_INNER_FOCUS, ABILITY_FOREWARN },
 #else
         .abilities = { ABILITY_SYNCHRONIZE, ABILITY_INNER_FOCUS, ABILITY_MAGIC_GUARD },
 #endif
@@ -7812,7 +7812,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_HUMAN_LIKE),
 #if !TESTING
         .abilities = { ABILITY_SYNCHRONIZE, ABILITY_MAGIC_GUARD, ABILITY_NONE },
-        .innates = { ABILITY_INNER_FOCUS },
+        .innates = { ABILITY_INNER_FOCUS, ABILITY_FOREWARN },
 #else
         .abilities = { ABILITY_SYNCHRONIZE, ABILITY_INNER_FOCUS, ABILITY_MAGIC_GUARD },
 #endif
@@ -7904,7 +7904,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_HUMAN_LIKE),
 #if !TESTING
         .abilities = { ABILITY_SYNCHRONIZE, ABILITY_MAGIC_GUARD, ABILITY_NONE },
-        .innates = { ABILITY_INNER_FOCUS },
+        .innates = { ABILITY_INNER_FOCUS, ABILITY_FOREWARN },
 #else
         .abilities = { ABILITY_SYNCHRONIZE, ABILITY_INNER_FOCUS, ABILITY_MAGIC_GUARD },
 #endif
@@ -7986,7 +7986,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_HUMAN_LIKE),
 #if !TESTING
         .abilities = { ABILITY_TRACE, ABILITY_TRACE, ABILITY_TRACE },
-        .innates = { ABILITY_INNER_FOCUS, ABILITY_SYNCHRONIZE },
+        .innates = { ABILITY_INNER_FOCUS, ABILITY_FOREWARN, ABILITY_SYNCHRONIZE },
 #else
         .abilities = { ABILITY_TRACE, ABILITY_TRACE, ABILITY_TRACE },
 #endif
