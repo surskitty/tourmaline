@@ -3614,3 +3614,10 @@ void StartStationaryEncounter(void) {
     CreateScriptedWildMon(species, level, heldItem);
 }
 
+void GetSymbolEncounterSpecies(void) {
+    const struct ObjectEventTemplate *objectEventTemplate;
+    objectEventTemplate = GetObjectEventTemplateByLocalIdAndMap(VarGet(VAR_LAST_TALKED), gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+
+    u32 species = (objectEventTemplate->graphicsId) - OBJ_EVENT_GFX_MON_BASE;
+    VarSet(VAR_0x8004, species);
+}
