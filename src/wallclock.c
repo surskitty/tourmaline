@@ -683,6 +683,11 @@ static void WallClockInit(void)
     ShowBg(3);
 }
 
+bool32 IsWallClockSet(void)
+{
+    return FlagGet(FLAG_SET_WALL_CLOCK);
+}
+
 void CB2_StartWallClock(void)
 {
     u8 taskId;
