@@ -6140,7 +6140,7 @@ Gender: Male
 Music: Female
 Items: Hyper Potion / Hyper Potion / Hyper Potion / Hyper Potion
 Double Battle: Yes
-AI: Smart Trainer
+AI: Smart Trainer / Double Ace Pokemon
 
 Xatu
 Level: 41
@@ -6157,15 +6157,6 @@ Ability: Cud Chew
 - Wish
 - Baton Pass
 - Calm Mind
-
-Bruxish @ Assault Vest
-Level: 41
-Ability: Strong Jaw
-Nature: Jolly
-- Psychic Fangs
-- Crunch
-- Poison Fang
-- Ice Fang
 
 Lunatone @ Power Herb
 Level: 42
@@ -6188,8 +6179,16 @@ Level: 41
 Ability: Magic Guard
 - Recover
 - Protect
-- Psyshock
+- Expanding Force
 - Focus Blast
+
+Orbeetle @ Orbeetite
+Level: 41
+Ability: Swarm
+- Giga Drain
+- Expanding Force
+- Struggle Bug
+- Helping Hand
 
 === TRAINER_TATE_AND_LIZA_2 ===
 Name: Tate&Liza
@@ -6795,7 +6794,7 @@ Level: 38
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 === TRAINER_VICTOR ===
-Name: VICTOR
+Name: Victor
 Class: Winstrate
 Pic: Pokefan M
 Gender: Male
