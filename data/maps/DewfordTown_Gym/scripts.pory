@@ -4,111 +4,57 @@ mapscripts DewfordTown_Gym_MapScripts {
     }
 }
 
-raw `
-DewfordTown_Gym_EventScript_SetFlashLevel::
-	goto_if_defeated TRAINER_BRAWLY_1, DewfordTown_Gym_EventScript_SetLightsOn
-	call DewfordTown_Gym_EventScript_CountTrainersDefeated
-	copyvar VAR_0x8001, VAR_0x8000
-	goto_if_eq VAR_0x8000, 0, DewfordTown_Gym_EventScript_SetFlashLevel7
-	goto_if_eq VAR_0x8000, 1, DewfordTown_Gym_EventScript_SetFlashLevel6
-	goto_if_eq VAR_0x8000, 2, DewfordTown_Gym_EventScript_SetFlashLevel5
-	goto_if_eq VAR_0x8000, 3, DewfordTown_Gym_EventScript_SetFlashLevel4
-	goto_if_eq VAR_0x8000, 4, DewfordTown_Gym_EventScript_SetFlashLevel3
-	goto_if_eq VAR_0x8000, 5, DewfordTown_Gym_EventScript_SetFlashLevel2
-	goto DewfordTown_Gym_EventScript_SetFlashLevel1
+script DewfordTown_Gym_EventScript_SetFlashLevel {
+	goto_if_defeated(TRAINER_BRAWLY_1, DewfordTown_Gym_EventScript_SetLightsOn)
+	call(DewfordTown_Gym_EventScript_CountTrainersDefeated)
+	copyvar(VAR_0x8001, VAR_0x8000)
+	switch (var(VAR_0x8000))
+	{
+	    case 0:  setflashlevel(7)
+	    case 1:  setflashlevel(6)
+	    case 2:  setflashlevel(5)
+	    case 3:  setflashlevel(4)
+	    case 4:  setflashlevel(3)
+	    case 5:  setflashlevel(2)
+	    default: setflashlevel(1)
+	}
+}
 
-DewfordTown_Gym_EventScript_SetLightsOn::
-	setflashlevel 0
-	return
+script DewfordTown_Gym_EventScript_SetLightsOn { setflashlevel(0) }
+// Flash level 1 is the brightest, 7 the darkest.
 
-@ Brightest
-DewfordTown_Gym_EventScript_SetFlashLevel1::
-	setflashlevel 1
-	return
-
-DewfordTown_Gym_EventScript_SetFlashLevel2::
-	setflashlevel 2
-	return
-
-DewfordTown_Gym_EventScript_SetFlashLevel3::
-	setflashlevel 3
-	return
-
-DewfordTown_Gym_EventScript_SetFlashLevel4::
-	setflashlevel 4
-	return
-
-DewfordTown_Gym_EventScript_SetFlashLevel5::
-	setflashlevel 5
-	return
-
-DewfordTown_Gym_EventScript_SetFlashLevel6::
-	setflashlevel 6
-	return
-
-@ Darkest
-DewfordTown_Gym_EventScript_SetFlashLevel7::
-	setflashlevel 7
-	return
-
-DewfordTown_Gym_EventScript_BrightenRoom::
-	call DewfordTown_Gym_EventScript_CountTrainersDefeated
+// NOTE: A little confusingly, a larger animateflash param value is a smaller flash radius
+script DewfordTown_Gym_EventScript_BrightenRoom {
+	call(DewfordTown_Gym_EventScript_CountTrainersDefeated)
 	nop1
-	goto_if_eq VAR_0x8000, VAR_0x8001, DewfordTown_Gym_EventScript_NoLightChange
-	copyvar VAR_0x8001, VAR_0x8000
-	goto_if_eq VAR_0x8000, 1, DewfordTown_Gym_EventScript_AnimateFlash1Trainer
-	goto_if_eq VAR_0x8000, 2, DewfordTown_Gym_EventScript_AnimateFlash2Trainers
-	goto_if_eq VAR_0x8000, 3, DewfordTown_Gym_EventScript_AnimateFlash3Trainers
-	goto_if_eq VAR_0x8000, 4, DewfordTown_Gym_EventScript_AnimateFlash4Trainers
-	goto_if_eq VAR_0x8000, 5, DewfordTown_Gym_EventScript_AnimateFlash5Trainers
-	goto_if_eq VAR_0x8000, 6, DewfordTown_Gym_EventScript_AnimateFlash6Trainers
+	goto_if_eq(VAR_0x8000, VAR_0x8001, DewfordTown_Gym_EventScript_NoLightChange)
+	copyvar(VAR_0x8001, VAR_0x8000)
+	playse(SE_SWITCH)
+	switch (var(VAR_0x8000)) {
+	    case 1: animateflash(6)
+                call(DewfordTown_Gym_EventScript_SetFlashLevel)
+	    case 2: animateflash(5)
+                call(DewfordTown_Gym_EventScript_SetFlashLevel)
+	    case 3: animateflash(4)
+                call(DewfordTown_Gym_EventScript_SetFlashLevel)
+	    case 4: animateflash(3)
+                call(DewfordTown_Gym_EventScript_SetFlashLevel)
+	    case 5: animateflash(2)
+                call(DewfordTown_Gym_EventScript_SetFlashLevel)
+	    case 6: animateflash(1)
+                call(DewfordTown_Gym_EventScript_SetFlashLevel)
+    }
+}
 
-DewfordTown_Gym_EventScript_NoLightChange::
-	return
+script DewfordTown_Gym_EventScript_NoLightChange {}
 
-@ NOTE: A little confusingly, a larger animateflash param value is a smaller flash radius
-DewfordTown_Gym_EventScript_AnimateFlash1Trainer::
-	playse SE_SWITCH
-	animateflash 6
-	call DewfordTown_Gym_EventScript_SetFlashLevel
-	return
+script DewfordTown_Gym_EventScript_AnimateFlashFullBrightness {
+	playse(SE_SWITCH)
+	animateflash(0)
+	call(DewfordTown_Gym_EventScript_SetFlashLevel)
+}
 
-DewfordTown_Gym_EventScript_AnimateFlash2Trainers::
-	playse SE_SWITCH
-	animateflash 5
-	call DewfordTown_Gym_EventScript_SetFlashLevel
-	return
-
-DewfordTown_Gym_EventScript_AnimateFlash3Trainers::
-	playse SE_SWITCH
-	animateflash 4
-	call DewfordTown_Gym_EventScript_SetFlashLevel
-	return
-
-DewfordTown_Gym_EventScript_AnimateFlash4Trainers::
-	playse SE_SWITCH
-	animateflash 3
-	call DewfordTown_Gym_EventScript_SetFlashLevel
-	return
-
-DewfordTown_Gym_EventScript_AnimateFlash5Trainers::
-	playse SE_SWITCH
-	animateflash 2
-	call DewfordTown_Gym_EventScript_SetFlashLevel
-	return
-
-DewfordTown_Gym_EventScript_AnimateFlash6Trainers::
-	playse SE_SWITCH
-	animateflash 1
-	call DewfordTown_Gym_EventScript_SetFlashLevel
-	return
-
-DewfordTown_Gym_EventScript_AnimateFlashFullBrightness::
-	playse SE_SWITCH
-	animateflash 0
-	call DewfordTown_Gym_EventScript_SetFlashLevel
-	return
-
+raw `
 DewfordTown_Gym_EventScript_CountTrainersDefeated::
 	setvar VAR_0x8000, 0
 	goto_if_not_defeated TRAINER_TAKAO, DewfordTown_Gym_EventScript_CheckJocelyn
@@ -291,10 +237,9 @@ text DewfordTown_Gym_Text_GymGuideAdvice {
 	format("Hey, how's it going, Champion-\n"
 	"bound {PLAYER}?\p"
 	"Dewford's Gym Leader Brawly commands Fighting-type Pokémon.\p"
-	"As an island Gym Leader, his Pokémon are prepared to fight Sandygast, too, no matter their Ghost-type.\p"
-	"What's worse, the Gym is as dark as the ocean floor.\p"
-	"But it will get brighter after defeating the Trainers in your way.\p"
-	"Hey, okay, go for it!")
+	"Most Fighting-type Pokémon have trouble with Ghost-types, but islanders are built different.\p"
+	"This Gym is as Dark as the moves for taking care of local Sandygast.\p"
+	"It'll brighten up as you show them what for, though!")
 }
 
 text DewfordTown_Gym_Text_GymGuidePostVictory {
@@ -317,8 +262,7 @@ text DewfordTown_Gym_Text_TakaoPostBattle {
 }
 
 text DewfordTown_Gym_Text_JocelynIntro {
-	format("There's no need for Brawly to be\n"
-	"involved!\p"
+	format("There's no need for Brawly to be involved!\p"
 	"I'll crush you!")
 }
 
@@ -417,13 +361,9 @@ text DewfordTown_Gym_Text_ReceivedKnuckleBadge {
 }
 
 text DewfordTown_Gym_Text_KnuckleBadgeInfoTakeThis {
-	format("The Knuckle Badge makes all Pokémon\n"
-	"up to Level 30, even those you get in\l"
-	"trades, obey without question.\p"
-	"And, you'll be able to use the HM move\n"
-	"Flash outside of battle.\p"
-	"If you'd like, use this Technical\n"
-	"Machine, too.")
+	format("The Knuckle Badge makes all Pokémon up to Level 30, even those you get in trades, obey without question.\p"
+	"And, you'll be able to use the HM move Flash outside of battle.\p"
+	"If you'd like, use this Technical Machine, too.")
 }
 
 text DewfordTown_Gym_Text_ExplainBulkUp {
@@ -433,14 +373,11 @@ text DewfordTown_Gym_Text_ExplainBulkUp {
 }
 
 text DewfordTown_Gym_Text_RegisteredBrawly {
-	format("Registered Gym Leader Brawly\n"
-	"in the Pokénav.")
+	format("Registered Gym Leader Brawly in the Pokénav.")
 }
 
 text DewfordTown_Gym_Text_BrawlyPostBattle {
-	format("I can see your talent becoming a giant\n"
-	"wave to cause a storm of astonishment\l"
-	"among Trainers one day!")
+	format("I can see your talent becoming a giant wave to cause a storm of astonishment among Trainers one day!")
 }
 
 text DewfordTown_Gym_Text_GymStatue {

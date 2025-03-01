@@ -8,7 +8,7 @@ script Common_EventScript_MegaStoneClerk {
         pokemart(Common_Marts_MegaStones)
         msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
     } else {
-    message(format("Welcome!\p… I don't see a Mega Bracelet on you.\pCome back when you have a Mega Bracelet."))
+    msgbox(format("Welcome!\p… I don't see a Mega Bracelet on you.\pCome back when you have a Mega Bracelet."), MSGBOX_DEFAULT)
     }
     release
 }

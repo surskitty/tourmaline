@@ -1,3 +1,12 @@
+mapscripts MossdeepCity_SpaceCenter_1F_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        goto_if_le(VAR_MOSSDEEP_CITY_STATE, 2, MossdeepCity_SpaceCenter_1F_EventScript_SetMagmaNote)
+    }
+    MAP_SCRIPT_ON_TRANSITION {
+        goto_if_eq(VAR_MOSSDEEP_CITY_STATE, 2, MossdeepCity_SpaceCenter_1F_EventScript_MoveObjectsForTeamMagma)
+    }
+}
+
 raw `
 .set LOCALID_SCIENTIST_1, 1
 .set LOCALID_SCIENTIST_2, 2
@@ -5,15 +14,6 @@ raw `
 .set LOCALID_OLD_MAN, 4
 .set LOCALID_WOMAN, 5
 .set LOCALID_STAIR_GRUNT, 9
-
-MossdeepCity_SpaceCenter_1F_MapScripts::
-	map_script MAP_SCRIPT_ON_LOAD, MossdeepCity_SpaceCenter_1F_OnLoad
-	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_SpaceCenter_1F_OnTransition
-	.byte 0
-
-MossdeepCity_SpaceCenter_1F_OnTransition:
-	goto_if_eq VAR_MOSSDEEP_CITY_STATE, 2, MossdeepCity_SpaceCenter_1F_EventScript_MoveObjectsForTeamMagma
-	end
 
 MossdeepCity_SpaceCenter_1F_EventScript_MoveObjectsForTeamMagma::
 	setobjectxyperm LOCALID_SAILOR, 1, 9
@@ -41,10 +41,6 @@ MossdeepCity_SpaceCenter_1F_EventScript_MoveStairGuardDown::
 @ Functionally unused. See comment on MossdeepCity_SpaceCenter_1F_EventScript_MoveGruntFromStairsEast
 MossdeepCity_SpaceCenter_1F_EventScript_MoveStairGuardRight::
 	setobjectxyperm LOCALID_STAIR_GRUNT, 14, 2
-	end
-
-MossdeepCity_SpaceCenter_1F_OnLoad:
-	goto_if_le VAR_MOSSDEEP_CITY_STATE, 2, MossdeepCity_SpaceCenter_1F_EventScript_SetMagmaNote
 	end
 
 MossdeepCity_SpaceCenter_1F_EventScript_SetMagmaNote::
@@ -193,6 +189,7 @@ MossdeepCity_SpaceCenter_1F_EventScript_OldManMagma::
 MossdeepCity_SpaceCenter_1F_EventScript_Steven::
 	lock
 	faceplayer
+	speakername CommonName_Text_Steven
 	msgbox MossdeepCity_SpaceCenter_1F_Text_StevenMagmaCantBeAllowedToTakeFuel, MSGBOX_DEFAULT
 	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
 	waitmovement 0
@@ -357,18 +354,6 @@ MossdeepCity_SpaceCenter_1F_Text_MagmaWantsToSpoilMyDream:
 	.string "that dream of mine!\p"
 	.string "I'm not having any of that!$"
 
-MossdeepCity_SpaceCenter_1F_Text_StevenMagmaCantBeAllowedToTakeFuel:
-	.string "STEVEN: {PLAYER}{KUN}, have you read that\n"
-	.string "proclamation already?\p"
-	.string "TEAM MAGMA is coming after the rocket\n"
-	.string "fuel on this island.\p"
-	.string "I don't know what they'd need it for,\n"
-	.string "but they can't be allowed to take it.\p"
-	.string "I'll keep an eye on things for\n"
-	.string "a while longer.\p"
-	.string "In the meantime, why don't you go\n"
-	.string "check out the town?$"
-
 MossdeepCity_SpaceCenter_1F_Text_Grunt3Intro:
 	.string "As promised, we've come for\n"
 	.string "the rocket fuel!$"
@@ -431,3 +416,11 @@ MossdeepCity_SpaceCenter_1F_Text_MagmaIntentToStealNotice:
 	.string "“Let there be more land!\n"
 	.string "                                          TEAM MAGMA”$"
 `
+
+text MossdeepCity_SpaceCenter_1F_Text_StevenMagmaCantBeAllowedToTakeFuel {
+    format("{PLAYER}{KUN}, have you read that proclamation already?\p"
+        "Team Magma is coming after the rocket fuel on this island.\p"
+        "I don't know what they'd need it for, but they can't be allowed to take it.\p"
+        "I'll keep an eye on things for a while longer.\p"
+        "In the meantime, why don't you go check out the town?")
+}

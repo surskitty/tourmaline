@@ -323,6 +323,136 @@
       "trainer_sight_or_berry_tree_id": "ITEM_HEAL_POWDER",
       "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_ROUTE_115_HEAL_POWDER"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(IGGLYBUFF)",
+      "x": 13,
+      "y": 65,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 3,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Common_EventScript_StationaryWild",
+      "flag": "FLAG_TEMP_1"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SWABLU)",
+      "x": 6,
+      "y": 36,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 3,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Common_EventScript_StationaryWild",
+      "flag": "FLAG_TEMP_2"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(JIGGLYPUFF)",
+      "x": 13,
+      "y": 48,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 3,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Common_EventScript_StationaryWild",
+      "flag": "FLAG_TEMP_3"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SWABLU)",
+      "x": 19,
+      "y": 48,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 3,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Common_EventScript_StationaryWild",
+      "flag": "FLAG_TEMP_4"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PIDGEY)",
+      "x": 26,
+      "y": 56,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 3,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Common_EventScript_StationaryWild",
+      "flag": "FLAG_TEMP_5"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(WINGULL)",
+      "x": 20,
+      "y": 9,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 5,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Common_EventScript_StationaryWild",
+      "flag": "FLAG_TEMP_6"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(PIDGEY)",
+      "x": 23,
+      "y": 16,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 4,
+      "movement_range_y": 4,
+      "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Common_EventScript_StationaryWild",
+      "flag": "FLAG_TEMP_7"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MINIOR)",
+      "x": 26,
+      "y": 44,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 3,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Common_EventScript_StationaryWild",
+      "flag": "FLAG_TEMP_8"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(POOCHYENA)",
+      "x": 28,
+      "y": 71,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 3,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_BIRD",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Common_EventScript_StationaryWild",
+      "flag": "FLAG_TEMP_9"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(ABRA)",
+      "x": 67,
+      "y": 7,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 2,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_TEMP_A"
     }
   ],
   "warp_events": [
@@ -348,7 +478,9 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "secret_base",

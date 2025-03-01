@@ -343,7 +343,7 @@ script Route104_EventScript_Boy2 {
     lock
     faceplayer
     if (flag(FLAG_RECEIVED_TM_BULLET_SEED)) {
-        msgbox(format("Some Marill like to eat all the seeds…"), MSGBOX_DEFAULT)
+        msgbox(format("Some Marill like to eat all the seeds after I spit them out…"), MSGBOX_DEFAULT)
         release
     } else {
         msgbox(format("I like filling my mouth with seeds, then spitting them out fast!\p"

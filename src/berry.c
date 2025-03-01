@@ -2175,6 +2175,9 @@ void ObjectEventInteractionGetBerryCountString(void)
     u8 count = GetBerryCountByBerryTreeId(treeId);
 
     gSpecialVar_0x8006 = BerryTypeToItemId(berry);
+    
+    if (GetStageByBerryTreeId(treeId) != BERRY_STAGE_BERRIES) count = 1;
+    
     CopyItemNameHandlePlural(BerryTypeToItemId(berry), gStringVar1, count);
     berry = GetTreeMutationValue(treeId);
     if (berry > 0)

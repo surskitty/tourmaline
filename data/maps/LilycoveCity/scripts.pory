@@ -146,56 +146,6 @@ LilycoveCity_EventScript_Woman1::
     applymovement LOCALID_WOMAN_1, Common_Movement_FaceOriginalDirection
     end
 
-LilycoveCity_EventScript_CitySign::
-    msgbox LilycoveCity_Text_CitySign, MSGBOX_SIGN
-    end
-
-LilycoveCity_EventScript_ContestHallSign::
-    msgbox LilycoveCity_Text_ContestHallSign, MSGBOX_SIGN
-    end
-
-LilycoveCity_EventScript_MotelSign::
-    msgbox LilycoveCity_Text_MotelSign, MSGBOX_SIGN
-    end
-
-LilycoveCity_EventScript_MuseumSign::
-    lockall
-    specialvar VAR_0x8004, CountPlayerMuseumPaintings
-    switch VAR_0x8004
-    case 0, LilycoveCity_EventScript_MuseumSignNoPaintings
-    msgbox LilycoveCity_Text_MuseumSignPlayersExhibit, MSGBOX_DEFAULT
-    releaseall
-    end
-
-LilycoveCity_EventScript_MuseumSignNoPaintings::
-    msgbox LilycoveCity_Text_MuseumSign, MSGBOX_DEFAULT
-    releaseall
-    end
-
-LilycoveCity_EventScript_HarborSign::
-    lockall
-    goto_if_set FLAG_SYS_GAME_CLEAR, LilycoveCity_EventScript_HarborSignFerryReady
-    msgbox LilycoveCity_Text_HarborSignUnderConstruction, MSGBOX_DEFAULT
-    releaseall
-    end
-
-LilycoveCity_EventScript_HarborSignFerryReady::
-    msgbox LilycoveCity_Text_HarborSign, MSGBOX_DEFAULT
-    releaseall
-    end
-
-LilycoveCity_EventScript_TrainerFanClubSign::
-    msgbox LilycoveCity_Text_TrainerFanClubSign, MSGBOX_SIGN
-    end
-
-LilycoveCity_EventScript_DepartmentStoreSign::
-    msgbox LilycoveCity_Text_DepartmentStoreSign, MSGBOX_SIGN
-    end
-
-LilycoveCity_EventScript_MoveDeletersHouseSign::
-    msgbox LilycoveCity_Text_MoveDeletersHouseSign, MSGBOX_SIGN
-    end
-
 LilycoveCity_EventScript_WailmerTrainerGrunt::
     lockall
     goto_if_set FLAG_MET_WAILMER_TRAINER, LilycoveCity_EventScript_MetWailmerTrainer
@@ -240,6 +190,7 @@ LilycoveCity_EventScript_Rival::
 
 LilycoveCity_EventScript_May::
     playbgm MUS_ENCOUNTER_MAY, TRUE
+    speakername CommonName_Text_May
     call_if_set FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_MayAskToBattleAgain
     call_if_unset FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_MayAskToBattle
     goto_if_eq VAR_RESULT, NO, LilycoveCity_EventScript_DeclineMayBattle
@@ -268,6 +219,7 @@ LilycoveCity_EventScript_DeclineMayBattle::
 
 LilycoveCity_EventScript_Brendan::
     playbgm MUS_ENCOUNTER_BRENDAN, TRUE
+    speakername CommonName_Text_Brendan
     call_if_set FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_BrendanAskToBattleAgain
     call_if_unset FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_BrendanAskToBattle
     goto_if_eq VAR_RESULT, NO, LilycoveCity_EventScript_DeclineBrendanBattle
@@ -416,7 +368,7 @@ LilycoveCity_EventScript_DontKnowAboutBerryBlender::
 `
 
 text LilycoveCity_Text_MayShoppingLetsBattle {
-	format("MAY: Oh, hey?\n"
+	format("Oh, hey?\n"
         "{PLAYER}{KUN}, are you shopping, too?\p"
         "I bought a whole bunch of Dolls and Posters.\p"
         "Of course, I've also caught a lot of Pokémon, and I'm raising them properly, too.\p"
@@ -425,16 +377,16 @@ text LilycoveCity_Text_MayShoppingLetsBattle {
 }
 
 text LilycoveCity_Text_MayNotRaisingPokemon {
-	format("MAY: Oh, why? {PLAYER}{KUN}, haven't you been raising your Pokémon?\p"
+	format("Oh, why? {PLAYER}{KUN}, haven't you been raising your Pokémon?\p"
     "That's not a very good showing as a Trainer…")
 }
 
 text LilycoveCity_Text_MayBattleMe {
-	format("MAY: Come on, battle with me, so I can check out your Pokémon!")
+	format("Come on, battle with me, so I can check out your Pokémon!")
 }
 
 text LilycoveCity_Text_MayWontBeBeaten {
-	format("MAY: The Pokémon I raised won't be beaten by your Pokémon, {PLAYER}{KUN}!")
+	format("The Pokémon I raised won't be beaten by your Pokémon, {PLAYER}{KUN}!")
 }
 
 text LilycoveCity_Text_MayDefeat {
@@ -444,7 +396,7 @@ text LilycoveCity_Text_MayDefeat {
 }
 
 text LilycoveCity_Text_MayGoingBackToLittleroot {
-	format("MAY: I'm thinking of going back to Littleroot soon.\p"
+	format("I'm thinking of going back to Littleroot soon.\p"
     "I've caught a decent group of Pokémon, and my Pokédex is coming along, so I'm going home to show my dad.")
 }
 
@@ -478,24 +430,23 @@ text LilycoveCity_Text_MayYouGoingToBattleFrontier {
 }
 
 text LilycoveCity_Text_BrendanShoppingLetsBattle {
-	format("BRENDAN: Oh, hey, it's {PLAYER}.\p"
+	format("Oh, hey, it's {PLAYER}.\p"
     "I'm running an errand for my dad, and I don't need any Dolls.\p"
     "Anyways, it's been a while.\p"
-    "Want to have a battle to see who's been\n"
-    "raising Pokémon better?")
+    "Want to have a battle to see who's been raising Pokémon better?")
 }
 
 text LilycoveCity_Text_BrendanNoConfidence {
-	format("BRENDAN: Oh, what's the matter?\n"
+	format("Oh, what's the matter?\n"
     "Don't have the confidence?")
 }
 
 text LilycoveCity_Text_BrendanBattleMe {
-	format("BRENDAN: Want to battle to see who's been raising Pokémon better?")
+	format("Want to battle to see who's been raising Pokémon better?")
 }
 
 text LilycoveCity_Text_BrendanWontBeBeaten {
-	format("BRENDAN: Aww, but you know I'm not going to lose to no {PLAYER}.")
+	format("Aww, but you know I'm not going to lose to no {PLAYER}.")
 }
 
 text LilycoveCity_Text_BrendanDefeat {
@@ -505,7 +456,7 @@ text LilycoveCity_Text_BrendanDefeat {
 }
 
 text LilycoveCity_Text_BrendanGoingBackToLittleroot {
-	format("BRENDAN: I…\n"
+	format("I…\n"
     "I plan on going home to Littleroot.\p"
     "You know I'm helping out my dad on his Pokédex. It's coming together pretty decently, so I should go show him.")
 }
@@ -519,26 +470,19 @@ text LilycoveCity_Text_BrendanYouGoingToCollectBadges {
 
 text LilycoveCity_Text_BrendanYouGoingToPokemonLeague {
 	format("{PLAYER}, what are you going to do?\p"
-    "Since you're that strong, are you\n"
-    "taking the Pokémon League challenge?\p"
-    "Heh, even me--if I trained my Pokémon\n"
-    "a bit more, I should be stronger than\l"
-    "you, {PLAYER}.\p"
+    "Since you're that strong, are you taking the Pokémon League challenge?\p"
+    "Heh, even me--if I trained my Pokémon a bit more, I should be stronger than you, {PLAYER}.\p"
     "Well, anyway, hang in there!")
 }
 
 text LilycoveCity_Text_BrendanYouGoingToBattleFrontier {
 	format("{PLAYER}, what are you going to do?\p"
-    "Are you taking the Battle Frontier\n"
-    "challenge?\p"
-    "Or, are you going to complete your\n"
-    "Pokédex?\p"
-    "Since you're that strong, you should\n"
-    "consider the Battle Frontier.\p"
+    "Are you taking the Battle Frontier challenge?\p"
+    "Or are you going to complete your Pokédex?\p"
+    "Since you're that strong, you should consider the Battle Frontier.\p"
     "Heh, if I train my Pokémon a bit more,\n"
     "I'll get stronger than you, {PLAYER}.\p"
-    "Maybe I should go to the Battle\n"
-    "Frontier.\p"
+    "Maybe I should go to the Battle Frontier.\p"
     "Well, anyway, hang in there!")
 }
 
@@ -584,10 +528,8 @@ text LilycoveCity_Text_GetLostMessingUpTraining {
 }
 
 text LilycoveCity_Text_ContestHallInTown {
-	format("There's a Pokémon Contest Hall\n"
-    "right in this here town. \p"
-    "That means well-raised Pokémon will\n"
-    "come from all over the country.\p"
+	format("There's a Pokémon Contest Hall right in this here town. \p"
+    "That means well-raised Pokémon will come from all over the country.\p"
     "My heart swells with excitement!")
 }
 
@@ -605,25 +547,21 @@ text LilycoveCity_Text_GoingToMoveDeleterForHMs {
 
 text LilycoveCity_Text_ImFromKanto {
 	format("I came from Kanto.\p"
-    "The Hoenn region is beautiful with\n"
-    "all its water and verdant nature.\p"
+    "The Hoenn region is beautiful with all its water and verdant nature.\p"
     "Hunh? Wait a second…\p"
     "Could there be rare Pokémon that live\n"
     "only in this area?")
 }
 
 text LilycoveCity_Text_TeamAquaBeenTrainingWailmer {
-	format("Team Aqua's been training their\n"
-    "Wailmer in the cove.\p"
-    "We Sailors can't get our boats out\n"
-    "to sea with them in the way!")
+	format("Team Aqua's been training their Wailmer in the cove.\p"
+    "We Sailors can't get our boats out to sea with them in the way!")
 }
 
 text LilycoveCity_Text_SomeonePuntedTeamAquaOut {
 	format("Ahoy, did you know?\p"
-    "Someone punted Team Aqua out of\n"
-    "the way for us!\p"
-    "That got the WAILMER out of the cove,\n"
+    "Someone punted Team Aqua out of the way for us!\p"
+    "That got the Wailmer out of the cove,\n"
     "so we can get our boats out again.")
 }
 
@@ -642,10 +580,8 @@ text LilycoveCity_Text_MissingPokemonCameBack {
 
 text LilycoveCity_Text_ImArtDealer {
 	format("I'm an Art Dealer.\p"
-    "I am a buyer and seller of fine art,\n"
-    "especially paintings.\p"
-    "I've heard that the Museum here has\n"
-    "magnificent works on exhibit…")
+    "I am a buyer and seller of fine art, especially paintings.\p"
+    "I've heard that the Museum here has magnificent works on exhibit…")
 }
 
 text LilycoveCity_Text_SeaRemainsForeverYoung {
@@ -663,81 +599,18 @@ text LilycoveCity_Text_SixtyYearsAgoHusbandProposed {
 }
 
 text LilycoveCity_Text_TeamAquaRenovatedCavern {
-	format("Hm, you know of the peculiar cavern\n"
-    "in this cove?\p"
+	format("Hm, you know of the peculiar cavern in this cove?\p"
     "That had been a natural formation,\n"
     "but then that Team Aqua lot came\l"
     "along and made their renovations.\p"
-    "They call themselves\n"
-    "the “nature-loving Team Aqua”!\p"
-    "But what they do and what they say\n"
-    "don't match at all!")
+    "They call themselves the “nature-loving Team Aqua”!\p"
+    "But what they do and what they say don't match at all!")
 }
 
 text LilycoveCity_Text_TeamAquaLotGoneForGood {
 	format("That cave in the cove…\p"
-    "I didn't notice it right away,\n"
-    "but it's completely empty now.\p"
-    "That Team Aqua lot, they must\n"
-    "have gone away for good.")
-}
-
-text LilycoveCity_Text_CitySign {
-	format("Lilycove City\p"
-    "“Where the land ends and the\n"
-    "sea begins.”")
-}
-
-text LilycoveCity_Text_ContestHallSign {
-	format("Pokémon Contest Hall\n"
-    "“The gathering place for Trainers!”")
-}
-
-text LilycoveCity_Text_MotelSign {
-	format("Cove Lily Motel\p"
-    "“Remember us as Cove Lily of\n"
-    "Lilycove.”")
-}
-
-text LilycoveCity_Text_MuseumSign {
-	format("Lilycove Museum\p"
-    "“Pokémon Masterpiece Collection\n"
-    "on exhibit!”")
-}
-
-text LilycoveCity_Text_MuseumSignPlayersExhibit {
-	format("Lilycove Museum\p"
-    "“{PLAYER}'s Pokémon Collection\n"
-    "on exhibit!”")
-}
-
-text LilycoveCity_Text_HarborSignUnderConstruction {
-	format("Lilycove City Harbor\p"
-    "“The ferry S.S. Tidal is under\n"
-    "construction in Slateport City.\p"
-    "“Service is scheduled to begin\n"
-    "shortly.”")
-}
-
-text LilycoveCity_Text_HarborSign {
-	format("Lilycove City Harbor\p"
-    "“Enjoy a delightful cruise on the ferry S.S. Tidal.”")
-}
-
-text LilycoveCity_Text_TrainerFanClubSign {
-	format("Pokémon Trainer Fan Club\p"
-    "The names of Trainers are scribbled all over the sign…")
-}
-
-text LilycoveCity_Text_DepartmentStoreSign {
-	format("Lilycove Department Store\p"
-    "“Overflowing with great merchandise and excitement!\p"
-    "“A great place to find that something you need!”")
-}
-
-text LilycoveCity_Text_MoveDeletersHouseSign {
-	format("Move Deleter's House\p"
-    "“Unwanted Pokémon moves deleted.”")
+    "I didn't notice it right away, but it's completely empty now.\p"
+    "That Team Aqua lot, they must have gone away for good.")
 }
 
 text LilycoveCity_Text_DoYouKnowAboutBerryBlender {
@@ -766,8 +639,7 @@ text LilycoveCity_Text_SawTallTowerOnRoute131 {
 
 text LilycoveCity_Text_JustArrivedAndSawRarePokemon {
 	format("We just arrived here on our honeymoon vacation.\p"
-    "We happened to see a Dragon-type\n"
-    "Pokémon flying way up in the sky.\p"
+    "We happened to see a Dragon-type Pokémon flying way up in the sky.\p"
     "Do cool Pokémon like that live in the Hoenn region?")
 }
 
@@ -775,5 +647,65 @@ text LilycoveCity_Text_HoneymoonVowToSeeRarePokemon {
 	format("On our honeymoon, we vowed to see as many rare Pokémon as we can.\p"
     "So we were delighted to see a rare Pokémon as soon as we arrived.\p"
     "I mean, we are totally happy!")
+}
+
+script LilycoveCity_EventScript_CitySign {
+    msgbox(format("Lilycove City\p"
+    "“Where the land ends and the sea begins.”"), MSGBOX_SIGN)
+}
+
+script LilycoveCity_EventScript_ContestHallSign {
+    msgbox(format("Pokémon Contest Hall\n"
+    "“The gathering place for Trainers!”"), MSGBOX_SIGN)
+}
+
+script LilycoveCity_EventScript_MotelSign {
+    msgbox(format("Cove Lily Motel\p"
+    "“Remember us as Cove Lily of\n"
+    "Lilycove.”"), MSGBOX_SIGN)
+}
+
+script LilycoveCity_EventScript_MuseumSign {
+    lockall
+    specialvar(VAR_0x8004, CountPlayerMuseumPaintings)
+    switch(var(VAR_0x8004)) {
+        case 0:
+            msgbox(format("Lilycove Museum\p"
+                "“Pokémon Masterpiece Collection on exhibit!”"), MSGBOX_DEFAULT)
+        default:
+            msgbox(format("Lilycove Museum\p"
+                "“{PLAYER}'s Pokémon Collection on exhibit!”"), MSGBOX_DEFAULT)
+    }
+    releaseall
+}
+
+script LilycoveCity_EventScript_HarborSign {
+    lockall
+    if (flag(FLAG_SYS_GAME_CLEAR)) {
+        msgbox(format("Lilycove City Harbor\p"
+            "“Enjoy a delightful cruise on the ferry S.S. Tidal.”"), MSGBOX_DEFAULT)
+        releaseall
+    } else {
+        msgbox(format("Lilycove City Harbor\p"
+            "“The ferry S.S. Tidal is under construction in Slateport City.\p"
+            "“Service is scheduled to begin shortly.”"), MSGBOX_DEFAULT)
+        releaseall
+    }
+}
+
+script LilycoveCity_EventScript_TrainerFanClubSign {
+    msgbox(format("Pokémon Trainer Fan Club\p"
+    "The names of Trainers are scribbled all over the sign…"), MSGBOX_SIGN)
+}
+
+script LilycoveCity_EventScript_DepartmentStoreSign {
+    msgbox(format("Lilycove Department Store\p"
+        "“Overflowing with great merchandise and excitement!\p"
+        "“A great place to find that something you need!”"), MSGBOX_SIGN)
+}
+
+script LilycoveCity_EventScript_MoveDeletersHouseSign {
+    msgbox(format("Move Deleter's House\p"
+    "“Unwanted Pokémon moves deleted.”"), MSGBOX_SIGN)
 }
 

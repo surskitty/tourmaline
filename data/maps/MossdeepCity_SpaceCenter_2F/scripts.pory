@@ -1,3 +1,13 @@
+mapscripts MossdeepCity_SpaceCenter_2F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        call_if_eq(VAR_MOSSDEEP_CITY_STATE, 2, MossdeepCity_SpaceCenter_2F_EventScript_MoveCivilians)
+        call_if_eq(VAR_MOSSDEEP_SPACE_CENTER_STATE, 2, MossdeepCity_SpaceCenter_2F_EventScript_MoveDefeatedGrunts)
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_MOSSDEEP_SPACE_CENTER_STATE, 1: MossdeepCity_SpaceCenter_2F_EventScript_ThreeMagmaGrunts
+    ]
+}
+
 raw `
 .set LOCALID_RICH_BOY, 1
 .set LOCALID_GENTLEMAN, 2
@@ -9,16 +19,6 @@ raw `
 .set LOCALID_GRUNT_7, 7
 .set LOCALID_TABITHA, 8
 .set LOCALID_MAXIE, 9
-
-MossdeepCity_SpaceCenter_2F_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_SpaceCenter_2F_OnTransition
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, MossdeepCity_SpaceCenter_2F_OnFrame
-	.byte 0
-
-MossdeepCity_SpaceCenter_2F_OnTransition:
-	call_if_eq VAR_MOSSDEEP_CITY_STATE, 2, MossdeepCity_SpaceCenter_2F_EventScript_MoveCivilians
-	call_if_eq VAR_MOSSDEEP_SPACE_CENTER_STATE, 2, MossdeepCity_SpaceCenter_2F_EventScript_MoveDefeatedGrunts
-	end
 
 MossdeepCity_SpaceCenter_2F_EventScript_MoveCivilians::
 	clearflag FLAG_INTERACTED_WITH_STEVEN_SPACE_CENTER
@@ -35,10 +35,6 @@ MossdeepCity_SpaceCenter_2F_EventScript_MoveDefeatedGrunts::
 	setobjectxyperm LOCALID_GRUNT_7, 15, 2
 	setobjectxyperm LOCALID_GRUNT_5, 13, 4
 	return
-
-MossdeepCity_SpaceCenter_2F_OnFrame:
-	map_script_2 VAR_MOSSDEEP_SPACE_CENTER_STATE, 1, MossdeepCity_SpaceCenter_2F_EventScript_ThreeMagmaGrunts
-	.2byte 0
 
 MossdeepCity_SpaceCenter_2F_EventScript_ThreeMagmaGrunts::
 	playse SE_PIN
@@ -176,6 +172,7 @@ MossdeepCity_SpaceCenter_2F_EventScript_Grunt5::
 MossdeepCity_SpaceCenter_2F_EventScript_Tabitha::
 	lock
 	faceplayer
+    speakername CommonName_Text_Tabitha
 	msgbox MossdeepCity_SpaceCenter_2F_Text_WellTakeCareOfYou, MSGBOX_DEFAULT
 	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
 	waitmovement 0
@@ -184,6 +181,7 @@ MossdeepCity_SpaceCenter_2F_EventScript_Tabitha::
 
 MossdeepCity_SpaceCenter_2F_EventScript_Maxie::
 	lockall
+	speakername CommonName_Text_Maxie
 	msgbox MossdeepCity_SpaceCenter_2F_Text_MaxieDontInterfere, MSGBOX_DEFAULT
 	releaseall
 	end
@@ -192,7 +190,9 @@ MossdeepCity_SpaceCenter_2F_EventScript_Steven::
 	lockall
 	goto_if_set FLAG_INTERACTED_WITH_STEVEN_SPACE_CENTER, MossdeepCity_SpaceCenter_2F_EventScript_ReadyForBattlePrompt
 	setflag FLAG_INTERACTED_WITH_STEVEN_SPACE_CENTER
+	speakername CommonName_Text_Steven
 	msgbox MossdeepCity_SpaceCenter_2F_Text_StevenWhyStealRocketFuel, MSGBOX_DEFAULT
+	speakername CommonName_Text_Maxie
 	msgbox MossdeepCity_SpaceCenter_2F_Text_MaxieUseFuelToEruptVolcano, MSGBOX_DEFAULT
 	closemessage
 	delay 30
@@ -237,8 +237,10 @@ MossdeepCity_SpaceCenter_2F_Movement_StevenFightSouth:
 MossdeepCity_SpaceCenter_2F_EventScript_ReadyForBattlePrompt::
 	applymovement VAR_LAST_TALKED, Common_Movement_FacePlayer
 	waitmovement 0
+	speakername CommonName_Text_Steven
 	msgbox MossdeepCity_SpaceCenter_2F_Text_StevenAreYouReadyToBattle, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, YES, MossdeepCity_SpaceCenter_2F_EventScript_ChoosePartyForMultiBattle
+	speakername CommonName_Text_Steven
 	msgbox MossdeepCity_SpaceCenter_2F_Text_StevenHurryGetReadyQuickly, MSGBOX_DEFAULT
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterDown
@@ -266,6 +268,7 @@ MossdeepCity_SpaceCenter_2F_EventScript_DoStevenMultiBattle::
 	waitstate
 
 MossdeepCity_SpaceCenter_2F_EventScript_DefeatedMaxieTabitha::
+	speakername CommonName_Text_Maxie
 	msgbox MossdeepCity_SpaceCenter_2F_Text_MaxieWeFailedIsAquaAlsoMisguided, MSGBOX_DEFAULT
 	closemessage
 	delay 20
@@ -277,6 +280,7 @@ MossdeepCity_SpaceCenter_2F_EventScript_DefeatedMaxieTabitha::
 	applymovement LOCALID_TABITHA, Common_Movement_WalkInPlaceFasterRight
 	waitmovement 0
 	delay 20
+	speakername CommonName_Text_Maxie
 	msgbox MossdeepCity_SpaceCenter_2F_Text_MaxieWeWillGiveUp, MSGBOX_DEFAULT
 	closemessage
 	setvar VAR_MOSSDEEP_CITY_STATE, 3
@@ -299,6 +303,7 @@ MossdeepCity_SpaceCenter_2F_EventScript_DefeatedMaxieTabitha::
 	turnobject LOCALID_RICH_BOY, DIR_NORTH
 	call MossdeepCity_SpaceCenter_2F_EventScript_StevenFacePlayer
 	fadescreen FADE_FROM_BLACK
+	speakername CommonName_Text_Steven
 	msgbox MossdeepCity_SpaceCenter_2F_Text_StevenThankYouComeSeeMeAtHome, MSGBOX_DEFAULT
 	closemessage
 	fadescreen FADE_TO_BLACK
@@ -352,154 +357,167 @@ MossdeepCity_SpaceCenter_2F_EventScript_BrendanRayquazaCall::
 	pokenavcall MatchCall_Text_BrendanRayquazaCall
 	waitmessage
 	return
-
-MossdeepCity_SpaceCenter_2F_Text_MossdeepIdealForRockets:
-	.string "MOSSDEEP has mainly sunny weather,\n"
-	.string "and its winds are stable.\p"
-	.string "It's an ideal location for launching\n"
-	.string "rockets.$"
-
-MossdeepCity_SpaceCenter_2F_Text_WhyWouldMagmaStealRocketFuel:
-	.string "Why would TEAM MAGMA want to steal\n"
-	.string "our rocket fuel in the first place?$"
-
-MossdeepCity_SpaceCenter_2F_Text_WouldveLikedToBeAstronaut:
-	.string "If only I was a little younger, I would\n"
-	.string "have liked being an astronaut…\p"
-	.string "No… It's not too late!\n"
-	.string "I can and will try!$"
-
-MossdeepCity_SpaceCenter_2F_Text_MagmaCantGetAwayWithThis:
-	.string "If TEAM MAGMA takes the rocket fuel,\n"
-	.string "I won't be able to go to space!\p"
-	.string "They can't be allowed to get away\n"
-	.string "with such an outrage!$"
-
-MossdeepCity_SpaceCenter_2F_Text_WishOrdinaryPeopleCouldGoIntoSpace:
-	.string "I wish ordinary people could go into\n"
-	.string "space one day…$"
-
-MossdeepCity_SpaceCenter_2F_Text_DoesMagmaWantToGoToSpace:
-	.string "TEAM MAGMA…\n"
-	.string "Do they want to go to space, too?$"
-
-MossdeepCity_SpaceCenter_2F_Text_YoureOutnumberedTakeUsOn:
-	.string "What's wrong with you?\p"
-	.string "You're outnumbered three to one,\n"
-	.string "but you still want to take us on?$"
-
-MossdeepCity_SpaceCenter_2F_Text_GoodAnswer:
-	.string "Good answer!\n"
-	.string "That's what a smart person'll do!$"
-
-MossdeepCity_SpaceCenter_2F_Text_Grunt5Intro:
-	.string "A reckless go-getter, are you?\n"
-	.string "Okay, I'll go first!$"
-
-MossdeepCity_SpaceCenter_2F_Text_Grunt5Defeat:
-	.string "I lost!\n"
-	.string "But!$"
-
-MossdeepCity_SpaceCenter_2F_Text_Grunt6Intro:
-	.string "It's too soon to be relieved!\n"
-	.string "I'm up next!$"
-
-MossdeepCity_SpaceCenter_2F_Text_Grunt6Defeat:
-	.string "I lost, too!\n"
-	.string "But!$"
-
-MossdeepCity_SpaceCenter_2F_Text_Grunt7Intro:
-	.string "I bet you want to take a break.\n"
-	.string "But I'm not about to let you do that!$"
-
-MossdeepCity_SpaceCenter_2F_Text_Grunt7Defeat:
-	.string "We should've taken a break…\n"
-	.string "That's what we should've done…$"
-
-MossdeepCity_SpaceCenter_2F_Text_Grunt6PostBattle:
-	.string "Three of us here, and look at the sorry\n"
-	.string "mess we got ourselves into.$"
-
-MossdeepCity_SpaceCenter_2F_Text_Grunt7PostBattle:
-	.string "We three losing like this…\n"
-	.string "We look worse than usual by triple!$"
-
-MossdeepCity_SpaceCenter_2F_Text_Grunt5PostBattle:
-	.string "Are we being useful to our leader\n"
-	.string "at all?$"
-
-MossdeepCity_SpaceCenter_2F_Text_WellTakeCareOfYou:
-	.string "Hehehe!\p"
-	.string "We come all the way here to get some\n"
-	.string "fuel, and we're interfered with again!\p"
-	.string "If you're going to mess with us too,\n"
-	.string "we'll take care of you at the same time!$"
-
-MossdeepCity_SpaceCenter_2F_Text_MaxieDontInterfere:
-	.string "MAXIE: Clear out of the way!\n"
-	.string "Don't you dare interfere!$"
-
-MossdeepCity_SpaceCenter_2F_Text_StevenWhyStealRocketFuel:
-	.string "STEVEN: TEAM MAGMA…\p"
-	.string "What's the point of stealing rocket\n"
-	.string "fuel?$"
-
-MossdeepCity_SpaceCenter_2F_Text_MaxieUseFuelToEruptVolcano:
-	.string "MAXIE: Fufufu… Since you're so\n"
-	.string "curious, you deserve an explanation.\p"
-	.string "We're going to jettison the entire\n"
-	.string "load into MT. CHIMNEY!\p"
-	.string "With GROUDON gone, we have no need\n"
-	.string "for that slag heap of a mountain!\p"
-	.string "So we'll use the fuel's power to make\n"
-	.string "the volcano erupt!\p"
-	.string "It will be savage!$"
-
-MossdeepCity_SpaceCenter_2F_Text_StevenAreYouReadyToBattle:
-	.string "STEVEN: {PLAYER}{KUN}!\n"
-	.string "You're going to help me?\p"
-	.string "Let's go into battle together!\n"
-	.string "Are you ready?$"
-
-MossdeepCity_SpaceCenter_2F_Text_StevenHurryGetReadyQuickly:
-	.string "STEVEN: Then, hurry!\n"
-	.string "Get ready quickly!$"
-
-MossdeepCity_SpaceCenter_2F_Text_JustWantToExpandLand:
-	.string "All I want…\n"
-	.string "I just want to expand the land mass…$"
-
-MossdeepCity_SpaceCenter_Text_TabithaDefeat:
-	.string "I'm with our leader…$"
-
-MossdeepCity_SpaceCenter_2F_Text_MaxieWeFailedIsAquaAlsoMisguided:
-	.string "MAXIE: We failed to make the volcano\n"
-	.string "erupt…\p"
-	.string "We failed to control GROUDON after\n"
-	.string "we had awoken it…\p"
-	.string "Is our goal to expand the land\n"
-	.string "misguided?\p"
-	.string "… … … … … …\n"
-	.string "… … … … … …\p"
-	.string "If…\n"
-	.string "If we, TEAM MAGMA, are wrong…\l"
-	.string "… … … … … …\p"
-	.string "Then might TEAM AQUA's goal to expand\n"
-	.string "the sea also be equally misguided?$"
-
-MossdeepCity_SpaceCenter_2F_Text_MaxieWeWillGiveUp:
-	.string "MAXIE: All right…\n"
-	.string "We will give up on the fuel…\p"
-	.string "There appear to be more important\n"
-	.string "matters that I must examine…$"
-
-MossdeepCity_SpaceCenter_2F_Text_StevenThankYouComeSeeMeAtHome:
-	.string "STEVEN: Whew, that was too tense.\n"
-	.string "{PLAYER}{KUN}, thank you.\p"
-	.string "I have something to give you as\n"
-	.string "thanks for your support.\p"
-	.string "Please come see me at home\n"
-	.string "after this.\p"
-	.string "Oh, yes, I don't live in RUSTBORO CITY.\n"
-	.string "I live right here on this island.$"
 `
+
+text MossdeepCity_SpaceCenter_2F_Text_MossdeepIdealForRockets {
+	format("Mossdeep has mainly sunny weather, and its winds are stable.\p"
+	"It's an ideal location for launching rockets.")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_WhyWouldMagmaStealRocketFuel {
+	format("Why would TEAM MAGMA want to steal\n"
+	"our rocket fuel in the first place?")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_WouldveLikedToBeAstronaut {
+	format("If only I was a little younger, I would have liked being an astronaut…\p"
+	"No… It's not too late!\n"
+	"I can and will try!")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_MagmaCantGetAwayWithThis {
+	format("If TEAM MAGMA takes the rocket fuel,\n"
+	"I won't be able to go to space!\p"
+	"They can't be allowed to get away\n"
+	"with such an outrage!")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_WishOrdinaryPeopleCouldGoIntoSpace {
+	format("I wish ordinary people could go into\n"
+	"space one day…")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_DoesMagmaWantToGoToSpace {
+	format("TEAM MAGMA…\n"
+	"Do they want to go to space, too?")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_YoureOutnumberedTakeUsOn {
+	format("What's wrong with you?\p"
+	"You're outnumbered three to one,\n"
+	"but you still want to take us on?")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_GoodAnswer {
+	format("Good answer!\n"
+	"That's what a smart person'll do!")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_Grunt5Intro {
+	format("A reckless go-getter, are you?\n"
+	"Okay, I'll go first!")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_Grunt5Defeat {
+	format("I lost!\n"
+	"But!")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_Grunt6Intro {
+	format("It's too soon to be relieved!\n"
+	"I'm up next!")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_Grunt6Defeat {
+	format("I lost, too!\n"
+	"But!")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_Grunt7Intro {
+	format("I bet you want to take a break.\n"
+	"But I'm not about to let you do that!")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_Grunt7Defeat {
+	format("We should've taken a break…\n"
+	"That's what we should've done…")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_Grunt6PostBattle {
+	format("Three of us here, and look at the sorry\n"
+	"mess we got ourselves into.")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_Grunt7PostBattle {
+	format("We three losing like this…\n"
+	"We look worse than usual by triple!")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_Grunt5PostBattle {
+	format("Are we being useful to our leader\n"
+	"at all?")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_WellTakeCareOfYou {
+	format("Hehehe!\p"
+	"We come all the way here to get some\n"
+	"fuel, and we're interfered with again!\p"
+	"If you're going to mess with us too,\n"
+	"we'll take care of you at the same time!")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_MaxieDontInterfere {
+	format("Clear out of the way!\n"
+	"Don't you dare interfere!")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_StevenWhyStealRocketFuel {
+	format("Team Magma…\p"
+	"What's the point of stealing rocket fuel?")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_MaxieUseFuelToEruptVolcano {
+	format("Fufufu… Since you're so curious, you deserve an explanation.\p"
+	"We're going to jettison the entire load into Mt. Chimney!\p"
+	"With Groudon gone, we have no need for that slag heap of a mountain!\p"
+	"So we'll use the fuel's power to make the volcano erupt!\p"
+	"It will be savage!")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_StevenAreYouReadyToBattle {
+	format("{PLAYER}{KUN}!\n"
+	"You're going to help me?\p"
+	"Let's go into battle together!\n"
+	"Are you ready?")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_StevenHurryGetReadyQuickly {
+	format("Then, hurry!\n"
+	"Get ready quickly!")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_JustWantToExpandLand {
+	format("All I want…\n"
+	"I just want to expand the land mass…")
+}
+
+text MossdeepCity_SpaceCenter_Text_TabithaDefeat {
+	format("I'm with our leader…")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_MaxieWeFailedIsAquaAlsoMisguided {
+	format("We failed to make the volcano erupt…\p"
+	"We failed to control Groudon after we had awoken it…\p"
+	"Is our goal to expand the land misguided?\p"
+	"… … … … … …\n"
+	"… … … … … …\p"
+	"If…\n"
+	"If we, Team Magma, are wrong…\l"
+	"… … … … … …\p"
+	"Then might Team Aqua's goal to expand the sea also be equally misguided?")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_MaxieWeWillGiveUp {
+	format("All right…\n"
+	"We will give up on the fuel…\p"
+	"There appear to be more important matters that I must examine…")
+}
+
+text MossdeepCity_SpaceCenter_2F_Text_StevenThankYouComeSeeMeAtHome {
+	format("Whew, that was too tense.\n"
+	"{PLAYER}{KUN}, thank you.\p"
+	"I have something to give you as thanks for your support.\p"
+	"Please come see me at home after this.\p"
+	"Oh, yes, I don't live in Rustboro City.\n"
+	"I live right here on this island.")
+}

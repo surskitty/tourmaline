@@ -8,7 +8,7 @@ script Common_EventScript_StationaryWild {
     callnative(StartStationaryEncounter)
     playmoncry(VAR_0x8004, CRY_MODE_ENCOUNTER)
 	bufferspeciesname(STR_VAR_1, VAR_0x8004)
-	msgbox(format("The {STR_VAR_1} meets your eyes!"), MSGBOX_DEFAULT)
+	msgbox(format("You drew the attention of the wandering {STR_VAR_1}!"), MSGBOX_DEFAULT)
 	msgbox("The wild Pokémon attacked!", MSGBOX_DEFAULT)
     waitmoncry
     waitmessage
@@ -17,7 +17,24 @@ script Common_EventScript_StationaryWild {
 	clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
 	specialvar(VAR_RESULT, GetBattleOutcome)
 	goto_if_eq(VAR_RESULT, B_OUTCOME_RAN, Common_EventScript_RanFromStaticPokemon)
+	if (var(VAR_RESULT) == B_OUTCOME_WON) {
+    	msgbox(format("The miffed Pokémon healed itself with a Berry and left."), MSGBOX_DEFAULT)
+	}
     goto(Common_EventScript_RemoveStaticPokemon)
+}
+
+script Common_EventScript_TrainingPokemon {
+    lock
+    faceplayer
+    waitmovement(0)
+    applymovement(VAR_LAST_TALKED, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    callnative(GetSymbolEncounterSpecies)
+    playmoncry(VAR_0x8004, CRY_MODE_HIGH_PITCH)
+	bufferspeciesname(STR_VAR_1, VAR_0x8004)
+	msgbox(format("A battle would interrupt the {STR_VAR_1}'s training."), MSGBOX_DEFAULT)
+	waitmoncry
+	applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
 }
 
 script Common_EventScript_RanFromStaticPokemon {
