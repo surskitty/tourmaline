@@ -1,15 +1,20 @@
+mapscripts SafariZone_South_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        call_if_eq(VAR_SAFARI_ZONE_STATE, 2, SafariZone_South_EventScript_SetExitAttendantAside)
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_SAFARI_ZONE_STATE, 2: SafariZone_South_EventScript_EnterSafariZone
+    ]
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
+
+movement SafariZone_South_Movement_PlayerEnter { walk_down }
+
 raw `
 .set LOCALID_ATTENDANT, 1
-
-SafariZone_South_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, SafariZone_South_OnTransition
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, SafariZone_South_OnFrame
-	.byte 0
-
-SafariZone_South_OnFrame:
-	map_script_2 VAR_SAFARI_ZONE_STATE, 2, SafariZone_South_EventScript_EnterSafariZone
-	.2byte 0
-
 SafariZone_South_EventScript_EnterSafariZone::
 	lockall
 	applymovement OBJ_EVENT_ID_PLAYER, SafariZone_South_Movement_PlayerEnter
@@ -20,18 +25,6 @@ SafariZone_South_EventScript_EnterSafariZone::
 	setvar VAR_SAFARI_ZONE_STATE, 0
 	releaseall
 	end
-
-SafariZone_South_OnTransition:
-	call_if_eq VAR_SAFARI_ZONE_STATE, 2, SafariZone_South_EventScript_SetExitAttendantAside
-	end
-
-SafariZone_South_EventScript_SetExitAttendantAside::
-	setobjectxyperm LOCALID_ATTENDANT, 31, 34
-	return
-
-SafariZone_South_Movement_PlayerEnter:
-	walk_down
-	step_end
 
 SafariZone_South_Movement_ExitAttendantBlockDoor:
 	walk_right
@@ -152,3 +145,7 @@ SafariZone_Northeast_EventScript_Girl::
 	msgbox SafariZone_Northeast_Text_Girl, MSGBOX_NPC
 	end
 `
+
+script SafariZone_South_EventScript_SetExitAttendantAside { setobjectxyperm(LOCALID_ATTENDANT, 31, 34) }
+
+

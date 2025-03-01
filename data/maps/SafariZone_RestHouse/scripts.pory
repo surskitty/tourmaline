@@ -1,17 +1,21 @@
-raw `
-SafariZone_RestHouse_MapScripts::
-	.byte 0
+mapscripts SafariZone_RestHouse_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
 
-SafariZone_RestHouse_EventScript_Youngster::
-	msgbox SafariZone_RestHouse_Text_Youngster, MSGBOX_NPC
-	end
+script SafariZone_RestHouse_EventScript_Youngster {
+	msgbox(format("I don't have any {POKEBLOCK}S, but I caught a good number of Pokémon.\p"
+	    "You can improve your chances of making a catch by getting closer to them before throwing a Safari Ball."), MSGBOX_NPC)
+}
 
-SafariZone_RestHouse_EventScript_PsychicM::
-	msgbox SafariZone_RestHouse_Text_PsychicM, MSGBOX_NPC
-	end
+script SafariZone_RestHouse_EventScript_PsychicM {
+	msgbox(format("If you use {POKEBLOCK}S, wild Pokémon won't be so quick to run away.\p"
+	    "It's not much use to give {POKEBLOCK}S to Pokémon that don't flee easily."), MSGBOX_NPC)
+}
 
-SafariZone_RestHouse_EventScript_FatMan::
-	msgbox SafariZone_RestHouse_Text_FatMan, MSGBOX_NPC
-	end
-
-`
+script SafariZone_RestHouse_EventScript_FatMan {
+	msgbox(format("If you put a {POKEBLOCK} on the Feeder, Pokémon are attracted to it.\p"
+    	"I think Pokémon with the same sort of nature are drawn by a certain {POKEBLOCK}."), MSGBOX_NPC)
+}

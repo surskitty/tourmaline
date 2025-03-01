@@ -1,12 +1,10 @@
+mapscripts Route123_BerryMastersHouse_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_LANDMARK_BERRY_MASTERS_HOUSE)
+    }
+}
+
 raw `
-Route123_BerryMastersHouse_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, Route123_BerryMastersHouse_OnTransition
-	.byte 0
-
-Route123_BerryMastersHouse_OnTransition:
-	setflag FLAG_LANDMARK_BERRY_MASTERS_HOUSE
-	end
-
 Route123_BerryMastersHouse_EventScript_BerryMaster::
 	lock
 	faceplayer

@@ -19,46 +19,6 @@ mapscripts Route118_MapScripts {
 raw `
 .set LOCALID_STEVEN, 19
 
-Route118_EventScript_GoodRodFisherman::
-	lock
-	faceplayer
-	goto_if_set FLAG_RECEIVED_GOOD_ROD, Route118_EventScript_ReceivedGoodRod
-	msgbox Route118_Text_YouAgreeGoodRodIsGood, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, Route118_EventScript_ReceiveGoodRod
-	goto_if_eq VAR_RESULT, NO, Route118_EventScript_DeclineGoodRod
-	end
-
-Route118_EventScript_ReceiveGoodRod::
-	msgbox Route118_Text_IdenticalMindsTakeThis, MSGBOX_DEFAULT
-	giveitem ITEM_GOOD_ROD
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_GOOD_ROD
-	msgbox Route118_Text_TryYourLuckFishing, MSGBOX_DEFAULT
-	release
-	end
-
-Route118_EventScript_DeclineGoodRod::
-	msgbox Route118_Text_DontYouLikeToFish, MSGBOX_DEFAULT
-	release
-	end
-
-Route118_EventScript_ReceivedGoodRod::
-	msgbox Route118_Text_TryCatchingMonWithGoodRod, MSGBOX_DEFAULT
-	release
-	end
-
-Route118_EventScript_Girl::
-	msgbox Route118_Text_CanCrossRiversWithSurf, MSGBOX_NPC
-	end
-
-Route118_EventScript_RouteSignMauville::
-	msgbox Route118_Text_RouteSignMauville, MSGBOX_SIGN
-	end
-
-Route118_EventScript_RouteSign119::
-	msgbox Route118_Text_RouteSign119, MSGBOX_SIGN
-	end
-
 Route118_EventScript_StevenTrigger0::
 	lockall
 	setvar VAR_0x8008, 0
@@ -124,14 +84,6 @@ Route118_EventScript_StevenExit2::
 Route118_Movement_PlayerWatchStevenExit:
 	delay_16
 	walk_in_place_faster_right
-	step_end
-
-Route118_Movement_StevenApproachLedge0:
-	walk_left
-	step_end
-
-Route118_Movement_StevenApproachLedge2:
-	walk_right
 	step_end
 
 Route118_Movement_StevenJumpLedge:
@@ -244,65 +196,64 @@ Route118_EventScript_Deandre::
 	end
 `
 
+movement Route118_Movement_StevenApproachLedge0 { walk_left }
+movement Route118_Movement_StevenApproachLedge2 { walk_right }
+
 text Route118_Text_StevenQuestions {
 	format("Hi, {PLAYER}{KUN}!\p"
 	"It's me, Steven!\n"
 	"We met in the cave near Dewford.\p"
-	"Have you met many kinds of Pokémon\n"
-	"since I last saw you?\p"
-	"There are many, many kinds of Pokémon\n"
-	"in this wide world of ours.\p"
-	"If you wanted to raise only your\n"
-	"favorites, that's fine.\p"
-	"Perhaps you find it more fun to raise\n"
-	"all sorts of Pokémon.\p"
-	"As a Trainer of Pokémon,\n"
-	"what do you think?\p"
+	"Have you met many kinds of Pokémon since I last saw you?\p"
+	"There are many, many kinds of Pokémon in this wide world of ours.\p"
+	"If you wanted to raise only your favorites, that's fine.\p"
+	"Perhaps you find it more fun to raise all sorts of Pokémon.\p"
+	"As a Trainer of Pokémon, what do you think?\p"
 	"Of course, it's not any of my business.\p"
-	"It would be nice if we were to meet\n"
-	"again somewhere.")
+	"It would be nice if we were to meet again somewhere.")
 }
 
-text Route118_Text_YouAgreeGoodRodIsGood {
-	format("Hmm!\n"
-	"A Good Rod is really good!\p"
-	"Wouldn't you agree?")
+script Route118_EventScript_GoodRodFisherman {
+	lock
+	faceplayer
+	goto_if_set(FLAG_RECEIVED_GOOD_ROD, Route118_EventScript_ReceivedGoodRod)
+	msgbox(format("Hmm!\n"
+	    "A Good Rod is really good!\p"
+	    "Wouldn't you agree?"), MSGBOX_YESNO)
+	goto_if_eq(VAR_RESULT, YES, Route118_EventScript_ReceiveGoodRod)
+	goto_if_eq(VAR_RESULT, NO, Route118_EventScript_DeclineGoodRod)
 }
 
-text Route118_Text_IdenticalMindsTakeThis {
-	format("Hmm!\n"
-	"We're of identical minds!\p"
-	"Hmm!\n"
-	"Take this Good Rod!")
+script Route118_EventScript_ReceiveGoodRod {
+	msgbox(format("Hmm!\nWe're of identical minds!\p"
+        "Hmm!\nTake this Good Rod!"), MSGBOX_DEFAULT)
+	giveitem(ITEM_GOOD_ROD)
+	goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull)
+	setflag(FLAG_RECEIVED_GOOD_ROD)
+	msgbox(format("Wherever there's water, try your luck at fishing."), MSGBOX_DEFAULT)
+	release
 }
 
-text Route118_Text_TryYourLuckFishing {
-	format("Wherever there's water, try your luck at fishing.")
+script Route118_EventScript_DeclineGoodRod {
+	msgbox(format("Don't you like to fish?"), MSGBOX_DEFAULT)
+	release
 }
 
-text Route118_Text_DontYouLikeToFish {
-	format("Don't you like to fish?")
+script Route118_EventScript_ReceivedGoodRod {
+	msgbox(format("Try catching all sorts of Pokémon with your Good Rod."), MSGBOX_DEFAULT)
+	release
 }
 
-text Route118_Text_TryCatchingMonWithGoodRod {
-	format("Try catching all sorts of Pokémon with your Good Rod.")
+script Route118_EventScript_Girl {
+	msgbox(format("Even if there isn't a boat, you can cross rivers and the sea if you have a Pokémon that knows Surf.\p"
+    	"Pokémon can be counted on to do so much!"), MSGBOX_NPC)
 }
 
-text Route118_Text_CanCrossRiversWithSurf {
-	format("Even if there isn't a boat, you can\n"
-	"cross rivers and the sea if you have\l"
-	"a Pokémon that knows Surf.\p"
-	"Pokémon can be counted on to do so\n"
-	"much!")
+script Route118_EventScript_RouteSignMauville {
+	msgbox(format("Route 118\n"
+    	"{LEFT_ARROW} MAUVILLE CITY"), MSGBOX_SIGN)
 }
 
-text Route118_Text_RouteSignMauville {
-	format("Route 118\n"
-	"{LEFT_ARROW} MAUVILLE CITY")
+script Route118_EventScript_RouteSign119 {
+	msgbox(format("Route 118\n"
+    	"{UP_ARROW} ROUTE 119"), MSGBOX_SIGN)
 }
-
-text Route118_Text_RouteSign119 {
-	format("Route 118\n"
-	"{UP_ARROW} ROUTE 119")
-}
-

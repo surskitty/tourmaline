@@ -4,12 +4,21 @@ script DewfordTown_House2_EventScript_Man {
     lock
     faceplayer
     if (flag(FLAG_RECEIVED_SILK_SCARF)) {
-        msgbox(DewfordTown_House2_Text_ExplainScarf, MSGBOX_DEFAULT)
+        msgbox(format("The Expert Belt increases the power of super-effective attacks!\p"
+            "It's a marvelous Scarf that goes with almost any Pokémon!"), MSGBOX_DEFAULT)
     } else {
-        msgbox(DewfordTown_House2_Text_WantYouToHaveScarf, MSGBOX_DEFAULT)
-        giveitem(ITEM_CHOICE_SCARF)
+        msgbox(format("Gorge your eyes on this!\p"
+            "It's an Expert Belt. It's right at the cutting edge of fashion, yeah!\p"
+            "Oh, I can see your eyes twinkling!\n"
+            "You appreciate my dazzling style!\p"
+            "Oh, you're a delight!\n"
+            "Here you go. I want you to have it!"), MSGBOX_DEFAULT)
+        giveitem(ITEM_EXPERT_BELT)
         if (var(VAR_RESULT) == FALSE) {
-            msgbox(DewfordTown_House2_Text_NoRoom, MSGBOX_DEFAULT)
+            msgbox(format("Oh, you don't have room?\p"
+                "Now, listen tight, this Belt is a must-\n"
+                "have! Why, I would sell all my items\l"
+                "in order to get it!"), MSGBOX_DEFAULT)
         } else {
             setflag(FLAG_RECEIVED_SILK_SCARF)
         }
@@ -22,26 +31,5 @@ script DewfordTown_House2_EventScript_Boy {
         "Did you maybe come here because you heard about Brawly?\p"
         "He's so cool…\n"
         "Everyone idolizes him."), MSGBOX_NPC)
-}
-
-text DewfordTown_House2_Text_WantYouToHaveScarf {
-    format("Gorge your eyes on this!\p"
-        "It's a Choice Scarf. It's right at the cutting edge of fashion, yeah!\p"
-        "Oh, I can see your eyes twinkling!\n"
-        "You appreciate my dazzling style!\p"
-        "Oh, you're a delight!\n"
-        "Here you go. I want you to have it!")
-}
-
-text DewfordTown_House2_Text_NoRoom {
-    "Oh, you don't have room?\p"
-    "Now, listen tight, this Scarf is a must-\n"
-    "have! Why, I would sell all my items\l"
-    "in order to get it!"
-}
-
-text DewfordTown_House2_Text_ExplainScarf {
-    format("The Choice Scarf locks a Pokémon into a single move, but makes them way faster!\p"
-        "It's a marvelous Scarf that goes with almost any Pokémon!")
 }
 

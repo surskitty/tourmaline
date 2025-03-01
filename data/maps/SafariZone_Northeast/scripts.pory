@@ -1,6 +1,9 @@
-raw `
-SafariZone_Northeast_MapScripts::
-	.byte 0
+mapscripts SafariZone_Northeast_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        special(SetRoofBirds)
+        special(SetStationaryWilds)
+    }
+}
 
-@ Event scripts for SafariZone_Northeast are in SafariZone_South/scripts.inc
-`
+// Event scripts for SafariZone_Northeast are in SafariZone_South/scripts.inc
+

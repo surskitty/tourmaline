@@ -64,7 +64,13 @@ script Common_EventScript_PetPokemon {
     specialvar(VAR_0x8004, GetSpeciesFromOverworldPokemon)
     setseenmon(VAR_0x8004)
 	bufferspeciesname(STR_VAR_1, VAR_0x8004)
-	msgbox(format("The {STR_VAR_1} looks friendly.\nPet it?"), MSGBOX_YESNO)
+	call(Common_EventScript_Pokemon_Petting)
+	release
+}
+
+script Common_EventScript_Pokemon_Petting {
+	speakername(0)
+	msgbox(format("It seems friendly.\nPet it?"), MSGBOX_YESNO)
 	if (var(VAR_RESULT)) {
 	    playmoncry(VAR_0x8004, CRY_MODE_NORMAL)
 	    applymovement(VAR_LAST_TALKED, ContestHall_Movement_Heart)
@@ -103,7 +109,6 @@ script Common_EventScript_PetPokemon {
     	waitmovement(0)
 	    msgbox("It seems disappointed somehow.", MSGBOX_DEFAULT)
 	}
-	release
 }
 
 text Common_EventScript_PetPokemon_GiftText {
