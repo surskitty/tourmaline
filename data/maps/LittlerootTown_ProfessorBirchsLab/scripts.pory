@@ -1,3 +1,30 @@
+mapscripts LittlerootTown_ProfessorBirchsLab_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        call(Common_EventScript_SetupRivalGfxId)
+        call(LittlerootTown_ProfessorBirchsLab_SetupStarterGfx)
+        call(ProfBirch_EventScript_UpdateLocation)
+        goto_if_ge(VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6, LittlerootTown_ProfessorBirchsLab_EventScript_SetAfterJohtoStarterLayout)
+        goto_if_ge(VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 4, LittlerootTown_ProfessorBirchsLab_EventScript_SetJohtoStarterLayout)
+        goto_if_eq(VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 3, LittlerootTown_ProfessorBirchsLab_EventScript_CheckReadyForJohtoStarter)
+    }
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
+        VAR_BIRCH_LAB_STATE,                 2: LittlerootTown_ProfessorBirchsLab_EventScript_SetPlayerPosForReceiveStarter
+        VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1: LittlerootTown_ProfessorBirchsLab_EventScript_SetObjectPosForDexUpgrade
+        VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2: LittlerootTown_ProfessorBirchsLab_EventScript_SetObjectPosForDexUpgrade
+        VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 3: LittlerootTown_ProfessorBirchsLab_EventScript_AddRivalObject
+        VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6: LittlerootTown_ProfessorBirchsLab_EventScript_AddRivalObject
+        VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 4: LittlerootTown_ProfessorBirchsLab_EventScript_SetObjectPosForJohtoStarters
+        VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 5: LittlerootTown_ProfessorBirchsLab_EventScript_SetObjectPosForJohtoStarters
+    ]
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_BIRCH_LAB_STATE,                    2: LittlerootTown_ProfessorBirchsLab_EventScript_GiveStarterEvent
+        VAR_BIRCH_LAB_STATE,                    4: LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedexEvent
+        VAR_DEX_UPGRADE_JOHTO_STARTER_STATE,    1: LittlerootTown_ProfessorBirchsLab_EventScript_UpgradeToNationalDex
+        VAR_DEX_UPGRADE_JOHTO_STARTER_STATE,    4: LittlerootTown_ProfessorBirchsLab_EventScript_ChooseJohtoStarter
+    ]
+}
+
+
 raw `
 .set LOCALID_AIDE, 1
 .set LOCALID_BIRCH, 2
@@ -6,13 +33,6 @@ raw `
 .set LOCALID_BALL_TOTODILE, 5
 .set LOCALID_BALL_CHIKORITA, 6
 .set LOCALID_UNCHOSEN_STARTER, 7
-
-
-LittlerootTown_ProfessorBirchsLab_MapScripts::
-    map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_ProfessorBirchsLab_OnTransition
-    map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LittlerootTown_ProfessorBirchsLab_OnWarp
-    map_script MAP_SCRIPT_ON_FRAME_TABLE, LittlerootTown_ProfessorBirchsLab_OnFrame
-    .byte 0
 
     @ State descriptions for VAR_DEX_UPGRADE_JOHTO_STARTER_STATE
     @ 1: Beat Elite Four, Dex upgrade ready
@@ -28,15 +48,6 @@ LittlerootTown_ProfessorBirchsLab_MapScripts::
     @ 3: Received starter in lab
     @ 4: Defeated rival on Route 103
     @ 5: Received pokedex
-
-LittlerootTown_ProfessorBirchsLab_OnTransition:
-    call Common_EventScript_SetupRivalGfxId
-    call LittlerootTown_ProfessorBirchsLab_SetupStarterGfx
-    call ProfBirch_EventScript_UpdateLocation
-    goto_if_ge VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6, LittlerootTown_ProfessorBirchsLab_EventScript_SetAfterJohtoStarterLayout
-    goto_if_ge VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 4, LittlerootTown_ProfessorBirchsLab_EventScript_SetJohtoStarterLayout
-    goto_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 3, LittlerootTown_ProfessorBirchsLab_EventScript_CheckReadyForJohtoStarter
-    end
 
 LittlerootTown_ProfessorBirchsLab_EventScript_CheckReadyForJohtoStarter::
     specialvar VAR_RESULT, HasAllHoennMons
@@ -58,16 +69,6 @@ LittlerootTown_ProfessorBirchsLab_EventScript_SetAfterJohtoStarterLayout::
     setobjectmovementtype LOCALID_RIVAL, MOVEMENT_TYPE_WANDER_UP_AND_DOWN
     setobjectxyperm LOCALID_RIVAL, 5, 10
     end
-
-LittlerootTown_ProfessorBirchsLab_OnWarp:
-    map_script_2 VAR_BIRCH_LAB_STATE, 2, LittlerootTown_ProfessorBirchsLab_EventScript_SetPlayerPosForReceiveStarter
-    map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, LittlerootTown_ProfessorBirchsLab_EventScript_SetObjectPosForDexUpgrade
-    map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2, LittlerootTown_ProfessorBirchsLab_EventScript_SetObjectPosForDexUpgrade
-    map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 3, LittlerootTown_ProfessorBirchsLab_EventScript_AddRivalObject
-    map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6, LittlerootTown_ProfessorBirchsLab_EventScript_AddRivalObject
-    map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 4, LittlerootTown_ProfessorBirchsLab_EventScript_SetObjectPosForJohtoStarters
-    map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 5, LittlerootTown_ProfessorBirchsLab_EventScript_SetObjectPosForJohtoStarters
-    .2byte 0
 
 LittlerootTown_ProfessorBirchsLab_EventScript_SetPlayerPosForReceiveStarter::
     turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
@@ -105,13 +106,6 @@ LittlerootTown_ProfessorBirchsLab_EventScript_SetObjectPosForJohtoStarters::
     turnobject LOCALID_RIVAL, DIR_EAST
     setobjectxy LOCALID_RIVAL, 5, 5
     end
-
-LittlerootTown_ProfessorBirchsLab_OnFrame:
-    map_script_2 VAR_BIRCH_LAB_STATE, 2, LittlerootTown_ProfessorBirchsLab_EventScript_GiveStarterEvent
-    map_script_2 VAR_BIRCH_LAB_STATE, 4, LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedexEvent
-    map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, LittlerootTown_ProfessorBirchsLab_EventScript_UpgradeToNationalDex
-    map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 4, LittlerootTown_ProfessorBirchsLab_EventScript_ChooseJohtoStarter
-    .2byte 0
 
 @ The starter is technically given prior to this on Route 101 by special ChooseStarter
 @ This is just where the game tells you its yours and lets you nickname it
@@ -548,69 +542,6 @@ LittlerootTown_ProfessorBirchsLab_Movement_RivalApproachPlayer:
     walk_in_place_faster_left
     step_end
 
-LittlerootTown_ProfessorBirchsLab_EventScript_Rival::
-    lock
-    faceplayer
-    goto_if_eq VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 5, LittlerootTown_ProfessorBirchsLab_EventScript_RivalFuturePlans
-    goto_if_ge VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6, LittlerootTown_ProfessorBirchsLab_EventScript_RivalHaveYouGoneToBattleFrontier
-    goto_if_ge VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2, LittlerootTown_ProfessorBirchsLab_EventScript_RivalTakeBreakFromFieldwork
-    checkplayergender
-    call_if_eq VAR_RESULT, MALE, LittlerootTown_ProfessorBirchsLab_EventScript_MayWhereShouldIGoNext
-    call_if_eq VAR_RESULT, FEMALE, LittlerootTown_ProfessorBirchsLab_EventScript_BrendanWhereShouldIGoNext
-    release
-    end
-
-LittlerootTown_ProfessorBirchsLab_EventScript_RivalFuturePlans::
-    checkplayergender
-    call_if_eq VAR_RESULT, MALE, LittlerootTown_ProfessorBirchsLab_EventScript_MayWhatNextImStayingHere
-    call_if_eq VAR_RESULT, FEMALE, LittlerootTown_ProfessorBirchsLab_EventScript_BrendanPreferCollectingSlowly
-    release
-    end
-
-LittlerootTown_ProfessorBirchsLab_EventScript_MayWhatNextImStayingHere::
-    speakername CommonName_Text_May
-    msgbox LittlerootTown_ProfessorBirchsLab_Text_MayWhatNextImStayingHere, MSGBOX_DEFAULT
-    return
-
-LittlerootTown_ProfessorBirchsLab_EventScript_BrendanPreferCollectingSlowly:
-    speakername CommonName_Text_Brendan
-    msgbox LittlerootTown_ProfessorBirchsLab_Text_BrendanPreferCollectingSlowly, MSGBOX_DEFAULT
-    return
-
-LittlerootTown_ProfessorBirchsLab_EventScript_RivalHaveYouGoneToBattleFrontier::
-    checkplayergender
-    call_if_eq VAR_RESULT, MALE, LittlerootTown_ProfessorBirchsLab_EventScript_MayHaveYouGoneToBattleFrontier
-    call_if_eq VAR_RESULT, FEMALE, LittlerootTown_ProfessorBirchsLab_EventScript_BrendanHaveYouGoneToBattleFrontier
-    release
-    end
-
-LittlerootTown_ProfessorBirchsLab_EventScript_MayHaveYouGoneToBattleFrontier::
-    speakername CommonName_Text_May
-    msgbox LittlerootTown_ProfessorBirchsLab_Text_MayHaveYouGoneToBattleFrontier, MSGBOX_DEFAULT
-    return
-
-LittlerootTown_ProfessorBirchsLab_EventScript_BrendanHaveYouGoneToBattleFrontier::
-    speakername CommonName_Text_Brendan
-    msgbox LittlerootTown_ProfessorBirchsLab_Text_BrendanHaveYouGoneToBattleFrontier, MSGBOX_DEFAULT
-    return
-
-LittlerootTown_ProfessorBirchsLab_EventScript_RivalTakeBreakFromFieldwork::
-    checkplayergender
-    call_if_eq VAR_RESULT, MALE, LittlerootTown_ProfessorBirchsLab_EventScript_MayTakeBreakFromFieldwork
-    call_if_eq VAR_RESULT, FEMALE, LittlerootTown_ProfessorBirchsLab_EventScript_BrendanTakeBreakFromFieldwork
-    release
-    end
-
-LittlerootTown_ProfessorBirchsLab_EventScript_MayTakeBreakFromFieldwork::
-    speakername CommonName_Text_May
-    msgbox LittlerootTown_ProfessorBirchsLab_Text_MayTakeBreakFromFieldwork, MSGBOX_DEFAULT
-    return
-
-LittlerootTown_ProfessorBirchsLab_EventScript_BrendanTakeBreakFromFieldwork::
-    speakername CommonName_Text_Brendan
-    msgbox LittlerootTown_ProfessorBirchsLab_Text_BrendanTakeBreakFromFieldwork, MSGBOX_DEFAULT
-    return
-
 LittlerootTown_ProfessorBirchsLab_EventScript_ScottAboardSSTidalCall::
     lockall
     pokenavcall LittlerootTown_ProfessorBirchsLab_Text_ScottAboardSSTidalCall
@@ -658,13 +589,9 @@ text LittlerootTown_ProfessorBirchsLab_Text_WhyNotGiveNicknameToMon {
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_MightBeGoodIdeaToGoSeeRival {
-    format("If you work at Pokémon\n"
-    "and gain experience, I think you'll make\l"
-    "an extremely good Trainer.\p"
-    "My kid, {RIVAL}, is also studying\n"
-    "Pokémon while helping me out.\p"
-    "{PLAYER}{KUN}, don't you think it might be\n"
-    "a good idea to go see {RIVAL}?")
+    format("If you work at Pokémon and gain experience, I think you'll make an extremely good Trainer.\p"
+    "My kid, {RIVAL}, is also studying Pokémon while helping me out.\p"
+    "{PLAYER}{KUN}, don't you think it might be a good idea to go see {RIVAL}?")
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_GetRivalToTeachYou {
@@ -727,18 +654,6 @@ text LittlerootTown_ProfessorBirchsLab_Text_OhYourBagsFull {
     format("Oh? Your Bag's full.")
 }
 
-script LittlerootTown_ProfessorBirchsLab_EventScript_MayWhereShouldIGoNext {
-    speakername(CommonName_Text_May)
-    msgbox(format("I wonder where I should go look for Pokémon next?"), MSGBOX_DEFAULT)
-    return
-}
-
-script LittlerootTown_ProfessorBirchsLab_EventScript_BrendanWhereShouldIGoNext {
-    speakername(CommonName_Text_Brendan)
-    msgbox(format("Where should I look for Pokémon next…"), MSGBOX_DEFAULT)
-    return
-}
-
 text LittlerootTown_ProfessorBirchsLab_Text_BrendanGotPokedexTooTakeThese {
     format("Huh…\n"
     "So you got a Pokédex, too.\p"
@@ -779,16 +694,6 @@ text LittlerootTown_ProfessorBirchsLab_Text_GrassyPatchWaiting2 {
     "You've become the Champion, but your Pokémon journey isn't over.\p"
     "There is no end to the road that is Pokémon.\p"
     "Somewhere, there is a grassy patch that's waiting for you!")
-}
-
-text LittlerootTown_ProfessorBirchsLab_Text_MayTakeBreakFromFieldwork {
-    format("I think I'll take a short break from fieldwork.\p"
-    "I think I'll help the Prof here for a while.")
-}
-
-text LittlerootTown_ProfessorBirchsLab_Text_BrendanTakeBreakFromFieldwork {
-    format("For the time being, I'm taking a break from fieldwork.\p"
-    "I'll be helping out the Prof here for a while.")
 }
 
 text LittlerootTown_ProfessorBirchsLab_Text_CompletedDexChoosePokemon {
@@ -865,27 +770,6 @@ text LittlerootTown_ProfessorBirchsLab_Text_DontHaveAnyRoomForPokemon {
     format("Oh, you don't have any room for this Pokémon.")
 }
 
-text LittlerootTown_ProfessorBirchsLab_Text_MayWhatNextImStayingHere {
-    format("MAY: {PLAYER}{KUN}, after this…\n"
-    "What are you going to do?\p"
-    "Are you going to keep battling and sharpening your skills?\p"
-    "I'm staying here to help the Prof.")
-}
-
-text LittlerootTown_ProfessorBirchsLab_Text_BrendanPreferCollectingSlowly {
-    format("BRENDAN: Rather than collecting Pokémon, I prefer slowly and steadily raising the one I chose.")
-}
-
-text LittlerootTown_ProfessorBirchsLab_Text_MayHaveYouGoneToBattleFrontier {
-    format("Oh, hi, {PLAYER}{KUN}!\n"
-    "Have you gone to that place, the Battle Frontier?")
-}
-
-text LittlerootTown_ProfessorBirchsLab_Text_BrendanHaveYouGoneToBattleFrontier {
-    format("Hey, {PLAYER}!\n"
-    "Have you gone out to that place, the Battle Frontier?")
-}
-
 text LittlerootTown_ProfessorBirchsLab_Text_ScottAboardSSTidalCall {
     format("… … … … … …\n"
     "… … … … … Beep!\p"
@@ -943,7 +827,6 @@ script LittlerootTown_ProfessorBirchsLab_EventScript_UpgradeToNationalDex {
     message(format("{PLAYER} received Pokédex charms!"))
     waitmessage
     waitfanfare
-    giveitem(ITEM_CATCHING_CHARM)
     giveitem(ITEM_OVAL_CHARM)
     giveitem(ITEM_SHINY_CHARM)
     speakername(CommonName_Text_ProfBirch)
@@ -1018,3 +901,63 @@ script LittlerootTown_ProfessorBirchsLab_EventScript_UnchosenStarter {
     }
 }
 
+script LittlerootTown_ProfessorBirchsLab_EventScript_Rival {
+    lock
+    faceplayer
+    goto_if_eq(VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 5, LittlerootTown_ProfessorBirchsLab_EventScript_RivalFuturePlans)
+    goto_if_ge(VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6, LittlerootTown_ProfessorBirchsLab_EventScript_RivalHaveYouGoneToBattleFrontier)
+    goto_if_ge(VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2, LittlerootTown_ProfessorBirchsLab_EventScript_RivalTakeBreakFromFieldwork)
+    checkplayergender
+    if (var(VAR_RESULT) == MALE) {
+        speakername(CommonName_Text_May)
+        msgbox(format("I wonder where I should go look for Pokémon next?"), MSGBOX_DEFAULT)
+    } else {
+        speakername(CommonName_Text_Brendan)
+        msgbox(format("Where should I look for Pokémon next…"), MSGBOX_DEFAULT)
+    }
+    release
+}
+
+script LittlerootTown_ProfessorBirchsLab_EventScript_RivalFuturePlans {
+    checkplayergender
+    if (var(VAR_RESULT) == MALE) {
+        speakername(CommonName_Text_May)
+        msgbox(format("{PLAYER}{KUN}, after this…\n"
+            "What are you going to do?\p"
+            "Are you going to keep battling and sharpening your skills?\p"
+            "I'm staying here to help the Prof."), MSGBOX_DEFAULT)
+        release
+    } else {
+        speakername(CommonName_Text_Brendan)
+        msgbox(format("Rather than collecting Pokémon, I prefer slowly and steadily raising the one I chose."), MSGBOX_DEFAULT)
+        release
+    }
+}
+
+script LittlerootTown_ProfessorBirchsLab_EventScript_RivalHaveYouGoneToBattleFrontier {
+    checkplayergender
+    if (var(VAR_RESULT) == MALE) {
+        speakername(CommonName_Text_May)
+        msgbox(format("Oh, hi, {PLAYER}{KUN}!\n"
+            "Have you gone to that place, the Battle Frontier?"), MSGBOX_DEFAULT)
+    } else {
+        speakername(CommonName_Text_Brendan)
+        msgbox(format("Hey, {PLAYER}!\n"
+            "Have you gone out to that place, the Battle Frontier?"), MSGBOX_DEFAULT)
+    }
+    release
+}
+
+script LittlerootTown_ProfessorBirchsLab_EventScript_RivalTakeBreakFromFieldwork {
+    checkplayergender
+    if (var(VAR_RESULT) == MALE) {
+        speakername(CommonName_Text_May)
+        msgbox(format("I think I'll take a short break from fieldwork.\p"
+            "I think I'll help the Prof here for a while."), MSGBOX_DEFAULT)
+    } else {
+        speakername(CommonName_Text_Brendan)
+        msgbox(format("For the time being, I'm taking a break from fieldwork.\p"
+            "I'll be helping out the Prof here for a while."), MSGBOX_DEFAULT)
+    }
+    release
+}
