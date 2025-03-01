@@ -4308,7 +4308,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .abilities = { ABILITY_KEEN_EYE, ABILITY_STALL, ABILITY_PRANKSTER },
 #else
         .abilities = { ABILITY_STALL, ABILITY_PRANKSTER, ABILITY_NONE },
-        .innates = { ABILITY_KEEN_EYE },
+        .innates = { ABILITY_KEEN_EYE, ABILITY_ANALYTIC },
 #endif
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Sableye"),
@@ -4377,7 +4377,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_HUMAN_LIKE),
 #if !TESTING
         .abilities = { ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE },
-        .innates = { ABILITY_KEEN_EYE, ABILITY_MAGIC_BOUNCE },
+        .innates = { ABILITY_KEEN_EYE, ABILITY_MAGIC_BOUNCE, ABILITY_ANALYTIC },
 #else
         .abilities = { ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE },
 #endif
