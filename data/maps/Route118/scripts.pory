@@ -92,42 +92,6 @@ Route118_Movement_StevenJumpLedge:
 	walk_down
 	step_end
 
-Route118_Movement_StevenExit0:
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	step_end
-
-Route118_Movement_StevenExit1:
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	step_end
-
-Route118_Movement_StevenExit2:
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	walk_right
-	step_end
-
 Route118_EventScript_Rose::
 	trainerbattle_single TRAINER_ROSE_1, Route118_Text_RoseIntro, Route118_Text_RoseDefeat, Route118_EventScript_RegisterRose
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -198,6 +162,9 @@ Route118_EventScript_Deandre::
 
 movement Route118_Movement_StevenApproachLedge0 { walk_left }
 movement Route118_Movement_StevenApproachLedge2 { walk_right }
+movement Route118_Movement_StevenExit0 { walk_right * 10 }
+movement Route118_Movement_StevenExit1 { walk_right * 9 }
+movement Route118_Movement_StevenExit2 { walk_right * 8 }
 
 text Route118_Text_StevenQuestions {
 	format("Hi, {PLAYER}{KUN}!\p"
@@ -244,7 +211,7 @@ script Route118_EventScript_ReceivedGoodRod {
 }
 
 script Route118_EventScript_Girl {
-	msgbox(format("Even if there isn't a boat, you can cross rivers and the sea if you have a Pokémon that knows Surf.\p"
+	msgbox(format("Even if there isn't a boat, you can cross bodies of water if you have a Pokémon that knows Surf.\p"
     	"Pokémon can be counted on to do so much!"), MSGBOX_NPC)
 }
 

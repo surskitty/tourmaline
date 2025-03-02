@@ -80,13 +80,13 @@ text MeteorFalls_1F_2R_Text_NicolasDefeat {
 
 text MeteorFalls_1F_2R_Text_NicolasPostBattle {
 	format("The road ahead remains long and harsh.\p"
-	"When will my POKéMON and I become\n"
+	"When will my Pokémon and I become\n"
 	"the best?")
 }
 
 text MeteorFalls_1F_2R_Text_NicolasRegister {
 	format("I want to know more about your power.\n"
-	"Let me register you in my POKéNAV.")
+	"Let me register you in my Pokénav.")
 }
 
 text MeteorFalls_1F_2R_Text_NicolasRematchIntro {
@@ -103,13 +103,13 @@ text MeteorFalls_1F_2R_Text_NicolasRematchDefeat {
 
 text MeteorFalls_1F_2R_Text_NicolasPostRematch {
 	format("You've obviously kept up your\n"
-	"POKéMON training.\p"
+	"Pokémon training.\p"
 	"So long as you remain strong, I, too,\n"
 	"can become stronger!")
 }
 
 text MeteorFalls_1F_2R_Text_JohnIntro {
-	format("JOHN: We've always battled POKéMON\n"
+	format("JOHN: We've always battled Pokémon\n"
 	"together as a twosome.\l"
 	"We've confidence in ourselves.")
 }
@@ -129,7 +129,7 @@ text MeteorFalls_1F_2R_Text_JohnPostBattle {
 text MeteorFalls_1F_2R_Text_JohnNotEnoughMons {
 	format("JOHN: Well, well, what a young TRAINER!\p"
 	"Will you battle with us? If so, you'll\n"
-	"have to return with more POKéMON.")
+	"have to return with more Pokémon.")
 }
 
 text MeteorFalls_1F_2R_Text_JohnRegister {
@@ -152,18 +152,18 @@ text MeteorFalls_1F_2R_Text_JayDefeat {
 text MeteorFalls_1F_2R_Text_JayPostBattle {
 	format("JAY: Fifty years of marriage…\p"
 	"If we ever argued, we always settled\n"
-	"it with a POKéMON battle…")
+	"it with a Pokémon battle…")
 }
 
 text MeteorFalls_1F_2R_Text_JayNotEnoughMons {
 	format("JAY: Well, well, aren't you a young\n"
 	"TRAINER?\p"
 	"If you'd care to battle with us, you'll\n"
-	"have to come back with more POKéMON.")
+	"have to come back with more Pokémon.")
 }
 
 text MeteorFalls_1F_2R_Text_JohnRematchIntro {
-	format("JOHN: We've always battled POKéMON\n"
+	format("JOHN: We've always battled Pokémon\n"
 	"together as a twosome.\l"
 	"We've confidence in ourselves.")
 }
@@ -182,7 +182,7 @@ text MeteorFalls_1F_2R_Text_JohnPostRematch {
 text MeteorFalls_1F_2R_Text_JohnRematchNotEnoughMons {
 	format("JOHN: Well, well, what a young TRAINER!\p"
 	"Will you battle with us? If so, you'll\n"
-	"have to return with more POKéMON.")
+	"have to return with more Pokémon.")
 }
 
 text MeteorFalls_1F_2R_Text_JayRematchIntro {
@@ -208,6 +208,6 @@ text MeteorFalls_1F_2R_Text_JayRematchNotEnoughMons {
 	format("JAY: Well, well, aren't you a young\n"
 	"TRAINER?\p"
 	"If you'd care to battle with us, you'll\n"
-	"have to come back with more POKéMON.")
+	"have to come back with more Pokémon.")
 }
 

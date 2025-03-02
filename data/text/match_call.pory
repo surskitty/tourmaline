@@ -1209,9 +1209,9 @@ text MatchCall_PersonalizedText39 {
 	"Whiff-whiff! Whiff-whiff!\p"
 	"Hey! Sorry about that!\n"
 	"I just put on some suntan oil.\p"
-	"So my POKéNAV went whoopsy\n"
+	"So my Pokénav went whoopsy\n"
 	"out of my hand into the water!\p"
-	"But, boy, DEVON's POKéNAV is built\n"
+	"But, boy, DEVON's Pokénav is built\n"
 	"tough. It survived that dunking!\p"
 	"Anyways, I'm busy sunbathing,\n"
 	"so let's chat another time.")
@@ -2693,7 +2693,7 @@ text MatchCall_Text_May12 {
 text MatchCall_Text_May13 {
 	format("MAY: Hi, {PLAYER}{KUN}!\p"
 	"How's it going?\n"
-	"Are you filling your POKéDEX?\p"
+	"Are you filling your Pokédex?\p"
 	"I heard a rumor that there are\n"
 	"super-ancient Pokémon out there.\l"
 	"And there are three of them!\p"
@@ -2835,7 +2835,7 @@ text MatchCall_Text_Brendan12 {
 text MatchCall_Text_Brendan13 {
 	format("BRENDAN: Hey there, {PLAYER}!\p"
 	"How's it going? Filling up your\n"
-	"POKéDEX successfully?\p"
+	"Pokédex successfully?\p"
 	"I heard a rumor that there are\n"
 	"super-ancient Pokémon out there.\l"
 	"And not just one--three!\p"
@@ -2907,7 +2907,7 @@ text MatchCall_Text_Wally6 {
 	format("… … … … … …\n"
 	"… … … … … …\p"
 	"WALLY appears to be out of\n"
-	"the POKéNAV's service area…")
+	"the Pokénav's service area…")
 }
 
 text MatchCall_Text_Wally7 {
@@ -2993,7 +2993,7 @@ text MatchCall_Text_Scott7 {
 	format("… … … … … …\n"
 	"… … … … … …\p"
 	"SCOTT appears to be out of\n"
-	"the POKéNAV's service area…")
+	"the Pokénav's service area…")
 }
 
 text MatchCall_Text_Norman1 {
@@ -3137,29 +3137,29 @@ text MatchCall_Text_Steven7 {
 text MatchCall_Text_BirchRegisterCall {
 	format("PROF. BIRCH: Oh, {PLAYER}{KUN}!\n"
 	"I've already heard about you!\p"
-	"It seems your POKéNAV's been\n"
+	"It seems your Pokénav's been\n"
 	"upgraded with MATCH CALL.\p"
 	"Well, I should register, too!\p"
 	"That way, I'd be able to examine\n"
-	"your POKéDEX even while you're\l"
+	"your Pokédex even while you're\l"
 	"out in the field.\p"
 	"… … … … … …")
 }
 
 text MatchCall_Text_RegisteredBirch {
 	format("Registered PROF. BIRCH\n"
-	"in the POKéNAV.")
+	"in the Pokénav.")
 }
 
 text MatchCall_Text_UnusedProfBirch {
 	format("PROF. BIRCH: When one has both\n"
-	"the POKéDEX and POKéNAV, studying\l"
+	"the Pokédex and Pokénav, studying\l"
 	"Pokémon becomes more fun, eh?")
 }
 
 text MatchCall_Text_MrStone1 {
 	format("MR. STONE: Oh? {PLAYER}{KUN}!\p"
-	"Since you called me, the POKéNAV\n"
+	"Since you called me, the Pokénav\n"
 	"must be working properly!\p"
 	"Other people will be registered,\n"
 	"so try calling them up, too!\p"

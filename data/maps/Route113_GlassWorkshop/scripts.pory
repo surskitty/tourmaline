@@ -1,21 +1,19 @@
+mapscripts Route113_GlassWorkshop_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_LANDMARK_GLASS_WORKSHOP)
+        call_if_eq(VAR_GLASS_WORKSHOP_STATE, 1, Route113_GlassWorkshop_EventScript_ReenterWorkshopAfterSootSack)
+    }
+}
+
 raw `
-Route113_GlassWorkshop_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, Route113_GlassWorkshop_OnTransition
-	.byte 0
-
-	.set BLUE_FLUTE_PRICE,   250
-	.set YELLOW_FLUTE_PRICE, 500
-	.set RED_FLUTE_PRICE,    500
-	.set WHITE_FLUTE_PRICE,  1000
-	.set BLACK_FLUTE_PRICE,  1000
-	.set PRETTY_CHAIR_PRICE, 6000
-	.set PRETTY_DESK_PRICE,  8000
+	.set BLUE_FLUTE_PRICE,   100
+	.set YELLOW_FLUTE_PRICE, 200
+	.set RED_FLUTE_PRICE,    200
+	.set WHITE_FLUTE_PRICE,  400
+	.set BLACK_FLUTE_PRICE,  400
+	.set PRETTY_CHAIR_PRICE, 600
+	.set PRETTY_DESK_PRICE,  600
 	.set LOWEST_ASH_PRICE,   BLUE_FLUTE_PRICE
-
-Route113_GlassWorkshop_OnTransition:
-	setflag FLAG_LANDMARK_GLASS_WORKSHOP
-	call_if_eq VAR_GLASS_WORKSHOP_STATE, 1, Route113_GlassWorkshop_EventScript_ReenterWorkshopAfterSootSack
-	end
 
 Route113_GlassWorkshop_EventScript_ReenterWorkshopAfterSootSack::
 	setvar VAR_GLASS_WORKSHOP_STATE, 2
@@ -288,96 +286,115 @@ Route113_GlassWorkshop_EventScript_TryGiveItemAgain::
 	setvar VAR_GLASS_WORKSHOP_STATE, 2
 	release
 	end
-
-Route113_GlassWorkshop_EventScript_NinjaBoy::
-	msgbox Route113_GlassWorkshop_Text_FunToBlowGlassFlute, MSGBOX_NPC
-	end
-
-Route113_GlassWorkshop_Text_GoCollectAshWithThis:
-	.string "This area is covered in volcanic ash,\n"
-	.string "huff-puff!\p"
-	.string "I'm specially gifted, huff-puff.\p"
-	.string "I make glass out of volcanic ash\n"
-	.string "and make items, huff-puff.\p"
-	.string "Go collect ashes with this, huff-puff.$"
-
-Route113_GlassWorkshop_Text_ExplainSootSack:
-	.string "Just take that SOOT SACK and walk\n"
-	.string "through piles of ash, huff-puff.\p"
-	.string "And it will fill up with the volcanic ash,\n"
-	.string "huff-puff.\p"
-	.string "Once you think you've collected a good\n"
-	.string "amount, come see me, huff-puff.$"
-
-Route113_GlassWorkshop_Text_LetsSeeCollectedAshes:
-	.string "Have you collected ashes, huff-puff?\n"
-	.string "Let me see, huff-puff.$"
-
-Route113_GlassWorkshop_Text_NotEnoughAshNeedX:
-	.string "Hmmm…\n"
-	.string "There's not enough ash here, huff-puff.\l"
-	.string "I can't make glass with this, huff-puff.\p"
-	.string "Let's see… {STR_VAR_1} is the number of steps\n"
-	.string "you'll need to walk for me to make you\l"
-	.string "a BLUE FLUTE, huff-puff.$"
-
-Route113_GlassWorkshop_Text_WhichGlassItemWoudYouLike:
-	.string "Oh!\n"
-	.string "You've got a lot of ashes, huff-puff!\p"
-	.string "I'll make you a glass item, huff-puff!\n"
-	.string "Which one would you like, huff-puff?$"
-
-Route113_GlassWorkshop_Text_IsThatTheItemForYou:
-	.string "A {STR_VAR_1}, huff-puff?\n"
-	.string "Is that the one for you, huff-puff?$"
-
-Route113_GlassWorkshop_Text_WhichWouldYouLike:
-	.string "Which one would you like, huff-puff?$"
-
-Route113_GlassWorkshop_Text_IllMakeItemForYou:
-	.string "A {STR_VAR_1} it is, then, huff-puff!\p"
-	.string "Okay! I'll make it for you, huff-puff.\n"
-	.string "Just wait a little while, huff-puff.$"
-
-Route113_GlassWorkshop_Text_NotEnoughAshToMakeItem:
-	.string "A {STR_VAR_1}, huff-puff?\p"
-	.string "There's not enough ash here to make\n"
-	.string "that, though, huff-puff.\p"
-	.string "Let's see… {STR_VAR_2} is the number of steps\n"
-	.string "you'll need to walk through volcanic ash\l"
-	.string "for me to make that item, huff-puff.\p"
-	.string "Which item would you rather have me\n"
-	.string "make instead, huff-puff?$"
-
-Route113_GlassWorkshop_Text_AllThatAshButDontWantAnything:
-	.string "You've collected all that ash, but you\n"
-	.string "don't want anything, huff-puff?$"
-
-Route113_GlassWorkshop_Text_IveFinishedGlassItem:
-	.string "Ah, I've finished your {STR_VAR_1}.\n"
-	.string "Take it, huff-puff.$"
-
-Route113_GlassWorkshop_Text_NoRoomInBag:
-	.string "Oh?\n"
-	.string "You've no room in your BAG, huff-puff.\p"
-	.string "I'll hold on to it, so come back later,\n"
-	.string "huff-puff.$"
-
-Route113_GlassWorkshop_Text_NoRoomInPC:
-	.string "Oh?\n"
-	.string "You've no room in your PC, huff-puff?\p"
-	.string "I'll hold on to it, so come back later,\n"
-	.string "huff-puff.$"
-
-Route113_GlassWorkshop_Text_HaventGotYourSootSack:
-	.string "Hah? You haven't got your SOOT SACK\n"
-	.string "with you, huff-puff.\p"
-	.string "You have to keep it with you to collect\n"
-	.string "volcanic ash, huff-puff.$"
-
-Route113_GlassWorkshop_Text_FunToBlowGlassFlute:
-	.string "It's fun to blow a glass flute while\n"
-	.string "my boss is talking.\p"
-	.string "Huff-huff! Puff-puff!$"
-
 `
+
+script Route113_GlassWorkshop_EventScript_NinjaBoy {
+	msgbox(format("It's fun to blow a glass flute while my boss is talking.\p"
+	"Huff-huff! Puff-puff!"), MSGBOX_NPC)
+}
+
+text Route113_GlassWorkshop_Text_GoCollectAshWithThis {
+    format("This area is covered in volcanic ash,\n"
+	"huff-puff!\p"
+	"I'm specially gifted, huff-puff.\p"
+	"I make glass out of volcanic ash\n"
+	"and make items, huff-puff.\p"
+	"Go collect ashes with this, huff-puff.")
+}
+
+text Route113_GlassWorkshop_Text_ExplainSootSack {
+    format("Just take that Soot Sack and walk\n"
+	"through piles of ash, huff-puff.\p"
+	"And it will fill up with the volcanic ash,\n"
+	"huff-puff.\p"
+	"Once you think you've collected a good\n"
+	"amount, come see me, huff-puff.")
+}
+
+text Route113_GlassWorkshop_Text_LetsSeeCollectedAshes {
+    format("Have you collected ashes, huff-puff?\n"
+	"Let me see, huff-puff.")
+}
+
+text Route113_GlassWorkshop_Text_NotEnoughAshNeedX {
+    format("Hmmm…\n"
+	"There's not enough ash here, huff-puff.\l"
+	"I can't make glass with this, huff-puff.\p"
+	"Let's see… {STR_VAR_1} is the number of steps\n"
+	"you'll need to walk for me to make you\l"
+	"a Blue Flute, huff-puff.")
+}
+
+text Route113_GlassWorkshop_Text_WhichGlassItemWoudYouLike {
+    format("Oh!\n"
+	"You've got a lot of ashes, huff-puff!\p"
+	"I'll make you a glass item, huff-puff!\n"
+	"Which one would you like, huff-puff?")
+}
+
+text Route113_GlassWorkshop_Text_IsThatTheItemForYou {
+    format("A {STR_VAR_1}, huff-puff?\n"
+	"Is that the one for you, huff-puff?")
+}
+
+text Route113_GlassWorkshop_Text_WhichWouldYouLike {
+    format("Which one would you like, huff-puff?")
+}
+
+text Route113_GlassWorkshop_Text_IllMakeItemForYou {
+    format("A {STR_VAR_1} it is, then, huff-puff!\p"
+	"Okay! I'll make it for you, huff-puff.\n"
+	"Just wait a little while, huff-puff.")
+}
+
+text Route113_GlassWorkshop_Text_NotEnoughAshToMakeItem {
+    format("A {STR_VAR_1}, huff-puff?\p"
+	"There's not enough ash here to make\n"
+	"that, though, huff-puff.\p"
+	"Let's see… {STR_VAR_2} is the number of steps\n"
+	"you'll need to walk through volcanic ash\l"
+	"for me to make that item, huff-puff.\p"
+	"Which item would you rather have me\n"
+	"make instead, huff-puff?")
+}
+
+text Route113_GlassWorkshop_Text_AllThatAshButDontWantAnything {
+    format("You've collected all that ash, but you\n"
+	"don't want anything, huff-puff?")
+}
+
+text Route113_GlassWorkshop_Text_IveFinishedGlassItem {
+    format("Ah, I've finished your {STR_VAR_1}.\n"
+	"Take it, huff-puff.")
+}
+
+text Route113_GlassWorkshop_Text_NoRoomInBag {
+    format("Oh?\n"
+	"You've no room in your Bag, huff-puff.\p"
+	"I'll hold on to it, so come back later,\n"
+	"huff-puff.")
+}
+
+text Route113_GlassWorkshop_Text_NoRoomInPC {
+    format("Oh?\n"
+	"You've no room in your PC, huff-puff?\p"
+	"I'll hold on to it, so come back later,\n"
+	"huff-puff.")
+}
+
+text Route113_GlassWorkshop_Text_HaventGotYourSootSack {
+    format("Hah? You haven't got your Soot Sack with you, huff-puff.\p"
+	"You have to keep it with you to collect volcanic ash, huff-puff.")
+}
+
+script Route113_GlassWorkshop_Script_Tinkatuff {
+    lock
+    faceplayer
+    waitse
+    speakername("Hunter's Hodad")
+    playmoncry(SPECIES_TINKATUFF, CRY_MODE_DOUBLES)
+    setseenmon(SPECIES_TINKATUFF)
+    msgbox("It's busy with its toolkit.", MSGBOX_DEFAULT)
+    waitmoncry
+    release
+}

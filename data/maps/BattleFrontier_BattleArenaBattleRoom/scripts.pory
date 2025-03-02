@@ -533,7 +533,7 @@ text BattleFrontier_BattleArenaBattleRoom_Text_WinnerIsOpponent {
 }
 
 text BattleFrontier_BattleArenaBattleRoom_Text_MonsWillBeRestored {
-	format("Your POKéMON will be restored to\n"
+	format("Your Pokémon will be restored to\n"
 	"full health.")
 }
 

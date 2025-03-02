@@ -1,3 +1,10 @@
+mapscripts BattleFrontier_OutsideWest_MapScripts {
+	MAP_SCRIPT_ON_TRANSITION {
+		setvar(VAR_BRAVO_TRAINER_BATTLE_TOWER_ON, 0)
+		setflag(FLAG_HIDE_BATTLE_TOWER_REPORTER)
+	}
+}
+
 raw `
 .set LOCALID_SS_TIDAL, 2
 .set LOCALID_FERRY_ATTENDANT, 3
@@ -7,15 +14,6 @@ raw `
 .set LOCALID_CAMPER, 14
 .set LOCALID_FISHERMAN_2, 18
 .set LOCALID_MAN_4, 23
-
-BattleFrontier_OutsideWest_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, BattleFrontier_OutsideWest_OnTransition
-	.byte 0
-
-BattleFrontier_OutsideWest_OnTransition:
-	setvar VAR_BRAVO_TRAINER_BATTLE_TOWER_ON, 0
-	setflag FLAG_HIDE_BATTLE_TOWER_REPORTER
-	end
 
 BattleFrontier_OutsideWest_EventScript_FerryAttendant::
 	lock
@@ -314,7 +312,7 @@ BattleFrontier_OutsideWest_Text_BattleDomeSign:
 
 BattleFrontier_OutsideWest_Text_BattleFactorySign:
 	.string "This is the BATTLE FACTORY!\n"
-	.string "Seek out the toughest POKéMON!$"
+	.string "Seek out the toughest Pokémon!$"
 
 BattleFrontier_OutsideWest_Text_BattlePikeSign:
 	.string "This is the BATTLE PIKE!\n"
@@ -323,7 +321,7 @@ BattleFrontier_OutsideWest_Text_BattlePikeSign:
 BattleFrontier_OutsideWest_Text_ThisIsBattleTower:
 	.string "This is the BATTLE TOWER.\p"
 	.string "TRAINERS bring their best-raised\n"
-	.string "POKéMON for elimination-style matches.$"
+	.string "Pokémon for elimination-style matches.$"
 
 BattleFrontier_OutsideWest_Text_MayISeeYourTicket:
 	.string "Hello, are you here for the ferry?\n"
@@ -384,20 +382,20 @@ BattleFrontier_OutsideWest_Text_OnlyToughTrainersBroughtHere:
 BattleFrontier_OutsideWest_Text_SureWeCanChallengeWithNoMons:
 	.string "Hey, bro…\p"
 	.string "Are you sure we can make challenges\n"
-	.string "even if we don't have any POKéMON?$"
+	.string "even if we don't have any Pokémon?$"
 
 BattleFrontier_OutsideWest_Text_BigGuySaidIllLendYouMons:
 	.string "Uh…\n"
 	.string "I'm sure it'll be okay.\p"
 	.string "I think…\p"
 	.string "But remember that big scary guy?\n"
-	.string "He said, “I'll lend you POKéMON!”$"
+	.string "He said, “I'll lend you Pokémon!”$"
 
 BattleFrontier_OutsideWest_Text_WhosRaisingThoseRentalMons:
 	.string "That's the BATTLE FACTORY.\n"
-	.string "You can rent strong POKéMON there.\p"
+	.string "You can rent strong Pokémon there.\p"
 	.string "But it makes me wonder.\n"
-	.string "Who's raising those rental POKéMON?$"
+	.string "Who's raising those rental Pokémon?$"
 
 BattleFrontier_OutsideWest_Text_ScaredOfPikeBecauseSeviper:
 	.string "I'm scared of going into the BATTLE\n"
@@ -519,7 +517,7 @@ BattleFrontier_OutsideWest_Text_FansOverThereUsedToBeTrainers:
 
 BattleFrontier_OutsideWest_Text_MonWithLongTailInFrontier:
 	.string "I heard a rumor that someone saw\n"
-	.string "a POKéMON with an unusually long tail\l"
+	.string "a Pokémon with an unusually long tail\l"
 	.string "somewhere in the BATTLE FRONTIER.\p"
 	.string "It must be adorable. I'm sure of it…\p"
 	.string "Oh, challenges can wait. I feel driven\n"
