@@ -13,54 +13,25 @@ script SlateportCity_NameRatersHouse_EventScript_NameRater {
         "Would you like to learn a splendid combat move instead?"), MSGBOX_DEFAULT)
     dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Acid Spray", "Bulldoze", "Chilling Water", "Draining Kiss", "Electroweb", "Flame Charge", "Hex," "Icy Wind", "Pounce", "Snarl", "Stored Power", "Struggle Bug", "Trailblaze", "Triple Axel", "Vacuum Wave")
     switch (var(VAR_RESULT)) {
-    case 0:
-        setvar(VAR_0x8005, MOVE_ACID_SPRAY)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 1:
-        setvar(VAR_0x8005, MOVE_BULLDOZE)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 2:
-        setvar(VAR_0x8005, MOVE_CHILLING_WATER)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 3:
-        setvar(VAR_0x8005, MOVE_DRAINING_KISS)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 4:
-        setvar(VAR_0x8005, MOVE_ELECTROWEB)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 5:
-        setvar(VAR_0x8005, MOVE_FLAME_CHARGE)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 6:
-        setvar(VAR_0x8005, MOVE_HEX)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 7:
-        setvar(VAR_0x8005, MOVE_ICY_WIND)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 8:
-        setvar(VAR_0x8005, MOVE_POUNCE)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 9:
-        setvar(VAR_0x8005, MOVE_SNARL)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 10:
-        setvar(VAR_0x8005, MOVE_STORED_POWER)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 11:
-        setvar(VAR_0x8005, MOVE_STRUGGLE_BUG)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 12:
-        setvar(VAR_0x8005, MOVE_TRAILBLAZE)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 13:
-        setvar(VAR_0x8005, MOVE_TRIPLE_AXEL)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 14:
-        setvar(VAR_0x8005, MOVE_VACUUM_WAVE)
-        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 0:  setvar(VAR_0x8005, MOVE_ACID_SPRAY)
+    case 1:  setvar(VAR_0x8005, MOVE_BULLDOZE)
+    case 2:  setvar(VAR_0x8005, MOVE_CHILLING_WATER)
+    case 3:  setvar(VAR_0x8005, MOVE_DRAINING_KISS)
+    case 4:  setvar(VAR_0x8005, MOVE_ELECTROWEB)
+    case 5:  setvar(VAR_0x8005, MOVE_FLAME_CHARGE)
+    case 6:  setvar(VAR_0x8005, MOVE_HEX)
+    case 7:  setvar(VAR_0x8005, MOVE_ICY_WIND)
+    case 8:  setvar(VAR_0x8005, MOVE_POUNCE)
+    case 9:  setvar(VAR_0x8005, MOVE_SNARL)
+    case 10: setvar(VAR_0x8005, MOVE_STORED_POWER)
+    case 11: setvar(VAR_0x8005, MOVE_STRUGGLE_BUG)
+    case 12: setvar(VAR_0x8005, MOVE_TRAILBLAZE)
+    case 13: setvar(VAR_0x8005, MOVE_TRIPLE_AXEL)
+    case 14: setvar(VAR_0x8005, MOVE_VACUUM_WAVE)
     default:
         goto(SlateportCity_NameRatersHouse_EventScript_TutorDeclined)
     }
+    call(MoveTutor_EventScript_OpenPartyMenu)
 }
 
 script SlateportCity_NameRatersHouse_EventScript_TutorDeclined {
@@ -327,7 +298,7 @@ script LilycoveCity_DepartmentStoreRooftop_EventScript_SubstituteTutor {
         call(MoveTutor_EventScript_OpenPartyMenu)
     default:
         msgbox(format("We human beings should enjoy our own lives to the utmost!\p"
-    "I hope you'll get that way, too!"), MSGBOX_DEFAULT)
+            "I hope you'll get that way, too!"), MSGBOX_DEFAULT)
         release
     }
 }
@@ -373,8 +344,7 @@ text MossdeepCity_EventScript_DynamicPunchTutor_Intro {
     "Punch! Punch! Punch!\p"
     "What, don't look at me that way!\n"
     "I'm only hitting the ground!\p"
-    "Or do you want me to teach your\n"
-    "Pokémon to Punch?")
+    "Or do you want me to teach your Pokémon to Punch?")
 }
 
 script SootopolisCity_PokemonCenter_1F_EventScript_DoubleEdgeTutor {
@@ -394,7 +364,7 @@ script SootopolisCity_PokemonCenter_1F_EventScript_DoubleEdgeTutor {
         call(MoveTutor_EventScript_OpenPartyMenu)
     default:
         msgbox(format("I won't live for love anymore!\n"
-    "I'll become tough!"), MSGBOX_DEFAULT)
+            "I'll become tough!"), MSGBOX_DEFAULT)
         release
     }
 }
