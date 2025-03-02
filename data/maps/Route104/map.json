@@ -482,7 +482,7 @@
       "movement_range_y": 3,
       "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Common_EventScript_StationaryWild",
+      "script": "Common_PokemonScript_WildEncounter",
       "flag": "FLAG_TEMP_1"
     },
     {
@@ -495,7 +495,7 @@
       "movement_range_y": 3,
       "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Common_EventScript_StationaryWild",
+      "script": "Common_PokemonScript_WildEncounter",
       "flag": "FLAG_TEMP_2"
     },
     {
@@ -508,7 +508,7 @@
       "movement_range_y": 5,
       "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Common_EventScript_StationaryWild",
+      "script": "Common_PokemonScript_WildEncounter",
       "flag": "FLAG_TEMP_3"
     },
     {
@@ -521,7 +521,7 @@
       "movement_range_y": 3,
       "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Common_EventScript_StationaryWild",
+      "script": "Common_PokemonScript_WildEncounter",
       "flag": "FLAG_TEMP_4"
     },
     {
@@ -534,7 +534,7 @@
       "movement_range_y": 3,
       "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Common_EventScript_StationaryWild",
+      "script": "Common_PokemonScript_WildEncounter",
       "flag": "FLAG_TEMP_5"
     },
     {
@@ -547,7 +547,7 @@
       "movement_range_y": 3,
       "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Common_EventScript_StationaryWild",
+      "script": "Common_PokemonScript_WildEncounter",
       "flag": "FLAG_TEMP_6"
     },
     {
@@ -560,7 +560,7 @@
       "movement_range_y": 3,
       "trainer_type": "TRAINER_TYPE_BIRD",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Common_EventScript_StationaryWild",
+      "script": "Common_PokemonScript_WildEncounter",
       "flag": "FLAG_HIDE_BRINEYS_HOUSE_PEEKO"
     },
     {
@@ -573,7 +573,7 @@
       "movement_range_y": 3,
       "trainer_type": "TRAINER_TYPE_BIRD",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Common_EventScript_StationaryWild",
+      "script": "Common_PokemonScript_WildEncounter",
       "flag": "FLAG_TEMP_8"
     },
     {
@@ -586,7 +586,7 @@
       "movement_range_y": 5,
       "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Common_EventScript_StationaryWild",
+      "script": "Common_PokemonScript_WildEncounter",
       "flag": "FLAG_TEMP_9"
     },
     {
@@ -599,7 +599,7 @@
       "movement_range_y": 5,
       "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Common_EventScript_StationaryWild",
+      "script": "Common_PokemonScript_WildEncounter",
       "flag": "FLAG_TEMP_7"
     }
   ],

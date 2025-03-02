@@ -211,6 +211,110 @@
       "trainer_sight_or_berry_tree_id": "3",
       "script": "Route112_EventScript_Shayla",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(DIGLETT_ALOLA)",
+      "x": 19,
+      "y": 49,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_BURIED",
+      "movement_range_x": 3,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Common_PokemonScript_WildEncounter",
+      "flag": "FLAG_TEMP_3"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(SALANDIT)",
+      "x": 19,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 3,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_BIRD",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Common_PokemonScript_WildEncounter",
+      "flag": "FLAG_TEMP_4"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(TINKATINK)",
+      "x": 26,
+      "y": 33,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 3,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Common_PokemonScript_WildEncounter",
+      "flag": "FLAG_TEMP_5"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(TYROGUE)",
+      "x": 18,
+      "y": 36,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 3,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Common_PokemonScript_WildEncounter",
+      "flag": "FLAG_TEMP_6"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(FIDOUGH)",
+      "x": 29,
+      "y": 44,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_IN_GRASS",
+      "movement_range_x": 3,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Common_PokemonScript_WildEncounter",
+      "flag": "FLAG_TEMP_7"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(NUMEL)",
+      "x": 36,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_IN_GRASS",
+      "movement_range_x": 3,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Common_PokemonScript_WildEncounter",
+      "flag": "FLAG_TEMP_8"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MANKEY)",
+      "x": 29,
+      "y": 11,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_IN_GRASS",
+      "movement_range_x": 3,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Common_PokemonScript_WildEncounter",
+      "flag": "FLAG_TEMP_9"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MINIOR)",
+      "x": 28,
+      "y": 24,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_DOWN",
+      "movement_range_x": 3,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_BIRD",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Common_PokemonScript_WildEncounter",
+      "flag": "FLAG_TEMP_A"
     }
   ],
   "warp_events": [
@@ -257,7 +361,9 @@
       "dest_warp_id": "1"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+
+  ],
   "bg_events": [
     {
       "type": "sign",

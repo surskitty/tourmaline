@@ -1,4 +1,4 @@
-script Common_EventScript_StationaryWild {
+script Common_PokemonScript_WildEncounter {
     lock
     faceplayer
     waitmovement(0)
@@ -58,7 +58,7 @@ script Common_EventScript_LegendaryFlewAway {
 	release
 }
 
-script Common_EventScript_PetPokemon {
+script Common_PokemonScript_Pettable {
     lock
     faceplayer
     specialvar(VAR_0x8004, GetSpeciesFromOverworldPokemon)
@@ -115,7 +115,7 @@ text Common_EventScript_PetPokemon_GiftText {
     format("It gave you an item it was carrying!")
 }
 
-script Common_EventScript_InvisibleWild {
+script Common_PokemonScript_InvisibleWild {
     lock
     faceplayer
     applymovement(VAR_LAST_TALKED, Movement_PokemonAppears)

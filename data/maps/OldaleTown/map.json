@@ -105,7 +105,7 @@
       "movement_range_y": 4,
       "trainer_type": "TRAINER_TYPE_BIRD",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Common_EventScript_PetPokemon",
+      "script": "Common_PokemonScript_Pettable",
       "flag": "FLAG_TEMP_3"
     },
     {
