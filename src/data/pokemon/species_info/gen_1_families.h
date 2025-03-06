@@ -16812,12 +16812,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 
     [SPECIES_EEVEE_STARTER] =
     {
-        .baseHP        = 65,
-        .baseAttack    = 75,
-        .baseDefense   = 70,
-        .baseSpeed     = 75,
-        .baseSpAttack  = 65,
-        .baseSpDefense = 85,
+        .baseHP        = 55 + 10,
+        .baseAttack    = 55 + 20,
+        .baseDefense   = 50 + 20,
+        .baseSpeed     = 55 + 20,
+        .baseSpAttack  = 45 + 20,
+        .baseSpDefense = 65 + 20,
         .types = MON_TYPES(TYPE_NORMAL),
         .catchRate = 45,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 65 : 92,
@@ -16827,7 +16827,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
+#if TESTING
         .abilities = { ABILITY_RUN_AWAY, ABILITY_ADAPTABILITY, ABILITY_ANTICIPATION },
+#else
+        .abilities = { ABILITY_FRIEND_GUARD, ABILITY_FRIEND_GUARD, ABILITY_ANTICIPATION },
+        .innates = { ABILITY_ADAPTABILITY, ABILITY_FUR_COAT, ABILITY_GUARD_DOG },
+#endif
         .bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Eevee"),
         .cryId = CRY_EEVEE,
@@ -16835,34 +16840,28 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .categoryName = _("Evolution"),
         .height = 3,
         .weight = 65,
-        .description = gEeveePokedexText,
+        .description = COMPOUND_STRING(
+            "This Eevee has lost the ability to\n"
+            "evolve, in favor of unending fluff\n"
+            "and enthusiasm for playtime. Its\n"
+            "body can be used as a mop."),
         .pokemonScale = 476,
         .pokemonOffset = 18,
         .trainerScale = 256,
         .trainerOffset = 0,
-        .frontPic = gMonFrontPic_Eevee,
-        .frontPicSize = MON_COORDS_SIZE(40, 48),
-        .frontPicYOffset = 11,
-        .frontAnimFrames = sAnims_Eevee,
-        .frontAnimId = ANIM_V_STRETCH,
-        .backPic = gMonBackPic_Eevee,
-        .backPicSize = MON_COORDS_SIZE(56, 48),
-        .backPicYOffset = 10,
-        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
-        .palette = gMonPalette_Eevee,
-        .shinyPalette = gMonShinyPalette_Eevee,
-        .iconSprite = gMonIcon_EeveePartner,
+        .frontPic = gMonFrontPic_EeveeGmax,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 8,
+        .frontAnimFrames = sAnims_EeveeGmax,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_EeveeGmax,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 7,
+        //.backAnimId = BACK_ANIM_NONE,
+        .palette = gMonPalette_EeveeGmax,
+        .shinyPalette = gMonShinyPalette_EeveeGmax,
+        .iconSprite = gMonIcon_EeveeGmax,
         .iconPalIndex = 2,
-#if P_GENDER_DIFFERENCES
-        .frontPicFemale = gMonFrontPic_EeveeF,
-        .frontPicSizeFemale = MON_COORDS_SIZE(40, 48),
-        .backPicFemale = gMonBackPic_EeveeF,
-        .backPicSizeFemale = MON_COORDS_SIZE(56, 48),
-    #if P_CUSTOM_GENDER_DIFF_ICONS == TRUE
-        .iconSpriteFemale = gMonIcon_EeveePartnerF,
-        .iconPalIndexFemale = 2,
-    #endif
-#endif //P_GENDER_DIFFERENCES
         SHADOW(-2, 2, SHADOW_SIZE_S)
         FOOTPRINT(Eevee)
         OVERWORLD(

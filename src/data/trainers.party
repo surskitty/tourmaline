@@ -5920,12 +5920,19 @@ IVs: 26 HP / 26 Atk / 26 Def / 26 SpA / 26 SpD / 26 Spe
 - Steel Wing
 - Aerial Ace
 
-Altaria @ Altarianite
+Altaria
 Level: 33
 - Hyper Voice
 - Cotton Guard
 - Dragon Pulse
 - Flamethrower
+
+Pidgeot @ Pidgeotite
+Level: 36
+- Hurricane
+- Air Slash
+- Roost
+- Ominous Wind
 
 === TRAINER_WINONA_2 ===
 Name: Winona
@@ -6444,6 +6451,201 @@ Ability: Oblivious
 - Order Up
 - Wave Crash
 - Body Press
+
+
+=== TRAINER_JUAN_2 ===
+Name: Juan
+Class: Leader
+Pic: Leader Juan
+Gender: Male
+Music: Male
+Items: Full Restore / Full Restore / Full Restore
+Double Battle: Yes
+AI: Basic Trainer
+
+Poliwag
+Level: 46
+- Hypnosis
+- Rain Dance
+- Protect
+- Hydro Pump
+
+Whiscash
+Level: 46
+- Rain Dance
+- Water Pulse
+- Double Team
+- Fissure
+
+Walrein
+Level: 48
+- Water Pulse
+- Body Slam
+- Protect
+- Ice Beam
+
+Crawdaunt @ Chesto Berry
+Level: 48
+- Rest
+- Crabhammer
+- Taunt
+- Double Team
+
+Kingdra @ Chesto Berry
+Level: 51
+- Water Pulse
+- Double Team
+- Ice Beam
+- Rest
+
+=== TRAINER_JUAN_3 ===
+Name: Juan
+Class: Leader
+Pic: Leader Juan
+Gender: Male
+Music: Male
+Items: Full Restore / Full Restore / Full Restore
+Double Battle: Yes
+AI: Basic Trainer
+
+Poliwhirl
+Level: 50
+- Hypnosis
+- Rain Dance
+- Protect
+- Hydro Pump
+
+Whiscash
+Level: 51
+- Rain Dance
+- Water Pulse
+- Double Team
+- Fissure
+
+Walrein
+Level: 53
+- Water Pulse
+- Body Slam
+- Protect
+- Ice Beam
+
+Crawdaunt @ Chesto Berry
+Level: 53
+- Rest
+- Guillotine
+- Taunt
+- Double Team
+
+Kingdra @ Chesto Berry
+Level: 56
+- Water Pulse
+- Double Team
+- Ice Beam
+- Rest
+
+=== TRAINER_JUAN_4 ===
+Name: Juan
+Class: Leader
+Pic: Leader Juan
+Gender: Male
+Music: Male
+Items: Full Restore / Full Restore / Full Restore
+Double Battle: Yes
+AI: Basic Trainer
+
+Lapras
+Level: 56
+- Hydro Pump
+- Perish Song
+- Ice Beam
+- Confuse Ray
+
+Whiscash
+Level: 58
+- Rain Dance
+- Water Pulse
+- Double Team
+- Fissure
+
+Poliwhirl
+Level: 56
+- Hypnosis
+- Rain Dance
+- Protect
+- Hydro Pump
+
+Walrein
+Level: 58
+- Water Pulse
+- Body Slam
+- Protect
+- Ice Beam
+
+Crawdaunt @ Chesto Berry
+Level: 58
+- Rest
+- Guillotine
+- Taunt
+- Double Team
+
+Kingdra @ Chesto Berry
+Level: 61
+- Water Pulse
+- Double Team
+- Ice Beam
+- Rest
+
+=== TRAINER_JUAN_5 ===
+Name: Juan
+Class: Leader
+Pic: Leader Juan
+Gender: Male
+Music: Male
+Items: Full Restore / Full Restore / Full Restore
+Double Battle: Yes
+AI: Basic Trainer
+
+Lapras
+Level: 61
+- Hydro Pump
+- Perish Song
+- Ice Beam
+- Confuse Ray
+
+Whiscash
+Level: 63
+- Rain Dance
+- Water Pulse
+- Double Team
+- Fissure
+
+Politoed
+Level: 61
+- Hypnosis
+- Rain Dance
+- Hydro Pump
+- Perish Song
+
+Walrein
+Level: 63
+- Water Pulse
+- Body Slam
+- Protect
+- Sheer Cold
+
+Crawdaunt @ Chesto Berry
+Level: 63
+- Rest
+- Guillotine
+- Taunt
+- Double Team
+
+Kingdra @ Chesto Berry
+Level: 66
+- Water Pulse
+- Double Team
+- Ice Beam
+- Rest
 
 === TRAINER_JERRY_1 ===
 Name: JERRY
@@ -15404,7 +15606,7 @@ Level: 26
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JAIDEN ===
-Name: JAIDEN
+Name: Jaiden
 Class: Ninja Boy
 Pic: Ninja Boy
 Gender: Male
@@ -15421,7 +15623,7 @@ Level: 26
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ALIX ===
-Name: ALIX
+Name: Alix
 Class: Psychic
 Pic: Psychic F
 Gender: Female
@@ -15739,200 +15941,6 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 Vigoroth
 Level: 29
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-
-=== TRAINER_JUAN_2 ===
-Name: Juan
-Class: Leader
-Pic: Leader Juan
-Gender: Male
-Music: Male
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Poliwag
-Level: 46
-- Hypnosis
-- Rain Dance
-- Protect
-- Hydro Pump
-
-Whiscash
-Level: 46
-- Rain Dance
-- Water Pulse
-- Double Team
-- Fissure
-
-Walrein
-Level: 48
-- Water Pulse
-- Body Slam
-- Protect
-- Ice Beam
-
-Crawdaunt @ Chesto Berry
-Level: 48
-- Rest
-- Crabhammer
-- Taunt
-- Double Team
-
-Kingdra @ Chesto Berry
-Level: 51
-- Water Pulse
-- Double Team
-- Ice Beam
-- Rest
-
-=== TRAINER_JUAN_3 ===
-Name: Juan
-Class: Leader
-Pic: Leader Juan
-Gender: Male
-Music: Male
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Poliwhirl
-Level: 50
-- Hypnosis
-- Rain Dance
-- Protect
-- Hydro Pump
-
-Whiscash
-Level: 51
-- Rain Dance
-- Water Pulse
-- Double Team
-- Fissure
-
-Walrein
-Level: 53
-- Water Pulse
-- Body Slam
-- Protect
-- Ice Beam
-
-Crawdaunt @ Chesto Berry
-Level: 53
-- Rest
-- Guillotine
-- Taunt
-- Double Team
-
-Kingdra @ Chesto Berry
-Level: 56
-- Water Pulse
-- Double Team
-- Ice Beam
-- Rest
-
-=== TRAINER_JUAN_4 ===
-Name: Juan
-Class: Leader
-Pic: Leader Juan
-Gender: Male
-Music: Male
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Lapras
-Level: 56
-- Hydro Pump
-- Perish Song
-- Ice Beam
-- Confuse Ray
-
-Whiscash
-Level: 58
-- Rain Dance
-- Water Pulse
-- Double Team
-- Fissure
-
-Poliwhirl
-Level: 56
-- Hypnosis
-- Rain Dance
-- Protect
-- Hydro Pump
-
-Walrein
-Level: 58
-- Water Pulse
-- Body Slam
-- Protect
-- Ice Beam
-
-Crawdaunt @ Chesto Berry
-Level: 58
-- Rest
-- Guillotine
-- Taunt
-- Double Team
-
-Kingdra @ Chesto Berry
-Level: 61
-- Water Pulse
-- Double Team
-- Ice Beam
-- Rest
-
-=== TRAINER_JUAN_5 ===
-Name: Juan
-Class: Leader
-Pic: Leader Juan
-Gender: Male
-Music: Male
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Lapras
-Level: 61
-- Hydro Pump
-- Perish Song
-- Ice Beam
-- Confuse Ray
-
-Whiscash
-Level: 63
-- Rain Dance
-- Water Pulse
-- Double Team
-- Fissure
-
-Politoed
-Level: 61
-- Hypnosis
-- Rain Dance
-- Hydro Pump
-- Perish Song
-
-Walrein
-Level: 63
-- Water Pulse
-- Body Slam
-- Protect
-- Sheer Cold
-
-Crawdaunt @ Chesto Berry
-Level: 63
-- Rest
-- Guillotine
-- Taunt
-- Double Team
-
-Kingdra @ Chesto Berry
-Level: 66
-- Water Pulse
-- Double Team
-- Ice Beam
-- Rest
 
 === TRAINER_ANGELO ===
 Name: ANGELO
@@ -16912,7 +16920,7 @@ Level: 41
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ALVARO ===
-Name: ALVARO
+Name: Alvaro
 Class: Psychic
 Pic: Psychic M
 Gender: Male
@@ -16928,7 +16936,7 @@ Level: 41
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_EVERETT ===
-Name: EVERETT
+Name: Everett
 Class: Gentleman
 Pic: Gentleman
 Gender: Male
@@ -16938,6 +16946,41 @@ Double Battle: Yes
 Wobbuffet
 Level: 41
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== TRAINER_MOM ===
+Name: Mom
+Class: Homemaker
+Pic: Mom
+Gender: Female
+Music: Elite Four
+Double Battle: Yes
+
+Fluffy Bun (Eevee Starter) @ Eevium Z
+Level: 80
+Ability: Friend Guard
+- Veevee Volley
+- Bouncy Bubble
+- Baddy Bad
+- Glitzy Glow
+
+Dudunsparce
+Level: 80
+
+Ditto
+Level: 80
+Ability: Imposter
+- Transform
+
+Brownie (Ursaluna)
+Level: 80
+
+Delcatty
+Level: 80
+Ability: Normalize
+- Assist
+
+Lopunny @ Lopunnite
+Level: 80
 
 === TRAINER_RED ===
 Name: Red

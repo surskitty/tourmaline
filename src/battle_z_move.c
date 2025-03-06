@@ -92,6 +92,7 @@ static const struct SignatureZMove sSignatureZMoves[] =
     {SPECIES_MEW,                     ITEM_MEWNIUM_Z,            MOVE_PSYCHIC,             MOVE_GENESIS_SUPERNOVA},
     {SPECIES_PIKACHU,                 ITEM_PIKANIUM_Z,           MOVE_VOLT_TACKLE,         MOVE_CATASTROPIKA},
     {SPECIES_EEVEE,                   ITEM_EEVIUM_Z,             MOVE_LAST_RESORT,         MOVE_EXTREME_EVOBOOST},
+    {SPECIES_EEVEE_STARTER,           ITEM_EEVIUM_Z,             MOVE_VEEVEE_VOLLEY,       MOVE_EXTREME_EVOBOOST},
     {SPECIES_SNORLAX,                 ITEM_SNORLIUM_Z,           MOVE_GIGA_IMPACT,         MOVE_PULVERIZING_PANCAKE},
 };
 

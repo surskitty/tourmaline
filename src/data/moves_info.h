@@ -19551,12 +19551,12 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_DYNAMAX] =
     {
         .name = COMPOUND_STRING("Triple Dive"),
         .description = COMPOUND_STRING(
-            "Hits target with splashes\n"
-            "of water 3 times in a row."),
-        .effect = EFFECT_HIT,
-        .power = 30,
+            "A 3-splash attack that gets\n"
+            "more powerful with each hit."),
+        .effect = EFFECT_TRIPLE_KICK,
+        .power = 20,
         .type = TYPE_WATER,
-        .accuracy = 95,
+        .accuracy = 100,
         .pp = 10,
         .target = MOVE_TARGET_SELECTED,
         .priority = 0,

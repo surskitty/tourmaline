@@ -1220,9 +1220,7 @@ static const u16 sYamaskFormSpeciesIdTable[] = {
 #if P_FAMILY_TRUBBISH
 static const u16 sGarbodorFormSpeciesIdTable[] = {
     SPECIES_GARBODOR,
-#if P_GIGANTAMAX_FORMS
-    SPECIES_GARBODOR_GMAX,
-#endif
+    SPECIES_GARBODOR_MEGA,
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_TRUBBISH
@@ -1805,9 +1803,7 @@ static const u16 sCorviknightFormSpeciesIdTable[] = {
 #if P_FAMILY_BLIPBUG
 static const u16 sOrbeetleFormSpeciesIdTable[] = {
     SPECIES_ORBEETLE,
-#if P_GIGANTAMAX_FORMS
-    SPECIES_ORBEETLE_GMAX,
-#endif
+    SPECIES_ORBEETLE_MEGA,
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_BLIPBUG
@@ -1815,9 +1811,7 @@ static const u16 sOrbeetleFormSpeciesIdTable[] = {
 #if P_FAMILY_CHEWTLE
 static const u16 sDrednawFormSpeciesIdTable[] = {
     SPECIES_DREDNAW,
-#if P_GIGANTAMAX_FORMS
-    SPECIES_DREDNAW_GMAX,
-#endif
+    SPECIES_DREDNAW_MEGA,
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_CHEWTLE

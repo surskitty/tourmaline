@@ -377,6 +377,7 @@ const struct TrainerClass gTrainerClasses[TRAINER_CLASS_COUNT] =
     [TRAINER_CLASS_FACTORY_HEAD] = { _("Factory Head") },
     [TRAINER_CLASS_PIKE_QUEEN] = { _("Pike Queen") },
     [TRAINER_CLASS_PYRAMID_KING] = { _("Pyramid King") },
+    [TRAINER_CLASS_HOMEMAKER] = {_("Homemaker"), 50, BALL_CHERISH },
     [TRAINER_CLASS_RS_PROTAG] = { _("{PKMN} Trainer") },
 };
 
@@ -5478,6 +5479,7 @@ static void HandleEndTurn_BattleWon(void)
             PlayBGM(MUS_VICTORY_AQUA_MAGMA);
             break;
         case TRAINER_CLASS_LEADER:
+        case TRAINER_CLASS_HOMEMAKER:
             PlayBGM(MUS_VICTORY_GYM_LEADER);
             break;
         default:

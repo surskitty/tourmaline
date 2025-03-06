@@ -2029,9 +2029,7 @@ static const union AnimCmd sAnim_Eevee_1[] =
     ANIMCMD_END,
 };
 
-#if P_GIGANTAMAX_FORMS
 PLACEHOLDER_ANIM_SINGLE_FRAME(EeveeGmax);
-#endif //P_GIGANTAMAX_FORMS
 
 static const union AnimCmd sAnim_Vaporeon_1[] =
 {
