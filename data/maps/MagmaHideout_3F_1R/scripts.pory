@@ -7,45 +7,45 @@ mapscripts MagmaHideout_3F_1R_MapScripts {
 
 raw `
 MagmaHideout_3F_1R_EventScript_Grunt9::
-	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_9, MagmaHideout_3F_1R_Text_Grunt9Intro, MagmaHideout_3F_1R_Text_Grunt9Defeat
-	msgbox MagmaHideout_3F_1R_Text_Grunt9PostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_9, MagmaHideout_3F_1R_Text_Grunt9Intro, MagmaHideout_3F_1R_Text_Grunt9Defeat
+    msgbox MagmaHideout_3F_1R_Text_Grunt9PostBattle, MSGBOX_AUTOCLOSE
+    end
 
 MagmaHideout_3F_1R_EventScript_Grunt16::
-	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_16, MagmaHideout_3F_1R_Text_Grunt16Intro, MagmaHideout_3F_1R_Text_Grunt16Defeat
-	msgbox MagmaHideout_3F_1R_Text_Grunt16PostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_16, MagmaHideout_3F_1R_Text_Grunt16Intro, MagmaHideout_3F_1R_Text_Grunt16Defeat
+    msgbox MagmaHideout_3F_1R_Text_Grunt16PostBattle, MSGBOX_AUTOCLOSE
+    end
 `
 
 text MagmaHideout_3F_1R_Text_Grunt9Intro {
-	format("What did I do to deserve this guard posting?\p"
-	"My left ear is burning up!")
+    format("What did I do to deserve this guard posting?\p"
+    "My left ear is burning up!")
 }
 
 text MagmaHideout_3F_1R_Text_Grunt9Defeat {
-	format("I'm getting heat exhaustion…")
+    format("I'm getting heat exhaustion…")
 }
 
 text MagmaHideout_3F_1R_Text_Grunt9PostBattle {
-	format("Do you think it's odd that we're wearing hoods in this magma-filled volcano?")
+    format("Do you think it's odd that we're wearing hoods in this magma-filled volcano?")
 }
 
 text MagmaHideout_3F_1R_Text_Grunt16Intro {
-	format("We joined so we can help our leader\n"
-	"achieve his fantastic vision.\p"
-	"I don't care if you're with Team Aqua or if you're just some kid passing by.\p"
-	"No one interferes with us and gets away with it!")
+    format("We joined so we can help our leader\n"
+    "achieve his fantastic vision.\p"
+    "I don't care if you're with Team Aqua or if you're just some kid passing by.\p"
+    "No one interferes with us and gets away with it!")
 }
 
 text MagmaHideout_3F_1R_Text_Grunt16Defeat {
-	format("Oh, no!\n"
-	"You're not to be trusted at all!")
+    format("Oh, no!\n"
+    "You're not to be trusted at all!")
 }
 
 text MagmaHideout_3F_1R_Text_Grunt16PostBattle {
-	format("Listen to me.\n"
-	"Team Magma is right!\p"
-	"Don't listen to Team Aqua.\n"
-	"Don't believe their lies!")
+    format("Listen to me.\n"
+    "Team Magma is right!\p"
+    "Don't listen to Team Aqua.\n"
+    "Don't believe their lies!")
 }
 

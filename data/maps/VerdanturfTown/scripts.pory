@@ -3,7 +3,7 @@ mapscripts VerdanturfTown_MapScripts {
         setflag(FLAG_VISITED_VERDANTURF_TOWN)
         setvar(VAR_CONTEST_HALL_STATE, 0)
     }
-	MAP_SCRIPT_ON_LOAD {
+    MAP_SCRIPT_ON_LOAD {
         special(SetRoofBirds)
         special(SetStationaryWilds)
     }
@@ -13,98 +13,98 @@ raw `
 .set LOCALID_TWIN, 2
 
 VerdanturfTown_EventScript_Twin::
-	lock
-	faceplayer
-	goto_if_set FLAG_RUSTURF_TUNNEL_OPENED, VerdanturfTown_EventScript_TwinTunnelOpen
-	msgbox VerdanturfTown_Text_ManTryingToDigTunnel, MSGBOX_DEFAULT
-	applymovement LOCALID_TWIN, Common_Movement_FaceOriginalDirection
-	waitmovement 0
-	release
-	end
+    lock
+    faceplayer
+    goto_if_set FLAG_RUSTURF_TUNNEL_OPENED, VerdanturfTown_EventScript_TwinTunnelOpen
+    msgbox VerdanturfTown_Text_ManTryingToDigTunnel, MSGBOX_DEFAULT
+    applymovement LOCALID_TWIN, Common_Movement_FaceOriginalDirection
+    waitmovement 0
+    release
+    end
 
 VerdanturfTown_EventScript_TwinTunnelOpen::
-	msgbox VerdanturfTown_Text_ManDugTunnelForLove, MSGBOX_DEFAULT
-	applymovement LOCALID_TWIN, Common_Movement_FaceOriginalDirection
-	waitmovement 0
-	release
-	end
+    msgbox VerdanturfTown_Text_ManDugTunnelForLove, MSGBOX_DEFAULT
+    applymovement LOCALID_TWIN, Common_Movement_FaceOriginalDirection
+    waitmovement 0
+    release
+    end
 
 VerdanturfTown_EventScript_Man::
-	msgbox VerdanturfTown_Text_AirCleanHere, MSGBOX_NPC
-	end
+    msgbox VerdanturfTown_Text_AirCleanHere, MSGBOX_NPC
+    end
 
 VerdanturfTown_EventScript_Camper::
-	msgbox VerdanturfTown_Text_MakeBattleTentDebut, MSGBOX_NPC
-	end
+    msgbox VerdanturfTown_Text_MakeBattleTentDebut, MSGBOX_NPC
+    end
 
 VerdanturfTown_EventScript_Boy::
-	lock
-	faceplayer
-	goto_if_set FLAG_RUSTURF_TUNNEL_OPENED, VerdanturfTown_EventScript_BoyTunnelOpen
-	msgbox VerdanturfTown_Text_GuyTryingToBustThroughCave, MSGBOX_DEFAULT
-	release
-	end
+    lock
+    faceplayer
+    goto_if_set FLAG_RUSTURF_TUNNEL_OPENED, VerdanturfTown_EventScript_BoyTunnelOpen
+    msgbox VerdanturfTown_Text_GuyTryingToBustThroughCave, MSGBOX_DEFAULT
+    release
+    end
 
 VerdanturfTown_EventScript_BoyTunnelOpen::
-	msgbox VerdanturfTown_Text_EasyToGetToRustboroNow, MSGBOX_DEFAULT
-	release
-	end
+    msgbox VerdanturfTown_Text_EasyToGetToRustboroNow, MSGBOX_DEFAULT
+    release
+    end
 
 `
 
 text VerdanturfTown_Text_ManTryingToDigTunnel {
-	format("My papa told me.\p"
-	"He says this tunnel is full of timid Pokémon.\p"
-	"They get all scared of loud noise and make a big uproar.\p"
-	"So they had to stop the big tunnel project.\p"
-	"But there's one man. He's trying to dig the tunnel by himself!")
+    format("My papa told me.\p"
+    "He says this tunnel is full of timid Pokémon.\p"
+    "They get all scared of loud noise and make a big uproar.\p"
+    "So they had to stop the big tunnel project.\p"
+    "But there's one man. He's trying to dig the tunnel by himself!")
 }
 
 text VerdanturfTown_Text_ManDugTunnelForLove {
-	format("There was a man who dug a tunnel for a lady he loved.\p"
-	"I don't really get it, but hey!")
+    format("There was a man who dug a tunnel for a lady he loved.\p"
+    "I don't really get it, but hey!")
 }
 
 text VerdanturfTown_Text_AirCleanHere {
-	format("The way the winds blow, volcanic ash is never blown in this direction.\p"
-	"The air is clean and delicious here.\n"
-	"Living here should do wonders for even\l"
-	"frail and sickly people.")
+    format("The way the winds blow, volcanic ash is never blown in this direction.\p"
+    "The air is clean and delicious here.\n"
+    "Living here should do wonders for even\l"
+    "frail and sickly people.")
 }
 
 text VerdanturfTown_Text_MakeBattleTentDebut {
-	format("My Pokémon and I, we've been riding a hot winning streak.\p"
-	"So I decided to make my Battle Tent debut in this town.")
+    format("My Pokémon and I, we've been riding a hot winning streak.\p"
+    "So I decided to make my Battle Tent debut in this town.")
 }
 
 text VerdanturfTown_Text_GuyTryingToBustThroughCave {
-	format("Did you see the cave next to the Pokémon Mart?\p"
-	"There's a guy in there who's trying to bust up boulders so he can bust out through to the other side.\p"
-	"It'd be great if we could go through…\n"
-	"It'll make it easy to visit Rustboro.")
+    format("Did you see the cave next to the Pokémon Mart?\p"
+    "There's a guy in there who's trying to bust up boulders so he can bust out through to the other side.\p"
+    "It'd be great if we could go through…\n"
+    "It'll make it easy to visit Rustboro.")
 }
 
 text VerdanturfTown_Text_EasyToGetToRustboroNow {
-	format("That cave next to the Pokémon Mart is now a tunnel to the other side.\p"
-	"It's great--it's easy to go shop for new Devon products in Rustboro now.")
+    format("That cave next to the Pokémon Mart is now a tunnel to the other side.\p"
+    "It's great--it's easy to go shop for new Devon products in Rustboro now.")
 }
 
 script VerdanturfTown_EventScript_TownSign {
-	msgbox(format("Verdanturf Town\p"
-	"“The windswept highlands with the sweet fragrance of grass.”"), MSGBOX_SIGN)
+    msgbox(format("Verdanturf Town\p"
+    "“The windswept highlands with the sweet fragrance of grass.”"), MSGBOX_SIGN)
 }
 
 script VerdanturfTown_EventScript_WandasHouseSign {
-	msgbox("Wanda's House", MSGBOX_SIGN)
+    msgbox("Wanda's House", MSGBOX_SIGN)
 }
 
 script VerdanturfTown_EventScript_BattleTentSign {
-	msgbox(format("Battle Tent Verdanturf Site\n"
-	"“Feast Your Eyes on Battles!”"), MSGBOX_SIGN)
+    msgbox(format("Battle Tent Verdanturf Site\n"
+    "“Feast Your Eyes on Battles!”"), MSGBOX_SIGN)
 }
 
 script VerdanturfTown_EventScript_RusturfTunnelSign {
-	msgbox(format("Rusturf Tunnel\n"
-	"“Linking Rustboro and Verdanturf\p"
-	"“The tunnel project has been canceled.”"), MSGBOX_SIGN)
+    msgbox(format("Rusturf Tunnel\n"
+    "“Linking Rustboro and Verdanturf\p"
+    "“The tunnel project has been canceled.”"), MSGBOX_SIGN)
 }

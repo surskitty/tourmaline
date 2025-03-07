@@ -1,25 +1,13 @@
 mapscripts PetalburgCity_House2_MapScripts {}
 
-raw `
-PetalburgCity_House2_EventScript_Woman::
-	msgbox PetalburgCity_House2_Text_NormanBecameGymLeader, MSGBOX_NPC
-	end
+script PetalburgCity_House2_EventScript_Woman {
+    msgbox(format("Norman became our town's new Gym Leader.\p"
+    "I think he called his family over from somewhere far away.$"), MSGBOX_NPC)
+}
 
-PetalburgCity_House2_EventScript_SchoolKid::
-	msgbox PetalburgCity_House2_Text_BattledNormanOnce, MSGBOX_NPC
-	end
+script PetalburgCity_House2_EventScript_SchoolKid {
+    msgbox(format("I battled Norman once, but, whew, he was way too strong.\p"
+        "How would I put it?\p"
+        "I just got the feeling that he lives for Pokémon."), MSGBOX_NPC)
+}
 
-PetalburgCity_House2_Text_NormanBecameGymLeader:
-	.string "Norman became our town's new\n"
-	.string "Gym Leader.\p"
-	.string "I think he called his family over from\n"
-	.string "somewhere far away.$"
-
-PetalburgCity_House2_Text_BattledNormanOnce:
-	.string "I battled NORMAN once, but, whew,\n"
-	.string "he was way too strong.\p"
-	.string "How would I put it?\p"
-	.string "I just got the feeling that he\n"
-	.string "lives for Pokémon.$"
-
-`

@@ -2,53 +2,53 @@ mapscripts MossdeepCity_House3_MapScripts {}
 
 raw `
 MossdeepCity_House3_EventScript_SuperRodFisherman::
-	lock
-	faceplayer
-	goto_if_set FLAG_RECEIVED_SUPER_ROD, MossdeepCity_House3_EventScript_ReceivedSuperRod
-	msgbox MossdeepCity_House3_Text_YouWantSuperRod, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, MossdeepCity_House3_EventScript_DeclineSuperRod
-	msgbox MossdeepCity_House3_Text_SuperRodIsSuper, MSGBOX_DEFAULT
-	giveitem ITEM_SUPER_ROD
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_SUPER_ROD
-	msgbox MossdeepCity_House3_Text_TryDroppingRodInWater, MSGBOX_DEFAULT
-	release
-	end
+    lock
+    faceplayer
+    goto_if_set FLAG_RECEIVED_SUPER_ROD, MossdeepCity_House3_EventScript_ReceivedSuperRod
+    msgbox MossdeepCity_House3_Text_YouWantSuperRod, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, NO, MossdeepCity_House3_EventScript_DeclineSuperRod
+    msgbox MossdeepCity_House3_Text_SuperRodIsSuper, MSGBOX_DEFAULT
+    giveitem ITEM_SUPER_ROD
+    goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+    setflag FLAG_RECEIVED_SUPER_ROD
+    msgbox MossdeepCity_House3_Text_TryDroppingRodInWater, MSGBOX_DEFAULT
+    release
+    end
 
 MossdeepCity_House3_EventScript_ReceivedSuperRod::
-	msgbox MossdeepCity_House3_Text_GoAfterSeafloorPokemon, MSGBOX_DEFAULT
-	release
-	end
+    msgbox MossdeepCity_House3_Text_GoAfterSeafloorPokemon, MSGBOX_DEFAULT
+    release
+    end
 
 MossdeepCity_House3_EventScript_DeclineSuperRod::
-	msgbox MossdeepCity_House3_Text_DontYouLikeToFish, MSGBOX_DEFAULT
-	release
-	end
+    msgbox MossdeepCity_House3_Text_DontYouLikeToFish, MSGBOX_DEFAULT
+    release
+    end
 `
 
 text MossdeepCity_House3_Text_YouWantSuperRod {
-	format("Hey there, Trainer!\n"
-	"A Super Rod really is super!\p"
-	"Say all you want, but this baby can catch Pokémon off the seafloor!\p"
-	"What do you think?\n"
-	"You want it, don't you?")
+    format("Hey there, Trainer!\n"
+    "A Super Rod really is super!\p"
+    "Say all you want, but this baby can catch Pokémon off the seafloor!\p"
+    "What do you think?\n"
+    "You want it, don't you?")
 }
 
 text MossdeepCity_House3_Text_SuperRodIsSuper {
-	format("You bet, you bet!\n"
-	"After all, a Super Rod is really super!")
+    format("You bet, you bet!\n"
+    "After all, a Super Rod is really super!")
 }
 
 text MossdeepCity_House3_Text_TryDroppingRodInWater {
-	format("If there's any water, try dropping in your Rod and see what bites!")
+    format("If there's any water, try dropping in your Rod and see what bites!")
 }
 
 text MossdeepCity_House3_Text_DontYouLikeToFish {
-	format("Hunh?\n"
-	"Don't you like to fish?")
+    format("Hunh?\n"
+    "Don't you like to fish?")
 }
 
 text MossdeepCity_House3_Text_GoAfterSeafloorPokemon {
-	format("Go after the seafloor Pokémon with your Super Rod.")
+    format("Go after the seafloor Pokémon with your Super Rod.")
 }
 

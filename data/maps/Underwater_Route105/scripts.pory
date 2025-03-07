@@ -1,5 +1,5 @@
 mapscripts Underwater_Route105_MapScripts {
-	MAP_SCRIPT_ON_RESUME {
-    	call(AbnormalWeather_Underwater_SetupEscapeWarp)
+    MAP_SCRIPT_ON_RESUME {
+        call(AbnormalWeather_Underwater_SetupEscapeWarp)
     }
 }

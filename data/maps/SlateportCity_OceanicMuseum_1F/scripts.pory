@@ -4,290 +4,290 @@ raw `
 .set LOCALID_FAMILIAR_GRUNT, 13
 
 SlateportCity_OceanicMuseum_1F_EventScript_EntranceAttendant::
-	msgbox SlateportCity_OceanicMuseum_1F_Text_PleaseEnjoyYourself, MSGBOX_NPC
-	end
+    msgbox SlateportCity_OceanicMuseum_1F_Text_PleaseEnjoyYourself, MSGBOX_NPC
+    end
 
 SlateportCity_OceanicMuseum_1F_EventScript_PayEntranceFeeLeft::
-	lockall
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
-	waitmovement 0
-	goto SlateportCity_OceanicMuseum_1F_EventScript_PayEntranceFee
-	end
+    lockall
+    applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
+    waitmovement 0
+    goto SlateportCity_OceanicMuseum_1F_EventScript_PayEntranceFee
+    end
 
 SlateportCity_OceanicMuseum_1F_EventScript_PayEntranceFeeRight::
-	lockall
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
-	waitmovement 0
-	goto SlateportCity_OceanicMuseum_1F_EventScript_PayEntranceFee
-	end
+    lockall
+    applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
+    waitmovement 0
+    goto SlateportCity_OceanicMuseum_1F_EventScript_PayEntranceFee
+    end
 
 SlateportCity_OceanicMuseum_1F_EventScript_PayEntranceFee::
-	showmoneybox 0, 0
-	msgbox SlateportCity_OceanicMuseum_1F_Text_WouldYouLikeToEnter, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, SlateportCity_OceanicMuseum_1F_EventScript_CheckMoneyForFee
-	closemessage
-	hidemoneybox
-	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_OceanicMuseum_1F_Movement_PushPlayerBackFromCounter
-	waitmovement 0
-	releaseall
-	end
+    showmoneybox 0, 0
+    msgbox SlateportCity_OceanicMuseum_1F_Text_WouldYouLikeToEnter, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, YES, SlateportCity_OceanicMuseum_1F_EventScript_CheckMoneyForFee
+    closemessage
+    hidemoneybox
+    applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_OceanicMuseum_1F_Movement_PushPlayerBackFromCounter
+    waitmovement 0
+    releaseall
+    end
 
 SlateportCity_OceanicMuseum_1F_EventScript_CheckMoneyForFee::
-	checkmoney 50
-	goto_if_eq VAR_RESULT, FALSE, SlateportCity_OceanicMuseum_1F_EventScript_NotEnoughMoney
-	playse SE_SHOP
-	removemoney 50
-	updatemoneybox
-	msgbox SlateportCity_OceanicMuseum_1F_Text_PleaseEnjoyYourself, MSGBOX_DEFAULT
-	setvar VAR_SLATEPORT_MUSEUM_1F_STATE, 1
-	hidemoneybox
-	releaseall
-	end
+    checkmoney 50
+    goto_if_eq VAR_RESULT, FALSE, SlateportCity_OceanicMuseum_1F_EventScript_NotEnoughMoney
+    playse SE_SHOP
+    removemoney 50
+    updatemoneybox
+    msgbox SlateportCity_OceanicMuseum_1F_Text_PleaseEnjoyYourself, MSGBOX_DEFAULT
+    setvar VAR_SLATEPORT_MUSEUM_1F_STATE, 1
+    hidemoneybox
+    releaseall
+    end
 
 SlateportCity_OceanicMuseum_1F_EventScript_NotEnoughMoney::
-	goto_if_unset FLAG_DELIVERED_DEVON_GOODS, SlateportCity_OceanicMuseum_1F_EventScript_AllowEntranceAnyway
-	msgbox SlateportCity_OceanicMuseum_1F_Text_NotEnoughMoney, MSGBOX_DEFAULT
-	closemessage
-	hidemoneybox
-	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_OceanicMuseum_1F_Movement_PushPlayerBackFromCounter
-	waitmovement 0
-	releaseall
-	end
+    goto_if_unset FLAG_DELIVERED_DEVON_GOODS, SlateportCity_OceanicMuseum_1F_EventScript_AllowEntranceAnyway
+    msgbox SlateportCity_OceanicMuseum_1F_Text_NotEnoughMoney, MSGBOX_DEFAULT
+    closemessage
+    hidemoneybox
+    applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_OceanicMuseum_1F_Movement_PushPlayerBackFromCounter
+    waitmovement 0
+    releaseall
+    end
 
 SlateportCity_OceanicMuseum_1F_EventScript_AllowEntranceAnyway::
-	msgbox SlateportCity_OceanicMuseum_1F_Text_CatchUpWithYourGroup, MSGBOX_DEFAULT
-	setvar VAR_SLATEPORT_MUSEUM_1F_STATE, 1
-	hidemoneybox
-	releaseall
-	end
+    msgbox SlateportCity_OceanicMuseum_1F_Text_CatchUpWithYourGroup, MSGBOX_DEFAULT
+    setvar VAR_SLATEPORT_MUSEUM_1F_STATE, 1
+    hidemoneybox
+    releaseall
+    end
 
 SlateportCity_OceanicMuseum_1F_Movement_PushPlayerBackFromCounter:
-	walk_down
-	step_end
+    walk_down
+    step_end
 
 SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGrunt::
-	lock
-	faceplayer
-	delay 8
-	playse SE_PIN
-	applymovement LOCALID_FAMILIAR_GRUNT, Common_Movement_ExclamationMark
-	waitmovement 0
-	applymovement LOCALID_FAMILIAR_GRUNT, Common_Movement_Delay48
-	waitmovement 0
-	msgbox SlateportCity_OceanicMuseum_1F_Text_RememberMeTakeThis, MSGBOX_DEFAULT
-	giveitem ITEM_TM_THIEF
-	goto_if_eq VAR_RESULT, 0, SlateportCity_OceanicMuseum_1F_EventScript_NoRoomForThief
-	setflag FLAG_RECEIVED_TM_THIEF
-	msgbox SlateportCity_OceanicMuseum_1F_Text_HopeINeverSeeYouAgain, MSGBOX_DEFAULT
-	closemessage
-	goto_if_eq VAR_FACING, DIR_NORTH, SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExitNorth
-	goto_if_eq VAR_FACING, DIR_SOUTH, SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExitSouth
-	goto_if_eq VAR_FACING, DIR_WEST, SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExitWestEast
-	goto_if_eq VAR_FACING, DIR_EAST, SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExitWestEast
-	end
+    lock
+    faceplayer
+    delay 8
+    playse SE_PIN
+    applymovement LOCALID_FAMILIAR_GRUNT, Common_Movement_ExclamationMark
+    waitmovement 0
+    applymovement LOCALID_FAMILIAR_GRUNT, Common_Movement_Delay48
+    waitmovement 0
+    msgbox SlateportCity_OceanicMuseum_1F_Text_RememberMeTakeThis, MSGBOX_DEFAULT
+    giveitem ITEM_TM_THIEF
+    goto_if_eq VAR_RESULT, 0, SlateportCity_OceanicMuseum_1F_EventScript_NoRoomForThief
+    setflag FLAG_RECEIVED_TM_THIEF
+    msgbox SlateportCity_OceanicMuseum_1F_Text_HopeINeverSeeYouAgain, MSGBOX_DEFAULT
+    closemessage
+    goto_if_eq VAR_FACING, DIR_NORTH, SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExitNorth
+    goto_if_eq VAR_FACING, DIR_SOUTH, SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExitSouth
+    goto_if_eq VAR_FACING, DIR_WEST, SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExitWestEast
+    goto_if_eq VAR_FACING, DIR_EAST, SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExitWestEast
+    end
 
 SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExitNorth::
-	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_OceanicMuseum_1F_Movement_PlayerWatchGruntExitNorth
-	applymovement LOCALID_FAMILIAR_GRUNT, SlateportCity_OceanicMuseum_1F_Movement_FamiliarGruntExitNorth
-	waitmovement 0
-	goto SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExited
-	end
+    applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_OceanicMuseum_1F_Movement_PlayerWatchGruntExitNorth
+    applymovement LOCALID_FAMILIAR_GRUNT, SlateportCity_OceanicMuseum_1F_Movement_FamiliarGruntExitNorth
+    waitmovement 0
+    goto SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExited
+    end
 
 SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExitSouth::
-	applymovement LOCALID_FAMILIAR_GRUNT, SlateportCity_OceanicMuseum_1F_Movement_FamiliarGruntExit
-	waitmovement 0
-	goto SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExited
-	end
+    applymovement LOCALID_FAMILIAR_GRUNT, SlateportCity_OceanicMuseum_1F_Movement_FamiliarGruntExit
+    waitmovement 0
+    goto SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExited
+    end
 
 SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExitWestEast::
-	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_OceanicMuseum_1F_Movement_PlayerWatchGruntExitWestEast
-	applymovement LOCALID_FAMILIAR_GRUNT, SlateportCity_OceanicMuseum_1F_Movement_FamiliarGruntExit
-	waitmovement 0
-	goto SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExited
-	end
+    applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_OceanicMuseum_1F_Movement_PlayerWatchGruntExitWestEast
+    applymovement LOCALID_FAMILIAR_GRUNT, SlateportCity_OceanicMuseum_1F_Movement_FamiliarGruntExit
+    waitmovement 0
+    goto SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExited
+    end
 
 SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExited::
-	setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_FAMILIAR_AQUA_GRUNT
-	playse SE_EXIT
-	removeobject LOCALID_FAMILIAR_GRUNT
-	release
-	end
+    setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_FAMILIAR_AQUA_GRUNT
+    playse SE_EXIT
+    removeobject LOCALID_FAMILIAR_GRUNT
+    release
+    end
 
 SlateportCity_OceanicMuseum_1F_EventScript_NoRoomForThief::
-	msgbox SlateportCity_OceanicMuseum_1F_Text_YouHaveToTakeThis, MSGBOX_DEFAULT
-	release
-	end
+    msgbox SlateportCity_OceanicMuseum_1F_Text_YouHaveToTakeThis, MSGBOX_DEFAULT
+    release
+    end
 
 SlateportCity_OceanicMuseum_1F_Movement_PlayerWatchGruntExitNorth:
-	delay_16
-	delay_8
-	delay_4
-	walk_in_place_faster_down
-	step_end
+    delay_16
+    delay_8
+    delay_4
+    walk_in_place_faster_down
+    step_end
 
 SlateportCity_OceanicMuseum_1F_Movement_PlayerWatchGruntExitWestEast:
-	delay_16
-	walk_in_place_faster_down
-	step_end
+    delay_16
+    walk_in_place_faster_down
+    step_end
 
 SlateportCity_OceanicMuseum_1F_Movement_FamiliarGruntExit:
-	face_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	delay_8
-	step_end
+    face_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    delay_8
+    step_end
 
 SlateportCity_OceanicMuseum_1F_Movement_FamiliarGruntExitNorth:
-	walk_fast_right
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	walk_fast_down
-	delay_8
-	step_end
+    walk_fast_right
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    walk_fast_down
+    delay_8
+    step_end
 `
 
 text SlateportCity_OceanicMuseum_1F_Text_WouldYouLikeToEnter {
-	format("Welcome to the Oceanic Museum.\p"
-	"The entrance fee is ¥50.\n"
-	"Would you like to enter?")
+    format("Welcome to the Oceanic Museum.\p"
+    "The entrance fee is ¥50.\n"
+    "Would you like to enter?")
 }
 
 text SlateportCity_OceanicMuseum_1F_Text_PleaseEnjoyYourself {
-	format("Please enjoy yourself.")
+    format("Please enjoy yourself.")
 }
 
 text SlateportCity_OceanicMuseum_1F_Text_NotEnoughMoney {
-	format("Oh? I'm sorry, but you don't seem to have enough money.")
+    format("Oh? I'm sorry, but you don't seem to have enough money.")
 }
 
 text SlateportCity_OceanicMuseum_1F_Text_CatchUpWithYourGroup {
-	format("Oh? You're with that group that went in earlier?\p"
-	"You're the only one who's late.\n"
-	"You'd better go catch up to them!")
+    format("Oh? You're with that group that went in earlier?\p"
+    "You're the only one who's late.\n"
+    "You'd better go catch up to them!")
 }
 
 script SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt1 {
-	msgbox(format("We, Team Aqua, exist for the good of all!"), MSGBOX_NPC)
+    msgbox(format("We, Team Aqua, exist for the good of all!"), MSGBOX_NPC)
 }
 
 script SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt2 {
-	msgbox(format("We were told to assemble here, so we did, but…\p"
-	"Our Boss, the linchpin, isn't here."), MSGBOX_NPC)
+    msgbox(format("We were told to assemble here, so we did, but…\p"
+    "Our Boss, the linchpin, isn't here."), MSGBOX_NPC)
 }
 
 script SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt3 {
-	msgbox(format("If I ripped off the stuff here, would it make me rich?"), MSGBOX_NPC)
+    msgbox(format("If I ripped off the stuff here, would it make me rich?"), MSGBOX_NPC)
 }
 
 script SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt4 {
-	msgbox(format("What I learn here, I can put to use on nefarious deeds…"), MSGBOX_SIGN)
+    msgbox(format("What I learn here, I can put to use on nefarious deeds…"), MSGBOX_SIGN)
 }
 
 script SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt5 {
-	msgbox(format("If our goons didn't bungle things in Rustboro, we wouldn't be here!"), MSGBOX_NPC)
+    msgbox(format("If our goons didn't bungle things in Rustboro, we wouldn't be here!"), MSGBOX_NPC)
 }
 
 script SlateportCity_OceanicMuseum_1F_EventScript_MuseumGrunt6 {
-	msgbox(format("I didn't have ¥50, so it took a long time getting by the receptionist."), MSGBOX_NPC)
+    msgbox(format("I didn't have ¥50, so it took a long time getting by the receptionist."), MSGBOX_NPC)
 }
 
 text SlateportCity_OceanicMuseum_1F_Text_RememberMeTakeThis {
-	format("Aiyeeeh!\n"
-	"What are you doing here?\p"
-	"Me? I'm the Team Aqua member you thumped before, remember?\l"
-	"Back in Rusturf Tunnel?\p"
-	"Here, take this!\n"
-	"You have to forgive me!")
+    format("Aiyeeeh!\n"
+    "What are you doing here?\p"
+    "Me? I'm the Team Aqua member you thumped before, remember?\l"
+    "Back in Rusturf Tunnel?\p"
+    "Here, take this!\n"
+    "You have to forgive me!")
 }
 
 text SlateportCity_OceanicMuseum_1F_Text_HopeINeverSeeYouAgain {
-	format("That TM, it suits you more than it does me.\p"
-	"Hope I never see you again!\n"
-	"Wahahaha!")
+    format("That TM, it suits you more than it does me.\p"
+    "Hope I never see you again!\n"
+    "Wahahaha!")
 }
 
 text SlateportCity_OceanicMuseum_1F_Text_YouHaveToTakeThis {
-	format("Awww, come on!\n"
-	"You have to take this and let me go!")
+    format("Awww, come on!\n"
+    "You have to take this and let me go!")
 }
 
 script SlateportCity_OceanicMuseum_1F_EventScript_WhirlpoolExperiment {
-	msgbox(format("A blue fluid is spiraling inside a glass vessel.\p"
-	"“This is an experiment to create a Whirlpool artificially using wind.”"), MSGBOX_SIGN)
+    msgbox(format("A blue fluid is spiraling inside a glass vessel.\p"
+    "“This is an experiment to create a Whirlpool artificially using wind.”"), MSGBOX_SIGN)
 }
 
 script SlateportCity_OceanicMuseum_1F_EventScript_WaterfallExperiment {
-	msgbox(format("A red ball is bobbing up and down inside a glass vessel.\p"
-	"“This is an experiment simulating a Waterfall using the ball's buoyancy.”"), MSGBOX_SIGN)
+    msgbox(format("A red ball is bobbing up and down inside a glass vessel.\p"
+    "“This is an experiment simulating a Waterfall using the ball's buoyancy.”"), MSGBOX_SIGN)
 }
 
 script SlateportCity_OceanicMuseum_1F_EventScript_OceanSoilDisplay {
-	msgbox(format("It's a sample of soil from the ocean floor.\p"
-	"“Over many years, the remains of life-forms settle at the bottom of the sea, making sedimentary layers.\p"
-	"“By analyzing these layers, the ancient past is revealed.”"), MSGBOX_SIGN)
+    msgbox(format("It's a sample of soil from the ocean floor.\p"
+    "“Over many years, the remains of life-forms settle at the bottom of the sea, making sedimentary layers.\p"
+    "“By analyzing these layers, the ancient past is revealed.”"), MSGBOX_SIGN)
 }
 
 script SlateportCity_OceanicMuseum_1F_EventScript_BeachSandDisplay {
-	msgbox(format("It's a sample of beach sand.\p"
-	"“Stones from mountains are washed down by rivers where they are chipped and ground down.\p"
-	"“They are reduced to grains and end up as sand on beaches.”"), MSGBOX_SIGN)
+    msgbox(format("It's a sample of beach sand.\p"
+    "“Stones from mountains are washed down by rivers where they are chipped and ground down.\p"
+    "“They are reduced to grains and end up as sand on beaches.”"), MSGBOX_SIGN)
 }
 
 script SlateportCity_OceanicMuseum_1F_EventScript_OceanicMinifact1 {
-	speakername("Oceanic Minifact 1")
-	msgbox(format("“Why is seawater blue?\p"
-	"“Light is composed of many colors.\p"
-	"“When light passes through water, most kinds of light lose color.\p"
-	"“However, blue light retains its color, making the sea appear blue.”"), MSGBOX_SIGN)
+    speakername("Oceanic Minifact 1")
+    msgbox(format("“Why is seawater blue?\p"
+    "“Light is composed of many colors.\p"
+    "“When light passes through water, most kinds of light lose color.\p"
+    "“However, blue light retains its color, making the sea appear blue.”"), MSGBOX_SIGN)
 }
 
 script SlateportCity_OceanicMuseum_1F_EventScript_OceanicMinifact2 {
-	speakername("Oceanic Minifact 2")
-	msgbox(format("“Why is the sea salty?\p"
-	    "“Seawater contains dissolved salt in the form of sodium and chlorine ions.\p"
-	    "“These ions leech out of rocks and are carried out to sea by rain.\p"
-	    "“The concentration of dissolved salt makes the sea salty.”"), MSGBOX_SIGN)
+    speakername("Oceanic Minifact 2")
+    msgbox(format("“Why is the sea salty?\p"
+        "“Seawater contains dissolved salt in the form of sodium and chlorine ions.\p"
+        "“These ions leech out of rocks and are carried out to sea by rain.\p"
+        "“The concentration of dissolved salt makes the sea salty.”"), MSGBOX_SIGN)
 }
 
 script SlateportCity_OceanicMuseum_1F_EventScript_OceanicMinifact3 {
-	speakername("Oceanic Minifact 3")
-	msgbox(format("“What is the ground like underwater?\p"
-	"“The sea has mountains underwater, just like the land.\p"
-	"“Seamounts are pointy and formed by continental movements, while tablemounts are flat on top and made from islands, weathered away.”"), MSGBOX_SIGN)
+    speakername("Oceanic Minifact 3")
+    msgbox(format("“What is the ground like underwater?\p"
+    "“The sea has mountains underwater, just like the land.\p"
+    "“Seamounts are pointy and formed by continental movements, while tablemounts are flat on top and made from islands, weathered away.”"), MSGBOX_SIGN)
 }
 
 script SlateportCity_OceanicMuseum_1F_EventScript_MuseumPatron2 {
-	msgbox(format("I get all giddy and gooey when I see the sea!\p"
-	"For me, Capt. Stern is the number one role model!"), MSGBOX_NPC)
+    msgbox(format("I get all giddy and gooey when I see the sea!\p"
+    "For me, Capt. Stern is the number one role model!"), MSGBOX_NPC)
 }
 
 script SlateportCity_OceanicMuseum_1F_EventScript_MuseumPatron3 {
-	msgbox(format("The sea is vast without end, and infinitely deep…\p"
-	"There must be many Pokémon that we don't know about."), MSGBOX_NPC)
+    msgbox(format("The sea is vast without end, and infinitely deep…\p"
+    "There must be many Pokémon that we don't know about."), MSGBOX_NPC)
 }
 
 script SlateportCity_OceanicMuseum_1F_EventScript_MuseumPatron4 {
-	msgbox(format("I want a sea Pokémon.\p"
-	"I think it would feel cool and nice to hug."), MSGBOX_NPC)
+    msgbox(format("I want a sea Pokémon.\p"
+    "I think it would feel cool and nice to hug."), MSGBOX_NPC)
 }
 
 script SlateportCity_OceanicMuseum_1F_EventScript_FossilDisplay {
-	msgbox(format("It's a fossil with wavy ridges on it.\p"
-	"“Soil on the ocean floor gets scoured by the tide.\p"
-	"“The flowing seawater marks the soil with small ridges and valleys.\p"
-	"“If this soil becomes fossilized, it is called a ripple mark.”"), MSGBOX_SIGN)
+    msgbox(format("It's a fossil with wavy ridges on it.\p"
+    "“Soil on the ocean floor gets scoured by the tide.\p"
+    "“The flowing seawater marks the soil with small ridges and valleys.\p"
+    "“If this soil becomes fossilized, it is called a ripple mark.”"), MSGBOX_SIGN)
 }
 
 script SlateportCity_OceanicMuseum_1F_EventScript_DepthMeasuringMachine {
-	msgbox(format("A strange machine is rotating under a glass dome.\p"
-	"Maybe it's for measuring the depth of something…"), MSGBOX_SIGN)
+    msgbox(format("A strange machine is rotating under a glass dome.\p"
+    "Maybe it's for measuring the depth of something…"), MSGBOX_SIGN)
 }
 
 script SlateportCity_OceanicMuseum_1F_EventScript_MuseumPatron1 {
-	msgbox(format("I want to learn about the sea and use that knowledge for battling."), MSGBOX_NPC)
+    msgbox(format("I want to learn about the sea and use that knowledge for battling."), MSGBOX_NPC)
 }
 
 

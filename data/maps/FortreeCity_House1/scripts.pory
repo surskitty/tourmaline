@@ -2,104 +2,104 @@ mapscripts FortreeCity_House1_MapScripts {}
 
 raw `
 FortreeCity_House1_EventScript_Trader::
-	lock
-	faceplayer
-	goto_if_set FLAG_FORTREE_NPC_TRADE_COMPLETED, FortreeCity_House1_EventScript_TradeCompleted
-	setvar VAR_0x8008, INGAME_TRADE_PLUSLE
-	copyvar VAR_0x8004, VAR_0x8008
-	specialvar VAR_RESULT, GetInGameTradeSpeciesInfo
-	copyvar VAR_0x8009, VAR_RESULT
-	msgbox FortreeCity_House1_Text_YouWillTradeWontYou, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, FortreeCity_House1_EventScript_DeclineTrade
-	special ChoosePartyMon
-	waitstate
-	copyvar VAR_0x800A, VAR_0x8004
-	goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, FortreeCity_House1_EventScript_DeclineTrade
-	copyvar VAR_0x8005, VAR_0x800A
-	specialvar VAR_RESULT, GetTradeSpecies
-	copyvar VAR_0x800B, VAR_RESULT
-	goto_if_ne VAR_RESULT, VAR_0x8009, FortreeCity_House1_EventScript_NotRequestedMon
-	copyvar VAR_0x8004, VAR_0x8008
-	copyvar VAR_0x8005, VAR_0x800A
-	special CreateInGameTradePokemon
-	special DoInGameTradeScene
-	waitstate
-	bufferspeciesname STR_VAR_1, VAR_0x8009
-	msgbox FortreeCity_House1_Text_MonYouTakeCare, MSGBOX_DEFAULT
-	setflag FLAG_FORTREE_NPC_TRADE_COMPLETED
-	release
-	end
+    lock
+    faceplayer
+    goto_if_set FLAG_FORTREE_NPC_TRADE_COMPLETED, FortreeCity_House1_EventScript_TradeCompleted
+    setvar VAR_0x8008, INGAME_TRADE_PLUSLE
+    copyvar VAR_0x8004, VAR_0x8008
+    specialvar VAR_RESULT, GetInGameTradeSpeciesInfo
+    copyvar VAR_0x8009, VAR_RESULT
+    msgbox FortreeCity_House1_Text_YouWillTradeWontYou, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, NO, FortreeCity_House1_EventScript_DeclineTrade
+    special ChoosePartyMon
+    waitstate
+    copyvar VAR_0x800A, VAR_0x8004
+    goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, FortreeCity_House1_EventScript_DeclineTrade
+    copyvar VAR_0x8005, VAR_0x800A
+    specialvar VAR_RESULT, GetTradeSpecies
+    copyvar VAR_0x800B, VAR_RESULT
+    goto_if_ne VAR_RESULT, VAR_0x8009, FortreeCity_House1_EventScript_NotRequestedMon
+    copyvar VAR_0x8004, VAR_0x8008
+    copyvar VAR_0x8005, VAR_0x800A
+    special CreateInGameTradePokemon
+    special DoInGameTradeScene
+    waitstate
+    bufferspeciesname STR_VAR_1, VAR_0x8009
+    msgbox FortreeCity_House1_Text_MonYouTakeCare, MSGBOX_DEFAULT
+    setflag FLAG_FORTREE_NPC_TRADE_COMPLETED
+    release
+    end
 
 FortreeCity_House1_EventScript_DeclineTrade::
-	msgbox FortreeCity_House1_Text_YouWontTradeMe, MSGBOX_DEFAULT
-	release
-	end
+    msgbox FortreeCity_House1_Text_YouWontTradeMe, MSGBOX_DEFAULT
+    release
+    end
 
 FortreeCity_House1_EventScript_NotRequestedMon::
-	bufferspeciesname STR_VAR_1, VAR_0x8009
-	msgbox FortreeCity_House1_Text_ThisIsntAMon, MSGBOX_DEFAULT
-	release
-	end
+    bufferspeciesname STR_VAR_1, VAR_0x8009
+    msgbox FortreeCity_House1_Text_ThisIsntAMon, MSGBOX_DEFAULT
+    release
+    end
 
 FortreeCity_House1_EventScript_TradeCompleted::
-	msgbox FortreeCity_House1_Text_GoingToMakeVolbeatStrong, MSGBOX_DEFAULT
-	release
-	end
+    msgbox FortreeCity_House1_Text_GoingToMakeVolbeatStrong, MSGBOX_DEFAULT
+    release
+    end
 
 FortreeCity_House1_EventScript_ExpertF::
-	msgbox FortreeCity_House1_Text_TradingMemoriesWithOthers, MSGBOX_NPC
-	end
+    msgbox FortreeCity_House1_Text_TradingMemoriesWithOthers, MSGBOX_NPC
+    end
 
 FortreeCity_House1_EventScript_Zigzagoon::
-	lock
-	faceplayer
-	waitse
-	playmoncry SPECIES_ZIGZAGOON, CRY_MODE_NORMAL
-	msgbox FortreeCity_House1_Text_Zigzagoon, MSGBOX_DEFAULT
-	waitmoncry
-	release
-	end
+    lock
+    faceplayer
+    waitse
+    playmoncry SPECIES_ZIGZAGOON, CRY_MODE_NORMAL
+    msgbox FortreeCity_House1_Text_Zigzagoon, MSGBOX_DEFAULT
+    waitmoncry
+    release
+    end
 `
 
 text FortreeCity_House1_Text_YouWillTradeWontYou {
-	format("Wrooooaaar! I need it!\n"
-	"I have to get me a {STR_VAR_1}!\l"
-	"I'll do anything for it!\p"
-	"…Uh… Did you hear that?\n"
-	"My shout from the bottom of my heart?\p"
-	"Having heard that, you will trade\n"
-	"your {STR_VAR_1} for my {STR_VAR_2},\l"
-	"won't you?")
+    format("Wrooooaaar! I need it!\n"
+    "I have to get me a {STR_VAR_1}!\l"
+    "I'll do anything for it!\p"
+    "…Uh… Did you hear that?\n"
+    "My shout from the bottom of my heart?\p"
+    "Having heard that, you will trade\n"
+    "your {STR_VAR_1} for my {STR_VAR_2},\l"
+    "won't you?")
 }
 
 text FortreeCity_House1_Text_MonYouTakeCare {
-	format("Oh, yeah, right on!\p"
-	"{STR_VAR_1}, welcome!\n"
-	"{STR_VAR_2}, you take care!")
+    format("Oh, yeah, right on!\p"
+    "{STR_VAR_1}, welcome!\n"
+    "{STR_VAR_2}, you take care!")
 }
 
 text FortreeCity_House1_Text_ThisIsntAMon {
-	format("Uh, no, I don't think so.\n"
-	"That isn't a {STR_VAR_1}.")
+    format("Uh, no, I don't think so.\n"
+    "That isn't a {STR_VAR_1}.")
 }
 
 text FortreeCity_House1_Text_YouWontTradeMe {
-	format("No? You won't trade me?\n"
-	"Even after I bared my heart to you?")
+    format("No? You won't trade me?\n"
+    "Even after I bared my heart to you?")
 }
 
 text FortreeCity_House1_Text_GoingToMakeVolbeatStrong {
-	format("I'm going to make Volbeat super\n"
-	"strong from this moment on!\p"
-	"I hope you do the same with Plusle!")
+    format("I'm going to make Volbeat super\n"
+    "strong from this moment on!\p"
+    "I hope you do the same with Plusle!")
 }
 
 text FortreeCity_House1_Text_TradingMemoriesWithOthers {
-	format("Trading Pokémon with others…\p"
-	"It's as if you're trading your own memories with other people.")
+    format("Trading Pokémon with others…\p"
+    "It's as if you're trading your own memories with other people.")
 }
 
 text FortreeCity_House1_Text_Zigzagoon {
-	format("ZIGZAGOON: Gumomoh?")
+    format("ZIGZAGOON: Gumomoh?")
 }
 

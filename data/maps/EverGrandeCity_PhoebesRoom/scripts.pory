@@ -1,7 +1,7 @@
 mapscripts EverGrandeCity_PhoebesRoom_MapScripts {
     MAP_SCRIPT_ON_LOAD {
         call_if_set(FLAG_DEFEATED_ELITE_4_PHOEBE, EverGrandeCity_PhoebesRoom_EventScript_ResetAdvanceToNextRoom)
-    	call_if_eq(VAR_ELITE_4_STATE, 2, EverGrandeCity_PhoebesRoom_EventScript_CloseDoor)
+        call_if_eq(VAR_ELITE_4_STATE, 2, EverGrandeCity_PhoebesRoom_EventScript_CloseDoor)
     }
     MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
         VAR_TEMP_1, 0 { turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH) }
@@ -16,65 +16,65 @@ text EverGrandeCity_PhoebesRoom_Text_Phoebe { "Phoebe" }
 raw `
 
 EverGrandeCity_PhoebesRoom_EventScript_WalkInCloseDoor::
-	lockall
-	call PokemonLeague_EliteFour_EventScript_WalkInCloseDoor
-	setvar VAR_ELITE_4_STATE, 2
-	releaseall
-	end
+    lockall
+    call PokemonLeague_EliteFour_EventScript_WalkInCloseDoor
+    setvar VAR_ELITE_4_STATE, 2
+    releaseall
+    end
 
 EverGrandeCity_PhoebesRoom_EventScript_ResetAdvanceToNextRoom::
-	call PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom
-	return
+    call PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom
+    return
 
 EverGrandeCity_PhoebesRoom_EventScript_CloseDoor::
-	call PokemonLeague_EliteFour_EventScript_CloseDoor
-	return
+    call PokemonLeague_EliteFour_EventScript_CloseDoor
+    return
 
 EverGrandeCity_PhoebesRoom_EventScript_Phoebe::
-	lock
-	faceplayer
-	speakername EverGrandeCity_PhoebesRoom_Text_Phoebe
-	goto_if_set FLAG_DEFEATED_ELITE_4_PHOEBE, EverGrandeCity_PhoebesRoom_EventScript_PostBattleSpeech
-	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
-	speakername EverGrandeCity_PhoebesRoom_Text_Phoebe
-	msgbox EverGrandeCity_PhoebesRoom_Text_IntroSpeech, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_PHOEBE, EverGrandeCity_PhoebesRoom_Text_Defeat
-	goto EverGrandeCity_PhoebesRoom_EventScript_Defeated
-	end
+    lock
+    faceplayer
+    speakername EverGrandeCity_PhoebesRoom_Text_Phoebe
+    goto_if_set FLAG_DEFEATED_ELITE_4_PHOEBE, EverGrandeCity_PhoebesRoom_EventScript_PostBattleSpeech
+    playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
+    speakername EverGrandeCity_PhoebesRoom_Text_Phoebe
+    msgbox EverGrandeCity_PhoebesRoom_Text_IntroSpeech, MSGBOX_DEFAULT
+    trainerbattle_no_intro TRAINER_PHOEBE, EverGrandeCity_PhoebesRoom_Text_Defeat
+    goto EverGrandeCity_PhoebesRoom_EventScript_Defeated
+    end
 
 EverGrandeCity_PhoebesRoom_EventScript_PostBattleSpeech::
-	speakername EverGrandeCity_PhoebesRoom_Text_Phoebe
-	msgbox EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
-	release
-	end
+    speakername EverGrandeCity_PhoebesRoom_Text_Phoebe
+    msgbox EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
+    release
+    end
 
 EverGrandeCity_PhoebesRoom_EventScript_Defeated::
-	setflag FLAG_DEFEATED_ELITE_4_PHOEBE
-	call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
-	speakername EverGrandeCity_PhoebesRoom_Text_Phoebe
-	msgbox EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
-	release
-	end
+    setflag FLAG_DEFEATED_ELITE_4_PHOEBE
+    call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
+    speakername EverGrandeCity_PhoebesRoom_Text_Phoebe
+    msgbox EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
+    release
+    end
 `
 
 text EverGrandeCity_PhoebesRoom_Text_IntroSpeech { 
-	format("Ahahaha!\p"
-	"I'm Phoebe of the Elite Four.\n"
-	"I did my training on Mt. Pyre.\p"
-	"While I trained, I gained the ability to commune with Ghost-type Pokémon.\p"
-	"Yes, the bond I developed with Pokémon is extremely tight.\p"
-	"So, come on, just try and see if you can even inflict damage on my Pokémon!")
+    format("Ahahaha!\p"
+    "I'm Phoebe of the Elite Four.\n"
+    "I did my training on Mt. Pyre.\p"
+    "While I trained, I gained the ability to commune with Ghost-type Pokémon.\p"
+    "Yes, the bond I developed with Pokémon is extremely tight.\p"
+    "So, come on, just try and see if you can even inflict damage on my Pokémon!")
 }
 
 text EverGrandeCity_PhoebesRoom_Text_Defeat { 
-	format("Oh, darn.\n"
-	"I've gone and lost.")
+    format("Oh, darn.\n"
+    "I've gone and lost.")
 }
 
 text EverGrandeCity_PhoebesRoom_Text_PostBattleSpeech { 
-	format("There's a definite bond between you and your Pokémon, too.\p"
-	"I didn't recognize it, so it's only natural that I lost.\p"
-	"Yup, I'd like to see how far your bond will carry you.\p"
-	"Go ahead, move on to the next room.")
+    format("There's a definite bond between you and your Pokémon, too.\p"
+    "I didn't recognize it, so it's only natural that I lost.\p"
+    "Yup, I'd like to see how far your bond will carry you.\p"
+    "Go ahead, move on to the next room.")
 }
 

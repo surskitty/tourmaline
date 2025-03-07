@@ -11,67 +11,67 @@ mapscripts FallarborTown_MapScripts {
 
 raw `
 FallarborTown_EventScript_ExpertM::
-	lock
-	faceplayer
-	goto_if_set FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, FallarborTown_EventScript_ExpertMNormal
-	msgbox FallarborTown_Text_ShadyCharactersCozmosHome, MSGBOX_DEFAULT
-	release
-	end
+    lock
+    faceplayer
+    goto_if_set FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, FallarborTown_EventScript_ExpertMNormal
+    msgbox FallarborTown_Text_ShadyCharactersCozmosHome, MSGBOX_DEFAULT
+    release
+    end
 
 FallarborTown_EventScript_ExpertMNormal::
-	msgbox FallarborTown_Text_RegionKnownForMeteors, MSGBOX_DEFAULT
-	release
-	end
+    msgbox FallarborTown_Text_RegionKnownForMeteors, MSGBOX_DEFAULT
+    release
+    end
 
 FallarborTown_EventScript_Girl::
-	msgbox FallarborTown_Text_MyPreciousAzurill, MSGBOX_NPC
-	end
+    msgbox FallarborTown_Text_MyPreciousAzurill, MSGBOX_NPC
+    end
 
 FallarborTown_EventScript_Gentleman::
-	msgbox FallarborTown_Text_HaveYouChallengedFlannery, MSGBOX_NPC
-	end
+    msgbox FallarborTown_Text_HaveYouChallengedFlannery, MSGBOX_NPC
+    end
 `
 
 text FallarborTown_Text_ShadyCharactersCozmosHome {
-	format("Something's happening,\n"
-	"and I don't like it!\p"
-	"I've seen shady characters wandering\n"
-	"in and out of Prof. Cozmo's home…")
+    format("Something's happening,\n"
+    "and I don't like it!\p"
+    "I've seen shady characters wandering\n"
+    "in and out of Prof. Cozmo's home…")
 }
 
 text FallarborTown_Text_RegionKnownForMeteors {
-	format("This region's been known for meteors\n"
-	"since the olden days.\p"
-	"They say Meteor Falls was gouged out\n"
-	"by a falling meteorite long ago.")
+    format("This region's been known for meteors\n"
+    "since the olden days.\p"
+    "They say Meteor Falls was gouged out\n"
+    "by a falling meteorite long ago.")
 }
 
 text FallarborTown_Text_MyPreciousAzurill {
-	format("See! Take a look!\n"
-	"This is my precious Azurill!\p"
-	"It's slick and smooth and plushy, too!")
+    format("See! Take a look!\n"
+    "This is my precious Azurill!\p"
+    "It's slick and smooth and plushy, too!")
 }
 
 text FallarborTown_Text_HaveYouChallengedFlannery {
-	format("Have you already challenged Flannery,\n"
-	"the Leader of Lavaridge Gym?\p"
-	"The girl's grandfather was famous.\n"
-	"He was one of the Elite Four in the\l"
-	"Pokémon League at one point.\p"
-	"It wouldn't surprise me to see Flannery\n"
-	"become a great Trainer in her own\l"
-	"right.")
+    format("Have you already challenged Flannery,\n"
+    "the Leader of Lavaridge Gym?\p"
+    "The girl's grandfather was famous.\n"
+    "He was one of the Elite Four in the\l"
+    "Pokémon League at one point.\p"
+    "It wouldn't surprise me to see Flannery\n"
+    "become a great Trainer in her own\l"
+    "right.")
 }
 
 script FallarborTown_EventScript_Azurill {
-	lock
-	faceplayer
-	waitse
-	setseenmon(SPECIES_AZURILL)
-	playmoncry(SPECIES_AZURILL, CRY_MODE_NORMAL)
-	msgbox("AZURILL: Rooreelooo.", MSGBOX_DEFAULT)
-	waitmoncry
-	release
+    lock
+    faceplayer
+    waitse
+    setseenmon(SPECIES_AZURILL)
+    playmoncry(SPECIES_AZURILL, CRY_MODE_NORMAL)
+    msgbox("AZURILL: Rooreelooo.", MSGBOX_DEFAULT)
+    waitmoncry
+    release
 }
 
 script FallarborTown_EventScript_BattleTentSign {

@@ -1,164 +1,164 @@
 const LOCALID_OWNER = 1
 
 mapscripts Route104_PrettyPetalFlowerShop_MapScripts {
-	MAP_SCRIPT_ON_TRANSITION {
-		setflag(FLAG_LANDMARK_FLOWER_SHOP)
-	    goto_if_unset(FLAG_MET_PRETTY_PETAL_SHOP_OWNER, Route104_PrettyPetalFlowerShop_EventScript_MoveShopOwner)
-	    goto_if_unset(FLAG_BADGE03_GET, Route104_PrettyPetalFlowerShop_EventScript_MoveShopOwner)
-	    setflag(FLAG_TEMP_1)
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_LANDMARK_FLOWER_SHOP)
+        goto_if_unset(FLAG_MET_PRETTY_PETAL_SHOP_OWNER, Route104_PrettyPetalFlowerShop_EventScript_MoveShopOwner)
+        goto_if_unset(FLAG_BADGE03_GET, Route104_PrettyPetalFlowerShop_EventScript_MoveShopOwner)
+        setflag(FLAG_TEMP_1)
     }
 }
 
 script Route104_PrettyPetalFlowerShop_EventScript_MoveShopOwner {
-	setobjectxyperm(LOCALID_OWNER, 4, 6)
+    setobjectxyperm(LOCALID_OWNER, 4, 6)
 }
 
 mart Route104_PrettyPetalFlowerShop_Pokemart_Plants {
-	DECOR_RED_PLANT
-	DECOR_TROPICAL_PLANT
-	DECOR_PRETTY_FLOWERS
-	DECOR_COLORFUL_PLANT
-	DECOR_BIG_PLANT
-	DECOR_GORGEOUS_PLANT
+    DECOR_RED_PLANT
+    DECOR_TROPICAL_PLANT
+    DECOR_PRETTY_FLOWERS
+    DECOR_COLORFUL_PLANT
+    DECOR_BIG_PLANT
+    DECOR_GORGEOUS_PLANT
 }
 
 raw `
 
 Route104_PrettyPetalFlowerShop_EventScript_ShopOwner::
-	lock
-	faceplayer
-	goto_if_set FLAG_TEMP_1, Route104_PrettyPetalFlowerShop_EventScript_SellDecorations
-	msgbox Route104_PrettyPetalFlowerShop_Text_ThisIsPrettyPetalFlowerShop, MSGBOX_DEFAULT
-	goto_if_set FLAG_MET_PRETTY_PETAL_SHOP_OWNER, Route104_PrettyPetalFlowerShop_EventScript_AlreadyMet
-	setflag FLAG_MET_PRETTY_PETAL_SHOP_OWNER
-	msgbox Route104_PrettyPetalFlowerShop_Text_IntroLearnAboutBerries, MSGBOX_YESNO
-	call_if_eq VAR_RESULT, YES, Route104_PrettyPetalFlowerShop_EventScript_ExplainBerries
-	call_if_eq VAR_RESULT, NO, Route104_PrettyPetalFlowerShop_EventScript_DontExplainBerries
-	release
-	end
+    lock
+    faceplayer
+    goto_if_set FLAG_TEMP_1, Route104_PrettyPetalFlowerShop_EventScript_SellDecorations
+    msgbox Route104_PrettyPetalFlowerShop_Text_ThisIsPrettyPetalFlowerShop, MSGBOX_DEFAULT
+    goto_if_set FLAG_MET_PRETTY_PETAL_SHOP_OWNER, Route104_PrettyPetalFlowerShop_EventScript_AlreadyMet
+    setflag FLAG_MET_PRETTY_PETAL_SHOP_OWNER
+    msgbox Route104_PrettyPetalFlowerShop_Text_IntroLearnAboutBerries, MSGBOX_YESNO
+    call_if_eq VAR_RESULT, YES, Route104_PrettyPetalFlowerShop_EventScript_ExplainBerries
+    call_if_eq VAR_RESULT, NO, Route104_PrettyPetalFlowerShop_EventScript_DontExplainBerries
+    release
+    end
 
 Route104_PrettyPetalFlowerShop_EventScript_AlreadyMet::
-	msgbox Route104_PrettyPetalFlowerShop_Text_LearnAboutBerries, MSGBOX_YESNO
-	call_if_eq VAR_RESULT, YES, Route104_PrettyPetalFlowerShop_EventScript_ExplainBerries
-	call_if_eq VAR_RESULT, NO, Route104_PrettyPetalFlowerShop_EventScript_DontExplainBerries
-	release
-	end
+    msgbox Route104_PrettyPetalFlowerShop_Text_LearnAboutBerries, MSGBOX_YESNO
+    call_if_eq VAR_RESULT, YES, Route104_PrettyPetalFlowerShop_EventScript_ExplainBerries
+    call_if_eq VAR_RESULT, NO, Route104_PrettyPetalFlowerShop_EventScript_DontExplainBerries
+    release
+    end
 
 Route104_PrettyPetalFlowerShop_EventScript_ExplainBerries::
-	msgbox Route104_PrettyPetalFlowerShop_Text_BerriesExplanation, MSGBOX_DEFAULT
-	return
+    msgbox Route104_PrettyPetalFlowerShop_Text_BerriesExplanation, MSGBOX_DEFAULT
+    return
 
 Route104_PrettyPetalFlowerShop_EventScript_DontExplainBerries::
-	msgbox Route104_PrettyPetalFlowerShop_Text_FlowersBringHappiness, MSGBOX_DEFAULT
-	return
+    msgbox Route104_PrettyPetalFlowerShop_Text_FlowersBringHappiness, MSGBOX_DEFAULT
+    return
 
 Route104_PrettyPetalFlowerShop_EventScript_SellDecorations::
-	message gText_PlayerWhatCanIDoForYou
-	waitmessage
-	pokemartdecoration2 Route104_PrettyPetalFlowerShop_Pokemart_Plants
-	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
-	release
-	end
+    message gText_PlayerWhatCanIDoForYou
+    waitmessage
+    pokemartdecoration2 Route104_PrettyPetalFlowerShop_Pokemart_Plants
+    msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
+    release
+    end
 
 Route104_PrettyPetalFlowerShop_EventScript_WailmerPailGirl::
-	lock
-	faceplayer
-	goto_if_unset FLAG_RECEIVED_WAILMER_PAIL, Route104_PrettyPetalFlowerShop_EventScript_GiveWailmerPail
-	msgbox Route104_PrettyPetalFlowerShop_Text_WailmerPailExplanation, MSGBOX_DEFAULT
-	release
-	end
+    lock
+    faceplayer
+    goto_if_unset FLAG_RECEIVED_WAILMER_PAIL, Route104_PrettyPetalFlowerShop_EventScript_GiveWailmerPail
+    msgbox Route104_PrettyPetalFlowerShop_Text_WailmerPailExplanation, MSGBOX_DEFAULT
+    release
+    end
 
 Route104_PrettyPetalFlowerShop_EventScript_GiveWailmerPail::
-	msgbox Route104_PrettyPetalFlowerShop_Text_YouCanHaveThis, MSGBOX_DEFAULT
-	giveitem ITEM_WAILMER_PAIL
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-	msgbox Route104_PrettyPetalFlowerShop_Text_WailmerPailExplanation, MSGBOX_DEFAULT
-	setflag FLAG_RECEIVED_WAILMER_PAIL
-	release
-	end
+    msgbox Route104_PrettyPetalFlowerShop_Text_YouCanHaveThis, MSGBOX_DEFAULT
+    giveitem ITEM_WAILMER_PAIL
+    goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+    msgbox Route104_PrettyPetalFlowerShop_Text_WailmerPailExplanation, MSGBOX_DEFAULT
+    setflag FLAG_RECEIVED_WAILMER_PAIL
+    release
+    end
 
 Route104_PrettyPetalFlowerShop_EventScript_RandomBerryGirl::
-	lock
-	faceplayer
-	dotimebasedevents
-	goto_if_set FLAG_DAILY_FLOWER_SHOP_RECEIVED_BERRY, Route104_PrettyPetalFlowerShop_EventScript_AlreadyReceivedBerry
-	msgbox Route104_PrettyPetalFlowerShop_Text_ImGrowingFlowers, MSGBOX_DEFAULT
-	random 8
-	addvar VAR_RESULT, FIRST_BERRY_INDEX
-	giveitem VAR_RESULT
-	goto_if_eq VAR_RESULT, 0, Common_EventScript_ShowBagIsFull
-	setflag FLAG_DAILY_FLOWER_SHOP_RECEIVED_BERRY
-	msgbox Route104_PrettyPetalFlowerShop_Text_MachineMixesBerries, MSGBOX_DEFAULT
-	release
-	end
+    lock
+    faceplayer
+    dotimebasedevents
+    goto_if_set FLAG_DAILY_FLOWER_SHOP_RECEIVED_BERRY, Route104_PrettyPetalFlowerShop_EventScript_AlreadyReceivedBerry
+    msgbox Route104_PrettyPetalFlowerShop_Text_ImGrowingFlowers, MSGBOX_DEFAULT
+    random 8
+    addvar VAR_RESULT, FIRST_BERRY_INDEX
+    giveitem VAR_RESULT
+    goto_if_eq VAR_RESULT, 0, Common_EventScript_ShowBagIsFull
+    setflag FLAG_DAILY_FLOWER_SHOP_RECEIVED_BERRY
+    msgbox Route104_PrettyPetalFlowerShop_Text_MachineMixesBerries, MSGBOX_DEFAULT
+    release
+    end
 
 Route104_PrettyPetalFlowerShop_EventScript_AlreadyReceivedBerry::
-	msgbox Route104_PrettyPetalFlowerShop_Text_MachineMixesBerries, MSGBOX_DEFAULT
-	release
-	end
+    msgbox Route104_PrettyPetalFlowerShop_Text_MachineMixesBerries, MSGBOX_DEFAULT
+    release
+    end
 
 Route104_PrettyPetalFlowerShop_Text_ThisIsPrettyPetalFlowerShop:
-	.string "Hello!\p"
-	.string "This is the Pretty Petal flower shop.\n"
-	.string "Spreading flowers all over the world!$"
+    .string "Hello!\p"
+    .string "This is the Pretty Petal flower shop.\n"
+    .string "Spreading flowers all over the world!$"
 
 Route104_PrettyPetalFlowerShop_Text_LearnAboutBerries:
-	.string "{PLAYER}{KUN}, would you like to learn about\n"
-	.string "Berries?$"
+    .string "{PLAYER}{KUN}, would you like to learn about\n"
+    .string "Berries?$"
 
 Route104_PrettyPetalFlowerShop_Text_IntroLearnAboutBerries:
-	.string "Your name is?\p"
-	.string "{PLAYER}{KUN}.\n"
-	.string "That's a nice name.\p"
-	.string "{PLAYER}{KUN}, would you like to learn about\n"
-	.string "Berries?$"
+    .string "Your name is?\p"
+    .string "{PLAYER}{KUN}.\n"
+    .string "That's a nice name.\p"
+    .string "{PLAYER}{KUN}, would you like to learn about\n"
+    .string "Berries?$"
 
 Route104_PrettyPetalFlowerShop_Text_BerriesExplanation:
-	.string "Berries grow on trees that thrive\n"
-	.string "only in soft, loamy soil.\p"
-	.string "If you take some Berries, be sure to\n"
-	.string "plant one in the loamy soil again.\p"
-	.string "A planted Berry will soon sprout,\n"
-	.string "grow into a plant, flower beautifully,\l"
-	.string "then grow Berries again.\p"
-	.string "I want to see the whole wide world\n"
-	.string "filled with beautiful flowers.\l"
-	.string "That's my dream.\p"
-	.string "Please help me, {PLAYER}{KUN}. Plant Berries\n"
-	.string "and bring more flowers into the world.$"
+    .string "Berries grow on trees that thrive\n"
+    .string "only in soft, loamy soil.\p"
+    .string "If you take some Berries, be sure to\n"
+    .string "plant one in the loamy soil again.\p"
+    .string "A planted Berry will soon sprout,\n"
+    .string "grow into a plant, flower beautifully,\l"
+    .string "then grow Berries again.\p"
+    .string "I want to see the whole wide world\n"
+    .string "filled with beautiful flowers.\l"
+    .string "That's my dream.\p"
+    .string "Please help me, {PLAYER}{KUN}. Plant Berries\n"
+    .string "and bring more flowers into the world.$"
 
 Route104_PrettyPetalFlowerShop_Text_FlowersBringHappiness:
-	.string "Flowers bring so much happiness to\n"
-	.string "people, don't they?$"
+    .string "Flowers bring so much happiness to\n"
+    .string "people, don't they?$"
 
 Route104_PrettyPetalFlowerShop_Text_YouCanHaveThis:
-	.string "Hello!\p"
-	.string "The more attention you give to flowers,\n"
-	.string "the more beautifully they bloom.\p"
-	.string "You'll like tending flowers. I'm sure\n"
-	.string "of it. You can have this.$"
+    .string "Hello!\p"
+    .string "The more attention you give to flowers,\n"
+    .string "the more beautifully they bloom.\p"
+    .string "You'll like tending flowers. I'm sure\n"
+    .string "of it. You can have this.$"
 
 Route104_PrettyPetalFlowerShop_Text_WailmerPailExplanation:
-	.string "While Berry plants are growing,\n"
-	.string "water them with the Wailmer Pail.\p"
-	.string "Oh, another thing.\p"
-	.string "If you plant two different types\n"
-	.string "next to each you, you might get yet\l"
-	.string "another type of Berry.\p"
-	.string "Isn't that awesome?$"
+    .string "While Berry plants are growing,\n"
+    .string "water them with the Wailmer Pail.\p"
+    .string "Oh, another thing.\p"
+    .string "If you plant two different types\n"
+    .string "next to each you, you might get yet\l"
+    .string "another type of Berry.\p"
+    .string "Isn't that awesome?$"
 
 Route104_PrettyPetalFlowerShop_Text_ImGrowingFlowers:
-	.string "I'm trying to be like my big sisters.\n"
-	.string "I'm growing flowers, too!\p"
-	.string "Here you go!\n"
-	.string "It's for you!$"
+    .string "I'm trying to be like my big sisters.\n"
+    .string "I'm growing flowers, too!\p"
+    .string "Here you go!\n"
+    .string "It's for you!$"
 
 Route104_PrettyPetalFlowerShop_Text_MachineMixesBerries:
-	.string "You can plant a Berry and grow it big,\n"
-	.string "or you can make a Pokémon hold it.\p"
-	.string "But now they have a machine that mixes\n"
-	.string "up different Berries and makes candies\l"
-	.string "for Pokémon.\p"
-	.string "I want some candy, too.$"
+    .string "You can plant a Berry and grow it big,\n"
+    .string "or you can make a Pokémon hold it.\p"
+    .string "But now they have a machine that mixes\n"
+    .string "up different Berries and makes candies\l"
+    .string "for Pokémon.\p"
+    .string "I want some candy, too.$"
 
 `

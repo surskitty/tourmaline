@@ -1,16 +1,16 @@
 mapscripts RustboroCity_Flat2_1F_MapScripts {}
 
 script RustboroCity_Flat2_1F_EventScript_OldWoman {
-	msgbox(format("Devon Corporation's workers live in this building."), MSGBOX_NPC)
+    msgbox(format("Devon Corporation's workers live in this building."), MSGBOX_NPC)
 }
 
 script RustboroCity_Flat2_1F_EventScript_Skitty {
-	lock
-	faceplayer
-	setseenmon(SPECIES_SKITTY)
-	waitse
-	playmoncry(SPECIES_SKITTY, CRY_MODE_NORMAL)
-	msgbox("SKITTY: Gyaaaah!", MSGBOX_DEFAULT)
-	waitmoncry
-	release
+    lock
+    faceplayer
+    setseenmon(SPECIES_SKITTY)
+    waitse
+    playmoncry(SPECIES_SKITTY, CRY_MODE_NORMAL)
+    msgbox("SKITTY: Gyaaaah!", MSGBOX_DEFAULT)
+    waitmoncry
+    release
 }

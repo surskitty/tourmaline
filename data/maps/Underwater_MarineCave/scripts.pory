@@ -1,8 +1,8 @@
 mapscripts Underwater_MarineCave_MapScripts {
-	MAP_SCRIPT_ON_RESUME {
-    	setdivewarp(MAP_MARINE_CAVE_ENTRANCE, 10, 17)
+    MAP_SCRIPT_ON_RESUME {
+        setdivewarp(MAP_MARINE_CAVE_ENTRANCE, 10, 17)
     }
     MAP_SCRIPT_ON_TRANSITION {
-    	setflag(FLAG_ARRIVED_AT_MARINE_CAVE_EMERGE_SPOT)
+        setflag(FLAG_ARRIVED_AT_MARINE_CAVE_EMERGE_SPOT)
     }
 }

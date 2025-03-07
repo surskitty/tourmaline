@@ -2,85 +2,85 @@ mapscripts PacifidlogTown_House2_MapScripts {}
 
 raw `
 PacifidlogTown_House2_EventScript_FanClubYoungerBrother::
-	lock
-	faceplayer
-	checkitem ITEM_TM_RETURN
-	goto_if_eq VAR_RESULT, TRUE, PacifidlogTown_House2_EventScript_ExplainReturn
-	call_if_set FLAG_MET_FANCLUB_YOUNGER_BROTHER, PacifidlogTown_House2_EventScript_MonAssessment
-	call_if_unset FLAG_MET_FANCLUB_YOUNGER_BROTHER, PacifidlogTown_House2_EventScript_FirstMonAssessment
-	setflag FLAG_MET_FANCLUB_YOUNGER_BROTHER
-	specialvar VAR_RESULT, GetLeadMonFriendshipScore
-	goto_if_ge VAR_RESULT, FRIENDSHIP_200_TO_254, PacifidlogTown_House2_EventScript_GiveReturn
-	goto PacifidlogTown_House2_EventScript_PutInEffort
-	end
+    lock
+    faceplayer
+    checkitem ITEM_TM_RETURN
+    goto_if_eq VAR_RESULT, TRUE, PacifidlogTown_House2_EventScript_ExplainReturn
+    call_if_set FLAG_MET_FANCLUB_YOUNGER_BROTHER, PacifidlogTown_House2_EventScript_MonAssessment
+    call_if_unset FLAG_MET_FANCLUB_YOUNGER_BROTHER, PacifidlogTown_House2_EventScript_FirstMonAssessment
+    setflag FLAG_MET_FANCLUB_YOUNGER_BROTHER
+    specialvar VAR_RESULT, GetLeadMonFriendshipScore
+    goto_if_ge VAR_RESULT, FRIENDSHIP_200_TO_254, PacifidlogTown_House2_EventScript_GiveReturn
+    goto PacifidlogTown_House2_EventScript_PutInEffort
+    end
 
 PacifidlogTown_House2_EventScript_MonAssessment::
-	msgbox PacifidlogTown_House2_Text_AhYourPokemon, MSGBOX_DEFAULT
-	return
+    msgbox PacifidlogTown_House2_Text_AhYourPokemon, MSGBOX_DEFAULT
+    return
 
 PacifidlogTown_House2_EventScript_FirstMonAssessment::
-	msgbox PacifidlogTown_House2_Text_ChairmansYoungerBrotherOnVacation, MSGBOX_DEFAULT
-	msgbox PacifidlogTown_House2_Text_AhYourPokemon, MSGBOX_DEFAULT
-	return
+    msgbox PacifidlogTown_House2_Text_ChairmansYoungerBrotherOnVacation, MSGBOX_DEFAULT
+    msgbox PacifidlogTown_House2_Text_AhYourPokemon, MSGBOX_DEFAULT
+    return
 `
 
 text PacifidlogTown_House2_Text_ChairmansYoungerBrotherOnVacation {
     format("Er-hem!\p"
-	"I am the Pokémon Fan Club's most important person, the Chairman's younger brother.\p"
-	"I'm here enjoying my vacation with Pokémon, yes, indeed.")
+    "I am the Pokémon Fan Club's most important person, the Chairman's younger brother.\p"
+    "I'm here enjoying my vacation with Pokémon, yes, indeed.")
 }
 
 text PacifidlogTown_House2_Text_AhYourPokemon {
     format("Ah!\n"
-	"Your Pokémon…")
+    "Your Pokémon…")
 }
 
 script PacifidlogTown_House2_EventScript_PutInEffort {
     msgbox(format("Hmm…\n"
-	    "It's not bad, but it's also not good.\p"
-	    "You, as the Trainer, need to put in some more effort."), MSGBOX_DEFAULT)
-	release
+        "It's not bad, but it's also not good.\p"
+        "You, as the Trainer, need to put in some more effort."), MSGBOX_DEFAULT)
+    release
 }
 
 script PacifidlogTown_House2_EventScript_GiveReturn {
-	msgbox(format("It clearly likes you very much.\p"
-	    "A Pokémon that adoring and adorable deserves a TM like this, no?"), MSGBOX_DEFAULT)
-	giveitem(ITEM_TM_RETURN)
-	goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull)
-	goto(PacifidlogTown_House2_EventScript_ExplainReturn)
+    msgbox(format("It clearly likes you very much.\p"
+        "A Pokémon that adoring and adorable deserves a TM like this, no?"), MSGBOX_DEFAULT)
+    giveitem(ITEM_TM_RETURN)
+    goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull)
+    goto(PacifidlogTown_House2_EventScript_ExplainReturn)
 }
 
 script PacifidlogTown_House2_EventScript_ExplainReturn {
-	msgbox(format("If a Pokémon likes you a lot, Return's power is enhanced."), MSGBOX_DEFAULT)
-	release
+    msgbox(format("If a Pokémon likes you a lot, Return's power is enhanced."), MSGBOX_DEFAULT)
+    release
 }
 
 text PacifidlogTown_House2_Text_Azurill { "Azurill" }
 
 script PacifidlogTown_House2_EventScript_HappyAzurill {
-	lock
-	faceplayer
-	waitse
-	playmoncry(SPECIES_AZURILL, CRY_MODE_NORMAL)
-	setseenmon(SPECIES_AZURILL)
-	speakername(PacifidlogTown_House2_Text_Azurill)
-	msgbox("Rururi!", MSGBOX_DEFAULT)
-	waitmoncry
-	speakername(0)
-	msgbox(format("It appears to be very friendly with the Trainer."), MSGBOX_DEFAULT)
-	release
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_AZURILL, CRY_MODE_NORMAL)
+    setseenmon(SPECIES_AZURILL)
+    speakername(PacifidlogTown_House2_Text_Azurill)
+    msgbox("Rururi!", MSGBOX_DEFAULT)
+    waitmoncry
+    speakername(0)
+    msgbox(format("It appears to be very friendly with the Trainer."), MSGBOX_DEFAULT)
+    release
 }
 
 script PacifidlogTown_House2_EventScript_UnhappyAzurill {
-	lock
-	faceplayer
-	waitse
-	playmoncry(SPECIES_AZURILL, CRY_MODE_ENCOUNTER)
-	setseenmon(SPECIES_AZURILL)
-	speakername(PacifidlogTown_House2_Text_Azurill)
-	msgbox("Rurii.", MSGBOX_DEFAULT)
-	waitmoncry
-	speakername(0)
-	msgbox(format("It doesn't appear to like the Trainer very much."), MSGBOX_DEFAULT)
-	release
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_AZURILL, CRY_MODE_ENCOUNTER)
+    setseenmon(SPECIES_AZURILL)
+    speakername(PacifidlogTown_House2_Text_Azurill)
+    msgbox("Rurii.", MSGBOX_DEFAULT)
+    waitmoncry
+    speakername(0)
+    msgbox(format("It doesn't appear to like the Trainer very much."), MSGBOX_DEFAULT)
+    release
 }

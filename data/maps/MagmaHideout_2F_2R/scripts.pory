@@ -7,89 +7,89 @@ mapscripts MagmaHideout_2F_2R_MapScripts {
 
 raw `
 MagmaHideout_2F_2R_EventScript_Grunt15::
-	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_15, MagmaHideout_2F_2R_Text_Grunt15Intro, MagmaHideout_2F_2R_Text_Grunt15Defeat
-	msgbox MagmaHideout_2F_2R_Text_Grunt15PostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_15, MagmaHideout_2F_2R_Text_Grunt15Intro, MagmaHideout_2F_2R_Text_Grunt15Defeat
+    msgbox MagmaHideout_2F_2R_Text_Grunt15PostBattle, MSGBOX_AUTOCLOSE
+    end
 
 MagmaHideout_2F_2R_EventScript_Grunt6::
-	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_6, MagmaHideout_2F_2R_Text_Grunt6Intro, MagmaHideout_2F_2R_Text_Grunt6Defeat
-	msgbox MagmaHideout_2F_2R_Text_Grunt6PostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_6, MagmaHideout_2F_2R_Text_Grunt6Intro, MagmaHideout_2F_2R_Text_Grunt6Defeat
+    msgbox MagmaHideout_2F_2R_Text_Grunt6PostBattle, MSGBOX_AUTOCLOSE
+    end
 
 MagmaHideout_2F_2R_EventScript_Grunt7::
-	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_7, MagmaHideout_2F_2R_Text_Grunt7Intro, MagmaHideout_2F_2R_Text_Grunt7Defeat
-	msgbox MagmaHideout_2F_2R_Text_Grunt7PostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_7, MagmaHideout_2F_2R_Text_Grunt7Intro, MagmaHideout_2F_2R_Text_Grunt7Defeat
+    msgbox MagmaHideout_2F_2R_Text_Grunt7PostBattle, MSGBOX_AUTOCLOSE
+    end
 
 MagmaHideout_2F_2R_EventScript_Grunt8::
-	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_8, MagmaHideout_2F_2R_Text_Grunt8Intro, MagmaHideout_2F_2R_Text_Grunt8Defeat
-	msgbox MagmaHideout_2F_2R_Text_Grunt8PostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_8, MagmaHideout_2F_2R_Text_Grunt8Intro, MagmaHideout_2F_2R_Text_Grunt8Defeat
+    msgbox MagmaHideout_2F_2R_Text_Grunt8PostBattle, MSGBOX_AUTOCLOSE
+    end
 `
 
 text MagmaHideout_2F_2R_Text_Grunt15Intro {
-	format("I don't have a bone to pick with you.\n"
-	"I'm just following orders!")
+    format("I don't have a bone to pick with you.\n"
+    "I'm just following orders!")
 }
 
 text MagmaHideout_2F_2R_Text_Grunt15Defeat {
-	format("I may have lost, but…")
+    format("I may have lost, but…")
 }
 
 text MagmaHideout_2F_2R_Text_Grunt15PostBattle {
-	format("We dug up something beyond belief!\n"
-	"And, we got the Blue Orb!\p"
-	"All that's left is for our leader to…\n"
-	"Fufufu… Fwahahaha!")
+    format("We dug up something beyond belief!\n"
+    "And, we got the Blue Orb!\p"
+    "All that's left is for our leader to…\n"
+    "Fufufu… Fwahahaha!")
 }
 
 text MagmaHideout_2F_2R_Text_Grunt6Intro {
-	format("I can't stand heat. Maybe I should've\n"
-	"joined Team Aqua instead…")
+    format("I can't stand heat. Maybe I should've\n"
+    "joined Team Aqua instead…")
 }
 
 text MagmaHideout_2F_2R_Text_Grunt6Defeat {
-	format("Yeah, I really may not be right for\n"
-	"Team Magma…")
+    format("Yeah, I really may not be right for\n"
+    "Team Magma…")
 }
 
 text MagmaHideout_2F_2R_Text_Grunt6PostBattle {
-	format("Don't you get lonely for the sea\n"
-	"being in a place like this?")
+    format("Don't you get lonely for the sea\n"
+    "being in a place like this?")
 }
 
 text MagmaHideout_2F_2R_Text_Grunt7Intro {
-	format("You can hear tremors here sometimes.\p"
-	"Could it be the volcano rattling?\n"
-	"Or is it Grou…\p"
-	"Whoops!\n"
-	"No, no, never mind!")
+    format("You can hear tremors here sometimes.\p"
+    "Could it be the volcano rattling?\n"
+    "Or is it Grou…\p"
+    "Whoops!\n"
+    "No, no, never mind!")
 }
 
 text MagmaHideout_2F_2R_Text_Grunt7Defeat {
-	format("You're a fiery battler.\n"
-	"Just like a volcano!")
+    format("You're a fiery battler.\n"
+    "Just like a volcano!")
 }
 
 text MagmaHideout_2F_2R_Text_Grunt7PostBattle {
-	format("You just happened to win this time,\n"
-	"but that doesn't matter.\p"
-	"Team Magma's goal is about to be\n"
-	"reached!")
+    format("You just happened to win this time,\n"
+    "but that doesn't matter.\p"
+    "Team Magma's goal is about to be\n"
+    "reached!")
 }
 
 text MagmaHideout_2F_2R_Text_Grunt8Intro {
-	format("One of our guys was freaking out that\n"
-	"he lost his Magma Emblem…\p"
-	"Wait a minute!\n"
-	"Was it you who found it?")
+    format("One of our guys was freaking out that\n"
+    "he lost his Magma Emblem…\p"
+    "Wait a minute!\n"
+    "Was it you who found it?")
 }
 
 text MagmaHideout_2F_2R_Text_Grunt8Defeat {
-	format("I'm having trouble believing this…")
+    format("I'm having trouble believing this…")
 }
 
 text MagmaHideout_2F_2R_Text_Grunt8PostBattle {
-	format("I'm getting this feeling that our plan\n"
-	"is going to end in failure…")
+    format("I'm getting this feeling that our plan\n"
+    "is going to end in failure…")
 }

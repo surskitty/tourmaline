@@ -13,335 +13,335 @@ raw `
 .set LOCALID_SCOTT, 5
 
 SSTidalCorridor_EventScript_DepartSlateportForLilycove::
-	special SetSSTidalFlag
-	setvar VAR_SS_TIDAL_STATE, SS_TIDAL_DEPART_SLATEPORT
-	lockall
-	playse SE_DING_DONG
-	msgbox SSTidal_Text_FastCurrentsHopeYouEnjoyVoyage, MSGBOX_DEFAULT
-	releaseall
-	end
+    special SetSSTidalFlag
+    setvar VAR_SS_TIDAL_STATE, SS_TIDAL_DEPART_SLATEPORT
+    lockall
+    playse SE_DING_DONG
+    msgbox SSTidal_Text_FastCurrentsHopeYouEnjoyVoyage, MSGBOX_DEFAULT
+    releaseall
+    end
 
 SSTidalCorridor_EventScript_DepartLilycoveForSlateport::
-	setvar VAR_SS_TIDAL_STATE, SS_TIDAL_DEPART_LILYCOVE
-	lockall
-	playse SE_DING_DONG
-	msgbox SSTidal_Text_HopeYouEnjoyVoyage, MSGBOX_DEFAULT
-	releaseall
-	end
+    setvar VAR_SS_TIDAL_STATE, SS_TIDAL_DEPART_LILYCOVE
+    lockall
+    playse SE_DING_DONG
+    msgbox SSTidal_Text_HopeYouEnjoyVoyage, MSGBOX_DEFAULT
+    releaseall
+    end
 
 SSTidalRooms_EventScript_HalfwayToSlateport::
-	special SetSSTidalFlag
-	setvar VAR_SS_TIDAL_STATE, SS_TIDAL_HALFWAY_SLATEPORT
-	playse SE_DING_DONG
-	msgbox SSTidal_Text_FastCurrentsHopeYouEnjoyVoyage, MSGBOX_DEFAULT
-	return
+    special SetSSTidalFlag
+    setvar VAR_SS_TIDAL_STATE, SS_TIDAL_HALFWAY_SLATEPORT
+    playse SE_DING_DONG
+    msgbox SSTidal_Text_FastCurrentsHopeYouEnjoyVoyage, MSGBOX_DEFAULT
+    return
 
 SSTidalRooms_EventScript_ArrivedInLilycove::
-	special ResetSSTidalFlag
-	setvar VAR_SS_TIDAL_STATE, SS_TIDAL_LAND_LILYCOVE
-	playse SE_DING_DONG
-	msgbox SSTidal_Text_MadeLandInLilycove, MSGBOX_DEFAULT
-	return
+    special ResetSSTidalFlag
+    setvar VAR_SS_TIDAL_STATE, SS_TIDAL_LAND_LILYCOVE
+    playse SE_DING_DONG
+    msgbox SSTidal_Text_MadeLandInLilycove, MSGBOX_DEFAULT
+    return
 
 SSTidalCorridor_EventScript_ReachedStepCount::
-	goto_if_eq VAR_SS_TIDAL_STATE, SS_TIDAL_DEPART_SLATEPORT, SSTidalCorridor_EventScript_HalfwayToLilycove
-	goto_if_eq VAR_SS_TIDAL_STATE, SS_TIDAL_HALFWAY_SLATEPORT, SSTidalCorridor_EventScript_ArrivedInSlateport
-	end
+    goto_if_eq VAR_SS_TIDAL_STATE, SS_TIDAL_DEPART_SLATEPORT, SSTidalCorridor_EventScript_HalfwayToLilycove
+    goto_if_eq VAR_SS_TIDAL_STATE, SS_TIDAL_HALFWAY_SLATEPORT, SSTidalCorridor_EventScript_ArrivedInSlateport
+    end
 
 SSTidalCorridor_EventScript_HalfwayToLilycove::
-	special ResetSSTidalFlag
-	setvar VAR_SS_TIDAL_STATE, SS_TIDAL_HALFWAY_LILYCOVE
-	lockall
-	playse SE_DING_DONG
-	msgbox SSTidal_Text_HopeYouEnjoyVoyage, MSGBOX_DEFAULT
-	releaseall
-	end
+    special ResetSSTidalFlag
+    setvar VAR_SS_TIDAL_STATE, SS_TIDAL_HALFWAY_LILYCOVE
+    lockall
+    playse SE_DING_DONG
+    msgbox SSTidal_Text_HopeYouEnjoyVoyage, MSGBOX_DEFAULT
+    releaseall
+    end
 
 SSTidalCorridor_EventScript_ArrivedInSlateport::
-	special ResetSSTidalFlag
-	setvar VAR_SS_TIDAL_STATE, SS_TIDAL_LAND_SLATEPORT
-	lockall
-	playse SE_DING_DONG
-	msgbox SSTidal_Text_MadeLandInSlateport, MSGBOX_DEFAULT
-	releaseall
-	end
+    special ResetSSTidalFlag
+    setvar VAR_SS_TIDAL_STATE, SS_TIDAL_LAND_SLATEPORT
+    lockall
+    playse SE_DING_DONG
+    msgbox SSTidal_Text_MadeLandInSlateport, MSGBOX_DEFAULT
+    releaseall
+    end
 
 SSTidalRooms_EventScript_ArrivedInSlateport::
-	special ResetSSTidalFlag
-	setvar VAR_SS_TIDAL_STATE, SS_TIDAL_LAND_SLATEPORT
-	playse SE_DING_DONG
-	msgbox SSTidal_Text_MadeLandInSlateport, MSGBOX_DEFAULT
-	return
+    special ResetSSTidalFlag
+    setvar VAR_SS_TIDAL_STATE, SS_TIDAL_LAND_SLATEPORT
+    playse SE_DING_DONG
+    msgbox SSTidal_Text_MadeLandInSlateport, MSGBOX_DEFAULT
+    return
 
 SSTidalRooms_EventScript_ProgessCruiseAfterBed::
-	switch VAR_SS_TIDAL_STATE
-	case SS_TIDAL_DEPART_SLATEPORT, SSTidalRooms_EventScript_ArrivedInLilycove
-	case SS_TIDAL_HALFWAY_LILYCOVE, SSTidalRooms_EventScript_ArrivedInLilycove
-	case SS_TIDAL_DEPART_LILYCOVE, SSTidalRooms_EventScript_HalfwayToSlateport
-	case SS_TIDAL_HALFWAY_SLATEPORT, SSTidalRooms_EventScript_ArrivedInSlateport
-	return
+    switch VAR_SS_TIDAL_STATE
+    case SS_TIDAL_DEPART_SLATEPORT, SSTidalRooms_EventScript_ArrivedInLilycove
+    case SS_TIDAL_HALFWAY_LILYCOVE, SSTidalRooms_EventScript_ArrivedInLilycove
+    case SS_TIDAL_DEPART_LILYCOVE, SSTidalRooms_EventScript_HalfwayToSlateport
+    case SS_TIDAL_HALFWAY_SLATEPORT, SSTidalRooms_EventScript_ArrivedInSlateport
+    return
 
 SSTidalCorridor_EventScript_Briney::
-	speakername CommonName_Text_MrBriney
-	msgbox SSTidalCorridor_Text_BrineyWelcomeAboard, MSGBOX_NPC
-	end
+    speakername CommonName_Text_MrBriney
+    msgbox SSTidalCorridor_Text_BrineyWelcomeAboard, MSGBOX_NPC
+    end
 
 SSTidalCorridor_EventScript_Peeko::
-	lock
-	faceplayer
-	waitse
-	playmoncry SPECIES_WINGULL, CRY_MODE_NORMAL
-	msgbox SSTidalCorridor_Text_Peeko, MSGBOX_DEFAULT
-	waitmoncry
-	release
-	end
+    lock
+    faceplayer
+    waitse
+    playmoncry SPECIES_WINGULL, CRY_MODE_NORMAL
+    msgbox SSTidalCorridor_Text_Peeko, MSGBOX_DEFAULT
+    waitmoncry
+    release
+    end
 
 SSTidalCorridor_EventScript_Cabin1Sign::
-	msgbox SSTidalCorridor_Text_Cabin1, MSGBOX_SIGN
-	end
+    msgbox SSTidalCorridor_Text_Cabin1, MSGBOX_SIGN
+    end
 
 SSTidalCorridor_EventScript_Cabin2Sign::
-	msgbox SSTidalCorridor_Text_Cabin2, MSGBOX_SIGN
-	end
+    msgbox SSTidalCorridor_Text_Cabin2, MSGBOX_SIGN
+    end
 
 SSTidalCorridor_EventScript_Cabin3Sign::
-	msgbox SSTidalCorridor_Text_Cabin3, MSGBOX_SIGN
-	end
+    msgbox SSTidalCorridor_Text_Cabin3, MSGBOX_SIGN
+    end
 
 SSTidalCorridor_EventScript_Cabin4Sign::
-	msgbox SSTidalCorridor_Text_Cabin4, MSGBOX_SIGN
-	end
+    msgbox SSTidalCorridor_Text_Cabin4, MSGBOX_SIGN
+    end
 
 SSTidalCorridor_EventScript_ExitSailor::
-	lock
-	faceplayer
-	goto_if_eq VAR_SS_TIDAL_STATE, SS_TIDAL_LAND_LILYCOVE, SSTidalCorridor_EventScript_ExitLilycove
-	goto_if_eq VAR_SS_TIDAL_STATE, SS_TIDAL_LAND_SLATEPORT, SSTidalCorridor_EventScript_ExitSlateport
-	msgbox SSTidalCorridor_Text_CanRestInCabin2, MSGBOX_DEFAULT
-	release
-	end
+    lock
+    faceplayer
+    goto_if_eq VAR_SS_TIDAL_STATE, SS_TIDAL_LAND_LILYCOVE, SSTidalCorridor_EventScript_ExitLilycove
+    goto_if_eq VAR_SS_TIDAL_STATE, SS_TIDAL_LAND_SLATEPORT, SSTidalCorridor_EventScript_ExitSlateport
+    msgbox SSTidalCorridor_Text_CanRestInCabin2, MSGBOX_DEFAULT
+    release
+    end
 
 SSTidalCorridor_EventScript_ExitLilycove::
-	setrespawn HEAL_LOCATION_LILYCOVE_CITY
-	msgbox SSTidalCorridor_Text_WeveArrived, MSGBOX_DEFAULT
-	call_if_set FLAG_RECEIVED_TM_SNATCH, SSTidalCorridor_EventScript_HideSnatchGiver
-	warp MAP_LILYCOVE_CITY_HARBOR, 8, 11
-	waitstate
-	release
-	end
+    setrespawn HEAL_LOCATION_LILYCOVE_CITY
+    msgbox SSTidalCorridor_Text_WeveArrived, MSGBOX_DEFAULT
+    call_if_set FLAG_RECEIVED_TM_SNATCH, SSTidalCorridor_EventScript_HideSnatchGiver
+    warp MAP_LILYCOVE_CITY_HARBOR, 8, 11
+    waitstate
+    release
+    end
 
 SSTidalCorridor_EventScript_ExitSlateport::
-	setrespawn HEAL_LOCATION_SLATEPORT_CITY
-	msgbox SSTidalCorridor_Text_WeveArrived, MSGBOX_DEFAULT
-	call_if_set FLAG_RECEIVED_TM_SNATCH, SSTidalCorridor_EventScript_HideSnatchGiver
-	warp MAP_SLATEPORT_CITY_HARBOR, 8, 11
-	waitstate
-	release
-	end
+    setrespawn HEAL_LOCATION_SLATEPORT_CITY
+    msgbox SSTidalCorridor_Text_WeveArrived, MSGBOX_DEFAULT
+    call_if_set FLAG_RECEIVED_TM_SNATCH, SSTidalCorridor_EventScript_HideSnatchGiver
+    warp MAP_SLATEPORT_CITY_HARBOR, 8, 11
+    waitstate
+    release
+    end
 
 SSTidalCorridor_EventScript_HideSnatchGiver::
-	setflag FLAG_HIDE_SS_TIDAL_ROOMS_SNATCH_GIVER
-	return
+    setflag FLAG_HIDE_SS_TIDAL_ROOMS_SNATCH_GIVER
+    return
 
 SSTidalCorridor_EventScript_Porthole::
-	lockall
-	goto_if_eq VAR_SS_TIDAL_STATE, SS_TIDAL_DEPART_SLATEPORT, SSTidalCorridor_EventScript_LookThroughPorthole
-	goto_if_eq VAR_SS_TIDAL_STATE, SS_TIDAL_HALFWAY_SLATEPORT, SSTidalCorridor_EventScript_LookThroughPorthole
-	msgbox SSTidalCorridor_Text_HorizonSpreadsBeyondPorthole, MSGBOX_DEFAULT
-	releaseall
-	end
+    lockall
+    goto_if_eq VAR_SS_TIDAL_STATE, SS_TIDAL_DEPART_SLATEPORT, SSTidalCorridor_EventScript_LookThroughPorthole
+    goto_if_eq VAR_SS_TIDAL_STATE, SS_TIDAL_HALFWAY_SLATEPORT, SSTidalCorridor_EventScript_LookThroughPorthole
+    msgbox SSTidalCorridor_Text_HorizonSpreadsBeyondPorthole, MSGBOX_DEFAULT
+    releaseall
+    end
 
 SSTidalCorridor_EventScript_LookThroughPorthole::
-	special LookThroughPorthole
-	waitstate
-	end
+    special LookThroughPorthole
+    waitstate
+    end
 
 SSTidalCorridor_EventScript_Sailor::
-	lock
-	faceplayer
-	goto_if_set FLAG_DEFEATED_SS_TIDAL_TRAINERS, SSTidalCorridor_EventScript_EnjoyYourCruise
-	call SSTidalCorridor_EventScript_CheckIfTrainersDefeated
-	msgbox SSTidalCorridor_Text_VisitOtherCabins, MSGBOX_DEFAULT
-	release
-	end
+    lock
+    faceplayer
+    goto_if_set FLAG_DEFEATED_SS_TIDAL_TRAINERS, SSTidalCorridor_EventScript_EnjoyYourCruise
+    call SSTidalCorridor_EventScript_CheckIfTrainersDefeated
+    msgbox SSTidalCorridor_Text_VisitOtherCabins, MSGBOX_DEFAULT
+    release
+    end
 
 SSTidalCorridor_EventScript_EnjoyYourCruise::
-	msgbox SSTidalCorridor_Text_EnjoyYourCruise, MSGBOX_DEFAULT
-	release
-	end
+    msgbox SSTidalCorridor_Text_EnjoyYourCruise, MSGBOX_DEFAULT
+    release
+    end
 
 SSTidalCorridor_EventScript_CheckIfTrainersDefeated::
-	goto_if_not_defeated TRAINER_PHILLIP, SSTidalCorridor_EventScript_TrainerNotDefeated
-	goto_if_not_defeated TRAINER_LEONARD, SSTidalCorridor_EventScript_TrainerNotDefeated
-	goto_if_not_defeated TRAINER_COLTON, SSTidalCorridor_EventScript_TrainerNotDefeated
-	goto_if_not_defeated TRAINER_MICAH, SSTidalCorridor_EventScript_TrainerNotDefeated
-	goto_if_not_defeated TRAINER_THOMAS, SSTidalCorridor_EventScript_TrainerNotDefeated
-	goto_if_not_defeated TRAINER_LEA_AND_JED, SSTidalCorridor_EventScript_TrainerNotDefeated
-	goto_if_not_defeated TRAINER_GARRET, SSTidalCorridor_EventScript_TrainerNotDefeated
-	goto_if_not_defeated TRAINER_NAOMI, SSTidalCorridor_EventScript_TrainerNotDefeated
-	setflag FLAG_DEFEATED_SS_TIDAL_TRAINERS
-	goto SSTidalCorridor_EventScript_EnjoyYourCruise
-	return
+    goto_if_not_defeated TRAINER_PHILLIP, SSTidalCorridor_EventScript_TrainerNotDefeated
+    goto_if_not_defeated TRAINER_LEONARD, SSTidalCorridor_EventScript_TrainerNotDefeated
+    goto_if_not_defeated TRAINER_COLTON, SSTidalCorridor_EventScript_TrainerNotDefeated
+    goto_if_not_defeated TRAINER_MICAH, SSTidalCorridor_EventScript_TrainerNotDefeated
+    goto_if_not_defeated TRAINER_THOMAS, SSTidalCorridor_EventScript_TrainerNotDefeated
+    goto_if_not_defeated TRAINER_LEA_AND_JED, SSTidalCorridor_EventScript_TrainerNotDefeated
+    goto_if_not_defeated TRAINER_GARRET, SSTidalCorridor_EventScript_TrainerNotDefeated
+    goto_if_not_defeated TRAINER_NAOMI, SSTidalCorridor_EventScript_TrainerNotDefeated
+    setflag FLAG_DEFEATED_SS_TIDAL_TRAINERS
+    goto SSTidalCorridor_EventScript_EnjoyYourCruise
+    return
 
 SSTidalCorridor_EventScript_TrainerNotDefeated::
-	return
+    return
 
 SSTidalCorridor_EventScript_ScottScene::
-	lockall
-	applymovement LOCALID_SCOTT, SSTidalCorridor_Movement_ScottApproachPlayer
-	waitmovement 0
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
-	waitmovement 0
-	speakername CommonName_Text_Scott
-	msgbox SSTidalCorridor_Text_ScottBattleFrontierInvite, MSGBOX_DEFAULT
-	closemessage
-	applymovement OBJ_EVENT_ID_PLAYER, SSTidalCorridor_Movement_PlayerWatchScottExit
-	applymovement LOCALID_SAILOR, SSTidalCorridor_Movement_SailorMoveForScott
-	applymovement LOCALID_SCOTT, SSTidalCorridor_Movement_ScottExit
-	waitmovement 0
-	playse SE_EXIT
-	waitse
-	removeobject LOCALID_SCOTT
-	applymovement LOCALID_SAILOR, SSTidalCorridor_Movement_SailorReturn
-	waitmovement 0
-	delay 30
-	setflag FLAG_MET_SCOTT_ON_SS_TIDAL
-	setvar VAR_SS_TIDAL_SCOTT_STATE, 1
-	releaseall
-	end
+    lockall
+    applymovement LOCALID_SCOTT, SSTidalCorridor_Movement_ScottApproachPlayer
+    waitmovement 0
+    applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
+    waitmovement 0
+    speakername CommonName_Text_Scott
+    msgbox SSTidalCorridor_Text_ScottBattleFrontierInvite, MSGBOX_DEFAULT
+    closemessage
+    applymovement OBJ_EVENT_ID_PLAYER, SSTidalCorridor_Movement_PlayerWatchScottExit
+    applymovement LOCALID_SAILOR, SSTidalCorridor_Movement_SailorMoveForScott
+    applymovement LOCALID_SCOTT, SSTidalCorridor_Movement_ScottExit
+    waitmovement 0
+    playse SE_EXIT
+    waitse
+    removeobject LOCALID_SCOTT
+    applymovement LOCALID_SAILOR, SSTidalCorridor_Movement_SailorReturn
+    waitmovement 0
+    delay 30
+    setflag FLAG_MET_SCOTT_ON_SS_TIDAL
+    setvar VAR_SS_TIDAL_SCOTT_STATE, 1
+    releaseall
+    end
 
 SSTidalCorridor_Movement_ScottApproachPlayer:
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	step_end
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    step_end
 
 SSTidalCorridor_Movement_ScottExit:
-	walk_in_place_faster_down
-	delay_16
-	delay_16
-	delay_16
-	delay_16
-	walk_down
-	walk_left
-	step_end
+    walk_in_place_faster_down
+    delay_16
+    delay_16
+    delay_16
+    delay_16
+    walk_down
+    walk_left
+    step_end
 
 SSTidalCorridor_Movement_PlayerWatchScottExit:
-	delay_16
-	delay_16
-	delay_16
-	delay_16
-	delay_8
-	walk_in_place_faster_down
-	step_end
+    delay_16
+    delay_16
+    delay_16
+    delay_16
+    delay_8
+    walk_in_place_faster_down
+    step_end
 
 SSTidalCorridor_Movement_SailorMoveForScott:
-	delay_16
-	walk_right
-	walk_right
-	walk_in_place_faster_up
-	delay_16
-	walk_in_place_faster_left
-	step_end
+    delay_16
+    walk_right
+    walk_right
+    walk_in_place_faster_up
+    delay_16
+    walk_in_place_faster_left
+    step_end
 
 SSTidalCorridor_Movement_SailorReturn:
-	walk_left
-	walk_left
-	walk_in_place_faster_up
-	step_end
+    walk_left
+    walk_left
+    walk_in_place_faster_up
+    step_end
 `
 
 text SSTidalCorridor_Text_ScottBattleFrontierInvite {
-	format("Well, hi, hi!\n"
-	"{PLAYER}{KUN}, {PLAYER}{KUN}!\p"
-	"Something's come up, so I have to disembark, but am I glad to see you!\p"
-	"Congratulations, League Champion!\p"
-	"There's a place I'd like to invite someone like you.\p"
-	"It's the…\n"
-	"Battle Frontier!\p"
-	"What's the place like?\n"
-	"You'll understand when you see it!\p"
-	"I've spoken with the ship's Captain about this.\p"
-	"The next time you take a ferry, you should be able to sail to the Battle Frontier.\p"
-	"Okay, {PLAYER}{KUN}, I'll be waiting for you at the Battle Frontier!")
+    format("Well, hi, hi!\n"
+    "{PLAYER}{KUN}, {PLAYER}{KUN}!\p"
+    "Something's come up, so I have to disembark, but am I glad to see you!\p"
+    "Congratulations, League Champion!\p"
+    "There's a place I'd like to invite someone like you.\p"
+    "It's the…\n"
+    "Battle Frontier!\p"
+    "What's the place like?\n"
+    "You'll understand when you see it!\p"
+    "I've spoken with the ship's Captain about this.\p"
+    "The next time you take a ferry, you should be able to sail to the Battle Frontier.\p"
+    "Okay, {PLAYER}{KUN}, I'll be waiting for you at the Battle Frontier!")
 }
 
 text SSTidal_Text_FastCurrentsHopeYouEnjoyVoyage {
-	format("This ferry is built to plow through\n"
-	"fast-running currents.\p"
-	"We hope you enjoy your voyage with us.\n"
-	"Feel free to explore the ship.")
+    format("This ferry is built to plow through\n"
+    "fast-running currents.\p"
+    "We hope you enjoy your voyage with us.\n"
+    "Feel free to explore the ship.")
 }
 
 text SSTidal_Text_HopeYouEnjoyVoyage {
-	format("We hope you enjoy your voyage on\n"
-	"our ferry.")
+    format("We hope you enjoy your voyage on\n"
+    "our ferry.")
 }
 
 text SSTidal_Text_MadeLandInSlateport {
-	format("We have made land in Lilycove City.\n"
-	"Thank you for sailing with us.")
+    format("We have made land in Lilycove City.\n"
+    "Thank you for sailing with us.")
 }
 
 text SSTidal_Text_MadeLandInLilycove {
-	format("We have made land in Lilycove City.\n"
-	"Thank you for sailing with us.")
+    format("We have made land in Lilycove City.\n"
+    "Thank you for sailing with us.")
 }
 
 text SSTidalCorridor_Text_CanRestInCabin2 {
-	format("It'll be some time before we make land,\n"
-	"I reckon.\p"
-	"You can rest up in your cabin if you'd\n"
-	"like. Your cabin's No. 2.\p"
-	"The bed in there is soft and plushy.\n"
-	"I can attest to how comfy it is!")
+    format("It'll be some time before we make land,\n"
+    "I reckon.\p"
+    "You can rest up in your cabin if you'd\n"
+    "like. Your cabin's No. 2.\p"
+    "The bed in there is soft and plushy.\n"
+    "I can attest to how comfy it is!")
 }
 
 text SSTidalCorridor_Text_WeveArrived {
-	format("We've arrived!")
+    format("We've arrived!")
 }
 
 text SSTidalCorridor_Text_VisitOtherCabins {
-	format("Go visit other cabins.\n"
-	"Trainers bored of the boat trip will be itching to battle.")
+    format("Go visit other cabins.\n"
+    "Trainers bored of the boat trip will be itching to battle.")
 }
 
 text SSTidalCorridor_Text_EnjoyYourCruise {
-	format("Enjoy your cruise!")
+    format("Enjoy your cruise!")
 }
 
 text SSTidalCorridor_Text_HorizonSpreadsBeyondPorthole {
-	format("The horizon spreads beyond the porthole.")
+    format("The horizon spreads beyond the porthole.")
 }
 
 text SSTidalCorridor_Text_BrineyWelcomeAboard {
-	format("Welcome aboard, {PLAYER}{KUN}!\p"
-	"They made me honorary captain of the S.S. Tidal!\p"
-	"You can call me Captain Briney now!\p"
-	"You know, I retired once before, but when I saw this majestic ship…\p"
-	"Let me just say, it stirred my sleeping soul as a sailor!")
+    format("Welcome aboard, {PLAYER}{KUN}!\p"
+    "They made me honorary captain of the S.S. Tidal!\p"
+    "You can call me Captain Briney now!\p"
+    "You know, I retired once before, but when I saw this majestic ship…\p"
+    "Let me just say, it stirred my sleeping soul as a sailor!")
 }
 
 text SSTidalCorridor_Text_Peeko {
-	format("PEEKO: Pihyo pihyohyo…")
+    format("PEEKO: Pihyo pihyohyo…")
 }
 
 text SSTidalCorridor_Text_Cabin1 {
-	format("Cabin 1")
+    format("Cabin 1")
 }
 
 text SSTidalCorridor_Text_Cabin2 {
-	format("Cabin 2")
+    format("Cabin 2")
 }
 
 text SSTidalCorridor_Text_Cabin3 {
-	format("Cabin 3")
+    format("Cabin 3")
 }
 
 text SSTidalCorridor_Text_Cabin4 {
-	format("Cabin 4")
+    format("Cabin 4")
 }

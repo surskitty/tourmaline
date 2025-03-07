@@ -5,7 +5,7 @@ mapscripts AbandonedShip_Rooms_B1F_MapScripts {
 }
 
 script AbandonedShip_Rooms_B1F_EventScript_FatMan {
-	msgbox(format("Urrrrppp…\p"
-	    "I'm getting queasy just being aboard this ship…\p"
-	    "It's not even moving, but…"), MSGBOX_NPC)
+    msgbox(format("Urrrrppp…\p"
+        "I'm getting queasy just being aboard this ship…\p"
+        "It's not even moving, but…"), MSGBOX_NPC)
 }

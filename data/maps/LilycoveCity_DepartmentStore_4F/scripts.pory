@@ -21,16 +21,16 @@ script LilycoveCity_DepartmentStore_4F_EventScript_ClerkRight {
 }
 
 mart LilycoveCity_DepartmentStore_4F_Pokemart_TMs {
-	ITEM_TM_FIRE_BLAST
-	ITEM_TM_THUNDER
-	ITEM_TM_BLIZZARD
-	ITEM_TM_GIGA_IMPACT
-	ITEM_TM_HYPER_BEAM
-	ITEM_TM_PROTECT
-	ITEM_TM_SAFEGUARD
-	ITEM_TM_REFLECT
-	ITEM_TM_LIGHT_SCREEN
-}	
+    ITEM_TM_FIRE_BLAST
+    ITEM_TM_THUNDER
+    ITEM_TM_BLIZZARD
+    ITEM_TM_GIGA_IMPACT
+    ITEM_TM_HYPER_BEAM
+    ITEM_TM_PROTECT
+    ITEM_TM_SAFEGUARD
+    ITEM_TM_REFLECT
+    ITEM_TM_LIGHT_SCREEN
+}    
 
 mart LilycoveCity_DepartmentStore_4F_Pokemart_EvolutionItems {
     ITEM_FIRE_STONE
@@ -46,16 +46,16 @@ mart LilycoveCity_DepartmentStore_4F_Pokemart_EvolutionItems {
 }
 
 script LilycoveCity_DepartmentStore_4F_EventScript_Gentleman {
-	msgbox(format("It's hard to decide how to evolve my Eevee.\p"
-	"Maybe I should catch another in the Safari Zone…"), MSGBOX_NPC)
+    msgbox(format("It's hard to decide how to evolve my Eevee.\p"
+    "Maybe I should catch another in the Safari Zone…"), MSGBOX_NPC)
 }
 
 script LilycoveCity_DepartmentStore_4F_EventScript_Woman {
-	msgbox(	format("There are so many different kinds of TM moves.\p"
-	"A catalog I read said there are fifty different kinds."), MSGBOX_NPC)
+    msgbox(    format("There are so many different kinds of TM moves.\p"
+    "A catalog I read said there are fifty different kinds."), MSGBOX_NPC)
 }
 
 script LilycoveCity_DepartmentStore_4F_EventScript_Youngster {
-	msgbox(format("I heard in some regions, TMs are disposable.\p"
-	    "That would make it so hard to pick which to use, don't you think?"), MSGBOX_NPC)
+    msgbox(format("I heard in some regions, TMs are disposable.\p"
+        "That would make it so hard to pick which to use, don't you think?"), MSGBOX_NPC)
 }

@@ -2,24 +2,24 @@ mapscripts SkyPillar_4F_MapScripts {
     MAP_SCRIPT_ON_FRAME_TABLE: CaveHole_CheckFallDownHole
     MAP_SCRIPT_ON_TRANSITION: SkyPillar_4F_OnTransition
     MAP_SCRIPT_ON_RESUME: SkyPillar_4F_SetHoleWarp
-	MAP_SCRIPT_ON_LOAD {
+    MAP_SCRIPT_ON_LOAD {
         special(SetRoofBirds)
         special(SetStationaryWilds)
     }
 }
 raw `
 SkyPillar_4F_OnTransition:
-	call_if_lt VAR_SKY_PILLAR_STATE, 2, SkyPillar_4F_EventScript_CleanFloor
-	copyvar VAR_ICE_STEP_COUNT, 1
-	end
+    call_if_lt VAR_SKY_PILLAR_STATE, 2, SkyPillar_4F_EventScript_CleanFloor
+    copyvar VAR_ICE_STEP_COUNT, 1
+    end
 
 SkyPillar_4F_EventScript_CleanFloor::
-	setmaplayoutindex LAYOUT_SKY_PILLAR_4F_CLEAN
-	return
+    setmaplayoutindex LAYOUT_SKY_PILLAR_4F_CLEAN
+    return
 
 SkyPillar_4F_SetHoleWarp:
-	setstepcallback STEP_CB_CRACKED_FLOOR
-	setholewarp MAP_SKY_PILLAR_3F
-	end
+    setstepcallback STEP_CB_CRACKED_FLOOR
+    setholewarp MAP_SKY_PILLAR_3F
+    end
 
 `

@@ -1,19 +1,19 @@
 mapscripts Route119_House_MapScripts {}
 
 script Route119_House_EventScript_Wingull {
-	lock
-	faceplayer
-	waitse
-	setseenmon(SPECIES_WINGULL)
-	playmoncry(SPECIES_WINGULL, CRY_MODE_NORMAL)
-	msgbox("WINGULL: Pihyoh!", MSGBOX_DEFAULT)
-	waitmoncry
-	release
+    lock
+    faceplayer
+    waitse
+    setseenmon(SPECIES_WINGULL)
+    playmoncry(SPECIES_WINGULL, CRY_MODE_NORMAL)
+    msgbox("WINGULL: Pihyoh!", MSGBOX_DEFAULT)
+    waitmoncry
+    release
 }
 
 script Route119_House_EventScript_Woman {
-	msgbox(format("I heard about a cave called the Cave of Origin.\p"
-	"Rumor has it the spirits of Pokémon revive there.\p"
-	"Is that even possible?"), MSGBOX_NPC)
+    msgbox(format("I heard about a cave called the Cave of Origin.\p"
+    "Rumor has it the spirits of Pokémon revive there.\p"
+    "Is that even possible?"), MSGBOX_NPC)
 }
 

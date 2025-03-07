@@ -7,93 +7,93 @@ raw `
 
 
 Route111_WinstrateFamilysHouse_EventScript_Victor::
-	lock
-	faceplayer
-	setvar VAR_0x8008, LOCALID_VICTOR
-	msgbox Route111_WinstrateFamilysHouse_Text_MySonIsStrongerThanYou, MSGBOX_DEFAULT
-	goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
-	end
+    lock
+    faceplayer
+    setvar VAR_0x8008, LOCALID_VICTOR
+    msgbox Route111_WinstrateFamilysHouse_Text_MySonIsStrongerThanYou, MSGBOX_DEFAULT
+    goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
+    end
 
 Route111_WinstrateFamilysHouse_EventScript_Victoria::
-	lock
-	faceplayer
-	setvar VAR_0x8008, LOCALID_VICTORIA
-	goto_if_set FLAG_RECEIVED_MACHO_BRACE, Route111_WinstrateFamilysHouse_EventScript_ReceivedMachoBrace
-	msgbox Route111_WinstrateFamilysHouse_Text_LikeYouToHaveMachoBrace, MSGBOX_DEFAULT
-	giveitem ITEM_MACHO_BRACE
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-	setflag FLAG_RECEIVED_MACHO_BRACE
-	goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
-	end
+    lock
+    faceplayer
+    setvar VAR_0x8008, LOCALID_VICTORIA
+    goto_if_set FLAG_RECEIVED_MACHO_BRACE, Route111_WinstrateFamilysHouse_EventScript_ReceivedMachoBrace
+    msgbox Route111_WinstrateFamilysHouse_Text_LikeYouToHaveMachoBrace, MSGBOX_DEFAULT
+    giveitem ITEM_MACHO_BRACE
+    goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+    setflag FLAG_RECEIVED_MACHO_BRACE
+    goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
+    end
 
 Route111_WinstrateFamilysHouse_EventScript_ReceivedMachoBrace::
-	msgbox Route111_WinstrateFamilysHouse_Text_PassionateAboutBattles, MSGBOX_DEFAULT
-	goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
-	end
+    msgbox Route111_WinstrateFamilysHouse_Text_PassionateAboutBattles, MSGBOX_DEFAULT
+    goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
+    end
 
 Route111_WinstrateFamilysHouse_EventScript_Vivi::
-	lock
-	faceplayer
-	setvar VAR_0x8008, LOCALID_VIVI
-	msgbox Route111_WinstrateFamilysHouse_Text_StrongerFamilyMembers, MSGBOX_DEFAULT
-	goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
-	end
+    lock
+    faceplayer
+    setvar VAR_0x8008, LOCALID_VIVI
+    msgbox Route111_WinstrateFamilysHouse_Text_StrongerFamilyMembers, MSGBOX_DEFAULT
+    goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
+    end
 
 Route111_WinstrateFamilysHouse_EventScript_Vicky::
-	lock
-	faceplayer
-	setvar VAR_0x8008, LOCALID_VICKY
-	goto_if_set FLAG_TEMP_4, Route111_WinstrateFamilysHouse_EventScript_AlreadySpokenTo
-	msgbox Route111_WinstrateFamilysHouse_Text_GrandsonStrong, MSGBOX_DEFAULT
-	setflag FLAG_TEMP_4
-	goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
-	end
+    lock
+    faceplayer
+    setvar VAR_0x8008, LOCALID_VICKY
+    goto_if_set FLAG_TEMP_4, Route111_WinstrateFamilysHouse_EventScript_AlreadySpokenTo
+    msgbox Route111_WinstrateFamilysHouse_Text_GrandsonStrong, MSGBOX_DEFAULT
+    setflag FLAG_TEMP_4
+    goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
+    end
 
 Route111_WinstrateFamilysHouse_EventScript_AlreadySpokenTo::
-	msgbox Route111_WinstrateFamilysHouse_Text_GrandsonStrongShort, MSGBOX_DEFAULT
-	goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
-	end
+    msgbox Route111_WinstrateFamilysHouse_Text_GrandsonStrongShort, MSGBOX_DEFAULT
+    goto Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection
+    end
 
 Route111_WinstrateFamilysHouse_EventScript_FaceOriginalDirection::
-	closemessage
-	applymovement VAR_0x8008, Common_Movement_FaceOriginalDirection
-	waitmovement 0
-	release
-	end
+    closemessage
+    applymovement VAR_0x8008, Common_Movement_FaceOriginalDirection
+    waitmovement 0
+    release
+    end
 `
 
 text Route111_WinstrateFamilysHouse_Text_MySonIsStrongerThanYou {
-	format("You're the first Trainer I've seen who deploys Pokémon so masterfully.\p"
-	"But, I should tell you--my son is stronger than you.\p"
-	"He even took the Pokémon League challenge, I'll have you know.")
+    format("You're the first Trainer I've seen who deploys Pokémon so masterfully.\p"
+    "But, I should tell you--my son is stronger than you.\p"
+    "He even took the Pokémon League challenge, I'll have you know.")
 }
 
 text Route111_WinstrateFamilysHouse_Text_LikeYouToHaveMachoBrace {
-	format("We use this Macho Brace to more effectively strengthen our Pokémon in training.\p"
-	"Since you've beaten all of us here, I don't know if you need it, but we would like you to have our Macho Brace.")
+    format("We use this Macho Brace to more effectively strengthen our Pokémon in training.\p"
+    "Since you've beaten all of us here, I don't know if you need it, but we would like you to have our Macho Brace.")
 }
 
 text Route111_WinstrateFamilysHouse_Text_PassionateAboutBattles {
-	format("When it comes to Pokémon battles, we tend to be pretty passionate.")
+    format("When it comes to Pokémon battles, we tend to be pretty passionate.")
 }
 
 text Route111_WinstrateFamilysHouse_Text_StrongerFamilyMembers {
-	format("Mommy is stronger than Daddy.\p"
-	"I'm stronger than Mommy.\p"
-	"And Grandma's stronger than me!\p"
-	"But my big brother is even stronger than Grandma.")
+    format("Mommy is stronger than Daddy.\p"
+    "I'm stronger than Mommy.\p"
+    "And Grandma's stronger than me!\p"
+    "But my big brother is even stronger than Grandma.")
 }
 
 text Route111_WinstrateFamilysHouse_Text_GrandsonStrong {
-	format("There's no question that you're strong.\p"
-	"But if you were to battle my grandson, you'd end up crying in frustration.\p"
-	"He's much stronger than any Trainer our family knows.\p"
-	"He must be challenging the Pokémon League Champion by now.\p"
-	"Knowing my grandson, he could be the Champion already!")
+    format("There's no question that you're strong.\p"
+    "But if you were to battle my grandson, you'd end up crying in frustration.\p"
+    "He's much stronger than any Trainer our family knows.\p"
+    "He must be challenging the Pokémon League Champion by now.\p"
+    "Knowing my grandson, he could be the Champion already!")
 }
 
 text Route111_WinstrateFamilysHouse_Text_GrandsonStrongShort {
-	format("My grandson must be challenging the Pokémon League Champion by now.\p"
-	"Knowing my grandson, he could be the Champion already!")
+    format("My grandson must be challenging the Pokémon League Champion by now.\p"
+    "Knowing my grandson, he could be the Champion already!")
 }
 

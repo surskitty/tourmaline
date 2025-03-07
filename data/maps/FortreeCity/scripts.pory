@@ -11,109 +11,109 @@ mapscripts FortreeCity_MapScripts {
 }
 
 script FortreeCity_EventScript_Man {
-	msgbox(format("No one believes me, but I saw this gigantic Pokémon in the sky.\p"
-	"It seemed to squirm as it flew toward Route 131.\p"
-	"By the way… Sniff…\n"
-	"Um… You, uh…smell singed.\p"
-	"Were you at a volcano or something?"), MSGBOX_NPC)
+    msgbox(format("No one believes me, but I saw this gigantic Pokémon in the sky.\p"
+    "It seemed to squirm as it flew toward Route 131.\p"
+    "By the way… Sniff…\n"
+    "Um… You, uh…smell singed.\p"
+    "Were you at a volcano or something?"), MSGBOX_NPC)
 }
 
 script FortreeCity_EventScript_Woman {
-	lock
-	faceplayer
-	goto_if_set(FLAG_KECLEON_FLED_FORTREE, FortreeCity_EventScript_WomanGymAccessible)
-	msgbox(format("I want to go to the Pokémon Gym, but something's blocking the way.\p"
-	"After all the bother I went through training on Route 120…"), MSGBOX_DEFAULT)
-	release
+    lock
+    faceplayer
+    goto_if_set(FLAG_KECLEON_FLED_FORTREE, FortreeCity_EventScript_WomanGymAccessible)
+    msgbox(format("I want to go to the Pokémon Gym, but something's blocking the way.\p"
+    "After all the bother I went through training on Route 120…"), MSGBOX_DEFAULT)
+    release
 }
 
 script FortreeCity_EventScript_WomanGymAccessible {
-	msgbox(format("I've got my pride-and-joy Pokémon with me. This time, I'll beat Winona."), MSGBOX_DEFAULT)
-	release
+    msgbox(format("I've got my pride-and-joy Pokémon with me. This time, I'll beat Winona."), MSGBOX_DEFAULT)
+    release
 }
 
 script FortreeCity_EventScript_Girl {
-	msgbox(format("The ground absorbs rainwater, and trees grow by drinking that water…\p"
-	"Our Fortree City exists because there's both water and soil."), MSGBOX_NPC)
+    msgbox(format("The ground absorbs rainwater, and trees grow by drinking that water…\p"
+    "Our Fortree City exists because there's both water and soil."), MSGBOX_NPC)
 }
 
 script FortreeCity_EventScript_OldMan {
-	msgbox(format("The City consists of homes built on trees.\p"
-	"Perhaps because of that lifestyle, everyone is healthy and lively.\p"
-	"Why, even myself--I feel as if I've grown thirty years younger."), MSGBOX_NPC)
+    msgbox(format("The City consists of homes built on trees.\p"
+    "Perhaps because of that lifestyle, everyone is healthy and lively.\p"
+    "Why, even myself--I feel as if I've grown thirty years younger."), MSGBOX_NPC)
 }
 
 script FortreeCity_EventScript_Boy {
-	msgbox(format("Living on top of trees is okay.\p"
-	"But sometimes Bug Pokémon come in through windows.\l"
-	"It can be really startling."), MSGBOX_NPC)
+    msgbox(format("Living on top of trees is okay.\p"
+    "But sometimes Bug Pokémon come in through windows.\l"
+    "It can be really startling."), MSGBOX_NPC)
 }
 
 script FortreeCity_EventScript_GameboyKid {
-	msgbox(format("Pokémon that evolve when you trade them love Linking Cables, too! That's what I heard."), MSGBOX_NPC)
+    msgbox(format("Pokémon that evolve when you trade them love Linking Cables, too! That's what I heard."), MSGBOX_NPC)
 }
 
 script FortreeCity_EventScript_CitySign {
-	msgbox(format("Fortree City\n"
-	"“The treetop city that frolics with nature.”"), MSGBOX_SIGN)
+    msgbox(format("Fortree City\n"
+    "“The treetop city that frolics with nature.”"), MSGBOX_SIGN)
 }
 
 script FortreeCity_EventScript_GymSign {
-	msgbox(format("Fortree City Pokémon Gym\n"
-	"Leader: Winona\p"
-	"“The bird user taking flight into the world.”"), MSGBOX_SIGN)
+    msgbox(format("Fortree City Pokémon Gym\n"
+    "Leader: Winona\p"
+    "“The bird user taking flight into the world.”"), MSGBOX_SIGN)
 }
 
 raw `
 
 FortreeCity_EventScript_Kecleon::
-	lock
-	faceplayer
-	checkitem ITEM_DEVON_SCOPE
-	goto_if_eq VAR_RESULT, TRUE, FortreeCity_EventScript_AskUseDevonScope
-	msgbox FortreeCity_Text_SomethingUnseeable, MSGBOX_DEFAULT
-	release
-	end
+    lock
+    faceplayer
+    checkitem ITEM_DEVON_SCOPE
+    goto_if_eq VAR_RESULT, TRUE, FortreeCity_EventScript_AskUseDevonScope
+    msgbox FortreeCity_Text_SomethingUnseeable, MSGBOX_DEFAULT
+    release
+    end
 
 FortreeCity_EventScript_AskUseDevonScope::
-	msgbox FortreeCity_Text_UnseeableUseDevonScope, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, FortreeCity_EventScript_UseDevonScope
-	release
-	end
+    msgbox FortreeCity_Text_UnseeableUseDevonScope, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, YES, FortreeCity_EventScript_UseDevonScope
+    release
+    end
 
 FortreeCity_EventScript_UseDevonScope::
-	msgbox FortreeCity_Text_UsedDevonScopePokemonFled, MSGBOX_DEFAULT
-	closemessage
-	applymovement VAR_LAST_TALKED, Movement_KecleonAppears
-	waitmovement 0
-	waitse
-	playmoncry SPECIES_KECLEON, CRY_MODE_ENCOUNTER
-	delay 40
-	waitmoncry
-	applymovement VAR_LAST_TALKED, FortreeCity_Movement_KecleonFlee
-	waitmovement 0
-	removeobject VAR_LAST_TALKED
-	setflag FLAG_KECLEON_FLED_FORTREE
-	release
-	end
+    msgbox FortreeCity_Text_UsedDevonScopePokemonFled, MSGBOX_DEFAULT
+    closemessage
+    applymovement VAR_LAST_TALKED, Movement_KecleonAppears
+    waitmovement 0
+    waitse
+    playmoncry SPECIES_KECLEON, CRY_MODE_ENCOUNTER
+    delay 40
+    waitmoncry
+    applymovement VAR_LAST_TALKED, FortreeCity_Movement_KecleonFlee
+    waitmovement 0
+    removeobject VAR_LAST_TALKED
+    setflag FLAG_KECLEON_FLED_FORTREE
+    release
+    end
 
 FortreeCity_Movement_KecleonFlee:
-	walk_right
-	step_end
+    walk_right
+    step_end
 `
 
 text FortreeCity_Text_SomethingUnseeable {
-	format("Something unseeable is in the way.")
+    format("Something unseeable is in the way.")
 }
 
 text FortreeCity_Text_UnseeableUseDevonScope {
-	format("Something unseeable is in the way.\p"
-	"Want to use the Devon Scope?")
+    format("Something unseeable is in the way.\p"
+    "Want to use the Devon Scope?")
 }
 
 text FortreeCity_Text_UsedDevonScopePokemonFled {
-	format("{PLAYER} used the Devon Scope.\p"
-	"An invisible Pokémon became completely visible!\p"
-	"The startled Pokémon fled!")
+    format("{PLAYER} used the Devon Scope.\p"
+    "An invisible Pokémon became completely visible!\p"
+    "The startled Pokémon fled!")
 }
 

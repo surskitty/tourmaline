@@ -1,5 +1,5 @@
 raw `
 BattleColosseum_2P_MapScripts::
-	.byte 0
+    .byte 0
 
 `

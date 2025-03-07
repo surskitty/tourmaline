@@ -290,13 +290,12 @@ LittlerootTown_BrendansHouse_1F_Movement_BrendanGoUpstairs2:
 `
 
 text PlayersHouse_1F_Text_IsntItNiceInHere {
-    format("MOM: See, {PLAYER}?\n"
+    format("See, {PLAYER}?\n"
     "Isn't it nice in here, too?")
 }
 
 text PlayersHouse_1F_Text_MoversPokemonGoSetClock {
-    format("The mover's Pokémon do all the work\n"
-    "of moving us in and cleaning up after.\l"
+    format("The mover's Pokémon do all the work of moving us in and cleaning up after.\l"
     "This is so convenient!\p"
     "{PLAYER}, your room is upstairs.\n"
     "Go check it out, dear!\p"
@@ -305,7 +304,7 @@ text PlayersHouse_1F_Text_MoversPokemonGoSetClock {
 }
 
 text PlayersHouse_1F_Text_ArentYouInterestedInRoom {
-    format("MOM: Well, {PLAYER}?\p"
+    format("Well, {PLAYER}?\p"
     "Aren't you interested in seeing your very own room?")
 }
 
@@ -397,8 +396,7 @@ text PlayersHouse_1F_Text_TheresAMovieOnTV {
 
 text PlayersHouse_1F_Text_RunningShoesManual {
     format("It's the instruction booklet for the Running Shoes.\p"
-    "“Press the B Button to run while\n"
-    "wearing your Running Shoes.\p"
+    "“Press the B Button to run while wearing your Running Shoes.\p"
     "“Lace up your Running Shoes and hit the road running!”")
 }
 
@@ -425,9 +423,8 @@ text PlayersHouse_1F_Text_BetterGetBackToGym {
 
 text PlayersHouse_1F_Text_DadShouldStayLonger {
     format("That Dad of yours…\p"
-    "He comes home for the first time in a\n"
-    "while, but all he talks about is Pokémon.\p"
-    "He should relax and stay a little longer.")
+    "He comes home for the first time in a while, but all he talks about is Pokémon.\p"
+    "I understand, but he should relax and stay a little longer.")
 }
 
 text PlayersHouse_1F_Text_IsThatABreakingStory {
@@ -436,8 +433,7 @@ text PlayersHouse_1F_Text_IsThatABreakingStory {
 
 text PlayersHouse_1F_Text_LatiEmergencyNewsFlash {
     format("We bring you this emergency news flash!\p"
-    "In various Hoenn locales, there have\n"
-    "been reports of a BZZT…colored\l"
+    "In various Hoenn locales, there have been reports of a BZZT…colored\l"
     "Pokémon in flight.\p"
     "The identity of this Pokémon is currently unknown.\p"
     "We now return you to the regular movie program.")

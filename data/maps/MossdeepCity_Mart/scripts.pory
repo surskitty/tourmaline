@@ -30,14 +30,14 @@ mart MossdeepCity_Mart_Pokemart {
 }
 
 script MossdeepCity_Mart_EventScript_Sailor {
-	msgbox(format("Devon Corp makes Net and Dive Balls, but only experts in Johto make Lure Balls.\p"
-	    "I heard Lure Balls are better on hard to catch Water-type Pokémon, while Net Balls scoop up common ones."), MSGBOX_NPC)
+    msgbox(format("Devon Corp makes Net and Dive Balls, but only experts in Johto make Lure Balls.\p"
+        "I heard Lure Balls are better on hard to catch Water-type Pokémon, while Net Balls scoop up common ones."), MSGBOX_NPC)
 }
 
 script MossdeepCity_Mart_EventScript_Woman {
-	msgbox(format("Gym Leaders are too nice to use Revives during Badge matches. I'm grateful."), MSGBOX_NPC)
+    msgbox(format("Gym Leaders are too nice to use Revives during Badge matches. I'm grateful."), MSGBOX_NPC)
 }
 
 script MossdeepCity_Mart_EventScript_Boy {
-	msgbox(format("I buy Repels to keep Wingull and Wattrel from stealing my lunch."), MSGBOX_NPC)
+    msgbox(format("I buy Repels to keep Wingull and Wattrel from stealing my lunch."), MSGBOX_NPC)
 }

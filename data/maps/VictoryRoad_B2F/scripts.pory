@@ -1,5 +1,5 @@
 mapscripts VictoryRoad_B2F_MapScripts {
-	MAP_SCRIPT_ON_LOAD {
+    MAP_SCRIPT_ON_LOAD {
         special(SetRoofBirds)
         special(SetStationaryWilds)
     }
@@ -7,120 +7,120 @@ mapscripts VictoryRoad_B2F_MapScripts {
 
 raw `
 VictoryRoad_B2F_EventScript_Vito::
-	trainerbattle_single TRAINER_VITO, VictoryRoad_B2F_Text_VitoIntro, VictoryRoad_B2F_Text_VitoDefeat
-	msgbox VictoryRoad_B2F_Text_VitoPostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_VITO, VictoryRoad_B2F_Text_VitoIntro, VictoryRoad_B2F_Text_VitoDefeat
+    msgbox VictoryRoad_B2F_Text_VitoPostBattle, MSGBOX_AUTOCLOSE
+    end
 
 VictoryRoad_B2F_EventScript_Owen::
-	trainerbattle_single TRAINER_OWEN, VictoryRoad_B2F_Text_OwenIntro, VictoryRoad_B2F_Text_OwenDefeat
-	msgbox VictoryRoad_B2F_Text_OwenPostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_OWEN, VictoryRoad_B2F_Text_OwenIntro, VictoryRoad_B2F_Text_OwenDefeat
+    msgbox VictoryRoad_B2F_Text_OwenPostBattle, MSGBOX_AUTOCLOSE
+    end
 
 VictoryRoad_B2F_EventScript_Caroline::
-	trainerbattle_single TRAINER_CAROLINE, VictoryRoad_B2F_Text_CarolineIntro, VictoryRoad_B2F_Text_CarolineDefeat
-	msgbox VictoryRoad_B2F_Text_CarolinePostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_CAROLINE, VictoryRoad_B2F_Text_CarolineIntro, VictoryRoad_B2F_Text_CarolineDefeat
+    msgbox VictoryRoad_B2F_Text_CarolinePostBattle, MSGBOX_AUTOCLOSE
+    end
 
 VictoryRoad_B2F_EventScript_Julie::
-	trainerbattle_single TRAINER_JULIE, VictoryRoad_B2F_Text_JulieIntro, VictoryRoad_B2F_Text_JulieDefeat
-	msgbox VictoryRoad_B2F_Text_JuliePostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_JULIE, VictoryRoad_B2F_Text_JulieIntro, VictoryRoad_B2F_Text_JulieDefeat
+    msgbox VictoryRoad_B2F_Text_JuliePostBattle, MSGBOX_AUTOCLOSE
+    end
 
 VictoryRoad_B2F_EventScript_Felix::
-	trainerbattle_single TRAINER_FELIX, VictoryRoad_B2F_Text_FelixIntro, VictoryRoad_B2F_Text_FelixDefeat
-	msgbox VictoryRoad_B2F_Text_FelixPostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_FELIX, VictoryRoad_B2F_Text_FelixIntro, VictoryRoad_B2F_Text_FelixDefeat
+    msgbox VictoryRoad_B2F_Text_FelixPostBattle, MSGBOX_AUTOCLOSE
+    end
 
 VictoryRoad_B2F_EventScript_Dianne::
-	trainerbattle_single TRAINER_DIANNE, VictoryRoad_B2F_Text_DianneIntro, VictoryRoad_B2F_Text_DianneDefeat
-	msgbox VictoryRoad_B2F_Text_DiannePostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_DIANNE, VictoryRoad_B2F_Text_DianneIntro, VictoryRoad_B2F_Text_DianneDefeat
+    msgbox VictoryRoad_B2F_Text_DiannePostBattle, MSGBOX_AUTOCLOSE
+    end
 `
 
 text VictoryRoad_B2F_Text_VitoIntro {
-	format("I trained together with my whole family,\n"
-	"every one of us!\l"
-	"I'm not losing to anyone!")
+    format("I trained together with my whole family,\n"
+    "every one of us!\l"
+    "I'm not losing to anyone!")
 }
 
 text VictoryRoad_B2F_Text_VitoDefeat {
-	format("Better than my family?!\n"
-	"Is that possible?!")
+    format("Better than my family?!\n"
+    "Is that possible?!")
 }
 
 text VictoryRoad_B2F_Text_VitoPostBattle {
-	format("I was better than everyone in my\n"
-	"family. I've never lost before…\p"
-	"I've lost my confidence…\n"
-	"Maybe I'll go home…")
+    format("I was better than everyone in my\n"
+    "family. I've never lost before…\p"
+    "I've lost my confidence…\n"
+    "Maybe I'll go home…")
 }
 
 text VictoryRoad_B2F_Text_OwenIntro {
-	format("I'd heard that there was a tough little kid around. Do they mean you?")
+    format("I'd heard that there was a tough little kid around. Do they mean you?")
 }
 
 text VictoryRoad_B2F_Text_OwenDefeat {
-	format("The little shrimp is tough!")
+    format("The little shrimp is tough!")
 }
 
 text VictoryRoad_B2F_Text_OwenPostBattle {
-	format("The rumors I heard, that tough little\n"
-	"kid is from Petalburg City.")
+    format("The rumors I heard, that tough little\n"
+    "kid is from Petalburg City.")
 }
 
 text VictoryRoad_B2F_Text_CarolineIntro {
-	format("You must be getting a little tired.")
+    format("You must be getting a little tired.")
 }
 
 text VictoryRoad_B2F_Text_CarolineDefeat {
-	format("No signs of tiring at all!")
+    format("No signs of tiring at all!")
 }
 
 text VictoryRoad_B2F_Text_CarolinePostBattle {
-	format("Victory Road and the Pokémon League\n"
-	"are long and grueling challenges.\l"
-	"Beware of fatigue!")
+    format("Victory Road and the Pokémon League\n"
+    "are long and grueling challenges.\l"
+    "Beware of fatigue!")
 }
 
 text VictoryRoad_B2F_Text_JulieIntro {
-	format("You shouldn't get complacent just\n"
-	"because you have a lot of Gym Badges.\p"
-	"There's always going to be someone\n"
-	"who's better than you!")
+    format("You shouldn't get complacent just\n"
+    "because you have a lot of Gym Badges.\p"
+    "There's always going to be someone\n"
+    "who's better than you!")
 }
 
 text VictoryRoad_B2F_Text_JulieDefeat {
-	format("You're better than me!")
+    format("You're better than me!")
 }
 
 text VictoryRoad_B2F_Text_JuliePostBattle {
-	format("Gaze on your collected Badges and remember the Trainers you've faced.")
+    format("Gaze on your collected Badges and remember the Trainers you've faced.")
 }
 
 text VictoryRoad_B2F_Text_FelixIntro {
-	format("I've come this far, but the tension's giving me awful stomach pain…")
+    format("I've come this far, but the tension's giving me awful stomach pain…")
 }
 
 text VictoryRoad_B2F_Text_FelixDefeat {
-	format("Ooh…\n"
-	"It hurts…")
+    format("Ooh…\n"
+    "It hurts…")
 }
 
 text VictoryRoad_B2F_Text_FelixPostBattle {
-	format("I can't help getting all tense knowing that I'm nearing the Pokémon League.\p"
-	"It's all I can do to feign calm.")
+    format("I can't help getting all tense knowing that I'm nearing the Pokémon League.\p"
+    "It's all I can do to feign calm.")
 }
 
 text VictoryRoad_B2F_Text_DianneIntro {
-	format("The elite among the elite gather in this cave.\p"
-	"How are you finding it?")
+    format("The elite among the elite gather in this cave.\p"
+    "How are you finding it?")
 }
 
 text VictoryRoad_B2F_Text_DianneDefeat {
-	format("Not rattled in the least bit!")
+    format("Not rattled in the least bit!")
 }
 
 text VictoryRoad_B2F_Text_DiannePostBattle {
-	format("You do have guts! I like that!\n"
-	"Keep it going!")
+    format("You do have guts! I like that!\n"
+    "Keep it going!")
 }

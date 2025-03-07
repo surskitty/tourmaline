@@ -6,10 +6,10 @@ mapscripts SafariZone_North_MapScripts {
 }
 
 script SafariZone_North_EventScript_Fisherman {
-	msgbox(format("I'm on a mission to find Water Pokémon you don't see in Hoenn.\p"
-	"Do you have any idea where the lake is?"), MSGBOX_NPC)
+    msgbox(format("I'm on a mission to find Water Pokémon you don't see in Hoenn.\p"
+    "Do you have any idea where the lake is?"), MSGBOX_NPC)
 }
 
 script SafariZone_North_EventScript_Man {
-	msgbox(format("I'm going to catch a lot of rare Pokémon here and trade them with my friends!"), MSGBOX_NPC)
+    msgbox(format("I'm going to catch a lot of rare Pokémon here and trade them with my friends!"), MSGBOX_NPC)
 }

@@ -11,32 +11,32 @@ script SlateportCity_Mart_EventScript_Clerk {
 }
 
 mart SlateportCity_Mart_Pokemart {
-	ITEM_POKE_BALL
-	ITEM_GREAT_BALL
-	ITEM_POTION
-	ITEM_SUPER_POTION
-	ITEM_ANTIDOTE
-	ITEM_PARALYZE_HEAL
-	ITEM_REPEL
-	ITEM_LURE
+    ITEM_POKE_BALL
+    ITEM_GREAT_BALL
+    ITEM_POTION
+    ITEM_SUPER_POTION
+    ITEM_ANTIDOTE
+    ITEM_PARALYZE_HEAL
+    ITEM_REPEL
+    ITEM_LURE
     ITEM_ABILITY_CAPSULE
     ITEM_ABILITY_PATCH
-	ITEM_AIR_BALLOON
-	ITEM_BLUNDER_POLICY
-	ITEM_EJECT_BUTTON
-	ITEM_EJECT_PACK
-	ITEM_RED_CARD
-	ITEM_THROAT_SPRAY
-	ITEM_WEAKNESS_POLICY
-	ITEM_HARBOR_MAIL
+    ITEM_AIR_BALLOON
+    ITEM_BLUNDER_POLICY
+    ITEM_EJECT_BUTTON
+    ITEM_EJECT_PACK
+    ITEM_RED_CARD
+    ITEM_THROAT_SPRAY
+    ITEM_WEAKNESS_POLICY
+    ITEM_HARBOR_MAIL
 }
 
 script SlateportCity_Mart_EventScript_BlackBelt {
-	msgbox(format("The Market does have some interesting merchandise.\p"
-	    "But there are some items you can only get at a Pokémon Mart."), MSGBOX_NPC)
+    msgbox(format("The Market does have some interesting merchandise.\p"
+        "But there are some items you can only get at a Pokémon Mart."), MSGBOX_NPC)
 }
 
 script SlateportCity_Mart_EventScript_Man {
-	msgbox(format("A Blunder Policy makes Pokémon faster when they miss due to bad accuracy…"), MSGBOX_NPC)
+    msgbox(format("A Blunder Policy makes Pokémon faster when they miss due to bad accuracy…"), MSGBOX_NPC)
 }
 

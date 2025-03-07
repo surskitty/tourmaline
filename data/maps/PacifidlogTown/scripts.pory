@@ -1,9 +1,9 @@
 mapscripts PacifidlogTown_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
-    	setflag(FLAG_VISITED_PACIFIDLOG_TOWN)
+        setflag(FLAG_VISITED_PACIFIDLOG_TOWN)
     }
     MAP_SCRIPT_ON_RESUME {
-    	setstepcallback(STEP_CB_PACIFIDLOG_BRIDGE)
+        setstepcallback(STEP_CB_PACIFIDLOG_BRIDGE)
     }
     MAP_SCRIPT_ON_LOAD {
         special(SetRoofBirds)
@@ -12,39 +12,39 @@ mapscripts PacifidlogTown_MapScripts {
 }
     
 script PacifidlogTown_EventScript_NinjaBoy {
-	msgbox(format("See, isn't it neat?\n"
-		"These houses are on water!\p"
-		"I was born here!"), MSGBOX_NPC)
+    msgbox(format("See, isn't it neat?\n"
+        "These houses are on water!\p"
+        "I was born here!"), MSGBOX_NPC)
 }
 
 script PacifidlogTown_EventScript_Girl {
-	msgbox(format("The sea between Pacifidlog and Slateport has a fast-running tide.\p"
-		"If you decide to Surf, you could end up swept away somewhere else."), MSGBOX_NPC)
+    msgbox(format("The sea between Pacifidlog and Slateport has a fast-running tide.\p"
+        "If you decide to Surf, you could end up swept away somewhere else."), MSGBOX_NPC)
 }
 
 script PacifidlogTown_EventScript_Fisherman {
-	msgbox(PacifidlogTown_Text_SkyPillarTooScary, MSGBOX_NPC)
+    msgbox(PacifidlogTown_Text_SkyPillarTooScary, MSGBOX_NPC)
 }
 
 script PacifidlogTown_EventScript_TownSign {
-	msgbox(format("Pacifidlog Town\p"
-	"“Where the morning sun smiles upon the waters.”"), MSGBOX_SIGN)
+    msgbox(format("Pacifidlog Town\p"
+    "“Where the morning sun smiles upon the waters.”"), MSGBOX_SIGN)
 }
 
 text PacifidlogTown_Text_SkyPillarTooScary {
-	format("The Sky Pillar?\p"
-		"…Oh, you must mean that tall, tall tower a little further out.\p"
-	"If you asked me, I wouldn't climb it.\n"
-	"It's too scary to get up that high.\p"
-	"Life at sea level in Pacifidlog, that suits me fine.")
+    format("The Sky Pillar?\p"
+        "…Oh, you must mean that tall, tall tower a little further out.\p"
+    "If you asked me, I wouldn't climb it.\n"
+    "It's too scary to get up that high.\p"
+    "Life at sea level in Pacifidlog, that suits me fine.")
 }
 
 script PacifidlogTown_EventScript_Corsola {
-	lock
-	waitse
-	playmoncry(SPECIES_CORSOLA, CRY_MODE_NORMAL)
-	msgbox("Cor-cor?", MSGBOX_NPC)
-	setseenmon(SPECIES_CORSOLA)
+    lock
+    waitse
+    playmoncry(SPECIES_CORSOLA, CRY_MODE_NORMAL)
+    msgbox("Cor-cor?", MSGBOX_NPC)
+    setseenmon(SPECIES_CORSOLA)
     waitmoncry
     release
 }

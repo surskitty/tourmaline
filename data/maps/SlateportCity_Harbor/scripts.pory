@@ -1,9 +1,9 @@
 mapscripts SlateportCity_Harbor_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
-	    setescapewarp(MAP_SLATEPORT_CITY, 28, 13)
-	    setvar(VAR_TEMP_1, 0)
-	    call_if_eq(VAR_SLATEPORT_HARBOR_STATE, 1, SlateportCity_Harbor_EventScript_ReadyAquaEscapeScene)
-	    call_if_set(FLAG_SYS_GAME_CLEAR, SlateportCity_Harbor_EventScript_ShowSSTidal)
+        setescapewarp(MAP_SLATEPORT_CITY, 28, 13)
+        setvar(VAR_TEMP_1, 0)
+        call_if_eq(VAR_SLATEPORT_HARBOR_STATE, 1, SlateportCity_Harbor_EventScript_ReadyAquaEscapeScene)
+        call_if_set(FLAG_SYS_GAME_CLEAR, SlateportCity_Harbor_EventScript_ShowSSTidal)
     }
 }
 
@@ -15,527 +15,527 @@ raw `
 .set LOCALID_SUBMARINE, 8
 
 SlateportCity_Harbor_EventScript_ShowSSTidal::
-	clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_SS_TIDAL
-	return
+    clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_SS_TIDAL
+    return
 
 SlateportCity_Harbor_EventScript_ReadyAquaEscapeScene::
-	savebgm MUS_ENCOUNTER_AQUA
-	setobjectxyperm LOCALID_CAPT_STERN, 12, 13
-	setobjectmovementtype LOCALID_CAPT_STERN, MOVEMENT_TYPE_FACE_LEFT
-	setflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS
-	return
+    savebgm MUS_ENCOUNTER_AQUA
+    setobjectxyperm LOCALID_CAPT_STERN, 12, 13
+    setobjectmovementtype LOCALID_CAPT_STERN, MOVEMENT_TYPE_FACE_LEFT
+    setflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS
+    return
 
 SlateportCity_Harbor_EventScript_AquaEscapeTrigger0::
-	lockall
-	setvar VAR_0x8008, 0
-	goto SlateportCity_Harbor_EventScript_AquaEscapeScene
-	end
+    lockall
+    setvar VAR_0x8008, 0
+    goto SlateportCity_Harbor_EventScript_AquaEscapeScene
+    end
 
 SlateportCity_Harbor_EventScript_AquaEscapeTrigger1::
-	lockall
-	setvar VAR_0x8008, 1
-	goto SlateportCity_Harbor_EventScript_AquaEscapeScene
-	end
+    lockall
+    setvar VAR_0x8008, 1
+    goto SlateportCity_Harbor_EventScript_AquaEscapeScene
+    end
 
 SlateportCity_Harbor_EventScript_AquaEscapeTrigger2::
-	lockall
-	setvar VAR_0x8008, 2
-	goto SlateportCity_Harbor_EventScript_AquaEscapeScene
-	end
+    lockall
+    setvar VAR_0x8008, 2
+    goto SlateportCity_Harbor_EventScript_AquaEscapeScene
+    end
 
 SlateportCity_Harbor_EventScript_AquaEscapeTrigger3::
-	lockall
-	setvar VAR_0x8008, 3
-	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_Harbor_Movement_PlayerWalkUp
-	waitmovement 0
-	goto SlateportCity_Harbor_EventScript_AquaEscapeScene
-	end
+    lockall
+    setvar VAR_0x8008, 3
+    applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_Harbor_Movement_PlayerWalkUp
+    waitmovement 0
+    goto SlateportCity_Harbor_EventScript_AquaEscapeScene
+    end
 
 SlateportCity_Harbor_EventScript_AquaEscapeScene::
-	applymovement LOCALID_ARCHIE, Common_Movement_WalkInPlaceFasterDown
-	waitmovement 0
-	applymovement LOCALID_GRUNT, Common_Movement_WalkInPlaceFasterDown
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
-	waitmovement 0
-	speakername CommonName_Text_Archie
-	msgbox SlateportCity_Harbor_Text_ArchieYouAgainHideoutInLilycove, MSGBOX_DEFAULT
-	closemessage
-	applymovement LOCALID_GRUNT, SlateportCity_Harbor_Movement_AquaBoardSub
-	applymovement LOCALID_ARCHIE, SlateportCity_Harbor_Movement_AquaBoardSub
-	applymovement LOCALID_SUBMARINE, SlateportCity_Harbor_Movement_SubmarineExit
-	waitmovement 0
-	removeobject LOCALID_GRUNT
-	removeobject LOCALID_ARCHIE
-	removeobject LOCALID_SUBMARINE
-	setvar VAR_SLATEPORT_HARBOR_STATE, 2
-	setflag FLAG_MET_TEAM_AQUA_HARBOR
-	setflag FLAG_HIDE_LILYCOVE_MOTEL_SCOTT
-	call_if_eq VAR_0x8008, 0, SlateportCity_Harbor_EventScript_SternApproachPlayer0
-	call_if_eq VAR_0x8008, 1, SlateportCity_Harbor_EventScript_SternApproachPlayer1
-	call_if_eq VAR_0x8008, 2, SlateportCity_Harbor_EventScript_SternApproachPlayer
-	call_if_eq VAR_0x8008, 3, SlateportCity_Harbor_EventScript_SternApproachPlayer
-	speakername CommonName_Text_CaptStern
-	msgbox SlateportCity_Harbor_Text_CaptSternWhyStealMySubmarine, MSGBOX_DEFAULT
-	closemessage
-	setflag FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_1_BLOCKING_ENTRANCE
-	setflag FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_2_BLOCKING_ENTRANCE
-	copyobjectxytoperm LOCALID_CAPT_STERN
-	setobjectmovementtype LOCALID_CAPT_STERN, MOVEMENT_TYPE_FACE_RIGHT
-	releaseall
-	end
+    applymovement LOCALID_ARCHIE, Common_Movement_WalkInPlaceFasterDown
+    waitmovement 0
+    applymovement LOCALID_GRUNT, Common_Movement_WalkInPlaceFasterDown
+    applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
+    waitmovement 0
+    speakername CommonName_Text_Archie
+    msgbox SlateportCity_Harbor_Text_ArchieYouAgainHideoutInLilycove, MSGBOX_DEFAULT
+    closemessage
+    applymovement LOCALID_GRUNT, SlateportCity_Harbor_Movement_AquaBoardSub
+    applymovement LOCALID_ARCHIE, SlateportCity_Harbor_Movement_AquaBoardSub
+    applymovement LOCALID_SUBMARINE, SlateportCity_Harbor_Movement_SubmarineExit
+    waitmovement 0
+    removeobject LOCALID_GRUNT
+    removeobject LOCALID_ARCHIE
+    removeobject LOCALID_SUBMARINE
+    setvar VAR_SLATEPORT_HARBOR_STATE, 2
+    setflag FLAG_MET_TEAM_AQUA_HARBOR
+    setflag FLAG_HIDE_LILYCOVE_MOTEL_SCOTT
+    call_if_eq VAR_0x8008, 0, SlateportCity_Harbor_EventScript_SternApproachPlayer0
+    call_if_eq VAR_0x8008, 1, SlateportCity_Harbor_EventScript_SternApproachPlayer1
+    call_if_eq VAR_0x8008, 2, SlateportCity_Harbor_EventScript_SternApproachPlayer
+    call_if_eq VAR_0x8008, 3, SlateportCity_Harbor_EventScript_SternApproachPlayer
+    speakername CommonName_Text_CaptStern
+    msgbox SlateportCity_Harbor_Text_CaptSternWhyStealMySubmarine, MSGBOX_DEFAULT
+    closemessage
+    setflag FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_1_BLOCKING_ENTRANCE
+    setflag FLAG_HIDE_AQUA_HIDEOUT_1F_GRUNT_2_BLOCKING_ENTRANCE
+    copyobjectxytoperm LOCALID_CAPT_STERN
+    setobjectmovementtype LOCALID_CAPT_STERN, MOVEMENT_TYPE_FACE_RIGHT
+    releaseall
+    end
 
 SlateportCity_Harbor_EventScript_SternApproachPlayer0::
-	applymovement LOCALID_CAPT_STERN, SlateportCity_Harbor_Movement_SternApproachPlayer0
-	waitmovement 0
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterDown
-	waitmovement 0
-	return
+    applymovement LOCALID_CAPT_STERN, SlateportCity_Harbor_Movement_SternApproachPlayer0
+    waitmovement 0
+    applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterDown
+    waitmovement 0
+    return
 
 SlateportCity_Harbor_EventScript_SternApproachPlayer1::
-	applymovement LOCALID_CAPT_STERN, SlateportCity_Harbor_Movement_SternApproachPlayer1
-	waitmovement 0
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
-	waitmovement 0
-	return
+    applymovement LOCALID_CAPT_STERN, SlateportCity_Harbor_Movement_SternApproachPlayer1
+    waitmovement 0
+    applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
+    waitmovement 0
+    return
 
 SlateportCity_Harbor_EventScript_SternApproachPlayer::
-	applymovement LOCALID_CAPT_STERN, SlateportCity_Harbor_Movement_SternApproachPlayer
-	waitmovement 0
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
-	waitmovement 0
-	return
+    applymovement LOCALID_CAPT_STERN, SlateportCity_Harbor_Movement_SternApproachPlayer
+    waitmovement 0
+    applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
+    waitmovement 0
+    return
 
 SlateportCity_Harbor_Movement_AquaBoardSub:
-	delay_16
-	delay_16
-	jump_up
-	set_invisible
-	step_end
+    delay_16
+    delay_16
+    jump_up
+    set_invisible
+    step_end
 
 @ Unused, Archie instead shares above identical movement script with Grunt
 SlateportCity_Harbor_Movement_ArchieBoardSub:
-	delay_16
-	delay_16
-	jump_up
-	set_invisible
-	step_end
+    delay_16
+    delay_16
+    jump_up
+    set_invisible
+    step_end
 
 SlateportCity_Harbor_Movement_SubmarineExit:
-	delay_16
-	delay_16
-	delay_16
-	delay_16
-	walk_right
-	walk_right
-	walk_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	walk_fast_right
-	step_end
+    delay_16
+    delay_16
+    delay_16
+    delay_16
+    walk_right
+    walk_right
+    walk_right
+    walk_fast_right
+    walk_fast_right
+    walk_fast_right
+    walk_fast_right
+    walk_fast_right
+    walk_fast_right
+    step_end
 
 SlateportCity_Harbor_Movement_SternApproachPlayer0:
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_up
-	step_end
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_up
+    step_end
 
 SlateportCity_Harbor_Movement_SternApproachPlayer1:
-	walk_left
-	walk_left
-	walk_up
-	walk_left
-	step_end
+    walk_left
+    walk_left
+    walk_up
+    walk_left
+    step_end
 
 SlateportCity_Harbor_Movement_SternApproachPlayer:
-	walk_left
-	walk_left
-	walk_left
-	step_end
+    walk_left
+    walk_left
+    walk_left
+    step_end
 
 SlateportCity_Harbor_Movement_PlayerWalkUp:
-	walk_up
-	step_end
+    walk_up
+    step_end
 
 SlateportCity_Harbor_EventScript_FerryAttendant::
-	lock
-	faceplayer
-	goto_if_set FLAG_SYS_GAME_CLEAR, SlateportCity_Harbor_EventScript_AskForTicket
-	msgbox SlateportCity_Harbor_Text_FerryServiceUnavailable, MSGBOX_DEFAULT
-	release
-	end
+    lock
+    faceplayer
+    goto_if_set FLAG_SYS_GAME_CLEAR, SlateportCity_Harbor_EventScript_AskForTicket
+    msgbox SlateportCity_Harbor_Text_FerryServiceUnavailable, MSGBOX_DEFAULT
+    release
+    end
 
 SlateportCity_Harbor_EventScript_AskForTicket::
-	msgbox SlateportCity_Harbor_Text_MayISeeYourTicket, MSGBOX_DEFAULT
-	message SlateportCity_Harbor_Text_FlashedTicketWhereTo
-	waitmessage
-	goto SlateportCity_Harbor_EventScript_ChooseDestination
-	end
+    msgbox SlateportCity_Harbor_Text_MayISeeYourTicket, MSGBOX_DEFAULT
+    message SlateportCity_Harbor_Text_FlashedTicketWhereTo
+    waitmessage
+    goto SlateportCity_Harbor_EventScript_ChooseDestination
+    end
 
 SlateportCity_Harbor_EventScript_ChooseDestination::
-	goto_if_set FLAG_MET_SCOTT_ON_SS_TIDAL, SlateportCity_Harbor_EventScript_ChooseDestinationWithBattleFrontier
-	multichoicedefault 18, 8, MULTI_SSTIDAL_SLATEPORT_NO_BF, 2, FALSE
-	switch VAR_RESULT
-	case 0, SlateportCity_Harbor_EventScript_Lilycove
-	case 1, SlateportCity_Harbor_EventScript_CancelDestinationSelect
-	case MULTI_B_PRESSED, SlateportCity_Harbor_EventScript_CancelDestinationSelect
-	end
+    goto_if_set FLAG_MET_SCOTT_ON_SS_TIDAL, SlateportCity_Harbor_EventScript_ChooseDestinationWithBattleFrontier
+    multichoicedefault 18, 8, MULTI_SSTIDAL_SLATEPORT_NO_BF, 2, FALSE
+    switch VAR_RESULT
+    case 0, SlateportCity_Harbor_EventScript_Lilycove
+    case 1, SlateportCity_Harbor_EventScript_CancelDestinationSelect
+    case MULTI_B_PRESSED, SlateportCity_Harbor_EventScript_CancelDestinationSelect
+    end
 
 SlateportCity_Harbor_EventScript_ChooseDestinationWithBattleFrontier::
-	multichoicedefault 17, 6, MULTI_SSTIDAL_SLATEPORT_WITH_BF, 2, FALSE
-	switch VAR_RESULT
-	case 0, SlateportCity_Harbor_EventScript_Lilycove
-	case 1, SlateportCity_Harbor_EventScript_BattleFrontier
-	case 2, SlateportCity_Harbor_EventScript_CancelDestinationSelect
-	case MULTI_B_PRESSED, SlateportCity_Harbor_EventScript_CancelDestinationSelect
-	end
+    multichoicedefault 17, 6, MULTI_SSTIDAL_SLATEPORT_WITH_BF, 2, FALSE
+    switch VAR_RESULT
+    case 0, SlateportCity_Harbor_EventScript_Lilycove
+    case 1, SlateportCity_Harbor_EventScript_BattleFrontier
+    case 2, SlateportCity_Harbor_EventScript_CancelDestinationSelect
+    case MULTI_B_PRESSED, SlateportCity_Harbor_EventScript_CancelDestinationSelect
+    end
 
 @ Unused. Should be impossible for player to reach Ferry without having received SS Tidal ticket
 SlateportCity_Harbor_EventScript_NoTicket::
-	msgbox SlateportCity_Harbor_Text_YouMustHaveTicket, MSGBOX_DEFAULT
-	release
-	end
+    msgbox SlateportCity_Harbor_Text_YouMustHaveTicket, MSGBOX_DEFAULT
+    release
+    end
 
 SlateportCity_Harbor_EventScript_Lilycove::
-	msgbox SlateportCity_Harbor_Text_LilycoveItIs, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, SlateportCity_Harbor_EventScript_ChooseNewDestination
-	setvar VAR_SS_TIDAL_STATE, SS_TIDAL_BOARD_SLATEPORT
-	call SlateportCity_Harbor_EventScript_BoardFerry
-	warp MAP_SS_TIDAL_CORRIDOR, 1, 10
-	waitstate
-	release
-	end
+    msgbox SlateportCity_Harbor_Text_LilycoveItIs, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, NO, SlateportCity_Harbor_EventScript_ChooseNewDestination
+    setvar VAR_SS_TIDAL_STATE, SS_TIDAL_BOARD_SLATEPORT
+    call SlateportCity_Harbor_EventScript_BoardFerry
+    warp MAP_SS_TIDAL_CORRIDOR, 1, 10
+    waitstate
+    release
+    end
 
 SlateportCity_Harbor_EventScript_BattleFrontier::
-	msgbox SlateportCity_Harbor_Text_BattleFrontierItIs, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, SlateportCity_Harbor_EventScript_ChooseNewDestination
-	call SlateportCity_Harbor_EventScript_BoardFerry
-	warp MAP_BATTLE_FRONTIER_OUTSIDE_WEST, 19, 67
-	waitstate
-	release
-	end
+    msgbox SlateportCity_Harbor_Text_BattleFrontierItIs, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, NO, SlateportCity_Harbor_EventScript_ChooseNewDestination
+    call SlateportCity_Harbor_EventScript_BoardFerry
+    warp MAP_BATTLE_FRONTIER_OUTSIDE_WEST, 19, 67
+    waitstate
+    release
+    end
 
 SlateportCity_Harbor_EventScript_ChooseNewDestination::
-	message SlateportCity_Harbor_Text_WhereWouldYouLikeToGo
-	waitmessage
-	goto SlateportCity_Harbor_EventScript_ChooseDestination
-	end
+    message SlateportCity_Harbor_Text_WhereWouldYouLikeToGo
+    waitmessage
+    goto SlateportCity_Harbor_EventScript_ChooseDestination
+    end
 
 SlateportCity_Harbor_EventScript_BoardFerry::
-	msgbox SlateportCity_Harbor_Text_PleaseBoardFerry, MSGBOX_DEFAULT
-	closemessage
-	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterUp
-	waitmovement 0
-	delay 30
-	hideobjectat VAR_LAST_TALKED, MAP_SLATEPORT_CITY_HARBOR
-	call_if_eq VAR_FACING, DIR_NORTH, SlateportCity_Harbor_EventScript_BoardFerryNorth
-	call_if_eq VAR_FACING, DIR_EAST, SlateportCity_Harbor_EventScript_BoardFerryEast
-	delay 30
-	hideobjectat OBJ_EVENT_ID_PLAYER, 0
-	setvar VAR_0x8004, LOCALID_SS_TIDAL
-	call Common_EventScript_FerryDepart
-	return
+    msgbox SlateportCity_Harbor_Text_PleaseBoardFerry, MSGBOX_DEFAULT
+    closemessage
+    applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterUp
+    waitmovement 0
+    delay 30
+    hideobjectat VAR_LAST_TALKED, MAP_SLATEPORT_CITY_HARBOR
+    call_if_eq VAR_FACING, DIR_NORTH, SlateportCity_Harbor_EventScript_BoardFerryNorth
+    call_if_eq VAR_FACING, DIR_EAST, SlateportCity_Harbor_EventScript_BoardFerryEast
+    delay 30
+    hideobjectat OBJ_EVENT_ID_PLAYER, 0
+    setvar VAR_0x8004, LOCALID_SS_TIDAL
+    call Common_EventScript_FerryDepart
+    return
 
 SlateportCity_Harbor_EventScript_CancelDestinationSelect::
-	msgbox SlateportCity_Harbor_Text_SailAnotherTime, MSGBOX_DEFAULT
-	release
-	end
+    msgbox SlateportCity_Harbor_Text_SailAnotherTime, MSGBOX_DEFAULT
+    release
+    end
 
 SlateportCity_Harbor_EventScript_BoardFerryEast::
-	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_Harbor_Movement_BoardFerryEast
-	waitmovement 0
-	return
+    applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_Harbor_Movement_BoardFerryEast
+    waitmovement 0
+    return
 
 SlateportCity_Harbor_EventScript_BoardFerryNorth::
-	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_Harbor_Movement_BoardFerryNorth
-	waitmovement 0
-	return
+    applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_Harbor_Movement_BoardFerryNorth
+    waitmovement 0
+    return
 
 SlateportCity_Harbor_Movement_BoardFerryEast:
-	walk_right
-	walk_in_place_faster_up
-	step_end
+    walk_right
+    walk_in_place_faster_up
+    step_end
 
 SlateportCity_Harbor_Movement_BoardFerryNorth:
-	walk_up
-	step_end
+    walk_up
+    step_end
 
 SlateportCity_Harbor_EventScript_Sailor::
-	lock
-	faceplayer
-	goto_if_unset FLAG_SYS_GAME_CLEAR, SlateportCity_Harbor_EventScript_SailorNoAbnormalWeather
-	setvar VAR_0x8004, 0
-	call_if_set FLAG_DEFEATED_KYOGRE, SlateportCity_Harbor_EventScript_CountDefeatedLegendary
-	call_if_set FLAG_DEFEATED_GROUDON, SlateportCity_Harbor_EventScript_CountDefeatedLegendary
-	goto_if_eq VAR_0x8004, 2, SlateportCity_Harbor_EventScript_SailorNoAbnormalWeather  @ Defeated both
-	msgbox SlateportCity_Harbor_Text_AbnormalWeather, MSGBOX_DEFAULT
-	release
-	end
+    lock
+    faceplayer
+    goto_if_unset FLAG_SYS_GAME_CLEAR, SlateportCity_Harbor_EventScript_SailorNoAbnormalWeather
+    setvar VAR_0x8004, 0
+    call_if_set FLAG_DEFEATED_KYOGRE, SlateportCity_Harbor_EventScript_CountDefeatedLegendary
+    call_if_set FLAG_DEFEATED_GROUDON, SlateportCity_Harbor_EventScript_CountDefeatedLegendary
+    goto_if_eq VAR_0x8004, 2, SlateportCity_Harbor_EventScript_SailorNoAbnormalWeather  @ Defeated both
+    msgbox SlateportCity_Harbor_Text_AbnormalWeather, MSGBOX_DEFAULT
+    release
+    end
 
 SlateportCity_Harbor_EventScript_CountDefeatedLegendary::
-	addvar VAR_0x8004, 1
-	return
+    addvar VAR_0x8004, 1
+    return
 
 SlateportCity_Harbor_EventScript_FatMan::
-	msgbox SlateportCity_Harbor_Text_SubTooSmallForMe, MSGBOX_NPC
-	end
+    msgbox SlateportCity_Harbor_Text_SubTooSmallForMe, MSGBOX_NPC
+    end
 
 SlateportCity_Harbor_EventScript_CaptStern::
-	lock
-	faceplayer
-	speakername CommonName_Text_CaptStern
-	goto_if_set FLAG_BADGE07_GET, SlateportCity_Harbor_EventScript_CaptSternFerryOrScannerComment
-	goto_if_set FLAG_EVIL_TEAM_ESCAPED_STERN_SPOKE, SlateportCity_Harbor_EventScript_NeedDive
-	goto_if_set FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, SlateportCity_Harbor_EventScript_TeamAquaLeftNeedDive
-	goto_if_eq VAR_SLATEPORT_HARBOR_STATE, 2, SlateportCity_Harbor_EventScript_WhyStealSubmarine
-	msgbox SlateportCity_Harbor_Text_SameThugsTriedToRobAtMuseum, MSGBOX_DEFAULT
-	closemessage
-	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
-	waitmovement 0
-	release
-	end
+    lock
+    faceplayer
+    speakername CommonName_Text_CaptStern
+    goto_if_set FLAG_BADGE07_GET, SlateportCity_Harbor_EventScript_CaptSternFerryOrScannerComment
+    goto_if_set FLAG_EVIL_TEAM_ESCAPED_STERN_SPOKE, SlateportCity_Harbor_EventScript_NeedDive
+    goto_if_set FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, SlateportCity_Harbor_EventScript_TeamAquaLeftNeedDive
+    goto_if_eq VAR_SLATEPORT_HARBOR_STATE, 2, SlateportCity_Harbor_EventScript_WhyStealSubmarine
+    msgbox SlateportCity_Harbor_Text_SameThugsTriedToRobAtMuseum, MSGBOX_DEFAULT
+    closemessage
+    applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
+    waitmovement 0
+    release
+    end
 
 SlateportCity_Harbor_EventScript_WhyStealSubmarine::
-	msgbox SlateportCity_Harbor_Text_CaptSternWhyStealMySubmarine, MSGBOX_DEFAULT
-	release
-	end
+    msgbox SlateportCity_Harbor_Text_CaptSternWhyStealMySubmarine, MSGBOX_DEFAULT
+    release
+    end
 
 SlateportCity_Harbor_EventScript_TeamAquaLeftNeedDive::
-	setflag FLAG_EVIL_TEAM_ESCAPED_STERN_SPOKE
-	msgbox SlateportCity_Harbor_Text_TeamAquaLeftNeedDive, MSGBOX_DEFAULT
-	release
-	end
+    setflag FLAG_EVIL_TEAM_ESCAPED_STERN_SPOKE
+    msgbox SlateportCity_Harbor_Text_TeamAquaLeftNeedDive, MSGBOX_DEFAULT
+    release
+    end
 
 SlateportCity_Harbor_EventScript_NeedDive::
-	msgbox SlateportCity_Harbor_Text_NeedDiveToCatchSub, MSGBOX_DEFAULT
-	release
-	end
+    msgbox SlateportCity_Harbor_Text_NeedDiveToCatchSub, MSGBOX_DEFAULT
+    release
+    end
 
 SlateportCity_Harbor_EventScript_CaptSternFerryOrScannerComment::
-	goto_if_eq VAR_TEMP_1, 1, SlateportCity_Harbor_EventScript_TradedScanner
-	checkitem ITEM_SCANNER
-	goto_if_eq VAR_RESULT, TRUE, SlateportCity_Harbor_EventScript_AskToTradeScanner
-	goto_if_set FLAG_SYS_GAME_CLEAR, SlateportCity_Harbor_EventScript_FerryFinished
-	speakername CommonName_Text_CaptStern
-	msgbox SlateportCity_Harbor_Text_WontBeLongBeforeWeFinishFerry, MSGBOX_DEFAULT
-	release
-	end
+    goto_if_eq VAR_TEMP_1, 1, SlateportCity_Harbor_EventScript_TradedScanner
+    checkitem ITEM_SCANNER
+    goto_if_eq VAR_RESULT, TRUE, SlateportCity_Harbor_EventScript_AskToTradeScanner
+    goto_if_set FLAG_SYS_GAME_CLEAR, SlateportCity_Harbor_EventScript_FerryFinished
+    speakername CommonName_Text_CaptStern
+    msgbox SlateportCity_Harbor_Text_WontBeLongBeforeWeFinishFerry, MSGBOX_DEFAULT
+    release
+    end
 
 SlateportCity_Harbor_EventScript_FerryFinished::
-	speakername CommonName_Text_CaptStern
-	msgbox SlateportCity_Harbor_Text_FinishedMakingFerry, MSGBOX_DEFAULT
-	release
-	end
+    speakername CommonName_Text_CaptStern
+    msgbox SlateportCity_Harbor_Text_FinishedMakingFerry, MSGBOX_DEFAULT
+    release
+    end
 
 SlateportCity_Harbor_EventScript_AskToTradeScanner::
-	speakername CommonName_Text_CaptStern
-	message SlateportCity_Harbor_Text_WouldYouTradeScanner
-	waitmessage
-	goto SlateportCity_Harbor_EventScript_ChooseScannerTrade
-	end
+    speakername CommonName_Text_CaptStern
+    message SlateportCity_Harbor_Text_WouldYouTradeScanner
+    waitmessage
+    goto SlateportCity_Harbor_EventScript_ChooseScannerTrade
+    end
 
 SlateportCity_Harbor_EventScript_ChooseScannerTrade::
-	speakername CommonName_Text_CaptStern
-	multichoice 0, 0, MULTI_STERN_DEEPSEA, FALSE
-	switch VAR_RESULT
-	case 0, SlateportCity_Harbor_EventScript_DeepSeaTooth
-	case 1, SlateportCity_Harbor_EventScript_DeepSeaScale
-	case 2, SlateportCity_Harbor_EventScript_DeclineTrade
-	case MULTI_B_PRESSED, SlateportCity_Harbor_EventScript_DeclineTrade
-	end
+    speakername CommonName_Text_CaptStern
+    multichoice 0, 0, MULTI_STERN_DEEPSEA, FALSE
+    switch VAR_RESULT
+    case 0, SlateportCity_Harbor_EventScript_DeepSeaTooth
+    case 1, SlateportCity_Harbor_EventScript_DeepSeaScale
+    case 2, SlateportCity_Harbor_EventScript_DeclineTrade
+    case MULTI_B_PRESSED, SlateportCity_Harbor_EventScript_DeclineTrade
+    end
 
 SlateportCity_Harbor_EventScript_DeepSeaTooth::
-	msgbox SlateportCity_Harbor_Text_TradeForDeepSeaTooth, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, SlateportCity_Harbor_EventScript_ChooseDifferentTrade
-	giveitem ITEM_DEEP_SEA_TOOTH
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-	removeitem ITEM_SCANNER
-	msgbox SlateportCity_Harbor_Text_HandedScannerToStern, MSGBOX_DEFAULT
-	setflag FLAG_EXCHANGED_SCANNER
-	goto SlateportCity_Harbor_EventScript_TradedScanner
-	end
+    msgbox SlateportCity_Harbor_Text_TradeForDeepSeaTooth, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, NO, SlateportCity_Harbor_EventScript_ChooseDifferentTrade
+    giveitem ITEM_DEEP_SEA_TOOTH
+    goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+    removeitem ITEM_SCANNER
+    msgbox SlateportCity_Harbor_Text_HandedScannerToStern, MSGBOX_DEFAULT
+    setflag FLAG_EXCHANGED_SCANNER
+    goto SlateportCity_Harbor_EventScript_TradedScanner
+    end
 
 SlateportCity_Harbor_EventScript_DeepSeaScale::
-	msgbox SlateportCity_Harbor_Text_TradeForDeepSeaScale, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, SlateportCity_Harbor_EventScript_ChooseDifferentTrade
-	giveitem ITEM_DEEP_SEA_SCALE
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-	removeitem ITEM_SCANNER
-	speakername 0
-	msgbox SlateportCity_Harbor_Text_HandedScannerToStern, MSGBOX_DEFAULT
-	setflag FLAG_EXCHANGED_SCANNER
-	goto SlateportCity_Harbor_EventScript_TradedScanner
-	end
+    msgbox SlateportCity_Harbor_Text_TradeForDeepSeaScale, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, NO, SlateportCity_Harbor_EventScript_ChooseDifferentTrade
+    giveitem ITEM_DEEP_SEA_SCALE
+    goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+    removeitem ITEM_SCANNER
+    speakername 0
+    msgbox SlateportCity_Harbor_Text_HandedScannerToStern, MSGBOX_DEFAULT
+    setflag FLAG_EXCHANGED_SCANNER
+    goto SlateportCity_Harbor_EventScript_TradedScanner
+    end
 
 `
 script SlateportCity_Harbor_EventScript_DeclineTrade {
-	speakername(CommonName_Text_CaptStern)
-	msgbox(format("Are you certain?\n"
-	"It's useless to you, {PLAYER}{KUN}…\p"
-	"Well, okay, then. If you want to trade your Scanner, let me know."), MSGBOX_DEFAULT)
-	release
+    speakername(CommonName_Text_CaptStern)
+    msgbox(format("Are you certain?\n"
+    "It's useless to you, {PLAYER}{KUN}…\p"
+    "Well, okay, then. If you want to trade your Scanner, let me know."), MSGBOX_DEFAULT)
+    release
 }
 
 script SlateportCity_Harbor_EventScript_ChooseDifferentTrade {
-	speakername(CommonName_Text_CaptStern)
-	message(format("CAPT. STERN: Which one do you want?"))
-	waitmessage
-	goto(SlateportCity_Harbor_EventScript_ChooseScannerTrade)
+    speakername(CommonName_Text_CaptStern)
+    message(format("CAPT. STERN: Which one do you want?"))
+    waitmessage
+    goto(SlateportCity_Harbor_EventScript_ChooseScannerTrade)
 }
 
 script SlateportCity_Harbor_EventScript_TradedScanner {
-	setvar(VAR_TEMP_1, 1)
-	speakername(CommonName_Text_CaptStern)
-	msgbox(format("Thanks, {PLAYER}{KUN}!\n"
-	    "This will help our research a lot!"), MSGBOX_DEFAULT)
-	release
+    setvar(VAR_TEMP_1, 1)
+    speakername(CommonName_Text_CaptStern)
+    msgbox(format("Thanks, {PLAYER}{KUN}!\n"
+        "This will help our research a lot!"), MSGBOX_DEFAULT)
+    release
 }
 
 text SlateportCity_Harbor_Text_FerryServiceUnavailable {
-	format("I beg your pardon?\n"
-	"You're looking for a ship?\p"
-	"I'm sorry, the ferry service isn't available at present…")
+    format("I beg your pardon?\n"
+    "You're looking for a ship?\p"
+    "I'm sorry, the ferry service isn't available at present…")
 }
 
 text SlateportCity_Harbor_Text_MayISeeYourTicket {
-	format("Hello, are you here for the ferry?\n"
-	"May I see your TICKET?")
+    format("Hello, are you here for the ferry?\n"
+    "May I see your TICKET?")
 }
 
 text SlateportCity_Harbor_Text_YouMustHaveTicket {
-	format("{PLAYER} doesn't have the TICKET…\p"
-	"I'm terribly sorry.\p"
-	"You must have a TICKET to board\n"
-	"the ferry.")
+    format("{PLAYER} doesn't have the TICKET…\p"
+    "I'm terribly sorry.\p"
+    "You must have a TICKET to board\n"
+    "the ferry.")
 }
 
 text SlateportCity_Harbor_Text_FlashedTicketWhereTo {
-	format("{PLAYER} flashed the TICKET.\p"
-	"Perfect! That's all you need!\p"
-	"And where would you like to go?")
+    format("{PLAYER} flashed the TICKET.\p"
+    "Perfect! That's all you need!\p"
+    "And where would you like to go?")
 }
 
 text SlateportCity_Harbor_Text_SailAnotherTime {
-	format("Please sail with us another time!")
+    format("Please sail with us another time!")
 }
 
 text SlateportCity_Harbor_Text_LilycoveItIs {
-	format("LILYCOVE CITY it is, then!")
+    format("LILYCOVE CITY it is, then!")
 }
 
 text SlateportCity_Harbor_Text_BattleFrontierItIs {
-	format("BATTLE FRONTIER it is, then!")
+    format("BATTLE FRONTIER it is, then!")
 }
 
 text SlateportCity_Harbor_Text_PleaseBoardFerry {
-	format("Please board the ferry and wait for\n"
-	"departure.")
+    format("Please board the ferry and wait for\n"
+    "departure.")
 }
 
 text SlateportCity_Harbor_Text_WhereWouldYouLikeToGo {
-	format("Then, where would you like to go?")
+    format("Then, where would you like to go?")
 }
 
 text SlateportCity_Harbor_Text_AbnormalWeather {
-	format("For a ship to sail safely, we need to\n"
-	"know about the weather!\p"
-	"Speaking of weather, I heard something\n"
-	"from a guy at the WEATHER INSTITUTE.\p"
-	"He was saying abnormal weather has\n"
-	"been reported all over the place!\p"
-	"You should visit the WEATHER INSTITUTE\n"
-	"and ask around!")
+    format("For a ship to sail safely, we need to\n"
+    "know about the weather!\p"
+    "Speaking of weather, I heard something\n"
+    "from a guy at the WEATHER INSTITUTE.\p"
+    "He was saying abnormal weather has\n"
+    "been reported all over the place!\p"
+    "You should visit the WEATHER INSTITUTE\n"
+    "and ask around!")
 }
 
 text SlateportCity_Harbor_Text_SubTooSmallForMe {
-	format("I wanted to go with CAPT. STERN on\n"
-	"the ocean floor exploration.\p"
-	"But the sub's too small for me.\p"
-	"If I squeezed in, there wouldn't be\n"
-	"any room for the CAPTAIN…")
+    format("I wanted to go with CAPT. STERN on\n"
+    "the ocean floor exploration.\p"
+    "But the sub's too small for me.\p"
+    "If I squeezed in, there wouldn't be\n"
+    "any room for the CAPTAIN…")
 }
 
 text SlateportCity_Harbor_Text_SameThugsTriedToRobAtMuseum {
-	format("Those thugs…\p"
-	"They're the lot who tried to steal the Devon Goods at the Museum.")
+    format("Those thugs…\p"
+    "They're the lot who tried to steal the Devon Goods at the Museum.")
 }
 
 text SlateportCity_Harbor_Text_ArchieYouAgainHideoutInLilycove {
-	format("Oh?\n"
-	"Not you again…\p"
-	"You are tenacious to track us here, that much I will give you.\p"
-	"But now…\n"
-	"No one can stop us! No one!\p"
-	"Or, will you follow us back to our Hideout in Lilycove City?\p"
-	"Fwahahahaha…")
+    format("Oh?\n"
+    "Not you again…\p"
+    "You are tenacious to track us here, that much I will give you.\p"
+    "But now…\n"
+    "No one can stop us! No one!\p"
+    "Or, will you follow us back to our Hideout in Lilycove City?\p"
+    "Fwahahahaha…")
 }
 
 text SlateportCity_Harbor_Text_CaptSternWhyStealMySubmarine {
-	format("Why…\n"
-	"Why would Team Aqua steal my Submarine Explorer 1?\p"
-	"They can't be after the slumbering Pokémon at the bottom of the sea…\p"
-	"But even if I were to chase them, I don't stand a chance against them…")
+    format("Why…\n"
+    "Why would Team Aqua steal my Submarine Explorer 1?\p"
+    "They can't be after the slumbering Pokémon at the bottom of the sea…\p"
+    "But even if I were to chase them, I don't stand a chance against them…")
 }
 
 text SlateportCity_Harbor_Text_TeamAquaLeftNeedDive {
-	format("Oh, {PLAYER}{KUN}…\p"
-	"Okay… So Team Aqua left before you could stop them…\p"
-	"Oh, no, don't blame yourself.\n"
-	"You're not responsible for this.\p"
-	"Trying to catch a submarine…\n"
-	"It's impossible for most people.\p"
-	"You would need a Pokémon that knows how to Dive…\p"
-	"Perhaps if you went out to Mossdeep City…\p"
-	"A lot of divers live out there, so someone might teach you…")
+    format("Oh, {PLAYER}{KUN}…\p"
+    "Okay… So Team Aqua left before you could stop them…\p"
+    "Oh, no, don't blame yourself.\n"
+    "You're not responsible for this.\p"
+    "Trying to catch a submarine…\n"
+    "It's impossible for most people.\p"
+    "You would need a Pokémon that knows how to Dive…\p"
+    "Perhaps if you went out to Mossdeep City…\p"
+    "A lot of divers live out there, so someone might teach you…")
 }
 
 text SlateportCity_Harbor_Text_NeedDiveToCatchSub {
-	format("Trying to catch a submarine… It's impossible.\p"
-	"You would need a Pokémon that knows how to Dive…\p"
-	"Perhaps if you went out to Mossdeep City…\p"
-	"A lot of divers live out there, so someone might teach you…")
+    format("Trying to catch a submarine… It's impossible.\p"
+    "You would need a Pokémon that knows how to Dive…\p"
+    "Perhaps if you went out to Mossdeep City…\p"
+    "A lot of divers live out there, so someone might teach you…")
 }
 
 text SlateportCity_Harbor_Text_WontBeLongBeforeWeFinishFerry {
-	format("Oh, yes.\n"
-	"Mr. Briney came to our Shipyard.\p"
-	"It won't be long now before we finish making the ferry!")
+    format("Oh, yes.\n"
+    "Mr. Briney came to our Shipyard.\p"
+    "It won't be long now before we finish making the ferry!")
 }
 
 text SlateportCity_Harbor_Text_FinishedMakingFerry {
-	format("{PLAYER}{KUN}!\n"
-	"We finally finished making the ferry S.S. Tidal!\p"
-	"We couldn't have done it without your friend Mr. Briney.\p"
-	"Please go for a short cruise on it!")
+    format("{PLAYER}{KUN}!\n"
+    "We finally finished making the ferry S.S. Tidal!\p"
+    "We couldn't have done it without your friend Mr. Briney.\p"
+    "Please go for a short cruise on it!")
 }
 
 text SlateportCity_Harbor_Text_WouldYouTradeScanner {
-	format("Oh?\n"
-	"{PLAYER}{KUN}, that item you have…\p"
-	"That's a Scanner! That would sure help us on our explorations.\p"
-	"{PLAYER}{KUN}, would you trade your Scanner for something?\p"
-	"Like, say, a Deep Sea Tooth or a Deep Sea Scale that I have?")
+    format("Oh?\n"
+    "{PLAYER}{KUN}, that item you have…\p"
+    "That's a Scanner! That would sure help us on our explorations.\p"
+    "{PLAYER}{KUN}, would you trade your Scanner for something?\p"
+    "Like, say, a Deep Sea Tooth or a Deep Sea Scale that I have?")
 }
 
 text SlateportCity_Harbor_Text_TradeForDeepSeaTooth {
-	format("So you'll trade it for my Deep Sea Tooth?")
+    format("So you'll trade it for my Deep Sea Tooth?")
 }
 
 text SlateportCity_Harbor_Text_TradeForDeepSeaScale {
-	format("So you'll trade it for my Deep Sea Scale?")
+    format("So you'll trade it for my Deep Sea Scale?")
 }
 
 text SlateportCity_Harbor_Text_HandedScannerToStern {
-	format("{PLAYER} handed the Scanner to Capt. Stern.")
+    format("{PLAYER} handed the Scanner to Capt. Stern.")
 }
 
 script SlateportCity_Harbor_EventScript_SailorNoAbnormalWeather {
-	msgbox(format("A journey to the bottom of the sea…\n"
-	"I wonder what it'd be like?\p"
-	"I'd love to go deep underwater like that someday."), MSGBOX_DEFAULT)
-	release
+    msgbox(format("A journey to the bottom of the sea…\n"
+    "I wonder what it'd be like?\p"
+    "I'd love to go deep underwater like that someday."), MSGBOX_DEFAULT)
+    release
 }

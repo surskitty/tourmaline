@@ -6,7 +6,7 @@ mapscripts SafariZone_Northwest_MapScripts {
 }
 
 script SafariZone_Northwest_EventScript_Man {
-	msgbox(format("Gasp… Gasp…\n"
-	"I…made it out here…but…\p"
-	"I'm exhausted… I don't have the energy to catch Pokémon…"), MSGBOX_NPC)
+    msgbox(format("Gasp… Gasp…\n"
+    "I…made it out here…but…\p"
+    "I'm exhausted… I don't have the energy to catch Pokémon…"), MSGBOX_NPC)
 }

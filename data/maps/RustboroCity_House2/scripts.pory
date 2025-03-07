@@ -1,11 +1,11 @@
 mapscripts RustboroCity_House2_MapScripts {}
 
 script RustboroCity_House2_EventScript_PokefanF {
-	msgbox(format("The Trainer's School is excellent.\p"
-	"If you study there, you could even become a Gym Leader."), MSGBOX_NPC)
+    msgbox(format("The Trainer's School is excellent.\p"
+    "If you study there, you could even become a Gym Leader."), MSGBOX_NPC)
 }
 
 script RustboroCity_House2_EventScript_LittleGirl {
-	msgbox(format("Roxanne, the Gym Leader, really knows a lot about Pokémon.\p"
-	"She's really strong, too!"), MSGBOX_NPC)
+    msgbox(format("Roxanne, the Gym Leader, really knows a lot about Pokémon.\p"
+    "She's really strong, too!"), MSGBOX_NPC)
 }

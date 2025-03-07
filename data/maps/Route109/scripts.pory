@@ -246,42 +246,42 @@ Route109_EventScript_Elijah::
 `
 
 text DewfordTown_Text_BrineyLandedInSlateportDeliverGoods {
-	format("MR. BRINEY: Ahoy!\n"
+    format("MR. BRINEY: Ahoy!\n"
     "We've made land in Slateport!\p"
     "I suppose you're going to visit Capt.\n"
     "Stern and deliver the Devon Goods?")
 }
 
 text Route109_Text_BrineySailToDewfordQuestion {
-	format("MR. BRINEY: I thought you're supposed\n"
+    format("MR. BRINEY: I thought you're supposed\n"
     "to deliver the Devon Goods.\p"
     "Would you like to sail back to\n"
     "Dewford, then?")
 }
 
 text Route109_Text_BrineyDewfordItIs {
-	format("MR. BRINEY: Dewford it is, then!\p"
+    format("MR. BRINEY: Dewford it is, then!\p"
     "Anchors aweigh!\n"
     "Peeko, we're setting sail, my darling!")
 }
 
 text Route109_Text_BrineyDeliverDevonGoods {
-	format("MR. BRINEY: Then you go on and deliver the Devon Goods. I'll be waiting.")
+    format("MR. BRINEY: Then you go on and deliver the Devon Goods. I'll be waiting.")
 }
 
 text DewfordTown_Text_BrineyLandedInSlateport {
-	format("MR. BRINEY: Ahoy! We've made land in Slateport!\p"
+    format("MR. BRINEY: Ahoy! We've made land in Slateport!\p"
     "You just go on and tell me whenever you want to set sail again!")
 }
 
 text Route109_Text_BrineyWhereAreWeBound {
-	format("MR. BRINEY: Ahoy!\n"
+    format("MR. BRINEY: Ahoy!\n"
     "For you, I'll go out to sea anytime!\p"
     "Now, my friend, where are we bound?")
 }
 
 text Route109_Text_BrineyTellMeWhenYouNeedToSail {
-	format("MR. BRINEY: You just tell me whenever you need to set sail again!")
+    format("MR. BRINEY: You just tell me whenever you need to set sail again!")
 }
 
 script Route109_EventScript_SeashoreHouseGirl {

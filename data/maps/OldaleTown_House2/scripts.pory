@@ -1,10 +1,10 @@
 mapscripts OldaleTown_House2_MapScripts {}
 
 script OldaleTown_House2_EventScript_Woman {
-	msgbox(format("When Pokémon battle, they grow stronger even if they switched out."), MSGBOX_NPC)
+    msgbox(format("When Pokémon battle, they grow stronger even if they switched out."), MSGBOX_NPC)
 }
 
 script OldaleTown_House2_EventScript_Man {
-	msgbox(format("It's easier to travel with strong Pokémon."), MSGBOX_NPC)
+    msgbox(format("It's easier to travel with strong Pokémon."), MSGBOX_NPC)
 }
 

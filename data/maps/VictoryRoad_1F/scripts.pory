@@ -1,9 +1,9 @@
 mapscripts VictoryRoad_1F_MapScripts {
-	MAP_SCRIPT_ON_TRANSITION {
+    MAP_SCRIPT_ON_TRANSITION {
         call_if_eq(VAR_VICTORY_ROAD_1F_STATE, 1, VictoryRoad_1F_EventScript_SetEntranceWallyPos1)
         call_if_eq(VAR_VICTORY_ROAD_1F_STATE, 2, VictoryRoad_1F_EventScript_SetEntranceWallyPos2)
-	}
-	MAP_SCRIPT_ON_LOAD {
+    }
+    MAP_SCRIPT_ON_LOAD {
         special(SetRoofBirds)
         special(SetStationaryWilds)
     }
@@ -14,227 +14,227 @@ raw `
 .set LOCALID_WALLY_ENTRANCE, 4
 
 VictoryRoad_1F_EventScript_SetEntranceWallyPos1::
-	setobjectxyperm LOCALID_WALLY_ENTRANCE, 2, 24
-	setobjectmovementtype LOCALID_WALLY_ENTRANCE, MOVEMENT_TYPE_FACE_DOWN
-	return
+    setobjectxyperm LOCALID_WALLY_ENTRANCE, 2, 24
+    setobjectmovementtype LOCALID_WALLY_ENTRANCE, MOVEMENT_TYPE_FACE_DOWN
+    return
 
 VictoryRoad_1F_EventScript_SetEntranceWallyPos2::
-	setobjectxyperm LOCALID_WALLY_ENTRANCE, 3, 24
-	setobjectmovementtype LOCALID_WALLY_ENTRANCE, MOVEMENT_TYPE_FACE_DOWN
-	return
+    setobjectxyperm LOCALID_WALLY_ENTRANCE, 3, 24
+    setobjectmovementtype LOCALID_WALLY_ENTRANCE, MOVEMENT_TYPE_FACE_DOWN
+    return
 
 VictoryRoad_1F_EventScript_WallyBattleTrigger1::
-	lockall
-	setvar VAR_0x8008, 1
-	addobject LOCALID_WALLY_ENTRANCE
-	applymovement LOCALID_WALLY_ENTRANCE, VictoryRoad_1F_Movement_WallyApproachPlayer1
-	waitmovement 0
-	goto VictoryRoad_1F_EventScript_WallyEntranceBattle
-	end
+    lockall
+    setvar VAR_0x8008, 1
+    addobject LOCALID_WALLY_ENTRANCE
+    applymovement LOCALID_WALLY_ENTRANCE, VictoryRoad_1F_Movement_WallyApproachPlayer1
+    waitmovement 0
+    goto VictoryRoad_1F_EventScript_WallyEntranceBattle
+    end
 
 VictoryRoad_1F_EventScript_WallyBattleTrigger2::
-	lockall
-	setvar VAR_0x8008, 2
-	addobject LOCALID_WALLY_ENTRANCE
-	applymovement LOCALID_WALLY_ENTRANCE, VictoryRoad_1F_Movement_WallyApproachPlayer2
-	waitmovement 0
-	goto VictoryRoad_1F_EventScript_WallyEntranceBattle
-	end
+    lockall
+    setvar VAR_0x8008, 2
+    addobject LOCALID_WALLY_ENTRANCE
+    applymovement LOCALID_WALLY_ENTRANCE, VictoryRoad_1F_Movement_WallyApproachPlayer2
+    waitmovement 0
+    goto VictoryRoad_1F_EventScript_WallyEntranceBattle
+    end
 
 VictoryRoad_1F_EventScript_WallyEntranceBattle::
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterDown
-	waitmovement 0
-	speakername CommonName_Text_Wally
-	msgbox VictoryRoad_1F_Text_WallyNotGoingToLoseAnymore, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_WALLY_VR_1, VictoryRoad_1F_Text_WallyEntranceDefeat
-	speakername CommonName_Text_Wally
-	msgbox VictoryRoad_1F_Text_WallyPostEntranceBattle, MSGBOX_DEFAULT
-	clearflag FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY
-	copyobjectxytoperm LOCALID_WALLY_ENTRANCE
-	setflag FLAG_DEFEATED_WALLY_VICTORY_ROAD
-	copyvar VAR_VICTORY_ROAD_1F_STATE, VAR_0x8008
-	releaseall
-	end
+    applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterDown
+    waitmovement 0
+    speakername CommonName_Text_Wally
+    msgbox VictoryRoad_1F_Text_WallyNotGoingToLoseAnymore, MSGBOX_DEFAULT
+    trainerbattle_no_intro TRAINER_WALLY_VR_1, VictoryRoad_1F_Text_WallyEntranceDefeat
+    speakername CommonName_Text_Wally
+    msgbox VictoryRoad_1F_Text_WallyPostEntranceBattle, MSGBOX_DEFAULT
+    clearflag FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY
+    copyobjectxytoperm LOCALID_WALLY_ENTRANCE
+    setflag FLAG_DEFEATED_WALLY_VICTORY_ROAD
+    copyvar VAR_VICTORY_ROAD_1F_STATE, VAR_0x8008
+    releaseall
+    end
 
 VictoryRoad_1F_Movement_WallyApproachPlayer1:
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_up
-	step_end
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_up
+    step_end
 
 VictoryRoad_1F_Movement_WallyApproachPlayer2:
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_up
-	step_end
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_up
+    step_end
 
 @ This Wally appears near the entrance once his battle is triggered and remains there until the Hall of Fame is entered
 VictoryRoad_1F_EventScript_EntranceWally::
-	msgbox VictoryRoad_1F_Text_WallyPostEntranceBattle, MSGBOX_NPC
-	end
+    msgbox VictoryRoad_1F_Text_WallyPostEntranceBattle, MSGBOX_NPC
+    end
 
 @ This Wally appears and remains at the exit after the Hall of Fame is entered
 VictoryRoad_1F_EventScript_ExitWally::
-	trainerbattle_single TRAINER_WALLY_VR_2, VictoryRoad_1F_Text_WallyIntro, VictoryRoad_1F_Text_WallyDefeat
-	specialvar VAR_RESULT, ShouldTryRematchBattle
-	goto_if_eq VAR_RESULT, TRUE, VictoryRoad_1F_EventScript_RematchWally
-	msgbox VictoryRoad_1F_Text_WallyPostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_WALLY_VR_2, VictoryRoad_1F_Text_WallyIntro, VictoryRoad_1F_Text_WallyDefeat
+    specialvar VAR_RESULT, ShouldTryRematchBattle
+    goto_if_eq VAR_RESULT, TRUE, VictoryRoad_1F_EventScript_RematchWally
+    msgbox VictoryRoad_1F_Text_WallyPostBattle, MSGBOX_AUTOCLOSE
+    end
 
 VictoryRoad_1F_EventScript_RematchWally::
-	trainerbattle_rematch TRAINER_WALLY_VR_2, VictoryRoad_1F_Text_WallyIntro, VictoryRoad_1F_Text_WallyDefeat
-	msgbox VictoryRoad_1F_Text_WallyPostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_rematch TRAINER_WALLY_VR_2, VictoryRoad_1F_Text_WallyIntro, VictoryRoad_1F_Text_WallyDefeat
+    msgbox VictoryRoad_1F_Text_WallyPostBattle, MSGBOX_AUTOCLOSE
+    end
 
 VictoryRoad_1F_EventScript_Edgar::
-	trainerbattle_single TRAINER_EDGAR, VictoryRoad_1F_Text_EdgarIntro, VictoryRoad_1F_Text_EdgarDefeat
-	msgbox VictoryRoad_1F_Text_EdgarPostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_EDGAR, VictoryRoad_1F_Text_EdgarIntro, VictoryRoad_1F_Text_EdgarDefeat
+    msgbox VictoryRoad_1F_Text_EdgarPostBattle, MSGBOX_AUTOCLOSE
+    end
 
 VictoryRoad_1F_EventScript_Albert::
-	trainerbattle_single TRAINER_ALBERT, VictoryRoad_1F_Text_AlbertIntro, VictoryRoad_1F_Text_AlbertDefeat
-	msgbox VictoryRoad_1F_Text_AlbertPostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_ALBERT, VictoryRoad_1F_Text_AlbertIntro, VictoryRoad_1F_Text_AlbertDefeat
+    msgbox VictoryRoad_1F_Text_AlbertPostBattle, MSGBOX_AUTOCLOSE
+    end
 
 VictoryRoad_1F_EventScript_Hope::
-	trainerbattle_single TRAINER_HOPE, VictoryRoad_1F_Text_HopeIntro, VictoryRoad_1F_Text_HopeDefeat
-	msgbox VictoryRoad_1F_Text_HopePostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_HOPE, VictoryRoad_1F_Text_HopeIntro, VictoryRoad_1F_Text_HopeDefeat
+    msgbox VictoryRoad_1F_Text_HopePostBattle, MSGBOX_AUTOCLOSE
+    end
 
 VictoryRoad_1F_EventScript_Quincy::
-	trainerbattle_single TRAINER_QUINCY, VictoryRoad_1F_Text_QuincyIntro, VictoryRoad_1F_Text_QuincyDefeat
-	msgbox VictoryRoad_1F_Text_QuincyPostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_QUINCY, VictoryRoad_1F_Text_QuincyIntro, VictoryRoad_1F_Text_QuincyDefeat
+    msgbox VictoryRoad_1F_Text_QuincyPostBattle, MSGBOX_AUTOCLOSE
+    end
 
 VictoryRoad_1F_EventScript_Katelynn::
-	trainerbattle_single TRAINER_KATELYNN, VictoryRoad_1F_Text_KatelynnIntro, VictoryRoad_1F_Text_KatelynnDefeat
-	msgbox VictoryRoad_1F_Text_KatelynnPostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_KATELYNN, VictoryRoad_1F_Text_KatelynnIntro, VictoryRoad_1F_Text_KatelynnDefeat
+    msgbox VictoryRoad_1F_Text_KatelynnPostBattle, MSGBOX_AUTOCLOSE
+    end
 `
 
 text VictoryRoad_1F_Text_WallyNotGoingToLoseAnymore {
-	format("Hi! {PLAYER}!\p"
-	"I bet you're surprised to see me here!\p"
-	"I made it all the way here, and it's\n"
-	"all thanks to you!\p"
-	"{PLAYER}, losing to you that time\n"
-	"made me stronger!\p"
-	"But I'm not going to lose anymore!\p"
-	"I'm going to win! For the Pokémon who\n"
-	"gave me courage and strength!\p"
-	"Okay… Here I come!")
+    format("Hi! {PLAYER}!\p"
+    "I bet you're surprised to see me here!\p"
+    "I made it all the way here, and it's\n"
+    "all thanks to you!\p"
+    "{PLAYER}, losing to you that time\n"
+    "made me stronger!\p"
+    "But I'm not going to lose anymore!\p"
+    "I'm going to win! For the Pokémon who\n"
+    "gave me courage and strength!\p"
+    "Okay… Here I come!")
 }
 
 text VictoryRoad_1F_Text_WallyEntranceDefeat {
-	format("Wow!\n"
-	"{PLAYER}, you are strong, after all!")
+    format("Wow!\n"
+    "{PLAYER}, you are strong, after all!")
 }
 
 text VictoryRoad_1F_Text_WallyPostEntranceBattle {
-	format("I couldn't beat you today,\n"
-	"{PLAYER}, but one of these days, I'll\l"
-	"catch up to you!")
+    format("I couldn't beat you today,\n"
+    "{PLAYER}, but one of these days, I'll\l"
+    "catch up to you!")
 }
 
 text VictoryRoad_1F_Text_WallyIntro {
-	format("Hi! {PLAYER}!\p"
-	"I've gotten stronger since that last\n"
-	"time! I wanted to show you, {PLAYER}!\p"
-	"Okay… Here I come!")
+    format("Hi! {PLAYER}!\p"
+    "I've gotten stronger since that last\n"
+    "time! I wanted to show you, {PLAYER}!\p"
+    "Okay… Here I come!")
 }
 
 text VictoryRoad_1F_Text_WallyDefeat {
-	format("Wow!\n"
-	"{PLAYER}, you are strong, after all!")
+    format("Wow!\n"
+    "{PLAYER}, you are strong, after all!")
 }
 
 text VictoryRoad_1F_Text_WallyPostBattle {
-	format("I couldn't beat you this time,\n"
-	"too… But one of these days, {PLAYER},\l"
-	"I'm going to catch up to you…\p"
-	"And challenge the Pokémon League!")
+    format("I couldn't beat you this time,\n"
+    "too… But one of these days, {PLAYER},\l"
+    "I'm going to catch up to you…\p"
+    "And challenge the Pokémon League!")
 }
 
 text VictoryRoad_1F_Text_EdgarIntro {
-	format("I've made it this far a couple times,\n"
-	"but the last stretch is so long…")
+    format("I've made it this far a couple times,\n"
+    "but the last stretch is so long…")
 }
 
 text VictoryRoad_1F_Text_EdgarDefeat {
-	format("My dream ends here again…")
+    format("My dream ends here again…")
 }
 
 text VictoryRoad_1F_Text_EdgarPostBattle {
-	format("You've made it this far. Keep the momentum going and become the Champion! If anyone can, it's you!")
+    format("You've made it this far. Keep the momentum going and become the Champion! If anyone can, it's you!")
 }
 
 text VictoryRoad_1F_Text_AlbertIntro {
-	format("I didn't come all this way to lose now.\n"
-	"That possibility doesn't exist!")
+    format("I didn't come all this way to lose now.\n"
+    "That possibility doesn't exist!")
 }
 
 text VictoryRoad_1F_Text_AlbertDefeat {
-	format("Impossible…\n"
-	"I lost?")
+    format("Impossible…\n"
+    "I lost?")
 }
 
 text VictoryRoad_1F_Text_AlbertPostBattle {
-	format("I lost here…\p"
-	"That means I lack the qualifications to become the Champion…")
+    format("I lost here…\p"
+    "That means I lack the qualifications to become the Champion…")
 }
 
 text VictoryRoad_1F_Text_HopeIntro {
-	format("This seemingly infinite and harsh road lives up to its name of Victory.")
+    format("This seemingly infinite and harsh road lives up to its name of Victory.")
 }
 
 text VictoryRoad_1F_Text_HopeDefeat {
-	format("Your battle style is fantastic…")
+    format("Your battle style is fantastic…")
 }
 
 text VictoryRoad_1F_Text_HopePostBattle {
-	format("You seem to have the potential for becoming the Champion.")
+    format("You seem to have the potential for becoming the Champion.")
 }
 
 text VictoryRoad_1F_Text_QuincyIntro {
-	format("What is the Victory Road?\n"
-	"I'll tell you if you win!")
+    format("What is the Victory Road?\n"
+    "I'll tell you if you win!")
 }
 
 text VictoryRoad_1F_Text_QuincyDefeat {
-	format("Okay!\n"
-	"Well done!")
+    format("Okay!\n"
+    "Well done!")
 }
 
 text VictoryRoad_1F_Text_QuincyPostBattle {
-	format("Getting through here safely--that's the final test for any Trainer aiming to become the Pokémon Champion.\p"
-	"That's why it's called the Victory Road.")
+    format("Getting through here safely--that's the final test for any Trainer aiming to become the Pokémon Champion.\p"
+    "That's why it's called the Victory Road.")
 }
 
 text VictoryRoad_1F_Text_KatelynnIntro {
-	format("I have nothing to say to anyone\n"
-	"that's come this far. Come on!")
+    format("I have nothing to say to anyone\n"
+    "that's come this far. Come on!")
 }
 
 text VictoryRoad_1F_Text_KatelynnDefeat {
-	format("This is a disgrace…")
+    format("This is a disgrace…")
 }
 
 text VictoryRoad_1F_Text_KatelynnPostBattle {
-	format("Humph, go right on ahead.\n"
-	"See if I care.")
+    format("Humph, go right on ahead.\n"
+    "See if I care.")
 }

@@ -32,32 +32,32 @@ mart SootopolisCity_Mart_Pokemart {
 raw `
 
 SootopolisCity_Mart_EventScript_FatMan::
-	lock
-	faceplayer
-	goto_if_ge VAR_SKY_PILLAR_STATE, 2, SootopolisCity_Mart_EventScript_FatManNoLegendaries
-	goto_if_unset FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, SootopolisCity_Mart_EventScript_FatManNoLegendaries
-	msgbox SootopolisCity_Mart_Text_TooScaryOutside, MSGBOX_DEFAULT
-	release
-	end
+    lock
+    faceplayer
+    goto_if_ge VAR_SKY_PILLAR_STATE, 2, SootopolisCity_Mart_EventScript_FatManNoLegendaries
+    goto_if_unset FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, SootopolisCity_Mart_EventScript_FatManNoLegendaries
+    msgbox SootopolisCity_Mart_Text_TooScaryOutside, MSGBOX_DEFAULT
+    release
+    end
 
 SootopolisCity_Mart_EventScript_Gentleman::
-	lock
-	faceplayer
-	goto_if_ge VAR_SKY_PILLAR_STATE, 2, SootopolisCity_Mart_EventScript_GentlemanNoLegendaries
-	goto_if_unset FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, SootopolisCity_Mart_EventScript_GentlemanNoLegendaries
-	msgbox SootopolisCity_Mart_Text_DidSomethingAwaken, MSGBOX_DEFAULT
-	release
-	end
+    lock
+    faceplayer
+    goto_if_ge VAR_SKY_PILLAR_STATE, 2, SootopolisCity_Mart_EventScript_GentlemanNoLegendaries
+    goto_if_unset FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, SootopolisCity_Mart_EventScript_GentlemanNoLegendaries
+    msgbox SootopolisCity_Mart_Text_DidSomethingAwaken, MSGBOX_DEFAULT
+    release
+    end
 
 SootopolisCity_Mart_Text_TooScaryOutside:
-	.string "What…\n"
-	.string "What is happening?\p"
-	.string "I really want to know, but it's too\n"
-	.string "scary to go outside.$"
+    .string "What…\n"
+    .string "What is happening?\p"
+    .string "I really want to know, but it's too\n"
+    .string "scary to go outside.$"
 
 SootopolisCity_Mart_Text_DidSomethingAwaken:
-	.string "This weather…\n"
-	.string "Did something awaken?$"
+    .string "This weather…\n"
+    .string "Did something awaken?$"
 
 `
 
@@ -72,5 +72,5 @@ script SootopolisCity_Mart_EventScript_GentlemanNoLegendaries {
         "Full restoration of HP!\n"
         "Eradication of all status problems!\p"
         "It's truly an item of your dreams!"), MSGBOX_DEFAULT)
-	release
+    release
 }

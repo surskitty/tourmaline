@@ -610,27 +610,27 @@ movement PetalburgCity_Movement_ScottExit3 {
 }
 
 text PetalburgCity_Text_ThisIsPetalburgGym {
-	format("See? This is Petalburg City's Gym.")
+    format("See? This is Petalburg City's Gym.")
 }
 
 text PetalburgCity_Text_ThisIsGymSign {
-	format("This is the Gym's sign. Look for it whenever you're looking for a Gym.")
+    format("This is the Gym's sign. Look for it whenever you're looking for a Gym.")
 }
 
 text PetalburgCity_Text_AreYouATrainer {
-	format("Excuse me!\p"
+    format("Excuse me!\p"
     "Let me guess, from the way you're dressed, are you a Pokémon Trainer?")
 }
 
 text PetalburgCity_Text_WellMaybeNot {
-	format("… … … … … …\p"
+    format("… … … … … …\p"
     "Well, maybe not.\n"
     "Your clothes aren't all that dirty.\p"
     "You're either a rookie Trainer, or maybe you're just an ordinary kid.")
 }
 
 text PetalburgCity_Text_ImLookingForTalentedTrainers {
-	format("I'm roaming the land in search of talented Trainers.\p"
+    format("I'm roaming the land in search of talented Trainers.\p"
     "I'm sorry to have taken your time.")
 }
 

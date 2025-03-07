@@ -15,241 +15,241 @@ raw `
 .set LOCALID_GROUDON_SLEEPING, 7
 
 MagmaHideout_4F_EventScript_Maxie::
-	lockall
-	playbgm MUS_ENCOUNTER_MAGMA, FALSE
-	msgbox MagmaHideout_4F_Text_MaxieAwakenGroudon, MSGBOX_DEFAULT
-	closemessage
-	delay 20
-	setvar VAR_RESULT, 1
-	playse SE_M_DETECT
-	dofieldeffectsparkle 18, 42, 0
-	waitfieldeffect FLDEFF_SPARKLE
-	setvar VAR_RESULT, 1
-	playfanfare MUS_AWAKEN_LEGEND
-	playse SE_ORB
-	special DoOrbEffect
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
-	waitmovement 0
-	delay 150
-	removeobject LOCALID_GROUDON_SLEEPING
-	addobject LOCALID_GROUDON
-	waitstate
-	delay 60
-	applymovement LOCALID_GROUDON, MagmaHideout_4F_Movement_GroudonApproach
-	waitmovement 0
-	special FadeOutOrbEffect
-	waitstate
-	setvar VAR_0x8004, 1  @ vertical pan
-	setvar VAR_0x8005, 1  @ horizontal pan
-	setvar VAR_0x8006, 8  @ num shakes
-	setvar VAR_0x8007, 5  @ shake delay
-	special ShakeCamera
-	waitstate
-	applymovement LOCALID_GROUDON, MagmaHideout_4F_Movement_GroudonExit
-	waitmovement 0
-	removeobject LOCALID_GROUDON
-	delay 4
-	setvar VAR_0x8004, 2  @ vertical pan
-	setvar VAR_0x8005, 2  @ horizontal pan
-	setvar VAR_0x8006, 8  @ num shakes
-	setvar VAR_0x8007, 5  @ shake delay
-	special ShakeCamera
-	waitstate
-	delay 30
-	applymovement LOCALID_MAXIE, MagmaHideout_4F_Movement_MaxieLookAround
-	waitmovement 0
-	msgbox MagmaHideout_4F_Text_MaxieGroudonWhatsWrong, MSGBOX_DEFAULT
-	closemessage
-	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
-	waitmovement 0
-	delay 30
-	applymovement LOCALID_MAXIE, Common_Movement_FacePlayer
-	waitmovement 0
-	msgbox MagmaHideout_4F_Text_MaxieOhItWasYou, MSGBOX_DEFAULT
-	closemessage
-	trainerbattle_no_intro TRAINER_MAXIE_MAGMA_HIDEOUT, MagmaHideout_4F_Text_MaxieDefeat
-	msgbox MagmaHideout_4F_Text_MaxieImGoingAfterGroudon, MSGBOX_DEFAULT
-	closemessage
-	clearflag FLAG_HIDE_SLATEPORT_CITY_CAPTAIN_STERN
-	clearflag FLAG_HIDE_SLATEPORT_CITY_GABBY_AND_TY
-	setvar VAR_SLATEPORT_CITY_STATE, 1
-	setflag FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT
-	setvar VAR_SLATEPORT_HARBOR_STATE, 1
-	fadescreen FADE_TO_BLACK
-	removeobject LOCALID_MAXIE
-	removeobject LOCALID_GRUNT_1
-	removeobject LOCALID_GRUNT_2
-	removeobject LOCALID_GRUNT_3
-	removeobject LOCALID_TABITHA
-	setflag FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
-	fadescreen FADE_FROM_BLACK
-	releaseall
-	end
+    lockall
+    playbgm MUS_ENCOUNTER_MAGMA, FALSE
+    msgbox MagmaHideout_4F_Text_MaxieAwakenGroudon, MSGBOX_DEFAULT
+    closemessage
+    delay 20
+    setvar VAR_RESULT, 1
+    playse SE_M_DETECT
+    dofieldeffectsparkle 18, 42, 0
+    waitfieldeffect FLDEFF_SPARKLE
+    setvar VAR_RESULT, 1
+    playfanfare MUS_AWAKEN_LEGEND
+    playse SE_ORB
+    special DoOrbEffect
+    applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
+    waitmovement 0
+    delay 150
+    removeobject LOCALID_GROUDON_SLEEPING
+    addobject LOCALID_GROUDON
+    waitstate
+    delay 60
+    applymovement LOCALID_GROUDON, MagmaHideout_4F_Movement_GroudonApproach
+    waitmovement 0
+    special FadeOutOrbEffect
+    waitstate
+    setvar VAR_0x8004, 1  @ vertical pan
+    setvar VAR_0x8005, 1  @ horizontal pan
+    setvar VAR_0x8006, 8  @ num shakes
+    setvar VAR_0x8007, 5  @ shake delay
+    special ShakeCamera
+    waitstate
+    applymovement LOCALID_GROUDON, MagmaHideout_4F_Movement_GroudonExit
+    waitmovement 0
+    removeobject LOCALID_GROUDON
+    delay 4
+    setvar VAR_0x8004, 2  @ vertical pan
+    setvar VAR_0x8005, 2  @ horizontal pan
+    setvar VAR_0x8006, 8  @ num shakes
+    setvar VAR_0x8007, 5  @ shake delay
+    special ShakeCamera
+    waitstate
+    delay 30
+    applymovement LOCALID_MAXIE, MagmaHideout_4F_Movement_MaxieLookAround
+    waitmovement 0
+    msgbox MagmaHideout_4F_Text_MaxieGroudonWhatsWrong, MSGBOX_DEFAULT
+    closemessage
+    applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
+    waitmovement 0
+    delay 30
+    applymovement LOCALID_MAXIE, Common_Movement_FacePlayer
+    waitmovement 0
+    msgbox MagmaHideout_4F_Text_MaxieOhItWasYou, MSGBOX_DEFAULT
+    closemessage
+    trainerbattle_no_intro TRAINER_MAXIE_MAGMA_HIDEOUT, MagmaHideout_4F_Text_MaxieDefeat
+    msgbox MagmaHideout_4F_Text_MaxieImGoingAfterGroudon, MSGBOX_DEFAULT
+    closemessage
+    clearflag FLAG_HIDE_SLATEPORT_CITY_CAPTAIN_STERN
+    clearflag FLAG_HIDE_SLATEPORT_CITY_GABBY_AND_TY
+    setvar VAR_SLATEPORT_CITY_STATE, 1
+    setflag FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT
+    setvar VAR_SLATEPORT_HARBOR_STATE, 1
+    fadescreen FADE_TO_BLACK
+    removeobject LOCALID_MAXIE
+    removeobject LOCALID_GRUNT_1
+    removeobject LOCALID_GRUNT_2
+    removeobject LOCALID_GRUNT_3
+    removeobject LOCALID_TABITHA
+    setflag FLAG_HIDE_MAGMA_HIDEOUT_GRUNTS
+    fadescreen FADE_FROM_BLACK
+    releaseall
+    end
 
 MagmaHideout_4F_Movement_GroudonApproach:
-	delay_16
-	delay_16
-	walk_slow_down
-	delay_16
-	delay_16
-	delay_16
-	walk_slow_down
-	delay_16
-	delay_16
-	delay_16
-	step_end
+    delay_16
+    delay_16
+    walk_slow_down
+    delay_16
+    delay_16
+    delay_16
+    walk_slow_down
+    delay_16
+    delay_16
+    delay_16
+    step_end
 
 MagmaHideout_4F_Movement_GroudonExit:
-	slide_up
-	slide_up
-	step_end
+    slide_up
+    slide_up
+    step_end
 
 MagmaHideout_4F_Movement_MaxieLookAround:
-	face_left
-	delay_16
-	face_right
-	delay_16
-	face_left
-	delay_16
-	face_right
-	delay_16
-	face_up
-	delay_16
-	delay_16
-	step_end
+    face_left
+    delay_16
+    face_right
+    delay_16
+    face_left
+    delay_16
+    face_right
+    delay_16
+    face_up
+    delay_16
+    delay_16
+    step_end
 
 MagmaHideout_4F_EventScript_Grunt11::
-	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_11, MagmaHideout_4F_Text_Grunt11Intro, MagmaHideout_4F_Text_Grunt11Defeat
-	msgbox MagmaHideout_4F_Text_Grunt11PostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_11, MagmaHideout_4F_Text_Grunt11Intro, MagmaHideout_4F_Text_Grunt11Defeat
+    msgbox MagmaHideout_4F_Text_Grunt11PostBattle, MSGBOX_AUTOCLOSE
+    end
 
 MagmaHideout_4F_EventScript_Grunt12::
-	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_12, MagmaHideout_4F_Text_Grunt12Intro, MagmaHideout_4F_Text_Grunt12Defeat
-	msgbox MagmaHideout_4F_Text_Grunt12PostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_12, MagmaHideout_4F_Text_Grunt12Intro, MagmaHideout_4F_Text_Grunt12Defeat
+    msgbox MagmaHideout_4F_Text_Grunt12PostBattle, MSGBOX_AUTOCLOSE
+    end
 
 MagmaHideout_4F_EventScript_Grunt13::
-	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_13, MagmaHideout_4F_Text_Grunt13Intro, MagmaHideout_4F_Text_Grunt13Defeat
-	msgbox MagmaHideout_4F_Text_Grunt13PostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_13, MagmaHideout_4F_Text_Grunt13Intro, MagmaHideout_4F_Text_Grunt13Defeat
+    msgbox MagmaHideout_4F_Text_Grunt13PostBattle, MSGBOX_AUTOCLOSE
+    end
 
 MagmaHideout_4F_EventScript_Tabitha::
-	trainerbattle_single TRAINER_TABITHA_MAGMA_HIDEOUT, MagmaHideout_4F_Text_TabithaIntro, MagmaHideout_4F_Text_TabithaDefeat
-	msgbox MagmaHideout_4F_Text_TabithaPostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_TABITHA_MAGMA_HIDEOUT, MagmaHideout_4F_Text_TabithaIntro, MagmaHideout_4F_Text_TabithaDefeat
+    msgbox MagmaHideout_4F_Text_TabithaPostBattle, MSGBOX_AUTOCLOSE
+    end
 `
 
 text MagmaHideout_4F_Text_Grunt11Intro {
-	format("I want to see Groudon, too, but they\n"
-	"won't let me see even its tail…\p"
-	"It's got me feeling really frustrated.\p"
-	"Oh, no!\n"
-	"I blabbed about Groudon!")
+    format("I want to see Groudon, too, but they\n"
+    "won't let me see even its tail…\p"
+    "It's got me feeling really frustrated.\p"
+    "Oh, no!\n"
+    "I blabbed about Groudon!")
 }
 
 text MagmaHideout_4F_Text_Grunt11Defeat {
-	format("I guess it's impossible to win if one\n"
-	"doesn't have a calm mind…")
+    format("I guess it's impossible to win if one\n"
+    "doesn't have a calm mind…")
 }
 
 text MagmaHideout_4F_Text_Grunt11PostBattle {
-	format("I wonder if Groudon even has a tail?")
+    format("I wonder if Groudon even has a tail?")
 }
 
 text MagmaHideout_4F_Text_Grunt12Intro {
-	format("Fuhahaha!\n"
-	"Soon! Very soon!\l"
-	"Our grand objective will be achieved!")
+    format("Fuhahaha!\n"
+    "Soon! Very soon!\l"
+    "Our grand objective will be achieved!")
 }
 
 text MagmaHideout_4F_Text_Grunt12Defeat {
-	format("Grrr…\n"
-	"I've come so far, but now this?")
+    format("Grrr…\n"
+    "I've come so far, but now this?")
 }
 
 text MagmaHideout_4F_Text_Grunt12PostBattle {
-	format("MAXIE, sir!\n"
-	"An intruder is headed your way!")
+    format("MAXIE, sir!\n"
+    "An intruder is headed your way!")
 }
 
 text MagmaHideout_4F_Text_Grunt13Intro {
-	format("You're not finished yet!\n"
-	"You're not getting by me easily!")
+    format("You're not finished yet!\n"
+    "You're not getting by me easily!")
 }
 
 text MagmaHideout_4F_Text_Grunt13Defeat {
-	format("Was I that easy to knock down?")
+    format("Was I that easy to knock down?")
 }
 
 text MagmaHideout_4F_Text_Grunt13PostBattle {
-	format("C-come on, one more match…")
+    format("C-come on, one more match…")
 }
 
 text MagmaHideout_4F_Text_TabithaIntro {
-	format("Hehehe!\n"
-	"You made it this far, so I'll tell you!\p"
-	"That's right!\n"
-	"Up ahead, Groudon is sleeping!\p"
-	"Maxie went to Groudon just seconds\n"
-	"ago!\p"
-	"It's going to awaken real soon!\n"
-	"Hehe! Hehehe!")
+    format("Hehehe!\n"
+    "You made it this far, so I'll tell you!\p"
+    "That's right!\n"
+    "Up ahead, Groudon is sleeping!\p"
+    "Maxie went to Groudon just seconds\n"
+    "ago!\p"
+    "It's going to awaken real soon!\n"
+    "Hehe! Hehehe!")
 }
 
 text MagmaHideout_4F_Text_TabithaDefeat {
-	format("Taken down again…\n"
-	"Hehe…")
+    format("Taken down again…\n"
+    "Hehe…")
 }
 
 text MagmaHideout_4F_Text_TabithaPostBattle {
-	format("…And while you wasted time with me,\n"
-	"Maxie should have awakened Groudon…")
+    format("…And while you wasted time with me,\n"
+    "Maxie should have awakened Groudon…")
 }
 
 text MagmaHideout_4F_Text_MaxieAwakenGroudon {
-	format("MAXIE: Groudon…\p"
-	"Nothing could awaken you from your\n"
-	"sleep bathed in magma…\p"
-	"This Blue Orb is what you sought.\n"
-	"Wasn't it?\p"
-	"I have brought you the Blue Orb.\n"
-	"Let its shine awaken you!\p"
-	"And show me…\n"
-	"Show me the full extent of your power!")
+    format("MAXIE: Groudon…\p"
+    "Nothing could awaken you from your\n"
+    "sleep bathed in magma…\p"
+    "This Blue Orb is what you sought.\n"
+    "Wasn't it?\p"
+    "I have brought you the Blue Orb.\n"
+    "Let its shine awaken you!\p"
+    "And show me…\n"
+    "Show me the full extent of your power!")
 }
 
 text MagmaHideout_4F_Text_MaxieGroudonWhatsWrong {
-	format("MAXIE: Groudon!\n"
-	"What's wrong?\p"
-	"Wasn't the Blue Orb the key?\p"
-	"Groudon!\n"
-	"Where have you gone…")
+    format("MAXIE: Groudon!\n"
+    "What's wrong?\p"
+    "Wasn't the Blue Orb the key?\p"
+    "Groudon!\n"
+    "Where have you gone…")
 }
 
 text MagmaHideout_4F_Text_MaxieOhItWasYou {
-	format("MAXIE: Oh, so it was you?\p"
-	"I've seen you poking around uninvited\n"
-	"here and there…\p"
-	"I get it now!\n"
-	"You must have pulled a cheap stunt!")
+    format("MAXIE: Oh, so it was you?\p"
+    "I've seen you poking around uninvited\n"
+    "here and there…\p"
+    "I get it now!\n"
+    "You must have pulled a cheap stunt!")
 }
 
 text MagmaHideout_4F_Text_MaxieDefeat {
-	format("What makes you so adept at handling\n"
-	"Pokémon?")
+    format("What makes you so adept at handling\n"
+    "Pokémon?")
 }
 
 text MagmaHideout_4F_Text_MaxieImGoingAfterGroudon {
-	format("MAXIE: There has to be some reason\n"
-	"why Groudon fled…\p"
-	"That's what you're trying to say,\n"
-	"aren't you?\p"
-	"… … … … … …\n"
-	"… … … … … …\p"
-	"Humph…\n"
-	"You think I didn't know that?\p"
-	"With Groudon gone, there is no longer\n"
-	"any need for this blasted volcano.\p"
-	"I am going after Groudon, so this\n"
-	"is where we part!")
+    format("MAXIE: There has to be some reason\n"
+    "why Groudon fled…\p"
+    "That's what you're trying to say,\n"
+    "aren't you?\p"
+    "… … … … … …\n"
+    "… … … … … …\p"
+    "Humph…\n"
+    "You think I didn't know that?\p"
+    "With Groudon gone, there is no longer\n"
+    "any need for this blasted volcano.\p"
+    "I am going after Groudon, so this\n"
+    "is where we part!")
 }

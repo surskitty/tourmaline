@@ -862,11 +862,11 @@ LittlerootTown_EventScript_GiveRunningShoes::
 `
 
 text LittlerootTown_Text_WaitPlayer {
-	format("Wait, {PLAYER}!")
+    format("Wait, {PLAYER}!")
 }
 
 text LittlerootTown_Text_WearTheseRunningShoes {
-	format("{PLAYER}! {PLAYER}! Did you introduce yourself to Prof. Birch?\p"
+    format("{PLAYER}! {PLAYER}! Did you introduce yourself to Prof. Birch?\p"
     "Oh! What an adorable Pokémon!\n"
     "You got it from Prof. Birch. How nice!\p"
     "You're your father's child, all right.\n"
@@ -876,17 +876,17 @@ text LittlerootTown_Text_WearTheseRunningShoes {
 }
 
 text LittlerootTown_Text_SwitchShoesWithRunningShoes {
-	format("{PLAYER} switched shoes with the Running Shoes.")
+    format("{PLAYER} switched shoes with the Running Shoes.")
 }
 
 text LittlerootTown_Text_ExplainRunningShoes {
-	format("{PLAYER}, those shoes came with instructions.\p"
+    format("{PLAYER}, those shoes came with instructions.\p"
     "“Press the B Button while wearing these Running Shoes to run extra-fast!\p"
     "“Slip on these Running Shoes and race in the great outdoors!”")
 }
 
 text LittlerootTown_Text_ComeHomeIfAnythingHappens {
-	format("… … … … … … … …\n"
+    format("… … … … … … … …\n"
     "… … … … … … … …\p"
     "To think that you have your very own\n"
     "Pokémon now…\l"
@@ -897,16 +897,16 @@ text LittlerootTown_Text_ComeHomeIfAnythingHappens {
 }
 
 text LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut {
-	format("Um, um, um!\p"
+    format("Um, um, um!\p"
     "If you go outside and go in the grass, wild Pokémon will jump out!")
 }
 
 text LittlerootTown_Text_DangerousIfYouDontHavePokemon {
-	format("It's dangerous if you don't have your own Pokémon.")
+    format("It's dangerous if you don't have your own Pokémon.")
 }
 
 text LittlerootTown_Text_CanYouGoSeeWhatsHappening {
-	format("Um, hi!\p"
+    format("Um, hi!\p"
     "There are scary Pokémon outside!\n"
     "I can hear their cries!\p"
     "I want to go see what's going on,\n"
@@ -916,7 +916,7 @@ text LittlerootTown_Text_CanYouGoSeeWhatsHappening {
 }
 
 text LittlerootTown_Text_BirchSomethingToShowYouAtLab {
-	format("Well, well, {PLAYER}{KUN}!\n"
+    format("Well, well, {PLAYER}{KUN}!\n"
     "That was good work out there!\p"
     "I knew there was something special about you when I first saw you, but I never expected this.\p"
     "Oh, yes. Do you still have the Pokédex I gave you?\p"

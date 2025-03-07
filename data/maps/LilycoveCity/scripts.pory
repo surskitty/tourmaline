@@ -368,7 +368,7 @@ LilycoveCity_EventScript_DontKnowAboutBerryBlender::
 `
 
 text LilycoveCity_Text_MayShoppingLetsBattle {
-	format("Oh, hey?\n"
+    format("Oh, hey?\n"
         "{PLAYER}{KUN}, are you shopping, too?\p"
         "I bought a whole bunch of Dolls and Posters.\p"
         "Of course, I've also caught a lot of Pokémon, and I'm raising them properly, too.\p"
@@ -377,31 +377,31 @@ text LilycoveCity_Text_MayShoppingLetsBattle {
 }
 
 text LilycoveCity_Text_MayNotRaisingPokemon {
-	format("Oh, why? {PLAYER}{KUN}, haven't you been raising your Pokémon?\p"
+    format("Oh, why? {PLAYER}{KUN}, haven't you been raising your Pokémon?\p"
     "That's not a very good showing as a Trainer…")
 }
 
 text LilycoveCity_Text_MayBattleMe {
-	format("Come on, battle with me, so I can check out your Pokémon!")
+    format("Come on, battle with me, so I can check out your Pokémon!")
 }
 
 text LilycoveCity_Text_MayWontBeBeaten {
-	format("The Pokémon I raised won't be beaten by your Pokémon, {PLAYER}{KUN}!")
+    format("The Pokémon I raised won't be beaten by your Pokémon, {PLAYER}{KUN}!")
 }
 
 text LilycoveCity_Text_MayDefeat {
-	format("… … … … … … … …\p"
+    format("… … … … … … … …\p"
     "I remember the battle I had with you, {PLAYER}{KUN}, on Route 103.\p"
     "That battle helped you become this strong, {PLAYER}{KUN}, didn't it?")
 }
 
 text LilycoveCity_Text_MayGoingBackToLittleroot {
-	format("I'm thinking of going back to Littleroot soon.\p"
+    format("I'm thinking of going back to Littleroot soon.\p"
     "I've caught a decent group of Pokémon, and my Pokédex is coming along, so I'm going home to show my dad.")
 }
 
 text LilycoveCity_Text_MayYouGoingToCollectBadges {
-	format("{PLAYER}{KUN}, what are you going to do?\p"
+    format("{PLAYER}{KUN}, what are you going to do?\p"
     "Collect all the Gym Badges and take\n"
     "the Pokémon League challenge?\p"
     "Well, while you're collecting Badges,\n"
@@ -411,7 +411,7 @@ text LilycoveCity_Text_MayYouGoingToCollectBadges {
 }
 
 text LilycoveCity_Text_MayYouGoingToPokemonLeague {
-	format("{PLAYER}{KUN}, what are you going to do?\p"
+    format("{PLAYER}{KUN}, what are you going to do?\p"
     "Are you taking the Pokémon League\n"
     "challenge?\p"
     "Or, are you going to complete your\n"
@@ -422,7 +422,7 @@ text LilycoveCity_Text_MayYouGoingToPokemonLeague {
 }
 
 text LilycoveCity_Text_MayYouGoingToBattleFrontier {
-	format("{PLAYER}{KUN}, what are you going to do?\p"
+    format("{PLAYER}{KUN}, what are you going to do?\p"
     "Are you taking the Battle Frontier challenge?\p"
     "Or, are you going to complete your Pokédex?\p"
     "I might've lost to you in battling, but I'll finish my Pokédex before you!\p"
@@ -430,53 +430,53 @@ text LilycoveCity_Text_MayYouGoingToBattleFrontier {
 }
 
 text LilycoveCity_Text_BrendanShoppingLetsBattle {
-	format("Oh, hey, it's {PLAYER}.\p"
+    format("Oh, hey, it's {PLAYER}.\p"
     "I'm running an errand for my dad, and I don't need any Dolls.\p"
     "Anyways, it's been a while.\p"
     "Want to have a battle to see who's been raising Pokémon better?")
 }
 
 text LilycoveCity_Text_BrendanNoConfidence {
-	format("Oh, what's the matter?\n"
+    format("Oh, what's the matter?\n"
     "Don't have the confidence?")
 }
 
 text LilycoveCity_Text_BrendanBattleMe {
-	format("Want to battle to see who's been raising Pokémon better?")
+    format("Want to battle to see who's been raising Pokémon better?")
 }
 
 text LilycoveCity_Text_BrendanWontBeBeaten {
-	format("Aww, but you know I'm not going to lose to no {PLAYER}.")
+    format("Aww, but you know I'm not going to lose to no {PLAYER}.")
 }
 
 text LilycoveCity_Text_BrendanDefeat {
-	format("Humph…\n"
+    format("Humph…\n"
     "You've done a lot of raising.\p"
     "That stings a bit--I had a head start on you as a Trainer…")
 }
 
 text LilycoveCity_Text_BrendanGoingBackToLittleroot {
-	format("I…\n"
+    format("I…\n"
     "I plan on going home to Littleroot.\p"
     "You know I'm helping out my dad on his Pokédex. It's coming together pretty decently, so I should go show him.")
 }
 
 text LilycoveCity_Text_BrendanYouGoingToCollectBadges {
-	format("{PLAYER}, what are you going to do?\p"
+    format("{PLAYER}, what are you going to do?\p"
     "Collect all the Gym Badges and take the Pokémon League challenge?\p"
     "Maybe I'll do that, too…\p"
     "Well, anyway, hang in there!")
 }
 
 text LilycoveCity_Text_BrendanYouGoingToPokemonLeague {
-	format("{PLAYER}, what are you going to do?\p"
+    format("{PLAYER}, what are you going to do?\p"
     "Since you're that strong, are you taking the Pokémon League challenge?\p"
     "Heh, even me--if I trained my Pokémon a bit more, I should be stronger than you, {PLAYER}.\p"
     "Well, anyway, hang in there!")
 }
 
 text LilycoveCity_Text_BrendanYouGoingToBattleFrontier {
-	format("{PLAYER}, what are you going to do?\p"
+    format("{PLAYER}, what are you going to do?\p"
     "Are you taking the Battle Frontier challenge?\p"
     "Or are you going to complete your Pokédex?\p"
     "Since you're that strong, you should consider the Battle Frontier.\p"
@@ -487,7 +487,7 @@ text LilycoveCity_Text_BrendanYouGoingToBattleFrontier {
 }
 
 text LilycoveCity_Text_MovedLootIntoHideoutToday {
-	format("Fufufu…\p"
+    format("Fufufu…\p"
     "We moved more loot into our secret\n"
     "Hideout today…\p"
     "Wh-who are you?!\n"
@@ -495,7 +495,7 @@ text LilycoveCity_Text_MovedLootIntoHideoutToday {
 }
 
 text LilycoveCity_Text_ChanceToDoBigThings {
-	format("I'm just a Grunt, so I don't know what\n"
+    format("I'm just a Grunt, so I don't know what\n"
     "the Boss is thinking…\p"
     "But being on Team Aqua, I know I'll get\n"
     "the chance to do big things!\p"
@@ -504,49 +504,49 @@ text LilycoveCity_Text_ChanceToDoBigThings {
 }
 
 text LilycoveCity_Text_DontGoNearCaveInCove {
-	format("Hey, you!\p"
+    format("Hey, you!\p"
     "Don't go near the cave in the cove!\p"
     "Why? You don't need a reason why!\n"
     "I'm an adult, so you just listen to me!")
 }
 
 text LilycoveCity_Text_IfWorldBecomesOurs {
-	format("If this whole wide world becomes ours,\n"
+    format("If this whole wide world becomes ours,\n"
     "Team Aqua's, it will be a happier\l"
     "place for Pokémon, too.")
 }
 
 text LilycoveCity_Text_WailmerLeapOutOfWater {
-	format("There! Wailmer!\n"
+    format("There! Wailmer!\n"
     "Leap out of the water now!")
 }
 
 text LilycoveCity_Text_GetLostMessingUpTraining {
-	format("Hunh? What do you want?\p"
+    format("Hunh? What do you want?\p"
     "You're messing up our training,\n"
     "so can you, like, get lost?")
 }
 
 text LilycoveCity_Text_ContestHallInTown {
-	format("There's a Pokémon Contest Hall right in this here town. \p"
+    format("There's a Pokémon Contest Hall right in this here town. \p"
     "That means well-raised Pokémon will come from all over the country.\p"
     "My heart swells with excitement!")
 }
 
 text LilycoveCity_Text_StrangeCaveInCove {
-	format("Have you seen that strange cave in\n"
+    format("Have you seen that strange cave in\n"
     "the cove at the edge of town?")
 }
 
 text LilycoveCity_Text_GoingToMoveDeleterForHMs {
-	format("I'm going to teach my Pokémon some new\n"
+    format("I'm going to teach my Pokémon some new\n"
     "moves for entering a Contest.\p"
     "So, I'm going to see the Move Deleter\n"
     "and make it forget HM moves.")
 }
 
 text LilycoveCity_Text_ImFromKanto {
-	format("I came from Kanto.\p"
+    format("I came from Kanto.\p"
     "The Hoenn region is beautiful with all its water and verdant nature.\p"
     "Hunh? Wait a second…\p"
     "Could there be rare Pokémon that live\n"
@@ -554,19 +554,19 @@ text LilycoveCity_Text_ImFromKanto {
 }
 
 text LilycoveCity_Text_TeamAquaBeenTrainingWailmer {
-	format("Team Aqua's been training their Wailmer in the cove.\p"
+    format("Team Aqua's been training their Wailmer in the cove.\p"
     "We Sailors can't get our boats out to sea with them in the way!")
 }
 
 text LilycoveCity_Text_SomeonePuntedTeamAquaOut {
-	format("Ahoy, did you know?\p"
+    format("Ahoy, did you know?\p"
     "Someone punted Team Aqua out of the way for us!\p"
     "That got the Wailmer out of the cove,\n"
     "so we can get our boats out again.")
 }
 
 text LilycoveCity_Text_SomeoneStoleMyPokemon {
-	format("I was taking a relaxing snooze at the\n"
+    format("I was taking a relaxing snooze at the\n"
     "seaside inn to the sound of waves…\p"
     "When someone stole my Pokémon!\p"
     "Who's the abductor?\n"
@@ -574,32 +574,32 @@ text LilycoveCity_Text_SomeoneStoleMyPokemon {
 }
 
 text LilycoveCity_Text_MissingPokemonCameBack {
-	format("My missing Pokémon…\n"
+    format("My missing Pokémon…\n"
     "It came back without me noticing!")
 }
 
 text LilycoveCity_Text_ImArtDealer {
-	format("I'm an Art Dealer.\p"
+    format("I'm an Art Dealer.\p"
     "I am a buyer and seller of fine art, especially paintings.\p"
     "I've heard that the Museum here has magnificent works on exhibit…")
 }
 
 text LilycoveCity_Text_SeaRemainsForeverYoung {
-	format("Even as we grow old and wrinkled,\n"
+    format("Even as we grow old and wrinkled,\n"
     "the sea remains forever young with\l"
     "the vivid brilliance of life…\p"
     "Fwohoho fwohohohoho…")
 }
 
 text LilycoveCity_Text_SixtyYearsAgoHusbandProposed {
-	format("It was sixty years ago that my husband\n"
+    format("It was sixty years ago that my husband\n"
     "proposed to me here.\l"
     "The sea remains as beautiful as ever.\p"
     "Mufufufu mufufufufufu…")
 }
 
 text LilycoveCity_Text_TeamAquaRenovatedCavern {
-	format("Hm, you know of the peculiar cavern in this cove?\p"
+    format("Hm, you know of the peculiar cavern in this cove?\p"
     "That had been a natural formation,\n"
     "but then that Team Aqua lot came\l"
     "along and made their renovations.\p"
@@ -608,43 +608,43 @@ text LilycoveCity_Text_TeamAquaRenovatedCavern {
 }
 
 text LilycoveCity_Text_TeamAquaLotGoneForGood {
-	format("That cave in the cove…\p"
+    format("That cave in the cove…\p"
     "I didn't notice it right away, but it's completely empty now.\p"
     "That Team Aqua lot, they must have gone away for good.")
 }
 
 text LilycoveCity_Text_DoYouKnowAboutBerryBlender {
-	format("Do you know about the machine Berry Blender?")
+    format("Do you know about the machine Berry Blender?")
 }
 
 text LilycoveCity_Text_FasterSpinBetterPokeblocks {
-	format("People have to work together to get it to spin faster.\p"
+    format("People have to work together to get it to spin faster.\p"
     "The faster you can make it spin, the better {POKEBLOCK}S you can get, I've heard.")
 }
 
 text LilycoveCity_Text_ExplainBerryBlender {
-	format("It's used for making a kind of candy called a {POKEBLOCK}.\p"
+    format("It's used for making a kind of candy called a {POKEBLOCK}.\p"
     "If you give a good {POKEBLOCK} to a Pokémon, its condition will improve by a lot.")
 }
 
 text LilycoveCity_Text_HeardTowerCalledSkyPillar {
-	format("I heard there's a tower somewhere out on the sea routes.\p"
+    format("I heard there's a tower somewhere out on the sea routes.\p"
     "It's called the Sky Pillar, I hear.")
 }
 
 text LilycoveCity_Text_SawTallTowerOnRoute131 {
-	format("I saw this tall tower somewhere around Route 131.\p"
+    format("I saw this tall tower somewhere around Route 131.\p"
     "Could that possibly be…?")
 }
 
 text LilycoveCity_Text_JustArrivedAndSawRarePokemon {
-	format("We just arrived here on our honeymoon vacation.\p"
+    format("We just arrived here on our honeymoon vacation.\p"
     "We happened to see a Dragon-type Pokémon flying way up in the sky.\p"
     "Do cool Pokémon like that live in the Hoenn region?")
 }
 
 text LilycoveCity_Text_HoneymoonVowToSeeRarePokemon {
-	format("On our honeymoon, we vowed to see as many rare Pokémon as we can.\p"
+    format("On our honeymoon, we vowed to see as many rare Pokémon as we can.\p"
     "So we were delighted to see a rare Pokémon as soon as we arrived.\p"
     "I mean, we are totally happy!")
 }

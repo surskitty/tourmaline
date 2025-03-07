@@ -8,7 +8,7 @@ mapscripts SlateportCity_MapScripts {
     MAP_SCRIPT_ON_FRAME_TABLE [ 
         VAR_SLATEPORT_OUTSIDE_MUSEUM_STATE, 1: SlateportCity_EventScript_ScottScene
     ]
-	MAP_SCRIPT_ON_LOAD {
+    MAP_SCRIPT_ON_LOAD {
         special(SetRoofBirds)
         special(SetStationaryWilds)
     }

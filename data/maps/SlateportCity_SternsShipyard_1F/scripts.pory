@@ -3,132 +3,132 @@ mapscripts SlateportCity_SternsShipyard_1F_MapScripts {}
 raw `
 .set LOCALID_DOCK, 1
 SlateportCity_SternsShipyard_1F_EventScript_Dock::
-	lockall
-	speakername SlateportCity_SternsShipyard_1F_Text_Dock
-	goto_if_set FLAG_SYS_GAME_CLEAR, SlateportCity_SternsShipyard_1F_EventScript_FerryReady
-	goto_if_set FLAG_BADGE07_GET, SlateportCity_SternsShipyard_1F_EventScript_BrineyJoined
-	goto_if_set FLAG_DELIVERED_DEVON_GOODS, SlateportCity_SternsShipyard_1F_EventScript_NeedVeteran
-	goto_if_set FLAG_DOCK_REJECTED_DEVON_GOODS, SlateportCity_SternsShipyard_1F_EventScript_GoFindStern
-	msgbox SlateportCity_SternsShipyard_1F_Text_CantMakeHeadsOrTails, MSGBOX_DEFAULT
-	applymovement LOCALID_DOCK, Common_Movement_FacePlayer
-	waitmovement 0
-	msgbox SlateportCity_SternsShipyard_1F_Text_MeetDockDeliverToStern, MSGBOX_DEFAULT
-	closemessage
-	applymovement LOCALID_DOCK, Common_Movement_FaceOriginalDirection
-	waitmovement 0
-	setflag FLAG_DOCK_REJECTED_DEVON_GOODS
-	setflag FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
-	releaseall
-	end
+    lockall
+    speakername SlateportCity_SternsShipyard_1F_Text_Dock
+    goto_if_set FLAG_SYS_GAME_CLEAR, SlateportCity_SternsShipyard_1F_EventScript_FerryReady
+    goto_if_set FLAG_BADGE07_GET, SlateportCity_SternsShipyard_1F_EventScript_BrineyJoined
+    goto_if_set FLAG_DELIVERED_DEVON_GOODS, SlateportCity_SternsShipyard_1F_EventScript_NeedVeteran
+    goto_if_set FLAG_DOCK_REJECTED_DEVON_GOODS, SlateportCity_SternsShipyard_1F_EventScript_GoFindStern
+    msgbox SlateportCity_SternsShipyard_1F_Text_CantMakeHeadsOrTails, MSGBOX_DEFAULT
+    applymovement LOCALID_DOCK, Common_Movement_FacePlayer
+    waitmovement 0
+    msgbox SlateportCity_SternsShipyard_1F_Text_MeetDockDeliverToStern, MSGBOX_DEFAULT
+    closemessage
+    applymovement LOCALID_DOCK, Common_Movement_FaceOriginalDirection
+    waitmovement 0
+    setflag FLAG_DOCK_REJECTED_DEVON_GOODS
+    setflag FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
+    releaseall
+    end
 
 SlateportCity_SternsShipyard_1F_EventScript_FerryReady::
-	applymovement LOCALID_DOCK, Common_Movement_FacePlayer
-	waitmovement 0
-	speakername SlateportCity_SternsShipyard_1F_Text_Dock
-	msgbox SlateportCity_SternsShipyard_1F_Text_FerryIsReady, MSGBOX_DEFAULT
-	releaseall
-	end
+    applymovement LOCALID_DOCK, Common_Movement_FacePlayer
+    waitmovement 0
+    speakername SlateportCity_SternsShipyard_1F_Text_Dock
+    msgbox SlateportCity_SternsShipyard_1F_Text_FerryIsReady, MSGBOX_DEFAULT
+    releaseall
+    end
 
 SlateportCity_SternsShipyard_1F_EventScript_BrineyJoined::
-	applymovement LOCALID_DOCK, Common_Movement_FacePlayer
-	waitmovement 0
-	speakername SlateportCity_SternsShipyard_1F_Text_Dock
-	msgbox SlateportCity_SternsShipyard_1F_Text_BrineyJoinedUs, MSGBOX_DEFAULT
-	releaseall
-	end
+    applymovement LOCALID_DOCK, Common_Movement_FacePlayer
+    waitmovement 0
+    speakername SlateportCity_SternsShipyard_1F_Text_Dock
+    msgbox SlateportCity_SternsShipyard_1F_Text_BrineyJoinedUs, MSGBOX_DEFAULT
+    releaseall
+    end
 
 SlateportCity_SternsShipyard_1F_EventScript_GoFindStern::
-	applymovement LOCALID_DOCK, Common_Movement_FacePlayer
-	waitmovement 0
-	speakername SlateportCity_SternsShipyard_1F_Text_Dock
-	msgbox SlateportCity_SternsShipyard_1F_Text_CouldYouFindStern, MSGBOX_DEFAULT
-	closemessage
-	applymovement LOCALID_DOCK, Common_Movement_FaceOriginalDirection
-	waitmovement 0
-	releaseall
-	end
+    applymovement LOCALID_DOCK, Common_Movement_FacePlayer
+    waitmovement 0
+    speakername SlateportCity_SternsShipyard_1F_Text_Dock
+    msgbox SlateportCity_SternsShipyard_1F_Text_CouldYouFindStern, MSGBOX_DEFAULT
+    closemessage
+    applymovement LOCALID_DOCK, Common_Movement_FaceOriginalDirection
+    waitmovement 0
+    releaseall
+    end
 
 SlateportCity_SternsShipyard_1F_EventScript_NeedVeteran::
-	applymovement LOCALID_DOCK, Common_Movement_FacePlayer
-	waitmovement 0
-	msgbox SlateportCity_SternsShipyard_1F_Text_CouldUseAdviceFromVeteran, MSGBOX_DEFAULT
-	releaseall
-	end
+    applymovement LOCALID_DOCK, Common_Movement_FacePlayer
+    waitmovement 0
+    msgbox SlateportCity_SternsShipyard_1F_Text_CouldUseAdviceFromVeteran, MSGBOX_DEFAULT
+    releaseall
+    end
 
 SlateportCity_SternsShipyard_1F_EventScript_Scientist1::
-	msgbox SlateportCity_SternsShipyard_1F_Text_SeaIsLikeLivingThing, MSGBOX_NPC
-	end
+    msgbox SlateportCity_SternsShipyard_1F_Text_SeaIsLikeLivingThing, MSGBOX_NPC
+    end
 
 SlateportCity_SternsShipyard_1F_EventScript_Scientist2::
-	msgbox SlateportCity_SternsShipyard_1F_Text_GetSeasickEasily, MSGBOX_NPC
-	end
+    msgbox SlateportCity_SternsShipyard_1F_Text_GetSeasickEasily, MSGBOX_NPC
+    end
 `
 
 text SlateportCity_SternsShipyard_1F_Text_CantMakeHeadsOrTails {
-	format("Umm… If this goes here, and that goes over there…\p"
-	"Then where does this thing go?\n"
-	"And what about that doohickey?\p"
-	"Aaargh! I can't make heads or tails of this!")
+    format("Umm… If this goes here, and that goes over there…\p"
+    "Then where does this thing go?\n"
+    "And what about that doohickey?\p"
+    "Aaargh! I can't make heads or tails of this!")
 }
 
 text SlateportCity_SternsShipyard_1F_Text_Dock { "Dock" }
 
 text SlateportCity_SternsShipyard_1F_Text_MeetDockDeliverToStern {
-	format("Hm?\n"
-	"Hi, I'm Dock.\p"
-	"Capt. Stern commissioned me to design a ferry.\p"
-	"Oh! That there…\n"
-	"Are they Devon Goods?\p"
-	"But, hmm…\n"
-	"This won't do…\p"
-	"Capt. Stern went off somewhere.\n"
-	"He said he had some work to do.\p"
-	"Could I get you to go find Capt. Stern and deliver that to him?")
+    format("Hm?\n"
+    "Hi, I'm Dock.\p"
+    "Capt. Stern commissioned me to design a ferry.\p"
+    "Oh! That there…\n"
+    "Are they Devon Goods?\p"
+    "But, hmm…\n"
+    "This won't do…\p"
+    "Capt. Stern went off somewhere.\n"
+    "He said he had some work to do.\p"
+    "Could I get you to go find Capt. Stern and deliver that to him?")
 }
 
 text SlateportCity_SternsShipyard_1F_Text_CouldYouFindStern {
-	format("Where could Capt. Stern have gone off to?\p"
-	"Could you go find Capt. Stern and deliver that parcel to him?")
+    format("Where could Capt. Stern have gone off to?\p"
+    "Could you go find Capt. Stern and deliver that parcel to him?")
 }
 
 text SlateportCity_SternsShipyard_1F_Text_CouldUseAdviceFromVeteran {
-	format("Shipbuilding is an art.\p"
-	"A lot of things can't be figured out just by calculating.\p"
-	"I really could use advice from a veteran who knows the seas…")
+    format("Shipbuilding is an art.\p"
+    "A lot of things can't be figured out just by calculating.\p"
+    "I really could use advice from a veteran who knows the seas…")
 }
 
 text SlateportCity_SternsShipyard_1F_Text_BrineyJoinedUs {
-	format("Hi! Mr. Briney's joined us to lend us his help.\p"
-	"Thanks to the veteran sailor, the ferry is steadily coming together.")
+    format("Hi! Mr. Briney's joined us to lend us his help.\p"
+    "Thanks to the veteran sailor, the ferry is steadily coming together.")
 }
 
 text SlateportCity_SternsShipyard_1F_Text_FerryIsReady {
-	format("The ferry is finally ready!\p"
-	"The new S.S. Tidal is truly a marvel of technology!\p"
-	"But, I get the feeling that we can make something even better.\p"
-	"You know, there's never an end to technology's march.")
+    format("The ferry is finally ready!\p"
+    "The new S.S. Tidal is truly a marvel of technology!\p"
+    "But, I get the feeling that we can make something even better.\p"
+    "You know, there's never an end to technology's march.")
 }
 
 script SlateportCity_SternsShipyard_1F_EventScript_Briney {
     speakername(CommonName_Text_MrBriney)
-	msgbox(format("Ah, {PLAYER}{KUN}!\n"
-	    "It's been too long!\p"
-	    "Aye, since I met you, this old sea dog's been feeling frisky!\p"
-	    "So I've decided to help Dock make a ferry.\p"
-	    "Aye, after all, a ferry would be able to carry a lot of people.\p"
-	    "But, you know, that Dock is really something special.\p"
-	    "With his knack for technology and my experience, I'm sure that we can build one great ship, aye!"), MSGBOX_NPC)
+    msgbox(format("Ah, {PLAYER}{KUN}!\n"
+        "It's been too long!\p"
+        "Aye, since I met you, this old sea dog's been feeling frisky!\p"
+        "So I've decided to help Dock make a ferry.\p"
+        "Aye, after all, a ferry would be able to carry a lot of people.\p"
+        "But, you know, that Dock is really something special.\p"
+        "With his knack for technology and my experience, I'm sure that we can build one great ship, aye!"), MSGBOX_NPC)
 }
 
 text SlateportCity_SternsShipyard_1F_Text_SeaIsLikeLivingThing {
-	format("The seasons, the weather, where the moon sits in the sky…\p"
-	"These and other conditions make the sea change its expression.\p"
-	"That's right!\n"
-	"The sea is like a living thing!")
+    format("The seasons, the weather, where the moon sits in the sky…\p"
+    "These and other conditions make the sea change its expression.\p"
+    "That's right!\n"
+    "The sea is like a living thing!")
 }
 
 text SlateportCity_SternsShipyard_1F_Text_GetSeasickEasily {
-	format("I get seasick real easily.\n"
-	"So I get to help out here instead.")
+    format("I get seasick real easily.\n"
+    "So I get to help out here instead.")
 }
 

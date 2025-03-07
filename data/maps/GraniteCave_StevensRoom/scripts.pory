@@ -9,120 +9,120 @@ raw `
 .set LOCALID_STEVEN, 1
 
 GraniteCave_StevensRoom_EventScript_Steven::
-	lock
-	faceplayer
-	speakername CommonName_Text_Steven
-	msgbox GraniteCave_StevensRoom_Text_ImStevenLetterForMe, MSGBOX_DEFAULT
-	setvar VAR_0x8004, ITEM_LETTER
-	call Common_EventScript_PlayerHandedOverTheItem
-	setflag FLAG_DELIVERED_STEVEN_LETTER
-	speakername CommonName_Text_Steven
-	msgbox GraniteCave_StevensRoom_Text_ThankYouTakeThis, MSGBOX_DEFAULT
-	giveitem ITEM_TM_STEEL_WING
-	call_if_eq VAR_RESULT, FALSE, GraniteCave_StevensRoom_EventScript_BagFull
-	speakername CommonName_Text_Steven
-	msgbox GraniteCave_StevensRoom_Text_CouldBecomeChampionLetsRegister, MSGBOX_DEFAULT
-	closemessage
-	delay 30
-	playfanfare MUS_REGISTER_MATCH_CALL
-	msgbox GraniteCave_StevensRoom_Text_RegisteredSteven, MSGBOX_DEFAULT
-	waitfanfare
-	closemessage
-	delay 30
-	setflag FLAG_REGISTERED_STEVEN_POKENAV
-	speakername CommonName_Text_Steven
-	msgbox GraniteCave_StevensRoom_Text_IveGotToHurryAlong, MSGBOX_DEFAULT
-	closemessage
-	call_if_eq VAR_FACING, DIR_NORTH, GraniteCave_StevensRoom_EventScript_StevenExitNorth
-	call_if_eq VAR_FACING, DIR_SOUTH, GraniteCave_StevensRoom_EventScript_StevenExitSouth
-	call_if_eq VAR_FACING, DIR_WEST, GraniteCave_StevensRoom_EventScript_StevenExitWestEast
-	call_if_eq VAR_FACING, DIR_EAST, GraniteCave_StevensRoom_EventScript_StevenExitWestEast
-	playse SE_EXIT
-	removeobject LOCALID_STEVEN
-	release
-	end
+    lock
+    faceplayer
+    speakername CommonName_Text_Steven
+    msgbox GraniteCave_StevensRoom_Text_ImStevenLetterForMe, MSGBOX_DEFAULT
+    setvar VAR_0x8004, ITEM_LETTER
+    call Common_EventScript_PlayerHandedOverTheItem
+    setflag FLAG_DELIVERED_STEVEN_LETTER
+    speakername CommonName_Text_Steven
+    msgbox GraniteCave_StevensRoom_Text_ThankYouTakeThis, MSGBOX_DEFAULT
+    giveitem ITEM_TM_STEEL_WING
+    call_if_eq VAR_RESULT, FALSE, GraniteCave_StevensRoom_EventScript_BagFull
+    speakername CommonName_Text_Steven
+    msgbox GraniteCave_StevensRoom_Text_CouldBecomeChampionLetsRegister, MSGBOX_DEFAULT
+    closemessage
+    delay 30
+    playfanfare MUS_REGISTER_MATCH_CALL
+    msgbox GraniteCave_StevensRoom_Text_RegisteredSteven, MSGBOX_DEFAULT
+    waitfanfare
+    closemessage
+    delay 30
+    setflag FLAG_REGISTERED_STEVEN_POKENAV
+    speakername CommonName_Text_Steven
+    msgbox GraniteCave_StevensRoom_Text_IveGotToHurryAlong, MSGBOX_DEFAULT
+    closemessage
+    call_if_eq VAR_FACING, DIR_NORTH, GraniteCave_StevensRoom_EventScript_StevenExitNorth
+    call_if_eq VAR_FACING, DIR_SOUTH, GraniteCave_StevensRoom_EventScript_StevenExitSouth
+    call_if_eq VAR_FACING, DIR_WEST, GraniteCave_StevensRoom_EventScript_StevenExitWestEast
+    call_if_eq VAR_FACING, DIR_EAST, GraniteCave_StevensRoom_EventScript_StevenExitWestEast
+    playse SE_EXIT
+    removeobject LOCALID_STEVEN
+    release
+    end
 
 GraniteCave_StevensRoom_EventScript_StevenExitNorth::
-	applymovement LOCALID_STEVEN, GraniteCave_StevensRoom_Movement_StevenExit
-	waitmovement 0
-	return
+    applymovement LOCALID_STEVEN, GraniteCave_StevensRoom_Movement_StevenExit
+    waitmovement 0
+    return
 
 GraniteCave_StevensRoom_EventScript_StevenExitWestEast::
-	applymovement OBJ_EVENT_ID_PLAYER, GraniteCave_StevensRoom_Movement_PlayerTurnTowardExit
-	applymovement LOCALID_STEVEN, GraniteCave_StevensRoom_Movement_StevenExit
-	waitmovement 0
-	return
+    applymovement OBJ_EVENT_ID_PLAYER, GraniteCave_StevensRoom_Movement_PlayerTurnTowardExit
+    applymovement LOCALID_STEVEN, GraniteCave_StevensRoom_Movement_StevenExit
+    waitmovement 0
+    return
 
 GraniteCave_StevensRoom_EventScript_StevenExitSouth::
-	applymovement OBJ_EVENT_ID_PLAYER, GraniteCave_StevensRoom_Movement_PlayerTurnTowardExit
-	applymovement LOCALID_STEVEN, GraniteCave_StevensRoom_Movement_StevenExitSouth
-	waitmovement 0
-	return
+    applymovement OBJ_EVENT_ID_PLAYER, GraniteCave_StevensRoom_Movement_PlayerTurnTowardExit
+    applymovement LOCALID_STEVEN, GraniteCave_StevensRoom_Movement_StevenExitSouth
+    waitmovement 0
+    return
 
 GraniteCave_StevensRoom_EventScript_BagFull::
-	msgbox GraniteCave_StevensRoom_Text_OhBagIsFull, MSGBOX_DEFAULT
-	return
+    msgbox GraniteCave_StevensRoom_Text_OhBagIsFull, MSGBOX_DEFAULT
+    return
 
 GraniteCave_StevensRoom_Movement_StevenExit:
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	delay_8
-	step_end
+    walk_up
+    walk_up
+    walk_up
+    walk_up
+    walk_up
+    delay_8
+    step_end
 
 GraniteCave_StevensRoom_Movement_PlayerTurnTowardExit:
-	delay_16
-	delay_16
-	delay_16
-	walk_in_place_faster_up
-	step_end
+    delay_16
+    delay_16
+    delay_16
+    walk_in_place_faster_up
+    step_end
 
 GraniteCave_StevensRoom_Movement_StevenExitSouth:
-	walk_left
-	walk_up
-	walk_up
-	walk_up
-	walk_right
-	walk_up
-	walk_up
-	delay_8
-	step_end
+    walk_left
+    walk_up
+    walk_up
+    walk_up
+    walk_right
+    walk_up
+    walk_up
+    delay_8
+    step_end
 `
 
 text GraniteCave_StevensRoom_Text_ImStevenLetterForMe {
-	format("My name is Steven.\p"
-	"I'm interested in rare stones, so I travel here and there.\p"
-	"Oh?\n"
-	"A Letter for me?")
+    format("My name is Steven.\p"
+    "I'm interested in rare stones, so I travel here and there.\p"
+    "Oh?\n"
+    "A Letter for me?")
 }
 
 text GraniteCave_StevensRoom_Text_ThankYouTakeThis {
-	format("Okay, thank you.\p"
-	"You went through all this trouble to deliver that. I need to thank you.\p"
-	"Let me see…\n"
-	"I'll give you this TM.\p"
-	"It contains my favorite move, Steel Wing.")
+    format("Okay, thank you.\p"
+    "You went through all this trouble to deliver that. I need to thank you.\p"
+    "Let me see…\n"
+    "I'll give you this TM.\p"
+    "It contains my favorite move, Steel Wing.")
 }
 
 text GraniteCave_StevensRoom_Text_CouldBecomeChampionLetsRegister {
-	format("Your Pokémon appear quite capable.\p"
-	"If you keep training, you could even become the Champion of the Pokémon League one day. That's what I think.\p"
-	"I know, since we've gotten to know each other, let's register one another in our Pokénavs.\p"
-	"… … … … … …")
+    format("Your Pokémon appear quite capable.\p"
+    "If you keep training, you could even become the Champion of the Pokémon League one day. That's what I think.\p"
+    "I know, since we've gotten to know each other, let's register one another in our Pokénavs.\p"
+    "… … … … … …")
 }
 
 text GraniteCave_StevensRoom_Text_RegisteredSteven {
-	format("Registered Steven in the Pokénav.")
+    format("Registered Steven in the Pokénav.")
 }
 
 text GraniteCave_StevensRoom_Text_IveGotToHurryAlong {
-	format("Now, I've got to hurry along.")
+    format("Now, I've got to hurry along.")
 }
 
 text GraniteCave_StevensRoom_Text_OhBagIsFull {
-	format("Oh, your Bag is full…\n"
-	"That's too bad, then.")
+    format("Oh, your Bag is full…\n"
+    "That's too bad, then.")
 }
 

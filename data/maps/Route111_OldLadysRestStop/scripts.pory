@@ -19,28 +19,28 @@ script Route111_OldLadysRestStop_EventScript_HideGhosts {
 }
 
 script Route111_OldLadysRestStop_EventScript_OldLady {
-	lock
-	faceplayer
-	msgbox(Route111_OldLadysRestStop_Text_RestUpHere, MSGBOX_YESNO)
-	goto_if_eq(VAR_RESULT, YES, Route111_OldLadysRestStop_EventScript_Rest)
-	goto_if_eq(VAR_RESULT, NO, Route111_OldLadysRestStop_EventScript_DeclineRest)
+    lock
+    faceplayer
+    msgbox(Route111_OldLadysRestStop_Text_RestUpHere, MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, YES, Route111_OldLadysRestStop_EventScript_Rest)
+    goto_if_eq(VAR_RESULT, NO, Route111_OldLadysRestStop_EventScript_DeclineRest)
 }
 
 script Route111_OldLadysRestStop_EventScript_Rest {
     addvar(VAR_TEMP_0, 1)
     goto_if_eq(VAR_TEMP_0, 3, Route111_OldLadysRestStop_EventScript_ShowGhosts)
-	msgbox(Route111_OldLadysRestStop_Text_TakeYourTimeRestUp, MSGBOX_DEFAULT)
-	closemessage
-	call(Common_EventScript_OutOfCenterPartyHeal)
-	msgbox(Route111_OldLadysRestStop_Text_StillTiredTakeAnotherRest, MSGBOX_YESNO)
-	goto_if_eq(VAR_RESULT, YES, Route111_OldLadysRestStop_EventScript_Rest)
-	goto_if_eq(VAR_RESULT, NO, Route111_OldLadysRestStop_EventScript_DeclineRest)
+    msgbox(Route111_OldLadysRestStop_Text_TakeYourTimeRestUp, MSGBOX_DEFAULT)
+    closemessage
+    call(Common_EventScript_OutOfCenterPartyHeal)
+    msgbox(Route111_OldLadysRestStop_Text_StillTiredTakeAnotherRest, MSGBOX_YESNO)
+    goto_if_eq(VAR_RESULT, YES, Route111_OldLadysRestStop_EventScript_Rest)
+    goto_if_eq(VAR_RESULT, NO, Route111_OldLadysRestStop_EventScript_DeclineRest)
 }
 
 script Route111_OldLadysRestStop_EventScript_DeclineRest {
-	msgbox("Is that so?\n"
-    	"You don't need to be shy about it.", MSGBOX_DEFAULT)
-	release
+    msgbox("Is that so?\n"
+        "You don't need to be shy about it.", MSGBOX_DEFAULT)
+    release
 }
 
 script Route111_OldLadysRestStop_EventScript_ShowGhosts {
@@ -55,30 +55,30 @@ script Route111_OldLadysRestStop_EventScript_ShowGhosts {
     applymovement(LOCALID_BANETTE, Common_Movement_ExclamationMark)
     applymovement(LOCALID_DUSCLOPS, Common_Movement_ExclamationMark)
     waitmovement(0)
-	msgbox("Ehhhhh?", MSGBOX_DEFAULT)
-	closemessage
-	fadescreen(FADE_TO_BLACK)
+    msgbox("Ehhhhh?", MSGBOX_DEFAULT)
+    closemessage
+    fadescreen(FADE_TO_BLACK)
     setvar(OBJ_EVENT_GFX_VAR_1, OBJ_EVENT_GFX_EXPERT_F)
     fadescreen(FADE_FROM_BLACK)
     release
 }
 
 text Route111_OldLadysRestStop_Text_RestUpHere {
-	format("Oh, dear, dear.\n"
-	"Aren't your Pokémon exhausted?\p"
-	"If you'd like, rest up here.\n"
-	"That's a fine idea! You should do that.")
+    format("Oh, dear, dear.\n"
+    "Aren't your Pokémon exhausted?\p"
+    "If you'd like, rest up here.\n"
+    "That's a fine idea! You should do that.")
 }
 
 text Route111_OldLadysRestStop_Text_TakeYourTimeRestUp {
-	format("That's right.\n"
-	"Take your time and rest up!")
+    format("That's right.\n"
+    "Take your time and rest up!")
 }
 
 text Route111_OldLadysRestStop_Text_StillTiredTakeAnotherRest {
-	format("Oh, dear, dear.\n"
-	"Are your Pokémon still tired?\p"
-	"You should take another rest here.\n"
-	"That's a fine idea. You should do that.")
+    format("Oh, dear, dear.\n"
+    "Are your Pokémon still tired?\p"
+    "You should take another rest here.\n"
+    "That's a fine idea. You should do that.")
 }
 

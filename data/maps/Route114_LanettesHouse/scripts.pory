@@ -6,95 +6,95 @@ mapscripts Route114_LanettesHouse_MapScripts {
 
 raw `
 Route114_LanettesHouse_EventScript_Lanette::
-	lock
-	faceplayer
-	goto_if_set FLAG_RECEIVED_DOLL_LANETTE, Route114_LanettesHouse_EventScript_OfferAdvice
-	setflag FLAG_SYS_PC_LANETTE
-	msgbox Route114_LanettesHouse_Text_EverythingClutteredKeepThis, MSGBOX_DEFAULT
-	giveitem ITEM_POKEMON_BOX_LINK
-	givedecoration DECOR_LOTAD_DOLL
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowNoRoomForDecor
-	setflag FLAG_RECEIVED_DOLL_LANETTE
-	release
-	end
+    lock
+    faceplayer
+    goto_if_set FLAG_RECEIVED_DOLL_LANETTE, Route114_LanettesHouse_EventScript_OfferAdvice
+    setflag FLAG_SYS_PC_LANETTE
+    msgbox Route114_LanettesHouse_Text_EverythingClutteredKeepThis, MSGBOX_DEFAULT
+    giveitem ITEM_POKEMON_BOX_LINK
+    givedecoration DECOR_LOTAD_DOLL
+    goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowNoRoomForDecor
+    setflag FLAG_RECEIVED_DOLL_LANETTE
+    release
+    end
 
 Route114_LanettesHouse_EventScript_OfferAdvice::
-	msgbox Route114_LanettesHouse_Text_OrganizeYourBoxes, MSGBOX_DEFAULT
-	release
-	end
+    msgbox Route114_LanettesHouse_Text_OrganizeYourBoxes, MSGBOX_DEFAULT
+    release
+    end
 
 Route114_LanettesHouse_EventScript_Notebook::
-	lockall
-	msgbox Route114_LanettesHouse_Text_ResearchNotesPage1, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, Route114_LanettesHouse_EventScript_NotebookPage2
-	msgbox Route114_LanettesHouse_Text_ClosedTheNotebook, MSGBOX_DEFAULT
-	releaseall
-	end
+    lockall
+    msgbox Route114_LanettesHouse_Text_ResearchNotesPage1, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, YES, Route114_LanettesHouse_EventScript_NotebookPage2
+    msgbox Route114_LanettesHouse_Text_ClosedTheNotebook, MSGBOX_DEFAULT
+    releaseall
+    end
 
 Route114_LanettesHouse_EventScript_NotebookPage2::
-	msgbox Route114_LanettesHouse_Text_ResearchNotesPage2, MSGBOX_YESNO
-	call_if_eq VAR_RESULT, YES, Route114_LanettesHouse_EventScript_NotebookPage3
-	releaseall
-	end
+    msgbox Route114_LanettesHouse_Text_ResearchNotesPage2, MSGBOX_YESNO
+    call_if_eq VAR_RESULT, YES, Route114_LanettesHouse_EventScript_NotebookPage3
+    releaseall
+    end
 
 Route114_LanettesHouse_EventScript_NotebookPage3::
-	msgbox Route114_LanettesHouse_Text_ResearchNotesPage3, MSGBOX_DEFAULT
-	return
+    msgbox Route114_LanettesHouse_Text_ResearchNotesPage3, MSGBOX_DEFAULT
+    return
 
 Route114_LanettesHouse_EventScript_PC::
-	msgbox Route114_LanettesHouse_Text_EmailFromBill, MSGBOX_SIGN
-	end
+    msgbox Route114_LanettesHouse_Text_EmailFromBill, MSGBOX_SIGN
+    end
 `
 
 text Route114_LanettesHouse_Text_EverythingClutteredKeepThis {
-	format("LANETTE: Oh! {PLAYER}{KUN}!\p"
-	"I'm sorry everything is so cluttered…\n"
-	"When I get engrossed in research, things end up this way…\p"
-	"This is embarrassing… Please keep this a secret in exchange for this.")
+    format("LANETTE: Oh! {PLAYER}{KUN}!\p"
+    "I'm sorry everything is so cluttered…\n"
+    "When I get engrossed in research, things end up this way…\p"
+    "This is embarrassing… Please keep this a secret in exchange for this.")
 }
 
 text Route114_LanettesHouse_Text_OrganizeYourBoxes {
-	format("May I offer advice about my Pokémon Storage System?\p"
-	"You should organize your Boxes so you can tell which Pokémon are in them.")
+    format("May I offer advice about my Pokémon Storage System?\p"
+    "You should organize your Boxes so you can tell which Pokémon are in them.")
 }
 
 text Route114_LanettesHouse_Text_ResearchNotesPage1 {
-	format("It's Lanette's research notes.\n"
-	"There's information about Boxes.\p"
-	"Design Boxes to hold 30 Pokémon each.\p"
-	"Each Trainer should be able to store\n"
-	"420 Pokémon on the PC system.\p"
-	"Keep reading?")
+    format("It's Lanette's research notes.\n"
+    "There's information about Boxes.\p"
+    "Design Boxes to hold 30 Pokémon each.\p"
+    "Each Trainer should be able to store\n"
+    "420 Pokémon on the PC system.\p"
+    "Keep reading?")
 }
 
 text Route114_LanettesHouse_Text_ResearchNotesPage2 {
-	format("A marking system should be added to make Pokémon easier to organize.\p"
-	"The name and wallpaper design of each\n"
-	"Box will be made changeable to please\l"
-	"the stored Pokémon.\p"
-	"Keep reading?")
+    format("A marking system should be added to make Pokémon easier to organize.\p"
+    "The name and wallpaper design of each\n"
+    "Box will be made changeable to please\l"
+    "the stored Pokémon.\p"
+    "Keep reading?")
 }
 
 text Route114_LanettesHouse_Text_ResearchNotesPage3 {
-	format("When storing a Pokémon, it should be sent to the Box inspected last.\p"
-	"If that Box is full, the received Pokémon is stored in the next Box.\p"
-	"In other words, when a Box is examined,\n"
-	"it is automatically selected as the Box\l"
-	"to which Pokémon are sent.")
+    format("When storing a Pokémon, it should be sent to the Box inspected last.\p"
+    "If that Box is full, the received Pokémon is stored in the next Box.\p"
+    "In other words, when a Box is examined,\n"
+    "it is automatically selected as the Box\l"
+    "to which Pokémon are sent.")
 }
 
 text Route114_LanettesHouse_Text_ClosedTheNotebook {
-	format("{PLAYER} closed the notebook.")
+    format("{PLAYER} closed the notebook.")
 }
 
 text Route114_LanettesHouse_Text_EmailFromBill {
-	format("There's an e-mail from someone on the PC.\p"
-	"“… … … … … … …\p"
-	"“Your Storage System offers more convenience than mine.\p"
-	"“It has a lot of user-friendly features that make it fun and useful, too.\p"
-	"“It makes me proud that I played a part in its development.\p"
-	"“Here's hoping that you'll continue research in Storage Systems.\p"
-	"“From Bill\n"
-	"… … … … … … … …”")
+    format("There's an e-mail from someone on the PC.\p"
+    "“… … … … … … …\p"
+    "“Your Storage System offers more convenience than mine.\p"
+    "“It has a lot of user-friendly features that make it fun and useful, too.\p"
+    "“It makes me proud that I played a part in its development.\p"
+    "“Here's hoping that you'll continue research in Storage Systems.\p"
+    "“From Bill\n"
+    "… … … … … … … …”")
 }
 

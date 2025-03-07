@@ -1,25 +1,25 @@
 mapscripts RustboroCity_House3_MapScripts {}
 
 script RustboroCity_House3_EventScript_OldMan {
-	msgbox(format("For my own Pokémon, I give them perfectly suited nicknames!\p"
-	    "It's my expression of, uh…\n"
-	    "originality, yes, that's it!"), MSGBOX_NPC)
+    msgbox(format("For my own Pokémon, I give them perfectly suited nicknames!\p"
+        "It's my expression of, uh…\n"
+        "originality, yes, that's it!"), MSGBOX_NPC)
 }
 
 script RustboroCity_House3_EventScript_OldWoman {
-	msgbox(format("But giving the name Pekachu to a Pikachu? It seems pointless.\p"
-    	"I suppose it is good to use a name that's easy to understand, but…"), MSGBOX_NPC)
+    msgbox(format("But giving the name Pekachu to a Pikachu? It seems pointless.\p"
+        "I suppose it is good to use a name that's easy to understand, but…"), MSGBOX_NPC)
 }
 
 // Misspelling on purpose, see nickname
 script RustboroCity_House3_EventScript_Pekachu {
-	lock
-	faceplayer
-	waitse
-	speakername("Pekachu")
-	playmoncry(SPECIES_PIKACHU, CRY_MODE_NORMAL)
-	msgbox("Peka!", MSGBOX_DEFAULT)
-	waitmoncry
-	call(Common_EventScript_Pokemon_Petting)
+    lock
+    faceplayer
+    waitse
+    speakername("Pekachu")
+    playmoncry(SPECIES_PIKACHU, CRY_MODE_NORMAL)
+    msgbox("Peka!", MSGBOX_DEFAULT)
+    waitmoncry
+    call(Common_EventScript_Pokemon_Petting)
 }
 

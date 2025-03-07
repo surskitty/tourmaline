@@ -15,190 +15,190 @@ raw `
 .set LOCALID_BELDUM_BALL, 2
 
 MossdeepCity_StevensHouse_EventScript_HideStevensNote::
-	setmetatile 6, 4, METATILE_GenericBuilding_TableEdge, TRUE
-	return
+    setmetatile 6, 4, METATILE_GenericBuilding_TableEdge, TRUE
+    return
 
 MossdeepCity_StevensHouse_EventScript_SetStevenPos::
-	setobjectxyperm LOCALID_STEVEN, 6, 5
-	setobjectmovementtype LOCALID_STEVEN, MOVEMENT_TYPE_FACE_UP
-	return
+    setobjectxyperm LOCALID_STEVEN, 6, 5
+    setobjectmovementtype LOCALID_STEVEN, MOVEMENT_TYPE_FACE_UP
+    return
 
 MossdeepCity_StevensHouse_EventScript_StevenGivesDive::
-	lockall
-	applymovement LOCALID_STEVEN, Common_Movement_WalkInPlaceFasterLeft
-	waitmovement 0
-	playse SE_PIN
-	applymovement LOCALID_STEVEN, Common_Movement_ExclamationMark
-	waitmovement 0
-	applymovement LOCALID_STEVEN, Common_Movement_Delay48
-	waitmovement 0
-	applymovement LOCALID_STEVEN, MossdeepCity_StevensHouse_Movement_StevenApproachPlayer
-	waitmovement 0
+    lockall
+    applymovement LOCALID_STEVEN, Common_Movement_WalkInPlaceFasterLeft
+    waitmovement 0
+    playse SE_PIN
+    applymovement LOCALID_STEVEN, Common_Movement_ExclamationMark
+    waitmovement 0
+    applymovement LOCALID_STEVEN, Common_Movement_Delay48
+    waitmovement 0
+    applymovement LOCALID_STEVEN, MossdeepCity_StevensHouse_Movement_StevenApproachPlayer
+    waitmovement 0
     speakername CommonName_Text_Steven
-	msgbox MossdeepCity_StevensHouse_Text_YouveEarnedHMDive, MSGBOX_DEFAULT
-	giveitem ITEM_HM_DIVE
-	setflag FLAG_RECEIVED_HM_DIVE
-	setflag FLAG_OMIT_DIVE_FROM_STEVEN_LETTER
-	msgbox MossdeepCity_StevensHouse_Text_ExplainDive, MSGBOX_DEFAULT
-	closemessage
-	delay 20
-	applymovement LOCALID_STEVEN, MossdeepCity_StevensHouse_Movement_StevenReturn
-	waitmovement 0
-	setflag FLAG_HIDE_MOSSDEEP_CITY_SCOTT
-	setflag FLAG_HIDE_SEAFLOOR_CAVERN_ENTRANCE_AQUA_GRUNT
-	setvar VAR_STEVENS_HOUSE_STATE, 2
-	releaseall
-	end
+    msgbox MossdeepCity_StevensHouse_Text_YouveEarnedHMDive, MSGBOX_DEFAULT
+    giveitem ITEM_HM_DIVE
+    setflag FLAG_RECEIVED_HM_DIVE
+    setflag FLAG_OMIT_DIVE_FROM_STEVEN_LETTER
+    msgbox MossdeepCity_StevensHouse_Text_ExplainDive, MSGBOX_DEFAULT
+    closemessage
+    delay 20
+    applymovement LOCALID_STEVEN, MossdeepCity_StevensHouse_Movement_StevenReturn
+    waitmovement 0
+    setflag FLAG_HIDE_MOSSDEEP_CITY_SCOTT
+    setflag FLAG_HIDE_SEAFLOOR_CAVERN_ENTRANCE_AQUA_GRUNT
+    setvar VAR_STEVENS_HOUSE_STATE, 2
+    releaseall
+    end
 
 MossdeepCity_StevensHouse_Movement_StevenApproachPlayer:
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_left
-	walk_in_place_faster_down
-	step_end
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_in_place_faster_down
+    step_end
 
 MossdeepCity_StevensHouse_Movement_StevenReturn:
-	walk_up
-	walk_right
-	walk_right
-	walk_right
-	walk_in_place_faster_up
-	step_end
+    walk_up
+    walk_right
+    walk_right
+    walk_right
+    walk_in_place_faster_up
+    step_end
 
 MossdeepCity_StevensHouse_EventScript_BeldumPokeball::
-	lockall
-	msgbox MossdeepCity_StevensHouse_Text_TakeBallContainingBeldum, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, MossdeepCity_StevensHouse_EventScript_LeaveBeldum
-	goto MossdeepCity_StevensHouse_EventScript_GiveBeldum
-	end
+    lockall
+    msgbox MossdeepCity_StevensHouse_Text_TakeBallContainingBeldum, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, NO, MossdeepCity_StevensHouse_EventScript_LeaveBeldum
+    goto MossdeepCity_StevensHouse_EventScript_GiveBeldum
+    end
 
 MossdeepCity_StevensHouse_EventScript_LeaveBeldum::
-	msgbox MossdeepCity_StevensHouse_Text_LeftPokeBallWhereItWas, MSGBOX_DEFAULT
-	releaseall
-	end
+    msgbox MossdeepCity_StevensHouse_Text_LeftPokeBallWhereItWas, MSGBOX_DEFAULT
+    releaseall
+    end
 
 MossdeepCity_StevensHouse_EventScript_GiveBeldum::
-	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_BELDUM
-	givemon SPECIES_BELDUM, 5
-	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, MossdeepCity_StevensHouse_EventScript_SendBeldumParty
-	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, MossdeepCity_StevensHouse_EventScript_SendBeldumPC
-	goto Common_EventScript_NoMoreRoomForPokemon
-	end
+    setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_BELDUM
+    givemon SPECIES_BELDUM, 5
+    goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, MossdeepCity_StevensHouse_EventScript_SendBeldumParty
+    goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, MossdeepCity_StevensHouse_EventScript_SendBeldumPC
+    goto Common_EventScript_NoMoreRoomForPokemon
+    end
 
 MossdeepCity_StevensHouse_EventScript_SendBeldumParty::
-	call MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, MossdeepCity_StevensHouse_EventScript_ReceivedBeldum
-	call Common_EventScript_GetGiftMonPartySlot
-	call Common_EventScript_NameReceivedPartyMon
-	goto MossdeepCity_StevensHouse_EventScript_ReceivedBeldum
-	end
+    call MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare
+    msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, NO, MossdeepCity_StevensHouse_EventScript_ReceivedBeldum
+    call Common_EventScript_GetGiftMonPartySlot
+    call Common_EventScript_NameReceivedPartyMon
+    goto MossdeepCity_StevensHouse_EventScript_ReceivedBeldum
+    end
 
 MossdeepCity_StevensHouse_EventScript_SendBeldumPC::
-	call MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC
-	call Common_EventScript_NameReceivedBoxMon
-	goto MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC
-	end
+    call MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare
+    msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, NO, MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC
+    call Common_EventScript_NameReceivedBoxMon
+    goto MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC
+    end
 
 MossdeepCity_StevensHouse_EventScript_BeldumTransferredToPC::
-	call Common_EventScript_TransferredToPC
-	goto MossdeepCity_StevensHouse_EventScript_ReceivedBeldum
-	end
+    call Common_EventScript_TransferredToPC
+    goto MossdeepCity_StevensHouse_EventScript_ReceivedBeldum
+    end
 
 MossdeepCity_StevensHouse_EventScript_ReceivedBeldumFanfare::
-	bufferspeciesname STR_VAR_2, SPECIES_BELDUM
-	removeobject LOCALID_BELDUM_BALL
-	playfanfare MUS_OBTAIN_ITEM
-	message MossdeepCity_StevensHouse_Text_ObtainedBeldum
-	waitmessage
-	waitfanfare
-	bufferspeciesname STR_VAR_1, SPECIES_BELDUM
-	return
+    bufferspeciesname STR_VAR_2, SPECIES_BELDUM
+    removeobject LOCALID_BELDUM_BALL
+    playfanfare MUS_OBTAIN_ITEM
+    message MossdeepCity_StevensHouse_Text_ObtainedBeldum
+    waitmessage
+    waitfanfare
+    bufferspeciesname STR_VAR_1, SPECIES_BELDUM
+    return
 
 MossdeepCity_StevensHouse_EventScript_ReceivedBeldum::
-	setflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL
-	setflag FLAG_RECEIVED_BELDUM
-	releaseall
-	end
+    setflag FLAG_HIDE_MOSSDEEP_CITY_STEVENS_HOUSE_BELDUM_POKEBALL
+    setflag FLAG_RECEIVED_BELDUM
+    releaseall
+    end
 
 MossdeepCity_StevensHouse_EventScript_RockDisplay::
-	msgbox MossdeepCity_StevensHouse_Text_CollectionOfRareRocks, MSGBOX_SIGN
-	end
+    msgbox MossdeepCity_StevensHouse_Text_CollectionOfRareRocks, MSGBOX_SIGN
+    end
 
 MossdeepCity_StevensHouse_EventScript_Steven::
-	speakername CommonName_Text_Steven
-	msgbox MossdeepCity_StevensHouse_Text_UnderwateCavernBetweenMossdeepSootopolis, MSGBOX_NPC
-	end
+    speakername CommonName_Text_Steven
+    msgbox MossdeepCity_StevensHouse_Text_UnderwateCavernBetweenMossdeepSootopolis, MSGBOX_NPC
+    end
 
 MossdeepCity_StevensHouse_EventScript_Letter::
-	lockall
-	msgbox MossdeepCity_StevensHouse_Text_LetterFromSteven, MSGBOX_DEFAULT
-	releaseall
-	end
+    lockall
+    msgbox MossdeepCity_StevensHouse_Text_LetterFromSteven, MSGBOX_DEFAULT
+    releaseall
+    end
 
 `
 
 text MossdeepCity_StevensHouse_Text_YouveEarnedHMDive {
-	format("{PLAYER}{KUN}…\p"
-	"As you can see, there's not much here, but this is my home.\p"
-	"Thank you for all that you've done.\p"
-	"This is my token of appreciation.\n"
-	"It's the Hidden Machine Dive.\p"
-	"No need to be shy--you've earned this HM.")
+    format("{PLAYER}{KUN}…\p"
+    "As you can see, there's not much here, but this is my home.\p"
+    "Thank you for all that you've done.\p"
+    "This is my token of appreciation.\n"
+    "It's the Hidden Machine Dive.\p"
+    "No need to be shy--you've earned this HM.")
 }
 
 text MossdeepCity_StevensHouse_Text_ExplainDive {
-	format("While you're using Surf, you\n"
-	"should notice dark patches of water.\p"
-	"Use Dive if you come to deep water like it. You'll drop to the seafloor.\p"
-	"When you want to come back up, use Dive again.\p"
-	"In some places, it won't be possible\n"
-	"for you to surface, though.")
+    format("While you're using Surf, you\n"
+    "should notice dark patches of water.\p"
+    "Use Dive if you come to deep water like it. You'll drop to the seafloor.\p"
+    "When you want to come back up, use Dive again.\p"
+    "In some places, it won't be possible\n"
+    "for you to surface, though.")
 }
 
 text MossdeepCity_StevensHouse_Text_UnderwateCavernBetweenMossdeepSootopolis {
-	format("Apparently, there's an\n"
-	"underwater cavern between\l"
-	"Mossdeep and Sootopolis.\p"
-	"You know, the one that Capt. Stern found in his submarine.")
+    format("Apparently, there's an\n"
+    "underwater cavern between\l"
+    "Mossdeep and Sootopolis.\p"
+    "You know, the one that Capt. Stern found in his submarine.")
 }
 
 text MossdeepCity_StevensHouse_Text_TakeBallContainingBeldum {
-	format("{PLAYER} checked the Poké Ball.\p"
-	"It contained the Pokémon Beldum.\p"
-	"Take the Poké Ball?")
+    format("{PLAYER} checked the Poké Ball.\p"
+    "It contained the Pokémon Beldum.\p"
+    "Take the Poké Ball?")
 }
 
 text MossdeepCity_StevensHouse_Text_ObtainedBeldum {
-	format("{PLAYER} obtained a Beldum.")
+    format("{PLAYER} obtained a Beldum.")
 }
 
 text MossdeepCity_StevensHouse_Text_LeftPokeBallWhereItWas {
-	format("{PLAYER} left the Poké Ball where it was.")
+    format("{PLAYER} left the Poké Ball where it was.")
 }
 
 text MossdeepCity_StevensHouse_Text_LetterFromSteven {
-	format("It's a letter.\p"
-	"… … … … … …\p"
-	"To {PLAYER}{KUN}…\p"
-	"I've decided to do a little soul-\n"
-	"searching and train on the road.\p"
-	"I don't plan to return home for some time.\p"
-	"I have a favor to ask of you.\p"
-	"I want you to take the Poké Ball on the desk.\p"
-	"Inside it is a Beldum, my favorite Pokémon.\p"
-	"I'm counting on you.\p"
-	"May our paths cross someday.\p"
-	"Steven Stone")
+    format("It's a letter.\p"
+    "… … … … … …\p"
+    "To {PLAYER}{KUN}…\p"
+    "I've decided to do a little soul-\n"
+    "searching and train on the road.\p"
+    "I don't plan to return home for some time.\p"
+    "I have a favor to ask of you.\p"
+    "I want you to take the Poké Ball on the desk.\p"
+    "Inside it is a Beldum, my favorite Pokémon.\p"
+    "I'm counting on you.\p"
+    "May our paths cross someday.\p"
+    "Steven Stone")
 }
 
 text MossdeepCity_StevensHouse_Text_CollectionOfRareRocks {
-	format("It's a collection of rare rocks and\n"
-	"stones assembled by STEVEN.")
+    format("It's a collection of rare rocks and\n"
+    "stones assembled by STEVEN.")
 }
 

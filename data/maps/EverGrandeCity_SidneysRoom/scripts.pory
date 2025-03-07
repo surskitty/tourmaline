@@ -1,11 +1,11 @@
 mapscripts EverGrandeCity_SidneysRoom_MapScripts {
     MAP_SCRIPT_ON_LOAD {
-    	call_if_set(FLAG_DEFEATED_ELITE_4_SIDNEY, EverGrandeCity_SidneysRoom_EventScript_ResetAdvanceToNextRoom)
-    	call_if_eq(VAR_ELITE_4_STATE, 1, EverGrandeCity_SidneysRoom_EventScript_CloseDoor)
+        call_if_set(FLAG_DEFEATED_ELITE_4_SIDNEY, EverGrandeCity_SidneysRoom_EventScript_ResetAdvanceToNextRoom)
+        call_if_eq(VAR_ELITE_4_STATE, 1, EverGrandeCity_SidneysRoom_EventScript_CloseDoor)
     }
     MAP_SCRIPT_ON_TRANSITION {
-    	setflag(FLAG_MET_SCOTT_IN_EVERGRANDE)
-	    setflag(FLAG_HIDE_EVER_GRANDE_POKEMON_CENTER_1F_SCOTT)
+        setflag(FLAG_MET_SCOTT_IN_EVERGRANDE)
+        setflag(FLAG_HIDE_EVER_GRANDE_POKEMON_CENTER_1F_SCOTT)
     }
     MAP_SCRIPT_ON_FRAME_TABLE [
         VAR_ELITE_4_STATE, 0: EverGrandeCity_SidneysRoom_EventScript_WalkInCloseDoor
@@ -19,63 +19,63 @@ text EverGrandeCity_SidneysRoom_Text_Sidney { "Sidney" }
 
 raw `
 EverGrandeCity_SidneysRoom_EventScript_ResetAdvanceToNextRoom::
-	call PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom
-	return
+    call PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom
+    return
 
 EverGrandeCity_SidneysRoom_EventScript_CloseDoor::
-	call PokemonLeague_EliteFour_EventScript_CloseDoor
-	return
+    call PokemonLeague_EliteFour_EventScript_CloseDoor
+    return
 
 
 EverGrandeCity_SidneysRoom_EventScript_WalkInCloseDoor::
-	lockall
-	call PokemonLeague_EliteFour_EventScript_WalkInCloseDoor
-	setvar VAR_ELITE_4_STATE, 1
-	releaseall
-	end
+    lockall
+    call PokemonLeague_EliteFour_EventScript_WalkInCloseDoor
+    setvar VAR_ELITE_4_STATE, 1
+    releaseall
+    end
 
 EverGrandeCity_SidneysRoom_EventScript_Sidney::
-	lock
-	faceplayer
-	speakername EverGrandeCity_SidneysRoom_Text_Sidney
-	goto_if_set FLAG_DEFEATED_ELITE_4_SIDNEY, EverGrandeCity_SidneysRoom_EventScript_PostBattleSpeech
-	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
-	msgbox EverGrandeCity_SidneysRoom_Text_IntroSpeech, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_SIDNEY, EverGrandeCity_SidneysRoom_Text_Defeat
-	goto EverGrandeCity_SidneysRoom_EventScript_Defeated
-	end
+    lock
+    faceplayer
+    speakername EverGrandeCity_SidneysRoom_Text_Sidney
+    goto_if_set FLAG_DEFEATED_ELITE_4_SIDNEY, EverGrandeCity_SidneysRoom_EventScript_PostBattleSpeech
+    playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
+    msgbox EverGrandeCity_SidneysRoom_Text_IntroSpeech, MSGBOX_DEFAULT
+    trainerbattle_no_intro TRAINER_SIDNEY, EverGrandeCity_SidneysRoom_Text_Defeat
+    goto EverGrandeCity_SidneysRoom_EventScript_Defeated
+    end
 
 EverGrandeCity_SidneysRoom_EventScript_PostBattleSpeech::
-	speakername EverGrandeCity_SidneysRoom_Text_Sidney
-	msgbox EverGrandeCity_SidneysRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
-	release
-	end
+    speakername EverGrandeCity_SidneysRoom_Text_Sidney
+    msgbox EverGrandeCity_SidneysRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
+    release
+    end
 
 EverGrandeCity_SidneysRoom_EventScript_Defeated::
-	setflag FLAG_DEFEATED_ELITE_4_SIDNEY
-	call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
-	speakername EverGrandeCity_SidneysRoom_Text_Sidney
-	msgbox EverGrandeCity_SidneysRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
-	release
-	end
+    setflag FLAG_DEFEATED_ELITE_4_SIDNEY
+    call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
+    speakername EverGrandeCity_SidneysRoom_Text_Sidney
+    msgbox EverGrandeCity_SidneysRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
+    release
+    end
 `
 
 text EverGrandeCity_SidneysRoom_Text_IntroSpeech { 
-	format("Welcome, challenger!\n"
-	"I'm Sidney of the Elite Four.\p"
-	"I like that look you're giving me.\n"
-	"I guess you'll give me a good match.\l"
-	"That's good! Looking real good!\p"
-	"All right! You and me, let's enjoy a battle that can only be staged here in the Pokémon League!")
+    format("Welcome, challenger!\n"
+    "I'm Sidney of the Elite Four.\p"
+    "I like that look you're giving me.\n"
+    "I guess you'll give me a good match.\l"
+    "That's good! Looking real good!\p"
+    "All right! You and me, let's enjoy a battle that can only be staged here in the Pokémon League!")
 }
 
 text EverGrandeCity_SidneysRoom_Text_Defeat { 
-	format("Well, how do you like that? I lost!\n"
-	"Eh, it was fun, so it doesn't matter.")
+    format("Well, how do you like that? I lost!\n"
+    "Eh, it was fun, so it doesn't matter.")
 }
 
 text EverGrandeCity_SidneysRoom_Text_PostBattleSpeech { 
-	format("Well, listen to what this loser has to say.\p"
-	"You've got what it takes to go far.\n"
-	"Now, go on to the next room and enjoy your next battle!")
+    format("Well, listen to what this loser has to say.\p"
+    "You've got what it takes to go far.\n"
+    "Now, go on to the next room and enjoy your next battle!")
 }

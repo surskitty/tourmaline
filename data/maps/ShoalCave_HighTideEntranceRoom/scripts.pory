@@ -1,5 +1,5 @@
 mapscripts ShoalCave_HighTideEntranceRoom_MapScripts {
-	MAP_SCRIPT_ON_LOAD {
+    MAP_SCRIPT_ON_LOAD {
         special(SetRoofBirds)
         special(SetStationaryWilds)
     }

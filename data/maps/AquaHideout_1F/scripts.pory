@@ -3,113 +3,113 @@ mapscripts AquaHideout_1F_MapScripts {}
 raw `
 @ The below two entrance guards give hints about what to do to progress the story
 AquaHideout_1F_EventScript_HideoutEntranceGrunt1::
-	lock
-	faceplayer
-	goto_if_set FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, AquaHideout_1F_EventScript_SlateportHint1
-	goto_if_set FLAG_RECEIVED_RED_OR_BLUE_ORB, AquaHideout_1F_EventScript_MagmaHideoutHint1
-	msgbox AquaHideout_1F_Text_OurBossIsSnatchingSomething, MSGBOX_DEFAULT
-	release
-	end
+    lock
+    faceplayer
+    goto_if_set FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, AquaHideout_1F_EventScript_SlateportHint1
+    goto_if_set FLAG_RECEIVED_RED_OR_BLUE_ORB, AquaHideout_1F_EventScript_MagmaHideoutHint1
+    msgbox AquaHideout_1F_Text_OurBossIsSnatchingSomething, MSGBOX_DEFAULT
+    release
+    end
 
 AquaHideout_1F_EventScript_MagmaHideoutHint1::
-	msgbox AquaHideout_1F_Text_WhereMightMagmaHideoutBe, MSGBOX_DEFAULT
-	release
-	end
+    msgbox AquaHideout_1F_Text_WhereMightMagmaHideoutBe, MSGBOX_DEFAULT
+    release
+    end
 
 AquaHideout_1F_EventScript_SlateportHint1::
-	msgbox AquaHideout_1F_Text_BossWentToJackASubmarine, MSGBOX_DEFAULT
-	release
-	end
+    msgbox AquaHideout_1F_Text_BossWentToJackASubmarine, MSGBOX_DEFAULT
+    release
+    end
 
 AquaHideout_1F_EventScript_HideoutEntranceGrunt2::
-	lock
-	faceplayer
-	goto_if_set FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, AquaHideout_1F_EventScript_SlateportHint2
-	goto_if_set FLAG_RECEIVED_RED_OR_BLUE_ORB, AquaHideout_1F_EventScript_MagmaHideoutHint2
-	msgbox AquaHideout_1F_Text_BossIsOnRoute122, MSGBOX_DEFAULT
-	release
-	end
+    lock
+    faceplayer
+    goto_if_set FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, AquaHideout_1F_EventScript_SlateportHint2
+    goto_if_set FLAG_RECEIVED_RED_OR_BLUE_ORB, AquaHideout_1F_EventScript_MagmaHideoutHint2
+    msgbox AquaHideout_1F_Text_BossIsOnRoute122, MSGBOX_DEFAULT
+    release
+    end
 
 AquaHideout_1F_EventScript_MagmaHideoutHint2::
-	msgbox AquaHideout_1F_Text_TeamMagmaAtMtChimney, MSGBOX_DEFAULT
-	release
-	end
+    msgbox AquaHideout_1F_Text_TeamMagmaAtMtChimney, MSGBOX_DEFAULT
+    release
+    end
 
 AquaHideout_1F_EventScript_SlateportHint2::
-	msgbox AquaHideout_1F_Text_BossIsInSlateportCity, MSGBOX_DEFAULT
-	release
-	end
+    msgbox AquaHideout_1F_Text_BossIsInSlateportCity, MSGBOX_DEFAULT
+    release
+    end
 
 AquaHideout_1F_EventScript_Grunt1::
-	trainerbattle_single TRAINER_GRUNT_AQUA_HIDEOUT_1, AquaHideout_1F_Text_Grunt1Intro, AquaHideout_1F_Text_Grunt1Defeat, AquaHideout_1F_EventScript_Grunt1Defeated
-	msgbox AquaHideout_1F_Text_Grunt1PostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_GRUNT_AQUA_HIDEOUT_1, AquaHideout_1F_Text_Grunt1Intro, AquaHideout_1F_Text_Grunt1Defeat, AquaHideout_1F_EventScript_Grunt1Defeated
+    msgbox AquaHideout_1F_Text_Grunt1PostBattle, MSGBOX_AUTOCLOSE
+    end
 
 AquaHideout_1F_EventScript_Grunt1Defeated::
-	msgbox AquaHideout_1F_Text_Grunt1PostBattle, MSGBOX_DEFAULT
-	release
-	end
+    msgbox AquaHideout_1F_Text_Grunt1PostBattle, MSGBOX_DEFAULT
+    release
+    end
 `
 
 text AquaHideout_1F_Text_OurBossIsSnatchingSomething {
-	format("What? What? What do you want with Team Aqua?\p"
-	"Our Boss isn't here! He's gone off to snatch something important!\p"
-	"… …\n"
-	"Where did he go?\p"
-	"Wahaha! Do you really think I'd tell you something that crucial?")
+    format("What? What? What do you want with Team Aqua?\p"
+    "Our Boss isn't here! He's gone off to snatch something important!\p"
+    "… …\n"
+    "Where did he go?\p"
+    "Wahaha! Do you really think I'd tell you something that crucial?")
 }
 
 text AquaHideout_1F_Text_WhereMightMagmaHideoutBe {
-	format("What? What?\n"
-	"Are you a Team Magma grunt?\p"
-	"I hear that Team Magma is trying to awaken an awesome Pokémon at their Hideout.\p"
-	"But where might their Hideout be?")
+    format("What? What?\n"
+    "Are you a Team Magma grunt?\p"
+    "I hear that Team Magma is trying to awaken an awesome Pokémon at their Hideout.\p"
+    "But where might their Hideout be?")
 }
 
 text AquaHideout_1F_Text_BossWentToJackASubmarine {
-	format("What? What? What do you want with Team Aqua?\p"
-	"Our Boss isn't here!\n"
-	"He's gone off to jack a submarine!\p"
-	"… …\n"
-	"Where did he go?\p"
-	"Wahaha! Do you really think I'd tell you something that crucial?")
+    format("What? What? What do you want with Team Aqua?\p"
+    "Our Boss isn't here!\n"
+    "He's gone off to jack a submarine!\p"
+    "… …\n"
+    "Where did he go?\p"
+    "Wahaha! Do you really think I'd tell you something that crucial?")
 }
 
 text AquaHideout_1F_Text_BossIsOnRoute122 {
-	format("What? What? What do you want with Team Aqua?\p"
-	"Our Boss isn't here! He's on his way to Mt. Pyre on Route 122!\p"
-	"… …\n"
-	"Why did he go?\p"
-	"Wahaha! Do you really think I'd tell you something that crucial?")
+    format("What? What? What do you want with Team Aqua?\p"
+    "Our Boss isn't here! He's on his way to Mt. Pyre on Route 122!\p"
+    "… …\n"
+    "Why did he go?\p"
+    "Wahaha! Do you really think I'd tell you something that crucial?")
 }
 
 text AquaHideout_1F_Text_TeamMagmaAtMtChimney {
-	format("What? What?\n"
-	"Are you a Team Magma grunt?\p"
-	"I hear that Team Magma is after an awesome Pokémon at Mt. Chimney.\p"
-	"But what is that Pokémon like?")
+    format("What? What?\n"
+    "Are you a Team Magma grunt?\p"
+    "I hear that Team Magma is after an awesome Pokémon at Mt. Chimney.\p"
+    "But what is that Pokémon like?")
 }
 
 text AquaHideout_1F_Text_BossIsInSlateportCity {
-	format("What? What? What do you want with Team Aqua?\p"
-	"Our Boss isn't here!\n"
-	"He's on his way to Slateport City!\p"
-	"… …\n"
-	"Why did he go?\p"
-	"Wahaha! Do you really think I'd tell you something that crucial?")
+    format("What? What? What do you want with Team Aqua?\p"
+    "Our Boss isn't here!\n"
+    "He's on his way to Slateport City!\p"
+    "… …\n"
+    "Why did he go?\p"
+    "Wahaha! Do you really think I'd tell you something that crucial?")
 }
 
 text AquaHideout_1F_Text_Grunt1Intro {
-	format("Ayiyiyi!\n"
-	"Suspicious character spotted!")
+    format("Ayiyiyi!\n"
+    "Suspicious character spotted!")
 }
 
 text AquaHideout_1F_Text_Grunt1Defeat {
-	format("Grrrrr…\n"
-	"I lost it!")
+    format("Grrrrr…\n"
+    "I lost it!")
 }
 
 text AquaHideout_1F_Text_Grunt1PostBattle {
-	format("I took the loss for the Team, but I did my job…")
+    format("I took the loss for the Team, but I did my job…")
 }
 

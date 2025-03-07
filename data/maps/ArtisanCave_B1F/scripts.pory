@@ -1,6 +1,6 @@
 mapscripts ArtisanCave_B1F_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
-    	setflag(FLAG_LANDMARK_ARTISAN_CAVE)
+        setflag(FLAG_LANDMARK_ARTISAN_CAVE)
     }
     MAP_SCRIPT_ON_LOAD {
         special(SetStationaryWilds)

@@ -5,138 +5,138 @@ text VerdanturfTown_WandasHouse_WandaName {
 }
 
 script VerdanturfTown_WandasHouse_EventScript_Wally {
-	lock
-	faceplayer
+    lock
+    faceplayer
     speakername(CommonName_Text_Wally)
-	if (flag(FLAG_WALLY_SPEECH)) {
-	    msgbox(format("Please watch me, {PLAYER}.\n"
-	        "I'm going to get stronger than you.\p"
-	        "When I do, I'm going to challenge you to another battle."), MSGBOX_DEFAULT)
+    if (flag(FLAG_WALLY_SPEECH)) {
+        msgbox(format("Please watch me, {PLAYER}.\n"
+            "I'm going to get stronger than you.\p"
+            "When I do, I'm going to challenge you to another battle."), MSGBOX_DEFAULT)
     } else {
         msgbox(format("I lost to you, {PLAYER}, but I'm not feeling down anymore.\p"
-	        "Because I have a new purpose in life.\n"
-	        "Together with my Ralts, I'm going to challenge Pokémon Gyms and become a great Trainer.\p"
-	        "Please watch me, {PLAYER}.\n"
-	        "I'm going to be stronger than you.\p"
-	        "When I do, I'm going to challenge you to another battle."), MSGBOX_DEFAULT)
-	    setflag(FLAG_WALLY_SPEECH)
-	}
-	release
+            "Because I have a new purpose in life.\n"
+            "Together with my Ralts, I'm going to challenge Pokémon Gyms and become a great Trainer.\p"
+            "Please watch me, {PLAYER}.\n"
+            "I'm going to be stronger than you.\p"
+            "When I do, I'm going to challenge you to another battle."), MSGBOX_DEFAULT)
+        setflag(FLAG_WALLY_SPEECH)
+    }
+    release
 }
 
 script VerdanturfTown_WandasHouse_EventScript_WallysUncle {
-	lock
-	faceplayer
+    lock
+    faceplayer
     speakername("Wally's Uncle")
-	if (flag(FLAG_DEFEATED_WALLY_VICTORY_ROAD)) {
+    if (flag(FLAG_DEFEATED_WALLY_VICTORY_ROAD)) {
         msgbox(format("Is that right?\n"
-	        "Wally's gone away that far all by himself…\p"
-	        "Well, I have to give him credit--he is my little brother's son."), MSGBOX_DEFAULT)
-	} elif (flag(FLAG_DEFEATED_LAVARIDGE_GYM)) {
-	    msgbox(format("Wally's gone away…\n"
-        	"He slipped off on his own…"), MSGBOX_DEFAULT)
+            "Wally's gone away that far all by himself…\p"
+            "Well, I have to give him credit--he is my little brother's son."), MSGBOX_DEFAULT)
+    } elif (flag(FLAG_DEFEATED_LAVARIDGE_GYM)) {
+        msgbox(format("Wally's gone away…\n"
+            "He slipped off on his own…"), MSGBOX_DEFAULT)
     } else {
         msgbox(format("Oh! {PLAYER}{KUN}!\n"
-	        "Wally's next door.\p"
-	        "But, boy, there's something I have to tell you.\p"
-	        "This natural environment is doing wonders for Wally's health.\p"
-	        "Maybe it's not just the environment.\n"
-	        "It could be Pokémon that are giving the boy hope."), MSGBOX_DEFAULT)
+            "Wally's next door.\p"
+            "But, boy, there's something I have to tell you.\p"
+            "This natural environment is doing wonders for Wally's health.\p"
+            "Maybe it's not just the environment.\n"
+            "It could be Pokémon that are giving the boy hope."), MSGBOX_DEFAULT)
     }
-	release
+    release
 }
 
 
 raw `
 VerdanturfTown_WandasHouse_EventScript_WandasBoyfriend::
-	msgbox VerdanturfTown_WandasHouse_Text_CanSeeGirlfriendEveryDay, MSGBOX_NPC
-	end
+    msgbox VerdanturfTown_WandasHouse_Text_CanSeeGirlfriendEveryDay, MSGBOX_NPC
+    end
 
 VerdanturfTown_WandasHouse_EventScript_Wanda::
-	lock
-	faceplayer
-	goto_if_set FLAG_DEFEATED_LAVARIDGE_GYM, VerdanturfTown_WandasHouse_EventScript_WandaDontWorry
-	goto_if_set FLAG_DEFEATED_WALLY_MAUVILLE, VerdanturfTown_WandasHouse_EventScript_MeetWanda
-	speakername VerdanturfTown_WandasHouse_WandaName
-	msgbox VerdanturfTown_WandasHouse_Text_DontWorryAboutWally, MSGBOX_DEFAULT
-	release
-	end
+    lock
+    faceplayer
+    goto_if_set FLAG_DEFEATED_LAVARIDGE_GYM, VerdanturfTown_WandasHouse_EventScript_WandaDontWorry
+    goto_if_set FLAG_DEFEATED_WALLY_MAUVILLE, VerdanturfTown_WandasHouse_EventScript_MeetWanda
+    speakername VerdanturfTown_WandasHouse_WandaName
+    msgbox VerdanturfTown_WandasHouse_Text_DontWorryAboutWally, MSGBOX_DEFAULT
+    release
+    end
 
 VerdanturfTown_WandasHouse_EventScript_MeetWanda::
-	speakername VerdanturfTown_WandasHouse_WandaName
-	msgbox VerdanturfTown_WandasHouse_Text_MeetWanda, MSGBOX_DEFAULT
-	release
-	end
+    speakername VerdanturfTown_WandasHouse_WandaName
+    msgbox VerdanturfTown_WandasHouse_Text_MeetWanda, MSGBOX_DEFAULT
+    release
+    end
 
 VerdanturfTown_WandasHouse_EventScript_WandaDontWorry::
-	speakername VerdanturfTown_WandasHouse_WandaName
-	msgbox VerdanturfTown_WandasHouse_Text_DontWorryAboutWally, MSGBOX_DEFAULT
-	release
-	end
+    speakername VerdanturfTown_WandasHouse_WandaName
+    msgbox VerdanturfTown_WandasHouse_Text_DontWorryAboutWally, MSGBOX_DEFAULT
+    release
+    end
 
 VerdanturfTown_WandasHouse_EventScript_WallysAunt::
-	lock
-	faceplayer
-	goto_if_set FLAG_DEFEATED_WALLY_VICTORY_ROAD, VerdanturfTown_WandasHouse_EventScript_WallysAuntEverGrande
-	goto_if_set FLAG_DEFEATED_LAVARIDGE_GYM, VerdanturfTown_WandasHouse_EventScript_WallysAuntAnythingHappened
-	goto_if_set FLAG_RUSTURF_TUNNEL_OPENED, VerdanturfTown_WandasHouse_EventScript_WallysAuntTunnelOpen
-	msgbox VerdanturfTown_WandasHouse_Text_DaughtersBoyfriendDriven, MSGBOX_DEFAULT
-	release
-	end
+    lock
+    faceplayer
+    goto_if_set FLAG_DEFEATED_WALLY_VICTORY_ROAD, VerdanturfTown_WandasHouse_EventScript_WallysAuntEverGrande
+    goto_if_set FLAG_DEFEATED_LAVARIDGE_GYM, VerdanturfTown_WandasHouse_EventScript_WallysAuntAnythingHappened
+    goto_if_set FLAG_RUSTURF_TUNNEL_OPENED, VerdanturfTown_WandasHouse_EventScript_WallysAuntTunnelOpen
+    msgbox VerdanturfTown_WandasHouse_Text_DaughtersBoyfriendDriven, MSGBOX_DEFAULT
+    release
+    end
 
 VerdanturfTown_WandasHouse_EventScript_WallysAuntTunnelOpen::
-	msgbox VerdanturfTown_WandasHouse_Text_DaughtersBoyfriendWasDigging, MSGBOX_DEFAULT
-	release
-	end
+    msgbox VerdanturfTown_WandasHouse_Text_DaughtersBoyfriendWasDigging, MSGBOX_DEFAULT
+    release
+    end
 
 VerdanturfTown_WandasHouse_EventScript_WallysAuntAnythingHappened::
-	msgbox VerdanturfTown_WandasHouse_Text_IfAnythingHappenedToWally, MSGBOX_DEFAULT
-	release
-	end
+    msgbox VerdanturfTown_WandasHouse_Text_IfAnythingHappenedToWally, MSGBOX_DEFAULT
+    release
+    end
 
 VerdanturfTown_WandasHouse_EventScript_WallysAuntEverGrande::
-	msgbox VerdanturfTown_WandasHouse_Text_WallyWasInEverGrande, MSGBOX_DEFAULT
-	release
-	end
+    msgbox VerdanturfTown_WandasHouse_Text_WallyWasInEverGrande, MSGBOX_DEFAULT
+    release
+    end
 `
 
 text VerdanturfTown_WandasHouse_Text_MeetWanda {
-	format("You are?\n"
-	"Oh, right, I get it!\p"
-	"You're the {PLAYER} who Wally was telling me about.\p"
-	"I'm Wally's cousin.\n"
-	"Glad to meet you!\p"
-	"I think Wally's become a lot more lively and healthy since he came here.")
+    format("You are?\n"
+    "Oh, right, I get it!\p"
+    "You're the {PLAYER} who Wally was telling me about.\p"
+    "I'm Wally's cousin.\n"
+    "Glad to meet you!\p"
+    "I think Wally's become a lot more lively and healthy since he came here.")
 }
 
 text VerdanturfTown_WandasHouse_Text_DontWorryAboutWally {
-	format("Don't worry about Wally.\n"
-	"He'll be just fine.\p"
-	"I know my little cousin, and he has Pokémon with him, too.")
+    format("Don't worry about Wally.\n"
+    "He'll be just fine.\p"
+    "I know my little cousin, and he has Pokémon with him, too.")
 }
 
 text VerdanturfTown_WandasHouse_Text_CanSeeGirlfriendEveryDay {
-	format("Thanks to you, I can see my girlfriend every day.\l"
-	"Happy? You bet I am!")
+    format("Thanks to you, I can see my girlfriend every day.\l"
+    "Happy? You bet I am!")
 }
 
 text VerdanturfTown_WandasHouse_Text_DaughtersBoyfriendDriven {
-	format("My daughter's boyfriend is a very driven and passionate sort of person.\p"
-	"He's been digging a tunnel nonstop just so he can see my daughter.\p"
-	"My daughter's a little concerned, so she goes out to the tunnel a lot.")
+    format("My daughter's boyfriend is a very driven and passionate sort of person.\p"
+    "He's been digging a tunnel nonstop just so he can see my daughter.\p"
+    "My daughter's a little concerned, so she goes out to the tunnel a lot.")
 }
 
 text VerdanturfTown_WandasHouse_Text_DaughtersBoyfriendWasDigging {
-	format("It's amazing. My daughter's boyfriend was digging the tunnel by hand!\p"
-	"It's so incredible!")
+    format("It's amazing. My daughter's boyfriend was digging the tunnel by hand!\p"
+    "It's so incredible!")
 }
 
 text VerdanturfTown_WandasHouse_Text_IfAnythingHappenedToWally {
-	format("If anything were to happen to Wally, I would never be able to look his parents in Petalburg in the eye…")
+    format("If anything were to happen to Wally, I would never be able to look his parents in Petalburg in the eye…")
 }
 
 text VerdanturfTown_WandasHouse_Text_WallyWasInEverGrande {
-	format("Wally was in Ever Grande?\p"
-	"His parents in Petalburg would be astonished to hear that!")
+    format("Wally was in Ever Grande?\p"
+    "His parents in Petalburg would be astonished to hear that!")
 }
 

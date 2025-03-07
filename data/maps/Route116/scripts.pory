@@ -348,7 +348,7 @@ Route116_EventScript_Johnson::
 `
 
 text Route116_Text_ScoundrelMadeOffWithPeeko {
-	format("Ohhh, what am I to do?\p"
+    format("Ohhh, what am I to do?\p"
     "We were on our walk, Peeko and I, when\n"
     "we were jumped by an odd thug…\p"
     "The scoundrel made off with my\n"
@@ -357,12 +357,12 @@ text Route116_Text_ScoundrelMadeOffWithPeeko {
 }
 
 text Route116_Text_WantToDigTunnel {
-	format("Nnn… Roar!\p"
+    format("Nnn… Roar!\p"
     "I want to dig that tunnel!")
 }
 
 text Route116_Text_DiggingTunnelWhenGoonOrderedMeOut {
-	format("Nnn… Roar!\n"
+    format("Nnn… Roar!\n"
     "What's going on?\p"
     "I was digging the tunnel without any\n"
     "tools when some goon ordered me out!\p"
@@ -377,13 +377,13 @@ text Route116_Text_DiggingTunnelWhenGoonOrderedMeOut {
 }
 
 text Route116_Text_GoonHightailedItOutOfTunnel {
-	format("Nnn… Roar!\p"
+    format("Nnn… Roar!\p"
     "That goofy goon hightailed it out of\n"
     "the tunnel! I can go back to digging!")
 }
 
 text Route116_Text_ThankYouTokenOfAppreciation {
-	format("Oh! It's you!\p"
+    format("Oh! It's you!\p"
     "You're that person who not only helped\n"
     "me in Petalburg Woods, but also got\l"
     "back my stolen package and then even\l"
@@ -403,36 +403,36 @@ text Route116_Text_ThankYouTokenOfAppreciation {
 }
 
 text Route116_Text_NewBallAvailableAtMart {
-	format("Our new Poké Ball will be available\n"
+    format("Our new Poké Ball will be available\n"
     "at the Pokémon Mart in Rustboro.\p"
     "Please do try it out!\n"
     "Thank you and bye-bye!")
 }
 
 text Route116_Text_BagIsJamPacked {
-	format("Your Bag is jam-packed.\n"
+    format("Your Bag is jam-packed.\n"
     "I can't give you this Repeat Ball.")
 }
 
 text Route116_Text_TokenOfAppreciation {
-	format("As a token of our appreciation for\n"
+    format("As a token of our appreciation for\n"
     "your delivering our package, I have\l"
     "a gift of a new kind of Poké Ball\l"
     "for our most wonderful Trainer!")
 }
 
 text Route116_Text_CanYouHelpMeFindGlasses {
-	format("I dropped my glasses…\n"
+    format("I dropped my glasses…\n"
     "Can you help me find them?")
 }
 
 text Route116_Text_MayISeeThoseGlasses {
-	format("Those glasses!\n"
+    format("Those glasses!\n"
     "May I see them for a second?")
 }
 
 text Route116_Text_NotWhatImLookingForMaybeTheyArentHere {
-	format("Hmm…\n"
+    format("Hmm…\n"
     "These are Black Glasses.\l"
     "They're not what I'm looking for…\p"
     "Maybe my glasses aren't around\n"
@@ -440,31 +440,31 @@ text Route116_Text_NotWhatImLookingForMaybeTheyArentHere {
 }
 
 text Route116_Text_CantFindGlassesNotHere {
-	format("Hmm…\n"
+    format("Hmm…\n"
     "I can't find my glasses anywhere…\l"
     "Maybe they're not around here…")
 }
 
 text Route116_Text_NotWhatImLookingFor {
-	format("Hmm…\n"
+    format("Hmm…\n"
     "These are Black Glasses.\l"
     "They're not what I'm looking for…")
 }
 
 text Route116_Text_RouteSignRustboro {
-	format("Route 116\n"
+    format("Route 116\n"
     "{LEFT_ARROW} Rustboro City")
 }
 
 text Route116_Text_RusturfTunnelSign {
-	format("Rusturf Tunnel\n"
+    format("Rusturf Tunnel\n"
     "“Linking Rustboro and Verdanturf\p"
     "“The tunnel project has been\n"
     "canceled.”")
 }
 
 text Route116_Text_TrainerTipsBToStopEvolution {
-	format("Trainer Tips\p"
+    format("Trainer Tips\p"
     "If you want to stop a Pokémon from\n"
     "evolving, press the B Button while it\l"
     "is trying to evolve.\l"
@@ -473,7 +473,7 @@ text Route116_Text_TrainerTipsBToStopEvolution {
 }
 
 text Route116_Text_TrainerTipsBagHasPockets {
-	format("Trainer Tips\p"
+    format("Trainer Tips\p"
     "Your BAG has several Pockets.\p"
     "Items you obtain are automatically\n"
     "placed in the appropriate Pockets.\p"

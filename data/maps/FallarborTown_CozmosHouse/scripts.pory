@@ -3,128 +3,128 @@ mapscripts FallarborTown_CozmosHouse_MapScripts {}
 raw `
 
 FallarborTown_CozmosHouse_EventScript_ProfCozmo::
-	lock
-	faceplayer
-	goto_if_set FLAG_RECEIVED_TM_RETURN, FallarborTown_CozmosHouse_EventScript_GaveMeteorite
-	checkitem ITEM_METEORITE
-	goto_if_eq VAR_RESULT, TRUE, FallarborTown_CozmosHouse_EventScript_PlayerHasMeteorite
-	speakername CommonName_Text_ProfCozmo
-	msgbox FallarborTown_CozmosHouse_Text_MeteoriteWillNeverBeMineNow, MSGBOX_DEFAULT
-	release
-	end
+    lock
+    faceplayer
+    goto_if_set FLAG_RECEIVED_TM_RETURN, FallarborTown_CozmosHouse_EventScript_GaveMeteorite
+    checkitem ITEM_METEORITE
+    goto_if_eq VAR_RESULT, TRUE, FallarborTown_CozmosHouse_EventScript_PlayerHasMeteorite
+    speakername CommonName_Text_ProfCozmo
+    msgbox FallarborTown_CozmosHouse_Text_MeteoriteWillNeverBeMineNow, MSGBOX_DEFAULT
+    release
+    end
 
 FallarborTown_CozmosHouse_EventScript_PlayerHasMeteorite::
-	call_if_unset FLAG_TEMP_2, FallarborTown_CozmosHouse_EventScript_NoticeMeteorite
-	call_if_set FLAG_TEMP_2, FallarborTown_CozmosHouse_EventScript_AskForMeteorite
-	goto_if_eq VAR_RESULT, NO, FallarborTown_CozmosHouse_EventScript_DeclineGiveMeteorite
-	speakername CommonName_Text_ProfCozmo
-	msgbox FallarborTown_CozmosHouse_Text_PleaseUseThisTM, MSGBOX_DEFAULT
-	giveitem ITEM_TM_RETURN
-	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-	setvar VAR_0x8004, ITEM_METEORITE
-	call Common_EventScript_PlayerHandedOverTheItem
-	setflag FLAG_RECEIVED_TM_RETURN
-	speakername CommonName_Text_ProfCozmo
-	msgbox FallarborTown_CozmosHouse_Text_ReallyGoingToHelpMyResearch, MSGBOX_DEFAULT
-	release
-	end
+    call_if_unset FLAG_TEMP_2, FallarborTown_CozmosHouse_EventScript_NoticeMeteorite
+    call_if_set FLAG_TEMP_2, FallarborTown_CozmosHouse_EventScript_AskForMeteorite
+    goto_if_eq VAR_RESULT, NO, FallarborTown_CozmosHouse_EventScript_DeclineGiveMeteorite
+    speakername CommonName_Text_ProfCozmo
+    msgbox FallarborTown_CozmosHouse_Text_PleaseUseThisTM, MSGBOX_DEFAULT
+    giveitem ITEM_TM_RETURN
+    goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+    setvar VAR_0x8004, ITEM_METEORITE
+    call Common_EventScript_PlayerHandedOverTheItem
+    setflag FLAG_RECEIVED_TM_RETURN
+    speakername CommonName_Text_ProfCozmo
+    msgbox FallarborTown_CozmosHouse_Text_ReallyGoingToHelpMyResearch, MSGBOX_DEFAULT
+    release
+    end
 
 FallarborTown_CozmosHouse_EventScript_NoticeMeteorite::
-	speakername CommonName_Text_ProfCozmo
-	msgbox FallarborTown_CozmosHouse_Text_MeteoriteWillNeverBeMineNow, MSGBOX_DEFAULT
-	speakername CommonName_Text_ProfCozmo
-	msgbox FallarborTown_CozmosHouse_Text_IsThatMeteoriteMayIHaveIt, MSGBOX_YESNO
-	return
+    speakername CommonName_Text_ProfCozmo
+    msgbox FallarborTown_CozmosHouse_Text_MeteoriteWillNeverBeMineNow, MSGBOX_DEFAULT
+    speakername CommonName_Text_ProfCozmo
+    msgbox FallarborTown_CozmosHouse_Text_IsThatMeteoriteMayIHaveIt, MSGBOX_YESNO
+    return
 
 FallarborTown_CozmosHouse_EventScript_AskForMeteorite::
-	speakername CommonName_Text_ProfCozmo
-	msgbox FallarborTown_CozmosHouse_Text_MayIHaveMeteorite, MSGBOX_YESNO
-	return
+    speakername CommonName_Text_ProfCozmo
+    msgbox FallarborTown_CozmosHouse_Text_MayIHaveMeteorite, MSGBOX_YESNO
+    return
 
 FallarborTown_CozmosHouse_EventScript_DeclineGiveMeteorite::
-	setflag FLAG_TEMP_2
-	speakername CommonName_Text_ProfCozmo
-	msgbox FallarborTown_CozmosHouse_Text_CrushedWithDisappointment, MSGBOX_DEFAULT
-	release
-	end
+    setflag FLAG_TEMP_2
+    speakername CommonName_Text_ProfCozmo
+    msgbox FallarborTown_CozmosHouse_Text_CrushedWithDisappointment, MSGBOX_DEFAULT
+    release
+    end
 
 FallarborTown_CozmosHouse_EventScript_GaveMeteorite::
-	speakername CommonName_Text_ProfCozmo
-	msgbox FallarborTown_CozmosHouse_Text_ReallyGoingToHelpMyResearch, MSGBOX_DEFAULT
-	release
-	end
+    speakername CommonName_Text_ProfCozmo
+    msgbox FallarborTown_CozmosHouse_Text_ReallyGoingToHelpMyResearch, MSGBOX_DEFAULT
+    release
+    end
 
 FallarborTown_CozmosHouse_EventScript_CozmosWife::
-	lock
-	faceplayer
-	goto_if_set FLAG_RECEIVED_TM_RETURN, FallarborTown_CozmosHouse_EventScript_CozmoIsHappy
-	goto_if_set FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, FallarborTown_CozmosHouse_EventScript_CozmoIsSad
-	msgbox FallarborTown_CozmosHouse_Text_CozmoWentToMeteorFalls, MSGBOX_DEFAULT
-	release
-	end
+    lock
+    faceplayer
+    goto_if_set FLAG_RECEIVED_TM_RETURN, FallarborTown_CozmosHouse_EventScript_CozmoIsHappy
+    goto_if_set FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, FallarborTown_CozmosHouse_EventScript_CozmoIsSad
+    msgbox FallarborTown_CozmosHouse_Text_CozmoWentToMeteorFalls, MSGBOX_DEFAULT
+    release
+    end
 
 FallarborTown_CozmosHouse_EventScript_CozmoIsSad::
-	msgbox FallarborTown_CozmosHouse_Text_FeelSorryForCozmo, MSGBOX_DEFAULT
-	release
-	end
+    msgbox FallarborTown_CozmosHouse_Text_FeelSorryForCozmo, MSGBOX_DEFAULT
+    release
+    end
 
 FallarborTown_CozmosHouse_EventScript_CozmoIsHappy::
-	msgbox FallarborTown_CozmosHouse_Text_CozmoIsSoHappy, MSGBOX_DEFAULT
-	release
-	end
+    msgbox FallarborTown_CozmosHouse_Text_CozmoIsSoHappy, MSGBOX_DEFAULT
+    release
+    end
 `
 
 text FallarborTown_CozmosHouse_Text_MeteoriteWillNeverBeMineNow {
-	format("Oh…\n"
-	"I never should have let myself be conned into telling Team Magma where you can find Meteorites…\p"
-	"That Meteorite from Meteor Falls…\n"
-	"It's never going to be mine now…")
+    format("Oh…\n"
+    "I never should have let myself be conned into telling Team Magma where you can find Meteorites…\p"
+    "That Meteorite from Meteor Falls…\n"
+    "It's never going to be mine now…")
 }
 
 text FallarborTown_CozmosHouse_Text_IsThatMeteoriteMayIHaveIt {
-	format("Oh!\n"
-	"Hah?\p"
-	"That item…\p"
-	"Could it be?\p"
-	"Is it the Meteorite that Team Magma took from Meteor Falls?\p"
-	"Please, may I have it?\p"
-	"I'm not asking for it for free.\n"
-	"How about in exchange for this TM?")
+    format("Oh!\n"
+    "Hah?\p"
+    "That item…\p"
+    "Could it be?\p"
+    "Is it the Meteorite that Team Magma took from Meteor Falls?\p"
+    "Please, may I have it?\p"
+    "I'm not asking for it for free.\n"
+    "How about in exchange for this TM?")
 }
 
 text FallarborTown_CozmosHouse_Text_PleaseUseThisTM {
-	format("This TM, it represents my feeling of gratitude.\l"
-	"Please use it!")
+    format("This TM, it represents my feeling of gratitude.\l"
+    "Please use it!")
 }
 
 text FallarborTown_CozmosHouse_Text_ReallyGoingToHelpMyResearch {
-	format("Oh, I can't believe it.\n"
-	"This is really, really great!\p"
-	"This is really going to help my research!")
+    format("Oh, I can't believe it.\n"
+    "This is really, really great!\p"
+    "This is really going to help my research!")
 }
 
 text FallarborTown_CozmosHouse_Text_CrushedWithDisappointment {
-	format("Oh, but…\n"
-	"I'm crushed with disappointment…")
+    format("Oh, but…\n"
+    "I'm crushed with disappointment…")
 }
 
 text FallarborTown_CozmosHouse_Text_MayIHaveMeteorite {
-	format("Please, may I have that Meteorite?\p"
-	"I'm not asking for it for free.\n"
-	"How about in exchange for this TM?")
+    format("Please, may I have that Meteorite?\p"
+    "I'm not asking for it for free.\n"
+    "How about in exchange for this TM?")
 }
 
 text FallarborTown_CozmosHouse_Text_CozmoWentToMeteorFalls {
-	format("Prof. Cozmo went off to Meteor Falls on Route 114 with some people from Team Magma.")
+    format("Prof. Cozmo went off to Meteor Falls on Route 114 with some people from Team Magma.")
 }
 
 text FallarborTown_CozmosHouse_Text_FeelSorryForCozmo {
-	format("Poor Prof. Cozmo…\n"
-	"He's so depressed… I feel sorry for him.")
+    format("Poor Prof. Cozmo…\n"
+    "He's so depressed… I feel sorry for him.")
 }
 
 text FallarborTown_CozmosHouse_Text_CozmoIsSoHappy {
-	format("Look at Prof. Cozmo…\n"
-	"He's so happy! I think it's cute.")
+    format("Look at Prof. Cozmo…\n"
+    "He's so happy! I think it's cute.")
 }
 

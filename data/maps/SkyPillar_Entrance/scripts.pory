@@ -2,7 +2,7 @@ mapscripts SkyPillar_Entrance_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         setflag(FLAG_LANDMARK_SKY_PILLAR)
     }
-	MAP_SCRIPT_ON_LOAD {
+    MAP_SCRIPT_ON_LOAD {
         special(SetRoofBirds)
         special(SetStationaryWilds)
     }

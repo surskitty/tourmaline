@@ -52,9 +52,8 @@ script AbandonedShip_Corridors_B1F_EventScript_Duncan {
 }
 
 text AbandonedShip_Corridors_B1F_Text_DuncanIntro {
-    "When we go out to sea, we Sailors\n"
-    "always bring our Pokémon.\l"
-    "How about a quick battle?"
+    format("When we go out to sea, we Sailors always bring our Pokémon.\l"
+        "How about a quick battle?")
 }
 
 text AbandonedShip_Corridors_B1F_Text_DuncanDefeat {
@@ -62,9 +61,8 @@ text AbandonedShip_Corridors_B1F_Text_DuncanDefeat {
 }
 
 text AbandonedShip_Corridors_B1F_Text_DuncanPostBattle {
-    "The ship's bottom has sunk into the depths.\p"
-    "If a Pokémon knew how to go underwater,\n"
-    "we might make some progress…"
+    format("The ship's bottom has sunk into the depths.\p"
+        "If a Pokémon knew how to go underwater, we might make some progress…")
 }
 
 text AbandonedShip_Text_TheDoorIsOpen {

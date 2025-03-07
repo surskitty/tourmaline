@@ -1,44 +1,44 @@
 mapscripts VerdanturfTown_Mart_MapScripts {}
 
 script VerdanturfTown_Mart_EventScript_Clerk {
-	lock
-	faceplayer
-	speakername(CommonName_Text_Clerk)
-	message(gText_HowMayIServeYou)
-	waitmessage
-	pokemart(VerdanturfTown_Mart_Pokemart)
-	msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
-	release
+    lock
+    faceplayer
+    speakername(CommonName_Text_Clerk)
+    message(gText_HowMayIServeYou)
+    waitmessage
+    pokemart(VerdanturfTown_Mart_Pokemart)
+    msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
+    release
 }
 
 mart VerdanturfTown_Mart_Pokemart {
-	ITEM_GREAT_BALL
-	ITEM_NEST_BALL
-	ITEM_LEVEL_BALL
-	ITEM_SUPER_POTION
-	ITEM_ANTIDOTE
-	ITEM_PARALYZE_HEAL
-	ITEM_AWAKENING
-	ITEM_BURN_HEAL
-	ITEM_ICE_HEAL
-	ITEM_LURE
-	ITEM_REPEL
-	ITEM_X_SP_ATK
-	ITEM_FLUFFY_TAIL
+    ITEM_GREAT_BALL
+    ITEM_NEST_BALL
+    ITEM_LEVEL_BALL
+    ITEM_SUPER_POTION
+    ITEM_ANTIDOTE
+    ITEM_PARALYZE_HEAL
+    ITEM_AWAKENING
+    ITEM_BURN_HEAL
+    ITEM_ICE_HEAL
+    ITEM_LURE
+    ITEM_REPEL
+    ITEM_X_SP_ATK
+    ITEM_FLUFFY_TAIL
 }
 
 script VerdanturfTown_Mart_EventScript_Boy {
-	msgbox(format("For any Pokémon match, X Special is crucial.\p"
-	"It jacks up the power of some moves\n"
-	"even though it's only for one battle."), MSGBOX_NPC)
+    msgbox(format("For any Pokémon match, X Special is crucial.\p"
+    "It jacks up the power of some moves\n"
+    "even though it's only for one battle."), MSGBOX_NPC)
 }
 
 script VerdanturfTown_Mart_EventScript_ExpertF {
-	msgbox(format("They don't seem to sell any winning strategy guides for the Battle Tent…\p"
-	"It seems one must rely on one's own wits after all…"), MSGBOX_NPC)
+    msgbox(format("They don't seem to sell any winning strategy guides for the Battle Tent…\p"
+    "It seems one must rely on one's own wits after all…"), MSGBOX_NPC)
 }
 
 script VerdanturfTown_Mart_EventScript_Lass {
-	msgbox(format("The Level Ball works better on Pokémon weaker than your own."), MSGBOX_NPC)
+    msgbox(format("The Level Ball works better on Pokémon weaker than your own."), MSGBOX_NPC)
 }
 

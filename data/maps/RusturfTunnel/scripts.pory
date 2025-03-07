@@ -425,16 +425,16 @@ RusturfTunnel_EventScript_Mike::
 `
 
 text RusturfTunnel_Text_ComeAndGetSome {
-	format("What, are you coming?\n"
+    format("What, are you coming?\n"
     "Come and get some, then!")
 }
 
 text RusturfTunnel_Text_Peeko {
-	format("PEEKO: Pii pihyoh!")
+    format("PEEKO: Pii pihyoh!")
 }
 
 text RusturfTunnel_Text_GruntIntro {
-	format("Grah, keelhaul it all!\p"
+    format("Grah, keelhaul it all!\p"
     "That hostage Pokémon turned out to be worthless!\p"
     "And to think I made a getaway…\n"
     "In this tunnel to nowhere!\p"
@@ -443,11 +443,11 @@ text RusturfTunnel_Text_GruntIntro {
 }
 
 text RusturfTunnel_Text_GruntDefeat {
-	format("Urrrggh! My career in crime comes to a dead end!")
+    format("Urrrggh! My career in crime comes to a dead end!")
 }
 
 text RusturfTunnel_Text_GruntTakePackage {
-	format("This is plain not right…\p"
+    format("This is plain not right…\p"
     "The Boss told me this would be a\n"
     "slick-and-easy job to pull.\p"
     "All I had to do was steal some package\n"
@@ -457,12 +457,12 @@ text RusturfTunnel_Text_GruntTakePackage {
 }
 
 text RusturfTunnel_Text_PeekoGladToSeeYouSafe {
-	format("Peeko!\n"
+    format("Peeko!\n"
     "Am I glad to see you're safe!")
 }
 
 text RusturfTunnel_Text_ThankYouLetsGoHomePeeko {
-	format("Peeko owes her life to you!\p"
+    format("Peeko owes her life to you!\p"
     "They call me Mr. Briney.\n"
     "And, you are?\p"
     "… … … … … … … …\n"
@@ -479,7 +479,7 @@ text RusturfTunnel_Text_ThankYouLetsGoHomePeeko {
 }
 
 text RusturfTunnel_Text_WhyCantTheyKeepDigging {
-	format("… …\p"
+    format("… …\p"
     "Why can't they keep digging?\n"
     "Is the bedrock too hard?\p"
     "My beloved awaits me in Verdanturf\n"
@@ -492,51 +492,51 @@ text RusturfTunnel_Text_WhyCantTheyKeepDigging {
 }
 
 text RusturfTunnel_Text_ToGetToVerdanturf {
-	format("To get from Rustboro to Verdanturf,\n"
+    format("To get from Rustboro to Verdanturf,\n"
     "you need to go to Dewford, then pass\l"
     "through Slateport and Mauville…")
 }
 
 text RusturfTunnel_Text_YouShatteredBoulderTakeHM {
-	format("Wow! You shattered that boulder\n"
+    format("Wow! You shattered that boulder\n"
     "blocking the way.\p"
     "To show you how much I appreciate it,\n"
     "I'd like you to have this HM.")
 }
 
 text RusturfTunnel_Text_ExplainStrength {
-	format("That HM contains Strength.\p"
+    format("That HM contains Strength.\p"
     "If a muscular Pokémon were to learn\n"
     "that, it would be able to move even\l"
     "large boulders.")
 }
 
 text RusturfTunnel_Text_WandaReunion {
-	format("Wanda!\n"
+    format("Wanda!\n"
     "Now I can see you anytime!\p"
     "WANDA: That's…wonderful.\p"
     "Please, take some rest at my home.")
 }
 
 text RusturfTunnel_Text_BoyfriendOnOtherSideOfRock {
-	format("On the other side of this rock…\n"
+    format("On the other side of this rock…\n"
     "My boyfriend is there.\p"
     "He… He's not just digging the tunnel to come see me.\p"
     "He works his hands raw and rough for the benefit of everyone.")
 }
 
 text RusturfTunnel_Text_MikeIntro {
-	format("What do you call a wild man up in the mountains? A mountain man, right?\p"
+    format("What do you call a wild man up in the mountains? A mountain man, right?\p"
     "So why don't they call a Pokémon in the mountains a mountain Pokémon?")
 }
 
 text RusturfTunnel_Text_MikeDefeat {
-	format("My Pokémon…\n"
+    format("My Pokémon…\n"
     "Ran out of power…")
 }
 
 text RusturfTunnel_Text_MikePostBattle {
-	format("They halted development here to protect Pokémon, right?\l"
+    format("They halted development here to protect Pokémon, right?\l"
     "There's a feel-good story!")
 }
 

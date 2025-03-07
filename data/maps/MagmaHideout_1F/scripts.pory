@@ -1,6 +1,6 @@
 mapscripts MagmaHideout_1F_MapScripts {
-	MAP_SCRIPT_ON_TRANSITION {
-    	setvar(VAR_JAGGED_PASS_ASH_WEATHER, 0)
+    MAP_SCRIPT_ON_TRANSITION {
+        setvar(VAR_JAGGED_PASS_ASH_WEATHER, 0)
     }
     MAP_SCRIPT_ON_LOAD {
         special(SetRoofBirds)
@@ -10,54 +10,54 @@ mapscripts MagmaHideout_1F_MapScripts {
 
 raw `
 MagmaHideout_1F_EventScript_Grunt1::
-	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_1, MagmaHideout_1F_Text_Grunt1Intro, MagmaHideout_1F_Text_Grunt1Defeat
-	msgbox MagmaHideout_1F_Text_Grunt1PostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_1, MagmaHideout_1F_Text_Grunt1Intro, MagmaHideout_1F_Text_Grunt1Defeat
+    msgbox MagmaHideout_1F_Text_Grunt1PostBattle, MSGBOX_AUTOCLOSE
+    end
 
 MagmaHideout_1F_EventScript_Grunt2::
-	trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_2, MagmaHideout_1F_Text_Grunt2Intro, MagmaHideout_1F_Text_Grunt2Defeat
-	msgbox MagmaHideout_1F_Text_Grunt2PostBattle, MSGBOX_AUTOCLOSE
-	end
+    trainerbattle_single TRAINER_GRUNT_MAGMA_HIDEOUT_2, MagmaHideout_1F_Text_Grunt2Intro, MagmaHideout_1F_Text_Grunt2Defeat
+    msgbox MagmaHideout_1F_Text_Grunt2PostBattle, MSGBOX_AUTOCLOSE
+    end
 `
 
 text MagmaHideout_1F_Text_Grunt1Intro {
-	format("When Team Magma has roll call, we get\n"
-	"important guarding assignments in\l"
-	"the order that we line up.\p"
-	"That's why I'm stuck off in this corner.\n"
-	"I'm always late to roll call!")
+    format("When Team Magma has roll call, we get\n"
+    "important guarding assignments in\l"
+    "the order that we line up.\p"
+    "That's why I'm stuck off in this corner.\n"
+    "I'm always late to roll call!")
 }
 
 text MagmaHideout_1F_Text_Grunt1Defeat {
-	format("I'm always late for training sessions,\n"
-	"too!\p"
-	"I hate to say it, but I'm wimpy…")
+    format("I'm always late for training sessions,\n"
+    "too!\p"
+    "I hate to say it, but I'm wimpy…")
 }
 
 text MagmaHideout_1F_Text_Grunt1PostBattle {
-	format("Okay, I'll try to put a little more\n"
-	"effort into things from now on…")
+    format("Okay, I'll try to put a little more\n"
+    "effort into things from now on…")
 }
 
 text MagmaHideout_1F_Text_Grunt2Intro {
-	format("Our leader told us to dig into\n"
-	"Mt. Chimney, so we dug and dug.\p"
-	"And in the course of digging, we came\n"
-	"across something that blew our minds!\p"
-	"What did we find?\p"
-	"Fuhahaha!\n"
-	"I'll tell you if you beat me!")
+    format("Our leader told us to dig into\n"
+    "Mt. Chimney, so we dug and dug.\p"
+    "And in the course of digging, we came\n"
+    "across something that blew our minds!\p"
+    "What did we find?\p"
+    "Fuhahaha!\n"
+    "I'll tell you if you beat me!")
 }
 
 text MagmaHideout_1F_Text_Grunt2Defeat {
-	format("Arrgh!\n"
-	"Taken down!")
+    format("Arrgh!\n"
+    "Taken down!")
 }
 
 text MagmaHideout_1F_Text_Grunt2PostBattle {
-	format("I won't tell you after all.\n"
-	"You'll find out when you get there!\p"
-	"It'd be better if you saved surprises\n"
-	"to the end, don't you think?")
+    format("I won't tell you after all.\n"
+    "You'll find out when you get there!\p"
+    "It'd be better if you saved surprises\n"
+    "to the end, don't you think?")
 }
 

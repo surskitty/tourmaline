@@ -3,8 +3,8 @@ mapscripts EverGrandeCity_DrakesRoom_MapScripts {
         VAR_ELITE_4_STATE, 3: EverGrandeCity_DrakesRoom_EventScript_WalkInCloseDoor
     ]
     MAP_SCRIPT_ON_LOAD {
-    	call_if_set(FLAG_DEFEATED_ELITE_4_DRAKE, EverGrandeCity_DrakesRoom_EventScript_ResetAdvanceToNextRoom)
-	    call_if_eq(VAR_ELITE_4_STATE, 4, EverGrandeCity_DrakesRoom_EventScript_CloseDoor)
+        call_if_set(FLAG_DEFEATED_ELITE_4_DRAKE, EverGrandeCity_DrakesRoom_EventScript_ResetAdvanceToNextRoom)
+        call_if_eq(VAR_ELITE_4_STATE, 4, EverGrandeCity_DrakesRoom_EventScript_CloseDoor)
     }
     MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
         VAR_TEMP_1, 0 { turnobject(OBJ_EVENT_ID_PLAYER, DIR_NORTH) }
@@ -15,70 +15,70 @@ mapscripts EverGrandeCity_DrakesRoom_MapScripts {
 raw `
 
 EverGrandeCity_DrakesRoom_EventScript_WalkInCloseDoor::
-	lockall
-	call PokemonLeague_EliteFour_EventScript_WalkInCloseDoor
-	setvar VAR_ELITE_4_STATE, 4
-	releaseall
-	end
+    lockall
+    call PokemonLeague_EliteFour_EventScript_WalkInCloseDoor
+    setvar VAR_ELITE_4_STATE, 4
+    releaseall
+    end
 
 EverGrandeCity_DrakesRoom_EventScript_ResetAdvanceToNextRoom::
-	call PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom
-	return
+    call PokemonLeague_EliteFour_EventScript_ResetAdvanceToNextRoom
+    return
 
 EverGrandeCity_DrakesRoom_EventScript_CloseDoor::
-	call PokemonLeague_EliteFour_EventScript_CloseDoor
-	return
+    call PokemonLeague_EliteFour_EventScript_CloseDoor
+    return
 
 EverGrandeCity_DrakesRoom_EventScript_Drake::
-	lock
-	faceplayer
-	speakername EverGrandeCity_DrakesRoom_Text_Drake
-	goto_if_set FLAG_DEFEATED_ELITE_4_DRAKE, EverGrandeCity_DrakesRoom_EventScript_PostBattleSpeech
-	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
-	msgbox EverGrandeCity_DrakesRoom_Text_IntroSpeech, MSGBOX_DEFAULT
-	trainerbattle_no_intro TRAINER_DRAKE, EverGrandeCity_DrakesRoom_Text_Defeat
-	goto EverGrandeCity_DrakesRoom_EventScript_Defeated
-	end
+    lock
+    faceplayer
+    speakername EverGrandeCity_DrakesRoom_Text_Drake
+    goto_if_set FLAG_DEFEATED_ELITE_4_DRAKE, EverGrandeCity_DrakesRoom_EventScript_PostBattleSpeech
+    playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
+    msgbox EverGrandeCity_DrakesRoom_Text_IntroSpeech, MSGBOX_DEFAULT
+    trainerbattle_no_intro TRAINER_DRAKE, EverGrandeCity_DrakesRoom_Text_Defeat
+    goto EverGrandeCity_DrakesRoom_EventScript_Defeated
+    end
 
 EverGrandeCity_DrakesRoom_EventScript_PostBattleSpeech::
-	speakername EverGrandeCity_DrakesRoom_Text_Drake
-	msgbox EverGrandeCity_DrakesRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
-	release
-	end
+    speakername EverGrandeCity_DrakesRoom_Text_Drake
+    msgbox EverGrandeCity_DrakesRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
+    release
+    end
 
 EverGrandeCity_DrakesRoom_EventScript_Defeated::
-	setvar VAR_0x8004, FANCOUNTER_DEFEATED_DRAKE
-	special Script_TryGainNewFanFromCounter
-	setflag FLAG_DEFEATED_ELITE_4_DRAKE
-	call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
-	speakername EverGrandeCity_DrakesRoom_Text_Drake
-	msgbox EverGrandeCity_DrakesRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
-	release
-	end
+    setvar VAR_0x8004, FANCOUNTER_DEFEATED_DRAKE
+    special Script_TryGainNewFanFromCounter
+    setflag FLAG_DEFEATED_ELITE_4_DRAKE
+    call PokemonLeague_EliteFour_SetAdvanceToNextRoomMetatiles
+    speakername EverGrandeCity_DrakesRoom_Text_Drake
+    msgbox EverGrandeCity_DrakesRoom_Text_PostBattleSpeech, MSGBOX_DEFAULT
+    release
+    end
 `
 
 text EverGrandeCity_DrakesRoom_Text_Drake { "Drake" }
 
 text EverGrandeCity_DrakesRoom_Text_IntroSpeech {
     format("I am the last of the Pokémon League Elite Four, Drake the Dragon master!\p"
-	"In their natural state, Pokémon are wild living things. They are free.\p"
-	"At times, they hinder us.\n"
-	"At times, they help us.\p"
-	"For us to battle with Pokémon as partners, do you know what it takes?\p"
-	"Do you know what is needed?\p"
-	"If you don't, then you will never prevail over me!")
+    "In their natural state, Pokémon are wild living things. They are free.\p"
+    "At times, they hinder us.\n"
+    "At times, they help us.\p"
+    "For us to battle with Pokémon as partners, do you know what it takes?\p"
+    "Do you know what is needed?\p"
+    "If you don't, then you will never prevail over me!")
 }
 
 text EverGrandeCity_DrakesRoom_Text_Defeat {
-	format("Superb, it should be said.")
+    format("Superb, it should be said.")
 }
 
 text EverGrandeCity_DrakesRoom_Text_PostBattleSpeech {
-	format("You deserve every credit for coming this far as a TRAINER of Pokémon.\p"
-	"You do seem to know what is needed.\p"
-	"Yes, what a Trainer needs is a virtuous heart.\p"
-	"Pokémon touch the good hearts of Trainers and learn good from wrong.\p"
-	"They touch the good hearts of Trainers and grow strong.\p"
-	"Go! Go onwards!\n"
-	"The Champion is waiting!")
+    format("You deserve every credit for coming this far as a TRAINER of Pokémon.\p"
+    "You do seem to know what is needed.\p"
+    "Yes, what a Trainer needs is a virtuous heart.\p"
+    "Pokémon touch the good hearts of Trainers and learn good from wrong.\p"
+    "They touch the good hearts of Trainers and grow strong.\p"
+    "Go! Go onwards!\n"
+    "The Champion is waiting!")
 }
