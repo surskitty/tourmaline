@@ -7,19 +7,19 @@ script Common_PokemonScript_WildEncounter {
     waitse
     callnative(StartStationaryEncounter)
     playmoncry(VAR_0x8004, CRY_MODE_ENCOUNTER)
-	bufferspeciesname(STR_VAR_1, VAR_0x8004)
-	msgbox(format("You drew the attention of the wandering {STR_VAR_1}!"), MSGBOX_DEFAULT)
-	msgbox("The wild Pokémon attacked!", MSGBOX_DEFAULT)
+    bufferspeciesname(STR_VAR_1, VAR_0x8004)
+    msgbox(format("You drew the attention of the wandering {STR_VAR_1}!"), MSGBOX_DEFAULT)
+    msgbox("The wild Pokémon attacked!", MSGBOX_DEFAULT)
     waitmoncry
     waitmessage
     setflag(FLAG_SYS_CTRL_OBJ_DELETE)
-	dowildbattle
-	clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
-	specialvar(VAR_RESULT, GetBattleOutcome)
-	goto_if_eq(VAR_RESULT, B_OUTCOME_RAN, Common_EventScript_RanFromStaticPokemon)
-	if (var(VAR_RESULT) == B_OUTCOME_WON) {
-    	msgbox(format("The miffed Pokémon healed itself with a Berry and left."), MSGBOX_DEFAULT)
-	}
+    dowildbattle
+    clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    specialvar(VAR_RESULT, GetBattleOutcome)
+    goto_if_eq(VAR_RESULT, B_OUTCOME_RAN, Common_EventScript_RanFromStaticPokemon)
+    if (var(VAR_RESULT) == B_OUTCOME_WON) {
+        msgbox(format("The miffed Pokémon healed itself with a Berry and left."), MSGBOX_DEFAULT)
+    }
     goto(Common_EventScript_RemoveStaticPokemon)
 }
 
@@ -31,10 +31,10 @@ script Common_EventScript_TrainingPokemon {
     waitmovement(0)
     callnative(GetSymbolEncounterSpecies)
     playmoncry(VAR_0x8004, CRY_MODE_HIGH_PITCH)
-	bufferspeciesname(STR_VAR_1, VAR_0x8004)
-	msgbox(format("A battle would interrupt the {STR_VAR_1}'s training."), MSGBOX_DEFAULT)
-	waitmoncry
-	applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    bufferspeciesname(STR_VAR_1, VAR_0x8004)
+    msgbox(format("A battle would interrupt the {STR_VAR_1}'s training."), MSGBOX_DEFAULT)
+    waitmoncry
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
 }
 
 script Common_EventScript_RanFromStaticPokemon {
@@ -43,19 +43,19 @@ script Common_EventScript_RanFromStaticPokemon {
 }
 
 script Common_EventScript_RemoveStaticPokemon {
-	fadescreenswapbuffers(FADE_TO_BLACK)
-	removeobject(VAR_LAST_TALKED)
-	fadescreenswapbuffers(FADE_FROM_BLACK)
-	release
+    fadescreenswapbuffers(FADE_TO_BLACK)
+    removeobject(VAR_LAST_TALKED)
+    fadescreenswapbuffers(FADE_FROM_BLACK)
+    release
 }
 
 script Common_EventScript_LegendaryFlewAway {
-	fadescreenswapbuffers(FADE_TO_BLACK)
-	removeobject(VAR_LAST_TALKED)
-	fadescreenswapbuffers(FADE_FROM_BLACK)
-	bufferspeciesname(STR_VAR_1, VAR_0x8004)
-	msgbox(gText_LegendaryFlewAway, MSGBOX_DEFAULT)
-	release
+    fadescreenswapbuffers(FADE_TO_BLACK)
+    removeobject(VAR_LAST_TALKED)
+    fadescreenswapbuffers(FADE_FROM_BLACK)
+    bufferspeciesname(STR_VAR_1, VAR_0x8004)
+    msgbox(gText_LegendaryFlewAway, MSGBOX_DEFAULT)
+    release
 }
 
 script Common_PokemonScript_Pettable {
@@ -63,24 +63,24 @@ script Common_PokemonScript_Pettable {
     faceplayer
     specialvar(VAR_0x8004, GetSpeciesFromOverworldPokemon)
     setseenmon(VAR_0x8004)
-	bufferspeciesname(STR_VAR_1, VAR_0x8004)
-	call(Common_EventScript_Pokemon_Petting)
-	release
+    bufferspeciesname(STR_VAR_1, VAR_0x8004)
+    call(Common_EventScript_Pokemon_Petting)
+    release
 }
 
 script Common_EventScript_Pokemon_Petting {
-	speakername(0)
-	msgbox(format("It seems friendly.\nPet it?"), MSGBOX_YESNO)
-	if (var(VAR_RESULT)) {
-	    playmoncry(VAR_0x8004, CRY_MODE_NORMAL)
-	    applymovement(VAR_LAST_TALKED, ContestHall_Movement_Heart)
-    	waitse
-    	waitmovement(0)
-	    msgbox("It's very happy!", MSGBOX_DEFAULT)
-	    addvar(VAR_TIMES_PET_PEACEFUL_POKEMON, 1)
-	    if (flag(FLAG_PET_MANY_DOGS)) {
-	        random(5)
-	        switch (var(VAR_RESULT)) {
+    speakername(0)
+    msgbox(format("It seems friendly.\nPet it?"), MSGBOX_YESNO)
+    if (var(VAR_RESULT)) {
+        playmoncry(VAR_0x8004, CRY_MODE_NORMAL)
+        applymovement(VAR_LAST_TALKED, ContestHall_Movement_Heart)
+        waitse
+        waitmovement(0)
+        msgbox("It's very happy!", MSGBOX_DEFAULT)
+        addvar(VAR_TIMES_PET_PEACEFUL_POKEMON, 1)
+        if (flag(FLAG_PET_MANY_DOGS)) {
+            random(5)
+            switch (var(VAR_RESULT)) {
             case 0:
                 msgbox(Common_EventScript_PetPokemon_GiftText, MSGBOX_DEFAULT)
                 giveitem(ITEM_RARE_BONE)
@@ -88,12 +88,12 @@ script Common_EventScript_Pokemon_Petting {
                 msgbox(Common_EventScript_PetPokemon_GiftText, MSGBOX_DEFAULT)
                 giveitem(ITEM_PRETTY_FEATHER)
             }
-	    } else {
-	        if (var(VAR_TIMES_PET_PEACEFUL_POKEMON) == 50) {
-        	    setflag(FLAG_PET_MANY_DOGS)
-    	    }
-	        random(10)
-	        switch (var(VAR_RESULT)) {
+        } else {
+            if (var(VAR_TIMES_PET_PEACEFUL_POKEMON) == 50) {
+                setflag(FLAG_PET_MANY_DOGS)
+            }
+            random(10)
+            switch (var(VAR_RESULT)) {
             case 0:
                 msgbox(Common_EventScript_PetPokemon_GiftText, MSGBOX_DEFAULT)
                 giveitem(ITEM_RARE_BONE)
@@ -102,13 +102,13 @@ script Common_EventScript_Pokemon_Petting {
                 giveitem(ITEM_PRETTY_FEATHER)
             }
         }
-	} else {
-	    playmoncry(VAR_0x8004, CRY_MODE_WEAK)
-	    applymovement(VAR_LAST_TALKED, Common_Movement_QuestionMark)
-    	waitse
-    	waitmovement(0)
-	    msgbox("It seems disappointed somehow.", MSGBOX_DEFAULT)
-	}
+    } else {
+        playmoncry(VAR_0x8004, CRY_MODE_WEAK)
+        applymovement(VAR_LAST_TALKED, Common_Movement_QuestionMark)
+        waitse
+        waitmovement(0)
+        msgbox("It seems disappointed somehow.", MSGBOX_DEFAULT)
+    }
 }
 
 text Common_EventScript_PetPokemon_GiftText {
@@ -122,31 +122,31 @@ script Common_PokemonScript_InvisibleWild {
     waitse
     callnative(StartStationaryEncounter)
     playmoncry(VAR_0x8004, CRY_MODE_ENCOUNTER)
-	bufferspeciesname(STR_VAR_1, VAR_0x8004)
-	msgbox(format("You startled the {STR_VAR_1}!"), MSGBOX_DEFAULT)
+    bufferspeciesname(STR_VAR_1, VAR_0x8004)
+    msgbox(format("You startled the {STR_VAR_1}!"), MSGBOX_DEFAULT)
     waitmoncry
     waitmessage
     setflag(FLAG_SYS_CTRL_OBJ_DELETE)
-	dowildbattle
-	clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
-	specialvar(VAR_RESULT, GetBattleOutcome)
-	goto_if_eq(VAR_RESULT, B_OUTCOME_RAN, Common_EventScript_RanFromStaticPokemon)
+    dowildbattle
+    clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    specialvar(VAR_RESULT, GetBattleOutcome)
+    goto_if_eq(VAR_RESULT, B_OUTCOME_RAN, Common_EventScript_RanFromStaticPokemon)
     goto(Common_EventScript_RemoveStaticPokemon)
 }
 
 movement Movement_PokemonAppears {
-	set_visible
-	face_player
-	emote_exclamation_mark
-	set_invisible
-	delay_4
-	set_visible
-	delay_4
-	set_invisible
-	delay_4
-	set_visible
-	delay_8
-	set_invisible
-	delay_8
-	set_visible
+    set_visible
+    face_player
+    emote_exclamation_mark
+    set_invisible
+    delay_4
+    set_visible
+    delay_4
+    set_invisible
+    delay_4
+    set_visible
+    delay_8
+    set_invisible
+    delay_8
+    set_visible
 }

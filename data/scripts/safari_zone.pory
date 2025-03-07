@@ -1,291 +1,291 @@
 raw `
 
 SafariZone_EventScript_OutOfBallsMidBattle::
-	setvar VAR_SAFARI_ZONE_STATE, 1
-	special ExitSafariMode
-	setwarp MAP_ROUTE121_SAFARI_ZONE_ENTRANCE, 2, 5
-	end
+    setvar VAR_SAFARI_ZONE_STATE, 1
+    special ExitSafariMode
+    setwarp MAP_ROUTE121_SAFARI_ZONE_ENTRANCE, 2, 5
+    end
 
 SafariZone_EventScript_Exit::
-	setvar VAR_SAFARI_ZONE_STATE, 1
-	special ExitSafariMode
-	warp MAP_ROUTE121_SAFARI_ZONE_ENTRANCE, 2, 5
-	waitstate
-	end
+    setvar VAR_SAFARI_ZONE_STATE, 1
+    special ExitSafariMode
+    warp MAP_ROUTE121_SAFARI_ZONE_ENTRANCE, 2, 5
+    waitstate
+    end
 
 SafariZone_EventScript_RetirePrompt::
-	lockall
-	msgbox SafariZone_Text_WouldYouLikeToExit, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, SafariZone_EventScript_Retire
-	releaseall
-	end
+    lockall
+    msgbox SafariZone_Text_WouldYouLikeToExit, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, YES, SafariZone_EventScript_Retire
+    releaseall
+    end
 
 SafariZone_EventScript_Retire::
-	goto SafariZone_EventScript_Exit
+    goto SafariZone_EventScript_Exit
 
 SafariZone_EventScript_TimesUp::
-	lockall
-	playse SE_DING_DONG
-	message SafariZone_Text_TimesUp
-	waitmessage
-	waitbuttonpress
-	releaseall
-	goto SafariZone_EventScript_Exit
+    lockall
+    playse SE_DING_DONG
+    message SafariZone_Text_TimesUp
+    waitmessage
+    waitbuttonpress
+    releaseall
+    goto SafariZone_EventScript_Exit
 
 SafariZone_EventScript_OutOfBalls::
-	lockall
-	playse SE_DING_DONG
-	message SafariZone_Text_OutOfBalls
-	waitmessage
-	waitbuttonpress
-	releaseall
-	goto SafariZone_EventScript_Exit
+    lockall
+    playse SE_DING_DONG
+    message SafariZone_Text_OutOfBalls
+    waitmessage
+    waitbuttonpress
+    releaseall
+    goto SafariZone_EventScript_Exit
 
 EventScript_PokeBlockFeeder::
-	lockall
-	special GetPokeblockFeederInFront
-	goto_if_ne VAR_RESULT, 0xFFFF, SafariZone_EventScript_PokeblockPresent
-	msgbox SafariZone_Text_PlacePokeblockOnFeeder, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, SafariZone_EventScript_ChoosePokeblock
-	releaseall
-	end
+    lockall
+    special GetPokeblockFeederInFront
+    goto_if_ne VAR_RESULT, 0xFFFF, SafariZone_EventScript_PokeblockPresent
+    msgbox SafariZone_Text_PlacePokeblockOnFeeder, MSGBOX_YESNO
+    goto_if_eq VAR_RESULT, YES, SafariZone_EventScript_ChoosePokeblock
+    releaseall
+    end
 
 SafariZone_EventScript_ChoosePokeblock::
-	fadescreen FADE_TO_BLACK
-	special OpenPokeblockCaseOnFeeder
-	waitstate
-	goto_if_ne VAR_RESULT, 0xFFFF, SafariZone_EventScript_PokeblockPlaced
+    fadescreen FADE_TO_BLACK
+    special OpenPokeblockCaseOnFeeder
+    waitstate
+    goto_if_ne VAR_RESULT, 0xFFFF, SafariZone_EventScript_PokeblockPlaced
 #ifdef BUGFIX
-	releaseall  @ Only gets called from EventScript_PokeBlockFeeder which uses lockall.
+    releaseall  @ Only gets called from EventScript_PokeBlockFeeder which uses lockall.
 #endif
-	end
+    end
 
 SafariZone_EventScript_PokeblockPlaced::
-	message SafariZone_Text_PokeblockWasPlaced
-	waitmessage
-	waitbuttonpress
-	releaseall
-	end
+    message SafariZone_Text_PokeblockWasPlaced
+    waitmessage
+    waitbuttonpress
+    releaseall
+    end
 
 SafariZone_EventScript_PokeblockPresent::
-	message SafariZone_Text_PokeblockStillHere
-	waitmessage
-	waitbuttonpress
-	releaseall
-	end
+    message SafariZone_Text_PokeblockStillHere
+    waitmessage
+    waitbuttonpress
+    releaseall
+    end
 `
 
 text SafariZone_Text_WouldYouLikeToExit{ 
-	format("Would you like to exit the SAFARI\n"
-	"ZONE right now?")
+    format("Would you like to exit the SAFARI\n"
+    "ZONE right now?")
 }
 
 text SafariZone_Text_TimesUp{ 
-	format("Ding-dong! Time's up!\n"
-	"Your SAFARI Game is over.")
+    format("Ding-dong! Time's up!\n"
+    "Your SAFARI Game is over.")
 }
 
 text SafariZone_Text_OutOfBalls{ 
-	format("You've run out of SAFARI BALLS.\n"
-	"Your SAFARI Game is over.")
+    format("You've run out of SAFARI BALLS.\n"
+    "Your SAFARI Game is over.")
 }
 
 text SafariZone_Text_PlacePokeblockOnFeeder{ 
-	format("Would you like to place a {POKEBLOCK}\n"
-	"on the {POKEBLOCK} FEEDER?")
+    format("Would you like to place a {POKEBLOCK}\n"
+    "on the {POKEBLOCK} FEEDER?")
 }
 
 text SafariZone_Text_PokeblockStillHere{ 
-	format("The {STR_VAR_1} you left\n"
-	"before is still here.")
+    format("The {STR_VAR_1} you left\n"
+    "before is still here.")
 }
 
 text SafariZone_Text_PokeblockWasPlaced{ 
-	format("The {STR_VAR_1} was placed\n"
-	"on the {POKEBLOCK} FEEDER.")
+    format("The {STR_VAR_1} was placed\n"
+    "on the {POKEBLOCK} FEEDER.")
 }
 
 text Route121_SafariZoneEntrance_Text_WelcomeToSafariZone{ 
-	format("Welcome to the SAFARI ZONE!\p"
-	"Here, you may witness many kinds of\n"
-	"Pokémon rarely seen in HOENN.\p"
-	"And, you'll see them in their wild,\n"
-	"untamed state in natural habitats.\p"
-	"What's more, we've thrown open the\n"
-	"gates to Pokémon TRAINERS.\p"
-	"You're encouraged to catch Pokémon\n"
-	"for keeps!\p"
-	"Come in and enjoy the SAFARI ZONE!")
+    format("Welcome to the SAFARI ZONE!\p"
+    "Here, you may witness many kinds of\n"
+    "Pokémon rarely seen in HOENN.\p"
+    "And, you'll see them in their wild,\n"
+    "untamed state in natural habitats.\p"
+    "What's more, we've thrown open the\n"
+    "gates to Pokémon TRAINERS.\p"
+    "You're encouraged to catch Pokémon\n"
+    "for keeps!\p"
+    "Come in and enjoy the SAFARI ZONE!")
 }
 
 text Route121_SafariZoneEntrance_Text_WelcomeFirstTime{ 
-	format("Welcome to the SAFARI ZONE!\n"
-	"Is it your first time here?")
+    format("Welcome to the SAFARI ZONE!\n"
+    "Is it your first time here?")
 }
 
 text Route121_SafariZoneEntrance_Text_ComeInAndEnjoy{ 
-	format("Come in and enjoy the SAFARI ZONE!")
+    format("Come in and enjoy the SAFARI ZONE!")
 }
 
 text Route121_SafariZoneEntrance_Text_FirstTimeInfo{ 
-	format("When you enter the SAFARI ZONE, you\n"
-	"start with 30 SAFARI BALLS for\l"
-	"catching Pokémon.\p"
-	"The SAFARI Game is over when you run\n"
-	"out of SAFARI BALLS, or when you've\l"
-	"walked 500 steps.\p"
-	"Come in and enjoy the SAFARI ZONE!")
+    format("When you enter the SAFARI ZONE, you\n"
+    "start with 30 SAFARI BALLS for\l"
+    "catching Pokémon.\p"
+    "The SAFARI Game is over when you run\n"
+    "out of SAFARI BALLS, or when you've\l"
+    "walked 500 steps.\p"
+    "Come in and enjoy the SAFARI ZONE!")
 }
 
 text Route121_SafariZoneEntrance_Text_WouldYouLikeToPlay{ 
-	format("Welcome to the SAFARI ZONE!\p"
-	"All you can catch for just ¥500!\n"
-	"Would you like to play a SAFARI Game?")
+    format("Welcome to the SAFARI ZONE!\p"
+    "All you can catch for just ¥500!\n"
+    "Would you like to play a SAFARI Game?")
 }
 
 text Route121_SafariZoneEntrance_Text_PlayAnotherTime{ 
-	format("Okay.\n"
-	"Please play another time!")
+    format("Okay.\n"
+    "Please play another time!")
 }
 
 text Route121_SafariZoneEntrance_Text_NotEnoughMoney{ 
-	format("You don't have enough money.\n"
-	"Sorry.")
+    format("You don't have enough money.\n"
+    "Sorry.")
 }
 
 text Route121_SafariZoneEntrance_Text_ThatWillBe500Please{ 
-	format("That will be ¥500, please.")
+    format("That will be ¥500, please.")
 }
 
 text Route121_SafariZoneEntrance_Text_HereAreYourSafariBalls{ 
-	format("Here are your SAFARI BALLS.")
+    format("Here are your SAFARI BALLS.")
 }
 
 text Route121_SafariZoneEntrance_Text_Received30SafariBalls{ 
-	format("{PLAYER} received 30 SAFARI BALLS.")
+    format("{PLAYER} received 30 SAFARI BALLS.")
 }
 
 text Route121_SafariZoneEntrance_Text_PleaseEnjoyYourself{ 
-	format("We'll let you know when your game\n"
-	"is over.\p"
-	"So, until then, enjoy yourself, please!\n"
-	"Off you go on your wild excursion!")
+    format("We'll let you know when your game\n"
+    "is over.\p"
+    "So, until then, enjoy yourself, please!\n"
+    "Off you go on your wild excursion!")
 }
 
 text Route121_SafariZoneEntrance_Text_PCIsFull{ 
-	format("Excuse me!\n"
-	"Your PC BOX is full.")
+    format("Excuse me!\n"
+    "Your PC BOX is full.")
 }
 
 text Route121_SafariZoneEntrance_Text_YouNeedPokeblockCase{ 
-	format("Excuse me!\n"
-	"You seem to be without a {POKEBLOCK} CASE.\p"
-	"Your SAFARI Game will be much more\n"
-	"fruitful if you use {POKEBLOCK}S.\p"
-	"Please come back with a {POKEBLOCK} CASE.\p"
-	"You may obtain a {POKEBLOCK} CASE from\n"
-	"the LILYCOVE CONTEST HALL.")
+    format("Excuse me!\n"
+    "You seem to be without a {POKEBLOCK} CASE.\p"
+    "Your SAFARI Game will be much more\n"
+    "fruitful if you use {POKEBLOCK}S.\p"
+    "Please come back with a {POKEBLOCK} CASE.\p"
+    "You may obtain a {POKEBLOCK} CASE from\n"
+    "the LILYCOVE CONTEST HALL.")
 }
 
 text SafariZone_South_Text_StillHaveTimeExit{ 
-	format("You still have time left. Would you like\n"
-	"to exit the SAFARI ZONE now?")
+    format("You still have time left. Would you like\n"
+    "to exit the SAFARI ZONE now?")
 }
 
 text SafariZone_South_Text_EnjoyTheRestOfYourAdventure{ 
-	format("Please enjoy the rest of your wild\n"
-	"adventure!")
+    format("Please enjoy the rest of your wild\n"
+    "adventure!")
 }
 
 text SafariZone_South_Text_ExitEarlyThankYouForPlaying{ 
-	format("Okay.\p"
-	"I'll take back your remaining SAFARI\n"
-	"BALLS.\p"
-	"Thank you for playing.\n"
-	"We hope to see you again.")
+    format("Okay.\p"
+    "I'll take back your remaining SAFARI\n"
+    "BALLS.\p"
+    "Thank you for playing.\n"
+    "We hope to see you again.")
 }
 
 text SafariZone_South_Text_GoodLuck{ 
-	format("Good luck!\p"
-	"If you need anything, don't hesitate\n"
-	"to tell me, please!")
+    format("Good luck!\p"
+    "If you need anything, don't hesitate\n"
+    "to tell me, please!")
 }
 
 text SafariZone_South_Text_Boy{ 
-	format("Did you know?\p"
-	"If you put a {POKEBLOCK} in that square box,\n"
-	"Pokémon gather around.")
+    format("Did you know?\p"
+    "If you put a {POKEBLOCK} in that square box,\n"
+    "Pokémon gather around.")
 }
 
 text SafariZone_South_Text_Man{ 
-	format("I want to keep going deeper, but I\n"
-	"forgot to bring a BIKE.\p"
-	"Something tells me that rare Pokémon\n"
-	"live in the outlying areas.")
+    format("I want to keep going deeper, but I\n"
+    "forgot to bring a BIKE.\p"
+    "Something tells me that rare Pokémon\n"
+    "live in the outlying areas.")
 }
 
 text SafariZone_Southwest_Text_Woman{ 
-	format("Sometimes, when I toss a {POKEBLOCK} at \n"
-	"Pokémon, it gets ignored.\p"
-	"Do Pokémon have likes and dislikes\n"
-	"about what they eat?")
+    format("Sometimes, when I toss a {POKEBLOCK} at \n"
+    "Pokémon, it gets ignored.\p"
+    "Do Pokémon have likes and dislikes\n"
+    "about what they eat?")
 }
 
 text SafariZone_South_Text_Youngster{ 
-	format("I put a {POKEBLOCK} on the {POKEBLOCK} Feeder.\n"
-	"But it seems to have disappeared.\p"
-	"I guess Pokémon must have eaten it without me noticing.")
+    format("I put a {POKEBLOCK} on the {POKEBLOCK} Feeder.\n"
+    "But it seems to have disappeared.\p"
+    "I guess Pokémon must have eaten it without me noticing.")
 }
 
 text SafariZone_Southwest_Text_RestHouseSign{ 
-	format("“Relieve your tired feet.”\n"
-	"Rest House")
+    format("“Relieve your tired feet.”\n"
+    "Rest House")
 }
 
 text SafariZone_South_Text_AreaOffLimits1{ 
-	format("This area is still under construction.\n"
-	"It's off-limits, sorry!")
+    format("This area is still under construction.\n"
+    "It's off-limits, sorry!")
 }
 
 text SafariZone_Southeast_Text_ExpansionIsFinished{ 
-	format("The Safari Zone's expansion project is finished now.\p"
-	"We hope you will enjoy the new area.")
+    format("The Safari Zone's expansion project is finished now.\p"
+    "We hope you will enjoy the new area.")
 }
 
 text SafariZone_South_Text_AreaOffLimits2{ 
-	format("This area is still under construction.\n"
-	"It's off-limits, sorry!")
+    format("This area is still under construction.\n"
+    "It's off-limits, sorry!")
 }
 
 text SafariZone_Southeast_Text_LittleGirl{ 
-	format("Wow! Whee! I haven't seen any of these Pokémon before!")
+    format("Wow! Whee! I haven't seen any of these Pokémon before!")
 }
 
 text SafariZone_Southeast_Text_FatMan{ 
-	format("The Pokémon in this area are all new to me.\p"
-	"And I'm allowed to catch these rare Pokémon! Too cool!")
+    format("The Pokémon in this area are all new to me.\p"
+    "And I'm allowed to catch these rare Pokémon! Too cool!")
 }
 
 text SafariZone_Southeast_Text_RichBoy{ 
-	format("The Pokémon around here seem to be\n"
-	"from somewhere other than HOENN.")
+    format("The Pokémon around here seem to be\n"
+    "from somewhere other than HOENN.")
 }
 
 text SafariZone_Northeast_Text_Boy{ 
-	format("I only have a couple SAFARI BALLS left.\p"
-	"I'm having a hard time trying to\n"
-	"decide what I should catch.")
+    format("I only have a couple SAFARI BALLS left.\p"
+    "I'm having a hard time trying to\n"
+    "decide what I should catch.")
 }
 
 text SafariZone_Northeast_Text_Woman{ 
-	format("I heard that you can see Eevee here.\n"
-	"Where might one be?")
+    format("I heard that you can see Eevee here.\n"
+    "Where might one be?")
 }
 
 text SafariZone_Northeast_Text_Girl{ 
-	format("Oh, boo!\n"
-	"I can't seem to catch anything!\p"
-	"I'll end up wasting the admission\n"
-	"price if I don't catch something!")
+    format("Oh, boo!\n"
+    "I can't seem to catch anything!\p"
+    "I'll end up wasting the admission\n"
+    "price if I don't catch something!")
 }
 

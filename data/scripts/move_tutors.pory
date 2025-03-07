@@ -1,9 +1,9 @@
 script MoveTutor_EventScript_OpenPartyMenu {
-	special(ChooseMonForMoveTutor)
-	waitstate
-	lock
-	faceplayer
-	return
+    special(ChooseMonForMoveTutor)
+    waitstate
+    lock
+    faceplayer
+    return
 }
 
 script SlateportCity_NameRatersHouse_EventScript_NameRater {
@@ -42,8 +42,10 @@ script SlateportCity_NameRatersHouse_EventScript_TutorDeclined {
 script FallarborTown_Mart_EventScript_MetronomeTutor {
     lock
     faceplayer
-    msgbox(FallarborTown_Mart_Text_TutorIntro)
-
+    msgbox(format("I want all sorts of things!\n"
+        "But I used up my allowance…\p"
+        "I wish I could cast a spell to make money appear, but all I can do is teach your Pokémon.\p"
+        "What should I teach them?"))
     dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Ally Switch", "Baton Pass", "Encore", "Gravity",  "Helping Hand", "Metronome", "Pain Split", "Psych Up", "Tailwind", "Trick Room")
     switch (var(VAR_RESULT)) {
     case 0:
@@ -82,18 +84,14 @@ script FallarborTown_Mart_EventScript_MetronomeTutor {
     }
 }
 
-text FallarborTown_Mart_Text_TutorIntro {
-    format("I want all sorts of things!\n"
-    "But I used up my allowance…\p"
-    "I wish I could cast a spell to make money appear, but all I can do is teach your Pokémon.\p"
-    "What should I teach them?")
-}
-
 script SlateportCity_PokemonFanClub_EventScript_SwaggerTutor {
     lock
     faceplayer
-    msgbox(SlateportCity_PokemonFanClub_EventScript_TutorIntro)
-
+    msgbox(format("Heh! My Pokémon totally rules!\n"
+        "It's cooler than any Pokémon!\p"
+        "I was lipping off with a swagger in my step like that when the Chairman chewed me out.\p"
+        "I needed some fake tears to get out of that one.\p"
+        "If you'd like, I'll teach my moves to a Pokémon of yours."))
     dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Charm", "Coaching", "Fake Tears", "Nasty Plot", "Scary Face", "Swords Dance", "Swagger")
     switch (var(VAR_RESULT)) {
     case 0:
@@ -123,19 +121,12 @@ script SlateportCity_PokemonFanClub_EventScript_SwaggerTutor {
     }
 }
 
-text SlateportCity_PokemonFanClub_EventScript_TutorIntro {
-    format("Heh! My Pokémon totally rules!\n"
-    "It's cooler than any Pokémon!\p"
-    "I was lipping off with a swagger in my step like that when the Chairman chewed me out.\p"
-    "I needed some fake tears to get out of that one.\p"
-    "If you'd like, I'll teach my moves to a Pokémon of yours.")
-}
-
 script PacifidlogTown_PokemonCenter_1F_EventScript_ExplosionTutor {
     lock
     faceplayer
-    msgbox(PacifidlogTown_PokemonCenter_1F_EventScript_TutorIntro)
-
+    msgbox(format("I don't intend to be going nowhere fast in the sticks like this forever.\p"
+        "You watch me, I'll get out to the city and become a huge hit.\p"
+        "If you overheard that, I'll happily teach something to your Pokémon!"), MSGBOX_DEFAULT)
     dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Alluring Voice", "Dragon Cheer", "Explosion", "Hyper Voice", "Psychic Noise", "Snarl")
     switch (var(VAR_RESULT)) {
     case 0:
@@ -162,16 +153,10 @@ script PacifidlogTown_PokemonCenter_1F_EventScript_ExplosionTutor {
     }
 }
 
-text PacifidlogTown_PokemonCenter_1F_EventScript_TutorIntro {
-    format("I don't intend to be going nowhere fast in the sticks like this forever.\p"
-    "You watch me, I'll get out to the city and become a huge hit.\p"
-    "If you overheard that, I'll happily teach something to your Pokémon!")
-}
-
 script MauvilleCity_EventScript_RolloutTutor {
-	lock
-	faceplayer
-	msgbox(MauvilleCity_EventScript_RolloutTutor_TutorIntro)
+    lock
+    faceplayer
+    msgbox(MauvilleCity_EventScript_RolloutTutor_TutorIntro)
     dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Flame Charge", "Flip Turn", "Rapid Spin", "Rollout", "Trailblaze", "U-Turn")
     switch (var(VAR_RESULT)) {
     case 0:
@@ -206,10 +191,10 @@ text MauvilleCity_EventScript_RolloutTutor_TutorIntro {
 }
 
 script VerdanturfTown_PokemonCenter_1F_EventScript_FuryCutterTutor {
-	lock
-	faceplayer
-	msgbox(format("I love seeing Pokémon keep going and going and going.\p"
-	    "Do you want me to teach them how?"), MSGBOX_DEFAULT)
+    lock
+    faceplayer
+    msgbox(format("I love seeing Pokémon keep going and going and going.\p"
+        "Do you want me to teach them how?"), MSGBOX_DEFAULT)
     dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Echoed Voice", "Fury Cutter", "Icicle Spear", "Rock Blast", "Round")
     switch (var(VAR_RESULT)) {
     case 0:
@@ -234,12 +219,12 @@ script VerdanturfTown_PokemonCenter_1F_EventScript_FuryCutterTutor {
 }
 
 script LavaridgeTown_House_EventScript_MimicTutor {
-	lock
-	faceplayer
-	msgbox(format("Ah, young one!\p"
-    "I am also a young one, but I mimic the styles and speech of the elderly folks of this town.\p"
-    "What do you say, young one?\n"
-    "Would you agree to it if I were to teach your Pokémon mimicry?"), MSGBOX_DEFAULT)
+    lock
+    faceplayer
+    msgbox(format("Ah, young one!\p"
+        "I am also a young one, but I mimic the styles and speech of the elderly folks of this town.\p"
+        "What do you say, young one?\n"
+        "Would you agree to it if I were to teach your Pokémon mimicry?"), MSGBOX_DEFAULT)
     dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Mimic", "Role Play")
     switch (var(VAR_RESULT)) {
     case 0:
@@ -255,9 +240,9 @@ script LavaridgeTown_House_EventScript_MimicTutor {
 }
 
 script FortreeCity_House2_EventScript_SleepTalkTutor {
-	lock
-	faceplayer
-	msgbox(format("Humph! My wife relies on Hidden Power to stay awake.\p"
+    lock
+    faceplayer
+    msgbox(format("Humph! My wife relies on Hidden Power to stay awake.\p"
     "She should just take a nap like I do, and Sleep Talk.\p"
     "I can teach your Pokémon how to rest perfectly. Interested?"), MSGBOX_DEFAULT)
     dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Sleep Talk", "Snore")
@@ -276,9 +261,9 @@ script FortreeCity_House2_EventScript_SleepTalkTutor {
 }
 
 script LilycoveCity_DepartmentStoreRooftop_EventScript_SubstituteTutor {
-	lock
-	faceplayer
-	msgbox(format("When I see the wide world from up\n"
+    lock
+    faceplayer
+    msgbox(format("When I see the wide world from up\n"
     "here on the roof…\p"
     "I think about how nice it would be\n"
     "if there were more than just one me\l"
@@ -304,25 +289,25 @@ script LilycoveCity_DepartmentStoreRooftop_EventScript_SubstituteTutor {
 }
 
 script MossdeepCity_EventScript_DynamicPunchTutor {
-	lock
-	faceplayer
-	msgbox(MossdeepCity_EventScript_DynamicPunchTutor_Intro, MSGBOX_DEFAULT)
-    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Bullet Punch", "Drain Punch", "Dynamic Punch", "Fire Punch", "Ice Punch", "Power-up Punch", "Thunder Punch")
+    lock
+    faceplayer
+    msgbox(MossdeepCity_EventScript_DynamicPunchTutor_Intro, MSGBOX_DEFAULT)
+    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Drain Punch", "Dynamic Punch", "Fire Punch", "Ice Punch", "Mega Punch", "Power-up Punch", "Thunder Punch")
     switch (var(VAR_RESULT)) {
     case 0:
-        setvar(VAR_0x8005, MOVE_BULLET_PUNCH)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 1:
         setvar(VAR_0x8005, MOVE_DRAIN_PUNCH)
         call(MoveTutor_EventScript_OpenPartyMenu)
-    case 2:
+    case 1:
         setvar(VAR_0x8005, MOVE_DYNAMIC_PUNCH)
         call(MoveTutor_EventScript_OpenPartyMenu)
-    case 3:
+    case 2:
         setvar(VAR_0x8005, MOVE_FIRE_PUNCH)
         call(MoveTutor_EventScript_OpenPartyMenu)
-    case 4:
+    case 3:
         setvar(VAR_0x8005, MOVE_ICE_PUNCH)
+        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 4:
+        setvar(VAR_0x8005, MOVE_MEGA_PUNCH)
         call(MoveTutor_EventScript_OpenPartyMenu)
     case 5:
         setvar(VAR_0x8005, MOVE_POWER_UP_PUNCH)
@@ -348,9 +333,9 @@ text MossdeepCity_EventScript_DynamicPunchTutor_Intro {
 }
 
 script SootopolisCity_PokemonCenter_1F_EventScript_DoubleEdgeTutor {
-	lock
-	faceplayer
-	msgbox(SootopolisCity_PokemonCenter_1F_EventScript_DoubleEdgeTutor_Intro, MSGBOX_DEFAULT)
+    lock
+    faceplayer
+    msgbox(SootopolisCity_PokemonCenter_1F_EventScript_DoubleEdgeTutor_Intro, MSGBOX_DEFAULT)
     dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Double-Edge", "Last Resort", "Ominous Wind")
     switch (var(VAR_RESULT)) {
     case 0:
