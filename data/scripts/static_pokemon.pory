@@ -73,7 +73,7 @@ script Common_EventScript_Pokemon_Petting {
     msgbox(format("It seems friendly.\nPet it?"), MSGBOX_YESNO)
     if (var(VAR_RESULT)) {
         playmoncry(VAR_0x8004, CRY_MODE_NORMAL)
-        applymovement(VAR_LAST_TALKED, ContestHall_Movement_Heart)
+        applymovement(VAR_LAST_TALKED, Common_Movement_Heart)
         waitse
         waitmovement(0)
         msgbox("It's very happy!", MSGBOX_DEFAULT)
@@ -104,10 +104,10 @@ script Common_EventScript_Pokemon_Petting {
         }
     } else {
         playmoncry(VAR_0x8004, CRY_MODE_WEAK)
-        applymovement(VAR_LAST_TALKED, Common_Movement_QuestionMark)
+        applymovement(VAR_LAST_TALKED, Common_Movement_X)
         waitse
         waitmovement(0)
-        msgbox("It seems disappointed somehow.", MSGBOX_DEFAULT)
+        msgbox("It seems disappointed in you.", MSGBOX_DEFAULT)
     }
 }
 
