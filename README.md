@@ -9,6 +9,7 @@ This hack includes all the typical battle system upgrades from RHH's [pokeemeral
 - TMs and move tutors are reusable. Move tutors are massively expanded; TMs are mildly edited. _Most_ move tutors are in the same places there was a tutor in Emerald; the exceptions are the Slateport name rater's house and the Mauville Pok&eacute;mon Center.
 - Garbodor, Drednaw, and Orbeetle have mega evolutions.
 - Castform has been made interesting.
+- Wiglett and Wugtrio are now Water/Ground. Ledian has been given Huge Power. This fulfills the contract that every hack must give _something_ Huge Power. Ledian has also had its base attack raised by a whopping 10 points.
 - Many Pok&eacute;mon can be found on the overworld! They are usually selections of the local wild Pok&eacute;mon, but a few are vagrants.
 - The limit on how many Pok&eacute;blocks a Pok&eacute;mon can be fed has been removed. There is now no downside to feeding your Pok&eacute;mon bad Pok&eacute;blocks.
 

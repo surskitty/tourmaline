@@ -7946,6 +7946,7 @@ static const struct LevelUpMove sSkittyLevelUpLearnset[] = {
 };
 
 static const struct LevelUpMove sDelcattyLevelUpLearnset[] = {
+    LEVEL_UP_MOVE( 1, MOVE_TIDY_UP),
     LEVEL_UP_MOVE( 1, MOVE_FAKE_OUT),
     LEVEL_UP_MOVE( 1, MOVE_SING),
     LEVEL_UP_MOVE( 1, MOVE_ATTRACT),

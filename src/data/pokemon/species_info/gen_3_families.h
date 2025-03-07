@@ -594,7 +594,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
 #endif //P_MEGA_EVOLUTIONS
 #endif //P_FAMILY_TORCHIC
 
-#if P_FAMILY_MUDKIP
+#if P_MUDKIP_FAMILY
     [SPECIES_MUDKIP] =
     {
         .baseHP        = 50,
@@ -4236,7 +4236,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_FAIRY),
 #if !TESTING
         .abilities = { ABILITY_CUTE_CHARM, ABILITY_NORMALIZE, ABILITY_NONE },
-        .innates = { ABILITY_WONDER_SKIN, ABILITY_ADAPTABILITY, ABILITY_SCRAPPY },
+        .innates = { ABILITY_WONDER_SKIN, ABILITY_ADAPTABILITY, ABILITY_MINDS_EYE },
 #else
         .abilities = { ABILITY_CUTE_CHARM, ABILITY_NORMALIZE, ABILITY_WONDER_SKIN },
 #endif

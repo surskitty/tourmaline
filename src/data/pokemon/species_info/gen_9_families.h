@@ -3808,7 +3808,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .baseSpeed     = 95,
         .baseSpAttack  = 35,
         .baseSpDefense = 25,
-        .types = MON_TYPES(TYPE_WATER),
+        .types = MON_TYPES(TYPE_WATER, TYPE_GROUND),
         .catchRate = 255,
         .expYield = 49,
         .evYield_Speed = 1,
@@ -3818,8 +3818,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_3),
 #if !TESTING
-        .abilities = { ABILITY_GOOEY, ABILITY_RATTLED, ABILITY_NONE },
-        .innates = { ABILITY_SAND_VEIL },
+        .abilities = { ABILITY_RATTLED, ABILITY_EMERGENCY_EXIT, ABILITY_ANGER_POINT },
+        .innates = { ABILITY_SAND_FORCE, ABILITY_GOOEY },
 #else
         .abilities = { ABILITY_GOOEY, ABILITY_RATTLED, ABILITY_SAND_VEIL },
 #endif
@@ -3875,7 +3875,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .baseSpeed     = 120,
         .baseSpAttack  = 50,
         .baseSpDefense = 70,
-        .types = MON_TYPES(TYPE_WATER),
+        .types = MON_TYPES(TYPE_WATER, TYPE_GROUND),
         .catchRate = 50,
         .expYield = 149,
         .evYield_Speed = 2,
@@ -3885,8 +3885,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_3),
 #if !TESTING
-        .abilities = { ABILITY_GOOEY, ABILITY_RATTLED, ABILITY_NONE },
-        .innates = { ABILITY_SAND_VEIL },
+        .abilities = { ABILITY_RATTLED, ABILITY_EMERGENCY_EXIT, ABILITY_ANGER_POINT },
+        .innates = { ABILITY_SAND_FORCE, ABILITY_GOOEY, ABILITY_SAP_SIPPER },
 #else
         .abilities = { ABILITY_GOOEY, ABILITY_RATTLED, ABILITY_SAND_VEIL },
 #endif

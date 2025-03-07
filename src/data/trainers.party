@@ -16954,33 +16954,48 @@ Pic: Mom
 Gender: Female
 Music: Elite Four
 Double Battle: Yes
+AI: Smart Trainer
 
 Fluffy Bun (Eevee Starter) @ Eevium Z
 Level: 80
 Ability: Friend Guard
+Happiness: 255
+Nature: Calm
+EVs: 252 HP
 - Veevee Volley
 - Bouncy Bubble
 - Baddy Bad
 - Glitzy Glow
 
-Dudunsparce
+Dudunsparce Three Segment
 Level: 80
+- Helping Hand
 
 Ditto
 Level: 80
+EVs: 252 HP
 Ability: Imposter
 - Transform
 
 Brownie (Ursaluna)
 Level: 80
+Nature: Adamant
+- Helping Hand
+- Focus Punch
 
 Delcatty
 Level: 80
 Ability: Normalize
+EVs: 252 HP
+- Fake Out
 - Assist
+- Tidy Up
+- Heal Bell
 
-Lopunny @ Lopunnite
+Fighty Bun (Lopunny) @ Lopunnite
 Level: 80
+- Copycat
+
 
 === TRAINER_RED ===
 Name: Red
