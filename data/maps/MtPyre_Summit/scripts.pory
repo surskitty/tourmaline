@@ -50,6 +50,7 @@ MtPyre_Summit_EventScript_TeamAquaExits::
     call_if_eq VAR_0x8008, 0, MtPyre_Summit_EventScript_ArchieFacePlayer0
     call_if_eq VAR_0x8008, 1, MtPyre_Summit_EventScript_ArchieFacePlayer1
     call_if_eq VAR_0x8008, 2, MtPyre_Summit_EventScript_ArchieFacePlayer2
+    speakername CommonName_Text_Archie
     msgbox MtPyre_Summit_Text_ArchieWeGotTheOrbLetsGo, MSGBOX_DEFAULT
     closemessage
     fadescreen FADE_TO_BLACK
@@ -67,6 +68,7 @@ MtPyre_Summit_EventScript_TeamAquaExits::
     call_if_eq VAR_0x8008, 0, MtPyre_Summit_EventScript_OldLadyApproachPlayer0
     call_if_eq VAR_0x8008, 1, MtPyre_Summit_EventScript_OldLadyApproachPlayer1
     call_if_eq VAR_0x8008, 2, MtPyre_Summit_EventScript_OldLadyApproachPlayer2
+    speakername 0
     msgbox MtPyre_Summit_Text_BothOrbsTakenMagmaLeftThis, MSGBOX_DEFAULT
     giveitem ITEM_MAGMA_EMBLEM
     setflag FLAG_RECEIVED_RED_OR_BLUE_ORB
@@ -222,6 +224,7 @@ MtPyre_Summit_EventScript_ArchieMaxieReturnOrbs::
     call_if_eq VAR_0x8008, 0, MtPyre_Summit_EventScript_MaxieApproachPlayer0
     call_if_eq VAR_0x8008, 1, MtPyre_Summit_EventScript_MaxieApproachPlayer1
     call_if_eq VAR_0x8008, 2, MtPyre_Summit_EventScript_MaxieApproachPlayer2
+    speakername CommonName_Text_Maxie
     msgbox MtPyre_Summit_Text_MaxieSilence, MSGBOX_DEFAULT
     closemessage
     call_if_eq VAR_0x8008, 0, MtPyre_Summit_EventScript_MaxieApproachArchie0
@@ -434,14 +437,12 @@ MtPyre_Summit_EventScript_Grunt4::
 `
 
 text MtPyre_Summit_Text_Grunt1Intro {
-    format("No! Those TEAM MAGMA goons got\n"
-    "here ahead of us!\p"
+    format("No! Those Team Magma goons got here ahead of us!\p"
     "We can't fall behind!")
 }
 
 text MtPyre_Summit_Text_Grunt1Defeat {
-    format("I thought you were one of the MAGMAS\n"
-    "who happened to come back…")
+    format("I thought you were one of the Magmas who happened to come back…")
 }
 
 text MtPyre_Summit_Text_Grunt1PostBattle {
@@ -453,14 +454,13 @@ text MtPyre_Summit_Text_Grunt2Intro {
     format("Hah!\n"
     "Too bad for you!\p"
     "If you came earlier, you only would've\n"
-    "had to battle the wimpy TEAM MAGMA.\p"
+    "had to battle the wimpy Team Magma.\p"
     "But since you arrived now, you have\n"
     "to take on us toughies!")
 }
 
 text MtPyre_Summit_Text_Grunt2Defeat {
-    format("Urgh… I should've let you take on\n"
-    "TEAM MAGMA first…")
+    format("Urgh… I should've let you take on Team Magma first…")
 }
 
 text MtPyre_Summit_Text_Grunt2PostBattle {
@@ -470,33 +470,33 @@ text MtPyre_Summit_Text_Grunt2PostBattle {
 
 text MtPyre_Summit_Text_Grunt3Intro {
     format("You…\n"
-    "We saw you at MT. CHIMNEY.\p"
-    "You don't belong to either TEAM,\n"
+    "We saw you at Mt. Chimney.\p"
+    "You don't belong to either Team,\n"
     "so why would you be here?")
 }
 
 text MtPyre_Summit_Text_Grunt3Defeat {
     format("If you're going to mess with anyone,\n"
-    "let it be TEAM MAGMA…")
+    "let it be Team Magma…")
 }
 
 text MtPyre_Summit_Text_Grunt3PostBattle {
     format("Heh, it doesn't matter!\n"
     "We bought ourselves some time!\p"
-    "The BOSS should have snatched what\n"
+    "The Boss should have snatched what\n"
     "he was after!")
 }
 
 text MtPyre_Summit_Text_Grunt4Intro {
     format("Oh, I know!\n"
-    "You tried to join TEAM MAGMA,\l"
+    "You tried to join Team Magma,\l"
     "but they wouldn't have you!\p"
     "Well, don't think that we'll let you\n"
-    "join our TEAM AQUA!")
+    "join our Team Aqua!")
 }
 
 text MtPyre_Summit_Text_Grunt4Defeat {
-    format("If you want to join TEAM AQUA that\n"
+    format("If you want to join Team Aqua that\n"
     "badly, we can consider it…")
 }
 
@@ -506,69 +506,60 @@ text MtPyre_Summit_Text_Grunt4PostBattle {
 }
 
 text MtPyre_Summit_Text_ArchieWeGotTheOrbLetsGo {
-    format("ARCHIE: TEAM MAGMA's MAXIE got ahead\n"
-    "of us, but we also got what we wanted.\p"
-    "The RED ORB preserved at MT. PYRE…\n"
-    "I, ARCHIE, now have it in my possession!\p"
+    format("Team Magma's Maxie got ahead of us, but we also got what we wanted.\p"
+    "The Red Orb preserved at Mt. Pyre…\n"
+    "I, Archie, now have it in my possession!\p"
     "Fufufu… Now we can bring our ultimate\n"
     "objective to fruition!\p"
-    "Okay, TEAM!\n"
+    "Okay, Team!\n"
     "We're pulling out!")
 }
 
 text MtPyre_Summit_Text_BothOrbsTakenMagmaLeftThis {
     format("Oh, no…\n"
     "This cannot happen…\p"
-    "Not only the BLUE ORB, but even\n"
-    "the RED ORB has been taken…\p"
-    "The BLUE ORB and RED ORB must never\n"
+    "Not only the Blue Orb, but even\n"
+    "the Red Orb has been taken…\p"
+    "The Blue Orb and Red Orb must never\n"
     "be separated. They belong together.\p"
     "What are those men trying to do with\n"
-    "the two ORBS?\p"
+    "the two Orbs?\p"
     "… … … … … …\n"
     "… … … … … …\p"
-    "Oh, yes. Was it TEAM MAGMA who came\n"
-    "and took the BLUE ORB first?\p"
-    "Well, in their haste, they left this\n"
-    "behind.\p"
-    "I couldn't imagine what exactly it\n"
-    "could be.\p"
+    "Oh, yes. Was it Team Magma who came\n"
+    "and took the Blue Orb first?\p"
+    "Well, in their haste, they left this behind.\p"
+    "I couldn't imagine what exactly it could be.\p"
     "I would like you to have it.\n"
     "Perhaps it will be useful in some way.")
 }
 
 text MtPyre_Summit_Text_OrbsHaveBeenTaken {
-    format("The BLUE ORB and RED ORB taken by\n"
-    "those sinister men…\p"
+    format("The Blue Orb and Red Orb taken by those sinister men…\p"
     "They must never be apart…\n"
     "I fear something terrible will happen…")
 }
 
 text MtPyre_Summit_Text_GroudonKyogreAwakened {
     format("Oh, my goodness…\p"
-    "You say that both GROUDON and KYOGRE\n"
-    "have been awakened?\p"
-    "It is said that the BLUE ORB and\n"
-    "the RED ORB quelled the rage of\l"
-    "the two Pokémon…\p"
+    "You say that both Groudon and Kyogre have been awakened?\p"
+    "It is said that the Blue Orb and the Red Orb quelled the rage of the two Pokémon…\p"
     "It is also said that the true owner\n"
-    "of the ORBS still exists.\p"
+    "of the Orbs still exists.\p"
     "However, no one knows who, or what\n"
-    "exactly, the ORBS belong to.\p"
+    "exactly, the Orbs belong to.\p"
     "It could be a human, or perhaps\n"
     "a Pokémon, but no one knows.")
 }
 
 text MtPyre_Summit_Text_ThoseTwoMenReturnedOrbs {
-    format("The two men who took the ORBS came\n"
-    "back to return them on their own.\p"
+    format("The two men who took the Orbs came back to return them on their own.\p"
     "Those men…\n"
     "Perhaps they are not so evil after all…")
 }
 
 text MtPyre_Summit_Text_SuperAncientPokemonTaughtUs {
-    format("The embodiments of the land, sea,\n"
-    "and the sky…\p"
+    format("The embodiments of the land, sea, and the sky…\p"
     "That is said to be the identities of\n"
     "the super-ancient Pokémon…\p"
     "In the same way that we humans and\n"
@@ -579,15 +570,15 @@ text MtPyre_Summit_Text_SuperAncientPokemonTaughtUs {
 }
 
 text MtPyre_Summit_Text_WillYouHearOutMyTale {
-    format("MT. PYRE is where we calm the spirits\n"
+    format("Mt. Pyre is where we calm the spirits\n"
     "of Pokémon that have passed on…\p"
     "This is a high place where one can\n"
-    "see all of HOENN…\p"
+    "see all of Hoenn…\p"
     "The disembodied spirits of Pokémon\n"
     "must find solace here…\p"
     "Is it coincidence that you are here…\p"
     "Will you hear out my tale? A tale long\n"
-    "told in the HOENN region?")
+    "told in the Hoenn region?")
 }
 
 text MtPyre_Summit_Text_GroudonKyogreTale {
@@ -602,9 +593,9 @@ text MtPyre_Summit_Text_GroudonKyogreTale {
     "Their fierce duel raged without end.\p"
     "The world was engulfed in massive\n"
     "infernos and vicious storms.\p"
-    "The BLUE ORB and the RED ORB brought\n"
+    "The Blue Orb and the Red Orb brought\n"
     "an end to the calamity.\p"
-    "Light poured from the two ORBS and\n"
+    "Light poured from the two Orbs and\n"
     "becalmed the enraged adversaries.\p"
     "The pair, made docile, dove deep into\n"
     "the sea where eventually they\l"
@@ -617,18 +608,15 @@ text MtPyre_Summit_Text_WellThatTooIsFine {
 }
 
 text MtPyre_Summit_Text_MaxieSilence {
-    format("MAXIE: {PLAYER}…\p"
+    format("{PLAYER}…\p"
     "… … … … … …\n"
     "… … … … … …")
 }
 
 text MtPyre_Summit_Text_HearTheNewLegendOfHoenn {
-    format("It is my role to pass on the legends\n"
-    "of HOENN to future generations.\p"
-    "And the crisis that just ended in\n"
-    "SOOTOPOLIS rewrote a legend…\p"
-    "Have you the time to hear the new\n"
-    "legend of HOENN?")
+    format("It is my role to pass on the legends of Hoenn to future generations.\p"
+    "And the crisis that just ended in Sootopolis rewrote a legend…\p"
+    "Have you the time to hear the new legend of Hoenn?")
 }
 
 text MtPyre_Summit_Text_HoennTrioTale {
@@ -647,7 +635,6 @@ text MtPyre_Summit_Text_HoennTrioTale {
     "the sky descended from a storm.\p"
     "The Pokémon, shining a vivid green,\n"
     "becalmed the two enraged Pokémon.\p"
-    "Then, its duty done, the green Pokémon\n"
-    "flew off into the wild blue yonder…")
+    "Then, its duty done, the green Pokémon flew off into the wild blue yonder…")
 }
 

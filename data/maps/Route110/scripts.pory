@@ -69,70 +69,6 @@ Route110_EventScript_AquaGrunt4::
     release
     end
 
-Route110_EventScript_Boy1::
-    msgbox Route110_Text_RideBikeAtFullSpeed, MSGBOX_NPC
-    end
-
-Route110_EventScript_CyclingGirl1::
-    msgbox Route110_Text_HairStreamsBehindMe, MSGBOX_NPC
-    end
-
-Route110_EventScript_CyclingGuy1::
-    msgbox Route110_Text_YouGotBikeFromRydel, MSGBOX_NPC
-    end
-
-Route110_EventScript_OldMan::
-    msgbox Route110_Text_TwoRoads, MSGBOX_NPC
-    end
-
-Route110_EventScript_OldWoman::
-    msgbox Route110_Text_WalkOnTheLowRoad, MSGBOX_NPC
-    end
-
-Route110_EventScript_CyclingGuy2::
-    msgbox Route110_Text_BikeTechniques, MSGBOX_NPC
-    end
-
-Route110_EventScript_Boy2::
-    msgbox Route110_Text_WhichShouldIChoose, MSGBOX_NPC
-    end
-
-Route110_EventScript_SlateportCitySign::
-    msgbox Route110_Text_SlateportCitySign, MSGBOX_SIGN
-    end
-
-Route110_EventScript_CyclingRoadSign::
-    msgbox Route110_Text_CyclingRoadSign, MSGBOX_SIGN
-    end
-
-Route110_EventScript_VandalizedSign::
-    msgbox Route110_Text_AquaWasHere, MSGBOX_SIGN
-    end
-
-Route110_EventScript_Route103Sign::
-    msgbox Route110_Text_Route103Sign, MSGBOX_SIGN
-    end
-
-Route110_EventScript_SeasideParkingSign::
-    msgbox Route110_Text_SeasideParkingSign, MSGBOX_SIGN
-    end
-
-Route110_EventScript_MauvilleCitySign::
-    msgbox Route110_Text_MauvilleCitySign, MSGBOX_SIGN
-    end
-
-Route110_EventScript_TrainerTipsPrlzSleep::
-    msgbox Route110_Text_TrainerTipsPrlzSleep, MSGBOX_SIGN
-    end
-
-Route110_EventScript_TrainerTipsRegisterItems::
-    msgbox Route110_Text_TrainerTipsRegisterItems, MSGBOX_SIGN
-    end
-
-Route110_EventScript_TrickHouseSign::
-    msgbox Route110_Text_TrickHouseSign, MSGBOX_SIGN
-    end
-
 Route110_EventScript_CyclingRoadResultsSign::
     lockall
     specialvar VAR_RESULT, GetRecordedCyclingRoadResults
@@ -285,9 +221,6 @@ Route110_EventScript_Timmy::
     msgbox Route110_Text_TimmyPostBattle, MSGBOX_AUTOCLOSE
     end
 
-Route110_EventScript_Unused::
-    end
-
 Route110_EventScript_Kaleb::
     trainerbattle_single TRAINER_KALEB, Route110_Text_KalebIntro, Route110_Text_KalebDefeated
     msgbox Route110_Text_KalebPostBattle, MSGBOX_AUTOCLOSE
@@ -397,10 +330,12 @@ Route110_EventScript_RivalScene::
 
 Route110_EventScript_PlayMayMusic::
     playbgm MUS_ENCOUNTER_MAY, TRUE
+    speakername CommonName_Text_May
     return
 
 Route110_EventScript_PlayBrendanMusic::
     playbgm MUS_ENCOUNTER_BRENDAN, TRUE
+    speakername CommonName_Text_Brendan
     return
 
 Route110_EventScript_MayBattle::
@@ -545,37 +480,6 @@ Route110_Movement_RivalApproachPlayer3:
     walk_in_place_faster_down
     step_end
 
-Route110_Movement_RivalExit1:
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    step_end
-
-Route110_Movement_RivalExit2:
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_down
-    step_end
-
-Route110_Movement_RivalExit3:
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    step_end
-
 Route110_EventScript_BirchScene1::
     lockall
     setvar VAR_0x8008, 1
@@ -609,6 +513,7 @@ Route110_EventScript_BirchScene::
     call_if_eq VAR_0x8008, 2, Route110_EventScript_BirchApproachPlayer2
     call_if_eq VAR_0x8008, 3, Route110_EventScript_BirchApproachPlayer3
     call_if_eq VAR_0x8008, 4, Route110_EventScript_BirchApproachPlayer4
+    speakername CommonName_Text_ProfBirch
     msgbox Route110_Text_ImagineSeeingYouHere, MSGBOX_DEFAULT
     closemessage
     delay 20
@@ -625,11 +530,13 @@ Route110_EventScript_BirchScene::
     closemessage
     delay 30
     playfanfare MUS_REGISTER_MATCH_CALL
+    speakername 0
     msgbox Route110_Text_RegisteredBirchInPokenav, MSGBOX_DEFAULT
     waitfanfare
     closemessage
     delay 30
     setflag FLAG_ENABLE_PROF_BIRCH_MATCH_CALL
+    speakername CommonName_Text_ProfBirch
     msgbox Route110_Text_KeepAnEyeOutForRival, MSGBOX_DEFAULT
     closemessage
     call_if_eq VAR_0x8008, 1, Route110_EventScript_BirchExit1
@@ -744,31 +651,26 @@ Route110_Movement_BirchExit4:
     walk_up
     step_end
 `
-
 text Route110_Text_WeCantTalkAboutAquaActivities {
-    format("TEAM AQUA's activities…\n"
+    format("Team Aqua's activities…\n"
     "We can't talk about them yet.")
 }
 
 text Route110_Text_KickUpARuckus {
-    format("I want to get going to SLATEPORT and\n"
-    "kick up a ruckus!")
+    format("I want to get going to Slateport and kick up a ruckus!")
 }
 
 text Route110_Text_MyFirstJobInAqua {
-    format("This is my first job after joining\n"
-    "TEAM AQUA. It's a little scary.")
+    format("This is my first job after joining Team Aqua. It's a little scary.")
 }
 
 text Route110_Text_AquaActionsBringSmiles {
-    format("TEAM AQUA's actions should bring\n"
-    "smiles to people's faces!")
+    format("Team Aqua's actions should bring smiles to people's faces!")
 }
 
 text Route110_Text_MayLetsBattle {
-    format("MAY: Hi, {PLAYER}{KUN}, long time no see!\p"
-    "While I was searching for other\n"
-    "Pokémon, my Pokémon grew stronger.\p"
+    format("Hi, {PLAYER}{KUN}, long time no see!\p"
+    "While I was searching for other Pokémon, my Pokémon grew stronger.\p"
     "So…\n"
     "How about a little battle?")
 }
@@ -779,24 +681,20 @@ text Route110_Text_MayDefeated {
 }
 
 text Route110_Text_MayTakeThis {
-    format("MAY: {PLAYER}{KUN}, you've been busy\n"
-    "training, too, haven't you?\p"
+    format("{PLAYER}{KUN}, you've been busy training, too, haven't you?\p"
     "I think you deserve a reward!\n"
     "This is from me!")
 }
 
 text Route110_Text_MayExplainItemfinder {
-    format("MAY: That's an ITEMFINDER.\p"
-    "Try it out. If there is an item that's\n"
-    "not visible, it emits a sound.\p"
+    format("That's an Itemfinder.\p"
+    "Try it out. If there is an item that's not visible, it emits a sound.\p"
     "Okay, {PLAYER}{KUN}, let's meet again!\p"
-    "I know it's a little silly coming from\n"
-    "me, but I think you should train a lot\l"
-    "harder for the next time.")
+    "I know it's a little silly coming from me, but I think you should train a lot harder for the next time.")
 }
 
 text Route110_Text_BrendanLetsBattle {
-    format("BRENDAN: Hey, {PLAYER}.\n"
+    format("Hey, {PLAYER}.\n"
     "So this is where you were.\l"
     "How's it going?\p"
     "Have you been raising your Pokémon?\n"
@@ -809,70 +707,63 @@ text Route110_Text_BrendanDefeated {
 }
 
 text Route110_Text_BrendanTakeThis {
-    format("BRENDAN: {PLAYER}, you've trained\n"
-    "without me noticing…\p"
+    format("{PLAYER}, you've trained without me noticing…\p"
     "Good enough!\n"
     "Here, take this.")
 }
 
 text Route110_Text_BrendanExplainItemfinder {
-    format("BRENDAN: That's an ITEMFINDER.\p"
-    "Use it to root around for items that\n"
-    "aren't visible.\p"
-    "If it senses something, it emits\n"
-    "a sound.\p"
-    "Anyway, I'm off to look for new\n"
-    "Pokémon.")
+    format("That's an Itemfinder.\p"
+    "Use it to root around for items that aren't visible.\p"
+    "If it senses something, it emits a sound.\p"
+    "Anyway, I'm off to look for new Pokémon.")
 }
 
-text Route110_Text_RideBikeAtFullSpeed {
-    format("Wouldn't it be great to ride a BIKE\n"
-    "at full speed on CYCLING ROAD?")
+script Route110_EventScript_Boy1 {
+    msgbox(format("Wouldn't it be great to ride a Bike at full speed on Cycling Road?"), MSGBOX_NPC)
 }
 
-text Route110_Text_HairStreamsBehindMe {
-    format("How do you like the way my raven-\n"
+script Route110_EventScript_CyclingGirl1 {
+    msgbox(format("How do you like the way my raven-\n"
     "colored hair streams behind me?\p"
-    "I grew my hair out just for that.")
+    "I grew my hair out just for that."), MSGBOX_NPC)
 }
 
-text Route110_Text_YouGotBikeFromRydel {
-    format("Oh, hey, you got that BIKE from RYDEL!\p"
+script Route110_EventScript_CyclingGuy1 {
+    msgbox(format("Oh, hey, you got that Bike from Rydel!\p"
     "Oh, it's glaringly obvious.\n"
     "It says right on your bike…\p"
-    "RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,\n"
-    "RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,\p"
-    "RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,\n"
-    "RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,\p"
-    "RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,\n"
-    "RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,\p"
-    "RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,\n"
-    "RYDEL, RYDEL, RYDEL, RYDEL, RYDEL,\p"
-    "RYDEL, RYDEL, RYDEL, RYDEL, RYDEL…\n"
+    "Rydel, Rydel, Rydel, Rydel, Rydel,\n"
+    "Rydel, Rydel, Rydel, Rydel, Rydel,\p"
+    "Rydel, Rydel, Rydel, Rydel, Rydel,\n"
+    "Rydel, Rydel, Rydel, Rydel, Rydel,\p"
+    "Rydel, Rydel, Rydel, Rydel, Rydel,\n"
+    "Rydel, Rydel, Rydel, Rydel, Rydel,\p"
+    "Rydel, Rydel, Rydel, Rydel, Rydel,\n"
+    "Rydel, Rydel, Rydel, Rydel, Rydel,\p"
+    "Rydel, Rydel, Rydel, Rydel, Rydel…\n"
     "That name's everywhere.\p"
-    "You should ride it around all over the place--it's good advertising!")
+    "You should ride it around all over the place--it's good advertising!"), MSGBOX_NPC)
 }
 
-text Route110_Text_TwoRoads {
-    format("The two roads, one above, one below…\p"
-    "A road each for people and Pokémon.\n"
-    "Perhaps that is right and fair.")
+script Route110_EventScript_OldMan {
+    msgbox(format("The two roads, one above, one below…\p"
+        "A road each for people and Pokémon.\n"
+        "Perhaps that is right and fair."), MSGBOX_NPC)
 }
 
-text Route110_Text_WalkOnTheLowRoad {
-    format("I don't have a Bike, so I'll take a leisurely walk on the low road.")
+script Route110_EventScript_OldWoman {
+    msgbox(format("I don't have a Bike, so I'll take a leisurely walk on the low road."), MSGBOX_NPC)
 }
 
-text Route110_Text_BikeTechniques {
-    format("Learning techniques will make Bike riding even more fun.\p"
-    "There are some places that you can reach only by using a BIKE technique.")
+script Route110_EventScript_CyclingGuy2 {
+    msgbox(format("Learning techniques will make Bike riding even more fun.\p"
+        "There are some places that you can reach only by using a Bike technique."), MSGBOX_NPC)
 }
 
-text Route110_Text_WhichShouldIChoose {
-    format("Which should I choose?\p"
-    "Make a beeline for MAUVILLE on\n"
-    "CYCLING ROAD, or take the low road\l"
-    "and look for Pokémon?")
+script Route110_EventScript_Boy2 {
+    msgbox(format("Which should I choose?\p"
+    "Make a beeline for Mauville on Cycling Road, or take the low road and look for Pokémon?"), MSGBOX_NPC)
 }
 
 text Route110_Text_CyclingChallengeResultSummary {
@@ -884,125 +775,69 @@ text Route110_Text_CyclingChallengeResultSummary {
 
 text Route110_Text_ChallengeReactionBest {
     format("Bravo! Splendid showing!\p"
-    "Your love of cycling comes from deep\n"
-    "within your heart.\l"
+    "Your love of cycling comes from deep within your heart.\l"
     "You've shaken me to my very soul!")
 }
 
 text Route110_Text_ChallengeReactionGood {
     format("Your technique is remarkable.\p"
-    "I suggest you speed up a bit while\n"
-    "still avoiding collisions.")
+    "I suggest you speed up a bit while still avoiding collisions.")
 }
 
 text Route110_Text_ChallengeReactionOk {
-    format("I would consider you a work in\n"
-    "progress.\p"
-    "Still, I hope you don't forget the\n"
-    "sheer pleasure of cycling.")
+    format("I would consider you a work in progress.\p"
+    "Still, I hope you don't forget the sheer pleasure of cycling.")
 }
 
 text Route110_Text_ChallengeReactionBad {
-    format("My word… Your cycling skills border\n"
-    "on terrifying.\p"
-    "Most certainly, you need much more\n"
-    "practice riding.")
+    format("My word… Your cycling skills border on terrifying.\p"
+    "Most certainly, you need much more practice riding.")
 }
 
 text Route110_Text_ChallengeReactionWorst {
     format("…I am aghast…\p"
     "You're perhaps not cut out for this\n"
     "unfortunate cycling business.\p"
-    "You ought to give serious thought to\n"
-    "returning that BIKE to RYDEL.")
+    "You ought to give serious thought to returning that Bike to Rydel.")
 }
 
 text Route110_Text_RatedForNumberOfCollisions {
-    format("This is CYCLING ROAD.\p"
-    "If you were to ride from MAUVILLE to\n"
-    "SLATEPORT on a MACH BIKE, you would\l"
-    "be rated for the number of collisions\l"
-    "and your total time.")
+    format("This is Cycling Road.\p"
+    "If you were to ride from Mauville to Slateport, you would be rated for the number of collisions and your total time.")
 }
 
 text Route110_Text_AlwaysAimHigher {
-    format("Regardless of the results, I count on\n"
-    "seeing more challenges from you.\l"
-    "Always aim higher!")
+    format("Regardless of the results, I count on seeing more challenges from you. Always aim higher!")
 }
 
 text Route110_Text_AcroBikesDoNotQualify {
-    format("On this CYCLING ROAD, those riding\n"
-    "MACH BIKES are rated for their number\l"
-    "of collisions and their total times.\p"
-    "Acro Bikes do not qualify for rating.\n"
-    "They are easy to turn, so it's not fair.")
+    format("On this Cycling Road, people are rated for their collisions and completion time.")
 }
 
-text Route110_Text_SlateportCitySign {
-    format("ROUTE 110\n"
-    "{DOWN_ARROW} SLATEPORT CITY")
+script Route110_EventScript_TrainerTipsPrlzSleep {
+    msgbox(format("Trainer Tips\p"
+        "Pokémon with Static or Lightning Rod increase the likelihood you find an Electric-type Pokémon."), MSGBOX_SIGN)
 }
 
-text Route110_Text_CyclingRoadSign {
-    format("SEASIDE CYCLING ROAD")
-}
-
-text Route110_Text_AquaWasHere {
-    format("“TEAM AQUA was here!”\p"
-    "Someone painted that onto this sign,\n"
-    "but then someone else painted over it.\p"
-    "“TEAM MAGMA rules!” is what it\n"
-    "says now.")
-}
-
-text Route110_Text_Route103Sign {
-    format("ROUTE 110\n"
-    "{LEFT_ARROW} ROUTE 103")
-}
-
-text Route110_Text_SeasideParkingSign {
-    format("SEASIDE PARKING")
-}
-
-text Route110_Text_MauvilleCitySign {
-    format("ROUTE 110\n"
-    "{UP_ARROW} MAUVILLE CITY")
-}
-
-text Route110_Text_TrainerTipsPrlzSleep {
-    format("TRAINER TIPS\p"
-    "The foe can be made helpless by\n"
-    "paralyzing it or causing it to sleep.\p"
-    "It is an important technique for\n"
-    "Pokémon battles.")
-}
-
-text Route110_Text_TrainerTipsRegisterItems {
-    format("TRAINER TIPS\p"
-    "The items in the BAG can be reorganized\n"
-    "by pressing SELECT.")
-}
-
-text Route110_Text_TrickHouseSign {
-    format("“Three steps {RIGHT_ARROW} and two steps {UP_ARROW}\n"
-    "to reach the wondrous TRICK HOUSE.”")
+script Route110_EventScript_TrainerTipsRegisterItems {
+    msgbox(format("Trainer Tips\p"
+        "The items in the Bag can be reorganized by pressing Select."), MSGBOX_SIGN)
 }
 
 text Route110_Text_BestRecord {
-    format("THE BEST RECORD TO DATE…\p"
+    format("The Best Record to Date…\p"
     "No. of collisions: {STR_VAR_1}\p"
     "Elapsed time: {STR_VAR_2}")
 }
 
 text Route110_Text_ThereIsNoRecord {
-    format("THE BEST RECORD TO DATE…\p"
+    format("The Best Record to Date…\p"
     "No one seems to have taken the\n"
     "challenge. There is no record…")
 }
 
 text Route110_Text_ImagineSeeingYouHere {
-    format("PROF. BIRCH: Oh, {PLAYER}{KUN}!\n"
+    format("Oh, {PLAYER}{KUN}!\n"
     "Imagine seeing you here!\p"
     "And where might my {RIVAL} be?")
 }
@@ -1013,21 +848,58 @@ text Route110_Text_HeardYouInstallMatchCall {
     "Well, that's fine.\p"
     "Oh, yes, I heard that your Pokénav had the Match Call system installed.\p"
     "Well, then, I should register you in my Pokénav as well.\p"
-    "That way, even when we're apart,\n"
-    "I can rate your Pokédex anytime.\p"
+    "That way, even when we're apart, I can rate your Pokédex anytime.\p"
     "… … … … … …")
 }
 
 text Route110_Text_RegisteredBirchInPokenav {
-    format("Registered PROF. BIRCH\n"
-    "in the Pokénav.")
+    format("Registered Prof. Birch in the Pokénav.")
 }
 
 text Route110_Text_KeepAnEyeOutForRival {
-    format("PROF. BIRCH: {PLAYER}{KUN}…\p"
+    format("{PLAYER}{KUN}…\p"
     "Please keep an eye out for my {RIVAL}.\n"
     "… … … … … …\p"
     "Well, I had better get going.\n"
     "See you again, {PLAYER}{KUN}!")
+}
+
+
+movement Route110_Movement_RivalExit1 {  walk_fast_up * 7 }
+movement Route110_Movement_RivalExit3 { walk_fast_up * 7 }
+movement Route110_Movement_RivalExit2 {
+    walk_fast_up * 7
+    walk_fast_down
+}
+
+script Route110_EventScript_SlateportCitySign {
+    msgbox(format("Route 110\n{DOWN_ARROW} Slateport City"), MSGBOX_SIGN)
+}
+
+script Route110_EventScript_CyclingRoadSign {
+    msgbox(format("Seaside Cycling Road"), MSGBOX_SIGN)
+}
+
+script Route110_EventScript_VandalizedSign {
+    msgbox(format("“Team Aqua was here!”\p"
+        "Someone painted that onto this sign, but then someone else painted over it.\p"
+        "“Team Magma rules!” is what it says now."), MSGBOX_SIGN)
+}
+
+script Route110_EventScript_Route103Sign {
+    msgbox(format("Route 110\n{LEFT_ARROW} Route 103"), MSGBOX_SIGN)
+}
+
+script Route110_EventScript_SeasideParkingSign {
+    msgbox(format("Seaside Parking"), MSGBOX_SIGN)
+}
+
+script Route110_EventScript_MauvilleCitySign {
+    msgbox(format("Route 110\n{UP_ARROW} Mauville City"), MSGBOX_SIGN)
+}
+
+script Route110_EventScript_TrickHouseSign {
+    msgbox(format("“Three steps {RIGHT_ARROW} and two steps {UP_ARROW}\n"
+    "to reach the wondrous Trick House.”"), MSGBOX_SIGN)
 }
 

@@ -8,7 +8,7 @@ script Common_EventScript_MegaStoneClerk {
     if (var(VAR_RESULT) == TRUE) {
         checkmoney(MEGA_STONE_PRICE)
         if (var(VAR_RESULT) == TRUE) {
-            message(format("Welcome!\nI am a fine purveyor of Mega Stones.\pWhere do you find the Pokémon of interest?"))
+            message(format("Welcome!\nI am a fine purveyor of Mega Stones.\pWhat area is the Pokémon from?"))
             waitmessage
             showmoneybox(0, 0)
             dynmultichoice(13, 4, FALSE, 4, FALSE, DYN_MULTICHOICE_CB_NONE, "Petalburg Area", "Dewford Area", "Mauville Area", "Somewhere Else")
@@ -98,19 +98,12 @@ script Common_EventScript_ItemClerk {
     if (flag(FLAG_BADGE07_GET)) { goto(Common_EventScript_Clerk_Endgame) }
     message(gText_HowMayIServeYou)
     waitmessage
-    if (flag(FLAG_VISITED_MOSSDEEP_CITY)) {
-        pokemart(Common_Marts_PostLilycove)
-    } elif (flag(FLAG_BADGE05_GET)) {
-        pokemart(Common_Marts_PostNorman)
-    } elif (flag(FLAG_BADGE03_GET)) {
-        pokemart(Common_Marts_PostWattson)
-    } elif (flag(FLAG_BADGE02_GET)) {
-        pokemart(Common_Marts_PostBrawly)
-    } elif (flag(FLAG_BADGE01_GET)) {
-        pokemart(Common_Marts_PostRoxanne)
-    } else {
-        pokemart(Common_Marts_NoBadges)
-    }
+    if (flag(FLAG_VISITED_MOSSDEEP_CITY)) { pokemart(Common_Marts_PostLilycove) } 
+    elif (flag(FLAG_BADGE05_GET)) { pokemart(Common_Marts_PostNorman) }
+    elif (flag(FLAG_BADGE03_GET)) { pokemart(Common_Marts_PostWattson) }
+    elif (flag(FLAG_BADGE02_GET)) { pokemart(Common_Marts_PostBrawly) } 
+    elif (flag(FLAG_BADGE01_GET)) { pokemart(Common_Marts_PostRoxanne) } 
+    else { pokemart(Common_Marts_NoBadges) }
     speakername(CommonName_Text_Clerk)
     msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
     release
@@ -329,11 +322,13 @@ mart Common_Marts_Pokeballs_All {
 }
 
 mart Common_Marts_BattleItems {
+    ITEM_X_SPEED
     ITEM_X_ATTACK
-    ITEM_X_DEFEND
+    ITEM_X_DEFENSE
     ITEM_X_SP_ATK
     ITEM_X_SP_DEF
-    ITEM_X_SPEED
+    ITEM_DIRE_HIT
+    ITEM_GUARD_SPEC
     ITEM_X_ACCURACY
 }
 

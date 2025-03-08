@@ -1,5 +1,1 @@
-raw `
-SeafloorCavern_Room8_MapScripts::
-    .byte 0
-
-`
+mapscripts SeafloorCavern_Room8_MapScripts {}

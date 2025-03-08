@@ -1,3 +1,77 @@
+script PlayersHouse_1F_EventScript_EnterHouseMovingIn {
+    speakername(CommonName_Text_Mom)
+    msgbox(PlayersHouse_1F_Text_IsntItNiceInHere, MSGBOX_DEFAULT)
+    applymovement(VAR_0x8004, Common_Movement_FacePlayer)
+    waitmovement(0)
+    call_if_eq(VAR_0x8005, MALE, PlayersHouse_1F_EventScript_MomFacePlayerMovingInMale)
+    call_if_eq(VAR_0x8005, FEMALE, PlayersHouse_1F_EventScript_MomFacePlayerMovingInFemale)
+    msgbox(format("The mover's Pokémon do all the work of moving us in and cleaning up after.\l"
+        "This is so convenient!\p"
+        "{PLAYER}, your room is upstairs.\n"
+        "Go check it out, dear!\p"
+        "Your Dad bought you a new clock to mark our move here.\l"
+        "Don't forget to set it!"), MSGBOX_DEFAULT)
+    closemessage
+    setvar(VAR_LITTLEROOT_INTRO_STATE, 4)
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkUp)
+    applymovement(VAR_0x8004, Common_Movement_WalkInPlaceFasterUp)
+    waitmovement(0)
+    releaseall
+}
+
+script PlayersHouse_1F_EventScript_MomFacePlayerMovingInMale {
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight)
+    waitmovement(0)
+}
+
+script PlayersHouse_1F_EventScript_MomFacePlayerMovingInFemale {
+    applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft)
+    waitmovement(0)
+}
+
+script PlayersHouse_2F_EventScript_BlockStairsUntilClockIsSet { setvar(VAR_LITTLEROOT_INTRO_STATE, 5) }
+
+script PlayersHouse_1F_EventScript_MomGoSeeRoom {
+    speakername(CommonName_Text_Mom)
+    msgbox(format("Well, {PLAYER}?\p"
+        "Aren't you interested in seeing your very own room?"), MSGBOX_DEFAULT)
+    closemessage
+    applymovement(VAR_0x8004, Common_Movement_WalkInPlaceFasterUp)
+    applymovement(OBJ_EVENT_ID_PLAYER, PlayersHouse_1F_Movement_MovePlayerAwayFromDoor)
+    waitmovement(0)
+    releaseall
+}
+
+script LittlerootTown_BrendansHouse_2F_EventScript_WallClock {
+    lockall
+    setvar(VAR_0x8004, MALE)
+    goto(PlayersHouse_2F_EventScript_WallClock)
+}
+
+script LittlerootTown_MaysHouse_2F_EventScript_WallClock {
+    lockall
+    setvar(VAR_0x8004, FEMALE)
+    goto(PlayersHouse_2F_EventScript_WallClock)
+}
+
+script PlayersHouse_2F_EventScript_WallClock {
+    goto_if_set(FLAG_SET_WALL_CLOCK, PlayersHouse_2F_EventScript_CheckWallClock)
+    msgbox(format("The clock is stopped…\p"
+            "Better set it and start it!"), MSGBOX_DEFAULT)
+    call(PlayersHouse_2F_EventScript_SetWallClock)
+    delay(30)
+    setvar(VAR_LITTLEROOT_INTRO_STATE, 6)
+    setflag(FLAG_SET_WALL_CLOCK)
+    setflag(FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_1)
+    setflag(FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_2)
+    checkplayergender
+    call_if_eq(VAR_RESULT, MALE, PlayersHouse_2F_EventScript_MomComesUpstairsMale)
+    call_if_eq(VAR_RESULT, FEMALE, PlayersHouse_2F_EventScript_MomComesUpstairsFemale)
+    playse(SE_EXIT)
+    removeobject(VAR_0x8008)
+    releaseall
+}
+
 raw `
 
 @ Local IDs are the same for both players houses
@@ -5,78 +79,6 @@ raw `
 .set LOCALID_DAD, 5
 .set LOCALID_MOM_2F, 14
 
-PlayersHouse_2F_EventScript_BlockStairsUntilClockIsSet::
-    setvar VAR_LITTLEROOT_INTRO_STATE, 5
-    return
-
-PlayersHouse_1F_EventScript_EnterHouseMovingIn::
-    speakername CommonName_Text_Mom
-    msgbox PlayersHouse_1F_Text_IsntItNiceInHere, MSGBOX_DEFAULT
-    applymovement VAR_0x8004, Common_Movement_FacePlayer
-    waitmovement 0
-    call_if_eq VAR_0x8005, MALE, PlayersHouse_1F_EventScript_MomFacePlayerMovingInMale
-    call_if_eq VAR_0x8005, FEMALE, PlayersHouse_1F_EventScript_MomFacePlayerMovingInFemale
-    msgbox PlayersHouse_1F_Text_MoversPokemonGoSetClock, MSGBOX_DEFAULT
-    closemessage
-    setvar VAR_LITTLEROOT_INTRO_STATE, 4
-    applymovement OBJ_EVENT_ID_PLAYER, PlayersHouse_1F_Movement_PlayerWalkIn
-    applymovement VAR_0x8004, Common_Movement_WalkInPlaceFasterUp
-    waitmovement 0
-    releaseall
-    end
-
-PlayersHouse_1F_EventScript_MomFacePlayerMovingInMale::
-    applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
-    waitmovement 0
-    return
-
-PlayersHouse_1F_EventScript_MomFacePlayerMovingInFemale::
-    applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
-    waitmovement 0
-    return
-
-PlayersHouse_1F_Movement_PlayerWalkIn:
-    walk_up
-    step_end
-
-PlayersHouse_1F_EventScript_MomGoSeeRoom::
-    speakername CommonName_Text_Mom
-    msgbox PlayersHouse_1F_Text_ArentYouInterestedInRoom, MSGBOX_DEFAULT
-    closemessage
-    applymovement VAR_0x8004, Common_Movement_WalkInPlaceFasterUp
-    applymovement OBJ_EVENT_ID_PLAYER, PlayersHouse_1F_Movement_MovePlayerAwayFromDoor
-    waitmovement 0
-    releaseall
-    end
-
-LittlerootTown_BrendansHouse_2F_EventScript_WallClock::
-    lockall
-    setvar VAR_0x8004, MALE
-    goto PlayersHouse_2F_EventScript_WallClock
-    end
-
-LittlerootTown_MaysHouse_2F_EventScript_WallClock::
-    lockall
-    setvar VAR_0x8004, FEMALE
-    goto PlayersHouse_2F_EventScript_WallClock
-    end
-
-PlayersHouse_2F_EventScript_WallClock::
-    goto_if_set FLAG_SET_WALL_CLOCK, PlayersHouse_2F_EventScript_CheckWallClock
-    msgbox PlayersHouse_2F_Text_ClockIsStopped, MSGBOX_DEFAULT
-    call PlayersHouse_2F_EventScript_SetWallClock
-    delay 30
-    setvar VAR_LITTLEROOT_INTRO_STATE, 6
-    setflag FLAG_SET_WALL_CLOCK
-    setflag FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_1
-    setflag FLAG_HIDE_LITTLEROOT_TOWN_PLAYERS_HOUSE_VIGOROTH_2
-    checkplayergender
-    call_if_eq VAR_RESULT, MALE, PlayersHouse_2F_EventScript_MomComesUpstairsMale
-    call_if_eq VAR_RESULT, FEMALE, PlayersHouse_2F_EventScript_MomComesUpstairsFemale
-    playse SE_EXIT
-    removeobject VAR_0x8008
-    releaseall
-    end
 
 PlayersHouse_2F_EventScript_MomComesUpstairsMale::
     setvar VAR_0x8008, LOCALID_MOM_2F
@@ -517,11 +519,6 @@ PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV::
     releaseall
     end
 
-@ Never called.
-PlayersHouse_1F_EventScript_AirLatiBroadcast::
-    setflag FLAG_SYS_TV_LATIAS_LATIOS
-    return
-
 PlayersHouse_1F_EventScript_SetUpObjectEventVarsMale::
     setvar VAR_0x8008, MALE
     setvar VAR_0x8009, LOCALID_DAD
@@ -711,3 +708,217 @@ EventScript_RunningShoesManual::
     msgbox PlayersHouse_1F_Text_RunningShoesManual, MSGBOX_SIGN
     end
 `
+
+text PlayersHouse_1F_Text_IsntItNiceInHere {
+    format("See, {PLAYER}?\n"
+    "Isn't it nice in here, too?")
+}
+
+text PlayersHouse_1F_Text_GoSetTheClock {
+    format("{PLAYER}.\p"
+    "Go set the clock in your room, honey.")
+}
+
+text PlayersHouse_1F_Text_OhComeQuickly {
+    format("Oh! {PLAYER}, {PLAYER}!\n"
+    "Quick! Come quickly!")
+}
+
+text PlayersHouse_1F_Text_MaybeDadWillBeOn {
+    format("Look! It's Petalburg Gym!\n"
+    "Maybe your Dad will be on!")
+}
+
+text PlayersHouse_1F_Text_ItsOverWeMissedHim {
+    format("Oh… It's over.\p"
+    "I think your Dad was on, but we missed him.\n"
+    "Too bad.")
+}
+
+text PlayersHouse_1F_Text_GoIntroduceYourselfNextDoor {
+    format("Oh, yes.\n"
+    "One of your Dad's friends lives in town.\p"
+    "Prof. Birch is his name.\p"
+    "He lives right next door, so you should go over and introduce yourself.")
+}
+
+text PlayersHouse_1F_Text_SeeYouHoney {
+    format("See you, honey!")
+}
+
+text PlayersHouse_1F_Text_DidYouMeetProfBirch {
+    format("Did you introduce yourself to Prof. Birch?")
+}
+
+text PlayersHouse_1F_Text_YouShouldRestABit {
+    format("How are you doing, {PLAYER}?\n"
+    "You look a little tired.\p"
+    "I think you should rest a bit.")
+}
+
+text PlayersHouse_1F_Text_TakeCareHoney {
+    format("Take care, honey!")
+}
+
+text PlayersHouse_1F_Text_GotDadsBadgeHeresSomethingFromMom {
+    format("Oh? Did your Dad give you that Badge?\p"
+    "Then here's something from your Mom!")
+}
+
+text PlayersHouse_1F_Text_DontPushYourselfTooHard {
+    format("Don't push yourself too hard, dear.\n"
+    "You can always come home.\p"
+    "Go for it, honey!")
+}
+
+text PlayersHouse_1F_Text_IsThatAPokenav {
+    format("What is that, honey? A Pokénav?\n"
+    "Someone from Devon gave it to you?\p"
+    "Well, honey, how about registering your mom?\p"
+    "… … …")
+}
+
+text PlayersHouse_1F_Text_RegisteredMom {
+    format("Registered Mom in the Pokénav.")
+}
+
+text PlayersHouse_1F_Text_Vigoroth1 {
+    format("Fugiiiiih!")
+}
+
+text PlayersHouse_1F_Text_Vigoroth2 {
+    format("Huggoh, uggo uggo…")
+}
+
+text PlayersHouse_1F_Text_ReportFromPetalburgGym {
+    format("…We brought you this report from in front of Petalburg Gym.")
+}
+
+text PlayersHouse_1F_Text_TheresAMovieOnTV {
+    format("There is a movie on TV.\p"
+    "Two men are dancing on a big piano keyboard.\p"
+    "Better get going!")
+}
+
+text PlayersHouse_1F_Text_RunningShoesManual {
+    format("It's the instruction booklet for the Running Shoes.\p"
+    "“Press the B Button to run while wearing your Running Shoes.\p"
+    "“Lace up your Running Shoes and hit the road running!”")
+}
+
+text PlayersHouse_1F_Text_TicketFromBrineyCameForYou {
+    format("Hm?\n"
+    "Hey, it's {PLAYER}!\p"
+    "It's been a while since I saw you, but you look…stronger, somehow.\p"
+    "That's the impression I get.\n"
+    "But your old man hasn't given up yet!\p"
+    "Oh, yes, I have something for you.\n"
+    "This came to you from someone named\l"
+    "Mr. Briney.")
+}
+
+text PlayersHouse_1F_Text_PortsInSlateportLilycove {
+    format("Hm, a Ticket for a ferry?\p"
+    "If I recall, there are ferry ports in Slateport and Lilycove.")
+}
+
+text PlayersHouse_1F_Text_BetterGetBackToGym {
+    format("I'd better get back to Petalburg Gym.\p"
+    "Love, thanks for looking after the house while I'm away.")
+}
+
+text PlayersHouse_1F_Text_DadShouldStayLonger {
+    format("That Dad of yours…\p"
+    "He comes home for the first time in a while, but all he talks about is Pokémon.\p"
+    "I understand, but he should relax and stay a little longer.")
+}
+
+text PlayersHouse_1F_Text_IsThatABreakingStory {
+    format("Is that a breaking news story?")
+}
+
+text PlayersHouse_1F_Text_LatiEmergencyNewsFlash {
+    format("We bring you this emergency news flash!\p"
+    "In various Hoenn locales, there have been reports of a BZZT…colored\l"
+    "Pokémon in flight.\p"
+    "The identity of this Pokémon is currently unknown.\p"
+    "We now return you to the regular movie program.")
+}
+
+text PlayersHouse_1F_Text_WhatColorDidTheySay {
+    format("{PLAYER}, did you catch that?\p"
+    "What color did the announcer say that Pokémon was?")
+}
+
+text PlayersHouse_1F_Text_StillUnknownPokemon {
+    format("Well, isn't that something!\n"
+    "There are still unknown Pokémon.")
+}
+
+script PlayersHouse_Eevee {
+    lock
+    faceplayer
+    applymovement(LOCALID_MOM, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    playmoncry(SPECIES_EEVEE, CRY_MODE_NORMAL)
+    speakername(CommonName_Text_Mom)
+    msgbox(format("Our new neighbors know an Eevee breeder.\p"
+        "Don't worry, I won't tell your friends we match."), MSGBOX_DEFAULT)
+    waitmoncry
+    release
+}
+
+script PlayersHouse_Skitty {
+    lock
+    faceplayer
+    applymovement(LOCALID_MOM, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    playmoncry(SPECIES_SKITTY, CRY_MODE_NORMAL)
+    setseenmon(SPECIES_SKITTY)
+    speakername(CommonName_Text_Mom)
+    msgbox(format("Your Dad keeps worrying I'm lonely by myself.\p"
+        "I think he misses the old days."), MSGBOX_DEFAULT)
+    waitmoncry
+    release
+}
+
+script PlayersHouse_Buneary {
+    lock
+    faceplayer
+    applymovement(LOCALID_MOM, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    playmoncry(SPECIES_BUNEARY, CRY_MODE_NORMAL)
+    setseenmon(SPECIES_BUNEARY)
+    speakername(CommonName_Text_Mom)
+    msgbox(format("Isn't my fluffy little bunbun darling?\p"
+        "I found her while going to the Department Store."), MSGBOX_DEFAULT)
+    waitmoncry
+    release
+}
+
+script PlayersHouse_Teddiursa {
+    lock
+    faceplayer
+    applymovement(LOCALID_MOM, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    playmoncry(SPECIES_TEDDIURSA, CRY_MODE_NORMAL)
+    setseenmon(SPECIES_TEDDIURSA)
+    speakername(CommonName_Text_Mom)
+    msgbox(format("I never thought I'd find one of these sweethearts in Hoenn!\p"
+        "Little Brownie likes to help me cook."), MSGBOX_DEFAULT)
+    waitmoncry
+    applymovement(LOCALID_MOM, Common_Movement_Heart)
+    waitmovement(0)
+    release
+}
+
+script PlayersHouse_Dunsparce {
+    lock
+    faceplayer
+    playmoncry(SPECIES_DUNSPARCE, CRY_MODE_NORMAL)
+    setseenmon(SPECIES_DUNSPARCE)
+    msgbox(format("It's wearing a name tag…\p"
+        "It belongs to your Mom!"), MSGBOX_DEFAULT)
+    waitmoncry
+    release
+}

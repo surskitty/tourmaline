@@ -1,7 +1,6 @@
-raw `
-SealedChamber_InnerRoom_MapScripts::
-    .byte 0
+mapscripts SealedChamber_InnerRoom_MapScripts {}
 
+raw `
 SealedChamber_InnerRoom_EventScript_BrailleBackWall::
     lockall
     braillemsgbox SealedChamber_InnerRoom_Braille_FirstWailordLastRelicanth

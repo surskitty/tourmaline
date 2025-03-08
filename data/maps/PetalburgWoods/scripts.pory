@@ -440,7 +440,7 @@ script PetalburgWoods_EventScript_Girl {
 script PetalburgWoods_EventScript_Sign1 {
     msgbox(format("Trainer Tips\p"
         "Any Pokémon that could evolve by Level Up but has not gains boosted EXP Points.\p"
-        "Consider using an Everstone to level your Pokémon faster."), MSGBOX_SIGN)
+        "Use an Everstone to level your Pokémon faster."), MSGBOX_SIGN)
 }
 
 script PetalburgWoods_EventScript_Sign2 {

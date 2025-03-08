@@ -284,11 +284,6 @@ script PlayersHouse_2F_EventScript_GameCube {
         "A Game Boy Advance is connected to serve as the Controller."), MSGBOX_SIGN)
 }
 
-text PlayersHouse_2F_Text_ClockIsStopped {
-    format("The clock is stopped…\p"
-        "Better set it and start it!")
-}
-
 text PlayersHouse_2F_Text_HowDoYouLikeYourRoom {
     format("{PLAYER}, how do you like your new room?\p"
         "Good! Everything's put away neatly!\p"

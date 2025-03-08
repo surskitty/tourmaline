@@ -175,8 +175,7 @@ text MauvilleCity_BikeShop_Text_HowToRideMachBike {
 }
 
 text MauvilleCity_BikeShop_Text_HowToTurnMachBike {
-    format("A Mach Bike is speedy, but it can't\n"
-    "stop very quickly.\p"
+    format("A Mach Bike is speedy, but it can't stop very quickly.\p"
     "It gets a little tricky to get around\n"
     "a corner.\p"
     "Release the + Control Pad a little\n"
@@ -199,27 +198,22 @@ text MauvilleCity_BikeShop_Text_AcroHandbookWhichPage {
 text MauvilleCity_BikeShop_Text_Wheelies {
     format("Press the B Button while riding,\n"
     "and the front wheel lifts up.\p"
-    "You can zip around with the front\n"
-    "wheel up using the + Control Pad.\p"
+    "You can zip around with the front wheel up using the + Control Pad.\p"
     "This technique is called a wheelie.\p"
     "Want to read a different page?")
 }
 
 text MauvilleCity_BikeShop_Text_BunnyHops {
-    format("Keeping the B Button pressed,\n"
-    "your BIKE can hop on the spot.\p"
+    format("Keeping the B Button pressed, your Bike can hop on the spot.\p"
     "This technique is called a bunny hop.\p"
     "You can ride while hopping, too.\p"
     "Want to read a different page?")
 }
 
 text MauvilleCity_BikeShop_Text_Jumps {
-    format("Press the B Button and the + Control\n"
-    "Pad at the same time to jump.\p"
-    "Press the + Control Pad to the side\n"
-    "to jump sideways.\p"
-    "Press it backwards to make the Bike\n"
-    "change directions while jumping.\p"
+    format("Press the B Button and the + Control Pad at the same time to jump.\p"
+    "Press the + Control Pad to the side to jump sideways.\p"
+    "Press it backwards to make the Bike change directions while jumping.\p"
     "Want to read a different page?")
 }
 

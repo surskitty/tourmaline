@@ -31,3 +31,7 @@ text CommonName_Text_CaptStern { "Capt. Stern" }
 text CommonName_Text_Clerk { "Clerk" }
 text CommonName_Text_Nurse { "Nurse" }
 
+text CommonName_Text_Gabby { "Gabby" }
+text CommonName_Text_Ty { "Ty" }
+
+

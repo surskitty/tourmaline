@@ -79,119 +79,6 @@ MossdeepCity_EventScript_TeamMagmaEnterSpaceCenter::
     releaseall
     end
 
-MossdeepCity_Movement_MaxieGestureToSpaceCenter:
-    delay_16
-    face_right
-    delay_16
-    delay_16
-    delay_16
-    delay_16
-    face_left
-    delay_16
-    delay_16
-    step_end
-
-MossdeepCity_Movement_GruntFaceSpaceCenter:
-    face_right
-    delay_16
-    delay_16
-    delay_16
-    step_end
-
-MossdeepCity_Movement_MaxieEnterSpaceCenter:
-    walk_down
-    walk_right
-    walk_right
-    walk_down
-    walk_down
-    walk_down
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    step_end
-
-MossdeepCity_Movement_Grunt1EnterSpaceCenter:
-    delay_16
-    delay_8
-    walk_down
-    walk_down
-    walk_down
-    walk_right
-    walk_right
-    walk_right
-    walk_down
-    walk_down
-    walk_down
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    step_end
-
-MossdeepCity_Movement_Grunt2EnterSpaceCenter:
-    delay_16
-    delay_8
-    walk_down
-    walk_down
-    walk_right
-    walk_right
-    walk_right
-    walk_down
-    walk_down
-    walk_down
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    step_end
-
-MossdeepCity_Movement_Grunt3EnterSpaceCenter:
-    delay_16
-    delay_8
-    walk_down
-    walk_right
-    walk_right
-    walk_right
-    walk_down
-    walk_down
-    walk_down
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    step_end
-
-MossdeepCity_Movement_Grunt4EnterSpaceCenter:
-    delay_16
-    delay_8
-    walk_right
-    walk_right
-    walk_right
-    walk_down
-    walk_down
-    walk_down
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    step_end
-
 MossdeepCity_EventScript_Man::
     lock
     faceplayer
@@ -231,6 +118,7 @@ MossdeepCity_EventScript_BlackBelt::
 MossdeepCity_EventScript_Scott::
     lock
     faceplayer
+    speakername CommonName_Text_Scott
     msgbox MossdeepCity_Text_ScottSomethingWrongWithTown, MSGBOX_DEFAULT
     closemessage
     call_if_eq VAR_FACING, DIR_NORTH, MossdeepCity_EventScript_ScottExitNorth
@@ -285,8 +173,7 @@ MossdeepCity_Movement_ScottExitEast:
 `
 
 text MossdeepCity_Text_WantKingsRockStevenGaveMe {
-    format("I got this from Steven, but I don't\n"
-    "know what it's good for.\p"
+    format("I got this from Steven, but I don't know what it's good for.\p"
     "I think it's called King's Rock.\n"
     "Do you want it?")
 }
@@ -305,24 +192,14 @@ text MossdeepCity_Text_WhatToDoWithWeirdRock {
     format("Yeah, you think so, too! What are you supposed to do with some weird rock?")
 }
 
-text MossdeepCity_Text_WailmerWatching {
-    format("Around Mossdeep, you can see wild Wailmer.\p"
-    "It's called, uh…\n"
-    "What was it now…\p"
-    "Wai, Wai, Wai…\p"
-    "Wailmer watching!")
-}
-
 text MossdeepCity_Text_SpaceCenterReceivedLetter {
-    format("The island's Space Center has been\n"
-    "launching huge rockets.\p"
+    format("The island's Space Center has been launching huge rockets.\p"
     "There's been some kind of an uproar\n"
     "over a letter they received recently.")
 }
 
 text MossdeepCity_Text_SpaceCenterLaunchingRockets {
-    format("The island's Space Center has been\n"
-    "launching huge rockets.")
+    format("The island's Space Center has been launching huge rockets.")
 }
 
 text MossdeepCity_Text_MossdeepTargetedByMagma {
@@ -333,17 +210,8 @@ text MossdeepCity_Text_MossdeepTargetedByMagma {
 }
 
 text MossdeepCity_Text_FeelReliefOnLand {
-    format("I'm a SAILOR, so the sea's obviously\n"
-    "more important to me.\p"
-    "But you know? When I get back on land\n"
-    "after a long voyage, I do feel relief!")
-}
-
-text MossdeepCity_Text_LifeNeedsSeaToLive {
-    format("All life needs the sea to live, even though it makes its home on the land.\p"
-    "Life, having run its course, becomes soil and returns to the land.\p"
-    "And the sea is always connected to the land.\p"
-    "Yes, like the very shoreline here.")
+    format("I'm a Sailor, so the sea's obviously more important to me.\p"
+        "But you know? When I get back on land after a long voyage, I do feel relief!")
 }
 
 text MossdeepCity_Text_SurfExhilarating {
@@ -354,27 +222,34 @@ text MossdeepCity_Text_SurfExhilarating {
 }
 
 text MossdeepCity_Text_ScottSomethingWrongWithTown {
-    format("SCOTT: {PLAYER}{KUN}, feeling good?\n"
-    "I'm doing great!\p"
-    "I'd heard Mossdeep's Gym Leaders are pretty strong, so I decided to come take a look-see for myself.\p"
-    "But there's something wrong about this town.\p"
-    "People are going on about a warning letter and the Space Center…\p"
-    "I don't think it concerns me in any way, though.")
+    format("{PLAYER}{KUN}, feeling good?\n"
+        "I'm doing great!\p"
+        "I'd heard Mossdeep's Gym Leaders are pretty strong, so I decided to come take a look-see for myself.\p"
+        "But there's something wrong about this town.\p"
+        "People are going on about a warning letter and the Space Center…\p"
+        "I don't think it concerns me in any way, though.")
 }
 
 text MossdeepCity_Text_SootopolisNewGymLeader {
     format("Ahh… It feels great letting the waves wash over my feet…\p"
-    "Speaking of the waves, you know that island city Sootopolis?\p"
-    "I think the Gym there had a new Leader come in.\p"
-    "People tell me the new Leader once mentored Wallace.")
+        "Speaking of the waves, you know that island city Sootopolis?\p"
+        "I think the Gym there had a new Leader come in.\p"
+        "People tell me the new Leader once mentored Wallace.")
 }
 
 script MossdeepCity_EventScript_NinjaBoy {
-    msgbox(MossdeepCity_Text_WailmerWatching, MSGBOX_NPC)
+    msgbox(format("Around Mossdeep, you can see wild Wailmer.\p"
+        "It's called, uh…\n"
+        "What was it now…\p"
+        "Wai, Wai, Wai…\p"
+        "Wailmer watching!"), MSGBOX_NPC)
 }
 
 script MossdeepCity_EventScript_ExpertM {
-    msgbox(MossdeepCity_Text_LifeNeedsSeaToLive, MSGBOX_NPC)
+    msgbox(format("All life needs the sea to live, even though it makes its home on the land.\p"
+        "Life, having run its course, becomes soil and returns to the land.\p"
+        "And the sea is always connected to the land.\p"
+        "Yes, like the very shoreline here."), MSGBOX_NPC)
 }
 
 script MossdeepCity_EventScript_Girl {
@@ -417,7 +292,63 @@ script MossdeepCity_EventScript_Hitmonchan {
     waitse
     setseenmon(SPECIES_HITMONCHAN)
     playmoncry(SPECIES_HITMONCHAN, CRY_MODE_ENCOUNTER)
-    msgbox("HITMONCHAN: Hiyaaah!", MSGBOX_DEFAULT)
+    speakername("Dynamic Puncher")
+    msgbox("Hiyaaah!", MSGBOX_DEFAULT)
     waitmoncry
     release
+}
+
+movement MossdeepCity_Movement_MaxieGestureToSpaceCenter {
+    delay_16
+    face_right
+    delay_16 * 4
+    face_left
+    delay_16 * 2
+}
+
+movement MossdeepCity_Movement_GruntFaceSpaceCenter {
+    face_right
+    delay_16 * 3
+}
+
+movement MossdeepCity_Movement_MaxieEnterSpaceCenter {
+    walk_down
+    walk_right * 2
+    walk_down * 3
+    walk_right * 7
+}
+
+movement MossdeepCity_Movement_Grunt1EnterSpaceCenter {
+    delay_16
+    delay_8
+    walk_down * 3
+    walk_right * 3
+    walk_down * 3
+    walk_right * 7
+}
+
+movement MossdeepCity_Movement_Grunt2EnterSpaceCenter {
+    delay_16
+    delay_8
+    walk_down * 2
+    walk_right * 3
+    walk_down * 3
+    walk_right * 7
+}
+
+movement MossdeepCity_Movement_Grunt3EnterSpaceCenter {
+    delay_16
+    delay_8
+    walk_down
+    walk_right * 3
+    walk_down * 3
+    walk_right * 7
+}
+
+movement MossdeepCity_Movement_Grunt4EnterSpaceCenter {
+    delay_16
+    delay_8
+    walk_right * 3
+    walk_down * 3
+    walk_right * 7
 }

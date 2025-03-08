@@ -802,8 +802,7 @@ text LilycoveCity_PokemonTrainerFanClub_Text_TrainerIsStandout {
 
 text LilycoveCity_PokemonTrainerFanClub_Text_NoOneCanKnockYouButTrainerStronger {
     format("You are really popular…\p"
-    "You're strong, and you're caring to\n"
-    "Pokémon. No one can knock you.\p"
+    "You're strong, and you're caring to Pokémon. No one can knock you.\p"
     "But, you know, I believe in {STR_VAR_1}.\p"
     "{STR_VAR_1} is definitely stronger!\n"
     "I'm positive!")
@@ -827,12 +826,10 @@ text LilycoveCity_PokemonTrainerFanClub_Text_HaventRealizedPotential {
 }
 
 text LilycoveCity_PokemonTrainerFanClub_Text_YourePowerfulButNotTrueStrength {
-    format("It is true that you are tremendously\n"
-    "powerful.\p"
+    format("It is true that you are tremendously powerful.\p"
     "But!\n"
     "I can tell…\p"
-    "That strength cannot be considered\n"
-    "true strength yet!\p"
+    "That strength cannot be considered true strength yet!\p"
     "True strength is…!\n"
     "… …\p"
     "Actually, I have no idea, either.")

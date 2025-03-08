@@ -54,6 +54,9 @@ mart LilycoveCity_DepartmentStore_3F_Pokemart_Vitamins {
     ITEM_POWER_BAND
     ITEM_ABILITY_CAPSULE
     ITEM_ABILITY_PATCH
+    ITEM_EXP_CANDY_XS
+    ITEM_EXP_CANDY_S
+    ITEM_EXP_CANDY_M
 }
 
 script LilycoveCity_DepartmentStore_3F_EventScript_TriathleteM {

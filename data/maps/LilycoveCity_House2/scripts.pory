@@ -1,7 +1,6 @@
-raw `
-LilycoveCity_House2_MapScripts::
-    .byte 0
+mapscripts LilycoveCity_House2_MapScripts {}
 
+raw `
 LilycoveCity_House2_EventScript_FatMan::
     lock
     faceplayer

@@ -81,6 +81,7 @@ SlateportCity_EventScript_ScottScene::
     applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_Movement_PlayerFaceScott
     applymovement LOCALID_SCOTT, SlateportCity_Movement_ScottApproachPlayer
     waitmovement 0
+    speakername CommonName_Text_Scott
     msgbox SlateportCity_Text_YouDroveTeamAquaAway, MSGBOX_DEFAULT
     closemessage
     applymovement LOCALID_SCOTT, Common_Movement_WalkInPlaceFasterLeft
@@ -93,11 +94,13 @@ SlateportCity_EventScript_ScottScene::
     closemessage
     delay 30
     playfanfare MUS_REGISTER_MATCH_CALL
+    speakername 0
     msgbox SlateportCity_Text_RegisteredScott, MSGBOX_DEFAULT
     waitfanfare
     closemessage
     delay 30
     setflag FLAG_ENABLE_SCOTT_MATCH_CALL
+    speakername CommonName_Text_Scott
     msgbox SlateportCity_Text_KeepEyeOnTrainersBeSeeingYou, MSGBOX_DEFAULT
     closemessage
     applymovement LOCALID_SCOTT, SlateportCity_Movement_ScottExit
@@ -137,26 +140,6 @@ SlateportCity_Movement_ScottExit:
     walk_left
     walk_left
     step_end
-
-SlateportCity_EventScript_EnergyGuru::
-    lock
-    faceplayer
-    message SlateportCity_Text_EnergyGuruSellWhatYouNeed
-    waitmessage
-    pokemart SlateportCity_Pokemart_EnergyGuru
-    msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
-    release
-    end
-
-    .align 2
-SlateportCity_Pokemart_EnergyGuru:
-    .2byte ITEM_PROTEIN
-    .2byte ITEM_IRON
-    .2byte ITEM_CARBOS
-    .2byte ITEM_ZINC
-    .2byte ITEM_CALCIUM
-    .2byte ITEM_HP_UP
-    pokemartlistend
 
 SlateportCity_EventScript_EffortRibbonWoman::
     lock
@@ -336,13 +319,6 @@ SlateportCity_EventScript_NameRatersHouseSign::
 SlateportCity_EventScript_Maniac::
     lock
     faceplayer
-    call_if_eq VAR_SLATEPORT_CITY_STATE, 1, SlateportCity_EventScript_ManiacSternInterview
-    msgbox SlateportCity_Text_GetNameRaterToHelpYou, MSGBOX_DEFAULT
-    release
-    end
-
-@ Unclear if the text here was meant to be different, but its not
-SlateportCity_EventScript_ManiacSternInterview::
     msgbox SlateportCity_Text_GetNameRaterToHelpYou, MSGBOX_DEFAULT
     release
     end
@@ -563,7 +539,9 @@ SlateportCity_EventScript_PowerTMClerk::
 @ Scene with Capt Sterns interview and Team Aqua announcing plans to steal Submarine
 SlateportCity_EventScript_CaptStern::
     lockall
+    speakername CommonName_Text_CaptStern
     msgbox SlateportCity_Text_SternMoveAheadWithExploration, MSGBOX_DEFAULT
+    speakername CommonName_Text_Gabby
     msgbox SlateportCity_Text_GabbyWonderfulThanksForInterview, MSGBOX_DEFAULT
     closemessage
     applymovement LOCALID_GABBY, Common_Movement_WalkInPlaceFasterRight
@@ -579,11 +557,13 @@ SlateportCity_EventScript_CaptStern::
     waitmovement 0
     removeobject LOCALID_GABBY
     removeobject LOCALID_TY
+    speakername CommonName_Text_CaptStern
     msgbox SlateportCity_Text_SternWhewFirstInterview, MSGBOX_DEFAULT
     applymovement LOCALID_CAPT_STERN, Common_Movement_WalkInPlaceFasterUp
     waitmovement 0
     msgbox SlateportCity_Text_OhPlayerWeMadeDiscovery, MSGBOX_DEFAULT
     playbgm MUS_ENCOUNTER_AQUA, FALSE
+    speakername 0
     msgbox SlateportCity_Text_AquaWillAssumeControlOfSubmarine, MSGBOX_DEFAULT
     applymovement LOCALID_COOK, Common_Movement_WalkInPlaceFasterLeft
     applymovement LOCALID_FAT_MAN, Common_Movement_WalkInPlaceFasterLeft
@@ -593,6 +573,7 @@ SlateportCity_EventScript_CaptStern::
     waitmovement 0
     applymovement LOCALID_CAPT_STERN, Common_Movement_WalkInPlaceFasterDown
     waitmovement 0
+    speakername CommonName_Text_CaptStern
     msgbox SlateportCity_Text_SternWhatWasAllThat, MSGBOX_DEFAULT
     playse SE_PIN
     applymovement LOCALID_CAPT_STERN, Common_Movement_ExclamationMark
@@ -669,11 +650,6 @@ SlateportCity_Movement_TyExit:
     walk_left
     step_end
 
-SlateportCity_Movement_Unused:
-    walk_down
-    walk_in_place_faster_up
-    step_end
-
 SlateportCity_Movement_SternEnterHarbor:
     walk_right
     walk_up
@@ -711,10 +687,12 @@ SlateportCity_Movement_PlayerFaceStern:
     step_end
 
 SlateportCity_EventScript_Ty::
+    speakername CommonName_Text_Ty
     msgbox SlateportCity_Text_BigSmileForCamera, MSGBOX_SIGN
     end
 
 SlateportCity_EventScript_Gabby::
+    speakername CommonName_Text_Gabby
     msgbox SlateportCity_Text_MostInvaluableExperience, MSGBOX_SIGN
     end
 
@@ -893,6 +871,7 @@ SlateportCity_EventScript_ScottBattleTentScene::
     waitmovement 0
     closedoor 10, 12
     waitdooranim
+    speakername CommonName_Text_Scott
     msgbox SlateportCity_Text_TakingBattleTentChallenge, MSGBOX_DEFAULT
     closemessage
     applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_Movement_PlayerWatchScottExit
@@ -950,10 +929,6 @@ mart SlateportCity_Pokemart_PowerTMs {
     ITEM_POWER_WEIGHT
     ITEM_ABILITY_CAPSULE
     ITEM_ABILITY_PATCH
-}
-
-text SlateportCity_Text_EnergyGuruSellWhatYouNeed {
-   format("I'm the Energy Guru! I'll go for it and sell you what you need!")
 }
 
 text SlateportCity_Text_OhYourPokemon {
@@ -1123,8 +1098,7 @@ text SlateportCity_Text_HotSpringsAfterOperation {
 
 text SlateportCity_Text_SeaIsSoWet {
    format("The sea is just so vast…\p"
-    "Could the sea have been made by\n"
-    "the tears shed by Pokémon?")
+    "Could the sea have been made by the tears shed by Pokémon?")
 }
 
 text SlateportCity_Text_SinkOldBoats {
@@ -1189,22 +1163,19 @@ text SlateportCity_Text_CaptainsACelebrity {
 }
 
 text SlateportCity_Text_BigSmileForCamera {
-   format("TY: Okay, Capt. Stern, a big smile\n"
-    "for the camera!")
+   format("Okay, Capt. Stern, a big smile for the camera!")
 }
 
 text SlateportCity_Text_MostInvaluableExperience {
-   format("GABBY: I see, I see. You've had a most\n"
-    "invaluable experience…")
+   format("I see, I see. You've had a most invaluable experience…")
 }
 
 text SlateportCity_Text_SternMoveAheadWithExploration {
-   format("Capt. Stern: Yes, indeed. We intend to\n"
-    "move ahead with our exploration.")
+   format("Yes, indeed. We intend to move ahead with our exploration.")
 }
 
 text SlateportCity_Text_GabbyWonderfulThanksForInterview {
-   format("GABBY: That's wonderful, Capt. Stern!\n"
+   format("That's wonderful, Capt. Stern!\n"
     "Thank you for taking the time from\l"
     "your busy schedule to talk to us.\p"
     "We hope we can interview you again\n"
@@ -1212,9 +1183,8 @@ text SlateportCity_Text_GabbyWonderfulThanksForInterview {
 }
 
 text SlateportCity_Text_SternWhewFirstInterview {
-   format("Capt. Stern: Whew…\p"
-    "That was my first time to be filmed for\n"
-    "TV. That was nerve-wracking.")
+   format("Whew…\p"
+    "That was my first time to be filmed for TV. That was nerve-wracking.")
 }
 
 text SlateportCity_Text_OhPlayerWeMadeDiscovery {
@@ -1240,9 +1210,8 @@ text SlateportCity_Text_AquaWillAssumeControlOfSubmarine {
 }
 
 text SlateportCity_Text_SternWhatWasAllThat {
-   format("Capt. Stern: What was that all about?\p"
-    "It sounded like someone using\n"
-    "a megaphone…\p"
+   format("What was that all about?\p"
+    "It sounded like someone using a megaphone…\p"
     "Where did it come from?")
 }
 
@@ -1288,8 +1257,7 @@ text SlateportCity_Text_PokemonFanClubSign {
 }
 
 text SlateportCity_Text_OceanicMuseumSign {
-   format("“The endless sea sustains\n"
-    "all life.”\p"
+   format("“The endless sea sustains all life.”\p"
     "Oceanic Museum")
 }
 
@@ -1323,11 +1291,9 @@ text SlateportCity_Text_NameRatersHouseSign {
 }
 
 text SlateportCity_Text_ExplainBerries {
-   format("If a wild Pokémon gets hurt, it heals\n"
-    "itself by chewing on Berries.\p"
+   format("If a wild Pokémon gets hurt, it heals itself by chewing on Berries.\p"
     "Did you know that?\p"
-    "Somebody saw that and got the idea\n"
-    "of making medicine from Berries.\p"
+    "Somebody saw that and got the idea of making medicine from Berries.\p"
     "Did you know that?\p"
     "To turn Berries into medicine,\n"
     "they must be crushed into powder.\p"
@@ -1339,8 +1305,7 @@ text SlateportCity_Text_ExplainBerries {
 }
 
 text SlateportCity_Text_ExplainBerryPowder {
-   format("I recently had machines installed at\n"
-    "Pokémon Centers for crushing Berries.\p"
+   format("I recently had machines installed at Pokémon Centers for crushing Berries.\p"
     "The Berry Crush machines are at\n"
     "the Direct Corner upstairs.\p"
     "Did you know?\p"
@@ -1386,7 +1351,7 @@ text SlateportCity_Text_ComeBackToTradeBerryPowder {
 }
 
 text SlateportCity_Text_YouDroveTeamAquaAway {
-   format("SCOTT: Huh?\n"
+   format("Huh?\n"
     "I'm sure I met you somewhere before.\p"
     "Have I introduced myself to you?\n"
     "If not, my name's Scott.\p"
@@ -1396,12 +1361,12 @@ text SlateportCity_Text_YouDroveTeamAquaAway {
 }
 
 text SlateportCity_Text_MaybeThisTrainer {
-   format("SCOTT: Hmm…\n"
+   format("Hmm…\n"
     "Maybe, just maybe, this Trainer…")
 }
 
 text SlateportCity_Text_LetsRegisterEachOther {
-   format("SCOTT: All right! I think you're going to become a good friend.\p"
+   format("All right! I think you're going to become a good friend.\p"
     "So, let's register each other in our Pokénavs.\p"
     "… … … … … …")
 }
@@ -1411,13 +1376,13 @@ text SlateportCity_Text_RegisteredScott {
 }
 
 text SlateportCity_Text_KeepEyeOnTrainersBeSeeingYou {
-   format("SCOTT: What I'd like to do is tag along with you, but I do want to keep an eye on the talents of other people, too.\p"
+   format("What I'd like to do is tag along with you, but I do want to keep an eye on the talents of other people, too.\p"
     "So, I'll be off to roam other towns a bit more.\p"
     "Be seeing you, {PLAYER}{KUN}!")
 }
 
 text SlateportCity_Text_TakingBattleTentChallenge {
-   format("SCOTT: Oh, hey!\n"
+   format("Oh, hey!\n"
     "If it isn't {PLAYER}{KUN}!\p"
     "{PLAYER}{KUN}, let me guess--you're going\n"
     "to take the Battle Tent challenge?\p"
@@ -1427,3 +1392,26 @@ text SlateportCity_Text_TakingBattleTentChallenge {
     "Give it your best effort!")
 }
 
+script SlateportCity_EventScript_EnergyGuru {
+    lock
+    faceplayer
+    speakername("Energy Guru")
+    message(format("I'm the Energy Guru! I'll go for it and sell you what you need!"))
+    waitmessage
+    pokemart(SlateportCity_Pokemart_EnergyGuru)
+    msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
+    release
+}
+
+mart SlateportCity_Pokemart_EnergyGuru {
+    ITEM_FRESH_START_MOCHI
+    ITEM_PROTEIN
+    ITEM_CALCIUM
+    ITEM_IRON
+    ITEM_ZINC
+    ITEM_CARBOS
+    ITEM_HP_UP
+    ITEM_EXP_CANDY_XS
+    ITEM_EXP_CANDY_S
+    ITEM_EXP_CANDY_M
+}

@@ -19,6 +19,7 @@ MeteorFalls_StevensCave_EventScript_Steven::
     waitmovement 0
     applymovement LOCALID_STEVEN, Common_Movement_FacePlayer
     waitmovement 0
+    speakername CommonName_Text_Steven
     msgbox MeteorFalls_StevensCave_Text_ShouldKnowHowGoodIAmExpectWorst, MSGBOX_DEFAULT
     trainerbattle_no_intro TRAINER_STEVEN, MeteorFalls_StevensCave_Text_StevenDefeat
     msgbox MeteorFalls_StevensCave_Text_MyPredictionCameTrue, MSGBOX_DEFAULT
@@ -35,17 +36,13 @@ MeteorFalls_StevensCave_EventScript_Defeated::
 `
 
 text MeteorFalls_StevensCave_Text_ShouldKnowHowGoodIAmExpectWorst {
-    format("STEVEN: Oh, wow, {PLAYER}{KUN}.\n"
+    format("Oh, wow, {PLAYER}{KUN}.\n"
     "I'm amazed you knew where to find me.\p"
-    "Do you, uh…maybe think of me as\n"
-    "just a rock maniac?\p"
+    "Do you, uh…maybe think of me as just a rock maniac?\p"
     "No, that can't be right.\p"
-    "We battled alongside each other at\n"
-    "the SOOTOPOLIS SPACE CENTER.\p"
-    "You should have a very good idea\n"
-    "about how good I am.\p"
-    "Okay, {PLAYER}{KUN}, if you're going to mount\n"
-    "a serious challenge, expect the worst!")
+    "We battled alongside each other at the Sootopolis Space Center.\p"
+    "You should have a very good idea about how good I am.\p"
+    "Okay, {PLAYER}{KUN}, if you're going to mount a serious challenge, expect the worst!")
 }
 
 text MeteorFalls_StevensCave_Text_StevenDefeat {
@@ -54,11 +51,8 @@ text MeteorFalls_StevensCave_Text_StevenDefeat {
 }
 
 text MeteorFalls_StevensCave_Text_MyPredictionCameTrue {
-    format("STEVEN: Come to think of it, ever since\n"
-    "our paths first crossed in GRANITE\l"
-    "CAVE in DEWFORD, I had this feeling.\p"
-    "I thought that you would eventually\n"
-    "become the CHAMPION.\p"
+    format("Come to think of it, ever since our paths first crossed in Granite Cave in Dewford, I had this feeling.\p"
+    "I thought that you would eventually become the Champion.\p"
     "My predictions usually come true.\p"
     "And where will you go from here?\p"
     "… … … … … …\n"

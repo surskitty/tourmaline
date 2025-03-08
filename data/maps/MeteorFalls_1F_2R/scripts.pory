@@ -156,8 +156,7 @@ text MeteorFalls_1F_2R_Text_JayPostBattle {
 }
 
 text MeteorFalls_1F_2R_Text_JayNotEnoughMons {
-    format("JAY: Well, well, aren't you a young\n"
-    "TRAINER?\p"
+    format("JAY: Well, well, aren't you a young Trainer?\p"
     "If you'd care to battle with us, you'll\n"
     "have to come back with more Pokémon.")
 }
@@ -180,7 +179,7 @@ text MeteorFalls_1F_2R_Text_JohnPostRematch {
 }
 
 text MeteorFalls_1F_2R_Text_JohnRematchNotEnoughMons {
-    format("JOHN: Well, well, what a young TRAINER!\p"
+    format("JOHN: Well, well, what a young Trainer!\p"
     "Will you battle with us? If so, you'll\n"
     "have to return with more Pokémon.")
 }
@@ -205,8 +204,7 @@ text MeteorFalls_1F_2R_Text_JayPostRematch {
 }
 
 text MeteorFalls_1F_2R_Text_JayRematchNotEnoughMons {
-    format("JAY: Well, well, aren't you a young\n"
-    "TRAINER?\p"
+    format("JAY: Well, well, aren't you a young Trainer?\p"
     "If you'd care to battle with us, you'll\n"
     "have to come back with more Pokémon.")
 }
