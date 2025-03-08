@@ -120,27 +120,16 @@ SlateportCity_Movement_PlayerFaceScott:
     walk_in_place_faster_left
     step_end
 
-SlateportCity_Movement_ScottApproachPlayer:
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    step_end
+`
+movement SlateportCity_Movement_ScottApproachPlayer {
+    walk_right * 7
+}
 
-SlateportCity_Movement_ScottExit:
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    step_end
+movement SlateportCity_Movement_ScottExit {
+    walk_left * 8
+}
 
+raw `
 SlateportCity_EventScript_EffortRibbonWoman::
     lock
     faceplayer
@@ -618,88 +607,62 @@ SlateportCity_Movement_ManConcern:
     delay_16
     walk_in_place_faster_left
     step_end
+`
 
-SlateportCity_Movement_GabbyExit:
+movement SlateportCity_Movement_GabbyExit {
     delay_16
-    walk_left
-    walk_left
+    walk_left * 2
     walk_down
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    step_end
+    walk_left * 8
+}
 
-SlateportCity_Movement_TyExit:
+movement SlateportCity_Movement_TyExit { 
     walk_down
-    walk_left
-    walk_left
-    walk_left
+    walk_left * 3
     walk_down
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    step_end
+    walk_left * 8
+}
 
-SlateportCity_Movement_SternEnterHarbor:
+movement SlateportCity_Movement_SternEnterHarbor {
     walk_right
-    walk_up
-    walk_up
+    walk_up * 2
     set_invisible
-    step_end
+}
 
-SlateportCity_Movement_SternWatchGabbyAndTyExit:
-    delay_16
-    delay_16
-    delay_16
-    delay_16
-    delay_16
+movement SlateportCity_Movement_SternWatchGabbyAndTyExit {
+    delay_16 * 5
     walk_down
     walk_left
-    step_end
+}
 
-SlateportCity_Movement_PlayerEnterHarbor:
+movement SlateportCity_Movement_PlayerEnterHarbor {
     walk_in_place_faster_right
-    delay_16
-    delay_16
+    delay_16 * 2
     walk_right
     walk_up
-    step_end
+}
 
-SlateportCity_Movement_PlayerFaceStern:
-    delay_16
-    delay_16
-    delay_16
-    delay_16
-    delay_16
-    delay_16
-    delay_16
+movement SlateportCity_Movement_PlayerFaceStern {
+    delay_16 * 7
     walk_in_place_faster_down
-    step_end
+}
 
-SlateportCity_EventScript_Ty::
-    speakername CommonName_Text_Ty
-    msgbox SlateportCity_Text_BigSmileForCamera, MSGBOX_SIGN
-    end
+script SlateportCity_EventScript_Ty {
+    speakername(CommonName_Text_Ty)
+    msgbox(format("Okay, Capt. Stern, a big smile for the camera!"), MSGBOX_SIGN)
+}
 
-SlateportCity_EventScript_Gabby::
-    speakername CommonName_Text_Gabby
-    msgbox SlateportCity_Text_MostInvaluableExperience, MSGBOX_SIGN
-    end
+script SlateportCity_EventScript_Gabby {
+    speakername(CommonName_Text_Gabby)
+    msgbox(format("I see, I see. You've had a most invaluable experience…"), MSGBOX_SIGN)
+}
 
-SlateportCity_EventScript_Man3::
-    msgbox SlateportCity_Text_WonderIfLighthouseStartlesPokemon, MSGBOX_NPC
-    end
+script SlateportCity_EventScript_Man3 {
+    msgbox(format("The light of the lighthouse reaches dozens of miles away.\p"
+        "I wonder if it doesn't startle Pokémon in the sea."), MSGBOX_NPC)
+}
 
+raw `
 SlateportCity_EventScript_BerryPowderClerk::
     lock
     faceplayer
@@ -899,16 +862,6 @@ SlateportCity_Movement_ScottExitBattleTent:
     walk_down
     step_end
 
-SlateportCity_Movement_ScottExitAfterBattleTent:
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    step_end
 
 SlateportCity_EventScript_BerryCrushRankingsSign::
     lockall
@@ -917,6 +870,10 @@ SlateportCity_EventScript_BerryCrushRankingsSign::
     releaseall
     end
 `
+
+movement SlateportCity_Movement_ScottExitAfterBattleTent {
+    walk_right * 8
+}
 
 mart SlateportCity_Pokemart_PowerTMs {
     ITEM_TM_HIDDEN_POWER
@@ -958,11 +915,6 @@ text SlateportCity_Text_EffortRibbonLooksGoodOnIt {
    format("Oh! Your {STR_VAR_1}, that Effort Ribbon looks good on it!")
 }
 
-text SlateportCity_Text_WonderIfLighthouseStartlesPokemon {
-   format("The light of the lighthouse reaches dozens of miles away.\p"
-    "I wonder if it doesn't startle Pokémon in the sea.")
-}
-
 text SlateportCity_Text_SeaweedFullOfLife {
    format("Ooh, look at this!\p"
     "The seaweed you can get around these parts is fresh and full of life.\p"
@@ -981,18 +933,13 @@ text SlateportCity_Text_SlateportWonderfulPlace {
 }
 
 text SlateportCity_Text_BuyBricksSoDecorWontGetDirty {
-   format("If you put Dolls or Cushions on\n"
-    "the floor, they'll get dirty.\p"
-    "I'm going to buy some Bricks so my\n"
-    "Dolls and Cushions won't get dirty\l"
-    "when I leave them out.")
+   format("If you put Dolls or Cushions on the floor, they'll get dirty.\p"
+    "I'm going to buy some Bricks so my Dolls and Cushions won't get dirty when I leave them out.")
 }
 
 text SlateportCity_Text_GoingToCompeteInBattleTent {
-   format("Wroooar! I'm going to compete in\n"
-    "the Battle Tent, too!\p"
-    "But before that, I need to catch\n"
-    "some Pokémon!")
+   format("Wroooar! I'm going to compete in the Battle Tent, too!\p"
+    "But before that, I need to catch some Pokémon!")
 }
 
 text SlateportCity_Text_BushedHikingFromMauville {
@@ -1078,20 +1025,17 @@ text SlateportCity_Text_SaysSomethingLikeSeaIsEndless {
    format("Let's see…\p"
     "Um… I think it says something like\n"
     "“the life in the sea is endless.”\p"
-    "Yup, I'm pretty sure that's what\n"
-    "it says.")
+    "Yup, I'm pretty sure that's what it says.")
 }
 
 text SlateportCity_Text_ShouldveBroughtMyGameBoy {
    format("Grumble…\p"
-    "I should've brought my Game Boy\n"
-    "Advance so I wouldn't get bored in line…\p"
+    "I should've brought my Game Boy Advance so I wouldn't get bored in line…\p"
     "Grumble…")
 }
 
 text SlateportCity_Text_HotSpringsAfterOperation {
-   format("When this operation's over, I'll take\n"
-    "you to a hot spring spa!\p"
+   format("When this operation's over, I'll take you to a hot spring spa!\p"
     "That's what our leader said.\n"
     "I can't wait!")
 }
@@ -1102,15 +1046,12 @@ text SlateportCity_Text_SeaIsSoWet {
 }
 
 text SlateportCity_Text_SinkOldBoats {
-   format("Do you know what they do with old\n"
-    "ships that become too creaky to sail?\p"
-    "They sink them in the sea so they\n"
-    "become habitats for Pokémon.")
+   format("Do you know what they do with old ships that become too creaky to sail?\p"
+    "They sink them in the sea so they become habitats for Pokémon.")
 }
 
 text SlateportCity_Text_BuyTooMuch {
-   format("Whenever I visit here, I get carried\n"
-    "away and buy too much.")
+   format("Whenever I visit here, I get carried away and buy too much.")
 }
 
 text SlateportCity_Text_GetNameRaterToHelpYou {
@@ -1148,8 +1089,7 @@ text SlateportCity_Text_SternSaysDiscoveredSomething {
 
 text SlateportCity_Text_CaptainComeBackWithBigFish {
    format("What's going on here?\p"
-    "Did the good Captain come back with\n"
-    "a big fish from the ocean floor?")
+    "Did the good Captain come back with a big fish from the ocean floor?")
 }
 
 text SlateportCity_Text_AmIOnTV {
@@ -1162,24 +1102,14 @@ text SlateportCity_Text_CaptainsACelebrity {
     "The Captain's a celebrity!")
 }
 
-text SlateportCity_Text_BigSmileForCamera {
-   format("Okay, Capt. Stern, a big smile for the camera!")
-}
-
-text SlateportCity_Text_MostInvaluableExperience {
-   format("I see, I see. You've had a most invaluable experience…")
-}
-
 text SlateportCity_Text_SternMoveAheadWithExploration {
    format("Yes, indeed. We intend to move ahead with our exploration.")
 }
 
 text SlateportCity_Text_GabbyWonderfulThanksForInterview {
    format("That's wonderful, Capt. Stern!\n"
-    "Thank you for taking the time from\l"
-    "your busy schedule to talk to us.\p"
-    "We hope we can interview you again\n"
-    "with news of more discoveries!")
+    "Thank you for taking the time from your busy schedule to talk to us.\p"
+    "We hope we can interview you again with news of more discoveries!")
 }
 
 text SlateportCity_Text_SternWhewFirstInterview {
@@ -1190,8 +1120,7 @@ text SlateportCity_Text_SternWhewFirstInterview {
 text SlateportCity_Text_OhPlayerWeMadeDiscovery {
    format("Oh! {PLAYER}{KUN}!\n"
     "You're looking great!\p"
-    "We made a huge discovery on our last\n"
-    "seafloor exploration.\p"
+    "We made a huge discovery on our last seafloor exploration.\p"
     "We found an underwater cavern on\n"
     "Route 128.\p"
     "We think it's the habitat of a Pokémon\n"
@@ -1239,16 +1168,12 @@ text SlateportCity_Text_SternsShipyardWantedSign {
 
 text SlateportCity_Text_SternsShipyardNearsCompletion {
    format("Stern's Shipyard\p"
-    "“The ferry S.S. Tidal nears\n"
-    "completion for serving the ports of\l"
-    "Slateport and Lilycove.”")
+    "“The ferry S.S. Tidal nears completion for serving the ports of Slateport and Lilycove.”")
 }
 
 text SlateportCity_Text_SternsShipyardFerryComplete {
    format("Stern's Shipyard\p"
-    "“Boarding of the Slateport-Lilycove\n"
-    "ferry S.S. Tidal is handled at the\l"
-    "Harbor.”")
+    "“Boarding of the Slateport-Lilycove ferry S.S. Tidal is handled at the Harbor.”")
 }
 
 text SlateportCity_Text_PokemonFanClubSign {
@@ -1263,8 +1188,7 @@ text SlateportCity_Text_OceanicMuseumSign {
 
 text SlateportCity_Text_CitySign {
    format("Slateport City\p"
-    "“The port where people and Pokémon\n"
-    "cross paths.”")
+    "“The port where people and Pokémon cross paths.”")
 }
 
 text SlateportCity_Text_MarketSign {
@@ -1274,16 +1198,13 @@ text SlateportCity_Text_MarketSign {
 
 text SlateportCity_Text_HarborFerryUnderConstruction {
    format("Slateport Harbor\p"
-    "“The ferry S.S. Tidal is under\n"
-    "construction in the Shipyard.\p"
-    "“Service is scheduled to begin\n"
-    "shortly.”")
+    "“The ferry S.S. Tidal is under construction in the Shipyard.\p"
+    "“Service is scheduled to begin shortly.”")
 }
 
 text SlateportCity_Text_HarborSign {
    format("Slateport Harbor\p"
-    "“Enjoy a delightful cruise on\n"
-    "the ferry S.S. Tidal.”")
+    "“Enjoy a delightful cruise on the ferry S.S. Tidal.”")
 }
 
 text SlateportCity_Text_NameRatersHouseSign {
@@ -1295,24 +1216,18 @@ text SlateportCity_Text_ExplainBerries {
     "Did you know that?\p"
     "Somebody saw that and got the idea of making medicine from Berries.\p"
     "Did you know that?\p"
-    "To turn Berries into medicine,\n"
-    "they must be crushed into powder.\p"
+    "To turn Berries into medicine, they must be crushed into powder.\p"
     "Did you know that?\p"
-    "You seem to have an interest\n"
-    "in Berries!\p"
-    "I've got something good for someone\n"
-    "like you.")
+    "You seem to have an interest in Berries!\p"
+    "I've got something good for someone like you.")
 }
 
 text SlateportCity_Text_ExplainBerryPowder {
    format("I recently had machines installed at Pokémon Centers for crushing Berries.\p"
-    "The Berry Crush machines are at\n"
-    "the Direct Corner upstairs.\p"
+    "The Berry Crush machines are at the Direct Corner upstairs.\p"
     "Did you know?\p"
-    "Could you make Berry Powder for\n"
-    "me using those machines?\p"
-    "I can make you all sorts of medicine\n"
-    "if you bring me lots of Berry Powder.")
+    "Could you make Berry Powder for me using those machines?\p"
+    "I can make you all sorts of medicine if you bring me lots of Berry Powder.")
 }
 
 text SlateportCity_Text_BroughtMeSomeBerryPowder {
@@ -1335,8 +1250,7 @@ text SlateportCity_Text_DontHaveEnoughBerryPowder {
 text SlateportCity_Text_FineBerryPowderTradeSomethingElse {
    format("This is fine Berry Powder.\n"
     "It will make excellent medicine.\p"
-    "Would you like to trade more of your\n"
-    "Berry Powder for something else?")
+    "Would you like to trade more of your Berry Powder for something else?")
 }
 
 text SlateportCity_Text_WhenYouGetMoreBringItToMe {
@@ -1344,8 +1258,7 @@ text SlateportCity_Text_WhenYouGetMoreBringItToMe {
 }
 
 text SlateportCity_Text_ComeBackToTradeBerryPowder {
-   format("Come back if you'd like to trade your\n"
-    "Berry Powder for some medicine.\p"
+   format("Come back if you'd like to trade your Berry Powder for some medicine.\p"
     "I'm always running a bazaar here.\p"
     "Did you know?")
 }
