@@ -594,7 +594,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
 #endif //P_MEGA_EVOLUTIONS
 #endif //P_FAMILY_TORCHIC
 
-#if P_MUDKIP_FAMILY
+#if P_FAMILY_MUDKIP
     [SPECIES_MUDKIP] =
     {
         .baseHP        = 50,
