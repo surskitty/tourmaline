@@ -3,7 +3,8 @@ mapscripts SlateportCity_Mart_MapScripts {}
 script SlateportCity_Mart_EventScript_Clerk {
     lock
     faceplayer
-    message(gText_HowMayIServeYou)
+    speakername(CommonName_Text_Clerk)
+    message(gText_WelcomeLocalStore)
     waitmessage
     pokemart(SlateportCity_Mart_Pokemart)
     msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
@@ -11,14 +12,6 @@ script SlateportCity_Mart_EventScript_Clerk {
 }
 
 mart SlateportCity_Mart_Pokemart {
-    ITEM_POKE_BALL
-    ITEM_GREAT_BALL
-    ITEM_POTION
-    ITEM_SUPER_POTION
-    ITEM_ANTIDOTE
-    ITEM_PARALYZE_HEAL
-    ITEM_REPEL
-    ITEM_LURE
     ITEM_ABILITY_CAPSULE
     ITEM_ABILITY_PATCH
     ITEM_AIR_BALLOON

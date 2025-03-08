@@ -1,34 +1,35 @@
 mapscripts BattleFrontier_Mart_MapScripts {}
 
+script BattleFrontier_Mart_EventScript_Clerk {
+    lock
+    faceplayer
+    speakername(CommonName_Text_Clerk)
+    message(gText_WelcomeLocalStore)
+    waitmessage
+    pokemart(BattleFrontier_Mart_Pokemart)
+    msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
+    release
+}
+
 mart BattleFrontier_Mart_Pokemart {
-    ITEM_ULTRA_BALL
-    ITEM_HYPER_POTION
-    ITEM_MAX_POTION
-    ITEM_FULL_RESTORE
-    ITEM_FULL_HEAL
-    ITEM_REVIVE
-    ITEM_MAX_REPEL
+    ITEM_FRESH_START_MOCHI
     ITEM_PROTEIN
     ITEM_CALCIUM
     ITEM_IRON
     ITEM_ZINC
     ITEM_CARBOS
     ITEM_HP_UP
+    ITEM_PP_UP
+    ITEM_EXP_CANDY_XS
+    ITEM_EXP_CANDY_S
+    ITEM_EXP_CANDY_M
+    ITEM_EXP_CANDY_L
+    ITEM_EXP_CANDY_XL
 }
 
 raw `
 .set LOCALID_OLD_WOMAN, 2
 
-
-BattleFrontier_Mart_EventScript_Clerk::
-    lock
-    faceplayer
-    message gText_HowMayIServeYou
-    waitmessage
-    pokemart BattleFrontier_Mart_Pokemart
-    msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
-    release
-    end
 
 BattleFrontier_Mart_EventScript_OldMan::
     msgbox BattleFrontier_Mart_Text_ChaperonGrandson, MSGBOX_NPC
@@ -55,11 +56,11 @@ BattleFrontier_Mart_Text_ChaperonGrandson:
 BattleFrontier_Mart_Text_ProteinMakeNiceGift:
     .string "Dear, what do you think of this?\n"
     .string "Wouldn't this make a nice gift?\p"
-    .string "It's…PRO…TE…IN?\n"
+    .string "It's…Pro…te…in?\n"
     .string "It sounds delicious, doesn't it?$"
 
 BattleFrontier_Mart_Text_FacilitiesDontAllowItems:
-    .string "A lot of the BATTLE FRONTIER's\n"
+    .string "A lot of the Battle Frontier's\n"
     .string "facilities don't allow the use of items\l"
     .string "during battles.\p"
     .string "That rule makes things tougher than\n"

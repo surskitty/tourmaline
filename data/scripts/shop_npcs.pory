@@ -1,11 +1,31 @@
+const MEGA_STONE_PRICE = 3000
+
 script Common_EventScript_MegaStoneClerk {
     lock
     faceplayer
     speakername("Mega Stoner")
-    if (flag(FLAG_BADGE05_GET)) {
-        message("Welcome!\nI am a fine purveyor of Mega Stones.\pHow may I serve you?")
-        waitmessage
-        pokemart(Common_Marts_MegaStones)
+    checkitem(ITEM_MEGA_RING)
+    if (var(VAR_RESULT) == TRUE) {
+        checkmoney(MEGA_STONE_PRICE)
+        if (var(VAR_RESULT) == TRUE) {
+            message(format("Welcome!\nI am a fine purveyor of Mega Stones.\pWhere do you find the Pokémon of interest?"))
+            waitmessage
+            showmoneybox(0, 0)
+            dynmultichoice(13, 4, FALSE, 4, FALSE, DYN_MULTICHOICE_CB_NONE, "Petalburg Area", "Dewford Area", "Mauville Area", "Somewhere Else")
+            message(format("Which Pokémon do you want a Stone for?"))
+            waitmessage
+            switch (var(VAR_RESULT)) {
+            case 0: goto(Common_EventScript_MegaStoneClerk_Petalburg)
+            case 1: goto(Common_EventScript_MegaStoneClerk_Dewford)
+            case 2: goto(Common_EventScript_MegaStoneClerk_Mauville)
+            case 3: goto(Common_EventScript_MegaStoneClerk_Elsewhere)
+            default:
+                break
+            }
+            msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
+        } else {
+            msgbox(format("Welcome!\p… You don't have the money for any Mega Stones."), MSGBOX_DEFAULT)
+        }
         msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
     } else {
     msgbox(format("Welcome!\p… I don't see a Mega Bracelet on you.\pCome back when you have a Mega Bracelet."), MSGBOX_DEFAULT)
@@ -13,47 +33,72 @@ script Common_EventScript_MegaStoneClerk {
     release
 }
 
-mart Common_Marts_MegaStones {
-    ITEM_ALAKAZITE
-    ITEM_PIDGEOTITE
-    ITEM_GYARADOSITE
-    ITEM_AMPHAROSITE
-    ITEM_DREDNITE
-    ITEM_GARBINITE
-    ITEM_ORBEETITE
-    ITEM_AUDINITE
-    ITEM_SALAMENCITE
-    ITEM_METAGROSSITE
-    ITEM_GLALITITE
-    ITEM_ABSOLITE
-    ITEM_BANETTITE
-    ITEM_ALTARIANITE
-    ITEM_CAMERUPTITE
-    ITEM_SHARPEDONITE
-    ITEM_MEDICHAMITE
-    ITEM_AGGRONITE
-    ITEM_MAWILITE
-    ITEM_SABLENITE
-    ITEM_GALLADITE
-    ITEM_GARDEVOIRITE
-    ITEM_SWAMPERTITE
-    ITEM_BLAZIKENITE
-    ITEM_SCEPTILITE
-    ITEM_HOUNDOOMINITE
-    ITEM_PINSIRITE
+script Common_EventScript_MegaStoneClerk_Petalburg {
+    dynmultipush("Sceptile",    ITEM_SCEPTILITE)
+    dynmultipush("Blaziken",    ITEM_BLAZIKENITE)
+    dynmultipush("Swampert",    ITEM_SWAMPERTITE)
+    dynmultipush("Audino",      ITEM_AUDINITE)
+    dynmultipush("Drednaw",     ITEM_DREDNITE)
+    dynmultipush("Gardevoir",   ITEM_GARDEVOIRITE)
+    dynmultipush("Gallade",     ITEM_GALLADITE)
+    dynmultipush("Orbeetle",    ITEM_ORBEETITE)
+    dynmultipush("Pidgeot",     ITEM_PIDGEOTITE)
+    goto(Common_EventScript_MegaStoneClerk_BuyMegaStone)
+}
+
+script Common_EventScript_MegaStoneClerk_Dewford {
+    dynmultipush("Aggron",      ITEM_AGGRONITE)
+    dynmultipush("Alakazam",    ITEM_ALAKAZITE)
+    dynmultipush("Gyarados",    ITEM_GYARADOSITE)
+    dynmultipush("Mawile",      ITEM_MAWILITE)
+    dynmultipush("Sableye",     ITEM_SABLENITE)
+    goto(Common_EventScript_MegaStoneClerk_BuyMegaStone)
+}
+
+script Common_EventScript_MegaStoneClerk_Mauville {
+    dynmultipush("Absol",       ITEM_ABSOLITE)
+    dynmultipush("Altaria",     ITEM_ALTARIANITE)
+    dynmultipush("Camerupt",    ITEM_CAMERUPTITE)
+    dynmultipush("Garbodor",    ITEM_GARBINITE)
+    dynmultipush("Medicham",    ITEM_MEDICHAMITE)
+    dynmultipush("Pidgeot",     ITEM_PIDGEOTITE)
+    dynmultipush("Salamence",   ITEM_SALAMENCITE)
+    goto(Common_EventScript_MegaStoneClerk_BuyMegaStone)
+}
+
+script Common_EventScript_MegaStoneClerk_Elsewhere {
+    dynmultipush("Absol",           ITEM_ABSOLITE)
+    dynmultipush("Ampharos",        ITEM_AMPHAROSITE)
+    dynmultipush("Banette",         ITEM_BANETTITE)
+    dynmultipush("Glalitite",       ITEM_GLALITITE)
+    dynmultipush("Houndoom",        ITEM_HOUNDOOMINITE)
+    dynmultipush("Metagross",       ITEM_METAGROSSITE)
+    dynmultipush("Pinsir",          ITEM_PINSIRITE)
+    dynmultipush("Sharpedo",        ITEM_SHARPEDONITE)
+    goto(Common_EventScript_MegaStoneClerk_BuyMegaStone)
+}
+
+script Common_EventScript_MegaStoneClerk_BuyMegaStone {
+    dynmultistack(13, 1, FALSE, 5, FALSE, FALSE, DYN_MULTICHOICE_CB_SHOW_ITEM)
+    if (var(VAR_RESULT) != MULTI_B_PRESSED)
+    {
+        hidemoneybox
+        giveitem(VAR_RESULT)
+        removemoney(MEGA_STONE_PRICE)
+    }
+    hidemoneybox
+    msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
+    release
 }
 
 script Common_EventScript_ItemClerk {
     lock
     faceplayer
     speakername(CommonName_Text_Clerk)
+    if (flag(FLAG_BADGE07_GET)) { goto(Common_EventScript_Clerk_Endgame) }
     message(gText_HowMayIServeYou)
     waitmessage
-    if (flag(FLAG_SYS_GAME_CLEAR)) {
-        pokemart(Common_Marts_Postgame)    
-    } elif (flag(FLAG_ENTERED_ELITE_FOUR)) {
-        pokemart(Common_Marts_Endgame)
-    } elif (flag(FLAG_VISITED_MOSSDEEP_CITY)) {
+    if (flag(FLAG_VISITED_MOSSDEEP_CITY)) {
         pokemart(Common_Marts_PostLilycove)
     } elif (flag(FLAG_BADGE05_GET)) {
         pokemart(Common_Marts_PostNorman)
@@ -124,6 +169,7 @@ mart Common_Marts_PostWattson {
     ITEM_SUPER_POTION
     ITEM_REPEL
     ITEM_LURE
+    ITEM_REVIVE
     ITEM_ANTIDOTE
     ITEM_AWAKENING
     ITEM_BURN_HEAL
@@ -182,57 +228,153 @@ mart Common_Marts_PostLilycove {
     ITEM_POKE_DOLL
 }
 
-mart Common_Marts_Endgame {
-    ITEM_POKE_BALL
-    ITEM_GREAT_BALL
-    ITEM_ULTRA_BALL
-    ITEM_HEAL_BALL
-    ITEM_NET_BALL
-    ITEM_NEST_BALL
-    ITEM_REPEAT_BALL
-    ITEM_POTION
-    ITEM_SUPER_POTION
-    ITEM_HYPER_POTION
-    ITEM_MAX_POTION
-    ITEM_REPEL
-    ITEM_SUPER_REPEL
-    ITEM_MAX_REPEL
-    ITEM_LURE
-    ITEM_SUPER_LURE
-    ITEM_MAX_LURE
-    ITEM_FULL_HEAL
-    ITEM_ANTIDOTE
-    ITEM_AWAKENING
-    ITEM_BURN_HEAL
-    ITEM_ICE_HEAL
-    ITEM_PARALYZE_HEAL
-    ITEM_POKE_DOLL
+script Common_EventScript_Clerk_Endgame {
+    message(gText_PlayerWhatCanIDoForYou)
+    dynmultichoice(3, 3, FALSE, 4, FALSE, DYN_MULTICHOICE_CB_NONE, "Poké Balls", "Battle Items", "Restoratives", "Utility")
+    switch (var(VAR_RESULT)) {
+    case 0: goto(Common_EventScript_Clerk_Pokeballs)
+    case 1: pokemart(Common_Marts_BattleItems)
+    case 2: pokemart(Common_Marts_Restoratives)
+    case 3: goto(Common_EventScript_Clerk_Utility)
+    default:
+        break
+    }
+    msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
+    waitmessage
+    release
 }
 
-mart Common_Marts_Postgame {
+script Common_EventScript_Clerk_Pokeballs {
+    if (flag(FLAG_SYS_GAME_CLEAR)) {
+        pokemart(Common_Marts_Pokeballs_All)    
+    } elif (flag(FLAG_ENTERED_ELITE_FOUR)) {
+        pokemart(Common_Marts_Pokeballs_Apricorns)
+    } else {
+        pokemart(Common_Marts_Pokeballs_Devon)
+    }
+    msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
+    waitmessage
+    release
+}
+
+script Common_EventScript_Clerk_Utility {
+    if (flag(FLAG_ENTERED_ELITE_FOUR)) {
+        pokemart(Common_Marts_Utility_All)    
+    } else {
+        pokemart(Common_Marts_Utility)
+    }
+    msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
+    waitmessage
+    release
+}
+
+mart Common_Marts_Pokeballs_Devon {
     ITEM_POKE_BALL
     ITEM_GREAT_BALL
     ITEM_ULTRA_BALL
+    ITEM_DUSK_BALL
     ITEM_HEAL_BALL
-    ITEM_NET_BALL
+    ITEM_LUXURY_BALL
     ITEM_NEST_BALL
+    ITEM_NET_BALL
     ITEM_REPEAT_BALL
+    ITEM_QUICK_BALL
+    ITEM_TIMER_BALL
+}
+
+mart Common_Marts_Pokeballs_Apricorns {
+    ITEM_POKE_BALL
+    ITEM_GREAT_BALL
+    ITEM_ULTRA_BALL
+    ITEM_DUSK_BALL
+    ITEM_HEAL_BALL
+    ITEM_LUXURY_BALL
+    ITEM_NEST_BALL
+    ITEM_NET_BALL
+    ITEM_REPEAT_BALL
+    ITEM_QUICK_BALL
+    ITEM_TIMER_BALL
+    ITEM_FAST_BALL
+    ITEM_LEVEL_BALL
+    ITEM_LURE_BALL
+    ITEM_HEAVY_BALL
+    ITEM_LOVE_BALL
+    ITEM_FRIEND_BALL
+    ITEM_MOON_BALL
+}
+
+mart Common_Marts_Pokeballs_All {
+    ITEM_POKE_BALL
+    ITEM_GREAT_BALL
+    ITEM_ULTRA_BALL
+    ITEM_DUSK_BALL
+    ITEM_HEAL_BALL
+    ITEM_LUXURY_BALL
+    ITEM_NEST_BALL
+    ITEM_NET_BALL
+    ITEM_REPEAT_BALL
+    ITEM_QUICK_BALL
+    ITEM_TIMER_BALL
+    ITEM_FAST_BALL
+    ITEM_LEVEL_BALL
+    ITEM_LURE_BALL
+    ITEM_HEAVY_BALL
+    ITEM_LOVE_BALL
+    ITEM_FRIEND_BALL
+    ITEM_MOON_BALL
+    ITEM_DREAM_BALL
+    ITEM_SAFARI_BALL
+    ITEM_BEAST_BALL
+    ITEM_SPORT_BALL
+}
+
+mart Common_Marts_BattleItems {
+    ITEM_X_ATTACK
+    ITEM_X_DEFEND
+    ITEM_X_SP_ATK
+    ITEM_X_SP_DEF
+    ITEM_X_SPEED
+    ITEM_X_ACCURACY
+}
+
+mart Common_Marts_Restoratives {
     ITEM_POTION
     ITEM_SUPER_POTION
     ITEM_HYPER_POTION
     ITEM_MAX_POTION
-    ITEM_REPEL
-    ITEM_SUPER_REPEL
-    ITEM_MAX_REPEL
-    ITEM_LURE
-    ITEM_SUPER_LURE
-    ITEM_MAX_LURE
+    ITEM_FULL_RESTORE
     ITEM_FULL_HEAL
     ITEM_ANTIDOTE
     ITEM_AWAKENING
     ITEM_BURN_HEAL
     ITEM_ICE_HEAL
     ITEM_PARALYZE_HEAL
+}
+
+mart Common_Marts_Utility_All {
+    ITEM_REPEL
+    ITEM_SUPER_REPEL
+    ITEM_MAX_REPEL
+    ITEM_LURE
+    ITEM_SUPER_LURE
+    ITEM_MAX_LURE
+    ITEM_POKE_DOLL
+    ITEM_EXP_CANDY_XS
+    ITEM_EXP_CANDY_S
+    ITEM_EXP_CANDY_M
+    ITEM_EXP_CANDY_L
+    ITEM_EXP_CANDY_XL
+}
+
+mart Common_Marts_Utility {
+    ITEM_EXP_CANDY_XS
+    ITEM_EXP_CANDY_S
+    ITEM_REPEL
+    ITEM_SUPER_REPEL
+    ITEM_MAX_REPEL
+    ITEM_LURE
+    ITEM_SUPER_LURE
+    ITEM_MAX_LURE
     ITEM_POKE_DOLL
 }
 

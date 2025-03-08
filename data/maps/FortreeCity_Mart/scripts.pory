@@ -3,7 +3,8 @@ mapscripts FortreeCity_Mart_MapScripts {}
 script FortreeCity_Mart_EventScript_Clerk {
     lock
     faceplayer
-    message(gText_HowMayIServeYou)
+    speakername(CommonName_Text_Clerk)
+    message(gText_WelcomeLocalStore)
     waitmessage
     pokemart(FortreeCity_Mart_Pokemart)
     msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
@@ -11,20 +12,11 @@ script FortreeCity_Mart_EventScript_Clerk {
 }
 
 mart FortreeCity_Mart_Pokemart {
-    ITEM_GREAT_BALL
-    ITEM_ULTRA_BALL
-    ITEM_SUPER_POTION
-    ITEM_HYPER_POTION
-    ITEM_ANTIDOTE
-    ITEM_PARALYZE_HEAL
-    ITEM_AWAKENING
-    ITEM_REVIVE
-    ITEM_SUPER_LURE
-    ITEM_SUPER_REPEL
-    ITEM_PIDGEOTITE
-    ITEM_ALTARIANITE
-    ITEM_SALAMENCITE
-    ITEM_PINSIRITE
+    ITEM_EJECT_BUTTON
+    ITEM_EJECT_PACK
+    ITEM_RED_CARD
+    ITEM_THROAT_SPRAY
+    ITEM_UTILITY_UMBRELLA
     ITEM_WOOD_MAIL
 }
 

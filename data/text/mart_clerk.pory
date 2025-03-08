@@ -1,0 +1,18 @@
+text gText_HowMayIServeYou {
+    format("Welcome to the Friendly Shop!\p"
+        "How may I serve you?")
+}
+
+text gText_WelcomeLocalStore {
+    format("Welcome!\p"
+        "What local specialties do you want today?")
+}
+
+text gText_PleaseComeAgain {
+    format("Please come again!") 
+}
+
+text gText_PlayerWhatCanIDoForYou {
+    format("{PLAYER}{STRING 5}, welcome!\p"
+        "What can I do for you?")
+}

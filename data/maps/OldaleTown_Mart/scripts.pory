@@ -3,7 +3,8 @@ mapscripts OldaleTown_Mart_MapScripts {}
 script OldaleTown_Mart_EventScript_Clerk {
     lock
     faceplayer
-    message(gText_HowMayIServeYou)
+    speakername(CommonName_Text_Clerk)
+    message(gText_WelcomeLocalStore)
     waitmessage
     if (flag(FLAG_ADVENTURE_STARTED)) {
         pokemart(OldaleTown_Mart_Pokemart_Expanded)
@@ -12,6 +13,10 @@ script OldaleTown_Mart_EventScript_Clerk {
     }
     msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
     release
+}
+
+script OldaleTown_Mart_EventScript_Trainee {
+    msgbox(format("I'm not allowed to touch anything yet."), MSGBOX_NPC)
 }
 
 mart OldaleTown_Mart_Pokemart_Basic {
@@ -37,10 +42,11 @@ script OldaleTown_Mart_EventScript_Woman {
     lock
     faceplayer
     if (flag(FLAG_ADVENTURE_STARTED)) {
-        msgbox(OldaleTown_Mart_Text_ImGoingToBuyPokeBalls, MSGBOX_DEFAULT)
+        msgbox(format("I'm going to buy a bunch of Poké Balls and catch a bunch of Pokémon!"), MSGBOX_DEFAULT)
         release
     } else {
-        msgbox(OldaleTown_Mart_Text_PokeBallsAreSoldOut, MSGBOX_DEFAULT)
+        msgbox(format("The clerk says they're all sold out.\n"
+            "I can't buy any Poké Balls."), MSGBOX_DEFAULT)
         release
     }
 }
@@ -50,11 +56,3 @@ script OldaleTown_Mart_EventScript_Boy {
         "I heard what Pokémon you have in front matters, too."), MSGBOX_NPC)
 }
 
-text OldaleTown_Mart_Text_PokeBallsAreSoldOut {
-    "The clerk says they're all sold out.\n"
-    "I can't buy any Poké Balls."
-}
-
-text OldaleTown_Mart_Text_ImGoingToBuyPokeBalls {
-    format("I'm going to buy a bunch of Poké Balls and catch a bunch of Pokémon!")
-}

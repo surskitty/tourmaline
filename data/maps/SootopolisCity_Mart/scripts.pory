@@ -3,7 +3,8 @@ mapscripts SootopolisCity_Mart_MapScripts {}
 script SootopolisCity_Mart_EventScript_Clerk {
     lock
     faceplayer
-    message(gText_HowMayIServeYou)
+    speakername(CommonName_Text_Clerk)
+    message(gText_WelcomeLocalStore)
     waitmessage
     pokemart(SootopolisCity_Mart_Pokemart)
     msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
@@ -11,14 +12,6 @@ script SootopolisCity_Mart_EventScript_Clerk {
 }
 
 mart SootopolisCity_Mart_Pokemart {
-    ITEM_ULTRA_BALL
-    ITEM_HYPER_POTION
-    ITEM_MAX_POTION
-    ITEM_FULL_HEAL
-    ITEM_PP_UP
-    ITEM_REVIVE
-    ITEM_MAX_LURE
-    ITEM_MAX_REPEL
     ITEM_ABSORB_BULB
     ITEM_LUMINOUS_MOSS
     ITEM_MIRROR_HERB

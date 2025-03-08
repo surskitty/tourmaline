@@ -4,7 +4,7 @@ script VerdanturfTown_Mart_EventScript_Clerk {
     lock
     faceplayer
     speakername(CommonName_Text_Clerk)
-    message(gText_HowMayIServeYou)
+    message(gText_WelcomeLocalStore)
     waitmessage
     pokemart(VerdanturfTown_Mart_Pokemart)
     msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
@@ -12,25 +12,15 @@ script VerdanturfTown_Mart_EventScript_Clerk {
 }
 
 mart VerdanturfTown_Mart_Pokemart {
-    ITEM_GREAT_BALL
     ITEM_NEST_BALL
     ITEM_LEVEL_BALL
-    ITEM_SUPER_POTION
-    ITEM_ANTIDOTE
-    ITEM_PARALYZE_HEAL
-    ITEM_AWAKENING
-    ITEM_BURN_HEAL
-    ITEM_ICE_HEAL
-    ITEM_LURE
-    ITEM_REPEL
     ITEM_X_SP_ATK
     ITEM_FLUFFY_TAIL
 }
 
 script VerdanturfTown_Mart_EventScript_Boy {
     msgbox(format("For any Pokémon match, X Special is crucial.\p"
-    "It jacks up the power of some moves\n"
-    "even though it's only for one battle."), MSGBOX_NPC)
+    "It jacks up the power of some moves even though it's only for one battle."), MSGBOX_NPC)
 }
 
 script VerdanturfTown_Mart_EventScript_ExpertF {
