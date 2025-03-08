@@ -3060,8 +3060,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE),
 #if !TESTING
-        .abilities = { ABILITY_RUN_AWAY, ABILITY_KLUTZ, ABILITY_LIMBER },
-        .innates = { },
+        .abilities = { ABILITY_RUN_AWAY, ABILITY_KLUTZ, ABILITY_NONE },
+        .innates = { ABILITY_LIMBER },
 #else
         .abilities = { ABILITY_RUN_AWAY, ABILITY_KLUTZ, ABILITY_LIMBER },
 #endif
@@ -3128,8 +3128,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE),
 #if !TESTING
-        .abilities = { ABILITY_CUTE_CHARM, ABILITY_KLUTZ, ABILITY_LIMBER },
-        .innates = { },
+        .abilities = { ABILITY_RUN_AWAY, ABILITY_KLUTZ, ABILITY_NONE },
+        .innates = { ABILITY_LIMBER, ABILITY_CUTE_CHARM },
 #else
         .abilities = { ABILITY_CUTE_CHARM, ABILITY_KLUTZ, ABILITY_LIMBER },
 #endif
@@ -3197,8 +3197,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE),
 #if !TESTING
-        .abilities = { ABILITY_CUTE_CHARM, ABILITY_KLUTZ, ABILITY_LIMBER },
-        .innates = { ABILITY_SCRAPPY },
+        .abilities = { ABILITY_RECKLESS, ABILITY_KLUTZ, ABILITY_NONE },
+        .innates = { ABILITY_LIMBER, ABILITY_CUTE_CHARM, ABILITY_SCRAPPY },
 #else
         .abilities = { ABILITY_SCRAPPY, ABILITY_SCRAPPY, ABILITY_SCRAPPY },
 #endif

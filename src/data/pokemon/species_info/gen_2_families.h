@@ -4295,8 +4295,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
 #if !TESTING
-        .abilities = { ABILITY_SERENE_GRACE, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_RATTLED, ABILITY_RUN_AWAY },
+        .abilities = { ABILITY_EARTH_EATER, ABILITY_NONE, ABILITY_NONE },
+        .innates = { ABILITY_RATTLED, ABILITY_RUN_AWAY, ABILITY_SERENE_GRACE },
 #else
         .abilities = { ABILITY_SERENE_GRACE, ABILITY_RUN_AWAY, ABILITY_RATTLED },
 #endif
@@ -5562,8 +5562,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
 #if !TESTING
-        .abilities = { ABILITY_GUTS, ABILITY_QUICK_FEET, ABILITY_NONE },
-        .innates = { ABILITY_UNNERVE },
+        .abilities = { ABILITY_QUICK_FEET, ABILITY_NONE, ABILITY_NONE },
+        .innates = { ABILITY_UNNERVE, ABILITY_GUTS },
 #else
         .abilities = { ABILITY_GUTS, ABILITY_QUICK_FEET, ABILITY_UNNERVE },
 #endif
@@ -5643,8 +5643,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
 #if !TESTING
-        .abilities = { ABILITY_GUTS, ABILITY_BULLETPROOF, ABILITY_NONE },
-        .innates = { ABILITY_UNNERVE },
+        .abilities = { ABILITY_BULLETPROOF, ABILITY_NONE, ABILITY_NONE },
+        .innates = { ABILITY_UNNERVE, ABILITY_GUTS, ABILITY_MINDS_EYE },
 #else
         .abilities = { ABILITY_GUTS, ABILITY_BULLETPROOF, ABILITY_UNNERVE },
 #endif

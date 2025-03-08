@@ -16795,7 +16795,7 @@ Level: 35
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 === TRAINER_GABRIELLE_5 ===
-Name: GABRIELLE
+Name: Gabrielle
 Class: Pkmn Breeder
 Pic: Pokemon Breeder F
 Gender: Female
@@ -16828,7 +16828,7 @@ Level: 37
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 === TRAINER_THALIA_2 ===
-Name: THALIA
+Name: Thalia
 Class: Beauty
 Pic: Beauty
 Gender: Female
@@ -16845,7 +16845,7 @@ Level: 34
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 
 === TRAINER_THALIA_3 ===
-Name: THALIA
+Name: Thalia
 Class: Beauty
 Pic: Beauty
 Gender: Female
@@ -16866,7 +16866,7 @@ Level: 36
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 === TRAINER_THALIA_4 ===
-Name: THALIA
+Name: Thalia
 Class: Beauty
 Pic: Beauty
 Gender: Female
@@ -16887,7 +16887,7 @@ Level: 38
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 === TRAINER_THALIA_5 ===
-Name: THALIA
+Name: Thalia
 Class: Beauty
 Pic: Beauty
 Gender: Female
@@ -16961,41 +16961,54 @@ Level: 80
 Ability: Friend Guard
 Happiness: 255
 Nature: Calm
-EVs: 252 HP
+EVs: 252 HP / 252 Atk / 6 Def
 - Veevee Volley
 - Bouncy Bubble
 - Baddy Bad
 - Glitzy Glow
 
-Dudunsparce Three Segment
+Dudunsparce Three Segment @ Blunder Policy
 Level: 80
+Nature: Timid
+EVs: 252 SpA / 252 Spe / 6 SpD
 - Helping Hand
+- Dragon Tail
+- Ancient Power
+- Air Slash
 
 Ditto
 Level: 80
-EVs: 252 HP
+EVs: 252 HP / 252 Spe
 Ability: Imposter
 - Transform
 
-Brownie (Ursaluna)
+Brownie (Ursaluna) @ Flame Orb
 Level: 80
 Nature: Adamant
+EVs: 252 HP / 252 Atk
 - Helping Hand
 - Focus Punch
+- Facade
+- Protect
 
-Delcatty
+Twinkles (Delcatty) @ Red Card
 Level: 80
 Ability: Normalize
-EVs: 252 HP
+EVs: 252 HP / 252 Atk
 - Fake Out
 - Assist
 - Tidy Up
 - Heal Bell
 
-Fighty Bun (Lopunny) @ Lopunnite
+Fighty Bun (Lopunny) (F) @ Lopunnite
 Level: 80
+EVs: 252 HP / 252 Atk
+Nature: Adamant
+Ability: Reckless
 - Copycat
-
+- High Jump Kick
+- Fake Out
+- U-Turn
 
 === TRAINER_RED ===
 Name: Red
