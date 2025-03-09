@@ -63,6 +63,7 @@ enum WindowIds
 {
     WINDOW_HEADER,
     WINDOW_MIDDLE,
+    WINDOW_MIDDLE_FLIPPED
 };
 
 enum {
@@ -164,6 +165,16 @@ static const struct WindowTemplate sMainMenuWindowTemplates[] =
     {
         .bg = 0,                   // which bg to print text on
         .tilemapLeft = 8,          // position from left (per 8 pixels)
+        .tilemapTop = 4,           // position from top (per 8 pixels)
+        .width = 18,               // width (per 8 pixels)
+        .height = 7,               // height (per 8 pixels)
+        .paletteNum = 0,           // palette index to use for text
+        .baseBlock = 1 + (18 * 2), // tile start in VRAM
+    },
+    [WINDOW_MIDDLE_FLIPPED] = // Prints the name, dex number, and badges
+    {
+        .bg = 0,                   // which bg to print text on
+        .tilemapLeft = 0,          // position from left (per 8 pixels)
         .tilemapTop = 4,           // position from top (per 8 pixels)
         .width = 18,               // width (per 8 pixels)
         .height = 7,               // height (per 8 pixels)
@@ -682,9 +693,15 @@ static void MainMenu_InitWindows(void) // Init Text Windows
     PutWindowTilemap(WINDOW_HEADER);
     CopyWindowToVram(WINDOW_HEADER, 3);
 
-    FillWindowPixelBuffer(WINDOW_MIDDLE, 0);
-    PutWindowTilemap(WINDOW_MIDDLE);
-    CopyWindowToVram(WINDOW_MIDDLE, 3);
+    if ((gSaveBlock2Ptr->playerGender) == MALE) {
+        FillWindowPixelBuffer(WINDOW_MIDDLE, 0);
+        PutWindowTilemap(WINDOW_MIDDLE);
+        CopyWindowToVram(WINDOW_MIDDLE, 3);
+    } else {
+        FillWindowPixelBuffer(WINDOW_MIDDLE_FLIPPED, 0);
+        PutWindowTilemap(WINDOW_MIDDLE_FLIPPED);
+        CopyWindowToVram(WINDOW_MIDDLE_FLIPPED, 3);
+    }
 }
 
 
@@ -695,7 +712,11 @@ static void MainMenu_InitWindows(void) // Init Text Windows
 //
 static void CreateMugshot()
 {
-    sMainMenuDataPtr->mugshotSpriteId = CreateSprite(&sSpriteTemplate_Mugshot, 48, 56, 1);
+    if ((gSaveBlock2Ptr->playerGender) == MALE) { 
+        sMainMenuDataPtr->mugshotSpriteId = CreateSprite(&sSpriteTemplate_Mugshot, 48, 56, 1);
+    } else {
+        sMainMenuDataPtr->mugshotSpriteId = CreateSprite(&sSpriteTemplate_Mugshot, 192, 56, 1);
+    }
     gSprites[sMainMenuDataPtr->mugshotSpriteId].invisible = FALSE;
     StartSpriteAnim(&gSprites[sMainMenuDataPtr->mugshotSpriteId], 0);
     gSprites[sMainMenuDataPtr->mugshotSpriteId].oam.priority = 0;
@@ -711,21 +732,27 @@ static void DestroyMugshot()
 //
 //  Create Mon Icon and Shadow Sprites
 //
-#define ICON_BOX_1_START_X          136 + 8
+#define ICON_BOX_1_START_X_MALE          136 + 8
+#define ICON_BOX_1_START_X_FEMALE   72 + 8
 #define ICON_BOX_1_START_Y          38
 #define ICON_BOX_X_DIFFERENCE       32
 #define ICON_BOX_Y_DIFFERENCE       32
 static void CreateIconShadow()
 {
     u8 i = 0;
+    s16 iconBox1StartX;
+    if ((gSaveBlock2Ptr->playerGender) == MALE)
+        iconBox1StartX = ICON_BOX_1_START_X_MALE;
+    else
+        iconBox1StartX = ICON_BOX_1_START_X_FEMALE;
 
-    sMainMenuDataPtr->iconBoxSpriteIds[0] = CreateSprite(&sSpriteTemplate_IconBox, ICON_BOX_1_START_X + (ICON_BOX_X_DIFFERENCE * 0), ICON_BOX_1_START_Y, 2);
-    sMainMenuDataPtr->iconBoxSpriteIds[1] = CreateSprite(&sSpriteTemplate_IconBox, ICON_BOX_1_START_X + (ICON_BOX_X_DIFFERENCE * 1), ICON_BOX_1_START_Y, 2);
-    sMainMenuDataPtr->iconBoxSpriteIds[2] = CreateSprite(&sSpriteTemplate_IconBox, ICON_BOX_1_START_X + (ICON_BOX_X_DIFFERENCE * 2), ICON_BOX_1_START_Y, 2);
+    sMainMenuDataPtr->iconBoxSpriteIds[0] = CreateSprite(&sSpriteTemplate_IconBox, iconBox1StartX + (ICON_BOX_X_DIFFERENCE * 0), ICON_BOX_1_START_Y, 2);
+    sMainMenuDataPtr->iconBoxSpriteIds[1] = CreateSprite(&sSpriteTemplate_IconBox, iconBox1StartX + (ICON_BOX_X_DIFFERENCE * 1), ICON_BOX_1_START_Y, 2);
+    sMainMenuDataPtr->iconBoxSpriteIds[2] = CreateSprite(&sSpriteTemplate_IconBox, iconBox1StartX + (ICON_BOX_X_DIFFERENCE * 2), ICON_BOX_1_START_Y, 2);
     
-    sMainMenuDataPtr->iconBoxSpriteIds[3] = CreateSprite(&sSpriteTemplate_IconBox, ICON_BOX_1_START_X + (ICON_BOX_X_DIFFERENCE * 0), ICON_BOX_1_START_Y + (ICON_BOX_Y_DIFFERENCE * 1), 2);
-    sMainMenuDataPtr->iconBoxSpriteIds[4] = CreateSprite(&sSpriteTemplate_IconBox, ICON_BOX_1_START_X + (ICON_BOX_X_DIFFERENCE * 1), ICON_BOX_1_START_Y + (ICON_BOX_Y_DIFFERENCE * 1), 2);
-    sMainMenuDataPtr->iconBoxSpriteIds[5] = CreateSprite(&sSpriteTemplate_IconBox, ICON_BOX_1_START_X + (ICON_BOX_X_DIFFERENCE * 2), ICON_BOX_1_START_Y + (ICON_BOX_Y_DIFFERENCE * 1), 2);
+    sMainMenuDataPtr->iconBoxSpriteIds[3] = CreateSprite(&sSpriteTemplate_IconBox, iconBox1StartX + (ICON_BOX_X_DIFFERENCE * 0), ICON_BOX_1_START_Y + (ICON_BOX_Y_DIFFERENCE * 1), 2);
+    sMainMenuDataPtr->iconBoxSpriteIds[4] = CreateSprite(&sSpriteTemplate_IconBox, iconBox1StartX + (ICON_BOX_X_DIFFERENCE * 1), ICON_BOX_1_START_Y + (ICON_BOX_Y_DIFFERENCE * 1), 2);
+    sMainMenuDataPtr->iconBoxSpriteIds[5] = CreateSprite(&sSpriteTemplate_IconBox, iconBox1StartX + (ICON_BOX_X_DIFFERENCE * 2), ICON_BOX_1_START_Y + (ICON_BOX_Y_DIFFERENCE * 1), 2);
 
     for(i = 0; i < gPlayerPartyCount; i++)
     {
@@ -764,7 +791,13 @@ static u32 GetHPEggCyclePercent(u32 partyIndex) // Random HP function from psf's
 static void CreatePartyMonIcons()
 {
     u8 i = 0;
-    s16 x = ICON_BOX_1_START_X;
+    s16 iconBox1StartX;
+    if ((gSaveBlock2Ptr->playerGender) == MALE)
+        iconBox1StartX = ICON_BOX_1_START_X_MALE;
+    else
+        iconBox1StartX = ICON_BOX_1_START_X_FEMALE;
+
+    s16 x = iconBox1StartX;
     s16 y = ICON_BOX_1_START_Y;
     LoadMonIconPalettes();
     for(i = 0; i < gPlayerPartyCount; i++)
@@ -772,27 +805,27 @@ static void CreatePartyMonIcons()
         switch (i) // choose position for each icon
         {
             case 0:
-                x = ICON_BOX_1_START_X;
+                x = iconBox1StartX;
                 y = ICON_BOX_1_START_Y;
                 break;
             case 1:
-                x = ICON_BOX_1_START_X + ICON_BOX_X_DIFFERENCE;
+                x = iconBox1StartX + ICON_BOX_X_DIFFERENCE;
                 y = ICON_BOX_1_START_Y;
                 break;
             case 2:
-                x = ICON_BOX_1_START_X + (ICON_BOX_X_DIFFERENCE * 2);
+                x = iconBox1StartX + (ICON_BOX_X_DIFFERENCE * 2);
                 y = ICON_BOX_1_START_Y;
                 break;
             case 3:
-                x = ICON_BOX_1_START_X;
+                x = iconBox1StartX;
                 y = ICON_BOX_1_START_Y + (ICON_BOX_Y_DIFFERENCE * 1);
                 break;
             case 4:
-                x = ICON_BOX_1_START_X + ICON_BOX_X_DIFFERENCE;
+                x = iconBox1StartX + ICON_BOX_X_DIFFERENCE;
                 y = ICON_BOX_1_START_Y + (ICON_BOX_X_DIFFERENCE * 1);
                 break;
             case 5:
-                x = ICON_BOX_1_START_X + (ICON_BOX_X_DIFFERENCE * 2);
+                x = iconBox1StartX + (ICON_BOX_X_DIFFERENCE * 2);
                 y = ICON_BOX_1_START_Y + (ICON_BOX_Y_DIFFERENCE * 1);
                 break;
         }
@@ -836,9 +869,16 @@ static void PrintToWindow(u8 windowId, u8 colorIdx)
     u8 *withoutPrefixPtr, *playTimePtr;
     u16 dexCount = 0; u8 badgeCount = 0;
     u32 i = 0;
+    u8 middleWindow;
+
+    if ((gSaveBlock2Ptr->playerGender) == MALE) {
+        middleWindow = WINDOW_MIDDLE;
+    } else {
+        middleWindow = WINDOW_MIDDLE_FLIPPED;
+    }
 
     FillWindowPixelBuffer(WINDOW_HEADER, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
-    FillWindowPixelBuffer(WINDOW_MIDDLE, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
+    FillWindowPixelBuffer(middleWindow, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
 
     // Print Map Name In Header
     withoutPrefixPtr = &(mapDisplayHeader[3]);
@@ -863,7 +903,7 @@ static void PrintToWindow(u8 windowId, u8 colorIdx)
             dexCount = GetHoennPokedexCount(FLAG_GET_CAUGHT);
         ConvertIntToDecimalStringN(gStringVar1, dexCount, STR_CONV_MODE_RIGHT_ALIGN, 4);
         StringExpandPlaceholders(gStringVar4, sText_DexNum);
-        AddTextPrinterParameterized4(WINDOW_MIDDLE, FONT_NORMAL, 8 + 8, 16 + 2, 0, 0, colors, TEXT_SKIP_DRAW, gStringVar4);
+        AddTextPrinterParameterized4(middleWindow, FONT_NORMAL, 9 + 8, 16 + 2, 0, 0, colors, TEXT_SKIP_DRAW, gStringVar4);
     }
 
     // Print Badge Numbers if You Have Them
@@ -874,15 +914,15 @@ static void PrintToWindow(u8 windowId, u8 colorIdx)
     } 
     ConvertIntToDecimalStringN(gStringVar1, badgeCount, STR_CONV_MODE_LEADING_ZEROS, 1);
     StringExpandPlaceholders(gStringVar4, sText_Badges);
-    AddTextPrinterParameterized4(WINDOW_MIDDLE, FONT_NORMAL, 16, 32 + 2, 0, 0, colors, TEXT_SKIP_DRAW, gStringVar4);
+    AddTextPrinterParameterized4(middleWindow, FONT_NORMAL, 17, 32 + 2, 0, 0, colors, TEXT_SKIP_DRAW, gStringVar4);
 
     // Print Player Name
-    AddTextPrinterParameterized3(WINDOW_MIDDLE, FONT_NORMAL, 16, 2, colors, TEXT_SKIP_DRAW, gSaveBlock2Ptr->playerName);
+    AddTextPrinterParameterized3(middleWindow, FONT_NORMAL, 17, 2, colors, TEXT_SKIP_DRAW, gSaveBlock2Ptr->playerName);
 
     PutWindowTilemap(WINDOW_HEADER);
     CopyWindowToVram(WINDOW_HEADER, 3);
-    PutWindowTilemap(WINDOW_MIDDLE);
-    CopyWindowToVram(WINDOW_MIDDLE, 3);
+    PutWindowTilemap(middleWindow);
+    CopyWindowToVram(middleWindow, 3);
 }
 
 
