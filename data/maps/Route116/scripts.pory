@@ -1,5 +1,10 @@
 mapscripts Route116_MapScripts {
-    MAP_SCRIPT_ON_TRANSITION: Route116_OnTransition
+    MAP_SCRIPT_ON_TRANSITION {
+        call_if_set(FLAG_RECOVERED_DEVON_GOODS, Route116_EventScript_SetWandasBoyfriendPos)
+        call_if_eq(VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_HideMapNamePopup)
+        call_if_eq(VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_116_NORTH, AbnormalWeather_StartGroudonWeather)
+        call_if_eq(VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_116_SOUTH, AbnormalWeather_StartGroudonWeather)
+    }
     MAP_SCRIPT_ON_LOAD {
         call_if_eq(VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_116_NORTH, AbnormalWeather_EventScript_PlaceTilesRoute116North)
         call_if_eq(VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_116_SOUTH, AbnormalWeather_EventScript_PlaceTilesRoute116South)
@@ -14,13 +19,6 @@ mapscripts Route116_MapScripts {
 raw `
 .set LOCALID_BRINEY, 11
 .set LOCALID_WANDAS_BF_OUTSIDE, 21
-
-Route116_OnTransition:
-    call_if_set FLAG_RECOVERED_DEVON_GOODS, Route116_EventScript_SetWandasBoyfriendPos
-    call_if_eq VAR_SHOULD_END_ABNORMAL_WEATHER, 1, AbnormalWeather_EventScript_HideMapNamePopup
-    call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_116_NORTH, AbnormalWeather_StartGroudonWeather
-    call_if_eq VAR_ABNORMAL_WEATHER_LOCATION, ABNORMAL_WEATHER_ROUTE_116_SOUTH, AbnormalWeather_StartGroudonWeather
-    end
 
 Route116_EventScript_SetWandasBoyfriendPos::
     setobjectxyperm LOCALID_WANDAS_BF_OUTSIDE, 38, 10
@@ -55,7 +53,7 @@ Route116_EventScript_DevonEmployee::
 
 Route116_EventScript_GiveRepeatBall::
     setflag FLAG_MET_DEVON_EMPLOYEE
-    giveitem ITEM_REPEAT_BALL
+    giveitem ITEM_EXP_CANDY_M, 10
     goto_if_eq VAR_RESULT, FALSE, Route116_EventScript_NoRoomForRepeatBall
     msgbox Route116_Text_NewBallAvailableAtMart, MSGBOX_DEFAULT
     closemessage
@@ -87,46 +85,6 @@ Route116_EventScript_TryGiveRepeatBallAgain::
 Route116_EventScript_NoRoomForRepeatBall::
     msgbox Route116_Text_BagIsJamPacked, MSGBOX_DEFAULT
     release
-    end
-
-Route116_Movement_DevonEmployeeExit:
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    step_end
-
-Route116_Movement_DevonEmployeeExitEast:
-    walk_down
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    step_end
-
-Route116_EventScript_RouteSignRustboro::
-    msgbox Route116_Text_RouteSignRustboro, MSGBOX_SIGN
-    end
-
-Route116_EventScript_RusturfTunnelSign::
-    msgbox Route116_Text_RusturfTunnelSign, MSGBOX_SIGN
-    end
-
-Route116_EventScript_TrainerTipsBToStopEvolution::
-    msgbox Route116_Text_TrainerTipsBToStopEvolution, MSGBOX_SIGN
-    end
-
-Route116_EventScript_TrainerTipsBagHasPockets::
-    msgbox Route116_Text_TrainerTipsBagHasPockets, MSGBOX_SIGN
     end
 
 Route116_EventScript_Briney::
@@ -349,10 +307,8 @@ Route116_EventScript_Johnson::
 
 text Route116_Text_ScoundrelMadeOffWithPeeko {
     format("Ohhh, what am I to do?\p"
-    "We were on our walk, Peeko and I, when\n"
-    "we were jumped by an odd thug…\p"
-    "The scoundrel made off with my\n"
-    "darling Peeko!\p"
+    "We were on our walk, Peeko and I, when we were jumped by an odd thug…\p"
+    "The scoundrel made off with my darling Peeko!\p"
     "Wrrrooooooaaaar! Peeko!")
 }
 
@@ -363,62 +319,44 @@ text Route116_Text_WantToDigTunnel {
 
 text Route116_Text_DiggingTunnelWhenGoonOrderedMeOut {
     format("Nnn… Roar!\n"
-    "What's going on?\p"
-    "I was digging the tunnel without any\n"
-    "tools when some goon ordered me out!\p"
-    "That tunnel's filled with Pokémon\n"
-    "that react badly to loud noises.\l"
-    "They could cause an uproar.\p"
-    "That's why we stopped using heavy\n"
-    "equipment for tunneling…\p"
-    "I'm worried that the goon will do\n"
-    "something stupid and startle the\l"
-    "Pokémon into an uproar.")
+        "What's going on?\p"
+        "I was digging the tunnel without any tools when some goon ordered me out!\p"
+        "That tunnel's filled with Pokémon that react badly to loud noises.\l"
+        "They could cause an uproar.\p"
+        "That's why we stopped using heavy equipment for tunneling…\p"
+        "I'm worried that the goon will do something stupid and startle the Pokémon into an uproar.")
 }
 
 text Route116_Text_GoonHightailedItOutOfTunnel {
     format("Nnn… Roar!\p"
-    "That goofy goon hightailed it out of\n"
-    "the tunnel! I can go back to digging!")
+        "That goofy goon hightailed it out of the tunnel! I can go back to digging!")
 }
 
 text Route116_Text_ThankYouTokenOfAppreciation {
     format("Oh! It's you!\p"
-    "You're that person who not only helped\n"
-    "me in Petalburg Woods, but also got\l"
-    "back my stolen package and then even\l"
-    "graciously delivered it to Slateport!\p"
-    "Capt. Stern informed us that the\n"
-    "package arrived, too!\p"
+    "You're that person who not only helped me in Petalburg Woods, but also got back my stolen package and then even graciously delivered it to Slateport!\p"
+    "Capt. Stern informed us that the package arrived, too!\p"
     "I thank you very, very much!\p"
-    "Why, if I were a rain cloud, I would\n"
-    "shower you with gratitude and hail\l"
-    "you as a hero!\p"
+    "Why, if I were a rain cloud, I would shower you with gratitude and hail you as a hero!\p"
     "For you, the most wonderful Trainer,\n"
     "I bear good news!\p"
-    "Recently, our company developed\n"
-    "a new kind of Poké Ball.\p"
-    "As a token of our appreciation, this\n"
-    "is our gift to our wonderful Trainer!")
+    "Recently, our company developed a new kind of Candy.\p"
+    "As a token of our appreciation, this is our gift to our wonderful Trainer!")
 }
 
 text Route116_Text_NewBallAvailableAtMart {
-    format("Our new Poké Ball will be available\n"
-    "at the Pokémon Mart in Rustboro.\p"
+    format("Our new Candies will soon be available everywhere.\p"
     "Please do try it out!\n"
     "Thank you and bye-bye!")
 }
 
 text Route116_Text_BagIsJamPacked {
     format("Your Bag is jam-packed.\n"
-    "I can't give you this Repeat Ball.")
+    "I can't give you this Candy.")
 }
 
 text Route116_Text_TokenOfAppreciation {
-    format("As a token of our appreciation for\n"
-    "your delivering our package, I have\l"
-    "a gift of a new kind of Poké Ball\l"
-    "for our most wonderful Trainer!")
+    format("As a token of our appreciation for your delivering our package, I have a gift of some Candy for our most wonderful Trainer!")
 }
 
 text Route116_Text_CanYouHelpMeFindGlasses {
@@ -451,37 +389,31 @@ text Route116_Text_NotWhatImLookingFor {
     "They're not what I'm looking for…")
 }
 
-text Route116_Text_RouteSignRustboro {
-    format("Route 116\n"
-    "{LEFT_ARROW} Rustboro City")
-}
-
-text Route116_Text_RusturfTunnelSign {
-    format("Rusturf Tunnel\n"
-    "“Linking Rustboro and Verdanturf\p"
-    "“The tunnel project has been\n"
-    "canceled.”")
-}
-
-text Route116_Text_TrainerTipsBToStopEvolution {
-    format("Trainer Tips\p"
-    "If you want to stop a Pokémon from\n"
-    "evolving, press the B Button while it\l"
-    "is trying to evolve.\l"
-    "The startled Pokémon will stop.\p"
-    "This is called an evolution cancel.")
-}
-
-text Route116_Text_TrainerTipsBagHasPockets {
-    format("Trainer Tips\p"
-    "Your BAG has several Pockets.\p"
-    "Items you obtain are automatically\n"
-    "placed in the appropriate Pockets.\p"
-    "No Trainer can afford to be without\n"
-    "a Bag of their own.")
-}
-
 script Route116_EventScript_TunnelersRestHouseSign {
     msgbox("Tunneler's Rest House", MSGBOX_SIGN)
 }
 
+movement Route116_Movement_DevonEmployeeExit { walk_left * 8 }
+
+movement Route116_Movement_DevonEmployeeExitEast {
+    walk_down
+    walk_left * 9
+}
+
+script Route116_EventScript_RouteSignRustboro { msgbox(format("Route 116\n{LEFT_ARROW} Rustboro City"), MSGBOX_SIGN) }
+
+script Route116_EventScript_RusturfTunnelSign {
+    msgbox(format("Rusturf Tunnel\n"
+        "“Linking Rustboro and Verdanturf\p"
+        "“The tunnel project has been canceled.”"), MSGBOX_SIGN)
+}
+
+script Route116_EventScript_TrainerTipsBToStopEvolution {
+    msgbox(format("Trainer Tips\p"
+        "Canceling a Pokémon evolution by level up helps the Pokémon grow faster."), MSGBOX_SIGN)
+}
+
+script Route116_EventScript_TrainerTipsBagHasPockets {
+    msgbox(format("Trainer Tips\p"
+        "One of the Clerks at your local Friendly Shop sells more items based on your number of Badges."), MSGBOX_SIGN)
+}

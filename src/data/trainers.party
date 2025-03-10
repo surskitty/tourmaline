@@ -4815,7 +4815,7 @@ Gender: Female
 Music: Female
 Items: Potion
 Double Battle: Yes
-AI: Smart Trainer | Conservative
+AI: Smart Trainer / Conservative
 Mugshot: Yellow
 
 Pumice (Shuckle)
@@ -6646,19 +6646,6 @@ Level: 66
 - Ice Beam
 - Rest
 
-=== TRAINER_JERRY_1 ===
-Name: JERRY
-Class: School Kid
-Pic: School Kid M
-Gender: Male
-Music: Male
-Double Battle: Yes
-AI: Basic Trainer
-
-Ralts
-Level: 9
-IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
-
 === TRAINER_TED ===
 Name: TED
 Class: School Kid
@@ -6692,6 +6679,29 @@ IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 Wingull
 Level: 15
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
+
+=== TRAINER_JERRY_1 ===
+Name: Jerry
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Basic Trainer
+
+Ralts
+Level: 9
+IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
+- Disarming Voice
+- Growl
+- Double Team
+- Confusion
+
+Abra
+Level: 9
+IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
+- Encore
+- Confusion
 
 === TRAINER_JERRY_2 ===
 Name: JERRY
@@ -13541,7 +13551,7 @@ Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_CLARK ===
-Name: CLARK
+Name: Clark
 Class: Hiker
 Pic: Hiker
 Gender: Male
@@ -13549,7 +13559,11 @@ Music: Hiker
 Double Battle: Yes
 AI: Basic Trainer
 
-Geodude
+Geodude Alola
+Level: 8
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Whismur
 Level: 8
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -14753,7 +14767,7 @@ Level: 23
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_DAWSON ===
-Name: DAWSON
+Name: Dawson
 Class: Rich Boy
 Pic: Rich Boy
 Gender: Male
@@ -14761,7 +14775,7 @@ Music: Rich
 Double Battle: Yes
 AI: Basic Trainer
 
-Zigzagoon @ Nugget
+Audino @ Air Balloon
 Level: 8
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -14770,7 +14784,7 @@ Level: 8
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_SARAH ===
-Name: SARAH
+Name: Sarah
 Class: Lady
 Pic: Lady
 Gender: Female
@@ -14783,7 +14797,7 @@ Lotad
 Level: 8
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Zigzagoon @ Nugget
+Sewaddle
 Level: 8
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -15673,7 +15687,7 @@ Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_DEVAN ===
-Name: DEVAN
+Name: Devan
 Class: Hiker
 Pic: Hiker
 Gender: Male
@@ -15681,16 +15695,16 @@ Music: Hiker
 Double Battle: Yes
 AI: Basic Trainer
 
-Geodude
+Geodude Alola
 Level: 8
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Geodude
+Nacli
 Level: 8
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JOHNSON ===
-Name: JOHNSON
+Name: Johnson
 Class: Youngster
 Pic: Youngster
 Gender: Male
@@ -15702,12 +15716,12 @@ Shroomish
 Level: 8
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Lotad
+Phantump
 Level: 8
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MELINA ===
-Name: MELINA
+Name: Melina
 Class: Triathlete
 Pic: Running Triathlete F
 Gender: Female
@@ -15719,8 +15733,12 @@ Chatot
 Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
+Voltorb Hisui
+Level: 17
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
 === TRAINER_BRANDI ===
-Name: BRANDI
+Name: Brandi
 Class: Psychic
 Pic: Psychic F
 Gender: Female
@@ -15733,7 +15751,7 @@ Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_AISHA ===
-Name: AISHA
+Name: Aisha
 Class: Battle Girl
 Pic: Battle Girl
 Gender: Female
@@ -15746,7 +15764,7 @@ Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_MAKAYLA ===
-Name: MAKAYLA
+Name: Makayla
 Class: Expert
 Pic: Expert F
 Gender: Female
@@ -15764,7 +15782,7 @@ Level: 33
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_FABIAN ===
-Name: FABIAN
+Name: Fabian
 Class: Guitarist
 Pic: Guitarist
 Gender: Male
@@ -15807,7 +15825,7 @@ Level: 26
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_LEONEL ===
-Name: LEONEL
+Name: Leonel
 Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
@@ -15816,15 +15834,23 @@ Items: Hyper Potion
 Double Battle: Yes
 AI: Basic Trainer
 
-Manectric
+Manectric @ Manectite
 Level: 30
+Nature: Adamant
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Thunder
 - Quick Attack
 - Thunder Wave
 
+Exeggutor Alola
+Level: 30
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Dragon Hammer
+- Uproar
+- Leech Seed
+
 === TRAINER_CALLIE ===
-Name: CALLIE
+Name: Callie
 Class: Battle Girl
 Pic: Battle Girl
 Gender: Female
