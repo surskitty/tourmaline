@@ -3534,52 +3534,34 @@ void StartStationaryEncounter(void) {
 
     VarSet(VAR_0x8004, species);
     
-    u8 nBadges = 0;
-    for (int i = FLAG_BADGE01_GET, nBadges = 0; i < FLAG_BADGE01_GET + NUM_BADGES; i++)
-    {
-        if (FlagGet(i))
-            nBadges++;
-    }
-
+    
     // Generate level of pokemon.
-    // Applicable flags are sorted by badges, taking into account skipping badges. 
-    switch (nBadges)
-    {
-        case 0: 
-            if (FLAG_VISITED_RUSTBORO_CITY)         level = 7; 
-            else if (VAR_PETALBURG_CITY_STATE > 2)  level = 4;
-            else                                    level = 2;
-            break;
-        // brawly can be skipped until norman
-        case 1:
-        case 2:
-        case 3:
-            level = 10;
-            if (FLAG_DELIVERED_STEVEN_LETTER)   level += 2;
-            if (FLAG_BADGE02_GET)               level += 2;
-            if (FLAG_DOCK_REJECTED_DEVON_GOODS) level += 2;
-            if (FLAG_BADGE03_GET)               level += 3;
-            if (FLAG_BADGE04_GET)               level += 3;
-            break;
-        case 4:
-            level = 25;
-            break;
-        // winona can be skipped until evergrande. TODO: more on this.
-        case 5:
-        case 6:
-        case 7:
-            if (FLAG_BADGE08_GET) level = 55;
-            else {
-                level = 30;
-                if (FLAG_RECEIVED_DEVON_SCOPE)              level += 5;
-                if (FLAG_DEFEATED_MAGMA_SPACE_CENTER)       level += 2;
-                if (FLAG_MET_TEAM_AQUA_HARBOR)              level += 2;
-                if (FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT)    level += 2;
-            } 
-            break;
-        case 8: 
-            level = 60; 
-            break;
+    // Applicable flags are sorted by badges, taking into account skipping badges.
+    // TODO: fill this out further 
+    if (FLAG_ENTERED_ELITE_FOUR) {
+        level = 60;
+    } else if (FLAG_BADGE05_GET) {
+        level = 25;
+        if (FLAG_RECEIVED_CASTFORM)                 level += 5;
+        if (FLAG_DEFEATED_MAGMA_SPACE_CENTER)       level += 2;
+        if (FLAG_MET_TEAM_AQUA_HARBOR)              level += 2;
+        if (FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT)    level += 2;
+        if (FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE)    level += 2;
+        if (FLAG_BADGE06_GET)                       level += 3;
+        if (FLAG_BADGE07_GET)                       level += 3;
+        if (FLAG_BADGE08_GET)                       level += 3;
+    } else if (FLAG_BADGE01_GET) {
+        level = 10;
+        if (FLAG_DELIVERED_STEVEN_LETTER)   level += 2;
+        if (FLAG_BADGE02_GET)               level += 2;
+        if (FLAG_DOCK_REJECTED_DEVON_GOODS) level += 2;
+        if (FLAG_BADGE03_GET)               level += 3;
+        if (FLAG_BADGE04_GET)               level += 3;
+        if (FLAG_MET_ARCHIE_METEOR_FALLS)   level += 2;
+    } else {
+        if (FLAG_VISITED_RUSTBORO_CITY)         level = 7; 
+        else if (VAR_PETALBURG_CITY_STATE > 2)  level = 4;
+        else                                    level = 2;
     }
     
     // if the Pokemon does not have a held item specified, generate an appropriate berry
@@ -3606,9 +3588,7 @@ void StartStationaryEncounter(void) {
         }
     }
 
-    // Raise the level of the wild pokemon, scaling by number of badges.
-    // up to +2 with no badges, up to +18 with all eight.
-    rand = Random() % ((nBadges + 1) * 2);
+    rand = Random() % ((level) / 5);
     level = level + rand;
 
     CreateScriptedWildMon(species, level, heldItem);
