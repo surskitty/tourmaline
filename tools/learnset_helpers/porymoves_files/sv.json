@@ -27429,14 +27429,28 @@
   "SKITTY": {
     "LevelMoves": [],
     "PreEvoMoves": [],
-    "TMMoves": [],
+    "TMMoves": [
+        "MOVE_CHARM",
+        "MOVE_FAKE_TEARS",
+        "MOVE_DISARMING_VOICE",
+        "MOVE_TRAILBLAZE",
+        "MOVE_PAY_DAY",
+        "MOVE_ALLURING_VOICE"
+    ],
     "EggMoves": [],
     "TutorMoves": []
   },
   "DELCATTY": {
     "LevelMoves": [],
     "PreEvoMoves": [],
-    "TMMoves": [],
+    "TMMoves": [
+        "MOVE_CHARM",
+        "MOVE_FAKE_TEARS",
+        "MOVE_DISARMING_VOICE",
+        "MOVE_TRAILBLAZE",
+        "MOVE_PAY_DAY",
+        "MOVE_ALLURING_VOICE"
+    ],
     "EggMoves": [],
     "TutorMoves": []
   },
