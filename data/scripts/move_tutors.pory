@@ -32,6 +32,7 @@ script SlateportCity_NameRatersHouse_EventScript_NameRater {
         goto(MoveTutor_EventScript_TutorDeclined)
     }
     call(MoveTutor_EventScript_OpenPartyMenu)
+    release
 }
 
 script MoveTutor_EventScript_TutorDeclined {
@@ -42,46 +43,25 @@ script MoveTutor_EventScript_TutorDeclined {
 script FallarborTown_Mart_EventScript_MetronomeTutor {
     lock
     faceplayer
-    msgbox(format("I want all sorts of things!\n"
-        "But I used up my allowance…\p"
-        "I wish I could cast a spell to make money appear, but all I can do is teach your Pokémon.\p"
-        "What should I teach them?"))
-    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Ally Switch", "Baton Pass", "Encore", "Gravity",  "Helping Hand", "Metronome", "Pain Split", "Psych Up", "Tailwind", "Trick Room")
+    msgbox(format("If I teach your Pokémon how to cast spells, will you buy me something?"), MSGBOX_DEFAULT)
+    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Ally Switch", "Baton Pass", "Encore", "Gravity",  "Helping Hand", "Metronome", "Pain Split", "Pay Day", "Psych Up", "Tailwind", "Trick Room")
     switch (var(VAR_RESULT)) {
-    case 0:
-        setvar(VAR_0x8005, MOVE_ALLY_SWITCH)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 1:
-        setvar(VAR_0x8005, MOVE_BATON_PASS)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 2:
-        setvar(VAR_0x8005, MOVE_ENCORE)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 3:
-        setvar(VAR_0x8005, MOVE_GRAVITY)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 4:
-        setvar(VAR_0x8005, MOVE_HELPING_HAND)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 5:
-        setvar(VAR_0x8005, MOVE_METRONOME)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 6:
-        setvar(VAR_0x8005, MOVE_PAIN_SPLIT)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 7:
-        setvar(VAR_0x8005, MOVE_PSYCH_UP)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 8:
-        setvar(VAR_0x8005, MOVE_TAILWIND)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 9:
-        setvar(VAR_0x8005, MOVE_TRICK_ROOM)
-        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 0: setvar(VAR_0x8005, MOVE_ALLY_SWITCH)
+    case 1: setvar(VAR_0x8005, MOVE_BATON_PASS)
+    case 2: setvar(VAR_0x8005, MOVE_ENCORE)
+    case 3: setvar(VAR_0x8005, MOVE_GRAVITY)
+    case 4: setvar(VAR_0x8005, MOVE_HELPING_HAND)
+    case 5: setvar(VAR_0x8005, MOVE_METRONOME)
+    case 6: setvar(VAR_0x8005, MOVE_PAIN_SPLIT)
+    case 7: setvar(VAR_0x8005, MOVE_PAY_DAY)
+    case 8: setvar(VAR_0x8005, MOVE_PSYCH_UP)
+    case 9: setvar(VAR_0x8005, MOVE_TAILWIND)
+    case 10: setvar(VAR_0x8005, MOVE_TRICK_ROOM)
     default:
-        msgbox(format("Okay. I'll be here if you change your mind."), MSGBOX_DEFAULT)
-        release
+        goto(MoveTutor_EventScript_TutorDeclined)
     }
+    call(MoveTutor_EventScript_OpenPartyMenu)
+    release
 }
 
 script SlateportCity_PokemonFanClub_EventScript_SwaggerTutor {
@@ -105,6 +85,7 @@ script SlateportCity_PokemonFanClub_EventScript_SwaggerTutor {
         goto(MoveTutor_EventScript_TutorDeclined)
     }
     call(MoveTutor_EventScript_OpenPartyMenu)
+    release
 }
 
 script PacifidlogTown_PokemonCenter_1F_EventScript_ExplosionTutor {
@@ -113,36 +94,34 @@ script PacifidlogTown_PokemonCenter_1F_EventScript_ExplosionTutor {
     msgbox(format("I don't intend to be going nowhere fast in the sticks like this forever.\p"
         "You watch me, I'll get out to the city and become a huge hit.\p"
         "If you overheard that, I'll happily teach something to your Pokémon!"), MSGBOX_DEFAULT)
-    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Alluring Voice", "Dragon Cheer", "Explosion", "Hyper Voice", "Psychic Noise", "Snarl")
+    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Alluring Voice", "Dragon Cheer", "Explosion", "Hyper Voice", "Psychic Noise", "Round", "Snarl")
     switch (var(VAR_RESULT)) {
-    case 0:
-        setvar(VAR_0x8005, MOVE_ALLURING_VOICE)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 1:
-        setvar(VAR_0x8005, MOVE_DRAGON_CHEER)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 2:
-        setvar(VAR_0x8005, MOVE_EXPLOSION)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 3:
-        setvar(VAR_0x8005, MOVE_HYPER_VOICE)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 4:
-        setvar(VAR_0x8005, MOVE_PSYCHIC_NOISE)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 5:
-        setvar(VAR_0x8005, MOVE_SNARL)
-        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 0: setvar(VAR_0x8005, MOVE_ALLURING_VOICE)
+    case 1: setvar(VAR_0x8005, MOVE_DRAGON_CHEER)
+    case 2: setvar(VAR_0x8005, MOVE_EXPLOSION)
+    case 3: setvar(VAR_0x8005, MOVE_HYPER_VOICE)
+    case 4: setvar(VAR_0x8005, MOVE_PSYCHIC_NOISE)
+    case 5: setvar(VAR_0x8005, MOVE_ROUND)
+    case 6: setvar(VAR_0x8005, MOVE_SNARL)
     default:
-        msgbox(format("Gaah! You're turning me down because I live in the country?"), MSGBOX_DEFAULT)
-        release
+        goto(PacifidlogTown_PokemonCenter_1F_EventScript_TutorDeclined)
     }
+    call(MoveTutor_EventScript_OpenPartyMenu)
+    release
+}
+
+script PacifidlogTown_PokemonCenter_1F_EventScript_TutorDeclined {
+    msgbox(format("Gaah! You're turning me down because I live in the country?"), MSGBOX_DEFAULT)
+    release
 }
 
 script MauvilleCity_EventScript_RolloutTutor {
     lock
     faceplayer
-    msgbox(MauvilleCity_EventScript_RolloutTutor_TutorIntro)
+    msgbox(format("Did you know that you can go from here a long way in that direction without changing direction?\p"
+        "I might even be able to roll that way.\p"
+        "Do you think your Pokémon will want to roll, too?\p"
+        "I can teach them if you'd like."))
     dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Flame Charge", "Flip Turn", "Rapid Spin", "Rollout", "Trailblaze", "U-Turn")
     switch (var(VAR_RESULT)) {
     case 0: setvar(VAR_0x8005, MOVE_FLAME_CHARGE)
@@ -155,13 +134,7 @@ script MauvilleCity_EventScript_RolloutTutor {
         goto(MoveTutor_EventScript_TutorDeclined)
     }
     call(MoveTutor_EventScript_OpenPartyMenu)
-}
-
-text MauvilleCity_EventScript_RolloutTutor_TutorIntro {
-    format("Did you know that you can go from here a long way in that direction without changing direction?\p"
-    "I might even be able to roll that way.\p"
-    "Do you think your Pokémon will want to roll, too?\p"
-    "I can teach them if you'd like.")
+    release
 }
 
 script VerdanturfTown_PokemonCenter_1F_EventScript_FuryCutterTutor {
@@ -171,25 +144,21 @@ script VerdanturfTown_PokemonCenter_1F_EventScript_FuryCutterTutor {
         "Do you want me to teach them how?"), MSGBOX_DEFAULT)
     dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Echoed Voice", "Fury Cutter", "Icicle Spear", "Rock Blast", "Round")
     switch (var(VAR_RESULT)) {
-    case 0:
-        setvar(VAR_0x8005, MOVE_ECHOED_VOICE)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 1:
-        setvar(VAR_0x8005, MOVE_FURY_CUTTER)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 2:
-        setvar(VAR_0x8005, MOVE_ICICLE_SPEAR)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 3:
-        setvar(VAR_0x8005, MOVE_ROCK_BLAST)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 4:
-        setvar(VAR_0x8005, MOVE_ROUND)
-        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 0: setvar(VAR_0x8005, MOVE_ECHOED_VOICE)
+    case 1: setvar(VAR_0x8005, MOVE_FURY_CUTTER)
+    case 2: setvar(VAR_0x8005, MOVE_ICICLE_SPEAR)
+    case 3: setvar(VAR_0x8005, MOVE_ROCK_BLAST)
+    case 4: setvar(VAR_0x8005, MOVE_ROUND)
     default:
-        msgbox(format("We're not on the same wavelength."), MSGBOX_DEFAULT)
-        release
+        goto(VerdanturfTown_PokemonCenter_1F_EventScript_TutorDeclined)
     }
+    call(MoveTutor_EventScript_OpenPartyMenu)
+    release
+}
+
+script VerdanturfTown_PokemonCenter_1F_EventScript_TutorDeclined {
+    msgbox(format("We're not on the same wavelength."), MSGBOX_DEFAULT)
+    release
 }
 
 script LavaridgeTown_House_EventScript_MimicTutor {
@@ -207,112 +176,101 @@ script LavaridgeTown_House_EventScript_MimicTutor {
         goto(MoveTutor_EventScript_TutorDeclined)
     }
     call(MoveTutor_EventScript_OpenPartyMenu)
+    release
 }
 
 script FortreeCity_House2_EventScript_SleepTalkTutor {
     lock
     faceplayer
-    msgbox(format("Humph! My wife relies on Hidden Power to stay awake.\p"
-    "She should just take a nap like I do, and Sleep Talk.\p"
-    "I can teach your Pokémon how to rest perfectly. Interested?"), MSGBOX_DEFAULT)
-    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Sleep Talk", "Snore")
+    msgbox(format("Humph! My wife relies on Hidden Power to stay awake, but I have far better methods.\p"
+        "I can teach your Pokémon how to rest perfectly. Interested?"), MSGBOX_DEFAULT)
+    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Sleep Talk", "Snore", "Substitute")
     switch (var(VAR_RESULT)) {
-    case 0:
-        setvar(VAR_0x8005, MOVE_SLEEP_TALK)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 1:
-        setvar(VAR_0x8005, MOVE_SNORE)
-        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 0: setvar(VAR_0x8005, MOVE_SLEEP_TALK)
+    case 1: setvar(VAR_0x8005, MOVE_SNORE)
+    case 2: setvar(VAR_0x8005, MOVE_SUBSTITUTE)
     default:
-        msgbox(format("I've never once gotten my wife's coin trick right.\p"
-    "I would be happy if I got it right even as I sleep…"), MSGBOX_DEFAULT)
-        release
+        goto(FortreeCity_House2_EventScript_TutorDeclined)
     }
+    call(MoveTutor_EventScript_OpenPartyMenu)
+    release
+}
+
+script FortreeCity_House2_EventScript_TutorDeclined {
+    msgbox(format("I've never once gotten my wife's coin trick right."), MSGBOX_DEFAULT)
+    release
 }
 
 script LilycoveCity_DepartmentStoreRooftop_EventScript_SubstituteTutor {
     lock
     faceplayer
     msgbox(format("When I see the wide world from up here on the roof…\p"
-    "I think about how nice it would be if there were more than just one me so I could enjoy all sorts of lives.\p"
-    "Of course it's not possible for humans, but how about Pokémon?\p"
-    "I could teach them a trick or two."), MSGBOX_DEFAULT)
+        "I think about how nice it would be if there were more than just one me so I could enjoy all sorts of lives.\p"
+        "Of course it's not possible for humans, but how about Pokémon?\p"
+        "I could teach them a trick or two."), MSGBOX_DEFAULT)
     dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Endure", "False Swipe", "Substitute")
     switch (var(VAR_RESULT)) {
-    case 0:
-        setvar(VAR_0x8005, MOVE_ENDURE)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 1:
-        setvar(VAR_0x8005, MOVE_FALSE_SWIPE)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 2:
-        setvar(VAR_0x8005, MOVE_SUBSTITUTE)
-        call(MoveTutor_EventScript_OpenPartyMenu)
+    case 0: setvar(VAR_0x8005, MOVE_ENDURE)
+    case 1: setvar(VAR_0x8005, MOVE_FALSE_SWIPE)
+    case 2: setvar(VAR_0x8005, MOVE_SUBSTITUTE)
     default:
-        msgbox(format("We human beings should enjoy our own lives to the utmost!\p"
-            "I hope you'll get that way, too!"), MSGBOX_DEFAULT)
-        release
+        goto(LilycoveCity_DepartmentStoreRooftop_EventScript_TutorDeclined)
     }
+    call(MoveTutor_EventScript_OpenPartyMenu)
+    release
+}
+
+script LilycoveCity_DepartmentStoreRooftop_EventScript_TutorDeclined {
+    msgbox(format("We human beings should enjoy our own lives to the utmost!\p"
+        "I hope you'll get that way, too!"), MSGBOX_DEFAULT)
+    release
 }
 
 script MossdeepCity_EventScript_DynamicPunchTutor {
     lock
     faceplayer
-    msgbox(MossdeepCity_EventScript_DynamicPunchTutor_Intro, MSGBOX_DEFAULT)
-    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Drain Punch", "Dynamic Punch", "Fire Punch", "Ice Punch", "Mega Punch", "Power-up Punch", "Thunder Punch")
+    msgbox(format("I can't do this anymore!\p"
+        "It's utterly hopeless!\p"
+        "I'm a Fighting-type Trainer, so I can't win at the Mossdeep Gym no matter how hard I try!\p"
+        "Argh! Punch! Punch! Punch!\n"
+        "Punch! Punch! Punch!\p"
+        "What, don't look at me that way!\n"
+        "I'm only hitting the ground!\p"
+        "Or do you want me to teach your Pokémon my skills?"), MSGBOX_DEFAULT)
+    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Drain Punch", "Dynamic Punch", "Fire Punch", "Ice Punch", "Low Kick", "Mega Punch", "Power-up Punch", "Thunder Punch")
     switch (var(VAR_RESULT)) {
     case 0: setvar(VAR_0x8005, MOVE_DRAIN_PUNCH)
     case 1: setvar(VAR_0x8005, MOVE_DYNAMIC_PUNCH)
     case 2: setvar(VAR_0x8005, MOVE_FIRE_PUNCH)
     case 3: setvar(VAR_0x8005, MOVE_ICE_PUNCH)
-    case 4: setvar(VAR_0x8005, MOVE_MEGA_PUNCH)
-    case 5: setvar(VAR_0x8005, MOVE_POWER_UP_PUNCH)
-    case 6: setvar(VAR_0x8005, MOVE_THUNDER_PUNCH)
+    case 4: setvar(VAR_0x8005, MOVE_LOW_KICK)
+    case 5: setvar(VAR_0x8005, MOVE_MEGA_PUNCH)
+    case 6: setvar(VAR_0x8005, MOVE_POWER_UP_PUNCH)
+    case 7: setvar(VAR_0x8005, MOVE_THUNDER_PUNCH)
     default:
         goto(MoveTutor_EventScript_TutorDeclined)
     }
     call(MoveTutor_EventScript_OpenPartyMenu)
-}
-
-text MossdeepCity_EventScript_DynamicPunchTutor_Intro {
-    format("I can't do this anymore!\p"
-    "It's utterly hopeless!\p"
-    "I'm a Fighting-type Trainer, so I can't win at the Mossdeep Gym no matter how hard I try!\p"
-    "Argh! Punch! Punch! Punch!\n"
-    "Punch! Punch! Punch!\p"
-    "What, don't look at me that way!\n"
-    "I'm only hitting the ground!\p"
-    "Or do you want me to teach your Pokémon to Punch?")
+    release
 }
 
 script SootopolisCity_PokemonCenter_1F_EventScript_DoubleEdgeTutor {
     lock
     faceplayer
-    msgbox(SootopolisCity_PokemonCenter_1F_EventScript_DoubleEdgeTutor_Intro, MSGBOX_DEFAULT)
-    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Double-Edge", "Last Resort", "Ominous Wind")
-    switch (var(VAR_RESULT)) {
-    case 0:
-        setvar(VAR_0x8005, MOVE_DOUBLE_EDGE)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 1:
-        setvar(VAR_0x8005, MOVE_LAST_RESORT)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    case 2:
-        setvar(VAR_0x8005, MOVE_OMINOUS_WIND)
-        call(MoveTutor_EventScript_OpenPartyMenu)
-    default:
-        msgbox(format("I won't live for love anymore!\n"
-            "I'll become tough!"), MSGBOX_DEFAULT)
-        release
-    }
-}
-
-text SootopolisCity_PokemonCenter_1F_EventScript_DoubleEdgeTutor_Intro {
-    format("Sigh…\p"
+    msgbox(format("Sigh…\p"
         "Sootopolis's Gym Leader is really lovably admirable.\p"
         "But that also means I have many rivals for his attention.\p"
-        "He's got appeal with a Double-Edge.\n"
         "I couldn't even catch his eye.\p"
-        "Please, let me teach your Pokémon about the perils of love!")
+        "Please, let me teach your Pokémon about the perils of love!"), MSGBOX_DEFAULT)
+    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Double-Edge", "Last Resort", "Ominous Wind")
+    switch (var(VAR_RESULT)) {
+    case 0: setvar(VAR_0x8005, MOVE_DOUBLE_EDGE)
+    case 1: setvar(VAR_0x8005, MOVE_LAST_RESORT)
+    case 2: setvar(VAR_0x8005, MOVE_OMINOUS_WIND)
+    default:
+        goto(MoveTutor_EventScript_TutorDeclined)
+    }
+    call(MoveTutor_EventScript_OpenPartyMenu)
+    release
 }
 

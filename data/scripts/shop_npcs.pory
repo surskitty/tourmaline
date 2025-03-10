@@ -169,6 +169,7 @@ mart Common_Marts_PostWattson {
     ITEM_ICE_HEAL
     ITEM_PARALYZE_HEAL
     ITEM_POKE_DOLL
+    ITEM_EXP_CANDY_XS
 }
 
 mart Common_Marts_PostNorman {
@@ -192,6 +193,7 @@ mart Common_Marts_PostNorman {
     ITEM_ICE_HEAL
     ITEM_PARALYZE_HEAL
     ITEM_POKE_DOLL
+    ITEM_EXP_CANDY_XS
 }
 
 mart Common_Marts_PostLilycove {
@@ -219,6 +221,8 @@ mart Common_Marts_PostLilycove {
     ITEM_ICE_HEAL
     ITEM_PARALYZE_HEAL
     ITEM_POKE_DOLL
+    ITEM_EXP_CANDY_XS
+    ITEM_EXP_CANDY_S
 }
 
 script Common_EventScript_Clerk_Endgame {
@@ -364,6 +368,7 @@ mart Common_Marts_Utility_All {
 mart Common_Marts_Utility {
     ITEM_EXP_CANDY_XS
     ITEM_EXP_CANDY_S
+    ITEM_EXP_CANDY_M
     ITEM_REPEL
     ITEM_SUPER_REPEL
     ITEM_MAX_REPEL
