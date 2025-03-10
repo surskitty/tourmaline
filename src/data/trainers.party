@@ -4813,34 +4813,33 @@ Class: Leader
 Pic: Leader Roxanne
 Gender: Female
 Music: Female
-Items: Potion / Potion
+Items: Potion
 Double Battle: Yes
-AI: Smart Trainer
+AI: Smart Trainer | Conservative
 Mugshot: Yellow
 
 Pumice (Shuckle)
 Level: 12
 Ability: Contrary
-- Struggle Bug
+Nature: Timid
+- Infestation
 - Rock Tomb
-- Sandstorm
-- Helping Hand
 
-Magnetite (Geodude Alola) @ Shuca Berry
+Magnetite (Geodude Alola)
 Level: 12
+Nature: Modest
 Ability: Sturdy
+- Rock Tomb
 - Bulldoze
 - Spark
 - Wide Guard
-- Sandstorm
 
-Hematite (Geodude Alola) @ Rindo Berry
+Salt (Nacli) @ Oran Berry
 Level: 12
-Ability: Sturdy
-- Bulldoze
+Ability: Clear Body
 - Rock Tomb
-- Wide Guard
-- Sandstorm
+- Mud Shot
+- Smack Down
 
 Basalt (Nosepass) @ Oran Berry
 Level: 13
@@ -7600,7 +7599,7 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer
 
-Geodude
+Nacli
 Level: 10
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
@@ -7618,7 +7617,7 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer
 
-Geodude
+Geodude Alola
 Level: 8
 IVs: 13 HP / 13 Atk / 13 Def / 13 SpA / 13 SpD / 13 Spe
 
@@ -12513,7 +12512,7 @@ Music: Hiker
 Double Battle: Yes
 AI: Basic Trainer
 
-Geodude
+Nacli
 Level: 8
 IVs: 14 HP / 14 Atk / 14 Def / 14 SpA / 14 SpD / 14 Spe
 

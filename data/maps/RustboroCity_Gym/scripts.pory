@@ -1,4 +1,15 @@
-mapscripts RustboroCity_Gym_MapScripts {}
+const FLAG_HIDE_PROBOPASS = FLAG_TEMP_7
+
+mapscripts RustboroCity_Gym_MapScripts {
+    MAP_SCRIPT_ON_LOAD {
+        if (!flag(FLAG_BADGE04_GET)) {
+            setflag(FLAG_HIDE_PROBOPASS)
+        }
+        special(SetRoofBirds)
+    }
+}
+
+text RustboroCity_Gym_Text_Roxanne { "Roxanne" }
 
 raw `
 
@@ -13,9 +24,11 @@ RustboroCity_Gym_EventScript_Roxanne::
     end
 
 RustboroCity_Gym_EventScript_RoxanneDefeated::
+    speakername 0
     message RustboroCity_Gym_Text_ReceivedStoneBadge
     waitmessage
     call Common_EventScript_PlayGymBadgeFanfare
+    speakername RustboroCity_Gym_Text_Roxanne
     msgbox RustboroCity_Gym_Text_StoneBadgeInfoTakeThis, MSGBOX_DEFAULT
     setflag FLAG_DEFEATED_RUSTBORO_GYM
     setflag FLAG_BADGE01_GET
@@ -201,8 +214,7 @@ text RustboroCity_Gym_Text_StoneBadgeInfoTakeThis {
 
 text RustboroCity_Gym_Text_ExplainRockTomb {
     format("That Technical Machine, TM39, contains Rock Tomb.\p"
-    "It not only inflicts damage by dropping rocks, it also lowers Speed.\p"
-    "If you use a TM, it instantly teaches the move to a Pokémon.")
+    "It not only inflicts damage by dropping rocks, it also lowers Speed.")
 }
 
 text RustboroCity_Gym_Text_RoxannePostBattle {
@@ -223,9 +235,9 @@ text RustboroCity_Gym_Text_GymStatueCertified {
 text RustboroCity_Gym_Text_RoxanneRegisterCall {
     format("… … … … … …\n"
     "… … … … … Beep!\p"
-    "ROXANNE: Oh, hello, {PLAYER}?\n"
+    "Oh, hello, {PLAYER}?\n"
     "This is Roxanne of Rustboro City.\p"
-    "I heard from BRAWLY that you're moving up through the ranks of Trainers at an incredible clip.\p"
+    "I heard from Brawly that you're moving up through the ranks of Trainers at an incredible clip.\p"
     "Well, I'd rather not think that I can't beat you.\p"
     "I promise, I will shape up my Gym so that you may challenge us again.\p"
     "I hope you'll be looking forward to that occasion as much as me!\p"
@@ -239,7 +251,7 @@ text RustboroCity_Gym_Text_RegisteredRoxanne {
 }
 
 text RustboroCity_Gym_Text_RoxannePreRematch {
-    format("ROXANNE: I'm so glad to see you again.\n"
+    format("I'm so glad to see you again.\n"
     "I'm Roxanne, the Gym Leader here.\p"
     "I'm sure we've both experienced many battles since we last met.\p"
     "I would like to see how much better we've become. Let us battle!")
@@ -251,12 +263,12 @@ text RustboroCity_Gym_Text_RoxanneRematchDefeat {
 }
 
 text RustboroCity_Gym_Text_RoxannePostRematch {
-    format("ROXANNE: I still have much to learn when it comes to battling Pokémon.\p"
+    format("I still have much to learn when it comes to battling Pokémon.\p"
     "That awareness makes me love battling all that much more!")
 }
 
 text RustboroCity_Gym_Text_RoxanneRematchNeedTwoMons {
-    format("ROXANNE: I'm so glad to see you again.\n"
+    format("I'm so glad to see you again.\n"
     "I'm Roxanne, the Gym Leader here.\p"
     "I'm sure we've both experienced many battles since we last met.\p"
     "I would like to see how much better we've become…\p"
@@ -264,3 +276,15 @@ text RustboroCity_Gym_Text_RoxanneRematchNeedTwoMons {
     "You only have one Pokémon with you?\p"
     "Please return with at least one more Pokémon.")
 }
+
+script RustboroCity_Gym_EventScript_Nosepass {
+    lock
+    applymovement(VAR_LAST_TALKED, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    playmoncry(SPECIES_NOSEPASS, CRY_MODE_ENCOUNTER)
+    msgbox(format("If Nosepass could turn around, it would glare at you in combat-readiness!"), MSGBOX_DEFAULT)
+    waitmoncry
+    release
+}
+
+

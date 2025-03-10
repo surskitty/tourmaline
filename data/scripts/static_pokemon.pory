@@ -30,11 +30,29 @@ script Common_EventScript_TrainingPokemon {
     applymovement(VAR_LAST_TALKED, Common_Movement_ExclamationMark)
     waitmovement(0)
     callnative(GetSymbolEncounterSpecies)
-    playmoncry(VAR_0x8004, CRY_MODE_HIGH_PITCH)
+    setseenmon(VAR_0x8004)
+    playmoncry(VAR_0x8004, CRY_MODE_ENCOUNTER)
     bufferspeciesname(STR_VAR_1, VAR_0x8004)
     msgbox(format("A battle would interrupt the {STR_VAR_1}'s training."), MSGBOX_DEFAULT)
     waitmoncry
     applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    release
+}
+
+script Common_PokemonScript_WaitingForBattle {
+    lock
+    faceplayer
+    waitmovement(0)
+    applymovement(VAR_LAST_TALKED, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    callnative(GetSymbolEncounterSpecies)
+    setseenmon(VAR_0x8004)
+    playmoncry(VAR_0x8004, CRY_MODE_ENCOUNTER)
+    bufferspeciesname(STR_VAR_1, VAR_0x8004)
+    msgbox(format("The {STR_VAR_1} wants you to get on with it and challenge its Trainer."), MSGBOX_DEFAULT)
+    waitmoncry
+    applymovement(VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection)
+    release
 }
 
 script Common_EventScript_RanFromStaticPokemon {
