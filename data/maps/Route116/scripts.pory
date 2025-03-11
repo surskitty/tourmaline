@@ -90,6 +90,7 @@ Route116_EventScript_NoRoomForRepeatBall::
 Route116_EventScript_Briney::
     lock
     faceplayer
+    speakername CommonName_Text_MrBriney
     msgbox Route116_Text_ScoundrelMadeOffWithPeeko, MSGBOX_DEFAULT
     setvar VAR_ROUTE116_STATE, 2
     release
@@ -100,6 +101,7 @@ Route116_EventScript_BrineyTrigger::
     applymovement LOCALID_BRINEY, Common_Movement_WalkInPlaceFasterRight
     applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
     waitmovement 0
+    speakername CommonName_Text_MrBriney
     msgbox Route116_Text_ScoundrelMadeOffWithPeeko, MSGBOX_DEFAULT
     setvar VAR_ROUTE116_STATE, 2
     releaseall
@@ -139,10 +141,10 @@ Route116_EventScript_FoundGlassesOnPlayer::
 
 Route116_EventScript_GlassesManExit::
     delay 20
-    call_if_eq VAR_FACING, DIR_NORTH, Route116_EventScript_GlassesManExitNormal
-    call_if_eq VAR_FACING, DIR_SOUTH, Route116_EventScript_GlassesManExitNormal
-    call_if_eq VAR_FACING, DIR_WEST, Route116_EventScript_GlassesManExitNormal
-    call_if_eq VAR_FACING, DIR_EAST, Route116_EventScript_GlassesManExitEast
+    call_if_eq VAR_FACING, DIR_NORTH,   Route116_EventScript_GlassesManExitNormal
+    call_if_eq VAR_FACING, DIR_SOUTH,   Route116_EventScript_GlassesManExitNormal
+    call_if_eq VAR_FACING, DIR_WEST,    Route116_EventScript_GlassesManExitNormal
+    call_if_eq VAR_FACING, DIR_EAST,    Route116_EventScript_GlassesManExitEast
     removeobject VAR_LAST_TALKED
     release
     end
@@ -156,31 +158,6 @@ Route116_EventScript_GlassesManExitEast::
     applymovement VAR_LAST_TALKED, Route116_Movement_GlassesManExitEast
     waitmovement 0
     return
-
-Route116_Movement_GlassesManExit:
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    step_end
-
-Route116_Movement_GlassesManExitEast:
-    walk_up
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    step_end
 
 Route116_EventScript_Joey::
     trainerbattle_single TRAINER_JOEY, Route116_Text_JoeyIntro, Route116_Text_JoeyDefeat
@@ -389,18 +366,13 @@ text Route116_Text_NotWhatImLookingFor {
     "They're not what I'm looking for…")
 }
 
-script Route116_EventScript_TunnelersRestHouseSign {
-    msgbox("Tunneler's Rest House", MSGBOX_SIGN)
-}
 
-movement Route116_Movement_DevonEmployeeExit { walk_left * 8 }
-
-movement Route116_Movement_DevonEmployeeExitEast {
-    walk_down
-    walk_left * 9
-}
-
-script Route116_EventScript_RouteSignRustboro { msgbox(format("Route 116\n{LEFT_ARROW} Rustboro City"), MSGBOX_SIGN) }
+movement Route116_Movement_DevonEmployeeExit        { walk_left * 8 }
+movement Route116_Movement_DevonEmployeeExitEast    { walk_down walk_left * 9 }
+movement Route116_Movement_GlassesManExit           { walk_left * 9 }
+movement Route116_Movement_GlassesManExitEast       { walk_up walk_left * 9 }
+script Route116_EventScript_RouteSignRustboro       { msgbox(format("Route 116\n{LEFT_ARROW} Rustboro City"), MSGBOX_SIGN) }
+script Route116_EventScript_TunnelersRestHouseSign  { msgbox("Tunneler's Rest House", MSGBOX_SIGN) }
 
 script Route116_EventScript_RusturfTunnelSign {
     msgbox(format("Rusturf Tunnel\n"
@@ -417,3 +389,4 @@ script Route116_EventScript_TrainerTipsBagHasPockets {
     msgbox(format("Trainer Tips\p"
         "One of the Clerks at your local Friendly Shop sells more items based on your number of Badges."), MSGBOX_SIGN)
 }
+

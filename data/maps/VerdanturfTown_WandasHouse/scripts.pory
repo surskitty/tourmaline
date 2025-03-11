@@ -1,9 +1,5 @@
 mapscripts VerdanturfTown_WandasHouse_MapScripts {}
 
-text VerdanturfTown_WandasHouse_WandaName {
-    "Wanda"
-}
-
 script VerdanturfTown_WandasHouse_EventScript_Wally {
     lock
     faceplayer
@@ -57,19 +53,19 @@ VerdanturfTown_WandasHouse_EventScript_Wanda::
     faceplayer
     goto_if_set FLAG_DEFEATED_LAVARIDGE_GYM, VerdanturfTown_WandasHouse_EventScript_WandaDontWorry
     goto_if_set FLAG_DEFEATED_WALLY_MAUVILLE, VerdanturfTown_WandasHouse_EventScript_MeetWanda
-    speakername VerdanturfTown_WandasHouse_WandaName
+    speakername CommonName_Text_Wanda
     msgbox VerdanturfTown_WandasHouse_Text_DontWorryAboutWally, MSGBOX_DEFAULT
     release
     end
 
 VerdanturfTown_WandasHouse_EventScript_MeetWanda::
-    speakername VerdanturfTown_WandasHouse_WandaName
+    speakername CommonName_Text_Wanda
     msgbox VerdanturfTown_WandasHouse_Text_MeetWanda, MSGBOX_DEFAULT
     release
     end
 
 VerdanturfTown_WandasHouse_EventScript_WandaDontWorry::
-    speakername VerdanturfTown_WandasHouse_WandaName
+    speakername CommonName_Text_Wanda
     msgbox VerdanturfTown_WandasHouse_Text_DontWorryAboutWally, MSGBOX_DEFAULT
     release
     end

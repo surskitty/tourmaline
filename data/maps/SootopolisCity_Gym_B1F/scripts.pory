@@ -185,8 +185,7 @@ text SootopolisCity_Gym_B1F_Text_AnnikaDefeat {
 
 text SootopolisCity_Gym_B1F_Text_AnnikaPostBattle {
     format("I came to this Gym because Juan praised me for my darling Pokémon.\p"
-    "Oh, if only I'd met Juan years ago\n"
-    "when I was younger…")
+    "Oh, if only I'd met Juan years ago when I was younger…")
 }
 
 text SootopolisCity_Gym_B1F_Text_BriannaIntro {

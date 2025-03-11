@@ -2,8 +2,13 @@ mapscripts SkyPillar_Top_MapScripts {
     MAP_SCRIPT_ON_RESUME {
         call_if_set(FLAG_SYS_CTRL_OBJ_DELETE, SkyPillar_Top_EventScript_TryRemoveRayquaza)
     }
-    MAP_SCRIPT_ON_TRANSITION: SkyPillar_Top_OnTransition
-    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE: SkyPillar_Top_OnWarp
+    MAP_SCRIPT_ON_TRANSITION {
+        call_if_lt(VAR_SKY_PILLAR_STATE, 2, SkyPillar_Top_EventScript_SetCleanLayout)
+        call_if_ge(VAR_SKY_PILLAR_STATE, 2, SkyPillar_Top_EventScript_TryShowRayquaza)
+    }
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
+        VAR_SKY_PILLAR_STATE, 0: SkyPillar_Top_EventScript_RayquazaFaceDown
+    ]
     MAP_SCRIPT_ON_LOAD {
         special(SetRoofBirds)
         special(SetStationaryWilds)
@@ -18,31 +23,10 @@ SkyPillar_Top_EventScript_TryRemoveRayquaza::
     removeobject VAR_LAST_TALKED
     return
 
-SkyPillar_Top_OnTransition:
-    call_if_lt VAR_SKY_PILLAR_STATE, 2, SkyPillar_Top_EventScript_SetCleanLayout
-    call_if_ge VAR_SKY_PILLAR_STATE, 2, SkyPillar_Top_EventScript_TryShowRayquaza
-    end
-
 SkyPillar_Top_EventScript_SetCleanLayout::
     setmaplayoutindex LAYOUT_SKY_PILLAR_TOP_CLEAN
     setobjectmovementtype LOCALID_RAYQUAZA_SLEEPING, MOVEMENT_TYPE_FACE_DOWN
     return
-
-SkyPillar_Top_EventScript_TryShowRayquaza::
-    call_if_unset FLAG_DEFEATED_RAYQUAZA, SkyPillar_Top_EventScript_ShowRayquaza
-    return
-
-SkyPillar_Top_EventScript_ShowRayquaza::
-    clearflag FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL
-    return
-
-SkyPillar_Top_OnWarp:
-    map_script_2 VAR_SKY_PILLAR_STATE, 0, SkyPillar_Top_EventScript_RayquazaFaceDown
-    .2byte 0
-
-SkyPillar_Top_EventScript_RayquazaFaceDown::
-    turnobject LOCALID_RAYQUAZA_SLEEPING, DIR_SOUTH
-    end
 
 SkyPillar_Top_EventScript_Rayquaza::
     lockall
@@ -63,17 +47,12 @@ SkyPillar_Top_EventScript_Rayquaza::
     releaseall
     end
 
-SkyPillar_Top_EventScript_DefeatedRayquaza::
-    setflag FLAG_DEFEATED_RAYQUAZA
-    goto SkyPillar_Top_EventScript_DefeatedRayquaza2
-    end
-
 SkyPillar_Top_EventScript_RanFromRayquaza::
     setvar VAR_0x8004, SPECIES_RAYQUAZA
     goto SkyPillar_Top_EventScript_RanFromRayquaza2
     end
 
-SkyPillar_Top_EventScript_DefeatedRayquaza2::
+SkyPillar_Top_EventScript_DefeatedRayquaza::
     fadescreenswapbuffers FADE_TO_BLACK
     removeobject VAR_LAST_TALKED
     fadescreenswapbuffers FADE_FROM_BLACK
@@ -169,20 +148,11 @@ SkyPillar_Top_Movement_RayquazaFlyOff:
     slide_up
     slide_up
     step_end
-
-SkyPillar_Top_Movement_CameraPanUp:
-    walk_slow_up
-    walk_slow_up
-    walk_slow_up
-    step_end
-
-SkyPillar_Top_Movement_CameraPanDown:
-    walk_slow_down
-    walk_slow_down
-    walk_slow_down
-    step_end
-
-SkyPillar_Top_Text_RayquazaFlewOff:
-    .string "The awakened RAYQUAZA flew off…$"
-
 `
+script SkyPillar_Top_EventScript_TryShowRayquaza    { call_if_unset(FLAG_DEFEATED_RAYQUAZA, SkyPillar_Top_EventScript_ShowRayquaza) }
+script SkyPillar_Top_EventScript_ShowRayquaza       { clearflag(FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL) }
+script SkyPillar_Top_EventScript_RayquazaFaceDown   { turnobject(LOCALID_RAYQUAZA_SLEEPING, DIR_SOUTH) }
+
+movement SkyPillar_Top_Movement_CameraPanUp   { walk_slow_up * 3 }
+movement SkyPillar_Top_Movement_CameraPanDown { walk_slow_down * 3 }
+text SkyPillar_Top_Text_RayquazaFlewOff { format("The awakened Rayquaza flew off…") }

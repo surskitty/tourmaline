@@ -20,7 +20,8 @@ script RustboroCity_House1_EventScript_Zigzagoon {
     faceplayer
     waitse
     playmoncry(SPECIES_ZIGZAGOON, CRY_MODE_NORMAL)
-    msgbox("ZIGZAGOON: Guguuh!", MSGBOX_DEFAULT)
+    speakername("Zigzagoon")
+    msgbox("Guguuh!", MSGBOX_DEFAULT)
     waitmoncry
     release
 }

@@ -271,15 +271,13 @@ text SSTidalCorridor_Text_ScottBattleFrontierInvite {
 }
 
 text SSTidal_Text_FastCurrentsHopeYouEnjoyVoyage {
-    format("This ferry is built to plow through\n"
-    "fast-running currents.\p"
+    format("This ferry is built to plow through fast-running currents.\p"
     "We hope you enjoy your voyage with us.\n"
     "Feel free to explore the ship.")
 }
 
 text SSTidal_Text_HopeYouEnjoyVoyage {
-    format("We hope you enjoy your voyage on\n"
-    "our ferry.")
+    format("We hope you enjoy your voyage on our ferry.")
 }
 
 text SSTidal_Text_MadeLandInSlateport {
@@ -330,18 +328,7 @@ text SSTidalCorridor_Text_Peeko {
     format("PEEKO: Pihyo pihyohyo…")
 }
 
-text SSTidalCorridor_Text_Cabin1 {
-    format("Cabin 1")
-}
-
-text SSTidalCorridor_Text_Cabin2 {
-    format("Cabin 2")
-}
-
-text SSTidalCorridor_Text_Cabin3 {
-    format("Cabin 3")
-}
-
-text SSTidalCorridor_Text_Cabin4 {
-    format("Cabin 4")
-}
+text SSTidalCorridor_Text_Cabin1 { format("Cabin 1") }
+text SSTidalCorridor_Text_Cabin2 { format("Cabin 2") }
+text SSTidalCorridor_Text_Cabin3 { format("Cabin 3") }
+text SSTidalCorridor_Text_Cabin4 { format("Cabin 4") }

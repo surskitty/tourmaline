@@ -1,13 +1,11 @@
+mapscripts RustboroCity_DevonCorp_1F_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        call_if_unset(FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_BlockStairs)
+    }
+}
+
 raw `
 .set LOCALID_STAIR_GUARD, 2
-
-RustboroCity_DevonCorp_1F_MapScripts::
-    map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_DevonCorp_1F_OnTransition
-    .byte 0
-
-RustboroCity_DevonCorp_1F_OnTransition:
-    call_if_unset FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_BlockStairs
-    end
 
 RustboroCity_DevonCorp_1F_EventScript_BlockStairs::
     setobjectxyperm LOCALID_STAIR_GUARD, 14, 2
@@ -81,68 +79,61 @@ RustboroCity_DevonCorp_1F_EventScript_ProductsDisplay::
     msgbox RustboroCity_DevonCorp_1F_Text_ProductDisplay, MSGBOX_SIGN
     end
 
-RustboroCity_DevonCorp_1F_Text_WelcomeToDevonCorp:
-    .string "Hello and welcome to the Devon\n"
-    .string "Corporation.\p"
-    .string "We're proud producers of items and\n"
-    .string "medicine that enhance your life.$"
-
-RustboroCity_DevonCorp_1F_Text_StaffGotRobbed:
-    .string "One of our research staff stupidly\n"
-    .string "got robbed of an important parcel.$"
-
-RustboroCity_DevonCorp_1F_Text_ThoseShoesAreOurProduct:
-    .string "Hey, those Running Shoes!\n"
-    .string "They're one of our products!\p"
-    .string "It makes me happy when I see someone\n"
-    .string "using something we made.$"
-
-RustboroCity_DevonCorp_1F_Text_RobberWasntVeryBright:
-    .string "That stolen parcel…\p"
-    .string "Well, sure it's important, but it's not\n"
-    .string "anything that anyone can use.\p"
-    .string "In my estimation, that robber must not\n"
-    .string "have been very bright.$"
-
-RustboroCity_DevonCorp_1F_Text_SoundsLikeStolenGoodsRecovered:
-    .string "It sounds like they've recovered\n"
-    .string "the ripped-off Devon Goods.$"
-
-RustboroCity_DevonCorp_1F_Text_OnlyAuthorizedPeopleEnter:
-    .string "I'm sorry, only authorized people\n"
-    .string "are allowed to enter here.$"
-
-RustboroCity_DevonCorp_1F_Text_HowCouldWeGetRobbed:
-    .string "It's beyond stupid.\n"
-    .string "How could we get robbed?$"
-
-RustboroCity_DevonCorp_1F_Text_YoureAlwaysWelcomeHere:
-    .string "Hi, there!\n"
-    .string "You're always welcome here!$"
-
-RustboroCity_DevonCorp_1F_Text_RocksMetalDisplay:
-    .string "Samples of rocks and metal are\n"
-    .string "displayed in the glass case.\p"
-    .string "There's a panel with some writing\n"
-    .string "on it…\p"
-    .string "“Devon Corporation got its start as\n"
-    .string "a producer of stones from quarries.\p"
-    .string "“The company also produced iron from\n"
-    .string "filings in the sand.\p"
-    .string "“From that humble start as a producer\n"
-    .string "of raw materials, Devon developed.\p"
-    .string "“Devon is now a manufacturer of a wide\n"
-    .string "range of industrial products.”$"
-
-RustboroCity_DevonCorp_1F_Text_ProductDisplay:
-    .string "Prototypes and test products fill\n"
-    .string "the glass display case.\p"
-    .string "There's a panel with a description…\p"
-    .string "“In addition to industrial products,\n"
-    .string "Devon now markets sundries and\l"
-    .string "pharmaceuticals for better lifestyles.\p"
-    .string "“Recently, Devon has begun marketing\n"
-    .string "tools for Pokémon Trainers, including\l"
-    .string "Poké Balls and Pokénav systems.”$"
-
 `
+
+text RustboroCity_DevonCorp_1F_Text_WelcomeToDevonCorp {
+    format("Hello and welcome to the Devon Corporation.\p"
+    "We're proud producers of items and medicine that enhance your life.")
+}
+
+text RustboroCity_DevonCorp_1F_Text_StaffGotRobbed {
+    format("One of our research staff stupidly got robbed of an important parcel.")
+}
+
+text RustboroCity_DevonCorp_1F_Text_ThoseShoesAreOurProduct {
+    format("Hey, those Running Shoes!\n"
+    "They're one of our products!\p"
+    "It makes me happy when I see someone using something we made.")
+}
+
+text RustboroCity_DevonCorp_1F_Text_RobberWasntVeryBright {
+    format("That stolen parcel…\p"
+    "Well, sure it's important, but it's not anything that anyone can use.\p"
+    "In my estimation, that robber must not have been very bright.")
+}
+
+text RustboroCity_DevonCorp_1F_Text_SoundsLikeStolenGoodsRecovered {
+    format("It sounds like they've recovered the ripped-off Devon Goods.")
+}
+
+text RustboroCity_DevonCorp_1F_Text_OnlyAuthorizedPeopleEnter {
+    format("I'm sorry, you need authorization to enter here.")
+}
+
+text RustboroCity_DevonCorp_1F_Text_HowCouldWeGetRobbed {
+    format("It's beyond stupid.\n"
+    "How could we get robbed?")
+}
+
+text RustboroCity_DevonCorp_1F_Text_YoureAlwaysWelcomeHere {
+    format("Hi, there!\n"
+    "You're always welcome here!")
+}
+
+text RustboroCity_DevonCorp_1F_Text_RocksMetalDisplay {
+    format("Samples of rocks and metal are displayed in the glass case.\p"
+    "There's a panel with some writing\n"
+    "on it…\p"
+    "“Devon Corporation got its start as a producer of stones from quarries.\p"
+    "“The company also produced iron from filings in the sand.\p"
+    "“From that humble start as a producer of raw materials, Devon developed.\p"
+    "“Devon is now a manufacturer of a wide range of industrial products.”")
+}
+
+text RustboroCity_DevonCorp_1F_Text_ProductDisplay {
+    format("Prototypes and test products fill the glass display case.\p"
+    "There's a panel with a description…\p"
+    "“In addition to industrial products, Devon now markets sundries and pharmaceuticals for better lifestyles.\p"
+    "“Recently, Devon has begun marketing tools for Pokémon Trainers, including Poké Balls and Pokénav systems.”")
+}
+

@@ -130,34 +130,6 @@ movement SlateportCity_Movement_ScottExit {
 }
 
 raw `
-SlateportCity_EventScript_EffortRibbonWoman::
-    lock
-    faceplayer
-    bufferleadmonspeciesname STR_VAR_1
-    msgbox SlateportCity_Text_OhYourPokemon, MSGBOX_DEFAULT
-    specialvar VAR_RESULT, LeadMonHasEffortRibbon
-    call_if_eq VAR_RESULT, TRUE, SlateportCity_EventScript_MonHasEffortRibbon
-    specialvar VAR_RESULT, Special_AreLeadMonEVsMaxedOut
-    call_if_eq VAR_RESULT, FALSE, SlateportCity_EventScript_MonEVsNotMaxed
-    msgbox SlateportCity_Text_PleaseGiveItThisEffortRibbon, MSGBOX_DEFAULT
-    playfanfare MUS_OBTAIN_ITEM
-    message SlateportCity_Text_ReceivedEffortRibbon
-    waitfanfare
-    msgbox SlateportCity_Text_PutEffortRibbonOnMon, MSGBOX_DEFAULT
-    special GiveLeadMonEffortRibbon
-    release
-    end
-
-SlateportCity_EventScript_MonEVsNotMaxed::
-    msgbox SlateportCity_Text_GoForItLittleHarder, MSGBOX_DEFAULT
-    release
-    end
-
-SlateportCity_EventScript_MonHasEffortRibbon::
-    msgbox SlateportCity_Text_EffortRibbonLooksGoodOnIt, MSGBOX_DEFAULT
-    release
-    end
-
 SlateportCity_EventScript_Cook::
     lock
     faceplayer
@@ -888,31 +860,48 @@ mart SlateportCity_Pokemart_PowerTMs {
     ITEM_ABILITY_PATCH
 }
 
-text SlateportCity_Text_OhYourPokemon {
-   format("Oh?\n"
-    "Your {STR_VAR_1}…")
+script SlateportCity_EventScript_EffortRibbonWoman {
+    lock
+    faceplayer
+    bufferleadmonspeciesname(STR_VAR_1)
+    msgbox(format("Oh?\nYour {STR_VAR_1}…"), MSGBOX_DEFAULT)
+    specialvar(VAR_RESULT, LeadMonHasEffortRibbon)
+    call_if_eq(VAR_RESULT, TRUE, SlateportCity_EventScript_MonHasEffortRibbon)
+    specialvar(VAR_RESULT, Special_AreLeadMonEVsMaxedOut)
+    call_if_eq(VAR_RESULT, FALSE, SlateportCity_EventScript_MonEVsNotMaxed)
+    msgbox(format("…went for it stupendously!\p"
+        "As its reward, please give it this Effort Ribbon."), MSGBOX_DEFAULT)
+    playfanfare(MUS_OBTAIN_ITEM)
+    message(format("{PLAYER} received the Effort Ribbon."))
+    waitfanfare
+    msgbox(format("{PLAYER} put the Effort Ribbon on {STR_VAR_1}."), MSGBOX_DEFAULT)
+    special(GiveLeadMonEffortRibbon)
+    goto(SlateportCity_EventScript_MonHasEffortRibbon)
 }
 
-text SlateportCity_Text_PleaseGiveItThisEffortRibbon {
-   format("Went for it stupendously!\p"
-    "As its reward, please give it this Effort Ribbon.")
+script SlateportCity_EventScript_MonEVsNotMaxed {
+    msgbox(format("You have to go for it a little harder.\p"
+        "If you do, I'll give your Pokémon something nice."), MSGBOX_DEFAULT)
+    release
 }
 
-text SlateportCity_Text_ReceivedEffortRibbon {
-   format("{PLAYER} received the Effort Ribbon.")
-}
-
-text SlateportCity_Text_PutEffortRibbonOnMon {
-   format("{PLAYER} put the Effort Ribbon on {STR_VAR_1}.")
-}
-
-text SlateportCity_Text_GoForItLittleHarder {
-   format("You have to go for it a little harder.\p"
-    "If you do, I'll give your Pokémon something nice.")
-}
-
-text SlateportCity_Text_EffortRibbonLooksGoodOnIt {
-   format("Oh! Your {STR_VAR_1}, that Effort Ribbon looks good on it!")
+// If you already have the Effort Ribbon
+script SlateportCity_EventScript_MonHasEffortRibbon {
+    if (flag(FLAG_TEMP_10)) {
+        msgbox(format("Your {STR_VAR_1} is so cool."), MSGBOX_DEFAULT)
+        release
+    }
+    else {
+        msgbox(format("Your {STR_VAR_1} looks amazing!\pIt deserves a treat."), MSGBOX_DEFAULT)
+        setflag(FLAG_TEMP_10)
+        checkitem(ITEM_FRESH_START_MOCHI)
+        if (var(VAR_RESULT) == 0) { giveitem(ITEM_FRESH_START_MOCHI) } else {
+            random(6)
+            addvar(VAR_RESULT, ITEM_POMEG_BERRY)
+            giveitem(VAR_RESULT)
+            release
+        }
+    }
 }
 
 text SlateportCity_Text_SeaweedFullOfLife {
@@ -946,14 +935,11 @@ text SlateportCity_Text_BushedHikingFromMauville {
    format("Whew… I'm just bushed…\p"
     "I hiked over from Mauville City.\n"
     "But, boy, this city's huge.\p"
-    "If I'd known this, I would've ridden\n"
-    "my Bike here.")
+    "If I'd known this, I would've ridden my Bike here.")
 }
 
 text SlateportCity_Text_EveryoneCallsHimCaptStern {
-   format("Stern, the fellow who built the\n"
-    "Museum, also happens to be the leader\l"
-    "of an undersea exploration team.\p"
+   format("Stern, the fellow who built the Museum, also happens to be the leader of an undersea exploration team.\p"
     "So, everyone calls him Capt. Stern.")
 }
 
@@ -963,10 +949,8 @@ text SlateportCity_Text_WhatsLongLineOverThere {
 }
 
 text SlateportCity_Text_VisitedMuseumOften {
-   format("When I was a child, I visited\n"
-    "the Museum often.\p"
-    "I used to dream about the mysteries of\n"
-    "the sea after seeing the exhibits.")
+   format("When I was a child, I visited the Museum often.\p"
+    "I used to dream about the mysteries of the sea after seeing the exhibits.")
 }
 
 text SlateportCity_Text_QuitPushing {
@@ -982,8 +966,7 @@ text SlateportCity_Text_AquaHasPolicy {
 
 text SlateportCity_Text_BossIsBrilliant {
    format("Our Boss is brilliant.\p"
-    "What would he want to do with\n"
-    "a Museum now?")
+    "What would he want to do with a Museum now?")
 }
 
 text SlateportCity_Text_WhatsNewSchemeIWonder {
@@ -1121,8 +1104,7 @@ text SlateportCity_Text_OhPlayerWeMadeDiscovery {
    format("Oh! {PLAYER}{KUN}!\n"
     "You're looking great!\p"
     "We made a huge discovery on our last seafloor exploration.\p"
-    "We found an underwater cavern on\n"
-    "Route 128.\p"
+    "We found an underwater cavern on Route 128.\p"
     "We think it's the habitat of a Pokémon\n"
     "that's said to have been long extinct.")
 }
@@ -1297,8 +1279,7 @@ text SlateportCity_Text_KeepEyeOnTrainersBeSeeingYou {
 text SlateportCity_Text_TakingBattleTentChallenge {
    format("Oh, hey!\n"
     "If it isn't {PLAYER}{KUN}!\p"
-    "{PLAYER}{KUN}, let me guess--you're going\n"
-    "to take the Battle Tent challenge?\p"
+    "{PLAYER}{KUN}, let me guess--you're going to take the Battle Tent challenge?\p"
     "Yeah! That's a good idea!\n"
     "That's a really great idea!\p"
     "After all, a tough Trainer is the perfect fit for the Battle Tent!\p"

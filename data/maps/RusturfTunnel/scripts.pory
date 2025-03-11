@@ -69,6 +69,8 @@ RusturfTunnel_EventScript_ClearTunnelScene::
     call_if_eq VAR_TEMP_1, 2, RusturfTunnel_EventScript_BoyfriendApproachWanda2
     call_if_eq VAR_TEMP_1, 3, RusturfTunnel_EventScript_BoyfriendApproachWanda3
     msgbox RusturfTunnel_Text_WandaReunion, MSGBOX_DEFAULT
+    speakername CommonName_Text_Wanda
+    msgbox RusturfTunnel_Text_WandaReunion2, MSGBOX_DEFAULT
     closemessage
     call_if_eq VAR_TEMP_1, 1, RusturfTunnel_EventScript_WandaAndBoyfriendExit1
     call_if_eq VAR_TEMP_1, 2, RusturfTunnel_EventScript_WandaAndBoyfriendExit
@@ -291,16 +293,6 @@ RusturfTunnel_Movement_GruntAndPeekoBackUp:
     unlock_facing_direction
     step_end
 
-RusturfTunnel_EventScript_Peeko::
-    lock
-    faceplayer
-    waitse
-    playmoncry SPECIES_WINGULL, CRY_MODE_NORMAL
-    msgbox RusturfTunnel_Text_Peeko, MSGBOX_DEFAULT
-    waitmoncry
-    release
-    end
-
 RusturfTunnel_EventScript_Grunt::
     lock
     faceplayer
@@ -321,10 +313,15 @@ RusturfTunnel_EventScript_Grunt::
     applymovement OBJ_EVENT_ID_PLAYER, RusturfTunnel_Movement_PlayerMoveAsideForBriney
     applymovement LOCALID_BRINEY, RusturfTunnel_Movement_BrineyApproachPeeko2
     waitmovement 0
+    speakername CommonName_Text_MrBriney
     msgbox RusturfTunnel_Text_PeekoGladToSeeYouSafe, MSGBOX_DEFAULT
     applymovement LOCALID_BRINEY, Common_Movement_FacePlayer
     waitmovement 0
+    speakername CommonName_Text_MrBriney
     message RusturfTunnel_Text_ThankYouLetsGoHomePeeko
+    waitmessage
+    speakername CommonName_Text_Peeko
+    message RusturfTunnel_Text_Peeko
     waitmessage
     waitse
     playmoncry SPECIES_WINGULL, CRY_MODE_NORMAL
@@ -358,42 +355,6 @@ RusturfTunnel_Movement_PlayerMoveAsideForBriney:
     walk_in_place_faster_up
     step_end
 
-RusturfTunnel_Movement_GruntEscape:
-    walk_fast_left
-    walk_fast_left
-    walk_fast_left
-    walk_fast_left
-    walk_fast_left
-    walk_fast_left
-    walk_fast_left
-    walk_fast_left
-    walk_fast_left
-    step_end
-
-RusturfTunnel_Movement_BrineyApproachPeeko1:
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    step_end
-
-RusturfTunnel_Movement_BrineyExit:
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    step_end
-
 RusturfTunnel_Movement_PlayerWatchBrineyExit:
     delay_16
     delay_8
@@ -406,32 +367,35 @@ RusturfTunnel_Movement_BrineyApproachPeeko2:
     walk_right
     step_end
 
-RusturfTunnel_Movement_PeekoExit:
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    walk_left
-    step_end
-
 RusturfTunnel_EventScript_Mike::
     trainerbattle_single TRAINER_MIKE_2, RusturfTunnel_Text_MikeIntro, RusturfTunnel_Text_MikeDefeat
     msgbox RusturfTunnel_Text_MikePostBattle, MSGBOX_AUTOCLOSE
     end
 `
 
+
+movement RusturfTunnel_Movement_GruntEscape             { walk_fast_left * 9 }
+movement RusturfTunnel_Movement_BrineyApproachPeeko1    { walk_right * 7 }
+movement RusturfTunnel_Movement_BrineyExit              { walk_left * 11 }
+movement RusturfTunnel_Movement_PeekoExit               { walk_left * 9 }
+
 text RusturfTunnel_Text_ComeAndGetSome {
     format("What, are you coming?\n"
     "Come and get some, then!")
 }
 
-text RusturfTunnel_Text_Peeko {
-    format("PEEKO: Pii pihyoh!")
+script RusturfTunnel_EventScript_Peeko {
+    lock
+    faceplayer
+    waitse
+    playmoncry(SPECIES_WINGULL, CRY_MODE_NORMAL)
+    speakername(CommonName_Text_Peeko)
+    msgbox(format("Pii pihyoh!"), MSGBOX_DEFAULT)
+    waitmoncry
+    release
 }
+
+text RusturfTunnel_Text_Peeko { "Pihyoh!" }
 
 text RusturfTunnel_Text_GruntIntro {
     format("Grah, keelhaul it all!\p"
@@ -448,10 +412,8 @@ text RusturfTunnel_Text_GruntDefeat {
 
 text RusturfTunnel_Text_GruntTakePackage {
     format("This is plain not right…\p"
-    "The Boss told me this would be a\n"
-    "slick-and-easy job to pull.\p"
-    "All I had to do was steal some package\n"
-    "from Devon.\p"
+    "The Boss told me this would be a slick-and-easy job to pull.\p"
+    "All I had to do was steal some package from Devon.\p"
     "Tch!\n"
     "You want it back that badly, take it!")
 }
@@ -469,24 +431,17 @@ text RusturfTunnel_Text_ThankYouLetsGoHomePeeko {
     "… … … … … … … …\p"
     "Ah, so you are {PLAYER}{KUN}!\n"
     "I sincerely thank you!\p"
-    "Now, if there's anything that troubles\n"
-    "you, don't hesitate to tell me!\p"
-    "You can usually find me in my cottage\n"
-    "by the sea near Petalburg Woods.\p"
-    "Come, Peeko, we should make our way\n"
-    "home.\p"
-    "PEEKO: Pihyoh!")
+    "Now, if there's anything that troubles you, don't hesitate to tell me!\p"
+    "You can usually find me in my cottage by the sea near Petalburg Woods.\p"
+    "Come, Peeko, we should make our way home.\p")
 }
 
 text RusturfTunnel_Text_WhyCantTheyKeepDigging {
     format("… …\p"
     "Why can't they keep digging?\n"
     "Is the bedrock too hard?\p"
-    "My beloved awaits me in Verdanturf\n"
-    "Town just beyond here…\p"
-    "If Rustboro and Verdanturf were\n"
-    "joined by this tunnel, I could visit\l"
-    "her every day…\p"
+    "My beloved awaits me in Verdanturf Town just beyond here…\p"
+    "If Rustboro and Verdanturf were joined by this tunnel, I could visit her every day…\p"
     "But this…\n"
     "What am I to do?")
 }
@@ -498,23 +453,22 @@ text RusturfTunnel_Text_ToGetToVerdanturf {
 }
 
 text RusturfTunnel_Text_YouShatteredBoulderTakeHM {
-    format("Wow! You shattered that boulder\n"
-    "blocking the way.\p"
-    "To show you how much I appreciate it,\n"
-    "I'd like you to have this HM.")
+    format("Wow! You shattered that boulder blocking the way.\p"
+    "To show you how much I appreciate it, I'd like you to have this HM.")
 }
 
 text RusturfTunnel_Text_ExplainStrength {
     format("That HM contains Strength.\p"
-    "If a muscular Pokémon were to learn\n"
-    "that, it would be able to move even\l"
-    "large boulders.")
+    "If a muscular Pokémon were to learn that, it would be able to move even large boulders.")
 }
 
 text RusturfTunnel_Text_WandaReunion {
     format("Wanda!\n"
-    "Now I can see you anytime!\p"
-    "WANDA: That's…wonderful.\p"
+    "Now I can see you anytime!")
+}
+
+text RusturfTunnel_Text_WandaReunion2 {
+    format("That's…wonderful.\p"
     "Please, take some rest at my home.")
 }
 

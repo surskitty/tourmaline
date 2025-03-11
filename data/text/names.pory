@@ -6,7 +6,7 @@ text CommonName_Text_Wally { "Wally" }
 
 text CommonName_Text_Interviewer { "Interviewer" }
 text CommonName_Text_Referee { "Referee" }
-
+text CommonName_Text_Wanda { "Wanda" }
 
 text CommonName_Text_ProfBirch { "Prof. Birch" }
 text CommonName_Text_ProfCozmo { "Prof. Cozmo" }
@@ -25,6 +25,7 @@ text CommonName_Text_WallysDad { "Wally's Dad" }
 text CommonName_Text_Scott { "Scott" }
 
 text CommonName_Text_MrBriney { "Mr. Briney" }
+text CommonName_Text_Peeko { "Peeko" }
 text CommonName_Text_CaptStern { "Capt. Stern" }
 
 

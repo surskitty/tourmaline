@@ -375,14 +375,14 @@ SlateportCity_Harbor_EventScript_DeepSeaScale::
 script SlateportCity_Harbor_EventScript_DeclineTrade {
     speakername(CommonName_Text_CaptStern)
     msgbox(format("Are you certain?\n"
-    "It's useless to you, {PLAYER}{KUN}…\p"
-    "Well, okay, then. If you want to trade your Scanner, let me know."), MSGBOX_DEFAULT)
+        "It's useless to you, {PLAYER}{KUN}…\p"
+        "Well, okay, then. If you want to trade your Scanner, let me know."), MSGBOX_DEFAULT)
     release
 }
 
 script SlateportCity_Harbor_EventScript_ChooseDifferentTrade {
     speakername(CommonName_Text_CaptStern)
-    message(format("CAPT. STERN: Which one do you want?"))
+    message(format("Which one do you want?"))
     waitmessage
     goto(SlateportCity_Harbor_EventScript_ChooseScannerTrade)
 }
@@ -403,18 +403,18 @@ text SlateportCity_Harbor_Text_FerryServiceUnavailable {
 
 text SlateportCity_Harbor_Text_MayISeeYourTicket {
     format("Hello, are you here for the ferry?\n"
-    "May I see your TICKET?")
+    "May I see your Ticket?")
 }
 
 text SlateportCity_Harbor_Text_YouMustHaveTicket {
-    format("{PLAYER} doesn't have the TICKET…\p"
+    format("{PLAYER} doesn't have the Ticket…\p"
     "I'm terribly sorry.\p"
-    "You must have a TICKET to board\n"
+    "You must have a Ticket to board\n"
     "the ferry.")
 }
 
 text SlateportCity_Harbor_Text_FlashedTicketWhereTo {
-    format("{PLAYER} flashed the TICKET.\p"
+    format("{PLAYER} flashed the Ticket.\p"
     "Perfect! That's all you need!\p"
     "And where would you like to go?")
 }
@@ -424,16 +424,15 @@ text SlateportCity_Harbor_Text_SailAnotherTime {
 }
 
 text SlateportCity_Harbor_Text_LilycoveItIs {
-    format("LILYCOVE CITY it is, then!")
+    format("Lilycove City it is, then!")
 }
 
 text SlateportCity_Harbor_Text_BattleFrontierItIs {
-    format("BATTLE FRONTIER it is, then!")
+    format("Battle Frontier it is, then!")
 }
 
 text SlateportCity_Harbor_Text_PleaseBoardFerry {
-    format("Please board the ferry and wait for\n"
-    "departure.")
+    format("Please board the ferry and wait for departure.")
 }
 
 text SlateportCity_Harbor_Text_WhereWouldYouLikeToGo {
@@ -441,22 +440,19 @@ text SlateportCity_Harbor_Text_WhereWouldYouLikeToGo {
 }
 
 text SlateportCity_Harbor_Text_AbnormalWeather {
-    format("For a ship to sail safely, we need to\n"
-    "know about the weather!\p"
+    format("For a ship to sail safely, we need to know about the weather!\p"
     "Speaking of weather, I heard something\n"
-    "from a guy at the WEATHER INSTITUTE.\p"
+    "from a guy at the Weather Institute.\p"
     "He was saying abnormal weather has\n"
     "been reported all over the place!\p"
-    "You should visit the WEATHER INSTITUTE\n"
+    "You should visit the Weather Institute\n"
     "and ask around!")
 }
 
 text SlateportCity_Harbor_Text_SubTooSmallForMe {
-    format("I wanted to go with CAPT. STERN on\n"
-    "the ocean floor exploration.\p"
+    format("I wanted to go with Capt. Stern on the ocean floor exploration.\p"
     "But the sub's too small for me.\p"
-    "If I squeezed in, there wouldn't be\n"
-    "any room for the CAPTAIN…")
+    "If I squeezed in, there wouldn't be any room for the Captain…")
 }
 
 text SlateportCity_Harbor_Text_SameThugsTriedToRobAtMuseum {

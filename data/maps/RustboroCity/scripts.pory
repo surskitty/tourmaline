@@ -122,17 +122,6 @@ RustboroCity_Movement_ScientistApproachPlayer:
     delay_16
     step_end
 
-@ Unused
-RustboroCity_Movement_ScientistWalkAroundPlayer:
-    delay_16
-    walk_left
-    walk_down
-    walk_down
-    walk_right
-    walk_in_place_faster_up
-    delay_16
-    step_end
-
 RustboroCity_Movement_ScientistLeave:
     walk_up
     step_end
@@ -201,11 +190,6 @@ RustboroCity_EventScript_DevonCorpSign::
 
 RustboroCity_EventScript_GymSign::
     msgbox RustboroCity_Text_GymSign, MSGBOX_SIGN
-    end
-
-@ Unused
-RustboroCity_EventScript_DevonCorpBranchOfficeSign::
-    msgbox RustboroCity_Text_DevonCorpBranchOfficeSign, MSGBOX_SIGN
     end
 
 RustboroCity_EventScript_CitySign::
@@ -311,151 +295,6 @@ RustboroCity_EventScript_StolenGoodsScene::
     setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
     releaseall
     end
-
-@ Unused
-RustboroCity_EventScript_ShadyCharacterTookOff::
-    msgbox RustboroCity_Text_ShadyCharacterTookOffTowardsTunnel, MSGBOX_DEFAULT
-    return
-
-@ Unused
-RustboroCity_EventScript_YouGotItThankYou::
-    msgbox RustboroCity_Text_YouGotItThankYou, MSGBOX_DEFAULT
-    return
-
-@ Unknown, unused employee movements. Based on the differences in movement theyre for approaching an object (probably the player) in different positions
-RustboroCity_EventScript_EmployeeApproachUp::
-    applymovement LOCALID_DEVON_EMPLOYEE, RustboroCity_Movement_EmployeeApproachUp
-    waitmovement 0
-    return
-
-@ Unused, see above
-RustboroCity_EventScript_EmployeeApproachLeft::
-    applymovement LOCALID_DEVON_EMPLOYEE, RustboroCity_Movement_EmployeeApproachLeft
-    waitmovement 0
-    return
-
-@ Unused, see above
-RustboroCity_EventScript_EmployeeApproachRight::
-    applymovement LOCALID_DEVON_EMPLOYEE, RustboroCity_Movement_EmployeeApproachRight
-    waitmovement 0
-    return
-
-@ Unused, see above
-RustboroCity_EventScript_EmployeeApproachDown::
-    applymovement LOCALID_DEVON_EMPLOYEE, RustboroCity_Movement_EmployeeApproachDown
-    waitmovement 0
-    return
-
-@ Unused, similar movement to the above scripts
-RustboroCity_EventScript_EmployeeApproachPlayerFar::
-    applymovement LOCALID_DEVON_EMPLOYEE, RustboroCity_Movement_EmployeeApproachPlayerFar
-    waitmovement 0
-    applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
-    waitmovement 0
-    return
-
-@ Unused
-RustboroCity_Movement_GruntEscapeExtended:
-    walk_faster_right
-    walk_faster_right
-    walk_fast_right
-    walk_fast_right
-    walk_fast_right
-    walk_fast_right
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    step_end
-
-RustboroCity_Movement_GruntEscape:
-    walk_faster_right
-    walk_faster_right
-    walk_fast_right
-    walk_fast_right
-    walk_fast_right
-    walk_fast_right
-    walk_fast_right
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    walk_fast_up
-    step_end
-
-RustboroCity_Movement_EmployeeChaseGrunt1:
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_in_place_faster_up
-    step_end
-
-RustboroCity_Movement_EmployeeChaseGrunt2:
-    walk_up
-    walk_up
-    walk_up
-    walk_up
-    walk_up
-    walk_up
-    walk_up
-    step_end
-
-@ Functionally unused
-RustboroCity_Movement_EmployeeApproachUp:
-    walk_down
-    walk_right
-    walk_right
-    step_end
-
-@ Functionally unused
-RustboroCity_Movement_EmployeeApproachLeft:
-    walk_down
-    walk_down
-    walk_right
-    walk_right
-    step_end
-
-@ Functionally unused
-RustboroCity_Movement_EmployeeApproachRight:
-    walk_down
-    walk_down
-    walk_right
-    walk_right
-    step_end
-
-@ Functionally unused
-RustboroCity_Movement_EmployeeApproachDown:
-    walk_down
-    walk_down
-    walk_down
-    walk_right
-    walk_right
-    step_end
-
-@ Functionally unused
-RustboroCity_Movement_EmployeeApproachPlayerFar:
-    walk_down
-    walk_down
-    walk_down
-    walk_right
-    walk_right
-    walk_right
-    walk_in_place_faster_down
-    step_end
 
 RustboroCity_EventScript_DevonEmployee1::
     lock
@@ -685,10 +524,12 @@ RustboroCity_EventScript_PlayRivalMusic::
 
 RustboroCity_EventScript_PlayMayMusic::
     playbgm MUS_ENCOUNTER_MAY, TRUE
+    speakername CommonName_Text_May
     return
 
 RustboroCity_EventScript_PlayBrendanMusic::
     playbgm MUS_ENCOUNTER_BRENDAN, TRUE
+    speakername CommonName_Text_Brendan
     return
 
 RustboroCity_EventScript_RivalTrigger0::
@@ -829,10 +670,12 @@ RustboroCity_EventScript_MayEncounter::
     goto_if_set FLAG_DEFEATED_RIVAL_RUSTBORO, RustboroCity_EventScript_MayBrineyHint
     goto_if_set FLAG_MET_RIVAL_RUSTBORO, RustboroCity_EventScript_MayAskToBattle
     setflag FLAG_MET_RIVAL_RUSTBORO
+    speakername CommonName_Text_May
     msgbox RustboroCity_Text_MayHiLetsRegister, MSGBOX_DEFAULT
     closemessage
     delay 30
     playfanfare MUS_REGISTER_MATCH_CALL
+    speakername 0
     msgbox RustboroCity_Text_RegisteredMay, MSGBOX_DEFAULT
     waitfanfare
     closemessage
@@ -841,6 +684,7 @@ RustboroCity_EventScript_MayEncounter::
     setvar VAR_RUSTBORO_CITY_STATE, 8
     setvar VAR_ROUTE104_STATE, 2
     setvar VAR_0x8008, 0
+    speakername CommonName_Text_May
     msgbox RustboroCity_Text_MayPassedBrineyWantToBattle, MSGBOX_YESNO
     goto_if_eq VAR_RESULT, YES, RustboroCity_EventScript_BattleMay
     msgbox RustboroCity_Text_MayOhHaventRaisedPokemonEnough, MSGBOX_DEFAULT
@@ -865,6 +709,7 @@ RustboroCity_EventScript_BattleMay::
     end
 
 RustboroCity_EventScript_MayBrineyHint::
+    speakername CommonName_Text_May
     msgbox RustboroCity_Text_MayMrBrineyHint, MSGBOX_DEFAULT
     call_if_eq VAR_0x8008, 0, RustboroCity_EventScript_RestoreBgm
     releaseall
@@ -897,10 +742,12 @@ RustboroCity_EventScript_BrendanEncounter::
     goto_if_set FLAG_DEFEATED_RIVAL_RUSTBORO, RustboroCity_EventScript_BrendanBrineyHint
     goto_if_set FLAG_MET_RIVAL_RUSTBORO, RustboroCity_EventScript_BrendanAskToBattle
     setflag FLAG_MET_RIVAL_RUSTBORO
+    speakername CommonName_Text_Brendan
     msgbox RustboroCity_Text_BrendanHiLetsRegister, MSGBOX_DEFAULT
     closemessage
     delay 30
     playfanfare MUS_REGISTER_MATCH_CALL
+    speakername 0
     msgbox RustboroCity_Text_RegisteredBrendan, MSGBOX_DEFAULT
     waitfanfare
     closemessage
@@ -908,14 +755,17 @@ RustboroCity_EventScript_BrendanEncounter::
     setflag FLAG_ENABLE_RIVAL_MATCH_CALL
     setvar VAR_RUSTBORO_CITY_STATE, 8
     setvar VAR_ROUTE104_STATE, 2
+    speakername CommonName_Text_Brendan
     msgbox RustboroCity_Text_BrendanPassedBrineyWantToBattle, MSGBOX_YESNO
     goto_if_eq VAR_RESULT, YES, RustboroCity_EventScript_BattleBrendan
+    speakername CommonName_Text_Brendan
     msgbox RustboroCity_Text_BrendanNoConfidenceInPokemon, MSGBOX_DEFAULT
     call RustboroCity_EventScript_RestoreBgm
     releaseall
     end
 
 RustboroCity_EventScript_BrendanAskToBattle::
+    speakername CommonName_Text_Brendan
     msgbox RustboroCity_Text_BrendanWantToBattle, MSGBOX_YESNO
     goto_if_eq VAR_RESULT, YES, RustboroCity_EventScript_BattleBrendan
     msgbox RustboroCity_Text_BrendanNoConfidenceInPokemon, MSGBOX_DEFAULT
@@ -923,6 +773,7 @@ RustboroCity_EventScript_BrendanAskToBattle::
     end
 
 RustboroCity_EventScript_BattleBrendan::
+    speakername CommonName_Text_Brendan
     msgbox RustboroCity_Text_BrendanIWontGoEasy, MSGBOX_DEFAULT
     switch VAR_STARTER_MON
     case 0, RustboroCity_EventScript_BattleBrendanTreecko
@@ -931,6 +782,7 @@ RustboroCity_EventScript_BattleBrendan::
     end
 
 RustboroCity_EventScript_BrendanBrineyHint::
+    speakername CommonName_Text_Brendan
     msgbox RustboroCity_Text_BrendanMrBrineyHint, MSGBOX_DEFAULT
     call_if_eq VAR_0x8008, 0, RustboroCity_EventScript_RestoreBgm
     releaseall
@@ -1018,8 +870,7 @@ RustboroCity_EventScript_Boy1::
 text RustboroCity_Text_WeShortenItToDevon {
     format("The Devon Corporation…\n"
     "We all just shorten it to Devon.\p"
-    "That company makes all sorts of\n"
-    "convenient products.")
+    "That company makes all sorts of convenient products.")
 }
 
 text RustboroCity_Text_SneakyLookingManWentAroundCorner {
@@ -1029,17 +880,13 @@ text RustboroCity_Text_SneakyLookingManWentAroundCorner {
 }
 
 text RustboroCity_Text_HaveYouChallengedGym {
-    format("Have you taken the Pokémon Gym\n"
-    "challenge?\p"
-    "When you get that shiny Gym Badge\n"
-    "in hand, I guess Trainers begin to\l"
-    "realize what is required of them.")
+    format("Have you taken the Pokémon Gym challenge?\p"
+    "When you get that shiny Gym Badge in hand, I guess Trainers begin to realize what is required of them.")
 }
 
 text RustboroCity_Text_HeyThatsRustborosGymBadge {
     format("Hey, that's Rustboro's Gym Badge!\p"
-    "Out of all the Pokémon Gym Badges,\n"
-    "Rustboro's is the coolest, I'd say.")
+    "Out of all the Pokémon Gym Badges, Rustboro's is the coolest, I'd say.")
 }
 
 text RustboroCity_Text_YoureNewAroundHere {
@@ -1060,24 +907,19 @@ text RustboroCity_Text_MrBrineyWalksInTheTunnel {
 }
 
 text RustboroCity_Text_MrBrineyLovesPeeko {
-    format("The old sailor Mr. Briney lives in\n"
-    "a cottage by the sea.\p"
-    "He said he was going shopping in\n"
-    "Slateport for his pet, Peeko.\p"
-    "That old sea dog, he must really love\n"
-    "that Peeko.")
+    format("The old sailor Mr. Briney lives in a cottage by the sea.\p"
+    "He said he was going shopping in Slateport for his pet, Peeko.\p"
+    "That old sea dog, he must really love that Peeko.")
 }
 
 text RustboroCity_Text_WowYouHavePokemon {
     format("Wow, you have Pokémon with you, too.\p"
-    "When I get bigger, I'm going to go\n"
-    "places with Pokémon, too.")
+    "When I get bigger, I'm going to go places with Pokémon, too.")
 }
 
 text RustboroCity_Text_CatchRarePokemonIfIGoToSchool {
     format("Pokémon Trainer's School!\p"
-    "If I go to this school, will I be able\n"
-    "to catch rare Pokémon easily?")
+    "If I go to this school, will I be able to catch rare Pokémon easily?")
 }
 
 text RustboroCity_Text_PokemonCanChangeLookFromExp {
@@ -1118,8 +960,7 @@ text RustboroCity_Text_HelpMeIWasRobbed {
 }
 
 text RustboroCity_Text_ShadyCharacterTookOffTowardsTunnel {
-    format("That shady character, I think he took\n"
-    "off towards the tunnel over there.")
+    format("That shady character, I think he took off towards the tunnel over there.")
 }
 
 text RustboroCity_Text_YouGotItThankYou {
@@ -1143,7 +984,7 @@ text RustboroCity_Text_PleaseComeWithMe {
 }
 
 text RustboroCity_Text_MayHiLetsRegister {
-    format("MAY: Oh, hi, {PLAYER}{KUN}!\p"
+    format("Oh, hi, {PLAYER}{KUN}!\p"
     "You had a Match Call feature put\n"
     "on your Pokénav!\p"
     "Let's register each other so we can\n"
@@ -1152,12 +993,11 @@ text RustboroCity_Text_MayHiLetsRegister {
 }
 
 text RustboroCity_Text_RegisteredMay {
-    format("Registered May\n"
-    "in the Pokénav.")
+    format("Registered May in the Pokénav.")
 }
 
 text RustboroCity_Text_MayPassedBrineyWantToBattle {
-    format("MAY: Oh, by the way, I passed\n"
+    format("Oh, by the way, I passed\n"
     "Mr. Briney in Petalburg Woods.\p"
     "I guess he's on his way home to his\n"
     "cottage by the sea.\p"
@@ -1168,18 +1008,18 @@ text RustboroCity_Text_MayPassedBrineyWantToBattle {
 }
 
 text RustboroCity_Text_MayOhHaventRaisedPokemonEnough {
-    format("MAY: Oh, what's the matter?\p"
+    format("Oh, what's the matter?\p"
     "Haven't you caught or raised your Pokémon very much?\p"
     "That's not very good for a Trainer!")
 }
 
 text RustboroCity_Text_MayWantToBattle {
-    format("MAY: So, what do you think?\n"
+    format("So, what do you think?\n"
     "How about a little battle here?")
 }
 
 text RustboroCity_Text_MayImNotGoingToLose {
-    format("MAY: You just became a Trainer,\n"
+    format("You just became a Trainer,\n"
     "{PLAYER}{KUN}. I'm not going to lose!")
 }
 
@@ -1189,28 +1029,25 @@ text RustboroCity_Text_MayDefeat {
 }
 
 text RustboroCity_Text_MayMrBrineyHint {
-    format("MAY: Oh, by the way, Mr. Briney, who\n"
-    "I just passed…\p"
+    format("Oh, by the way, Mr. Briney, who I just passed…\p"
     "{PLAYER}{KUN}, you just moved here so you\n"
     "might not know this, but Mr. Briney\l"
     "was once a revered seafarer.")
 }
 
 text RustboroCity_Text_BrendanHiLetsRegister {
-    format("BRENDAN: Oh, hey, {PLAYER}!\p"
+    format("Oh, hey, {PLAYER}!\p"
     "You had a Match Call feature put\n"
     "on your Pokénav! Cool!\p"
     "Let's register each other so we can get in touch anytime!\p"
     "… … … … … …")
 }
 
-text RustboroCity_Text_RegisteredBrendan {
-    format("Registered Brendan\n"
-    "in the Pokénav.")
+text RustboroCity_Text_RegisteredBrendan { format("Registered Brendan in the Pokénav.")
 }
 
 text RustboroCity_Text_BrendanPassedBrineyWantToBattle {
-    format("BRENDAN: By the way, {PLAYER}, I walked by Mr. Briney in Petalburg Woods.\p"
+    format("By the way, {PLAYER}, I walked by Mr. Briney in Petalburg Woods.\p"
     "I bet he was on his way home to his cottage by the sea.\p"
     "{PLAYER}, how's your Pokédex?\n"
     "Have you filled in any pages yet?\p"
@@ -1219,16 +1056,16 @@ text RustboroCity_Text_BrendanPassedBrineyWantToBattle {
 }
 
 text RustboroCity_Text_BrendanNoConfidenceInPokemon {
-    format("BRENDAN: What's the matter? Don't have any confidence in your Pokémon?")
+    format("What's the matter? Don't have any confidence in your Pokémon?")
 }
 
 text RustboroCity_Text_BrendanWantToBattle {
-    format("BRENDAN: What's up?\n"
+    format("What's up?\n"
     "Want to have a battle with me?")
 }
 
 text RustboroCity_Text_BrendanIWontGoEasy {
-    format("BRENDAN: I know you just became a Trainer, but I won't go easy!")
+    format("I know you just became a Trainer, but I won't go easy!")
 }
 
 text RustboroCity_Text_BrendanDefeat {
@@ -1237,22 +1074,18 @@ text RustboroCity_Text_BrendanDefeat {
 }
 
 text RustboroCity_Text_BrendanMrBrineyHint {
-    format("BRENDAN: By the way, you know Mr. Briney? The guy I just passed?\p"
+    format("By the way, you know Mr. Briney? The guy I just passed?\p"
     "I bet you didn't know this, since you just moved here, {PLAYER}, but Mr. Briney was once a great sailor.")
 }
 
 text RustboroCity_Text_TunnelNearingCompletion {
-    format("“Timesaving tunnel nearing\n"
-    "completion!”\p"
-    "…Is what it says on the sign, but\n"
-    "there's also a big “X” splashed\l"
-    "across it in red paint…")
+    format("“Timesaving tunnel nearing completion!”\p"
+    "…Is what it says on the sign, but there's also a big “X” splashed across it in red paint…")
 }
 
 text RustboroCity_Text_DevonCorpSign {
     format("Devon Corporation\p"
-    "“For all your living needs, we make\n"
-    "it all.”")
+    "“For all your living needs, we make it all.”")
 }
 
 text RustboroCity_Text_GymSign {
@@ -1286,9 +1119,7 @@ text RustboroCity_Text_DevelopedNewPokenavFeature {
 text RustboroCity_Text_AddedMatchCallPleaseCallMrStone {
     format("There you go, {PLAYER}!\p"
     "I added a new feature named Match Call to your Pokénav.\p"
-    "Using the Match Call feature,\n"
-    "you can chat with people who have\l"
-    "been registered in your Pokénav.\p"
+    "Using the Match Call feature, you can chat with people who have been registered in your Pokénav.\p"
     "{PLAYER}, our President Stone should be registered in your Pokénav.\p"
     "Test it out.\n"
     "Please give our President a call.")
@@ -1305,15 +1136,26 @@ text RustboroCity_Text_IdBetterGetBackToWork {
 
 text RustboroCity_Text_YouCanHave2On2Battle {
     format("Did you know this?\p"
-    "You can have a 2-on-2 battle even\n"
-    "if you're not with another Trainer.\p"
-    "If you catch the eyes of two Trainers\n"
-    "when you have two or more Pokémon,\l"
-    "they'll both challenge you.\p"
-    "Don't you think it'd be cool if you\n"
-    "could beat two Trainers by yourself?")
+    "You can have a 2-on-2 battle even if you're not with another Trainer.\p"
+    "If you catch the eyes of two Trainers when you have two or more Pokémon, they'll both challenge you.\p"
+    "Don't you think it'd be cool if you could beat two Trainers by yourself?")
 }
 
 script RustboroCity_EventScript_CuttersHouseSign {
     msgbox("Cutter's House", MSGBOX_SIGN)
+}
+
+movement RustboroCity_Movement_GruntEscape {
+    walk_faster_right * 2
+    walk_fast_right * 5
+    walk_fast_up * 9
+}
+
+movement RustboroCity_Movement_EmployeeChaseGrunt1 {
+    walk_right * 6
+    walk_in_place_faster_up
+}
+
+movement RustboroCity_Movement_EmployeeChaseGrunt2 {
+    walk_up * 7
 }

@@ -4,17 +4,10 @@ mapscripts Route124_DivingTreasureHuntersHouse_MapScripts {
     }
 }
 
-script Route124_DivingTreasureHuntersHouse_EventScript_HasRedShard { addvar(VAR_TEMP_1, 1)
-    return }
-
-script Route124_DivingTreasureHuntersHouse_EventScript_HasYellowShard { addvar(VAR_TEMP_1, 2)
-    return }
-
-script Route124_DivingTreasureHuntersHouse_EventScript_HasBlueShard { addvar(VAR_TEMP_1, 4)
-    return }
-
-script Route124_DivingTreasureHuntersHouse_EventScript_HasGreenShard { addvar(VAR_TEMP_1, 8)
-    return }
+script Route124_DivingTreasureHuntersHouse_EventScript_HasRedShard    { addvar(VAR_TEMP_1, 1) }
+script Route124_DivingTreasureHuntersHouse_EventScript_HasYellowShard { addvar(VAR_TEMP_1, 2) }
+script Route124_DivingTreasureHuntersHouse_EventScript_HasBlueShard   { addvar(VAR_TEMP_1, 4) }
+script Route124_DivingTreasureHuntersHouse_EventScript_HasGreenShard  { addvar(VAR_TEMP_1, 8) }
 
 raw `
 Route124_DivingTreasureHuntersHouse_EventScript_TreasureHunter::
