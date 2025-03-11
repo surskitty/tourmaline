@@ -143,34 +143,6 @@ RusturfTunnel_EventScript_WandasBoyfriendNotice::
     waitmovement 0
     return
 
-RusturfTunnel_Movement_WandaExit1:
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    step_end
-
-RusturfTunnel_Movement_WandaExit:
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    step_end
-
 RusturfTunnel_Movement_PlayerWatchWandaExit:
     delay_8
     walk_in_place_faster_up
@@ -211,36 +183,6 @@ RusturfTunnel_Movement_PlayerWatchBoyfriend:
 RusturfTunnel_Movement_BoyfriendFaceRight:
     walk_up
     walk_in_place_faster_right
-    step_end
-
-RusturfTunnel_Movement_WandasBoyfriendExit1:
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    step_end
-
-RusturfTunnel_Movement_WandasBoyfriendExit:
-    walk_up
-    walk_right
-    walk_right
-    walk_right
-    walk_right
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
     step_end
 
 RusturfTunnel_Movement_WandasBoyfriendApproachPlayer:
@@ -373,11 +315,15 @@ RusturfTunnel_EventScript_Mike::
     end
 `
 
-
 movement RusturfTunnel_Movement_GruntEscape             { walk_fast_left * 9 }
 movement RusturfTunnel_Movement_BrineyApproachPeeko1    { walk_right * 7 }
 movement RusturfTunnel_Movement_BrineyExit              { walk_left * 11 }
 movement RusturfTunnel_Movement_PeekoExit               { walk_left * 9 }
+
+movement RusturfTunnel_Movement_WandaExit1                    { walk_right * 4  walk_down * 7 }
+movement RusturfTunnel_Movement_WandaExit                     { walk_right * 4  walk_down * 7 }
+movement RusturfTunnel_Movement_WandasBoyfriendExit1          { walk_right * 5  walk_down * 7 }
+movement RusturfTunnel_Movement_WandasBoyfriendExit { walk_up   walk_right * 4  walk_down * 7 }
 
 text RusturfTunnel_Text_ComeAndGetSome {
     format("What, are you coming?\n"
@@ -493,4 +439,3 @@ text RusturfTunnel_Text_MikePostBattle {
     format("They halted development here to protect Pokémon, right?\l"
     "There's a feel-good story!")
 }
-

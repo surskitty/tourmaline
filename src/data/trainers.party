@@ -231,11 +231,11 @@ Music: Aqua
 Double Battle: Yes
 AI: Basic Trainer
 
-Poochyena
+Poochyena (M)
 Level: 9
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Lillipup
+Lillipup (M)
 Level: 9
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -326,7 +326,11 @@ Music: Aqua
 Double Battle: Yes
 AI: Basic Trainer
 
-Poochyena
+Poochyena (M)
+Level: 11
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Lillipup (M)
 Level: 11
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -13629,11 +13633,11 @@ Music: Hiker
 Double Battle: Yes
 AI: Basic Trainer
 
-Geodude
+Geodude Alola
 Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Geodude
+Nacli
 Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
