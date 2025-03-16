@@ -4410,6 +4410,26 @@
       "secondary_tileset": "gTileset_MysteryEventsHouse",
       "border_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/border.bin",
       "blockdata_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/map.bin"
+    },
+    {
+      "id": "LAYOUT_UNDERWATER_ROUTE132",
+      "name": "Underwater_Route132_Layout",
+      "width": 80,
+      "height": 40,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Underwater",
+      "border_filepath": "data/layouts/Underwater_Route132/border.bin",
+      "blockdata_filepath": "data/layouts/Underwater_Route132/map.bin"
+    },
+    {
+      "id": "LAYOUT_UNDERWATER_ROUTE133",
+      "name": "Underwater_Route133_Layout",
+      "width": 80,
+      "height": 40,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Underwater",
+      "border_filepath": "data/layouts/Underwater_Route133/border.bin",
+      "blockdata_filepath": "data/layouts/Underwater_Route133/map.bin"
     }
   ]
 }

@@ -1133,3 +1133,7 @@ EventScript_VsSeekerChargingDone::
 	.include "data/text/names.inc"
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
+
+	.include "data/maps/Underwater_Route132/scripts.inc"
+
+	.include "data/maps/Underwater_Route133/scripts.inc"
