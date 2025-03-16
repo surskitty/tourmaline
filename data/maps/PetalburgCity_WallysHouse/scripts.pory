@@ -67,73 +67,81 @@ PetalburgCity_WallysHouse_EventScript_ReceivedHMSurf::
     msgbox PetalburgCity_WallysHouse_Text_WallyLeftWithoutTelling, MSGBOX_DEFAULT
     release
     end
-
-PetalburgCity_WallysHouse_Text_ThanksForPlayingWithWally:
-    .string "You're…\n"
-    .string "Ah, you must be {PLAYER}{KUN}, right?\p"
-    .string "Thank you for playing with Wally a\n"
-    .string "little while ago.\p"
-    .string "He's been frail and sickly ever\n"
-    .string "since he was a baby.\p"
-    .string "We've sent him to stay with my relatives\n"
-    .string "in Verdanturf Town for a while.\p"
-    .string "The air is a lot cleaner there\n"
-    .string "than it is here.\p"
-    .string "What's that? Where's Wally?\n"
-    .string "He's already left, our Wally.\p"
-    .string "I wonder where he could have\n"
-    .string "gotten by now?$"
-
-PetalburgCity_WallysHouse_Text_WonderHowWallyIsDoing:
-    .string "I wonder how our Wally is doing?$"
-
-PetalburgCity_WallysHouse_Text_PleaseExcuseUs:
-    .string "{PLAYER}{KUN}! Please excuse us for\n"
-    .string "dragging you here this way.\p"
-    .string "But our Wally's become very healthy\n"
-    .string "since he went to Verdanturf Town.\p"
-    .string "We owe it all to you!\p"
-    .string "When Wally left town, you helped\n"
-    .string "him catch a Pokémon, right?\p"
-    .string "I think that made Wally really\n"
-    .string "happy.\p"
-    .string "Actually, not just Wally.\n"
-    .string "It made me, his father, happy too.\p"
-    .string "Happy that he's gained such a great\n"
-    .string "friend as you.\p"
-    .string "This isn't a bribe or anything, but\n"
-    .string "I'd really like you to have this.$"
-
-PetalburgCity_WallysHouse_Text_SurfGoAllSortsOfPlaces:
-    .string "If your Pokémon can Surf, you'll be\n"
-    .string "able to go to all sorts of places.$"
-
-PetalburgCity_WallysHouse_Text_WallyIsComingHomeSoon:
-    .string "Wally's coming home soon.\n"
-    .string "I'm looking forward to that.$"
-
-PetalburgCity_WallysHouse_Text_YouMetWallyInEverGrandeCity:
-    .string "Oh? You met Wally in\n"
-    .string "Ever Grande City?\p"
-    .string "Oh, {PLAYER}{KUN}, don't be silly.\p"
-    .string "He may have gotten healthy, but he\n"
-    .string "can't go somewhere far away like\l"
-    .string "that all by himself.$"
-
-PetalburgCity_WallysHouse_Text_WallyWasReallyHappy:
-    .string "Wally was really happy when he told\n"
-    .string "us that he caught a Pokémon.\p"
-    .string "It's been ages since I've seen him\n"
-    .string "smile like that.$"
-
-PetalburgCity_WallysHouse_Text_WallyLeftWithoutTelling:
-    .string "I want you to keep this a secret\n"
-    .string "from my husband…\p"
-    .string "But our Wally left Verdanturf Town\n"
-    .string "without telling anyone.\p"
-    .string "You know, Wally is frail, but\n"
-    .string "he's surprisingly strong-willed.\p"
-    .string "I'm sure that he'll come back safe\n"
-    .string "and sound one day!$"
-
 `
+
+text PetalburgCity_WallysHouse_Text_ThanksForPlayingWithWally {
+    format("You're…\n"
+    "Ah, you must be {PLAYER}{KUN}, right?\p"
+    "Thank you for playing with Wally a\n"
+    "little while ago.\p"
+    "He's been frail and sickly ever\n"
+    "since he was a baby.\p"
+    "We've sent him to stay with my relatives\n"
+    "in Verdanturf Town for a while.\p"
+    "The air is a lot cleaner there\n"
+    "than it is here.\p"
+    "What's that? Where's Wally?\n"
+    "He's already left, our Wally.\p"
+    "I wonder where he could have\n"
+    "gotten by now?")
+}
+
+text PetalburgCity_WallysHouse_Text_WonderHowWallyIsDoing {
+    format("I wonder how our Wally is doing?")
+}
+
+text PetalburgCity_WallysHouse_Text_PleaseExcuseUs {
+    format("{PLAYER}{KUN}! Please excuse us for\n"
+    "dragging you here this way.\p"
+    "But our Wally's become very healthy\n"
+    "since he went to Verdanturf Town.\p"
+    "We owe it all to you!\p"
+    "When Wally left town, you helped\n"
+    "him catch a Pokémon, right?\p"
+    "I think that made Wally really\n"
+    "happy.\p"
+    "Actually, not just Wally.\n"
+    "It made me, his father, happy too.\p"
+    "Happy that he's gained such a great\n"
+    "friend as you.\p"
+    "This isn't a bribe or anything, but\n"
+    "I'd really like you to have this.")
+}
+
+text PetalburgCity_WallysHouse_Text_SurfGoAllSortsOfPlaces {
+    format("If your Pokémon can Surf, you'll be\n"
+    "able to go to all sorts of places.")
+}
+
+text PetalburgCity_WallysHouse_Text_WallyIsComingHomeSoon {
+    format("Wally's coming home soon.\n"
+    "I'm looking forward to that.")
+}
+
+text PetalburgCity_WallysHouse_Text_YouMetWallyInEverGrandeCity {
+    format("Oh? You met Wally in\n"
+    "Ever Grande City?\p"
+    "Oh, {PLAYER}{KUN}, don't be silly.\p"
+    "He may have gotten healthy, but he\n"
+    "can't go somewhere far away like\l"
+    "that all by himself.")
+}
+
+text PetalburgCity_WallysHouse_Text_WallyWasReallyHappy {
+    format("Wally was really happy when he told\n"
+    "us that he caught a Pokémon.\p"
+    "It's been ages since I've seen him\n"
+    "smile like that.")
+}
+
+text PetalburgCity_WallysHouse_Text_WallyLeftWithoutTelling {
+    format("I want you to keep this a secret\n"
+    "from my husband…\p"
+    "But our Wally left Verdanturf Town\n"
+    "without telling anyone.\p"
+    "You know, Wally is frail, but\n"
+    "he's surprisingly strong-willed.\p"
+    "I'm sure that he'll come back safe\n"
+    "and sound one day!")
+}
+

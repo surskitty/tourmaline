@@ -208,7 +208,7 @@ text RustboroCity_Gym_Text_ReceivedStoneBadge {
 }
 
 text RustboroCity_Gym_Text_StoneBadgeInfoTakeThis {
-    format("The Stone Badge enables Pokémon to use the HM move Cut outside of battle.\p"
+    format("The Stone Badge enables Pokémon to use the EM move Cut outside of battle.\p"
     "Please take this with you, too.")
 }
 
@@ -223,7 +223,7 @@ text RustboroCity_Gym_Text_RoxannePostBattle {
 }
 
 text RustboroCity_Gym_Text_GymStatue {
-    format("RUSTBORO CITY Pokémon Gym")
+    format("Rustboro City Pokémon Gym")
 }
 
 text RustboroCity_Gym_Text_GymStatueCertified {

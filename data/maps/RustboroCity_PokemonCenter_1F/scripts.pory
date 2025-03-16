@@ -30,22 +30,25 @@ RustboroCity_PokemonCenter_1F_EventScript_Boy::
 RustboroCity_PokemonCenter_1F_EventScript_Girl::
     msgbox RustboroCity_PokemonCenter_1F_Text_HMCutNextDoor, MSGBOX_NPC
     end
-
-RustboroCity_PokemonCenter_1F_Text_PokemonHavePersonalities:
-    .string "My Pokémon has a Naive nature, and my\n"
-    .string "friend's has a Jolly nature.\p"
-    .string "It's fascinating how Pokémon have\n"
-    .string "personalities!$"
-
-RustboroCity_PokemonCenter_1F_Text_MaleAndFemalePokemon:
-    .string "Just like people, there are male and\n"
-    .string "female Pokémon.\p"
-    .string "But no one seems to have any idea how\n"
-    .string "they're different.$"
-
-RustboroCity_PokemonCenter_1F_Text_HMCutNextDoor:
-    .string "The man next door gave me an HM!\p"
-    .string "I used it to teach my Pokémon how to\n"
-    .string "Cut down skinny trees.$"
-
 `
+
+text RustboroCity_PokemonCenter_1F_Text_PokemonHavePersonalities {
+    format("My Pokémon has a Naive nature, and my\n"
+    "friend's has a Jolly nature.\p"
+    "It's fascinating how Pokémon have\n"
+    "personalities!")
+}
+
+text RustboroCity_PokemonCenter_1F_Text_MaleAndFemalePokemon {
+    format("Just like people, there are male and\n"
+    "female Pokémon.\p"
+    "But no one seems to have any idea how\n"
+    "they're different.")
+}
+
+text RustboroCity_PokemonCenter_1F_Text_HMCutNextDoor {
+    format("The man next door gave me an EM!\p"
+    "I used it to teach my Pokémon how to\n"
+    "Cut down skinny trees.")
+}
+

@@ -355,7 +355,7 @@ text LavaridgeTown_Gym_1F_Text_ReceivedHeatBadge {
 
 text LavaridgeTown_Gym_1F_Text_ExplainHeatBadgeTakeThis {
     format("If you have a Heat Badge, all Pokémon up to Level 50, even those you get in trades from other people, will obey you completely.\p"
-        "And, it lets Pokémon use the HM move Strength outside of battle.\p"
+        "Pokémon can also use the exploratory move Strength outside of battle.\p"
         "This is a token of my appreciation.\n"
         "Don't be shy about taking it!$")
 }

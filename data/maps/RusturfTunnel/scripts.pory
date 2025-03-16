@@ -400,11 +400,11 @@ text RusturfTunnel_Text_ToGetToVerdanturf {
 
 text RusturfTunnel_Text_YouShatteredBoulderTakeHM {
     format("Wow! You shattered that boulder blocking the way.\p"
-    "To show you how much I appreciate it, I'd like you to have this HM.")
+    "To show you how much I appreciate it, I'd like you to have this EM.")
 }
 
 text RusturfTunnel_Text_ExplainStrength {
-    format("That HM contains Strength.\p"
+    format("That EM contains Strength.\p"
     "If a muscular Pokémon were to learn that, it would be able to move even large boulders.")
 }
 

@@ -36,6 +36,6 @@ text GraniteCave_1F_Text_GetsDarkAheadHereYouGo {
 
 text GraniteCave_1F_Text_ExplainFlash {
     format("Use Flash outside of battle to light up even the inky darkness of caves.\p"
-    "Now that you have the HM, you don't even need to spend a move slot on it.\p"
+    "It doesn't even need the move slot these days.\p"
     "You'll need the badge from Dewford's Pokémon Gym first, though.")
 }

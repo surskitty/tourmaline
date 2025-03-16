@@ -362,7 +362,7 @@ text DewfordTown_Gym_Text_ReceivedKnuckleBadge {
 
 text DewfordTown_Gym_Text_KnuckleBadgeInfoTakeThis {
     format("The Knuckle Badge makes all Pokémon up to Level 30, even those you get in trades, obey without question.\p"
-    "And, you'll be able to use the HM move Flash outside of battle.\p"
+    "It also lets you use the exploratory move Flash outside of battle.\p"
     "If you'd like, use this Technical Machine, too.")
 }
 

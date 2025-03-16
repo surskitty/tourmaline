@@ -243,7 +243,7 @@ text SootopolisCity_Gym_1F_Text_ReceivedRainBadge {
 text SootopolisCity_Gym_1F_Text_ExplainRainBadgeTakeThis {
     format("Having the Rain Badge shall assure you the full obedience of all your Pokémon to your every command.\p"
     "The Rain Badge also allows the use\n"
-    "of the HM move Waterfall to scale\l"
+    "of the EM move Waterfall to scale\l"
     "walls of cascading water.\p"
     "And, so that you never forget the\n"
     "battle we shared, take this…")

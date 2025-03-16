@@ -259,7 +259,7 @@ text FortreeCity_Gym_Text_ReceivedFeatherBadge {
 
 text FortreeCity_Gym_Text_ExplainFeatherBadgeTakeThis {
     format("With the Feather Badge, all Pokémon up to LV 70, even those received through trades, will obey your every command.\p"
-    "You will also be able to use the HM move Fly outside of battle.\p"
+    "You may now also use the exploratory move Fly outside of battle.\p"
     "And this…\n"
     "This is a gift from me.")
 }

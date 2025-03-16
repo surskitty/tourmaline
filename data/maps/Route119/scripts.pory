@@ -584,7 +584,7 @@ text Route119_Text_WeatherInstitute {
 
 script Route119_EventScript_Boy1 {
     msgbox(format("I thought you Fly by catching a whole flock of bird Pokémon, and then hanging on to them somehow.\p"
-        "But it turns out there's an HM move called Fly!\p"
+        "But it turns out there's an exploratory move called Fly!\p"
         "I wish I'd known about that a long time ago…"), MSGBOX_NPC)
 }
 

@@ -1447,8 +1447,8 @@ text SootopolisCity_Text_ThankYouForHelpAcceptThis {
 }
 
 text SootopolisCity_Text_ExplainWaterfallGoToGym {
-    format("That Hidden Machine contains Waterfall.\p"
-    "If you have the Rain Badge, a Pokémon that has learned that HM move can force its way up waterfalls.\p"
+    format("That Exploration Machine contains Waterfall.\p"
+    "If you have the Rain Badge, a Pokémon that has learned that EM move can force its way up waterfalls.\p"
     "And where does one get the Rain Badge?\n"
     "You know, don't you?\p"
     "That's right! You have to beat the Sootopolis Gym Leader.\p"

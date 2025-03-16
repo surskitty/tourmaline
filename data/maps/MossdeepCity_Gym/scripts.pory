@@ -54,68 +54,6 @@ MossdeepCity_Gym_EventScript_SetSwitch4Metatiles::
     setmetatile 5, 24, METATILE_RSMossdeepGym_Switch_Down, TRUE
     end
 
-MossdeepCity_Gym_EventScript_TateAndLiza::
-    special HealPlayerParty
-    trainerbattle_double TRAINER_TATE_AND_LIZA_1, MossdeepCity_Gym_Text_TateAndLizaIntro, MossdeepCity_Gym_Text_TateAndLizaDefeat, MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons, MossdeepCity_Gym_EventScript_TateAndLizaDefeated, NO_MUSIC
-    specialvar VAR_RESULT, ShouldTryRematchBattle
-    goto_if_eq VAR_RESULT, TRUE, MossdeepCity_Gym_EventScript_TateAndLizaRematch
-    goto_if_unset FLAG_RECEIVED_TM_CALM_MIND, MossdeepCity_Gym_EventScript_GiveCalmMind2
-    msgbox MossdeepCity_Gym_Text_TateAndLizaPostBattle, MSGBOX_DEFAULT
-    release
-    end
-
-MossdeepCity_Gym_EventScript_TateAndLizaDefeated::
-    message MossdeepCity_Gym_Text_ReceivedMindBadge
-    waitmessage
-    call Common_EventScript_PlayGymBadgeFanfare
-    msgbox MossdeepCity_Gym_Text_ExplainMindBadgeTakeThis, MSGBOX_DEFAULT
-    setflag FLAG_DEFEATED_MOSSDEEP_GYM
-    setflag FLAG_BADGE07_GET
-    setflag FLAG_HIDE_AQUA_HIDEOUT_GRUNTS
-    clearflag FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY
-    clearflag FLAG_UNKNOWN_0x393
-    setvar VAR_0x8008, 7
-    call Common_EventScript_SetGymTrainers
-    clearflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS
-    clearflag FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA
-    clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA
-    clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA
-    clearflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_STEVEN
-    setvar VAR_MOSSDEEP_CITY_STATE, 1
-    setflag FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN
-    setvar VAR_MOSSDEEP_SPACE_CENTER_STATE, 1
-    call MossdeepCity_Gym_EventScript_GiveCalmMind
-    closemessage
-    delay 30
-    playfanfare MUS_REGISTER_MATCH_CALL
-    msgbox MossdeepCity_Gym_Text_RegisteredTateAndLiza, MSGBOX_DEFAULT
-    waitfanfare
-    closemessage
-    delay 30
-    setflag FLAG_ENABLE_TATE_AND_LIZA_MATCH_CALL
-    release
-    end
-
-MossdeepCity_Gym_EventScript_GiveCalmMind2::
-    giveitem ITEM_TM_CALM_MIND
-    goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
-    msgbox MossdeepCity_Gym_Text_ExplainCalmMind, MSGBOX_DEFAULT
-    setflag FLAG_RECEIVED_TM_CALM_MIND
-    release
-    end
-
-MossdeepCity_Gym_EventScript_GiveCalmMind::
-    giveitem ITEM_TM_CALM_MIND
-    goto_if_eq VAR_RESULT, FALSE, Common_EventScript_BagIsFull
-    msgbox MossdeepCity_Gym_Text_ExplainCalmMind, MSGBOX_DEFAULT
-    setflag FLAG_RECEIVED_TM_CALM_MIND
-    return
-
-MossdeepCity_Gym_EventScript_TateAndLizaRematch::
-    trainerbattle_rematch_double TRAINER_TATE_AND_LIZA_1, MossdeepCity_Gym_Text_TateAndLizaPreRematch, MossdeepCity_Gym_Text_TateAndLizaRematchDefeat, MossdeepCity_Gym_Text_TateAndLizaRematchNeedTwoMons
-    msgbox MossdeepCity_Gym_Text_TateAndLizaPostRematch, MSGBOX_AUTOCLOSE
-    end
-
 @ All the below switch scripts are leftover from RS and are functionally unused
 MossdeepCity_Gym_EventScript_Switch1::
     lockall
@@ -436,7 +374,7 @@ text MossdeepCity_Gym_Text_BlakeDefeat {
 }
 
 text MossdeepCity_Gym_Text_BlakePostBattle {
-    format("A POKé BALL was too heavy to lift\n"
+    format("A Poké Ball was too heavy to lift\n"
     "psychically. But this dust bunny…\p"
     "Whoooooooooooooooh!\n"
     "… … … … … …\p"
@@ -518,7 +456,7 @@ text MossdeepCity_Gym_Text_SylviaPostBattle {
 text MossdeepCity_Gym_Text_NateIntro {
     format("Hohoho.\p"
     "You need me to show you how tenacious\n"
-    "the PSYCHIC type can be.")
+    "the Psychic type can be.")
 }
 
 text MossdeepCity_Gym_Text_NateDefeat {
@@ -591,6 +529,94 @@ text MossdeepCity_Gym_Text_NicholasPostBattle {
     "invincible Pokémon power next.")
 }
 
+script MossdeepCity_Gym_EventScript_TateAndLiza {
+    special(HealPlayerParty)
+    trainerbattle_double(TRAINER_TATE_AND_LIZA_1, MossdeepCity_Gym_Text_TateAndLizaIntro, MossdeepCity_Gym_Text_TateAndLizaDefeat, MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons, MossdeepCity_Gym_EventScript_TateAndLizaDefeated, NO_MUSIC)
+    specialvar(VAR_RESULT, ShouldTryRematchBattle)
+    goto_if_eq(VAR_RESULT, TRUE, MossdeepCity_Gym_EventScript_TateAndLizaRematch)
+    goto_if_unset(FLAG_RECEIVED_TM_CALM_MIND, MossdeepCity_Gym_EventScript_GiveCalmMind2)
+    speakername(MossdeepCity_Gym_Text_Tate)
+    msgbox(format("Looks like the bond between you\n"
+        "and your Pokémon is far stronger than\l"
+        "the bond that we share as twins."), MSGBOX_DEFAULT)
+    speakername(MossdeepCity_Gym_Text_Liza)
+    msgbox(format("You will become even stronger!\n"
+        "We've battled you, so we know."), MSGBOX_DEFAULT)
+    release
+}
+
+text MossdeepCity_Gym_Text_Tate { "Tate" }
+text MossdeepCity_Gym_Text_Liza { "Liza" }
+
+
+script MossdeepCity_Gym_EventScript_TateAndLizaDefeated {
+    speakername(0)
+    message(format("{PLAYER} received the Mind Badge\n"
+    "from Tate and Liza."))
+    waitmessage
+    call(Common_EventScript_PlayGymBadgeFanfare)
+    speakername(MossdeepCity_Gym_Text_Tate)
+    msgbox(format("The Mind Badge enhances the\n"
+        "Sp. Atk and Sp. Def of Pokémon."), MSGBOX_DEFAULT)
+    speakername(MossdeepCity_Gym_Text_Liza)
+    msgbox(format("It also lets you use the EM move\n"
+    "Dive outside of battle."), MSGBOX_DEFAULT)
+    speakername(MossdeepCity_Gym_Text_Tate)
+    msgbox(format("You should also take this, too."), MSGBOX_DEFAULT)
+    setflag(FLAG_DEFEATED_MOSSDEEP_GYM)
+    setflag(FLAG_BADGE07_GET)
+    setflag(FLAG_HIDE_AQUA_HIDEOUT_GRUNTS)
+    clearflag(FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY)
+    clearflag(FLAG_UNKNOWN_0x393)
+    setvar(VAR_0x8008, 7)
+    call(Common_EventScript_SetGymTrainers)
+    clearflag(FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS)
+    clearflag(FLAG_HIDE_MOSSDEEP_CITY_TEAM_MAGMA)
+    clearflag(FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_TEAM_MAGMA)
+    clearflag(FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA)
+    clearflag(FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_STEVEN)
+    setvar(VAR_MOSSDEEP_CITY_STATE, 1)
+    setflag(FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN)
+    setvar(VAR_MOSSDEEP_SPACE_CENTER_STATE, 1)
+    call(MossdeepCity_Gym_EventScript_GiveCalmMind)
+    closemessage
+    delay(30)
+    playfanfare(MUS_REGISTER_MATCH_CALL)
+    speakername(0)
+    msgbox(format("Registered Gym Leaders Tate & Liza\n"
+        "in the Pokénav."), MSGBOX_DEFAULT)
+    waitfanfare
+    closemessage
+    delay(30)
+    setflag(FLAG_ENABLE_TATE_AND_LIZA_MATCH_CALL)
+    release
+}
+
+script MossdeepCity_Gym_EventScript_GiveCalmMind2 {
+    giveitem(ITEM_TM_CALM_MIND)
+    goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull)
+    msgbox(MossdeepCity_Gym_Text_ExplainCalmMind, MSGBOX_DEFAULT)
+    setflag(FLAG_RECEIVED_TM_CALM_MIND)
+    release
+}
+
+script MossdeepCity_Gym_EventScript_GiveCalmMind {
+    giveitem(ITEM_TM_CALM_MIND)
+    goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_BagIsFull)
+    msgbox(MossdeepCity_Gym_Text_ExplainCalmMind, MSGBOX_DEFAULT)
+    setflag(FLAG_RECEIVED_TM_CALM_MIND)
+}
+
+script MossdeepCity_Gym_EventScript_TateAndLizaRematch {
+    trainerbattle_rematch_double(TRAINER_TATE_AND_LIZA_1, MossdeepCity_Gym_Text_TateAndLizaPreRematch, MossdeepCity_Gym_Text_TateAndLizaRematchDefeat, MossdeepCity_Gym_Text_TateAndLizaRematchNeedTwoMons)
+    speakername(MossdeepCity_Gym_Text_Tate)
+    msgbox("You can knock us down,\n"
+    "but we'll never stay down!", MSGBOX_AUTOCLOSE)
+    speakername(MossdeepCity_Gym_Text_Liza)
+    msgbox("Because the two of us,\n"
+    "we always support each other!", MSGBOX_AUTOCLOSE)
+}
+
 text MossdeepCity_Gym_Text_TateAndLizaIntro {
     format("TATE: Hehehe… Were you surprised?\p"
     "LIZA: Fufufu… Were you surprised?\p"
@@ -613,40 +639,14 @@ text MossdeepCity_Gym_Text_TateAndLizaDefeat {
     "LIZA: So, in recognition, take this.")
 }
 
-text MossdeepCity_Gym_Text_ReceivedMindBadge {
-    format("{PLAYER} received the MIND BADGE\n"
-    "from TATE and LIZA.")
-}
-
-text MossdeepCity_Gym_Text_ExplainMindBadgeTakeThis {
-    format("TATE: The MIND BADGE enhances the\n"
-    "SP. ATK and SP. DEF of Pokémon.\p"
-    "LIZA: It also lets you use the HM move\n"
-    "DIVE outside of battle.\p"
-    "TATE: You should also take this, too.")
-}
-
 text MossdeepCity_Gym_Text_ExplainCalmMind {
     format("TATE: That TM04 contains…\n"
-    "LIZA: CALM MIND!\p"
-    "TATE: It raises SP. ATK and…\n"
-    "LIZA: It raises SP. DEF!\p"
+    "LIZA: Calm Mind!\p"
+    "TATE: It raises Sp. Atk and…\n"
+    "LIZA: It raises Sp. Def!\p"
     "TATE: It's a move that's perfect…\n"
-    "LIZA: For PSYCHIC Pokémon!\p"
+    "LIZA: For Psychic Pokémon!\p"
     "… … … … … …")
-}
-
-text MossdeepCity_Gym_Text_RegisteredTateAndLiza {
-    format("Registered Gym Leaders TATE & LIZA\n"
-    "in the Pokénav.")
-}
-
-text MossdeepCity_Gym_Text_TateAndLizaPostBattle {
-    format("TATE: Looks like the bond between you\n"
-    "and your Pokémon is far stronger than\l"
-    "the bond that we share as twins.\p"
-    "LIZA: You will become even stronger!\n"
-    "We've battled you, so we know.")
 }
 
 text MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons {
@@ -660,7 +660,7 @@ text MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons {
 }
 
 text MossdeepCity_Gym_Text_GymStatue {
-    format("MOSSDEEP CITY Pokémon Gym")
+    format("Mossdeep City Pokémon Gym")
 }
 
 text MossdeepCity_Gym_Text_GymStatueCertified {
@@ -685,13 +685,6 @@ text MossdeepCity_Gym_Text_TateAndLizaPreRematch {
 text MossdeepCity_Gym_Text_TateAndLizaRematchDefeat {
     format("TATE: You and your Pokémon…\n"
     "LIZA: It's as if you were siblings!")
-}
-
-text MossdeepCity_Gym_Text_TateAndLizaPostRematch {
-    format("TATE: You can knock us down,\n"
-    "but we'll never stay down!\p"
-    "LIZA: Because the two of us,\n"
-    "we always support each other!")
 }
 
 text MossdeepCity_Gym_Text_TateAndLizaRematchNeedTwoMons {

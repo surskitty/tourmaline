@@ -148,23 +148,19 @@ text MossdeepCity_StevensHouse_Text_YouveEarnedHMDive {
     "As you can see, there's not much here, but this is my home.\p"
     "Thank you for all that you've done.\p"
     "This is my token of appreciation.\n"
-    "It's the Hidden Machine Dive.\p"
-    "No need to be shy--you've earned this HM.")
+    "It's the Exploration Machine Dive.\p"
+    "No need to be shy--you've earned it.")
 }
 
 text MossdeepCity_StevensHouse_Text_ExplainDive {
-    format("While you're using Surf, you\n"
-    "should notice dark patches of water.\p"
+    format("While you're using Surf, you should notice dark patches of water.\p"
     "Use Dive if you come to deep water like it. You'll drop to the seafloor.\p"
     "When you want to come back up, use Dive again.\p"
-    "In some places, it won't be possible\n"
-    "for you to surface, though.")
+    "In some places, it won't be possible for you to surface, though.")
 }
 
 text MossdeepCity_StevensHouse_Text_UnderwateCavernBetweenMossdeepSootopolis {
-    format("Apparently, there's an\n"
-    "underwater cavern between\l"
-    "Mossdeep and Sootopolis.\p"
+    format("Apparently, there's an underwater cavern between Mossdeep and Sootopolis.\p"
     "You know, the one that Capt. Stern found in his submarine.")
 }
 

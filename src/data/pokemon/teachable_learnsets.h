@@ -55,13 +55,13 @@
 // - MOVE_SNATCH                                       //
 // - MOVE_OVERHEAT                                     //
 // - MOVE_CUT                                          //
-// - MOVE_FLY                                          //
-// - MOVE_SURF                                         //
-// - MOVE_STRENGTH                                     //
-// - MOVE_FLASH                                        //
-// - MOVE_ROCK_SMASH                                   //
-// - MOVE_WATERFALL                                    //
 // - MOVE_DIVE                                         //
+// - MOVE_FLASH                                        //
+// - MOVE_FLY                                          //
+// - MOVE_ROCK_SMASH                                   //
+// - MOVE_STRENGTH                                     //
+// - MOVE_WATERFALL                                    //
+// - MOVE_SURF                                         //
 // *************************************************** //
 // Tutor moves found from map scripts:                 //
 // - MOVE_ACID_SPRAY                                   //
