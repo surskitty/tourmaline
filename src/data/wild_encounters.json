@@ -332,13 +332,13 @@
             ]
           },
           "rock_smash_mons": {
-            "encounter_rate": 20,
+            "encounter_rate": 50,
             "mons": [
-              { "min_level": 10, "max_level": 15, "species": "SPECIES_GEODUDE" },
-              { "min_level": 5, "max_level": 10, "species": "SPECIES_GEODUDE" },
+              { "min_level": 10, "max_level": 20, "species": "SPECIES_DWEBBLE" },
+              { "min_level": 10, "max_level": 20, "species": "SPECIES_GEODUDE_ALOLA" },
               { "min_level": 15, "max_level": 20, "species": "SPECIES_GEODUDE" },
-              { "min_level": 15, "max_level": 20, "species": "SPECIES_GEODUDE" },
-              { "min_level": 15, "max_level": 20, "species": "SPECIES_GEODUDE" }
+              { "min_level": 15, "max_level": 25, "species": "SPECIES_DWEBBLE" },
+              { "min_level": 15, "max_level": 25, "species": "SPECIES_GEODUDE_ALOLA" }
             ]
           },
           "fishing_mons": {

@@ -2,6 +2,7 @@ mapscripts Route111_MapScripts {
     MAP_SCRIPT_ON_LOAD {
         call_if_unset(FLAG_REGI_DOORS_OPENED, Route111_EventScript_CloseDesertRuins)
         call_if_eq(VAR_MIRAGE_TOWER_STATE, 1, Route111_EventScript_ShowTemporaryMirageTower)
+        call_if_set(FLAG_BADGE04_GET, Route111_EventScript_HideRocks)
         special(SetRoofBirds)
         special(SetStationaryWilds)
     }
@@ -10,6 +11,10 @@ mapscripts Route111_MapScripts {
     MAP_SCRIPT_ON_FRAME_TABLE [
         VAR_MIRAGE_TOWER_STATE, 1: Route111_EventScript_MirageTowerDisappear
     ]
+}
+
+script Route111_EventScript_HideRocks {
+    setflag(FLAG_TEMP_11)
 }
 
 raw `
