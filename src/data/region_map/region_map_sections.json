@@ -1710,6 +1710,22 @@
       "y": 4,
       "width": 1,
       "height": 1
+    },
+    {
+      "map_section": "MAPSEC_UNDERWATER_132",
+      "name": "Underwater",
+      "x": 15,
+      "y": 10,
+      "width": 2,
+      "height": 1
+    },
+    {
+      "map_section": "MAPSEC_UNDERWATER_133",
+      "name": "Underwater",
+      "x": 12,
+      "y": 10,
+      "width": 3,
+      "height": 1
     }
   ]
 }
