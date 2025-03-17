@@ -1,9 +1,9 @@
+mapscripts NavelRock_Harbor_MapScripts {}
+
+
 raw `
 .set LOCALID_SAILOR, 1
 .set LOCALID_SS_TIDAL, 2
-
-NavelRock_Harbor_MapScripts::
-    .byte 0
 
 NavelRock_Harbor_EventScript_Sailor::
     lock

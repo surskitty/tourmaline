@@ -1,5 +1,1 @@
-raw `
-NavelRock_Up1_MapScripts::
-    .byte 0
-
-`
+mapscripts NavelRock_Up1_MapScripts {}

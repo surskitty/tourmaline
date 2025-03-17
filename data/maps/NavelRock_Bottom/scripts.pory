@@ -1,15 +1,14 @@
+mapscripts NavelRock_Bottom_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        call_if_set(FLAG_CAUGHT_LUGIA, NavelRock_Bottom_EventScript_HideLugia)
+        call_if_unset(FLAG_CAUGHT_LUGIA, NavelRock_Bottom_EventScript_TryShowLugia)
+
+    }
+    MAP_SCRIPT_ON_RESUME: NavelRock_Bottom_OnResume
+}
+
 raw `
 .set LOCALID_LUGIA, 1
-
-NavelRock_Bottom_MapScripts::
-    map_script MAP_SCRIPT_ON_TRANSITION, NavelRock_Bottom_OnTransition
-    map_script MAP_SCRIPT_ON_RESUME, NavelRock_Bottom_OnResume
-    .byte 0
-
-NavelRock_Bottom_OnTransition:
-    call_if_set FLAG_CAUGHT_LUGIA, NavelRock_Bottom_EventScript_HideLugia
-    call_if_unset FLAG_CAUGHT_LUGIA, NavelRock_Bottom_EventScript_TryShowLugia
-    end
 
 NavelRock_Bottom_EventScript_HideLugia::
     setflag FLAG_HIDE_LUGIA
@@ -51,10 +50,10 @@ NavelRock_Bottom_EventScript_Lugia::
     delay 30
     delay 50
     waitse
-    playmoncry SPECIES_LUGIA, CRY_MODE_ENCOUNTER
+    playmoncry SPECIES_REGIDRAGO, CRY_MODE_ENCOUNTER
     waitmoncry
     delay 20
-    seteventmon SPECIES_LUGIA, 70
+    seteventmon SPECIES_REGIDRAGO, 70
     setflag FLAG_SYS_CTRL_OBJ_DELETE
     special BattleSetup_StartLegendaryBattle
     waitstate
@@ -69,12 +68,12 @@ NavelRock_Bottom_EventScript_Lugia::
 
 NavelRock_Bottom_EventScript_DefeatedLugia::
     setflag FLAG_DEFEATED_LUGIA
-    setvar VAR_0x8004, SPECIES_LUGIA
+    setvar VAR_0x8004, SPECIES_REGIDRAGO
     goto Common_EventScript_LegendaryFlewAway
     end
 
 NavelRock_Bottom_EventScript_RanFromLugia::
-    setvar VAR_0x8004, SPECIES_LUGIA
+    setvar VAR_0x8004, SPECIES_REGIDRAGO
     goto Common_EventScript_LegendaryFlewAway
     end
 `
