@@ -10,6 +10,7 @@ This hack includes all the typical battle system upgrades from RHH's [pokeemeral
 - Garbodor, Drednaw, and Orbeetle have mega evolutions.
 - Castform has been made interesting.
 - Wiglett and Wugtrio are now Water/Ground. Ledian has been given Huge Power. This fulfills the contract that every hack must give _something_ Huge Power. Ledian has also had its base attack raised by a whopping 10 points.
+- The Roggenrola line has been reworked to not be a Golem knockoff. Free Gigalith and let it be the special attacker it always dreamed.
 - Many Pok&eacute;mon can be found on the overworld! They are usually selections of the local wild Pok&eacute;mon, but a few are vagrants.
 - The limit on how many Pok&eacute;blocks a Pok&eacute;mon can be fed has been removed. There is now no downside to feeding your Pok&eacute;mon bad Pok&eacute;blocks.
 
