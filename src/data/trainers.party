@@ -90,7 +90,7 @@ Music: Hiker
 Double Battle: Yes
 AI: Basic Trainer
 
-Geodude
+Geodude Alola
 Level: 21
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -1511,7 +1511,7 @@ Nature: Timid
 - Air Cutter
 - Roost
 
-Electrode
+Electrode Hisui
 Level: 42
 Ability: Soundproof
 
@@ -1534,7 +1534,7 @@ AI: Smart Trainer
 Kecleon
 Level: 42
 
-Graveler
+Graveler Alola
 Level: 42
 
 Wailord
@@ -1638,7 +1638,7 @@ Items: Full Restore
 Double Battle: Yes
 AI: Basic Trainer
 
-Graveler
+Graveler Alola
 Level: 33
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
@@ -3430,7 +3430,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Spark
 - Leer
 
-Voltorb
+Voltorb Hisui
 Level: 17
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Charge
@@ -3476,7 +3476,7 @@ Music: Intense
 Double Battle: Yes
 AI: Basic Trainer
 
-Voltorb
+Voltorb Hisui
 Level: 17
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
@@ -5286,7 +5286,7 @@ Level: 41
 - Thunder Wave
 - Light Screen
 
-Electrode
+Electrode Hisui
 Level: 41
 - Rollout
 - Thunder
@@ -5332,7 +5332,7 @@ Level: 46
 - Thunder Wave
 - Light Screen
 
-Electrode
+Electrode Hisui
 Level: 46
 - Rollout
 - Thunder
@@ -5385,7 +5385,7 @@ Level: 51
 - Thunder Wave
 - Light Screen
 
-Electrode
+Electrode Hisui
 Level: 53
 - Rollout
 - Thunder
@@ -8196,11 +8196,11 @@ Music: Male
 Double Battle: Yes
 AI: Basic Trainer
 
-Voltorb
+Voltorb Hisui
 Level: 6
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
-Voltorb
+Voltorb Hisui
 Level: 6
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
@@ -8320,7 +8320,7 @@ Magnemite
 Level: 14
 IVs: 9 HP / 9 Atk / 9 Def / 9 SpA / 9 SpD / 9 Spe
 
-Voltorb
+Voltorb Hisui
 Level: 6
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -12530,7 +12530,7 @@ Nacli
 Level: 8
 IVs: 14 HP / 14 Atk / 14 Def / 14 SpA / 14 SpD / 14 Spe
 
-Chewtle
+Roggenrola
 Level: 8
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
@@ -13487,15 +13487,15 @@ Music: Hiker
 Double Battle: Yes
 AI: Basic Trainer
 
-Geodude
+Geodude Alola
 Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Geodude
+Geodude Alola
 Level: 17
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Geodude
+Geodude Alola
 Level: 16
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -13508,7 +13508,7 @@ Music: Hiker
 Double Battle: Yes
 AI: Basic Trainer
 
-Geodude
+Geodude Alola
 Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -13525,7 +13525,7 @@ Music: Hiker
 Double Battle: Yes
 AI: Basic Trainer
 
-Geodude
+Geodude Alola
 Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -13542,7 +13542,7 @@ Music: Hiker
 Double Battle: Yes
 AI: Basic Trainer
 
-Geodude
+Geodude Alola
 Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -13550,7 +13550,7 @@ Nosepass
 Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Graveler
+Graveler Alola
 Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -13580,7 +13580,7 @@ Music: Hiker
 Double Battle: Yes
 AI: Basic Trainer
 
-Geodude
+Geodude Alola
 Level: 20
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -13654,19 +13654,19 @@ Music: Hiker
 Double Battle: Yes
 AI: Basic Trainer
 
-Geodude
+Geodude Alola
 Level: 24
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 
-Geodude
+Geodude Alola
 Level: 24
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 
-Geodude
+Geodude Alola
 Level: 24
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 
-Graveler
+Graveler Alola
 Level: 24
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 
@@ -13679,19 +13679,19 @@ Music: Hiker
 Double Battle: Yes
 AI: Basic Trainer
 
-Geodude
+Geodude Alola
 Level: 27
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
-Geodude
+Geodude Alola
 Level: 27
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
-Graveler
+Graveler Alola
 Level: 27
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
-Graveler
+Graveler Alola
 Level: 27
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
@@ -13704,19 +13704,19 @@ Music: Hiker
 Double Battle: Yes
 AI: Basic Trainer
 
-Geodude
+Geodude Alola
 Level: 30
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
-Graveler
+Graveler Alola
 Level: 30
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
-Graveler
+Graveler Alola
 Level: 30
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
-Graveler
+Graveler Alola
 Level: 30
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
@@ -13729,19 +13729,19 @@ Music: Hiker
 Double Battle: Yes
 AI: Basic Trainer
 
-Graveler
+Graveler Alola
 Level: 33
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
-Graveler
+Graveler Alola
 Level: 33
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
-Graveler
+Graveler Alola
 Level: 33
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
-Golem
+Golem Alola
 Level: 33
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
@@ -14468,7 +14468,7 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Mega Drain
 - Leech Seed
 
-Graveler
+Graveler Alola
 Level: 20
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Defense Curl
@@ -14883,7 +14883,7 @@ Electrike
 Level: 14
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Voltorb
+Voltorb Hisui
 Level: 14
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -14909,7 +14909,7 @@ Music: Intense
 Double Battle: Yes
 AI: Basic Trainer
 
-Voltorb
+Voltorb Hisui
 Level: 15
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
@@ -16653,7 +16653,7 @@ Music: Hiker
 Double Battle: Yes
 AI: Basic Trainer
 
-Geodude
+Geodude Alola
 Level: 26
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 
@@ -16678,7 +16678,7 @@ Numel
 Level: 28
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
-Graveler
+Graveler Alola
 Level: 28
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
@@ -16699,7 +16699,7 @@ Numel
 Level: 30
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
-Graveler
+Graveler Alola
 Level: 30
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
@@ -16720,7 +16720,7 @@ Camerupt
 Level: 33
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
-Golem
+Golem Alola
 Level: 33
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
