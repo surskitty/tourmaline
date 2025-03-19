@@ -208,19 +208,6 @@ MossdeepCity_Gym_EventScript_Kathleen::
     msgbox MossdeepCity_Gym_Text_KathleenPostBattle, MSGBOX_AUTOCLOSE
     end
 
-MossdeepCity_Gym_EventScript_GymGuide::
-    lock
-    faceplayer
-    goto_if_set FLAG_DEFEATED_MOSSDEEP_GYM, MossdeepCity_Gym_EventScript_GymGuidePostVictory
-    msgbox MossdeepCity_Gym_Text_GymGuideAdvice, MSGBOX_DEFAULT
-    release
-    end
-
-MossdeepCity_Gym_EventScript_GymGuidePostVictory::
-    msgbox MossdeepCity_Gym_Text_GymGuidePostVictory, MSGBOX_DEFAULT
-    release
-    end
-
 @ Leftover from RS, functionally unused
 MossdeepCity_Gym_Movement_WaitAfterSwitchUse:
     delay_16
@@ -310,24 +297,25 @@ MossdeepCity_Gym_EventScript_RedFloorSwitch::
     end
 `
 
-text MossdeepCity_Gym_Text_GymGuideAdvice {
-    format("Yo, how's it going, CHAMPION-bound\n"
-    "{PLAYER}?\p"
-    "The Gym Leaders here use\n"
-    "PSYCHIC-type Pokémon.\p"
-    "If you go up against them with\n"
-    "FIGHTING- or POISON-type Pokémon,\l"
-    "they'll inflict horrible damage!\p"
-    "Plus, they'll come at you with\n"
-    "outstanding combination attacks.\p"
-    "If you want to win, you'll need to show\n"
-    "them how tight you are with your\l"
-    "Pokémon. Go for it!")
+script MossdeepCity_Gym_EventScript_GymGuide {
+    lock
+    faceplayer
+    goto_if_set(FLAG_DEFEATED_MOSSDEEP_GYM, MossdeepCity_Gym_EventScript_GymGuidePostVictory)
+    msgbox(format("Yo, how's it going, Champion-bound\n"
+        "{PLAYER}?\p"
+        "This Gym is led by a pair of powerful\n"
+        "Trainers who can each Mega Evolve\l"
+        "a Pokémon to work in combination.\p"
+        "If you want to win, you'll need to show\n"
+        "them how tight you are with your\l"
+        "Pokémon. Go for it!"), MSGBOX_DEFAULT)
+    release
 }
 
-text MossdeepCity_Gym_Text_GymGuidePostVictory {
-    format("Wow, you're astounding!\n"
-    "You're one great TRAINER!")
+script MossdeepCity_Gym_EventScript_GymGuidePostVictory {
+    msgbox(format("Wow, you're astounding!\n"
+        "You're one great Trainer!"), MSGBOX_DEFAULT)
+    release
 }
 
 text MossdeepCity_Gym_Text_PrestonIntro {
@@ -484,18 +472,15 @@ text MossdeepCity_Gym_Text_KathleenPostBattle {
 }
 
 text MossdeepCity_Gym_Text_CliffordIntro {
-    format("I may be past my prime, but I suggest\n"
-    "you not patronize me.")
+    format("I may be past my prime, but I suggest you not patronize me.")
 }
 
 text MossdeepCity_Gym_Text_CliffordDefeat {
-    format("Ah, you overflow with the power\n"
-    "of youth!")
+    format("Ah, you overflow with the power of youth!")
 }
 
 text MossdeepCity_Gym_Text_CliffordPostBattle {
-    format("It seems that I could not overcome\n"
-    "your youthful energy.")
+    format("It seems that I could not overcome your youthful energy.")
 }
 
 text MossdeepCity_Gym_Text_MaceyIntro {
@@ -504,13 +489,12 @@ text MossdeepCity_Gym_Text_MaceyIntro {
 }
 
 text MossdeepCity_Gym_Text_MaceyDefeat {
-    format("How could you be so ludicrously\n"
-    "strong?")
+    format("How could you be so ludicrously strong?")
 }
 
 text MossdeepCity_Gym_Text_MaceyPostBattle {
     format("Humph! You may be strong, but you're\n"
-    "not suitable for the PSYCHIC type!\p"
+    "not suitable for the Psychic type!\p"
     "The way you battle is somehow brutal!")
 }
 
@@ -547,7 +531,6 @@ script MossdeepCity_Gym_EventScript_TateAndLiza {
 
 text MossdeepCity_Gym_Text_Tate { "Tate" }
 text MossdeepCity_Gym_Text_Liza { "Liza" }
-
 
 script MossdeepCity_Gym_EventScript_TateAndLizaDefeated {
     speakername(0)
@@ -593,17 +576,20 @@ script MossdeepCity_Gym_EventScript_TateAndLizaDefeated {
 }
 
 script MossdeepCity_Gym_EventScript_GiveCalmMind2 {
-    giveitem(ITEM_TM_CALM_MIND)
-    goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull)
-    msgbox(MossdeepCity_Gym_Text_ExplainCalmMind, MSGBOX_DEFAULT)
-    setflag(FLAG_RECEIVED_TM_CALM_MIND)
+    call(MossdeepCity_Gym_EventScript_GiveCalmMind)
     release
 }
 
 script MossdeepCity_Gym_EventScript_GiveCalmMind {
     giveitem(ITEM_TM_CALM_MIND)
     goto_if_eq(VAR_RESULT, FALSE, Common_EventScript_BagIsFull)
-    msgbox(MossdeepCity_Gym_Text_ExplainCalmMind, MSGBOX_DEFAULT)
+    speakername(MossdeepCity_Gym_Text_Tate)
+    msgbox("That TM04 contains…\n"
+    "Calm Mind!", MSGBOX_DEFAULT)
+    speakername(MossdeepCity_Gym_Text_Liza)
+    msgbox("It raises Sp. Atk and Sp. Def!", MSGBOX_DEFAULT)
+    speakername(MossdeepCity_Gym_Text_Tate)
+    msgbox(format("It's a move that's perfect for Psychic Pokémon!"), MSGBOX_DEFAULT)
     setflag(FLAG_RECEIVED_TM_CALM_MIND)
 }
 
@@ -637,16 +623,6 @@ text MossdeepCity_Gym_Text_TateAndLizaDefeat {
     "LIZA: Was shattered!\p"
     "TATE: It can't be helped. You've won…\n"
     "LIZA: So, in recognition, take this.")
-}
-
-text MossdeepCity_Gym_Text_ExplainCalmMind {
-    format("TATE: That TM04 contains…\n"
-    "LIZA: Calm Mind!\p"
-    "TATE: It raises Sp. Atk and…\n"
-    "LIZA: It raises Sp. Def!\p"
-    "TATE: It's a move that's perfect…\n"
-    "LIZA: For Psychic Pokémon!\p"
-    "… … … … … …")
 }
 
 text MossdeepCity_Gym_Text_TateAndLizaNeedTwoMons {
@@ -697,5 +673,5 @@ text MossdeepCity_Gym_Text_TateAndLizaRematchNeedTwoMons {
     "TATE: You brought just one Pokémon!\n"
     "LIZA: You brought just one Pokémon!\p"
     "TATE: We need you to bring at least…\n"
-    "LIZA: Two Pokémon when you come back.$")
+    "LIZA: Two Pokémon when you come back.")
 }

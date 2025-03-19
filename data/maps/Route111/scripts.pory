@@ -554,12 +554,12 @@ text Route111_Text_VictorDefeat {
 
 text Route111_Text_VictorPostBattle {
     format("Hey, all!\n"
-    "I've found a pretty strong TRAINER!")
+    "I've found a pretty strong Trainer!")
 }
 
 text Route111_Text_VictoriaIntro {
     format("Oh, my goodness! Aren't you young?\p"
-    "You must be quite the TRAINER to beat\n"
+    "You must be quite the Trainer to beat\n"
     "my husband, though.\p"
     "It's my turn to battle now!")
 }
@@ -570,7 +570,7 @@ text Route111_Text_VictoriaDefeat {
 }
 
 text Route111_Text_VictoriaPostBattle {
-    format("There's a strong TRAINER here!\n"
+    format("There's a strong Trainer here!\n"
     "This one's really strong!")
 }
 
@@ -680,13 +680,13 @@ script Route111_EventScript_TrainerHillSign {
         "“Scale the heights, you hot-blooded Trainers!”"), MSGBOX_SIGN)
 }
 script Route111_EventScript_RouteSign112 {
-    msgbox(format("ROUTE 111\n"
-    "{LEFT_ARROW} ROUTE 112"), MSGBOX_SIGN)
+    msgbox(format("Route 111\n"
+    "{LEFT_ARROW} Route 112"), MSGBOX_SIGN)
 }
 
 script Route111_EventScript_RouteSign113 {
-    msgbox(format("ROUTE 111\n"
-    "{LEFT_ARROW} ROUTE 113"), MSGBOX_SIGN)
+    msgbox(format("Route 111\n"
+    "{LEFT_ARROW} Route 113"), MSGBOX_SIGN)
 }
 
 script Route111_EventScript_OldLadysRestStopSign {

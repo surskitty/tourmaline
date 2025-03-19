@@ -58,7 +58,8 @@ script Route114_FossilManiacsHouse_Anorith {
     waitse
     playmoncry(SPECIES_ANORITH, CRY_MODE_NORMAL)
     setseenmon(SPECIES_ANORITH)
-    msgbox(format("ANORITH: Skreef!\pIt tries to show you how big its claws are."), MSGBOX_DEFAULT)
+    speakername("Anorith")
+    msgbox(format("Skreef!\pIt tries to show you how big its claws are."), MSGBOX_DEFAULT)
     waitmoncry
     release
 }

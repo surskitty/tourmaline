@@ -190,24 +190,30 @@ RustboroCity_PokemonSchool_EventScript_Scott::
     goto_if_set FLAG_MET_SCOTT_AFTER_OBTAINING_STONE_BADGE, RustboroCity_PokemonSchool_EventScript_ScottWatchStudents
     goto_if_set FLAG_MET_SCOTT_RUSTBORO, RustboroCity_PokemonSchool_EventScript_ScottSpokeAlready
     goto_if_set FLAG_BADGE01_GET, RustboroCity_PokemonSchool_EventScript_ScottGreetHasBadge
-    msgbox RustboroCity_PokemonSchool_Text_ScottMetAlreadyCut, MSGBOX_DEFAULT
+    msgbox RustboroCity_PokemonSchool_Text_ScottMetAlready, MSGBOX_DEFAULT
+    speakername CommonName_Text_Scott
+    msgbox RustboroCity_PokemonSchool_Text_ScottTraveling, MSGBOX_DEFAULT
     addvar VAR_SCOTT_STATE, 1
     setflag FLAG_MET_SCOTT_RUSTBORO
     release
     end
 
 RustboroCity_PokemonSchool_EventScript_ScottSpokeAlready::
+    speakername CommonName_Text_Scott
     goto_if_set FLAG_BADGE01_GET, RustboroCity_PokemonSchool_EventScript_ScottNoticeBadge
     msgbox RustboroCity_PokemonSchool_Text_StudentTalentLevelUnknown, MSGBOX_DEFAULT
     release
     end
 
 RustboroCity_PokemonSchool_EventScript_ScottGreetHasBadge::
+    msgbox RustboroCity_PokemonSchool_Text_ScottMetAlready, MSGBOX_DEFAULT
+    speakername CommonName_Text_Scott
     msgbox RustboroCity_PokemonSchool_Text_ScottMetAlreadyStoneBadge, MSGBOX_DEFAULT
     goto RustboroCity_PokemonSchool_EventScript_MetScottAfterBadge
     end
 
 RustboroCity_PokemonSchool_EventScript_ScottNoticeBadge::
+    speakername CommonName_Text_Scott
     msgbox RustboroCity_PokemonSchool_Text_ScottStoneBadge, MSGBOX_DEFAULT
     goto RustboroCity_PokemonSchool_EventScript_MetScottAfterBadge
     end
@@ -225,12 +231,15 @@ RustboroCity_PokemonSchool_EventScript_ScottWatchStudents::
 
 `
 
-text RustboroCity_PokemonSchool_Text_ScottMetAlreadyCut {
+text RustboroCity_PokemonSchool_Text_ScottMetAlready {
     format("Hello? Didn't we meet before?\n"
         "I think back in Petalburg City.\p"
         "Let me introduce myself.\n"
-        "My name's Scott.\p"
-        "I've been traveling everywhere in search of outstanding Trainers.\p"
+        "My name's Scott.")
+}
+
+text RustboroCity_PokemonSchool_Text_ScottTraveling {
+    format("I've been traveling everywhere in search of outstanding Trainers.\p"
         "More specifically, I'm looking for Pokémon battle experts.\p"
         "So, what brings you to this School?\n"
         "Are you a Trainer, too?\p"
@@ -239,12 +248,12 @@ text RustboroCity_PokemonSchool_Text_ScottMetAlreadyCut {
 }
 
 text RustboroCity_PokemonSchool_Text_StudentTalentLevelUnknown {
-    format("SCOTT: Hmm…\p"
+    format("Hmm…\p"
         "The talent levels of the students here are unknown. The potential's there.")
 }
 
 text RustboroCity_PokemonSchool_Text_ScottStoneBadge {
-    format("SCOTT: Oh, what's that?\p"
+    format("Oh, what's that?\p"
         "It's a Stone Badge, isn't it?\n"
         "That's pretty impressive, I'd say.\p"
         "But, you know, I would've loved to see you in battle.\p"
@@ -252,11 +261,7 @@ text RustboroCity_PokemonSchool_Text_ScottStoneBadge {
 }
 
 text RustboroCity_PokemonSchool_Text_ScottMetAlreadyStoneBadge {
-    format("Hello? Didn't we meet before?\n"
-        "I think back in Petalburg City.\p"
-        "Let me introduce myself.\n"
-        "My name's Scott.\p"
-        "I've been traveling everywhere in search of outstanding Trainers.\p"
+    format("I've been traveling everywhere in search of outstanding Trainers.\p"
         "More specifically, I'm looking for Pokémon battle experts.\p"
         "Oh, what's that?\n"
         "It's a Stone Badge, isn't it?\p"
