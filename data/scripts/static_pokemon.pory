@@ -35,17 +35,38 @@ script Common_PokemonScript_WildNosepass {
         bufferspeciesname(STR_VAR_1, VAR_0x8004)
         msgbox(format("You challenged the {STR_VAR_1} to a battle!"), MSGBOX_DEFAULT)
     default:
-        playmoncry(VAR_0x8004, CRY_MODE_HIGH_PITCH)
-        settotemboost(B_POSITION_OPPONENT_LEFT, 1, 1, 0, 1, 1)
+        playmoncry(VAR_0x8004, CRY_MODE_WEAK)
         bufferspeciesname(STR_VAR_1, VAR_0x8004)
-        msgbox(format("You rudely ambushed the wild {STR_VAR_1}!"), MSGBOX_DEFAULT)
-        msgbox("The wild Pokémon attacked in a rage!", MSGBOX_DEFAULT)
+        setvar(B_VAR_STARTING_STATUS, STARTING_STATUS_STARTLED_OPPONENT)
+        msgbox(format("You ambushed the wild {STR_VAR_1}!"), MSGBOX_DEFAULT)
     }
     waitmoncry
     waitmessage
     setflag(FLAG_SYS_CTRL_OBJ_DELETE)
     dowildbattle
     clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    setvar(B_VAR_STARTING_STATUS, 0)
+    specialvar(VAR_RESULT, GetBattleOutcome)
+    goto_if_eq(VAR_RESULT, B_OUTCOME_RAN, Common_EventScript_RanFromStaticPokemon)
+    if (var(VAR_RESULT) == B_OUTCOME_WON) {
+        msgbox(format("The miffed Pokémon healed itself with a Berry and left."), MSGBOX_DEFAULT)
+    }
+    goto(Common_EventScript_RemoveStaticPokemon)
+}
+
+script Common_PokemonScript_SleepingWild {
+    lock
+    callnative(StartStationaryEncounter)
+    playmoncry(VAR_0x8004, CRY_MODE_WEAK)
+    bufferspeciesname(STR_VAR_1, VAR_0x8004)
+    setvar(B_VAR_STARTING_STATUS, STARTING_STATUS_SLEEPING_OPPONENT)
+    msgbox(format("You quietly approach the sleeping {STR_VAR_1}…"), MSGBOX_DEFAULT)
+    waitmoncry
+    waitmessage
+    setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    dowildbattle
+    clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    setvar(B_VAR_STARTING_STATUS, 0)
     specialvar(VAR_RESULT, GetBattleOutcome)
     goto_if_eq(VAR_RESULT, B_OUTCOME_RAN, Common_EventScript_RanFromStaticPokemon)
     if (var(VAR_RESULT) == B_OUTCOME_WON) {

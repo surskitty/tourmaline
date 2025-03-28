@@ -4635,6 +4635,24 @@ u32 AbilityBattleEffects(u32 caseID, u32 battler, u32 ability, u32 special, u32 
                     effect = 1;
                 }
                 break;
+            case STARTING_STATUS_SLEEPING_OPPONENT:
+                gBattlerAttacker = B_POSITION_OPPONENT_LEFT;
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SLEEPING_OPPONENT;
+                gBattleMons[B_POSITION_OPPONENT_LEFT].status1 |= STATUS1_SLEEP_TURN(2);
+                if (gBattleMons[B_POSITION_OPPONENT_RIGHT].species != SPECIES_NONE)
+                    gBattleMons[B_POSITION_OPPONENT_RIGHT].status1 |= STATUS1_SLEEP_TURN(2);
+                effect = 1;
+                break;
+            case STARTING_STATUS_STARTLED_OPPONENT:
+                gBattlerAttacker = B_POSITION_OPPONENT_LEFT;
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_STARTLED_OPPONENT;
+                gBattleMons[B_POSITION_OPPONENT_LEFT].status2 |= STATUS2_BIDE_TURN(2);
+                if (gBattleMons[B_POSITION_OPPONENT_RIGHT].species != SPECIES_NONE)
+                    gBattleMons[B_POSITION_OPPONENT_RIGHT].status2 |= STATUS2_BIDE_TURN(2);
+                effect = 1;
+                gBideDmg[B_POSITION_OPPONENT_LEFT] = 0;
+                gBideDmg[B_POSITION_OPPONENT_RIGHT] = 0;
+                break;
             }
 
             if (effect == 1)
