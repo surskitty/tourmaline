@@ -23,6 +23,37 @@ script Common_PokemonScript_WildEncounter {
     goto(Common_EventScript_RemoveStaticPokemon)
 }
 
+script Common_PokemonScript_WildNosepass {
+    lock
+    applymovement(VAR_LAST_TALKED, Common_Movement_ExclamationMark)
+    waitmovement(0)
+    waitse
+    callnative(StartStationaryEncounter)
+    switch(var(VAR_FACING)) {
+    case DIR_SOUTH:
+        playmoncry(VAR_0x8004, CRY_MODE_ENCOUNTER)
+        bufferspeciesname(STR_VAR_1, VAR_0x8004)
+        msgbox(format("You challenged the {STR_VAR_1} to a battle!"), MSGBOX_DEFAULT)
+    default:
+        playmoncry(VAR_0x8004, CRY_MODE_HIGH_PITCH)
+        settotemboost(B_POSITION_OPPONENT_LEFT, 1, 1, 0, 1, 1)
+        bufferspeciesname(STR_VAR_1, VAR_0x8004)
+        msgbox(format("You rudely ambushed the wild {STR_VAR_1}!"), MSGBOX_DEFAULT)
+        msgbox("The wild Pokémon attacked in a rage!", MSGBOX_DEFAULT)
+    }
+    waitmoncry
+    waitmessage
+    setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    dowildbattle
+    clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    specialvar(VAR_RESULT, GetBattleOutcome)
+    goto_if_eq(VAR_RESULT, B_OUTCOME_RAN, Common_EventScript_RanFromStaticPokemon)
+    if (var(VAR_RESULT) == B_OUTCOME_WON) {
+        msgbox(format("The miffed Pokémon healed itself with a Berry and left."), MSGBOX_DEFAULT)
+    }
+    goto(Common_EventScript_RemoveStaticPokemon)
+}
+
 script Common_EventScript_TrainingPokemon {
     lock
     faceplayer
