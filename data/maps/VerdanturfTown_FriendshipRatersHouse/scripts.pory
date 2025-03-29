@@ -1,102 +1,40 @@
 mapscripts VerdanturfTown_FriendshipRatersHouse_MapScripts {}
 
-raw `
-VerdanturfTown_FriendshipRatersHouse_EventScript_FriendshipRater::
+script VerdanturfTown_FriendshipRatersHouse_EventScript_FriendshipRater {
     lock
     faceplayer
-    msgbox VerdanturfTown_FriendshipRatersHouse_Text_SeeHowMuchPokemonLikesYou, MSGBOX_DEFAULT
-    specialvar VAR_RESULT, GetLeadMonFriendshipScore
-    switch VAR_RESULT
-    case FRIENDSHIP_NONE, VerdanturfTown_FriendshipRatersHouse_EventScript_DetestsYou
-    case FRIENDSHIP_1_TO_49, VerdanturfTown_FriendshipRatersHouse_EventScript_VeryWary
-    case FRIENDSHIP_50_TO_99, VerdanturfTown_FriendshipRatersHouse_EventScript_NotUsedToYou
-    case FRIENDSHIP_100_TO_149, VerdanturfTown_FriendshipRatersHouse_EventScript_GettingUsedToYou
-    case FRIENDSHIP_150_TO_199, VerdanturfTown_FriendshipRatersHouse_EventScript_LikesYouQuiteALot
-    case FRIENDSHIP_200_TO_254, VerdanturfTown_FriendshipRatersHouse_EventScript_VeryHappy
-    case FRIENDSHIP_MAX, VerdanturfTown_FriendshipRatersHouse_EventScript_AdoresYou
+    msgbox(format("Let me see your Pokémon.\n"
+        "I'll check to see how much it likes you.\p"
+        "Oh.\n"
+        "Your Pokémon…"), MSGBOX_DEFAULT)
+    specialvar(VAR_RESULT, GetLeadMonFriendshipScore)
+    switch (var(VAR_RESULT)) {
+    case FRIENDSHIP_NONE:
+        msgbox(format("This is a little hard for me to say…\p"
+            "Your Pokémon simply detests you.\n"
+            "Doesn't that make you uncomfortable?"), MSGBOX_DEFAULT)
+    case FRIENDSHIP_1_TO_49:
+        msgbox(format("It's very wary.\n"
+            "It has scary viciousness in its eyes.\l"
+            "It doesn't like you much at all."), MSGBOX_DEFAULT)
+    case FRIENDSHIP_50_TO_99:
+        msgbox(format("It's not very used to you yet.\n"
+            "It neither loves nor hates you."), MSGBOX_DEFAULT)
+    case FRIENDSHIP_100_TO_149:
+        msgbox(format("It's getting used to you.\n"
+            "It seems to believe in you."), MSGBOX_DEFAULT)
+    case FRIENDSHIP_150_TO_199:
+        msgbox(format("It likes you quite a lot.\n"
+            "It seems to want to be babied a little."), MSGBOX_DEFAULT)
+    case FRIENDSHIP_200_TO_254:
+        msgbox(format("It seems to be very happy.\n"
+            "It obviously likes you a whole lot."), MSGBOX_DEFAULT)
+    case FRIENDSHIP_MAX:
+        msgbox(format("It adores you.\n"
+            "It can't possibly love you any more.\l"
+            "I even feel happy seeing it."), MSGBOX_DEFAULT)
+    }
     release
-    end
-
-VerdanturfTown_FriendshipRatersHouse_EventScript_DetestsYou::
-    msgbox VerdanturfTown_FriendshipRatersHouse_Text_DetestsYou, MSGBOX_DEFAULT
-    release
-    end
-
-VerdanturfTown_FriendshipRatersHouse_EventScript_VeryWary::
-    msgbox VerdanturfTown_FriendshipRatersHouse_Text_VeryWary, MSGBOX_DEFAULT
-    release
-    end
-
-VerdanturfTown_FriendshipRatersHouse_EventScript_NotUsedToYou::
-    msgbox VerdanturfTown_FriendshipRatersHouse_Text_NotUsedToYou, MSGBOX_DEFAULT
-    release
-    end
-
-VerdanturfTown_FriendshipRatersHouse_EventScript_GettingUsedToYou::
-    msgbox VerdanturfTown_FriendshipRatersHouse_Text_GettingUsedToYou, MSGBOX_DEFAULT
-    release
-    end
-
-VerdanturfTown_FriendshipRatersHouse_EventScript_LikesYouQuiteALot::
-    msgbox VerdanturfTown_FriendshipRatersHouse_Text_LikesYouQuiteALot, MSGBOX_DEFAULT
-    release
-    end
-
-VerdanturfTown_FriendshipRatersHouse_EventScript_VeryHappy::
-    msgbox VerdanturfTown_FriendshipRatersHouse_Text_VeryHappy, MSGBOX_DEFAULT
-    release
-    end
-
-VerdanturfTown_FriendshipRatersHouse_EventScript_AdoresYou::
-    msgbox VerdanturfTown_FriendshipRatersHouse_Text_AdoresYou, MSGBOX_DEFAULT
-    release
-    end
-
-`
-
-text VerdanturfTown_FriendshipRatersHouse_Text_SeeHowMuchPokemonLikesYou {
-    format("Let me see your Pokémon.\n"
-    "I'll check to see how much it likes you.\p"
-    "Oh.\n"
-    "Your Pokémon…")
-}
-
-text VerdanturfTown_FriendshipRatersHouse_Text_AdoresYou {
-    format("It adores you.\n"
-    "It can't possibly love you any more.\l"
-    "I even feel happy seeing it.")
-}
-
-text VerdanturfTown_FriendshipRatersHouse_Text_VeryHappy {
-    format("It seems to be very happy.\n"
-    "It obviously likes you a whole lot.")
-}
-
-text VerdanturfTown_FriendshipRatersHouse_Text_LikesYouQuiteALot {
-    format("It likes you quite a lot.\n"
-    "It seems to want to be babied a little.")
-}
-
-text VerdanturfTown_FriendshipRatersHouse_Text_GettingUsedToYou {
-    format("It's getting used to you.\n"
-    "It seems to believe in you.")
-}
-
-text VerdanturfTown_FriendshipRatersHouse_Text_NotUsedToYou {
-    format("It's not very used to you yet.\n"
-    "It neither loves nor hates you.")
-}
-
-text VerdanturfTown_FriendshipRatersHouse_Text_VeryWary {
-    format("It's very wary.\n"
-    "It has scary viciousness in its eyes.\l"
-    "It doesn't like you much at all.")
-}
-
-text VerdanturfTown_FriendshipRatersHouse_Text_DetestsYou {
-    format("This is a little hard for me to say…\p"
-    "Your Pokémon simply detests you.\n"
-    "Doesn't that make you uncomfortable?")
 }
 
 script VerdanturfTown_FriendshipRatersHouse_EventScript_Pikachu {

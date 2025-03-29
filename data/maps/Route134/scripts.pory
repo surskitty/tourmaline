@@ -1,7 +1,4 @@
 mapscripts Route134_MapScripts {
-    MAP_SCRIPT_ON_RESUME {
-        setdivewarp(MAP_UNDERWATER_ROUTE134, 8, 6)
-    }
     MAP_SCRIPT_ON_LOAD {
         special(SetRoofBirds)
         special(SetStationaryWilds)

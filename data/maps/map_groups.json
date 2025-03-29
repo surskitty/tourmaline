@@ -94,7 +94,8 @@
     "Underwater_Route105",
     "Underwater_Route125",
     "Underwater_Route132",
-    "Underwater_Route133"
+    "Underwater_Route133",
+    "Underwater_Route134"
   ],
   "gMapGroup_IndoorLittleroot": [
     "LittlerootTown_BrendansHouse_1F",
@@ -393,7 +394,6 @@
     "AbandonedShip_HiddenFloorRooms",
     "IslandCave",
     "AncientTomb",
-    "Underwater_Route134",
     "Underwater_SealedChamber",
     "SealedChamber_OuterRoom",
     "SealedChamber_InnerRoom",

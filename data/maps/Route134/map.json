@@ -22,6 +22,11 @@
       "map": "MAP_ROUTE133",
       "offset": 0,
       "direction": "right"
+    },
+    {
+      "map": "MAP_UNDERWATER_ROUTE134",
+      "offset": 0,
+      "direction": "dive"
     }
   ],
   "object_events": [
@@ -273,7 +278,13 @@
       "flag": "FLAG_TEMP_A"
     }
   ],
-  "warp_events": [],
-  "coord_events": [],
-  "bg_events": []
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
 }

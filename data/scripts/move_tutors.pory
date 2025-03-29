@@ -44,7 +44,7 @@ script FallarborTown_Mart_EventScript_MetronomeTutor {
     lock
     faceplayer
     msgbox(format("If I teach your Pokémon how to cast spells, will you buy me something?"), MSGBOX_DEFAULT)
-    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Ally Switch", "Baton Pass", "Encore", "Gravity",  "Helping Hand", "Metronome", "Pain Split", "Pay Day", "Psych Up", "Tailwind", "Trick Room")
+    dynmultichoice(1, 1, FALSE, 8, FALSE, DYN_MULTICHOICE_CB_NONE, "Ally Switch", "Baton Pass", "Encore", "Gravity", "Helping Hand", "Metronome", "Pain Split", "Pay Day", "Psych Up", "Tailwind", "Trick Room")
     switch (var(VAR_RESULT)) {
     case 0: setvar(VAR_0x8005, MOVE_ALLY_SWITCH)
     case 1: setvar(VAR_0x8005, MOVE_BATON_PASS)

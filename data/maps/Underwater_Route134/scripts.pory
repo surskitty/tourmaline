@@ -1,7 +1,4 @@
 mapscripts Underwater_Route134_MapScripts {
-    MAP_SCRIPT_ON_RESUME {
-        setdivewarp(MAP_ROUTE134, 60, 31)
-    }
     MAP_SCRIPT_ON_LOAD {
         special(SetStationaryWilds)
     }

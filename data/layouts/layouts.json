@@ -2814,8 +2814,8 @@
     {
       "id": "LAYOUT_UNDERWATER_ROUTE134",
       "name": "Underwater_Route134_Layout",
-      "width": 18,
-      "height": 10,
+      "width": 80,
+      "height": 40,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Underwater",
       "border_filepath": "data/layouts/Underwater_Route134/border.bin",

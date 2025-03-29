@@ -10,18 +10,6 @@ raw `
 .set LOCALID_GRUNT_2, 13
 .set LOCALID_GRUNT_3, 14
 
-Route121_EventScript_Woman::
-    msgbox Route121_Text_AheadLoomsMtPyre, MSGBOX_NPC
-    end
-
-Route121_EventScript_MtPyrePierSign::
-    msgbox Route121_Text_MtPyrePierSign, MSGBOX_SIGN
-    end
-
-Route121_EventScript_SafariZoneSign::
-    msgbox Route121_Text_SafariZoneSign, MSGBOX_SIGN
-    end
-
 Route121_EventScript_AquaGruntsMoveOut::
     lockall
     playbgm MUS_ENCOUNTER_AQUA, FALSE
@@ -40,39 +28,6 @@ Route121_EventScript_AquaGruntsMoveOut::
     setvar VAR_ROUTE121_STATE, 1
     releaseall
     end
-
-Route121_Movement_Grunt1Exit:
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    step_end
-
-Route121_Movement_Grunt2Exit:
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    step_end
-
-Route121_Movement_Grunt3Exit:
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    step_end
 
 Route121_EventScript_Vanessa::
     trainerbattle_single TRAINER_VANESSA, Route121_Text_VanessaIntro, Route121_Text_VanessaDefeat
@@ -183,19 +138,22 @@ text Route121_Text_OkayMoveOutToMtPyre {
     "We're to move out to Mt. Pyre!")
 }
 
-text Route121_Text_AheadLoomsMtPyre {
-    format("Ahead looms Mt. Pyre…\p"
-    "It is a natural monument to the spirits of departed Pokémon…")
+script Route121_EventScript_Woman {
+    msgbox(format("Ahead looms Mt. Pyre…\p"
+        "It is a natural monument to the spirits of departed Pokémon…"), MSGBOX_NPC)
 }
 
-text Route121_Text_MtPyrePierSign {
-    format("Mt. Pyre Pier\p"
-    "…The sign is old and worn out.\n"
-    "The words are barely legible…")
+script Route121_EventScript_MtPyrePierSign {
+    msgbox(format("Mt. Pyre Pier\p"
+        "…The sign is old and worn out.\n"
+        "The words are barely legible…"), MSGBOX_SIGN)
 }
 
-text Route121_Text_SafariZoneSign {
-    format("“Filled with rare Pokémon!”\n"
-    "Safari Zone")
+script Route121_EventScript_SafariZoneSign{
+    msgbox(format("“Filled with rare Pokémon!”\n"
+        "Safari Zone"), MSGBOX_SIGN)
 }
 
+movement Route121_Movement_Grunt1Exit { walk_down * 8 }
+movement Route121_Movement_Grunt2Exit { walk_down * 8 }
+movement Route121_Movement_Grunt3Exit { walk_down * 8 }
