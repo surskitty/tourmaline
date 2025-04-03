@@ -156,6 +156,7 @@ Route120_EventScript_BerryNotLove::
 Route120_EventScript_Steven::
     lock
     faceplayer
+    speakername CommonName_Text_Steven
     goto_if_set FLAG_NOT_READY_FOR_BATTLE_ROUTE_120, Route120_EventScript_StevenAskReadyForBattle
     msgbox Route120_Text_StevenGreeting, MSGBOX_YESNO
     goto_if_eq VAR_RESULT, NO, Route120_EventScript_StevenNotReady
@@ -182,6 +183,7 @@ Route120_EventScript_StevenBattleKecleon::
     applymovement LOCALID_STEVEN, Common_Movement_WalkInPlaceFasterLeft
     waitmovement 0
     delay 20
+    speakername 0
     msgbox Route120_Text_StevenUsedDevonScope, MSGBOX_DEFAULT
     closemessage
     applymovement LOCALID_BRIDGE_KECLEON, Common_Movement_WalkInPlaceFasterRight
@@ -216,6 +218,7 @@ Route120_EventScript_StevenGiveDeconScope::
     applymovement LOCALID_STEVEN, Common_Movement_WalkInPlaceFasterDown
     applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterUp
     waitmovement 0
+    speakername CommonName_Text_Steven
     msgbox Route120_Text_StevenGiveDevonScope, MSGBOX_DEFAULT
     giveitem ITEM_DEVON_SCOPE
     setflag FLAG_RECEIVED_DEVON_SCOPE
@@ -363,7 +366,7 @@ Route120_EventScript_Callie::
 `
 
 text Route120_Text_StevenGreeting {
-    format("STEVEN: Hm? {PLAYER}{KUN}, hi.\n"
+    format("Hm? {PLAYER}{KUN}, hi.\n"
     "It's been a while.\p"
     "There's something here that you can't\n"
     "see, right?\p"
@@ -377,17 +380,17 @@ text Route120_Text_StevenGreeting {
 }
 
 text Route120_Text_StevenIllWaitHere {
-    format("STEVEN: No?\p"
+    format("No?\n"
     "I'll wait here, so you can get ready.")
 }
 
 text Route120_Text_StevenReadyForBattle {
-    format("STEVEN: {PLAYER}{KUN}, are your Pokémon\n"
+    format("{PLAYER}{KUN}, are your Pokémon\n"
     "ready for battle?")
 }
 
 text Route120_Text_StevenShowMeYourPower {
-    format("STEVEN: {PLAYER}{KUN}, show me your true\n"
+    format("{PLAYER}{KUN}, show me your true\n"
     "power as a Trainer!")
 }
 
@@ -399,7 +402,7 @@ text Route120_Text_StevenUsedDevonScope {
 }
 
 text Route120_Text_StevenGiveDevonScope {
-    format("STEVEN: I see…\n"
+    format("I see…\n"
     "Your battle style is intriguing.\p"
     "Your Pokémon have obviously grown\n"
     "since I first met you in Dewford.\p"
@@ -410,7 +413,7 @@ text Route120_Text_StevenGiveDevonScope {
 }
 
 text Route120_Text_StevenGoodbye {
-    format("STEVEN: {PLAYER}{KUN}.\p"
+    format("{PLAYER}{KUN}.\p"
     "I enjoy seeing Pokémon and Trainers\n"
     "who strive together.\p"
     "I think you're doing great.\p"
@@ -435,7 +438,7 @@ text Kecleon_Text_UseDevonScopeMonAttacked {
 
 text Route120_Text_RouteSignFortree {
     format("Route 120\n"
-    "{LEFT_ARROW} FORTREE CITY")
+    "{LEFT_ARROW} Fortree City")
 }
 
 text Route120_Text_RouteSign121 {
