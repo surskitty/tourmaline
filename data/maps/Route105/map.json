@@ -220,7 +220,7 @@
       "movement_type": "MOVEMENT_TYPE_BURIED",
       "movement_range_x": 3,
       "movement_range_y": 3,
-      "trainer_type": "TRAINER_TYPE_BIRD",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Common_PokemonScript_WildEncounter",
       "flag": "FLAG_TEMP_7"

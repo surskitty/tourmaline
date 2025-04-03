@@ -293,7 +293,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(DIGLETT_ALOLA)",
       "x": 47,
-      "y": 8,
+      "y": 11,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_BURIED",
       "movement_range_x": 0,

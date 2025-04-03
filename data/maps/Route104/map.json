@@ -526,15 +526,15 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(SANDYGAST)",
-      "x": 22,
-      "y": 67,
+      "x": 19,
+      "y": 60,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_BURIED",
       "movement_range_x": 3,
       "movement_range_y": 3,
-      "trainer_type": "TRAINER_TYPE_WILD_POKEMON",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Common_PokemonScript_WildEncounter",
+      "script": "Common_PokemonScript_WildSandygast",
       "flag": "FLAG_TEMP_5"
     },
     {
