@@ -11117,7 +11117,7 @@ Level: 15
 - Wish
 - Yawn
 
-SPECIES_SHELLOS_WEST (M)
+Caspian (Shellos West) (M)
 Level: 13
 Ability: Storm Drain
 
@@ -11136,7 +11136,7 @@ AI: Basic Trainer
 Aegis (Dottler) (F)
 Level: 18
 
-SPECIES_SHELLOS_WEST (M)
+Caspian (Shellos West) (M)
 Level: 18
 Ability: Storm Drain
 
@@ -11159,7 +11159,7 @@ AI: Basic Trainer
 Aegis (Orbeetle) (F)
 Level: 30
 
-SPECIES_GASTRODON_WEST (M)
+Caspian (Gastrodon West) (M)
 Level: 30
 Ability: Storm Drain
 
@@ -11190,7 +11190,7 @@ Ability: Wind Power
 Aegis (Orbeetle) (F)
 Level: 32
 
-SPECIES_GASTRODON_WEST (M)
+Caspian (Gastrodon West) (M)
 Level: 32
 Ability: Storm Drain
 
@@ -11258,7 +11258,7 @@ Ariel (Glaceon) (F)
 Level: 20
 Ability: Ice Body
 
-SPECIES_SHELLOS_WEST (M)
+Caspian (Shellos West) (M)
 Level: 18
 Ability: Storm Drain
 
@@ -11282,7 +11282,7 @@ Ariel (Glaceon) (F)
 Level: 31
 Ability: Ice Body
 
-SPECIES_GASTRODON_WEST (M)
+Caspian (Gastrodon West) (M)
 Level: 30
 Ability: Storm Drain
 
@@ -11314,7 +11314,7 @@ Shiftry (F)
 Level: 32
 Ability: Wind Rider
 
-SPECIES_GASTRODON_WEST (M)
+Caspian (Gastrodon West) (M)
 Level: 30
 Ability: Storm Drain
 
@@ -11480,7 +11480,7 @@ Level: 15
 - Wish
 - Yawn
 
-Shellos East (F)
+Christy (Shellos East) (F)
 Level: 13
 Ability: Storm Drain
 
@@ -11499,7 +11499,7 @@ AI: Basic Trainer
 Bebe (Umbreon) (F)
 Level: 20
 
-Shellos East (F)
+Christy (Shellos East) (F)
 Level: 18
 Ability: Storm Drain
 
@@ -11549,7 +11549,7 @@ Level: 31
 Aegis (Orbeetle) (F)
 Level: 32
 
-Gastrodon East (F)
+Christy (Gastrodon East) (F)
 Level: 32
 Ability: Storm Drain
 
@@ -11615,7 +11615,7 @@ Bebe (Glaceon) (F)
 Ability: Ice Body
 Level: 20
 
-Shellos East (F)
+Christy (Shellos East) (F)
 Level: 18
 Ability: Storm Drain
 
@@ -11638,7 +11638,7 @@ Bebe (Glaceon) (F)
 Level: 31
 Ability: Ice Body
 
-Gastrodon East (F)
+Christy (Gastrodon East) (F)
 Level: 30
 Ability: Storm Drain
 
@@ -11668,7 +11668,7 @@ Ability: Wind Power
 Popcorn (Shiftry) (F)
 Level: 32
 
-Gastrodon East (F)
+Christy (Gastrodon East) (F)
 Level: 33
 Ability: Storm Drain
 
