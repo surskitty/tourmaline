@@ -8,8 +8,8 @@
 // Other settings
 #define OW_POISON_DAMAGE                GEN_LATEST // In Gen4, Pokémon no longer faint from Poison in the overworld. In Gen5+, they no longer take damage at all.
 #define OW_DOUBLE_APPROACH_WITH_ONE_MON FALSE      // If enabled, you can be spotted by two trainers at the same time even if you only have one eligible Pokémon in your party.
-#define OW_HIDE_REPEAT_MAP_POPUP        FALSE      // If enabled, map popups will not appear if entering a map with the same Map Section Id as the last.
-#define OW_FRLG_WHITEOUT                FALSE      // If enabled, shows an additional whiteout message and post whiteout event script with healing NPC.
+#define OW_HIDE_REPEAT_MAP_POPUP        TRUE      // If enabled, map popups will not appear if entering a map with the same Map Section Id as the last.
+#define OW_FRLG_WHITEOUT                TRUE      // If enabled, shows an additional whiteout message and post whiteout event script with healing NPC.
 
 // Item Obtain Description Box
 #define OW_ITEM_DESCRIPTIONS_OFF        0   // never show descriptions
@@ -29,7 +29,7 @@
 #define OW_PC_RELEASE_ITEM          GEN_LATEST // In Gen8+, Pokémon that get released with a held item return it to the bag.
 
 #define OW_BERRY_MUTATIONS             TRUE       // If enabled, Berry plants can mutate based on berries planted next to them.
-#define OW_BERRY_MUTATION_CHANCE       50         // Determines the % chance of a mutation.
+#define OW_BERRY_MUTATION_CHANCE       75         // Determines the % chance of a mutation.
 #define OW_BERRY_MOISTURE              FALSE      // If enabled, Berry watering is not a matter of watering it once per stage, but rather of keeping the soil moist.
 #define OW_BERRY_ALWAYS_WATERABLE      FALSE      // If OW_BERRY_MOISTURE is enabled, this setting allows the player to continuously water soil; dry soil will cause a decrease in Berry Yield (like Gen4). When off, soil can only be watered when dry and watering increases yield (like Gen6).
 #define OW_BERRY_MULCH_USAGE           FALSE      // If enabled, Mulch can be used on soil to fertilize it. Otherwise, it is considered unusable. Note that moisture effects only work with OW_BERRY_MOISTURE enabled!
