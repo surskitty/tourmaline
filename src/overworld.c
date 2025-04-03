@@ -3531,6 +3531,11 @@ void StartStationaryEncounter(void) {
     u8 level;
     u16 heldItem = objectEventTemplate->trainerRange_berryTreeId;
     u8 rand;
+    bool32 isShiny = (species >= SPECIES_SHINY_TAG);
+    if (isShiny) {
+        species -= SPECIES_SHINY_TAG;
+        FlagSet(FLAG_FORCE_SHINY);
+    }
 
     VarSet(VAR_0x8004, species);
     
@@ -3560,7 +3565,8 @@ void StartStationaryEncounter(void) {
         else if (VarGet(VAR_PETALBURG_CITY_STATE) > 2)  level = 4;
         else                                            level = 2;
     }
-    
+
+
     // if the Pokemon does not have a held item specified, generate an appropriate berry
     // in the event it does not give a pokemon a berry (roughly 50% chance)
     // it will run the normal wild pokemon item generation upon battle start
@@ -3596,5 +3602,9 @@ void GetSymbolEncounterSpecies(void) {
     objectEventTemplate = GetObjectEventTemplateByLocalIdAndMap(VarGet(VAR_LAST_TALKED), gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
 
     u32 species = (objectEventTemplate->graphicsId) - OBJ_EVENT_GFX_MON_BASE;
+
+    if (species >= SPECIES_SHINY_TAG)
+        species -= SPECIES_SHINY_TAG;
+
     VarSet(VAR_0x8004, species);
 }

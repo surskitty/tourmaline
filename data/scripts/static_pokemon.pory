@@ -54,6 +54,37 @@ script Common_PokemonScript_WildNosepass {
     goto(Common_EventScript_RemoveStaticPokemon)
 }
 
+script Common_PokemonScript_WildSandygast {
+    lock
+    callnative(StartStationaryEncounter)
+    msgbox(format("Beach toys are buried in the sand.\nPick them up?"), MSGBOX_YESNO)
+    if (var(VAR_RESULT)) {
+        setobjectmovementtype(VAR_LAST_TALKED, MOVEMENT_TYPE_LOOK_AROUND)
+        applymovement(VAR_LAST_TALKED, Common_Movement_ExclamationMark)
+        playmoncry(VAR_0x8004, CRY_MODE_ENCOUNTER)
+        settotemboost(B_POSITION_OPPONENT_LEFT, 1, 0, 0, 1)
+    } else {
+        applymovement(OBJ_EVENT_ID_PLAYER, Common_Movement_QuestionMark)
+        playmoncry(VAR_0x8004, CRY_MODE_WEAK)
+        setvar(B_VAR_STARTING_STATUS, STARTING_STATUS_SLEEPING_OPPONENT)
+    }
+    waitmovement(0)
+    bufferspeciesname(STR_VAR_1, VAR_0x8004)
+    msgbox(format("The toys belong to a {STR_VAR_1}!"), MSGBOX_DEFAULT)
+    waitmoncry
+    waitmessage
+    setflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    dowildbattle
+    clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
+    setvar(B_VAR_STARTING_STATUS, 0)
+    specialvar(VAR_RESULT, GetBattleOutcome)
+    goto_if_eq(VAR_RESULT, B_OUTCOME_RAN, Common_EventScript_RanFromStaticPokemon)
+    if (var(VAR_RESULT) == B_OUTCOME_WON) {
+        msgbox(format("The miffed Pokémon healed itself with a Berry and left."), MSGBOX_DEFAULT)
+    }
+    goto(Common_EventScript_RemoveStaticPokemon)
+}
+
 script Common_PokemonScript_SleepingWild {
     lock
     callnative(StartStationaryEncounter)
@@ -108,11 +139,14 @@ script Common_PokemonScript_WaitingForBattle {
 }
 
 script Common_EventScript_RanFromStaticPokemon {
+    setobjectmovementtype(VAR_LAST_TALKED, MOVEMENT_TYPE_LOOK_AROUND)
+    clearflag(FLAG_FORCE_SHINY)
     msgbox(format("You backed away and gave it space."), MSGBOX_DEFAULT)
     release
 }
 
 script Common_EventScript_RemoveStaticPokemon {
+    clearflag(FLAG_FORCE_SHINY)
     fadescreenswapbuffers(FADE_TO_BLACK)
     removeobject(VAR_LAST_TALKED)
     fadescreenswapbuffers(FADE_FROM_BLACK)
