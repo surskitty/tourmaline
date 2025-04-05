@@ -141,15 +141,17 @@ script Common_PokemonScript_WaitingForBattle {
 script Common_EventScript_RanFromStaticPokemon {
     setobjectmovementtype(VAR_LAST_TALKED, MOVEMENT_TYPE_LOOK_AROUND)
     clearflag(FLAG_FORCE_SHINY)
+    callnative(ClearSymbolEncounterAI)
     msgbox(format("You backed away and gave it space."), MSGBOX_DEFAULT)
     release
 }
 
 script Common_EventScript_RemoveStaticPokemon {
-    clearflag(FLAG_FORCE_SHINY)
     fadescreenswapbuffers(FADE_TO_BLACK)
     removeobject(VAR_LAST_TALKED)
     fadescreenswapbuffers(FADE_FROM_BLACK)
+    clearflag(FLAG_FORCE_SHINY)
+    callnative(ClearSymbolEncounterAI)
     release
 }
 
@@ -157,6 +159,7 @@ script Common_EventScript_LegendaryFlewAway {
     fadescreenswapbuffers(FADE_TO_BLACK)
     removeobject(VAR_LAST_TALKED)
     fadescreenswapbuffers(FADE_FROM_BLACK)
+    callnative(ClearSymbolEncounterAI)
     bufferspeciesname(STR_VAR_1, VAR_0x8004)
     msgbox(gText_LegendaryFlewAway, MSGBOX_DEFAULT)
     release

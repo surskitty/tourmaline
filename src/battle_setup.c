@@ -40,6 +40,7 @@
 #include "data.h"
 #include "vs_seeker.h"
 #include "item.h"
+#include "constants/battle_ai.h"
 #include "constants/battle_frontier.h"
 #include "constants/battle_setup.h"
 #include "constants/game_stat.h"
@@ -2052,4 +2053,24 @@ u16 CountBattledRematchTeams(u16 trainerId)
     }
 
     return i;
+}
+
+void SetSymbolEncounterAI(void) {
+    u16 currentFlags = AI_FLAG_CHECK_VIABILITY | AI_FLAG_HP_AWARE;
+    FlagSet(B_SMART_WILD_AI_FLAG);
+    
+    switch (Random() % 10) {
+    case 0: currentFlags |= AI_FLAG_FORCE_SETUP_FIRST_TURN;
+    case 1: currentFlags |= AI_FLAG_RISKY;
+    case 3: currentFlags |= AI_FLAG_POWERFUL_STATUS;
+    case 4: currentFlags |= AI_FLAG_PREFER_STATUS_MOVES;
+    case 5: currentFlags |= AI_FLAG_STALL;
+    }
+
+    VarSet(B_VAR_WILD_AI_FLAGS, currentFlags);
+}
+
+void ClearSymbolEncounterAI(void) {
+    VarSet(B_VAR_WILD_AI_FLAGS, 0);
+    FlagClear(B_SMART_WILD_AI_FLAG);
 }

@@ -3523,26 +3523,10 @@ void ScriptHideItemDescription(struct ScriptContext *ctx)
 }
 #endif // OW_SHOW_ITEM_DESCRIPTIONS
 
-void StartStationaryEncounter(void) {
-    const struct ObjectEventTemplate *objectEventTemplate;
-    objectEventTemplate = GetObjectEventTemplateByLocalIdAndMap(VarGet(VAR_LAST_TALKED), gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
 
-    u32 species = (objectEventTemplate->graphicsId) - OBJ_EVENT_GFX_MON_BASE;
-    u8 level;
-    u16 heldItem = objectEventTemplate->trainerRange_berryTreeId;
-    u8 rand;
-    bool32 isShiny = (species >= SPECIES_SHINY_TAG);
-    if (isShiny) {
-        species -= SPECIES_SHINY_TAG;
-        FlagSet(FLAG_FORCE_SHINY);
-    }
-
-    VarSet(VAR_0x8004, species);
+u32 GetStationaryEncounterLevel(void) {
+    u32 level;
     
-    
-    // Generate level of pokemon.
-    // Applicable flags are sorted by badges, taking into account skipping badges.
-    // TODO: fill this out further 
     if (FlagGet(FLAG_ENTERED_ELITE_FOUR)) {                 level = 60;
     } else if (FlagGet(FLAG_BADGE05_GET)) {                 level = 25;
         if (FlagGet(FLAG_RECEIVED_CASTFORM))                level += 5;
@@ -3565,36 +3549,57 @@ void StartStationaryEncounter(void) {
         else if (VarGet(VAR_PETALBURG_CITY_STATE) > 2)  level = 4;
         else                                            level = 2;
     }
+    return level;
+}
 
+u32 GetStationaryEncounterItem(u32 level) {
+    u16 heldItem = ITEM_NONE;
 
-    // if the Pokemon does not have a held item specified, generate an appropriate berry
-    // in the event it does not give a pokemon a berry (roughly 50% chance)
-    // it will run the normal wild pokemon item generation upon battle start
-    if (heldItem == ITEM_NONE) {
-
-        // higher level pokemon have better odds of a good item
-        // low level pokemon still have a 50% chance of a bad item
-        // pokemon roll their normal held items after this.
-        rand = Random() % (MAX_LEVEL - level);
-        // low odds of stat boosting
-        if (rand < 3) {
-            rand = Random() % NUM_BERRY_MASTER_BERRIES;
-            heldItem = rand + FIRST_BERRY_MASTER_BERRY;
-        // 20% of remaining have a type reduction berry
-        } else if ((rand % 5) == 0) {
-            rand = Random() % NUM_BERRY_MASTER_WIFE_BERRIES;
-            heldItem = rand + FIRST_BERRY_MASTER_WIFE_BERRY;
-        // these are boring healing berries
-        } else if (rand % 2) {
-            rand = Random() % 8;
-            heldItem = rand + FIRST_BERRY_INDEX;
+    // higher level pokemon have better odds of a good item
+    // low level pokemon still have a 50% chance of a bad item
+    // pokemon roll their normal held items after this.
+    u16 rand = Random() % (MAX_LEVEL - level);
+    // low odds of stat boosting
+    if (rand < 3) {
+        rand = Random() % NUM_BERRY_MASTER_BERRIES;
+        heldItem = rand + FIRST_BERRY_MASTER_BERRY;
+    // 20% of remaining have a type reduction berry
+    } else if ((rand % 5) == 0) {
+        rand = Random() % NUM_BERRY_MASTER_WIFE_BERRIES;
+        heldItem = rand + FIRST_BERRY_MASTER_WIFE_BERRY;
+    // these are boring healing berries
+    } else if (rand % 2) {
+        rand = Random() % 8;
+        heldItem = rand + FIRST_BERRY_INDEX;
         }
+    return heldItem;
+}
+
+void StartStationaryEncounter(void) {
+    const struct ObjectEventTemplate *objectEventTemplate;
+    objectEventTemplate = GetObjectEventTemplateByLocalIdAndMap(VarGet(VAR_LAST_TALKED), gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+
+    u32 species = (objectEventTemplate->graphicsId) - OBJ_EVENT_GFX_MON_BASE;
+    u32 level = GetStationaryEncounterLevel();
+    u16 heldItem = objectEventTemplate->trainerRange_berryTreeId;
+    u32 rand;
+    bool32 isShiny = (species >= SPECIES_SHINY_TAG);
+    if (isShiny) {
+        species -= SPECIES_SHINY_TAG;
+        FlagSet(FLAG_FORCE_SHINY);
     }
+    SetSymbolEncounterAI();
+
+    // if the Pokemon does not have a held item specified, generate an appropriate one
+    // if it does not generate one, which it may not, beginning the battle will try to generate a typical hold item for the species
+    if (heldItem == ITEM_NONE)
+        heldItem = GetStationaryEncounterItem(level);
 
     rand = Random() % ((level) / 5);
     level = level + rand;
 
     CreateScriptedWildMon(species, level, heldItem);
+    VarSet(VAR_0x8004, species);
 }
 
 void GetSymbolEncounterSpecies(void) {
