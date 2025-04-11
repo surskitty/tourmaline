@@ -24,7 +24,7 @@
 #include "constants/items.h"
 #include "constants/moves.h"
 
-static u8 GetMaxPowerTier(u32 move);
+static u32 GetMaxPowerTier(u32 move);
 
 struct GMaxMove
 {
@@ -198,13 +198,10 @@ void ActivateDynamax(u32 battler)
 // Unsets the flags used for Dynamaxing and reverts max HP if needed.
 void UndoDynamax(u32 battler)
 {
-    u8 side = GetBattlerSide(battler);
-    u8 monId = gBattlerPartyIndexes[battler];
-
     // Revert HP if battler is still Dynamaxed.
     if (GetActiveGimmick(battler) == GIMMICK_DYNAMAX)
     {
-        struct Pokemon *mon = (side == B_SIDE_PLAYER) ? &gPlayerParty[monId] : &gEnemyParty[monId];
+        struct Pokemon *mon = GetPartyBattlerData(battler);
         uq4_12_t mult = GetDynamaxLevelHPMultiplier(GetMonData(mon, MON_DATA_DYNAMAX_LEVEL), TRUE);
         gBattleMons[battler].hp = UQ_4_12_TO_INT((GetMonData(mon, MON_DATA_HP) * mult + 1) + UQ_4_12_ROUND); // round up
         SetMonData(mon, MON_DATA_HP, &gBattleMons[battler].hp);
@@ -243,7 +240,7 @@ bool32 IsMoveBlockedByMaxGuard(u32 move)
 bool32 IsMoveBlockedByDynamax(u32 move)
 {
     // TODO: Certain moves are banned in raids.
-    switch (gMovesInfo[move].effect)
+    switch (GetMoveEffect(move))
     {
         case EFFECT_HEAT_CRASH:
         case EFFECT_LOW_KICK:
@@ -257,12 +254,12 @@ static u16 GetTypeBasedMaxMove(u32 battler, u32 type)
     // Gigantamax check
     u32 i;
     u32 species = gBattleMons[battler].species;
-    u32 targetSpecies = SPECIES_NONE;
+    u32 targetSpecies = species;
 
     if (!gSpeciesInfo[species].isGigantamax)
         targetSpecies = GetBattleFormChangeTargetSpecies(battler, FORM_CHANGE_BATTLE_GIGANTAMAX);
 
-    if (targetSpecies != SPECIES_NONE)
+    if (targetSpecies != species)
         species = targetSpecies;
 
     if (gSpeciesInfo[species].isGigantamax)
@@ -285,7 +282,7 @@ u16 GetMaxMove(u32 battler, u32 baseMove)
 {
     u32 moveType;
     SetTypeBeforeUsingMove(baseMove, battler);
-    moveType = GetMoveType(baseMove);
+    moveType = GetBattleMoveType(baseMove);
 
     if (baseMove == MOVE_NONE) // for move display
     {
@@ -295,7 +292,7 @@ u16 GetMaxMove(u32 battler, u32 baseMove)
     {
         return MOVE_STRUGGLE;
     }
-    else if (gMovesInfo[baseMove].category == DAMAGE_CATEGORY_STATUS)
+    else if (GetMoveCategory(baseMove) == DAMAGE_CATEGORY_STATUS)
     {
         return MOVE_MAX_GUARD;
     }
@@ -319,11 +316,11 @@ enum
 };
 
 // Gets the base power of a Max Move.
-u8 GetMaxMovePower(u32 move)
+u32 GetMaxMovePower(u32 move)
 {
-    u8 tier;
+    u32 tier;
     // G-Max Drum Solo, G-Max Hydrosnipe, and G-Max Fireball always have 160 base power.
-    if (gMovesInfo[GetMaxMove(gBattlerAttacker, move)].argument == MAX_EFFECT_FIXED_POWER)
+    if (MoveHasAdditionalEffect(move, MOVE_EFFECT_FIXED_POWER))
         return 160;
 
     // Exceptions to all other rules below:
@@ -336,8 +333,9 @@ u8 GetMaxMovePower(u32 move)
     }
 
     tier = GetMaxPowerTier(move);
-    if (gMovesInfo[move].type == TYPE_FIGHTING
-     || gMovesInfo[move].type == TYPE_POISON
+    u32 moveType = GetMoveType(move);
+    if (moveType == TYPE_FIGHTING
+     || moveType == TYPE_POISON
      || move == MOVE_MULTI_ATTACK)
     {
         switch (tier)
@@ -370,11 +368,12 @@ u8 GetMaxMovePower(u32 move)
     }
 }
 
-static u8 GetMaxPowerTier(u32 move)
+static u32 GetMaxPowerTier(u32 move)
 {
-    if (gMovesInfo[move].strikeCount >= 2 && gMovesInfo[move].strikeCount <= 5)
+    u32 strikeCount = GetMoveStrikeCount(move);
+    if (strikeCount >= 2 && strikeCount <= 5)
     {
-        switch(gMovesInfo[move].power)
+        switch(GetMovePower(move))
         {
             case 0 ... 25:  return MAX_POWER_TIER_2;
             case 26 ... 30: return MAX_POWER_TIER_3;
@@ -385,7 +384,7 @@ static u8 GetMaxPowerTier(u32 move)
         }
     }
 
-    switch (gMovesInfo[move].effect)
+    switch (GetMoveEffect(move))
     {
         case EFFECT_BIDE:
         case EFFECT_SUPER_FANG:
@@ -421,7 +420,7 @@ static u8 GetMaxPowerTier(u32 move)
         case EFFECT_LOW_KICK:
             return MAX_POWER_TIER_7;
         case EFFECT_MULTI_HIT:
-            switch(gMovesInfo[move].power)
+            switch(GetMovePower(move))
             {
                 case 0 ... 15:    return MAX_POWER_TIER_1;
                 case 16 ... 18:   return MAX_POWER_TIER_2;
@@ -431,7 +430,7 @@ static u8 GetMaxPowerTier(u32 move)
             }
     }
 
-    switch (gMovesInfo[move].power)
+    switch (GetMovePower(move))
     {
         case 0 ... 40:    return MAX_POWER_TIER_1;
         case 45 ... 50:   return MAX_POWER_TIER_2;
@@ -467,42 +466,6 @@ void ChooseDamageNonTypesString(u8 type)
         case TYPE_ROCK:
             gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SURROUNDED_BY_ROCKS;
             break;
-    }
-}
-
-// Returns the status effect that should be applied by a G-Max Move.
-static u32 GetMaxMoveStatusEffect(u32 move)
-{
-    u8 maxEffect = gMovesInfo[move].argument;
-    switch (maxEffect)
-    {
-        // Status 1
-        case MAX_EFFECT_PARALYZE_FOES:
-            return STATUS1_PARALYSIS;
-        case MAX_EFFECT_POISON_FOES:
-            return STATUS1_POISON;
-        case MAX_EFFECT_POISON_PARALYZE_FOES:
-        {
-            static const u8 sStunShockEffects[] = {STATUS1_PARALYSIS, STATUS1_POISON};
-            return RandomElement(RNG_G_MAX_STUN_SHOCK, sStunShockEffects);
-        }
-        case MAX_EFFECT_EFFECT_SPORE_FOES:
-        {
-            static const u8 sBefuddleEffects[] = {STATUS1_PARALYSIS, STATUS1_POISON, STATUS1_SLEEP};
-            return RandomElement(RNG_G_MAX_BEFUDDLE, sBefuddleEffects);
-        }
-        // Status 2
-        case MAX_EFFECT_CONFUSE_FOES:
-        case MAX_EFFECT_CONFUSE_FOES_PAY_DAY:
-            return STATUS2_CONFUSION;
-        case MAX_EFFECT_INFATUATE_FOES:
-            return STATUS2_INFATUATION;
-        case MAX_EFFECT_MEAN_LOOK:
-            return STATUS2_ESCAPE_PREVENTION;
-        case MAX_EFFECT_TORMENT_FOES:
-            return STATUS2_TORMENT;
-        default:
-            return STATUS1_NONE;
     }
 }
 
