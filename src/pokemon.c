@@ -7061,7 +7061,8 @@ u8 SpeciesHasInnate(u16 species, u16 ability, u32 personality, bool8 disablerand
     {
         if (gSpeciesInfo[species].innates[i] == ability)
             {innateNum = innateNum + 2 + i;
-            DebugPrintf("INNATE FOUND: %d", innateNum - 1);}
+            //DebugPrintf("INNATE FOUND: %d", innateNum - 1);
+            }
     }
     
     //if (!disablerandomizer) {

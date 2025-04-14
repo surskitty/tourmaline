@@ -1788,7 +1788,7 @@ void ProtectChecks(u32 battlerAtk, u32 battlerDef, u32 move, u32 predictedMove, 
 bool32 ShouldLowerStat(u32 battlerAtk, u32 battlerDef, u32 battlerAbility, u32 stat)
 {
     u16 AIBattlerTraits[MAX_MON_TRAITS];
-    AI_STORE_BATTLER_TRAITS(battler);
+    AI_STORE_BATTLER_TRAITS(battlerDef);
 
     if (gBattleMons[battlerDef].statStages[stat] > MIN_STAT_STAGE && !AISearchTraits(AIBattlerTraits, ABILITY_CONTRARY))
     {
@@ -4347,7 +4347,8 @@ bool32 IsBattlerItemEnabled(u32 battler)
         return FALSE;
     if (gStatuses3[battler] & STATUS3_EMBARGO)
         return FALSE;
-    if (gBattleMons[battler].ability == ABILITY_KLUTZ && !(gStatuses3[battler] & STATUS3_GASTRO_ACID))
+    if (AI_BATTLER_HAS_TRAIT(battler, ABILITY_KLUTZ) && !(gStatuses3[battler] & STATUS3_GASTRO_ACID))
         return FALSE;
+
     return TRUE;
 }

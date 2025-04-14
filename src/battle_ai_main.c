@@ -979,8 +979,6 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             // target partner ability checks & not attacking partner
             if (isDoubleBattle)
             {
-                if (CanPartnerAbilityBlockMove(battlerAtk, battlerDef, move, aiData->abilities[BATTLE_PARTNER(battlerDef)]))
-                    RETURN_SCORE_MINUS(20);
                 if (AISearchTraits(AIBattlerTraits, ABILITY_LIGHTNING_ROD)
                  && moveType == TYPE_ELECTRIC && !IsMoveRedirectionPrevented(battlerAtk, move, aiData->abilities[battlerAtk]))
                     RETURN_SCORE_MINUS(20);
@@ -997,7 +995,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                  && ((IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS)) && (IsNonVolatileStatusMoveEffect(moveEffect) || IsStatLoweringEffect(moveEffect))))
                     RETURN_SCORE_MINUS(10);
                 if (AISearchTraits(AIBattlerTraits, ABILITY_AROMA_VEIL)
-                 && (IsAromaVeilProtectedMove(moveEffect)))
+                 && (IsAromaVeilProtectedEffect(moveEffect)))
                     RETURN_SCORE_MINUS(10);
             } // def partner ability checks
         } // ignore def ability check

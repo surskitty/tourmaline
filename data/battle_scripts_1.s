@@ -325,6 +325,7 @@ BattleScript_MoveSwitchOpenPartyScreen::
 	returntoball BS_ATTACKER, FALSE
 	getswitchedmondata BS_ATTACKER
 	switchindataupdate BS_ATTACKER
+	resetswitchinabilitybits BS_ATTACKER
 	hpthresholds BS_ATTACKER
 	trytoclearprimalweather
 	printstring STRINGID_EMPTYSTRING3
@@ -5982,6 +5983,7 @@ BattleScript_SafeguardEnds::
 BattleScript_LeechSeedTurnDrainLiquidOoze::
 	call BattleScript_LeechSeedTurnDrain
 	copybyte gBattlerAbility, gBattlerAttacker
+	pushtraitstack BS_ATTACKER ABILITY_LIQUID_OOZE
 	call BattleScript_AbilityPopUp
 	copybyte gBattlerAttacker, gBattlerTarget   @ needed to get liquid ooze message correct
 	goto BattleScript_LeechSeedTurnDrainGainHp

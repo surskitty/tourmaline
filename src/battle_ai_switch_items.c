@@ -589,7 +589,7 @@ static bool32 ShouldSwitchIfTrapperInParty(u32 battler)
         monAbility = GetMonAbility(&party[i]);
         species = GetMonData(&party[i], MON_DATA_SPECIES);
         personality = GetMonData(&party[i], MON_DATA_PERSONALITY);
-        if (CanAbilityTrapOpponent(monAbility, opposingBattler, species, personality) || (CanAbilityTrapOpponent(AI_GetBattlerAbility(opposingBattler), opposingBattler) && monAbility == ABILITY_TRACE))
+        if (CanAbilityTrapOpponent(monAbility, opposingBattler, species, personality) || (CanAbilityTrapOpponent(AI_GetBattlerAbility(opposingBattler), opposingBattler, species, personality) && monAbility == ABILITY_TRACE))
         {
             // If mon in slot i is the most suitable switchin candidate, then it's a trapper than wins 1v1
             if (i == AI_DATA->mostSuitableMonId[battler] && RandomPercentage(RNG_AI_SWITCH_FREE_TURN, GetSwitchChance(SHOULD_SWITCH_FREE_TURN)))
@@ -968,7 +968,7 @@ static bool32 ShouldSwitchIfBadChoiceLock(u32 battler)
     if (HOLD_EFFECT_CHOICE(holdEffect) && IsBattlerItemEnabled(battler))
     {
         if (GetMoveCategory(AI_DATA->lastUsedMove[battler]) == DAMAGE_CATEGORY_STATUS && RandomPercentage(RNG_AI_SWITCH_CHOICE_LOCKED, GetSwitchChance(SHOULD_SWITCH_CHOICE_LOCKED)))
-            return SetSwitchinAndSwitch(battler, PARTY_SIZE);
+                return SetSwitchinAndSwitch(battler, PARTY_SIZE);
     }
 
     return FALSE;
@@ -2034,7 +2034,7 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
 
                 // If mon can trap
                 if ((CanAbilityTrapOpponent(AI_DATA->switchinCandidate.battleMon.ability, opposingBattler, AI_DATA->switchinCandidate.battleMon.species, AI_DATA->switchinCandidate.battleMon.personality)
-                    || (CanAbilityTrapOpponent(AI_GetBattlerAbility(opposingBattler), opposingBattler) && AI_DATA->switchinCandidate.battleMon.ability == ABILITY_TRACE))
+                    || (CanAbilityTrapOpponent(AI_GetBattlerAbility(opposingBattler), opposingBattler, AI_DATA->switchinCandidate.battleMon.species, AI_DATA->switchinCandidate.battleMon.personality) && AI_DATA->switchinCandidate.battleMon.ability == ABILITY_TRACE))
                     && CountUsablePartyMons(opposingBattler) > 0
                     && canSwitchinWin1v1)
                     trapperId = i;

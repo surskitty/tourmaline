@@ -306,7 +306,6 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
         .abilities = { ABILITY_BLAZE, ABILITY_NONE, ABILITY_SPEED_BOOST },
-        //.innates = { ABILITY_DROUGHT, ABILITY_INTIMIDATE, ABILITY_SOUNDPROOF}
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Torchic"),
         .cryId = CRY_TORCHIC,
@@ -1087,7 +1086,6 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
     #else
         .abilities = { ABILITY_PICKUP, ABILITY_NONE, ABILITY_QUICK_FEET },
     #endif
-        .innates = { ABILITY_CONTRARY, ABILITY_DEFIANT, ABILITY_COMPETITIVE },
         .bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Zigzagoon"),
         .cryId = CRY_ZIGZAGOON,
@@ -12521,7 +12519,6 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
         .abilities = { ABILITY_DESOLATE_LAND, ABILITY_DESOLATE_LAND },
-        .innates = { ABILITY_BLAZE, ABILITY_INTIMIDATE, ABILITY_ANTICIPATION},
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Groudon"),
         .cryId = CRY_GROUDON,
