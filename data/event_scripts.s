@@ -21,6 +21,7 @@
 #include "constants/contest.h"
 #include "constants/daycare.h"
 #include "constants/decorations.h"
+#include "constants/difficulty.h"
 #include "constants/easy_chat.h"
 #include "constants/event_objects.h"
 #include "constants/event_object_movement.h"
@@ -90,7 +91,7 @@ gSpecialVars::
 	.4byte gSpecialVar_MonBoxId
 	.4byte gSpecialVar_MonBoxPos
 	.4byte gSpecialVar_Unused_0x8014
-	.4byte gTrainerBattleOpponent_A
+	.4byte gTrainerBattleParameter + 2 // gTrainerBattleParameter.params.opponentA
 
 	.include "data/specials.inc"
 
@@ -158,13 +159,15 @@ gStdScripts_End::
 	.include "data/maps/Route132/scripts.inc"
 	.include "data/maps/Route133/scripts.inc"
 	.include "data/maps/Route134/scripts.inc"
+	.include "data/maps/Underwater_Route105/scripts.inc"
 	.include "data/maps/Underwater_Route124/scripts.inc"
+	.include "data/maps/Underwater_Route125/scripts.inc"
 	.include "data/maps/Underwater_Route126/scripts.inc"
 	.include "data/maps/Underwater_Route127/scripts.inc"
 	.include "data/maps/Underwater_Route128/scripts.inc"
 	.include "data/maps/Underwater_Route129/scripts.inc"
-	.include "data/maps/Underwater_Route105/scripts.inc"
-	.include "data/maps/Underwater_Route125/scripts.inc"
+	.include "data/maps/Underwater_Route132/scripts.inc"
+	.include "data/maps/Underwater_Route133/scripts.inc"
 	.include "data/maps/LittlerootTown_BrendansHouse_1F/scripts.inc"
 	.include "data/maps/LittlerootTown_BrendansHouse_2F/scripts.inc"
 	.include "data/maps/LittlerootTown_MaysHouse_1F/scripts.inc"
@@ -1134,7 +1137,4 @@ EventScript_VsSeekerChargingDone::
 	.include "data/text/names.inc"
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
-
-	.include "data/maps/Underwater_Route132/scripts.inc"
-
-	.include "data/maps/Underwater_Route133/scripts.inc"
+	.include "data/scripts/dexnav.inc"
