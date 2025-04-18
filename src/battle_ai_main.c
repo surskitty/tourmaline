@@ -128,17 +128,40 @@ static u32 GetWildAiFlags(void)
 {
     u32 avgLevel = GetMonData(&gEnemyParty[0], MON_DATA_LEVEL);
     u32 flags = 0;
+    u32 personality = 0;
 
     if (IsDoubleBattle())
         avgLevel = (GetMonData(&gEnemyParty[0], MON_DATA_LEVEL) + GetMonData(&gEnemyParty[1], MON_DATA_LEVEL)) / 2;
 
     flags |= AI_FLAG_CHECK_BAD_MOVE;
-    if (avgLevel >= 20)
+    if (avgLevel >= 10)
         flags |= AI_FLAG_CHECK_VIABILITY;
+    if (avgLevel >= 20)
+        flags |= AI_FLAG_BASIC_TRAINER;
+    if (avgLevel >= 40)
+        flags |= AI_FLAG_WEIGH_ABILITY_PREDICTION;
+    if (avgLevel >= 50)
+        flags |= AI_FLAG_PREDICTION;
     if (avgLevel >= 60)
-        flags |= AI_FLAG_TRY_TO_2HKO;
-    if (avgLevel >= 80)
-        flags |= AI_FLAG_HP_AWARE;
+        flags |= AI_FLAG_OMNISCIENT;
+
+    personality = Random() % 10;
+    switch (personality) {
+    case 0: flags |= AI_FLAG_RISKY; 
+        break;
+    case 1: flags |= AI_FLAG_CONSERVATIVE; 
+        break;
+    case 2: flags |= AI_FLAG_STALL; 
+        break;
+    case 3:
+    case 4: flags |= AI_FLAG_WILL_SUICIDE;
+        break;
+    case 5: flags |= AI_FLAG_POWERFUL_STATUS; 
+        break;
+    case 6: flags |= AI_FLAG_PREFER_HIGHEST_DAMAGE_MOVE; 
+        break;
+    default: break;
+    }
 
     if (B_VAR_WILD_AI_FLAGS != 0 && VarGet(B_VAR_WILD_AI_FLAGS) != 0)
         flags |= VarGet(B_VAR_WILD_AI_FLAGS);
