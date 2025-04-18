@@ -13,7 +13,6 @@ This hack includes all the typical battle system upgrades from RHH's [pokeemeral
 
 ## Evolution Methods
 - Trade evolutions all work like Legends Arceus, which is to say: you use the item. Most evolution items can be bought in the Lilycove Department Store.
-- Eevee evolves into Espeon with a Sun Stone, Umbreon with a Moon Stone, Sylveon with friendship and a Fairy move, Leafeon with a Leaf Stone, and Glaceon with either an Ice Stone or by bringing it into the Shoal Cave ice room. Leafeon does not have a location evolution and Espeon and Umbreon do not have friendship evolutions for balance reasons.
 - Pikachu only evolves into Alolan Raichu.
 - Koffing evolves into Galarian Weezing by raising its Beauty. Pok&eacute;blocks are less painful now, though.
 - Charcadet evolves into Armarouge with a Dawn Stone and Ceruledge with a Dusk Stone.
