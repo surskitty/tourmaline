@@ -45,6 +45,7 @@
 #include "new_game.h"
 #include "palette.h"
 #include "play_time.h"
+#include "pokedex.h"
 #include "random.h"
 #include "roamer.h"
 #include "rotating_gate.h"
@@ -3814,4 +3815,22 @@ bool8 ScrFunc_settimeofday(struct ScriptContext *ctx)
 {
     SetTimeOfDay(ScriptReadByte(ctx));
     return FALSE;
+}
+
+void UpdatePokedexCompletion(void) {
+    u32 dexStatus = 0;
+    u32 numCaught = GetHoennPokedexCount(FLAG_GET_CAUGHT);
+
+    if (numCaught < 25)         dexStatus = 0;
+    else if (numCaught < 50)    dexStatus = 1;
+    else if (numCaught < 80)    dexStatus = 2;
+    else if (numCaught < 120)   dexStatus = 3;
+    else if (numCaught < 180)   dexStatus = 4;
+    else if (numCaught < 240)   dexStatus = 5;
+    else                        dexStatus = 6;
+
+    if (VarGet(VAR_POKEDEX_COMPLETION) < dexStatus)
+        FlagSet(FLAG_TEMP_6);
+
+    VarSet(VAR_POKEDEX_COMPLETION, dexStatus);
 }

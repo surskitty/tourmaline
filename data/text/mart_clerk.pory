@@ -13,6 +13,6 @@ text gText_PleaseComeAgain {
 }
 
 text gText_PlayerWhatCanIDoForYou {
-    format("{PLAYER}{STRING 5}, welcome!\p"
+    format("Welcome back, {PLAYER}!\p"
         "What can I do for you?")
 }

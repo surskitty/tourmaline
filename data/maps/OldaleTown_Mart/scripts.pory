@@ -16,6 +16,7 @@ script OldaleTown_Mart_EventScript_Clerk {
 }
 
 script OldaleTown_Mart_EventScript_Trainee {
+    goto_if_set(FLAG_ADVENTURE_STARTED, Common_EventScript_ItemClerk)
     msgbox(format("I'm not allowed to touch anything yet."), MSGBOX_NPC)
 }
 

@@ -894,6 +894,9 @@ const u8 *const gBattleStringsTable[BATTLESTRINGS_COUNT] =
     [STRINGID_SENDCAUGHTMONPARTYORBOX]              = COMPOUND_STRING("Add {B_DEF_NAME} to your party?"),
     [STRINGID_PKMNSENTTOPCAFTERCATCH]               = gText_PkmnSentToPCAfterCatch,
     [STRINGID_STARTLED]                             = COMPOUND_STRING("{B_ATK_NAME_WITH_PREFIX}'s side were startled and cannot move!"),
+    [STRINGID_PKMNDROPPEDITEM]                      = COMPOUND_STRING("Wild {B_OPPONENT_MON1_NAME} dropped an item!\p"),
+    [STRINGID_ADDEDTOBAG]                           = COMPOUND_STRING("{B_PLAYER_NAME} put away the {B_BUFF1}\nin the Bag.\p"),
+    [STRINGID_BAGISFULL]                            = COMPOUND_STRING("Too bad! The Bag is full…"),
 };
 
 const u16 gTrainerUsedItemStringIds[] =

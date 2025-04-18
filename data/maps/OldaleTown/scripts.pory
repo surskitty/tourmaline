@@ -346,15 +346,15 @@ OldaleTown_Movement_ReturnToOriginalPosition:
 
 text OldaleTown_Text_IWorkAtPokemonMart {
     format("Hi!\n"
-    "I work at a Pokémon Mart.\p"
+    "I work at a Friendly Shop.\p"
     "Can I get you to come with me?")
 }
 
 text OldaleTown_Text_ThisIsAPokemonMart {
-    format("This is a Pokémon Mart.\n"
-    "Just look for our blue roof.\p"
-    "We sell a variety of goods including Poké Balls for catching Pokémon.\p"
-    "Here, I'd like you to have this as a promotional item.")
+    format("Here we are.\n"
+        "Just look for our blue roof.\p"
+        "We can sell you more items as you grow as a Pokémon Trainer.\p"
+        "Here, I'd like you to have this as a promotional item.")
 }
 
 text OldaleTown_Text_PotionExplanation {

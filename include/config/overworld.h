@@ -85,7 +85,7 @@
 
 //Time
 #define OW_TIMES_OF_DAY                 GEN_LATEST // Different generations have the times of day change at different times.
-#define OW_USE_FAKE_RTC                 FALSE      // When TRUE, seconds on the in-game clock will only advance once every 60 playTimeVBlanks (every 60 frames).
+#define OW_USE_FAKE_RTC                 TRUE      // When TRUE, seconds on the in-game clock will only advance once every 60 playTimeVBlanks (every 60 frames).
 #define OW_ALTERED_TIME_RATIO           GEN_LATEST // In GEN_8_PLA, the time in game moves forward 60 seconds for every second in the RTC. In GEN_9, it is 20 seconds. This has no effect if OW_USE_FAKE_RTC is FALSE.
 
 // Lighting
@@ -108,7 +108,7 @@
 #define BATTLE_PYRAMID_RANDOM_ENCOUNTERS    TRUE    // If set to TRUE, battle pyramid Pokemon will be generated randomly based on the round's challenge instead of hardcoded in src/data/battle_frontier/battle_pyramid_level_50_wild_mons.h (or open_level_wild_mons.h)
 
 // Map pop-up config
-#define OW_POPUP_GENERATION        GEN_3    // Different generations display location names in overworld pop-ups differently.
+#define OW_POPUP_GENERATION        GEN_5    // Different generations display location names in overworld pop-ups differently.
                                             // Only choices are currently GEN_3 and GEN_5, all others will default to Gen3 pop-ups.
 
 // Gen5 map pop-up config

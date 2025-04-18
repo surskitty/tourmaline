@@ -94,23 +94,32 @@ script Common_EventScript_MegaStoneClerk_BuyMegaStone {
 script Common_EventScript_ItemClerk {
     lock
     faceplayer
+    callnative(UpdatePokedexCompletion)
     speakername(CommonName_Text_Clerk)
-    if (flag(FLAG_BADGE07_GET)) { goto(Common_EventScript_Clerk_Endgame) }
+    if (flag(FLAG_SYS_GAME_CLEAR))          { goto(Common_EventScript_Clerk_Endgame) }
+    if (var(VAR_POKEDEX_COMPLETION) > 5)    { goto(Common_EventScript_Clerk_Endgame) }
+    if (flag(FLAG_TEMP_6)) {
+        msgbox(format("Thanks to your good work on the Pokédex, we now carry new items."), MSGBOX_DEFAULT)
+        clearflag(FLAG_TEMP_6)
+    }
     message(gText_HowMayIServeYou)
     waitmessage
-    if (flag(FLAG_VISITED_MOSSDEEP_CITY)) { pokemart(Common_Marts_PostLilycove) } 
-    elif (flag(FLAG_BADGE05_GET)) { pokemart(Common_Marts_PostNorman) }
-    elif (flag(FLAG_BADGE03_GET)) { pokemart(Common_Marts_PostWattson) }
-    elif (flag(FLAG_BADGE02_GET)) { pokemart(Common_Marts_PostBrawly) } 
-    elif (flag(FLAG_BADGE01_GET)) { pokemart(Common_Marts_PostRoxanne) } 
-    else { pokemart(Common_Marts_NoBadges) }
+    switch (var(VAR_POKEDEX_COMPLETION)) {
+        case 0: pokemart(Common_Marts_Base)
+        case 1: pokemart(Common_Marts_Upgrade1)
+        case 2: pokemart(Common_Marts_Upgrade2)
+        case 3: pokemart(Common_Marts_Upgrade3)
+        case 4: pokemart(Common_Marts_Upgrade4)
+        case 5: pokemart(Common_Marts_Upgrade5)
+    }
     speakername(CommonName_Text_Clerk)
     msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
     release
 }
 
-mart Common_Marts_NoBadges {
+mart Common_Marts_Base {
     ITEM_POKE_BALL
+    ITEM_HEAL_BALL
     ITEM_POTION
     ITEM_REPEL
     ITEM_LURE
@@ -119,10 +128,11 @@ mart Common_Marts_NoBadges {
     ITEM_PARALYZE_HEAL
 }
 
-mart Common_Marts_PostRoxanne {
+mart Common_Marts_Upgrade1 {
     ITEM_POKE_BALL
     ITEM_GREAT_BALL
     ITEM_HEAL_BALL
+    ITEM_NET_BALL
     ITEM_POTION
     ITEM_SUPER_POTION
     ITEM_REPEL
@@ -134,11 +144,13 @@ mart Common_Marts_PostRoxanne {
     ITEM_PARALYZE_HEAL
 }
 
-mart Common_Marts_PostBrawly {
+mart Common_Marts_Upgrade2 {
     ITEM_POKE_BALL
     ITEM_GREAT_BALL
     ITEM_HEAL_BALL
     ITEM_NET_BALL
+    ITEM_NEST_BALL
+    ITEM_REPEAT_BALL
     ITEM_POTION
     ITEM_SUPER_POTION
     ITEM_REPEL
@@ -151,12 +163,14 @@ mart Common_Marts_PostBrawly {
     ITEM_POKE_DOLL
 }
 
-mart Common_Marts_PostWattson {
+mart Common_Marts_Upgrade3 {
     ITEM_POKE_BALL
     ITEM_GREAT_BALL
+    ITEM_ULTRA_BALL
     ITEM_HEAL_BALL
-    ITEM_NET_BALL
+    ITEM_LUXURY_BALL
     ITEM_NEST_BALL
+    ITEM_NET_BALL
     ITEM_REPEAT_BALL
     ITEM_POTION
     ITEM_SUPER_POTION
@@ -169,17 +183,18 @@ mart Common_Marts_PostWattson {
     ITEM_ICE_HEAL
     ITEM_PARALYZE_HEAL
     ITEM_POKE_DOLL
-    ITEM_EXP_CANDY_XS
 }
 
-mart Common_Marts_PostNorman {
+mart Common_Marts_Upgrade4 {
     ITEM_POKE_BALL
     ITEM_GREAT_BALL
     ITEM_ULTRA_BALL
     ITEM_HEAL_BALL
-    ITEM_NET_BALL
+    ITEM_LUXURY_BALL
     ITEM_NEST_BALL
+    ITEM_NET_BALL
     ITEM_REPEAT_BALL
+    ITEM_TIMER_BALL
     ITEM_POTION
     ITEM_SUPER_POTION
     ITEM_HYPER_POTION
@@ -193,17 +208,20 @@ mart Common_Marts_PostNorman {
     ITEM_ICE_HEAL
     ITEM_PARALYZE_HEAL
     ITEM_POKE_DOLL
-    ITEM_EXP_CANDY_XS
 }
 
-mart Common_Marts_PostLilycove {
+mart Common_Marts_Upgrade5 {
     ITEM_POKE_BALL
     ITEM_GREAT_BALL
     ITEM_ULTRA_BALL
+    ITEM_DUSK_BALL
     ITEM_HEAL_BALL
-    ITEM_NET_BALL
+    ITEM_LUXURY_BALL
     ITEM_NEST_BALL
+    ITEM_NET_BALL
     ITEM_REPEAT_BALL
+    ITEM_QUICK_BALL
+    ITEM_TIMER_BALL
     ITEM_POTION
     ITEM_SUPER_POTION
     ITEM_HYPER_POTION
@@ -215,14 +233,7 @@ mart Common_Marts_PostLilycove {
     ITEM_SUPER_LURE
     ITEM_MAX_LURE
     ITEM_FULL_HEAL
-    ITEM_ANTIDOTE
-    ITEM_AWAKENING
-    ITEM_BURN_HEAL
-    ITEM_ICE_HEAL
-    ITEM_PARALYZE_HEAL
     ITEM_POKE_DOLL
-    ITEM_EXP_CANDY_XS
-    ITEM_EXP_CANDY_S
 }
 
 script Common_EventScript_Clerk_Endgame {

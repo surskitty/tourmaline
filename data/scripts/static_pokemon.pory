@@ -17,9 +17,7 @@ script Common_PokemonScript_WildEncounter {
     clearflag(FLAG_SYS_CTRL_OBJ_DELETE)
     specialvar(VAR_RESULT, GetBattleOutcome)
     goto_if_eq(VAR_RESULT, B_OUTCOME_RAN, Common_EventScript_RanFromStaticPokemon)
-    if (var(VAR_RESULT) == B_OUTCOME_WON) {
-        msgbox(format("The miffed Pokémon healed itself with a Berry and left."), MSGBOX_DEFAULT)
-    }
+    goto_if_eq(VAR_RESULT, B_OUTCOME_WON, Common_EventScript_DefeatedStaticPokemon)
     goto(Common_EventScript_RemoveStaticPokemon)
 }
 
@@ -48,9 +46,7 @@ script Common_PokemonScript_WildNosepass {
     setvar(B_VAR_STARTING_STATUS, 0)
     specialvar(VAR_RESULT, GetBattleOutcome)
     goto_if_eq(VAR_RESULT, B_OUTCOME_RAN, Common_EventScript_RanFromStaticPokemon)
-    if (var(VAR_RESULT) == B_OUTCOME_WON) {
-        msgbox(format("The miffed Pokémon healed itself with a Berry and left."), MSGBOX_DEFAULT)
-    }
+    goto_if_eq(VAR_RESULT, B_OUTCOME_WON, Common_EventScript_DefeatedStaticPokemon)
     goto(Common_EventScript_RemoveStaticPokemon)
 }
 
@@ -79,9 +75,7 @@ script Common_PokemonScript_WildSandygast {
     setvar(B_VAR_STARTING_STATUS, 0)
     specialvar(VAR_RESULT, GetBattleOutcome)
     goto_if_eq(VAR_RESULT, B_OUTCOME_RAN, Common_EventScript_RanFromStaticPokemon)
-    if (var(VAR_RESULT) == B_OUTCOME_WON) {
-        msgbox(format("The miffed Pokémon healed itself with a Berry and left."), MSGBOX_DEFAULT)
-    }
+    goto_if_eq(VAR_RESULT, B_OUTCOME_WON, Common_EventScript_DefeatedStaticPokemon)
     goto(Common_EventScript_RemoveStaticPokemon)
 }
 
@@ -100,9 +94,7 @@ script Common_PokemonScript_SleepingWild {
     setvar(B_VAR_STARTING_STATUS, 0)
     specialvar(VAR_RESULT, GetBattleOutcome)
     goto_if_eq(VAR_RESULT, B_OUTCOME_RAN, Common_EventScript_RanFromStaticPokemon)
-    if (var(VAR_RESULT) == B_OUTCOME_WON) {
-        msgbox(format("The miffed Pokémon healed itself with a Berry and left."), MSGBOX_DEFAULT)
-    }
+    goto_if_eq(VAR_RESULT, B_OUTCOME_WON, Common_EventScript_DefeatedStaticPokemon)
     goto(Common_EventScript_RemoveStaticPokemon)
 }
 
@@ -177,7 +169,7 @@ script Common_PokemonScript_Pettable {
 
 script Common_EventScript_Pokemon_Petting {
     speakername(0)
-    msgbox(format("It seems friendly.\nPet it?"), MSGBOX_YESNO)
+    msgbox(format("The {STR_VAR_1} seems friendly.\nPet it?"), MSGBOX_YESNO)
     if (var(VAR_RESULT)) {
         playmoncry(VAR_0x8004, CRY_MODE_NORMAL)
         applymovement(VAR_LAST_TALKED, Common_Movement_Heart)
@@ -214,12 +206,12 @@ script Common_EventScript_Pokemon_Petting {
         applymovement(VAR_LAST_TALKED, Common_Movement_X)
         waitse
         waitmovement(0)
-        msgbox("It seems disappointed in you.", MSGBOX_DEFAULT)
+        msgbox("It seems disappointed in you…", MSGBOX_DEFAULT)
     }
 }
 
 text Common_EventScript_PetPokemon_GiftText {
-    format("It gave you an item it was carrying!")
+    format("It gave you something it was carrying!")
 }
 
 script Common_PokemonScript_InvisibleWild {
@@ -245,15 +237,41 @@ movement Movement_PokemonAppears {
     set_visible
     face_player
     emote_exclamation_mark
-    set_invisible
-    delay_4
+    set_invisible   delay_4
+    set_visible     delay_4
+    set_invisible   delay_4
+    set_visible     delay_8
+    set_invisible   delay_8
     set_visible
-    delay_4
-    set_invisible
-    delay_4
-    set_visible
-    delay_8
-    set_invisible
-    delay_8
-    set_visible
+}
+
+script Common_EventScript_DefeatedStaticPokemon {
+    msgbox(format("The miffed Pokémon healed itself with a Berry and counted your winnings."), MSGBOX_DEFAULT)
+    switch (var(VAR_POKEDEX_COMPLETION)) {
+    case 0:
+        giveitem(ITEM_EXP_CANDY_XS)
+    case 1:
+        giveitem(ITEM_EXP_CANDY_XS, 5)
+    case 2:
+        giveitem(ITEM_EXP_CANDY_XS, 5)
+        giveitem(ITEM_EXP_CANDY_S, 1)
+    case 3:
+        giveitem(ITEM_EXP_CANDY_XS, 5)
+        giveitem(ITEM_EXP_CANDY_S, 3)
+    case 4:
+        giveitem(ITEM_EXP_CANDY_XS, 10)
+        giveitem(ITEM_EXP_CANDY_S, 3)
+        giveitem(ITEM_EXP_CANDY_M, 1)
+    case 5:
+        giveitem(ITEM_EXP_CANDY_S, 5)
+        giveitem(ITEM_EXP_CANDY_M, 3)
+        giveitem(ITEM_EXP_CANDY_L, 1)
+    default:
+        giveitem(ITEM_EXP_CANDY_M, 5)
+        giveitem(ITEM_EXP_CANDY_L, 3)
+        giveitem(ITEM_EXP_CANDY_XL, 1)
+    }
+    bufferspeciesname(STR_VAR_1, VAR_0x8004)
+    msgbox(format("The {STR_VAR_1} left…"), MSGBOX_DEFAULT)
+    goto(Common_EventScript_RemoveStaticPokemon)
 }
