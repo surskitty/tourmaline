@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-DOUBLE_BATTLE_TEST("Teraform Zero clears weather and terrain upon activation")
+DOUBLE_BATTLE_TEST("ABILITY: Teraform Zero clears weather and terrain upon activation")
 {
     GIVEN {
         PLAYER(SPECIES_TERAPAGOS_TERASTAL);
@@ -17,7 +17,7 @@ DOUBLE_BATTLE_TEST("Teraform Zero clears weather and terrain upon activation")
     }
 }
 
-DOUBLE_BATTLE_TEST("Teraform Zero can be supressed")
+DOUBLE_BATTLE_TEST("ABILITY: Teraform Zero can be supressed")
 {
     GIVEN {
         PLAYER(SPECIES_TERAPAGOS_TERASTAL);
@@ -36,7 +36,7 @@ DOUBLE_BATTLE_TEST("Teraform Zero can be supressed")
     }
 }
 
-SINGLE_BATTLE_TEST("Teraform Zero can be replaced")
+SINGLE_BATTLE_TEST("ABILITY: Teraform Zero can be replaced")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_WORRY_SEED) == EFFECT_WORRY_SEED);
@@ -54,7 +54,7 @@ SINGLE_BATTLE_TEST("Teraform Zero can be replaced")
     }
 }
 
-SINGLE_BATTLE_TEST("Teraform Zero cannot be swapped")
+SINGLE_BATTLE_TEST("ABILITY: Teraform Zero cannot be swapped")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);
@@ -68,7 +68,7 @@ SINGLE_BATTLE_TEST("Teraform Zero cannot be swapped")
     }
 }
 
-SINGLE_BATTLE_TEST("Teraform Zero cannot be copied")
+SINGLE_BATTLE_TEST("ABILITY: Teraform Zero cannot be copied")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_ROLE_PLAY) == EFFECT_ROLE_PLAY);
@@ -82,13 +82,62 @@ SINGLE_BATTLE_TEST("Teraform Zero cannot be copied")
     }
 }
 
-DOUBLE_BATTLE_TEST("Teraform Zero shouldn't cause Neutralizing Gas to show it's popup when trying to activate")
+DOUBLE_BATTLE_TEST("ABILITY: Teraform Zero shouldn't cause Neutralizing Gas to show it's popup when trying to activate")
 {
     KNOWN_FAILING; // #5010
     GIVEN {
         PLAYER(SPECIES_TERAPAGOS_TERASTAL);
         PLAYER(SPECIES_ABSOL) {Ability(ABILITY_PRESSURE); }
         PLAYER(SPECIES_WEEZING) {Ability(ABILITY_NEUTRALIZING_GAS); }
+        OPPONENT(SPECIES_KYOGRE) {Ability(ABILITY_DRIZZLE); }
+        OPPONENT(SPECIES_TAPU_KOKO) {Ability(ABILITY_ELECTRIC_SURGE); }
+    } WHEN {
+        TURN {  SWITCH(playerRight, 2); MOVE(playerLeft, MOVE_CELEBRATE, gimmick: GIMMICK_TERA); }
+    } SCENE {
+        MESSAGE("Terapagos is storing energy!");
+        MESSAGE("Terapagos terastalized into the Stellar type!");
+        NOT ABILITY_POPUP(playerRight, ABILITY_NEUTRALIZING_GAS);
+        MESSAGE("Terapagos used Celebreate!");
+    }
+}
+
+DOUBLE_BATTLE_TEST("INNATE: Teraform Zero clears weather and terrain upon activation")
+{
+    GIVEN {
+        PLAYER(SPECIES_TERAPAGOS_TERASTAL);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_KYOGRE) {Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DRIZZLE); }
+        OPPONENT(SPECIES_TAPU_KOKO) {Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ELECTRIC_SURGE); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_CELEBRATE, gimmick: GIMMICK_TERA); }
+    } SCENE {
+        ABILITY_POPUP(playerLeft, ABILITY_TERAFORM_ZERO);
+        MESSAGE("The rain stopped.");
+        MESSAGE("The electricity disappeared from the battlefield.");
+    }
+}
+
+SINGLE_BATTLE_TEST("INNATE: Teraform Zero cannot be copied")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_ROLE_PLAY) == EFFECT_ROLE_PLAY);
+        PLAYER(SPECIES_TERAPAGOS);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_CELEBRATE, gimmick: GIMMICK_TERA); MOVE(opponent, MOVE_ROLE_PLAY); }
+    } SCENE {
+        MESSAGE("The opposing Wobbuffet used Role Play!");
+        MESSAGE("But it failed!");
+    }
+}
+
+DOUBLE_BATTLE_TEST("INNATE: Teraform Zero shouldn't cause Neutralizing Gas to show it's popup when trying to activate")
+{
+    KNOWN_FAILING; // #5010
+    GIVEN {
+        PLAYER(SPECIES_TERAPAGOS_TERASTAL);
+        PLAYER(SPECIES_ABSOL) {Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PRESSURE); }
+        PLAYER(SPECIES_WEEZING) {Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NEUTRALIZING_GAS); }
         OPPONENT(SPECIES_KYOGRE) {Ability(ABILITY_DRIZZLE); }
         OPPONENT(SPECIES_TAPU_KOKO) {Ability(ABILITY_ELECTRIC_SURGE); }
     } WHEN {

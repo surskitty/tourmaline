@@ -3278,7 +3278,7 @@ bool32 AnyPartyMemberStatused(u32 battlerId, bool32 checkSoundproof)
 {
     struct Pokemon *party;
     u32 i, battlerOnField1, battlerOnField2;
-
+    
     party = GetBattlerParty(battlerId);
 
     if (IsDoubleBattle())

@@ -5395,7 +5395,7 @@ static s32 AI_PredictSwitch(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
 {
     u32 i;
     u32 unmodifiedScore = score;
-    u32 ability = gBattleMons[battlerAtk].ability;
+    //u32 ability = gBattleMons[battlerAtk].ability;
     u32 opposingHazardFlags = gSideStatuses[GetBattlerSide(battlerDef)] & (SIDE_STATUS_SPIKES | SIDE_STATUS_STEALTH_ROCK | SIDE_STATUS_TOXIC_SPIKES);
     u32 aiHazardFlags = gSideStatuses[GetBattlerSide(battlerAtk)] & (SIDE_STATUS_HAZARDS_ANY);
     u32 moveEffect = GetMoveEffect(move);
@@ -5532,7 +5532,7 @@ static s32 AI_PredictSwitch(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     }
 
     // Take advantage of ability damage bonus
-    if ((ability == ABILITY_STAKEOUT || ability == ABILITY_ANALYTIC) && IsBattleMoveStatus(move))
+    if ((AI_BATTLER_HAS_TRAIT(battlerAtk, ABILITY_STAKEOUT) || AI_BATTLER_HAS_TRAIT(battlerAtk, ABILITY_ANALYTIC)) && IsBattleMoveStatus(move))
         ADJUST_SCORE(-WEAK_EFFECT);
 
     // This must be last or the player can gauge whether the AI is predicting based on how long it thinks
@@ -5637,34 +5637,63 @@ u8 BattlerHasInnate(u8 battlerId, u16 ability) {
         return 0;
     else if (BattlerAbilityWasRemoved(battlerId, ability) && B_NEUTRALIZING_GAS_WORKS_ON_INNATES == TRUE)
         return 0;
-    else*/ 
-        return SpeciesHasInnate(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].personality, isEnemyMon); 
+    else*/
+
+    #if TESTING
+    if (gTestRunnerEnabled)
+    {
+        u8 i;
+        u32 side = GetBattlerSide(battlerId);
+        u32 partyIndex = gBattlerPartyIndexes[battlerId];
+        s32 testInnateNum = -1;
+
+        for (i = 0; i < MAX_MON_INNATES; i++)
+        {
+            if (TestRunner_Battle_GetForcedInnates(side, partyIndex, i) == ability)
+                {
+                    testInnateNum = i + 2;
+                    break;
+                }
+        }
+
+        if(testInnateNum == -1)
+            return 0;
+        else
+            return testInnateNum;
+    }
+    #endif
+
+            return SpeciesHasInnate(gBattleMons[battlerId].species, ability, gBattleMons[battlerId].personality, isEnemyMon); 
 }
 
-//Returns the trait slot number of the given ability. Starts at 1 for the primary Ability and returns 0 if the ability is not found. 
+//Returns the trait slot number of the given ability. Starts at 1 for the primary Ability and returns 0 if the ability is not found. Use for individual checks.
 u8 BattlerHasTrait(u8 battlerId, u16 ability) 
 {
     u8 traitNum = 0;
-    
+
     if (GetBattlerAbility(battlerId) == ability)
         traitNum = 1;
     else 
         traitNum = BattlerHasInnate(battlerId, ability);
-         
+
+        // Check if ability is nullified
+        if (traitNum > 1
+         && !gBattleStruct->bypassMoldBreakerChecks
+         && GetBattlerHoldEffectIgnoreAbility(battlerId, TRUE) != HOLD_EFFECT_ABILITY_SHIELD
+         && CanBreakThroughAbility(gBattlerAttacker, battlerId, ability))
+        {
+            return 0;
+        }
     return traitNum;
 }
 
 //Used to search abilities for functions already under GetBattlerAbility to avoid infinite loops.
 u8 BattlerHasTraitPlain(u8 battlerId, u16 ability)
 {
-    u8 traitNum = 0;
-    
     if (gBattleMons[battlerId].ability == ability)
-        traitNum = 1;
+        return 1;
     else 
-        traitNum = BattlerHasInnate(battlerId, ability);
-         
-    return traitNum;
+        return BattlerHasInnate(battlerId, ability);
 }
 
 void PushTraitStack(u8 battlerId, u16 ability)
@@ -5710,8 +5739,8 @@ u16 PullTraitStackAbility()
             ability = gTraitStack[i-1][1]; //Return the ability in the slot before the most recent empty slot
             break;
         }
-            else
-            DebugPrintf("STACK ABILITY [%d] - %S", i, gAbilitiesInfo[gTraitStack[i][1]].name);
+        //else
+           //DebugPrintf("TRAIT STACK: [%d] - %S", i, gAbilitiesInfo[gTraitStack[i][1]].name);
     }
     return ability;
 }

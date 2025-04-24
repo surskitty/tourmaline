@@ -1741,7 +1741,7 @@ static void Cmd_ppreduce(void)
         for (i = 0; i < gBattlersCount; i++)
         {
             if (GetBattlerSide(i) != GetBattlerSide(gBattlerAttacker) && IsBattlerAlive(i))
-                ppToDeduct += (BattlerHasTrait(i, ABILITY_PRESSURE));
+                ppToDeduct += (BattlerHasTrait(i, ABILITY_PRESSURE) != FALSE);
         }
     }
     else if (moveTarget != MOVE_TARGET_OPPONENTS_FIELD)
@@ -1858,7 +1858,7 @@ s32 CalcCritChanceStage(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordA
     }
     else
     {
-        bool8 superLuck = BattlerHasTrait(gBattlerAttacker, ABILITY_SUPER_LUCK);
+        bool8 superLuck = (BattlerHasTrait(gBattlerAttacker, ABILITY_SUPER_LUCK) != 0);
         critChance  = 2 * ((gBattleMons[battlerAtk].status2 & STATUS2_FOCUS_ENERGY) != 0)
                     + 1 * ((gBattleMons[battlerAtk].status2 & STATUS2_DRAGON_CHEER) != 0)
                     + GetMoveCriticalHitStage(move)
@@ -1866,7 +1866,6 @@ s32 CalcCritChanceStage(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordA
                     + 2 * (B_AFFECTION_MECHANICS == TRUE && GetBattlerAffectionHearts(battlerAtk) == AFFECTION_FIVE_HEARTS)
                     + superLuck
                     + gBattleStruct->bonusCritStages[gBattlerAttacker];
-
         if (critChance >= ARRAY_COUNT(sCriticalHitOdds))
             critChance = ARRAY_COUNT(sCriticalHitOdds) - 1;
     }
@@ -4762,9 +4761,10 @@ static void Cmd_tryfaintmon(void)
     {
         if (BattlerHasTrait(battler, ABILITY_NEUTRALIZING_GAS)
          && !(gAbsentBattlerFlags & (1u << battler))
-         && !IsBattlerAlive(battler))
+         && !IsBattlerAlive(battler)
+         && !gSpecialStatuses[battler].neutralizingGasRemoved)
         {
-            gBattleMons[battler].ability = ABILITY_NONE;
+            gSpecialStatuses[battler].neutralizingGasRemoved = TRUE;
             BattleScriptPush(gBattlescriptCurrInstr);
             gBattlescriptCurrInstr = BattleScript_NeutralizingGasExits;
             return;
@@ -7490,7 +7490,7 @@ static void Cmd_moveend(void)
                     }
                     for (battler = 0; battler < gBattlersCount; battler++)
                     {
-                        if (GetBattlerAbility(battler) == ABILITY_DANCER && !gSpecialStatuses[battler].dancerUsedMove)
+                        if (BattlerHasTrait(battler, ABILITY_DANCER) && !gSpecialStatuses[battler].dancerUsedMove)
                         {
                             if (!nextDancer || (gBattleMons[battler].speed < gBattleMons[nextDancer & 0x3].speed))
                                 nextDancer = battler | 0x4;
@@ -15590,9 +15590,10 @@ static void Cmd_switchoutabilities(void)
     CMD_ARGS(u8 battler);
 
     u32 battler = GetBattlerForBattleScript(cmd->battler);
-    if (gBattleMons[battler].ability == ABILITY_NEUTRALIZING_GAS)
+    if (BattlerHasTrait(battler, ABILITY_NEUTRALIZING_GAS)
+     && !gSpecialStatuses[battler].neutralizingGasRemoved)
     {
-        gBattleMons[battler].ability = ABILITY_NONE;
+        gSpecialStatuses[battler].neutralizingGasRemoved = TRUE;
         BattleScriptPush(gBattlescriptCurrInstr);
         gBattlescriptCurrInstr = BattleScript_NeutralizingGasExits;
     }
@@ -16798,7 +16799,7 @@ static void Cmd_tryworryseed(void)
     CMD_ARGS(const u8 *failInstr);
 
     if (gAbilitiesInfo[gBattleMons[gBattlerTarget].ability].cantBeOverwritten
-      || gBattleMons[gBattlerTarget].ability == ABILITY_INSOMNIA)
+      || BattlerHasTrait(gBattlerTarget, ABILITY_INSOMNIA))
     {
         RecordAbilityBattle(gBattlerTarget, gBattleMons[gBattlerTarget].ability);
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
@@ -17143,7 +17144,7 @@ void BS_TrySymbiosis(void)
         gLastUsedAbility = gBattleMons[partner].ability;
         gBattleScripting.battler = gBattlerAbility = partner;
         gEffectBattler = battler;
-        PushTraitStack(partner, gBattleMons[partner].ability);
+        PushTraitStack(partner, ABILITY_SYMBIOSIS);
         BattleScriptPushCursor();
         gBattlescriptCurrInstr = BattleScript_SymbiosisActivates;
         return;
@@ -18834,7 +18835,7 @@ void BS_TrySetInfatuation(void)
     NATIVE_ARGS(const u8 *failInstr);
 
     if (!(gBattleMons[gBattlerTarget].status2 & STATUS2_INFATUATION)
-        && gBattleMons[gBattlerTarget].ability != ABILITY_OBLIVIOUS
+        && !BattlerHasTrait(gBattlerTarget, ABILITY_OBLIVIOUS)
         && !IsAbilityOnSide(gBattlerTarget, ABILITY_AROMA_VEIL)
         && AreBattlersOfOppositeGender(gBattlerAttacker, gBattlerTarget))
     {

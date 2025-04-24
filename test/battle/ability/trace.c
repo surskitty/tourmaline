@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("Trace copies opponents ability")
+SINGLE_BATTLE_TEST("ABILITY: Trace copies opponents ability")
 {
     GIVEN {
         PLAYER(SPECIES_RALTS) { Ability(ABILITY_TRACE); }
@@ -14,7 +14,7 @@ SINGLE_BATTLE_TEST("Trace copies opponents ability")
     }
 }
 
-SINGLE_BATTLE_TEST("Trace copies opponents ability on switch-in")
+SINGLE_BATTLE_TEST("ABILITY: Trace copies opponents ability on switch-in")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET)
@@ -28,7 +28,7 @@ SINGLE_BATTLE_TEST("Trace copies opponents ability on switch-in")
     }
 }
 
-SINGLE_BATTLE_TEST("Trace copies opponents ability on switch-in even if opponent switched in at the same time")
+SINGLE_BATTLE_TEST("ABILITY: Trace copies opponents ability on switch-in even if opponent switched in at the same time")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET)
@@ -44,7 +44,7 @@ SINGLE_BATTLE_TEST("Trace copies opponents ability on switch-in even if opponent
     }
 }
 
-DOUBLE_BATTLE_TEST("Trace copies opponents ability randomly")
+DOUBLE_BATTLE_TEST("ABILITY: Trace copies opponents ability randomly")
 {
     u16 ability1, ability2;
 
@@ -65,7 +65,7 @@ DOUBLE_BATTLE_TEST("Trace copies opponents ability randomly")
     }
 }
 
-SINGLE_BATTLE_TEST("Trace will copy an opponent's ability whenever it has the chance but only once")
+SINGLE_BATTLE_TEST("ABILITY: Trace will copy an opponent's ability whenever it has the chance but only once")
 {
     GIVEN {
         PLAYER(SPECIES_RALTS) { Ability(ABILITY_TRACE); }
@@ -81,7 +81,7 @@ SINGLE_BATTLE_TEST("Trace will copy an opponent's ability whenever it has the ch
 }
 
 
-SINGLE_BATTLE_TEST("Trace copies opponent's Intimidate and triggers it immediately")
+SINGLE_BATTLE_TEST("ABILITY: Trace copies opponent's Intimidate and triggers it immediately")
 {
     GIVEN {
         PLAYER(SPECIES_RALTS) { Ability(ABILITY_TRACE); }
@@ -95,7 +95,7 @@ SINGLE_BATTLE_TEST("Trace copies opponent's Intimidate and triggers it immediate
     }
 }
 
-DOUBLE_BATTLE_TEST("Trace respects the turn order")
+DOUBLE_BATTLE_TEST("ABILITY: Trace respects the turn order")
 {
     GIVEN {
         PLAYER(SPECIES_DEOXYS_SPEED) { Speed(40); Ability(ABILITY_PRESSURE); }
@@ -111,3 +111,5 @@ DOUBLE_BATTLE_TEST("Trace respects the turn order")
         ABILITY_POPUP(opponentLeft, ABILITY_SAND_STREAM);
     }
 }
+
+// Trace only works on Abilities and should only be an Ability, so it doesn't need Innate tests.

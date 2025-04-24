@@ -4809,9 +4809,9 @@ u32 GetBattlerTotalSpeedStatArgs(u32 battler, u32 ability, u32 holdEffect)
 
 u32 GetBattlerTotalSpeedStat(u32 battler)
 {
-    u32 ability = GetBattlerAbility(battler);
+    //u32 ability = GetBattlerAbility(battler);
     u32 holdEffect = GetBattlerHoldEffect(battler, TRUE);
-    return GetBattlerTotalSpeedStatArgs(battler, ability, holdEffect);
+    return GetBattlerTotalSpeedStatArgs(battler, 0, holdEffect);
 }
 
 s8 GetChosenMovePriority(u32 battler)
@@ -4934,12 +4934,12 @@ s32 GetWhichBattlerFasterArgs(u32 battler1, u32 battler2, bool32 ignoreChosenMov
 s32 GetWhichBattlerFasterOrTies(u32 battler1, u32 battler2, bool32 ignoreChosenMoves)
 {
     s32 priority1 = 0, priority2 = 0;
-    u32 ability1 = GetBattlerAbility(battler1);
+    //u32 ability1 = GetBattlerAbility(battler1);
     u32 speedBattler1 = GetBattlerTotalSpeedStat(battler1);
     u32 holdEffectBattler1 = GetBattlerHoldEffect(battler1, TRUE);
     u32 speedBattler2 = GetBattlerTotalSpeedStat(battler2);
     u32 holdEffectBattler2 = GetBattlerHoldEffect(battler2, TRUE);
-    u32 ability2 = GetBattlerAbility(battler2);
+    //u32 ability2 = GetBattlerAbility(battler2);
 
     if (!ignoreChosenMoves)
     {
@@ -4952,7 +4952,7 @@ s32 GetWhichBattlerFasterOrTies(u32 battler1, u32 battler2, bool32 ignoreChosenM
     return GetWhichBattlerFasterArgs(
         battler1, battler2,
         ignoreChosenMoves,
-        ability1, ability2,
+        0, 0,
         holdEffectBattler1, holdEffectBattler2,
         speedBattler1, speedBattler2,
         priority1, priority2
@@ -5842,7 +5842,7 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost)
 {
     u32 moveType = GetMoveType(move);
     u32 moveEffect = GetMoveEffect(move);
-    u32 species, heldItem, holdEffect, ability, type1, type2, type3;
+    u32 species, heldItem, holdEffect, type1, type2, type3; //ability,
     bool32 monInBattle = gMain.inBattle && gPartyMenu.menuType != PARTY_MENU_TYPE_IN_BATTLE;
 
     if (move == MOVE_STRUGGLE)
@@ -5853,7 +5853,7 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost)
         species = gBattleMons[battler].species;
         heldItem = gBattleMons[battler].item;
         holdEffect = GetBattlerHoldEffect(battler, TRUE);
-        ability = GetBattlerAbility(battler);
+        //ability = GetBattlerAbility(battler);
         type1 = gBattleMons[battler].types[0];
         type2 = gBattleMons[battler].types[1];
         type3 = gBattleMons[battler].types[2];
@@ -5863,7 +5863,7 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost)
         species = GetMonData(mon, MON_DATA_SPECIES);
         heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
         holdEffect = ItemId_GetHoldEffect(heldItem);
-        ability = GetMonAbility(mon);
+        //ability = GetMonAbility(mon);
         type1 = gSpeciesInfo[species].types[0];
         type2 = gSpeciesInfo[species].types[1];
         type3 = TYPE_MYSTERY;
@@ -6044,7 +6044,7 @@ u32 GetDynamicMoveType(struct Pokemon *mon, u32 move, u32 battler, u8 *ateBoost)
         return TYPE_DARK;
     }
     else if (moveType == TYPE_NORMAL
-          && ((!gMain.inBattle || TrySetAteType(move, battler, ability))
+          && ((!gMain.inBattle || TrySetAteType(move, battler, 0))
           && GetActiveGimmick(battler) != GIMMICK_DYNAMAX))
     {
         if (gMain.inBattle && ateBoost != NULL)
