@@ -309,7 +309,7 @@
             "mons": [
               { "min_level": 20, "max_level": 24, "species": "SPECIES_SANDSHREW" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_TRAPINCH" },
-              { "min_level": 20, "max_level": 24, "species": "SPECIES_SANDILE" },
+              { "min_level": 20, "max_level": 24, "species": "SPECIES_ORTHWORM" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_DWEBBLE" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_BALTOY" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_CACNEA" },
@@ -3501,17 +3501,17 @@
             "encounter_rate": 10,
             "mons": [
               { "min_level": 20, "max_level": 24, "species": "SPECIES_SANDSHREW" },
-              { "min_level": 20, "max_level": 24, "species": "SPECIES_TRAPINCH" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_DWEBBLE" },
-              { "min_level": 20, "max_level": 24, "species": "SPECIES_DWEBBLE" },
+              { "min_level": 20, "max_level": 24, "species": "SPECIES_TINKATINK" },
+              { "min_level": 20, "max_level": 24, "species": "SPECIES_ORTHWORM" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_SANDSHREW" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_TRAPINCH" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_DWEBBLE" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_TRAPINCH" },
-              { "min_level": 20, "max_level": 24, "species": "SPECIES_SANDSHREW" },
+              { "min_level": 20, "max_level": 24, "species": "SPECIES_TINKATINK" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_DWEBBLE" },
-              { "min_level": 20, "max_level": 24, "species": "SPECIES_SANDSHREW" },
-              { "min_level": 20, "max_level": 24, "species": "SPECIES_TRAPINCH" }
+              { "min_level": 20, "max_level": 24, "species": "SPECIES_ORTHWORM" },
+              { "min_level": 20, "max_level": 24, "species": "SPECIES_SANDSHREW" }
             ]
           }
         },
@@ -3522,17 +3522,17 @@
             "encounter_rate": 10,
             "mons": [
               { "min_level": 20, "max_level": 24, "species": "SPECIES_SANDSHREW" },
-              { "min_level": 20, "max_level": 24, "species": "SPECIES_TRAPINCH" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_DWEBBLE" },
-              { "min_level": 20, "max_level": 24, "species": "SPECIES_DWEBBLE" },
+              { "min_level": 20, "max_level": 24, "species": "SPECIES_TINKATINK" },
+              { "min_level": 20, "max_level": 24, "species": "SPECIES_ORTHWORM" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_SANDSHREW" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_TRAPINCH" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_DWEBBLE" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_TRAPINCH" },
-              { "min_level": 20, "max_level": 24, "species": "SPECIES_SANDSHREW" },
+              { "min_level": 20, "max_level": 24, "species": "SPECIES_TINKATINK" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_DWEBBLE" },
-              { "min_level": 20, "max_level": 24, "species": "SPECIES_SANDSHREW" },
-              { "min_level": 20, "max_level": 24, "species": "SPECIES_TRAPINCH" }
+              { "min_level": 20, "max_level": 24, "species": "SPECIES_ORTHWORM" },
+              { "min_level": 20, "max_level": 24, "species": "SPECIES_SANDSHREW" }
             ]
           }
         },
@@ -3543,17 +3543,17 @@
             "encounter_rate": 10,
             "mons": [
               { "min_level": 20, "max_level": 24, "species": "SPECIES_SANDSHREW" },
-              { "min_level": 20, "max_level": 24, "species": "SPECIES_TRAPINCH" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_DWEBBLE" },
-              { "min_level": 20, "max_level": 24, "species": "SPECIES_DWEBBLE" },
+              { "min_level": 20, "max_level": 24, "species": "SPECIES_TINKATINK" },
+              { "min_level": 20, "max_level": 24, "species": "SPECIES_ORTHWORM" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_SANDSHREW" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_TRAPINCH" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_DWEBBLE" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_TRAPINCH" },
-              { "min_level": 20, "max_level": 24, "species": "SPECIES_SANDSHREW" },
+              { "min_level": 20, "max_level": 24, "species": "SPECIES_TINKATINK" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_DWEBBLE" },
-              { "min_level": 20, "max_level": 24, "species": "SPECIES_SANDSHREW" },
-              { "min_level": 20, "max_level": 24, "species": "SPECIES_TRAPINCH" }
+              { "min_level": 20, "max_level": 24, "species": "SPECIES_ORTHWORM" },
+              { "min_level": 20, "max_level": 24, "species": "SPECIES_SANDSHREW" }
             ]
           }
         },
@@ -3564,17 +3564,17 @@
             "encounter_rate": 10,
             "mons": [
               { "min_level": 20, "max_level": 24, "species": "SPECIES_SANDSHREW" },
-              { "min_level": 20, "max_level": 24, "species": "SPECIES_TRAPINCH" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_DWEBBLE" },
-              { "min_level": 20, "max_level": 24, "species": "SPECIES_DWEBBLE" },
+              { "min_level": 20, "max_level": 24, "species": "SPECIES_TINKATINK" },
+              { "min_level": 20, "max_level": 24, "species": "SPECIES_ORTHWORM" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_SANDSHREW" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_TRAPINCH" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_DWEBBLE" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_TRAPINCH" },
-              { "min_level": 20, "max_level": 24, "species": "SPECIES_SANDSHREW" },
+              { "min_level": 20, "max_level": 24, "species": "SPECIES_TINKATINK" },
               { "min_level": 20, "max_level": 24, "species": "SPECIES_DWEBBLE" },
-              { "min_level": 20, "max_level": 24, "species": "SPECIES_SANDSHREW" },
-              { "min_level": 20, "max_level": 24, "species": "SPECIES_TRAPINCH" }
+              { "min_level": 20, "max_level": 24, "species": "SPECIES_ORTHWORM" },
+              { "min_level": 20, "max_level": 24, "species": "SPECIES_SANDSHREW" }
             ]
           }
         },

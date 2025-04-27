@@ -82363,9 +82363,16 @@
     "EggMoves": [
       "MOVE_COIL",
       "MOVE_CURSE",
-      "MOVE_METAL_BURST"
+      "MOVE_METAL_BURST",
+      "MOVE_COMET_PUNCH",
+      "MOVE_DIZZY_PUNCH"
     ],
-    "TutorMoves": []
+    "TutorMoves": [
+      "MOVE_DYNAMIC_PUNCH",
+      "MOVE_MEGA_PUNCH",
+      "MOVE_POWER_UP_PUNCH",
+      "MOVE_IRON_TAIL"
+    ]
   },
   "GLIMMET": {
     "LevelMoves": [

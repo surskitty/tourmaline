@@ -6824,7 +6824,7 @@ Level: 19
 Nature: Modest
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Sandile
+Diglett Alola
 Level: 19
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -14952,6 +14952,8 @@ Music: Male
 Items: Full Restore / Full Restore / Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer
+Party Size: 6
+Pool Rules: Basic
 
 Skarmory
 Level: 77
@@ -14966,6 +14968,9 @@ Level: 75
 - Light Screen
 - Ancient Power
 - Earthquake
+
+Orthworm
+Level: 75
 
 Aggron
 Level: 76
@@ -14991,7 +14996,8 @@ Level: 76
 Metagross @ Metagrossite
 Level: 78
 Nature: Adamant
-EVs: 252 Atk / 252 Def / 6 SpA
+EVs: 252 Atk / 252 Def / 6 Spe
+Tags: Ace
 - Earthquake
 - Zen Headbutt
 - Meteor Mash

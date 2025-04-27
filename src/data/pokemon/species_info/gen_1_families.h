@@ -4120,7 +4120,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
 #if !TESTING
         .abilities = { ABILITY_SAND_VEIL, ABILITY_NONE, ABILITY_SAND_RUSH },
-        .innates = { ABILITY_SAND_VEIL, ABILITY_SAND_RUSH },
+        .innates = { ABILITY_SAND_VEIL, ABILITY_SAND_RUSH, ABILITY_TOUGH_CLAWS },
 #else
         .abilities = { ABILITY_SAND_VEIL, ABILITY_NONE, ABILITY_SAND_RUSH },
 #endif

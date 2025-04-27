@@ -4460,7 +4460,12 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+#if !TESTING
         .abilities = { ABILITY_EARTH_EATER, ABILITY_NONE, ABILITY_SAND_VEIL },
+        .innates = { ABILITY_EARTH_EATER, ABILITY_IRON_FIST },
+#else
+        .abilities = { ABILITY_EARTH_EATER, ABILITY_NONE, ABILITY_SAND_VEIL },
+#endif
         .bodyColor = BODY_COLOR_PINK,
         .speciesName = _("Orthworm"),
         .cryId = CRY_ORTHWORM,

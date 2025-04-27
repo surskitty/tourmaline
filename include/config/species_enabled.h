@@ -331,8 +331,8 @@
 #define P_FAMILY_COTTONEE                TRUE //
 #define P_FAMILY_PETILIL                 FALSE
 #define P_FAMILY_BASCULIN                TRUE //
-#define P_FAMILY_SANDILE                 TRUE //
-#define P_FAMILY_DARUMAKA                FALSE // route 112
+#define P_FAMILY_SANDILE                 FALSE
+#define P_FAMILY_DARUMAKA                FALSE
 #define P_FAMILY_MARACTUS                FALSE
 #define P_FAMILY_DWEBBLE                 TRUE //
 #define P_FAMILY_SCRAGGY                 P_GEN_5_POKEMON
@@ -560,7 +560,7 @@
 #define P_FAMILY_FINIZEN                 FALSE
 #define P_FAMILY_VAROOM                  FALSE
 #define P_FAMILY_CYCLIZAR                FALSE
-#define P_FAMILY_ORTHWORM                FALSE
+#define P_FAMILY_ORTHWORM                TRUE
 #define P_FAMILY_GLIMMET                 FALSE
 #define P_FAMILY_GREAVARD                P_GEN_9_POKEMON
 #define P_FAMILY_FLAMIGO                 FALSE
