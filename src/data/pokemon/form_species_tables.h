@@ -124,10 +124,8 @@ static const u16 sPikachuFormSpeciesIdTable[] = {
 };
 
 static const u16 sRaichuFormSpeciesIdTable[] = {
-    SPECIES_RAICHU,
-#if P_ALOLAN_FORMS
     SPECIES_RAICHU_ALOLA,
-#endif
+    SPECIES_RAICHU,
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_PIKACHU
@@ -170,18 +168,14 @@ static const u16 sNinetalesFormSpeciesIdTable[] = {
 
 #if P_FAMILY_DIGLETT
 static const u16 sDiglettFormSpeciesIdTable[] = {
-    SPECIES_DIGLETT,
-#if P_ALOLAN_FORMS
     SPECIES_DIGLETT_ALOLA,
-#endif
+    SPECIES_DIGLETT,
     FORM_SPECIES_END,
 };
 
 static const u16 sDugtrioFormSpeciesIdTable[] = {
-    SPECIES_DUGTRIO,
-#if P_ALOLAN_FORMS
     SPECIES_DUGTRIO_ALOLA,
-#endif
+    SPECIES_DUGTRIO,
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_DIGLETT
@@ -250,26 +244,20 @@ static const u16 sMachampFormSpeciesIdTable[] = {
 
 #if P_FAMILY_GEODUDE
 static const u16 sGeodudeFormSpeciesIdTable[] = {
-    SPECIES_GEODUDE,
-#if P_ALOLAN_FORMS
     SPECIES_GEODUDE_ALOLA,
-#endif
+    SPECIES_GEODUDE,
     FORM_SPECIES_END,
 };
 
 static const u16 sGravelerFormSpeciesIdTable[] = {
-    SPECIES_GRAVELER,
-#if P_ALOLAN_FORMS
     SPECIES_GRAVELER_ALOLA,
-#endif
+    SPECIES_GRAVELER,
     FORM_SPECIES_END,
 };
 
 static const u16 sGolemFormSpeciesIdTable[] = {
-    SPECIES_GOLEM,
-#if P_ALOLAN_FORMS
     SPECIES_GOLEM_ALOLA,
-#endif
+    SPECIES_GOLEM,
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_GEODUDE
@@ -388,28 +376,22 @@ static const u16 sKinglerFormSpeciesIdTable[] = {
 
 #if P_FAMILY_VOLTORB
 static const u16 sVoltorbFormSpeciesIdTable[] = {
-    SPECIES_VOLTORB,
-#if P_HISUIAN_FORMS
     SPECIES_VOLTORB_HISUI,
-#endif
+    SPECIES_VOLTORB,
     FORM_SPECIES_END,
 };
 
 static const u16 sElectrodeFormSpeciesIdTable[] = {
-    SPECIES_ELECTRODE,
-#if P_HISUIAN_FORMS
     SPECIES_ELECTRODE_HISUI,
-#endif
+    SPECIES_ELECTRODE,
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_VOLTORB
 
 #if P_FAMILY_EXEGGCUTE
 static const u16 sExeggutorFormSpeciesIdTable[] = {
-    SPECIES_EXEGGUTOR,
-#if P_ALOLAN_FORMS
     SPECIES_EXEGGUTOR_ALOLA,
-#endif
+    SPECIES_EXEGGUTOR,
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_EXEGGCUTE
@@ -951,20 +933,16 @@ static const u16 sLatiosFormSpeciesIdTable[] = {
 
 #if P_FAMILY_KYOGRE
 static const u16 sKyogreFormSpeciesIdTable[] = {
-    SPECIES_KYOGRE,
-#if P_PRIMAL_REVERSIONS
     SPECIES_KYOGRE_PRIMAL,
-#endif
+    SPECIES_KYOGRE,
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_KYOGRE
 
 #if P_FAMILY_GROUDON
 static const u16 sGroudonFormSpeciesIdTable[] = {
-    SPECIES_GROUDON,
-#if P_PRIMAL_REVERSIONS
     SPECIES_GROUDON_PRIMAL,
-#endif
+    SPECIES_GROUDON,
     FORM_SPECIES_END,
 };
 #endif //P_FAMILY_GROUDON
@@ -1174,9 +1152,9 @@ static const u16 sLilligantFormSpeciesIdTable[] = {
 
 #if P_FAMILY_BASCULIN
 static const u16 sBasculinFormSpeciesIdTable[] = {
+    SPECIES_BASCULIN_WHITE_STRIPED,
     SPECIES_BASCULIN_RED_STRIPED,
     SPECIES_BASCULIN_BLUE_STRIPED,
-    SPECIES_BASCULIN_WHITE_STRIPED,
     FORM_SPECIES_END,
 };
 
