@@ -4889,6 +4889,10 @@ Sceptile @ Sceptilite
 Level: 55
 Tags: Ace
 
+Ampharos @ Ampharosite
+Level: 55
+Tags: Ace
+
 === TRAINER_ROXANNE_1 ===
 Name: Roxanne
 Class: Leader
@@ -4901,14 +4905,14 @@ AI: Smart Trainer / Conservative
 Mugshot: Yellow
 Party Size: 4
 
-Pumice (Shuckle)
+Pumice (Shuckle) (F)
 Level: 12
 Ability: Contrary
 Nature: Timid
 - Infestation
 - Rock Tomb
 
-Magnetite (Geodude Alola)
+Magnetite (Geodude Alola) (F)
 Level: 12
 Nature: Modest
 Ability: Sturdy
@@ -4917,14 +4921,14 @@ Ability: Sturdy
 - Spark
 - Wide Guard
 
-Salt (Nacli) @ Oran Berry
+Salt (Nacli) (M) @ Oran Berry 
 Level: 12
 Ability: Clear Body
 - Rock Tomb
 - Mud Shot
 - Smack Down
 
-Basalt (Nosepass) @ Oran Berry
+Basalt (Nosepass) (M) @ Oran Berry
 Level: 13
 Ability: Sand Force
 - Block
@@ -4946,115 +4950,35 @@ Party Size: 6
 Pool Rules: Basic
 
 Quartz (Gigalith) @ Smooth Rock
-Level: 32
+Level: 50
+Tags: Lead
 
-Hematite (Golem Alola) @ Shuca Berry
-Level: 35
+Magnetite (Golem Alola) (F) @ Shuca Berry
+Level: 50
 
-Feldspar (Cradily)
-Level: 35
+Pumice (Shuckle) (F)
+Level: 50
+Ability: Contrary
 
-Limestone (Armaldo)
-Level: 35
-
-Basalt (Probopass) @ Oran Berry
-Level: 37
-
-Siderite (Aggron) @ Aggronite
-Level: 37
-
-=== TRAINER_ROXANNE_3 ===
-Name: Roxanne
-Class: Leader
-Pic: Leader Roxanne
-Gender: Female
-Music: Female
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Smart Trainer
-Mugshot: Yellow
-Party Size: 6
-Pool Rules: Basic
-
-Quartz (Gigalith) @ Smooth Rock
-Level: 38
-
-Hematite (Golem Alola) @ Shuca Berry
-Level: 38
+Salt (Garganacl) (M)
+Level: 50
 
 Feldspar (Cradily)
-Level: 40
+Level: 50
 
 Limestone (Armaldo)
-Level: 40
+Level: 50
 
-Basalt (Probopass) @ Oran Berry
-Level: 42
-
-Siderite (Aggron) @ Aggronite
-Level: 42
-
-=== TRAINER_ROXANNE_4 ===
-Name: Roxanne
-Class: Leader
-Pic: Leader Roxanne
-Gender: Female
-Music: Female
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Smart Trainer
-Mugshot: Yellow
-Party Size: 6
-Pool Rules: Basic
-
-Quartz (Gigalith) @ Smooth Rock
-Level: 44
-
-Hematite (Golem Alola) @ Shuca Berry
-Level: 44
-
-Feldspar (Cradily)
-Level: 46
-
-Limestone (Armaldo)
-Level: 46
-
-Basalt (Probopass) @ Oran Berry
-Level: 48
+Basalt (Probopass) (M)
+Level: 50
 
 Siderite (Aggron) @ Aggronite
-Level: 48
+Level: 50
+Tags: Ace
 
-=== TRAINER_ROXANNE_5 ===
-Name: Roxanne
-Class: Leader
-Pic: Leader Roxanne
-Gender: Female
-Music: Female
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Smart Trainer
-Mugshot: Yellow
-Party Size: 6
-Pool Rules: Basic
-
-Quartz (Gigalith) @ Smooth Rock
-Level: 55
-
-Hematite (Golem Alola) @ Shuca Berry
-Level: 53
-
-Feldspar (Cradily)
-Level: 53
-
-Limestone (Armaldo)
-Level: 53
-
-Basalt (Probopass) @ Oran Berry
-Level: 55
-
-Siderite (Aggron) @ Aggronite
-Level: 55
+Arenite (Drednaw) @ Drednite
+Level: 50
+Tags: Ace
 
 === TRAINER_BRAWLY_1 ===
 Name: Brawly
@@ -5101,144 +5025,51 @@ Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Blue
+Party Size: 6
+Pool Rules: Basic
 
-Meditite
-Level: 33
-- Psychic
-- Light Screen
-- Reflect
-- Focus Punch
+Mienshao
+Level: 50
+Tags: Lead
 
-Hitmontop
-Level: 35
-- Pursuit
-- Counter
-- Protect
-- Triple Kick
+Muay Thai (Bewear) (F)
+Level: 50
 
-Hariyama @ Sitrus Berry
-Level: 37
-- Fake Out
-- Focus Punch
-- Belly Drum
-- Earthquake
+Aikido (Grapploct) (M)
+Level: 50
 
-=== TRAINER_BRAWLY_3 ===
-Name: Brawly
-Class: Leader
-Pic: Leader Brawly
-Gender: Male
-Music: Male
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Smart Trainer
-Mugshot: Blue
+Sumo (Hariyama) (F) @ Sitrus Berry
+Level: 50
+
+Blaziken
+Level: 50
 
 Medicham
-Level: 38
-- Psychic
-- Light Screen
-- Reflect
-- Focus Punch
-
-Hitmontop
-Level: 40
-- Pursuit
-- Counter
-- Protect
-- Triple Kick
-
-Hariyama @ Sitrus Berry
-Level: 42
-- Fake Out
-- Focus Punch
-- Belly Drum
-- Earthquake
-
-=== TRAINER_BRAWLY_4 ===
-Name: Brawly
-Class: Leader
-Pic: Leader Brawly
-Gender: Male
-Music: Male
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Smart Trainer
-Mugshot: Blue
-
-Hitmonchan
-Level: 40
-- Sky Uppercut
-- Protect
-- Fire Punch
-- Ice Punch
-
-Medicham
-Level: 43
-- Focus Punch
-- Light Screen
-- Reflect
-- Psychic
-
-Hitmontop
-Level: 45
-- Pursuit
-- Counter
-- Protect
-- Triple Kick
-
-Hariyama @ Sitrus Berry
-Level: 47
-- Fake Out
-- Focus Punch
-- Belly Drum
-- Earthquake
-
-=== TRAINER_BRAWLY_5 ===
-Name: Brawly
-Class: Leader
-Pic: Leader Brawly
-Gender: Male
-Music: Male
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Smart Trainer
-Mugshot: Blue
+Level: 50
 
 Hitmonlee
-Level: 46
-- Mega Kick
-- Focus Punch
-- Earthquake
-- Bulk Up
+Level: 50
 
 Hitmonchan
-Level: 46
-- Sky Uppercut
-- Protect
-- Fire Punch
-- Ice Punch
-
-Medicham
-Level: 48
-- Focus Punch
-- Light Screen
-- Reflect
-- Psychic
+Level: 50
 
 Hitmontop
 Level: 50
-- Pursuit
-- Counter
-- Protect
-- Triple Kick
 
-Hariyama @ Sitrus Berry
-Level: 52
-- Fake Out
-- Focus Punch
-- Belly Drum
-- Earthquake
+Annihilape
+Level: 50
+
+Medicham @ Medichamite 
+Level: 50
+Tags: Ace
+
+Blaziken @ Blazikenite 
+Level: 50
+Tags: Ace
+
+Lopunny @ Lopunnite
+Level: 50
+Tags: Ace
 
 === TRAINER_WATTSON_1 ===
 Name: Wattson
@@ -5301,197 +5132,51 @@ Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Green
+Party Size: 6
+Pool Rules: Basic
 
 Pincurchin @ Terrain Extender
-Level: 38
+Level: 50
 Ability: Electric Surge
-- Chilling Water
-- Spark
-- Curse
-- Electric Terrain
+Tags: Lead
 
 Raichu Alola
-Level: 38
-- Nuzzle
-- Rising Voltage
-- Psyshock
+Level: 50
 
 Galvantula
-Level: 38
-Ability: Compound Eyes
-- Electroweb
-- Struggle Bug
-- Thunder Wave
-- Helping Hand
+Level: 50
 
 Electrode Hisui
-Level: 38
-Ability: Soundproof
-- Bullet Seed
-- Rollout
-- Self Destruct
-- Shock Wave
+Level: 50
 
 Magnezone
-Level: 38
-Ability: Analytic
-- Electroweb
-- Rising Voltage
-- Magnet Rise
-- Tri Attack
+Level: 50
+
+Golem Alola
+Level: 50
+
+Rotom
+Level: 50
+
+Kilowattrel
+Level: 50
+
+Lanturn
+Level: 50
+
+Jolteon
+Level: 50
+
+Manectric
+Level: 50
 
 Manectric @ Manectite
-Level: 40
-Ability: Static
-- Snarl
-- Thunder Wave
-- Shock Wave
-- Howl
-
-=== TRAINER_WATTSON_3 ===
-Name: Wattson
-Class: Leader
-Pic: Leader Wattson
-Gender: Male
-Music: Male
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Smart Trainer
-Mugshot: Green
-
-Pikachu
-Level: 39
-- Thunder
-- Slam
-- Rain Dance
-- Shock Wave
-
-Flaaffy
-Level: 41
-- Thunder
-- Protect
-- Thunder Wave
-- Light Screen
-
-Electrode Hisui
-Level: 41
-- Rollout
-- Thunder
-- Explosion
-- Rain Dance
-
-Magneton @ Sitrus Berry
-Level: 43
-- Supersonic
-- Protect
-- Thunder
-- Rain Dance
-
-Manectric @ Sitrus Berry
-Level: 45
-- Bite
-- Thunder Wave
-- Thunder
-- Protect
-
-=== TRAINER_WATTSON_4 ===
-Name: Wattson
-Class: Leader
-Pic: Leader Wattson
-Gender: Male
-Music: Male
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Smart Trainer
-Mugshot: Green
-
-Raichu Alola
-Level: 44
-- Thunder
-- Slam
-- Rain Dance
-- Protect
-
-Ampharos
-Level: 46
-- Thunder
-- Protect
-- Thunder Wave
-- Light Screen
-
-Electrode Hisui
-Level: 46
-- Rollout
-- Thunder
-- Explosion
-- Rain Dance
-
-Magneton @ Sitrus Berry
-Level: 48
-- Supersonic
-- Protect
-- Thunder
-- Rain Dance
-
-Manectric @ Sitrus Berry
 Level: 50
-- Bite
-- Thunder Wave
-- Thunder
-- Protect
+Tags: Ace
 
-=== TRAINER_WATTSON_5 ===
-Name: Wattson
-Class: Leader
-Pic: Leader Wattson
-Gender: Male
-Music: Male
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Smart Trainer
-Mugshot: Green
-
-Electabuzz
+Ampharos @ Ampharosite
 Level: 50
-- Swift
-- Focus Punch
-- Thunder Punch
-- Light Screen
-
-Raichu Alola
-Level: 51
-- Thunder
-- Slam
-- Rain Dance
-- Protect
-
-Ampharos
-Level: 51
-- Thunder
-- Protect
-- Thunder Wave
-- Light Screen
-
-Electrode Hisui
-Level: 53
-- Rollout
-- Thunder
-- Explosion
-- Rain Dance
-
-Magneton @ Sitrus Berry
-Level: 53
-- Supersonic
-- Protect
-- Thunder
-- Rain Dance
-
-Manectric @ Sitrus Berry
-Level: 55
-- Bite
-- Thunder Wave
-- Thunder
-- Protect
+Tags: Ace
 
 === TRAINER_FLANNERY_1 ===
 Name: Flannery
@@ -5518,6 +5203,9 @@ Level: 29
 - Play Rough
 - Baton Pass
 - Helping Hand
+
+Charcadet
+Level: 27
 
 Shiinotic
 Level: 27
@@ -5552,190 +5240,66 @@ Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Purple
-
-Magcargo @ White Herb
-Level: 38
-- Overheat
-- Attract
-- Light Screen
-- Rock Slide
-
-Ponyta
-Level: 36
-- Flamethrower
-- Attract
-- Solar Beam
-- Bounce
-
-Camerupt @ White Herb
-Level: 38
-- Overheat
-- Sunny Day
-- Earthquake
-- Attract
-
-Torkoal @ White Herb
-Level: 40
-- Overheat
-- Sunny Day
-- Explosion
-- Attract
-
-=== TRAINER_FLANNERY_3 ===
-Name: Flannery
-Class: Leader
-Pic: Leader Flannery
-Gender: Female
-Music: Female
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Smart Trainer
-Mugshot: Purple
-
-Growlithe
-Level: 41
-- Helping Hand
-- Flamethrower
-- Roar
-- Sunny Day
-
-Magcargo @ White Herb
-Level: 43
-- Overheat
-- Attract
-- Light Screen
-- Rock Slide
-
-Ponyta
-Level: 41
-- Flamethrower
-- Attract
-- Solar Beam
-- Bounce
-
-Camerupt @ White Herb
-Level: 43
-- Overheat
-- Sunny Day
-- Earthquake
-- Attract
-
-Torkoal @ White Herb
-Level: 45
-- Overheat
-- Sunny Day
-- Explosion
-- Attract
-
-=== TRAINER_FLANNERY_4 ===
-Name: Flannery
-Class: Leader
-Pic: Leader Flannery
-Gender: Female
-Music: Female
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Smart Trainer
-Mugshot: Purple
 Party Size: 6
 Pool Rules: Basic
 
-Houndour
-Level: 46
-- Roar
-- Solar Beam
-- Taunt
-- Sunny Day
-
-Growlithe
-Level: 46
-- Helping Hand
-- Flamethrower
-- Sunny Day
-- Roar
-
-Magcargo @ White Herb
-Level: 48
-- Overheat
-- Attract
-- Light Screen
-- Rock Slide
-
-Rapidash
-Level: 46
-- Flamethrower
-- Attract
-- Solar Beam
-- Bounce
-
-Camerupt @ White Herb
-Level: 48
-- Overheat
-- Sunny Day
-- Earthquake
-- Attract
-
-Torkoal @ White Herb
+Torkoal @ Heat Rock
 Level: 50
-- Overheat
-- Sunny Day
-- Explosion
-- Attract
+Ability: Drought
+Tags: Lead
 
-=== TRAINER_FLANNERY_5 ===
-Name: Flannery
-Class: Leader
-Pic: Leader Flannery
-Gender: Female
-Music: Female
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Smart Trainer
-Mugshot: Purple
-Party Size: 6
-Pool Rules: Basic
+Ninetales @ Heat Rock
+Level: 50
+Ability: Drought
+Tags: Lead
 
-Arcanine
-Level: 51
-- Helping Hand
-- Flamethrower
-- Sunny Day
-- Roar
+Dachsbun
+Level: 50
 
-Magcargo @ White Herb
-Level: 53
-- Overheat
-- Attract
-- Light Screen
-- Rock Slide
+Shiinotic
+Level: 50
+
+Magcargo
+Level: 50
+
+Camerupt
+Level: 50
+
+Blaziken
+Level: 50
+
+Flareon
+Level: 50
+
+Ceruledge
+Level: 50
+
+Armarouge
+Level: 50
+
+Sylveon
+Level: 50
+
+Rotom Heat
+Level: 50
+
+Salazzle
+Level: 50
 
 Houndoom
-Level: 51
-- Roar
-- Solar Beam
-- Taunt
-- Sunny Day
+Level: 50
 
-Rapidash
-Level: 51
-- Flamethrower
-- Attract
-- Solar Beam
-- Bounce
+Houndoom @ Houndoominite
+Level: 50
+Tags: Ace
 
-Camerupt @ White Herb
-Level: 53
-- Overheat
-- Sunny Day
-- Earthquake
-- Attract
+Camerupt @ Cameruptite
+Level: 50
+Tags: Ace
 
-Torkoal @ White Herb
-Level: 55
-- Overheat
-- Sunny Day
-- Explosion
-- Attract
+Blaziken @ Blazikenite
+Level: 50
+Tags: Ace
 
 === TRAINER_NORMAN_1 ===
 Name: Norman
@@ -5797,179 +5361,52 @@ Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Pink
-
-Chansey
-Level: 42
-- Light Screen
-- Sing
-- Skill Swap
-- Focus Punch
-
-Slaking @ Sitrus Berry
-Level: 42
-- Blizzard
-- Shadow Ball
-- Double Edge
-- Fire Blast
+Party Size: 6
+Pool Rules: Basic
 
 Spinda
-Level: 43
-- Teeter Dance
-- Skill Swap
-- Facade
-- Hypnosis
-
-Slaking @ Sitrus Berry
-Level: 45
-- Hyper Beam
-- Flamethrower
-- Thunderbolt
-- Shadow Ball
-
-=== TRAINER_NORMAN_3 ===
-Name: Norman
-Class: Leader
-Pic: Leader Norman
-Gender: Male
-Music: Male
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Smart Trainer
-Mugshot: Pink
-
-Slaking @ Sitrus Berry
-Level: 47
-- Blizzard
-- Shadow Ball
-- Double Edge
-- Fire Blast
-
-Chansey
-Level: 47
-- Light Screen
-- Sing
-- Skill Swap
-- Focus Punch
-
-Kangaskhan
-Level: 45
-- Fake Out
-- Dizzy Punch
-- Endure
-- Reversal
-
-Spinda
-Level: 48
-- Teeter Dance
-- Skill Swap
-- Facade
-- Hypnosis
-
-Slaking @ Sitrus Berry
 Level: 50
-- Hyper Beam
-- Flamethrower
-- Thunderbolt
-- Shadow Ball
 
-=== TRAINER_NORMAN_4 ===
-Name: Norman
-Class: Leader
-Pic: Leader Norman
-Gender: Male
-Music: Male
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Smart Trainer
-Mugshot: Pink
-
-Slaking @ Sitrus Berry
-Level: 52
-- Blizzard
-- Shadow Ball
-- Double Edge
-- Fire Blast
-
-Blissey
-Level: 52
-- Light Screen
-- Sing
-- Skill Swap
-- Focus Punch
-
-Kangaskhan
+Vigoroth
 Level: 50
-- Fake Out
-- Dizzy Punch
-- Endure
-- Reversal
 
-Spinda
-Level: 53
-- Teeter Dance
-- Skill Swap
-- Facade
-- Hypnosis
+Linoone @ Toxic Orb
+Level: 50
 
-Slaking @ Sitrus Berry
-Level: 55
-- Hyper Beam
-- Flamethrower
-- Thunderbolt
-- Shadow Ball
+Obstagoon
+Level: 50
 
-=== TRAINER_NORMAN_5 ===
-Name: Norman
-Class: Leader
-Pic: Leader Norman
-Gender: Male
-Music: Male
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Smart Trainer
-Mugshot: Pink
+Lopunny
+Level: 50
 
-Slaking @ Sitrus Berry
-Level: 57
-- Blizzard
-- Shadow Ball
-- Double Edge
-- Fire Blast
+Slaking
+Level: 50
 
-Blissey
-Level: 57
-- Protect
-- Sing
-- Skill Swap
-- Focus Punch
+Wyrdeer
+Level: 50
 
-Kangaskhan
-Level: 55
-- Fake Out
-- Dizzy Punch
-- Endure
-- Reversal
+Farigiraf
+Level: 50
 
-Tauros
-Level: 57
-- Take Down
-- Protect
-- Fire Blast
-- Earthquake
+Dudunsparce
+Level: 50
 
-Spinda
-Level: 58
-- Teeter Dance
-- Skill Swap
-- Facade
-- Hypnosis
+Smeargle
+Level: 50
 
-Slaking @ Sitrus Berry
-Level: 60
-- Hyper Beam
-- Flamethrower
-- Thunderbolt
-- Shadow Ball
+Grafaiai
+Level: 50
+
+Audino
+Level: 50
+
+Audino @ Audinite
+Level: 50
+Tags: Ace
+
+Lopunny @ Lopunnite
+Level: 50
+Tags: Ace
 
 === TRAINER_WINONA_1 ===
 Name: Winona
@@ -5984,35 +5421,15 @@ Mugshot: Blue
 
 Swablu
 Level: 29
-IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
-- Perish Song
-- Mirror Move
-- Safeguard
-- Aerial Ace
 
 Tropius
 Level: 29
-IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
-- Sunny Day
-- Aerial Ace
-- Solar Beam
-- Synthesis
 
 Pelipper
 Level: 30
-IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
-- Water Gun
-- Supersonic
-- Protect
-- Aerial Ace
 
 Skarmory
 Level: 31
-IVs: 26 HP / 26 Atk / 26 Def / 26 SpA / 26 SpD / 26 Spe
-- Sand Attack
-- Fury Attack
-- Steel Wing
-- Aerial Ace
 
 Altaria
 Level: 33
@@ -6038,200 +5455,41 @@ Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer / Risky
 Mugshot: Blue
-
-Dratini @ Sitrus Berry
-Level: 40
-- Thunder Wave
-- Thunderbolt
-- Protect
-- Ice Beam
+Party Size: 6
+Pool Rules: Basic
 
 Tropius
-Level: 38
-- Sunny Day
-- Aerial Ace
-- Solar Beam
-- Earthquake
-
-Pelipper
-Level: 41
-- Surf
-- Supersonic
-- Protect
-- Aerial Ace
-
-Skarmory
-Level: 43
-- Whirlwind
-- Spikes
-- Steel Wing
-- Aerial Ace
-
-Altaria @ Chesto Berry
-Level: 45
-- Aerial Ace
-- Rest
-- Dragon Dance
-- Earthquake
-
-=== TRAINER_WINONA_3 ===
-Name: Winona
-Class: Leader
-Pic: Leader Winona
-Gender: Female
-Music: Female
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Smart Trainer / Risky
-Mugshot: Blue
-
-Hoothoot
-Level: 43
-- Hypnosis
-- Psychic
-- Reflect
-- Dream Eater
-
-Tropius
-Level: 43
-- Sunny Day
-- Aerial Ace
-- Solar Beam
-- Earthquake
-
-Dragonair @ Sitrus Berry
-Level: 45
-- Thunder Wave
-- Thunderbolt
-- Protect
-- Ice Beam
-
-Pelipper
-Level: 46
-- Surf
-- Supersonic
-- Protect
-- Aerial Ace
-
-Skarmory
-Level: 48
-- Whirlwind
-- Spikes
-- Steel Wing
-- Aerial Ace
-
-Altaria @ Chesto Berry
 Level: 50
-- Aerial Ace
-- Rest
-- Dragon Dance
-- Earthquake
 
-=== TRAINER_WINONA_4 ===
-Name: Winona
-Class: Leader
-Pic: Leader Winona
-Gender: Female
-Music: Female
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Smart Trainer / Risky
-Mugshot: Blue
-
-Noctowl
-Level: 48
-- Hypnosis
-- Psychic
-- Reflect
-- Dream Eater
-
-Tropius
-Level: 49
-- Sunny Day
-- Aerial Ace
-- Solar Beam
-- Earthquake
-
-Dragonair @ Sitrus Berry
+Swellow
 Level: 50
-- Thunder Wave
-- Thunderbolt
-- Protect
-- Ice Beam
+
+Crobat
+Level: 50
+
+Chatot
+Level: 50
 
 Pelipper
-Level: 51
-- Surf
-- Supersonic
-- Protect
-- Aerial Ace
+Level: 50
 
 Skarmory
-Level: 53
-- Whirlwind
-- Spikes
-- Steel Wing
-- Aerial Ace
+Level: 50
 
-Altaria @ Chesto Berry
-Level: 55
-- Aerial Ace
-- Rest
-- Dragon Dance
-- Earthquake
+Altaria
+Level: 50
+- Hyper Voice
+- Cotton Guard
+- Dragon Pulse
+- Flamethrower
 
-=== TRAINER_WINONA_5 ===
-Name: Winona
-Class: Leader
-Pic: Leader Winona
-Gender: Female
-Music: Female
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Smart Trainer / Risky
-Mugshot: Blue
-
-Noctowl
-Level: 53
-- Hypnosis
-- Psychic
-- Reflect
-- Dream Eater
-
-Tropius
-Level: 54
-- Sunny Day
-- Aerial Ace
-- Solar Beam
-- Earthquake
-
-Pelipper
-Level: 55
-- Surf
-- Supersonic
-- Protect
-- Aerial Ace
-
-Dragonite @ Sitrus Berry
-Level: 55
-- Hyper Beam
-- Thunderbolt
-- Earthquake
-- Ice Beam
-
-Skarmory
-Level: 58
-- Whirlwind
-- Spikes
-- Steel Wing
-- Aerial Ace
-
-Altaria @ Chesto Berry
-Level: 60
-- Sky Attack
-- Rest
-- Dragon Dance
-- Earthquake
+Pidgeot @ Pidgeotite
+Level: 50
+Tags: Ace
+- Hurricane
+- Air Slash
+- Roost
+- Ominous Wind
 
 === TRAINER_TATE_AND_LIZA_1 ===
 Name: Tate&Liza
@@ -6299,198 +5557,59 @@ Gender: Male
 Music: Female
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer / Double Ace Pokemon
+Party Size: 6
+Pool Rules: Doubles
 
-Slowpoke
-Level: 48
-- Yawn
-- Psychic
+Xatu
+Level: 41
+Ability: Magic Bounce
+- Tailwind
+- Wish
+- Baton Pass
 - Calm Mind
+
+Farigiraf @ Wiki Berry
+Level: 41
+Ability: Cud Chew
+- Twin Beam
+- Wish
+- Baton Pass
+- Calm Mind
+
+Lunatone @ Power Herb
+Level: 42
+Nature: Timid
+- Moonblast
 - Protect
-
-Claydol
-Level: 49
-- Earthquake
-- Ancient Power
-- Psychic
-- Light Screen
-
-Xatu @ Chesto Berry
-Level: 49
-- Psychic
-- Rest
-- Confuse Ray
-- Calm Mind
-
-Lunatone @ Chesto Berry
-Level: 50
-- Earthquake
-- Psychic
-- Rest
+- Meteor Beam
 - Calm Mind
 
 Solrock @ Sitrus Berry
-Level: 50
-- Sunny Day
-- Solar Beam
-- Psychic
-- Flamethrower
-
-=== TRAINER_TATE_AND_LIZA_3 ===
-Name: Tate&Liza
-Class: Leader
-Pic: Leader Tate And Liza
-Gender: Male
-Music: Female
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Drowzee
-Level: 53
-- Hypnosis
-- Dream Eater
-- Headbutt
-- Protect
-
-Slowpoke
-Level: 53
-- Yawn
-- Psychic
-- Calm Mind
-- Protect
-
-Claydol
-Level: 54
+Level: 42
+Nature: Jolly
+- Zen Headbutt
 - Earthquake
+- Stone Edge
 - Explosion
-- Psychic
-- Light Screen
 
-Xatu @ Chesto Berry
-Level: 54
-- Psychic
-- Rest
-- Confuse Ray
-- Calm Mind
-
-Lunatone @ Chesto Berry
-Level: 55
-- Earthquake
-- Psychic
-- Rest
-- Calm Mind
-
-Solrock @ Sitrus Berry
-Level: 55
-- Sunny Day
-- Solar Beam
-- Psychic
-- Flamethrower
-
-=== TRAINER_TATE_AND_LIZA_4 ===
-Name: Tate&Liza
-Class: Leader
-Pic: Leader Tate And Liza
-Gender: Male
-Music: Female
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Hypno
-Level: 58
-- Hypnosis
-- Dream Eater
-- Headbutt
+Alakazam @ Alakazite
+Level: 41
+Ability: Magic Guard
+Tags: Ace
+- Recover
 - Protect
+- Expanding Force
+- Focus Blast
 
-Claydol
-Level: 59
-- Earthquake
-- Explosion
-- Psychic
-- Light Screen
-
-Slowpoke
-Level: 58
-- Yawn
-- Psychic
-- Calm Mind
-- Protect
-
-Xatu @ Chesto Berry
-Level: 59
-- Psychic
-- Rest
-- Confuse Ray
-- Calm Mind
-
-Lunatone @ Chesto Berry
-Level: 60
-- Earthquake
-- Psychic
-- Rest
-- Calm Mind
-
-Solrock @ Sitrus Berry
-Level: 60
-- Sunny Day
-- Solar Beam
-- Psychic
-- Flamethrower
-
-=== TRAINER_TATE_AND_LIZA_5 ===
-Name: Tate&Liza
-Class: Leader
-Pic: Leader Tate And Liza
-Gender: Male
-Music: Female
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Hypno
-Level: 63
-- Hypnosis
-- Dream Eater
-- Headbutt
-- Protect
-
-Claydol
-Level: 64
-- Earthquake
-- Explosion
-- Psychic
-- Light Screen
-
-Slowking
-Level: 63
-- Yawn
-- Psychic
-- Calm Mind
-- Protect
-
-Xatu @ Chesto Berry
-Level: 64
-- Psychic
-- Rest
-- Confuse Ray
-- Calm Mind
-
-Lunatone @ Chesto Berry
-Level: 65
-- Earthquake
-- Psychic
-- Rest
-- Calm Mind
-
-Solrock @ Sitrus Berry
-Level: 65
-- Sunny Day
-- Solar Beam
-- Psychic
-- Flamethrower
+Orbeetle @ Orbeetite
+Level: 41
+Ability: Swarm
+Tags: Ace
+- Giga Drain
+- Expanding Force
+- Struggle Bug
+- Helping Hand
 
 === TRAINER_JUAN_1 ===
 Name: Juan
@@ -6546,7 +5665,6 @@ Ability: Oblivious
 - Wave Crash
 - Body Press
 
-
 === TRAINER_JUAN_2 ===
 Name: Juan
 Class: Leader
@@ -6555,191 +5673,53 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
+Party Size: 6
+Pool Rules: Basic
 
-Poliwag
-Level: 46
-- Hypnosis
-- Rain Dance
-- Protect
-- Hydro Pump
+Pelipper @ Wacan Berry
+Level: 42
+Ability: Drizzle
+- Hurricane
+- Tailwind
+- Wide Guard
+- Weather Ball
 
 Whiscash
-Level: 46
+Level: 41
 - Rain Dance
 - Water Pulse
-- Double Team
-- Fissure
+- Amnesia
+- Earthquake
 
-Walrein
-Level: 48
+Crawdaunt
+Level: 43
 - Water Pulse
-- Body Slam
-- Protect
-- Ice Beam
-
-Crawdaunt @ Chesto Berry
-Level: 48
-- Rest
 - Crabhammer
 - Taunt
-- Double Team
+- Leer
 
 Kingdra @ Chesto Berry
-Level: 51
+Level: 46
 - Water Pulse
 - Double Team
 - Ice Beam
 - Rest
 
-=== TRAINER_JUAN_3 ===
-Name: Juan
-Class: Leader
-Pic: Leader Juan
-Gender: Male
-Music: Male
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Poliwhirl
-Level: 50
-- Hypnosis
-- Rain Dance
+Tatsugiri Stretchy
+Level: 46
+- Dragon Pulse
+- Water Pulse
+- Helping Hand
 - Protect
-- Hydro Pump
 
-Whiscash
-Level: 51
-- Rain Dance
-- Water Pulse
-- Double Team
-- Fissure
-
-Walrein
-Level: 53
-- Water Pulse
-- Body Slam
-- Protect
-- Ice Beam
-
-Crawdaunt @ Chesto Berry
-Level: 53
+Dondozo @ Chesto Berry
+Level: 46
+Ability: Oblivious
 - Rest
-- Guillotine
-- Taunt
-- Double Team
-
-Kingdra @ Chesto Berry
-Level: 56
-- Water Pulse
-- Double Team
-- Ice Beam
-- Rest
-
-=== TRAINER_JUAN_4 ===
-Name: Juan
-Class: Leader
-Pic: Leader Juan
-Gender: Male
-Music: Male
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Lapras
-Level: 56
-- Hydro Pump
-- Perish Song
-- Ice Beam
-- Confuse Ray
-
-Whiscash
-Level: 58
-- Rain Dance
-- Water Pulse
-- Double Team
-- Fissure
-
-Poliwhirl
-Level: 56
-- Hypnosis
-- Rain Dance
-- Protect
-- Hydro Pump
-
-Walrein
-Level: 58
-- Water Pulse
-- Body Slam
-- Protect
-- Ice Beam
-
-Crawdaunt @ Chesto Berry
-Level: 58
-- Rest
-- Guillotine
-- Taunt
-- Double Team
-
-Kingdra @ Chesto Berry
-Level: 61
-- Water Pulse
-- Double Team
-- Ice Beam
-- Rest
-
-=== TRAINER_JUAN_5 ===
-Name: Juan
-Class: Leader
-Pic: Leader Juan
-Gender: Male
-Music: Male
-Items: Full Restore / Full Restore / Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Lapras
-Level: 61
-- Hydro Pump
-- Perish Song
-- Ice Beam
-- Confuse Ray
-
-Whiscash
-Level: 63
-- Rain Dance
-- Water Pulse
-- Double Team
-- Fissure
-
-Politoed
-Level: 61
-- Hypnosis
-- Rain Dance
-- Hydro Pump
-- Perish Song
-
-Walrein
-Level: 63
-- Water Pulse
-- Body Slam
-- Protect
-- Sheer Cold
-
-Crawdaunt @ Chesto Berry
-Level: 63
-- Rest
-- Guillotine
-- Taunt
-- Double Team
-
-Kingdra @ Chesto Berry
-Level: 66
-- Water Pulse
-- Double Team
-- Ice Beam
-- Rest
+- Order Up
+- Wave Crash
+- Body Press
 
 === TRAINER_TED ===
 Name: Ted
@@ -7008,7 +5988,6 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Slaking
 Level: 32
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 - Focus Punch
 - Yawn
 - Slack Off
@@ -11121,56 +10100,6 @@ Shiftry
 Level: 35
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_WALLY_VR_1 ===
-Name: Wally
-Class: Rival
-Pic: Wally
-Gender: Male
-Music: Male
-Items: Full Restore / Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Altaria
-Level: 44
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Aerial Ace
-- Safeguard
-- Dragon Breath
-- Dragon Dance
-
-Delcatty
-Level: 43
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Sing
-- Assist
-- Charm
-- Feint Attack
-
-Roselia
-Level: 44
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Magical Leaf
-- Leech Seed
-- Giga Drain
-- Toxic
-
-Magneton
-Level: 41
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Supersonic
-- Thunderbolt
-- Tri Attack
-- Screech
-
-Gardevoir
-Level: 45
-IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Double Team
-- Calm Mind
-- Psychic
-- Future Sight
-
 === TRAINER_BRENDAN_ROUTE_103_MUDKIP ===
 Name: Brendan
 Class: Rival
@@ -14154,6 +13083,51 @@ Ralts
 Level: 16
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
+=== TRAINER_WALLY_VR_1 ===
+Name: Wally
+Class: Rival
+Pic: Wally
+Gender: Male
+Music: Male
+Items: Full Restore / Full Restore
+Double Battle: Yes
+AI: Basic Trainer
+
+Altaria
+Level: 44
+- Aerial Ace
+- Safeguard
+- Dragon Breath
+- Dragon Dance
+
+Delcatty
+Level: 43
+- Sing
+- Assist
+- Charm
+- Feint Attack
+
+Roselia
+Level: 44
+- Magical Leaf
+- Leech Seed
+- Giga Drain
+- Toxic
+
+Magneton
+Level: 41
+- Supersonic
+- Thunderbolt
+- Tri Attack
+- Screech
+
+Gardevoir
+Level: 45
+- Double Team
+- Calm Mind
+- Psychic
+- Future Sight
+
 === TRAINER_WALLY_VR_2 ===
 Name: Wally
 Class: Rival
@@ -14194,141 +13168,6 @@ Level: 44
 
 Gardevoir
 Level: 48
-- Double Team
-- Calm Mind
-- Psychic
-- Future Sight
-
-=== TRAINER_WALLY_VR_3 ===
-Name: Wally
-Class: Rival
-Pic: Wally
-Gender: Male
-Music: Male
-Items: Full Restore / Full Restore
-Double Battle: Yes
-AI: Smart Trainer
-
-Altaria
-Level: 50
-- Aerial Ace
-- Safeguard
-- Dragon Breath
-- Dragon Dance
-
-Delcatty
-Level: 49
-- Sing
-- Assist
-- Charm
-- Feint Attack
-
-Roserade
-Level: 50
-- Magical Leaf
-- Leech Seed
-- Giga Drain
-- Toxic
-
-Magnezone
-Level: 47
-- Supersonic
-- Thunderbolt
-- Tri Attack
-- Screech
-
-Gardevoir
-Level: 51
-- Double Team
-- Calm Mind
-- Psychic
-- Future Sight
-
-=== TRAINER_WALLY_VR_4 ===
-Name: Wally
-Class: Rival
-Pic: Wally
-Gender: Male
-Music: Male
-Items: Full Restore / Full Restore
-Double Battle: Yes
-AI: Smart Trainer
-
-Altaria
-Level: 53
-- Aerial Ace
-- Safeguard
-- Dragon Breath
-- Dragon Dance
-
-Delcatty
-Level: 52
-- Sing
-- Assist
-- Charm
-- Feint Attack
-
-Roserade
-Level: 53
-- Magical Leaf
-- Leech Seed
-- Giga Drain
-- Toxic
-
-Magnezone
-Level: 50
-- Supersonic
-- Thunderbolt
-- Tri Attack
-- Screech
-
-Gardevoir
-Level: 54
-- Double Team
-- Calm Mind
-- Psychic
-- Future Sight
-
-=== TRAINER_WALLY_VR_5 ===
-Name: Wally
-Class: Rival
-Pic: Wally
-Gender: Male
-Music: Male
-Items: Full Restore / Full Restore
-Double Battle: Yes
-AI: Smart Trainer
-
-Altaria
-Level: 56
-- Aerial Ace
-- Safeguard
-- Dragon Breath
-- Dragon Dance
-
-Delcatty
-Level: 55
-- Sing
-- Assist
-- Charm
-- Feint Attack
-
-Roserade
-Level: 56
-- Magical Leaf
-- Leech Seed
-- Giga Drain
-- Toxic
-
-Magnezone
-Level: 53
-- Supersonic
-- Thunderbolt
-- Tri Attack
-- Screech
-
-Gardevoir
-Level: 57
 - Double Team
 - Calm Mind
 - Psychic
