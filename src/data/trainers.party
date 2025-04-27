@@ -4621,6 +4621,26 @@ Items: Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer / Force Setup First Turn / Double Ace Pokemon
 Mugshot: Purple
+Party Size: 6
+Pool Rules: Basic
+
+Shiftry @ Tanga Berry
+Level: 48
+Nature: Adamant
+Tags: Lead
+- Tailwind
+- Throat Chop
+- Leaf Blade
+- Upper Hand
+
+Mightyena
+Level: 46
+Ability: Intimidate
+Tags: Lead
+- Howl
+- Play Rough
+- Psychic Fangs
+- Crunch
 
 Cacturne @ Tanga Berry
 Level: 46
@@ -4628,14 +4648,6 @@ Level: 46
 - Spiky Shield
 - Leaf Storm
 - Focus Punch
-
-Shiftry @ Tanga Berry
-Level: 48
-Nature: Adamant
-- Tailwind
-- Throat Chop
-- Leaf Blade
-- Upper Hand
 
 Mightyena
 Level: 46
@@ -4656,7 +4668,7 @@ Nature: Jolly
 Houndoom @ Throat Spray
 Level: 49
 Nature: Modest
-IVs: 30 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Beat Up
 - Foul Play
 - Burning Jealousy
@@ -4664,10 +4676,15 @@ IVs: 30 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 
 Absol @ Absolite
 Level: 49
+Tags: Ace
 - Megahorn
 - Play Rough
 - Night Slash
 - Psycho Cut
+
+Houndoom @ Houndoominite
+Level: 49
+Tags: Ace
 
 === TRAINER_PHOEBE ===
 Name: Phoebe
@@ -4679,33 +4696,47 @@ Items: Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Green
+Party Size: 6
+Pool Rules: Basic
 
 Dusclops @ Eviolite
 Level: 48
+Tags: Lead
 - Shadow Punch
 - Confuse Ray
 - Curse
 - Protect
 
 Banette
-Level: 49
+Level: 50
+Ability: Cursed Body
 - Shadow Ball
 - Grudge
 - Will O Wisp
 - Feint Attack
 
-Sableye @ Sablenite
+Sableye
 Level: 50
+Ability: Prankster
 - Shadow Ball
 - Double Team
 - Night Shade
 - Feint Attack
 
 Froslass
-Level: 49
+Level: 50
 
 Annihilape
-Level: 49
+Level: 50
+
+Dhelmise
+Level: 50
+
+Jellicent (F)
+Level: 50
+
+Trevenant
+Level: 50
 
 Dusknoir
 Level: 51
@@ -4713,6 +4744,27 @@ Level: 51
 - Ice Beam
 - Rock Slide
 - Earthquake
+
+Rotom
+Level: 50
+
+Banette @ Banettite
+Level: 50
+Ability: Cursed Body
+Tags: Ace
+- Shadow Ball
+- Grudge
+- Will O Wisp
+- Feint Attack
+
+Sableye @ Sablenite
+Level: 50
+Ability: Prankster
+Tags: Ace
+- Shadow Ball
+- Double Team
+- Night Shade
+- Feint Attack
 
 === TRAINER_GLACIA ===
 Name: Glacia
@@ -4724,10 +4776,13 @@ Items: Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Pink
+Party Size: 6
+Pool Rules: Basic
 
 Ninetales Alola @ Icy Rock
 Level: 50
 Ability: Snow Warning
+Tags: Lead
 - Aurora Veil
 - Weather Ball
 - Blizzard
@@ -4764,6 +4819,7 @@ Level: 53
 Glalie @ Glalitite
 Level: 52
 Ability: Moody
+Tags: Ace
 - Protect
 - Crunch
 - Shadow Ball
@@ -4779,37 +4835,59 @@ Items: Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Blue
+Party Size: 6
+Pool Rules: Basic
 
-Baxcalibur
-Level: 52
+Salamence
+Level: 54
+Tags: Lead
+- Flamethrower
+- Dragon Claw
+- Rock Slide
+- Crunch
 
 Altaria
 Level: 54
+Tags: Lead
 - Double Edge
 - Dragon Breath
 - Dragon Dance
 - Aerial Ace
 
+Baxcalibur
+Level: 54
+
 Kingdra
-Level: 53
+Level: 54
 - Smokescreen
 - Dragon Dance
 - Surf
 - Body Slam
 
 Flygon
-Level: 53
+Level: 54
 - Flamethrower
 - Crunch
 - Dragon Breath
 - Earthquake
 
+Exeggutor Alola
+Level: 54
+
+Haxorus
+Level: 54
+
 Salamence @ Salamencite
 Level: 55
+Tags: Ace
 - Flamethrower
 - Dragon Claw
 - Rock Slide
 - Crunch
+
+Sceptile @ Sceptilite
+Level: 55
+Tags: Ace
 
 === TRAINER_ROXANNE_1 ===
 Name: Roxanne
@@ -4821,6 +4899,7 @@ Items: Potion
 Double Battle: Yes
 AI: Smart Trainer / Conservative
 Mugshot: Yellow
+Party Size: 4
 
 Pumice (Shuckle)
 Level: 12
@@ -4863,6 +4942,8 @@ Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Yellow
+Party Size: 6
+Pool Rules: Basic
 
 Quartz (Gigalith) @ Smooth Rock
 Level: 32
@@ -4892,6 +4973,8 @@ Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Yellow
+Party Size: 6
+Pool Rules: Basic
 
 Quartz (Gigalith) @ Smooth Rock
 Level: 38
@@ -4921,6 +5004,8 @@ Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Yellow
+Party Size: 6
+Pool Rules: Basic
 
 Quartz (Gigalith) @ Smooth Rock
 Level: 44
@@ -4950,6 +5035,8 @@ Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Yellow
+Party Size: 6
+Pool Rules: Basic
 
 Quartz (Gigalith) @ Smooth Rock
 Level: 55
@@ -5550,6 +5637,8 @@ Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Purple
+Party Size: 6
+Pool Rules: Basic
 
 Houndour
 Level: 46
@@ -5603,6 +5692,8 @@ Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Purple
+Party Size: 6
+Pool Rules: Basic
 
 Arcanine
 Level: 51
