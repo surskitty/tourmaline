@@ -5007,6 +5007,12 @@ Ability: Technician
 - Power Up Punch
 - Rock Smash
 
+Swarmer (Crabrawler) (M)
+Level: 16
+- Rock Smash
+- Bubble Beam
+- Leer
+
 Sumo (Makuhita) (F) @ Sitrus Berry
 Level: 19
 Ability: Thick Fat
@@ -8488,11 +8494,11 @@ Music: Intense
 Double Battle: Yes
 AI: Basic Trainer
 
-Meditite
+Crabrawler
 Level: 13
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
-Throh
+Meditite
 Level: 13
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
@@ -8505,11 +8511,11 @@ Music: Intense
 Double Battle: Yes
 AI: Basic Trainer
 
-Meditite
+Clobbopus
 Level: 13
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
-Sawk
+Crabrawler
 Level: 13
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 

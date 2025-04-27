@@ -432,7 +432,7 @@
 #define P_FAMILY_PIKIPEK                 FALSE
 #define P_FAMILY_YUNGOOS                 FALSE
 #define P_FAMILY_GRUBBIN                 FALSE
-#define P_FAMILY_CRABRAWLER              FALSE
+#define P_FAMILY_CRABRAWLER              TRUE
 #define P_FAMILY_ORICORIO                FALSE
 #define P_FAMILY_CUTIEFLY                FALSE
 #define P_FAMILY_ROCKRUFF                FALSE

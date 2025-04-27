@@ -238,7 +238,7 @@ text DewfordTown_Gym_Text_GymGuideAdvice {
     "bound {PLAYER}?\p"
     "Dewford's Gym Leader Brawly commands Fighting-type Pokémon.\p"
     "Most Fighting-type Pokémon have trouble with Ghost-types, but islanders are built different.\p"
-    "This Gym is as Dark as the moves for taking care of local Sandygast.\p"
+    "This Gym is as Dark as needed for taking care of local Sandygast.\p"
     "It'll brighten up as you show them what for, though!")
 }
 
@@ -275,8 +275,7 @@ text DewfordTown_Gym_Text_JocelynPostBattle {
     format("I'm not going to waste this loss.\n"
     "I'll use it to motivate me to train!\p"
     "One day I'll become a Gym Leader…\p"
-    "No, I'll become the Pokémon League\n"
-    "Champion!")
+    "No, I'll become the Pokémon League Champion!")
 }
 
 text DewfordTown_Gym_Text_LauraIntro {
@@ -290,10 +289,8 @@ text DewfordTown_Gym_Text_LauraDefeat {
 }
 
 text DewfordTown_Gym_Text_LauraPostBattle {
-    format("I battle in the dark to make my heart\n"
-    "stronger.\p"
-    "But because it's so dark, I can never\n"
-    "see Brawly's face…")
+    format("I battle in the dark to make my heart stronger.\p"
+    "But because it's so dark, I can never see Brawly's face…")
 }
 
 text DewfordTown_Gym_Text_LilithIntro {
@@ -307,13 +304,11 @@ text DewfordTown_Gym_Text_LilithDefeat {
 }
 
 text DewfordTown_Gym_Text_LilithPostBattle {
-    format("You deserve to stay lost and end up\n"
-    "back at the entrance again!")
+    format("You deserve to stay lost and end up back at the entrance again!")
 }
 
 text DewfordTown_Gym_Text_BrendenIntro {
-    format("I'll show you the gumption of\n"
-    "a sailing man!")
+    format("I'll show you the gumption of a sailing man!")
 }
 
 text DewfordTown_Gym_Text_BrendenDefeat {
@@ -322,8 +317,7 @@ text DewfordTown_Gym_Text_BrendenDefeat {
 }
 
 text DewfordTown_Gym_Text_BrendenPostBattle {
-    format("Oh, aye! You're worthy of seeing\n"
-    "our Gym Leader.")
+    format("Oh, aye! You're worthy of seeing our Gym Leader.")
 }
 
 text DewfordTown_Gym_Text_CristianIntro {
@@ -349,8 +343,7 @@ text DewfordTown_Gym_Text_BrawlyIntro {
 }
 
 text DewfordTown_Gym_Text_BrawlyDefeat {
-    format("Whoah, wow! You made a much bigger\n"
-    "splash than I expected!\p"
+    format("Whoah, wow! You made a much bigger splash than I expected!\p"
     "You swamped me!\p"
     "Okay, you've got me.\n"
     "Take this Gym Badge!")
@@ -361,7 +354,7 @@ text DewfordTown_Gym_Text_ReceivedKnuckleBadge {
 }
 
 text DewfordTown_Gym_Text_KnuckleBadgeInfoTakeThis {
-    format("The Knuckle Badge makes all Pokémon up to Level 30, even those you get in trades, obey without question.\p"
+    format("The Knuckle Badge makes all Pokémon up to Level 30 obey without question.\p"
     "It also lets you use the exploratory move Flash outside of battle.\p"
     "If you'd like, use this Technical Machine, too.")
 }
@@ -394,8 +387,7 @@ text DewfordTown_Gym_Text_BrawlyPreRematch {
     format("A wave may draw back, but it always returns to the shore.\p"
     "A giant wave of a talent like you…\n"
     "I knew you would return!\p"
-    "Show me how much higher\n"
-    "you've gone!")
+    "Show me how much higher you've gone!")
 }
 
 text DewfordTown_Gym_Text_BrawlyRematchDefeat {

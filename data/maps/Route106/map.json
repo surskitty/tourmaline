@@ -117,9 +117,9 @@
       "flag": "FLAG_TEMP_2"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SPECIES(WINGULL)",
-      "x": 16,
-      "y": 7,
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(CRABRAWLER)",
+      "x": 60,
+      "y": 16,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 3,

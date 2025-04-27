@@ -1334,7 +1334,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_3),
+#if !TESTING
+        .abilities = { ABILITY_HYPER_CUTTER, ABILITY_HYPER_CUTTER, ABILITY_GLUTTONY},
+        .innates = { ABILITY_ANGER_POINT, ABILITY_ANGER_SHELL, ABILITY_IRON_FIST },
+#else
         .abilities = { ABILITY_HYPER_CUTTER, ABILITY_IRON_FIST, ABILITY_ANGER_POINT },
+#endif
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Crabrawler"),
         .cryId = CRY_CRABRAWLER,
@@ -1400,7 +1405,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_3),
+#if !TESTING
+        .abilities = { ABILITY_HYPER_CUTTER, ABILITY_HYPER_CUTTER, ABILITY_GLUTTONY},
+        .innates = { ABILITY_ANGER_POINT, ABILITY_IRON_FIST  },
+#else
         .abilities = { ABILITY_HYPER_CUTTER, ABILITY_IRON_FIST, ABILITY_ANGER_POINT },
+#endif
         .bodyColor = BODY_COLOR_WHITE,
         .speciesName = _("Crabominable"),
         .cryId = CRY_CRABOMINABLE,
