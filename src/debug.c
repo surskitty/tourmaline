@@ -4034,6 +4034,16 @@ static void DebugAction_Sound_MUS_SelectId(u8 taskId)
     X(MUS_RG_TRAINER_TOWER) \
     X(MUS_RG_SLOW_PALLET) \
     X(MUS_RG_TEACHY_TV_MENU) \
+    X(MUS_HGSS_CASINO) \
+    X(MUS_CASINO_PLUS_1) \
+    X(MUS_CASINO_PLUS_2) \
+    X(MUS_CASINO_PLUS_3) \
+    X(MUS_CASINO_PLUS_4) \
+    X(MUS_CASINO_PLUS_5) \
+    X(MUS_CASINO_PLUS_6) \
+    X(MUS_CASINO_PLUS_7) \
+    X(MUS_CASINO_PLUS_8) \
+    X(MUS_CASINO_PLUS_9) \
     X(PH_TRAP_BLEND) \
     X(PH_TRAP_HELD) \
     X(PH_TRAP_SOLO) \
