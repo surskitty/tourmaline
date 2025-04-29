@@ -1,4 +1,3 @@
-//#include "game_corner_blackjack.h"
 #include "game_corner_gacha.h"
 #include "global.h"
 #include "malloc.h"
@@ -54,33 +53,33 @@ enum
     GACHA_STATE_PROCESS_COMPLETED_INPUT,
     GACHA_STATE_START_EXIT,
     GACHA_STATE_EXIT,
-	STATE_INIT_A,
-	STATE_TIMER_1,
-	STATE_TWIST,
-	STATE_TIMER_2,
-	STATE_INIT_GIVE,
-	STATE_SHAKE_1,
-	STATE_TIMER_3,
-	STATE_INIT_SHAKE_2,
-	STATE_SHAKE_2,
-	STATE_TIMER_4,
-	STATE_INIT_SHAKE_3,
-	STATE_TIMER_5,
-	STATE_GIVE,
-	STATE_FADE,
-	STATE_POKEBALL_INIT,
-	STATE_POKEBALL_PROCESS,
-	STATE_POKEBALL_ARRIVE,
+    STATE_INIT_A,
+    STATE_TIMER_1,
+    STATE_TWIST,
+    STATE_TIMER_2,
+    STATE_INIT_GIVE,
+    STATE_SHAKE_1,
+    STATE_TIMER_3,
+    STATE_INIT_SHAKE_2,
+    STATE_SHAKE_2,
+    STATE_TIMER_4,
+    STATE_INIT_SHAKE_3,
+    STATE_TIMER_5,
+    STATE_GIVE,
+    STATE_FADE,
+    STATE_POKEBALL_INIT,
+    STATE_POKEBALL_PROCESS,
+    STATE_POKEBALL_ARRIVE,
     STATE_FADE_POKEBALL_TO_NORMAL,
     STATE_POKEBALL_ARRIVE_WAIT,
     STATE_SHOW_NEW_MON,
     STATE_NEW_MON_MSG,
-	NEW_1,
-	NEW_2,
-	NEW_3,
-	NEW_4,
-	NEW_5,
-	NEW_6,
+    NEW_1,
+    NEW_2,
+    NEW_3,
+    NEW_4,
+    NEW_5,
+    NEW_6,
 };
 
 enum {
@@ -91,11 +90,35 @@ enum {
 };
 
 enum {
+    GACHA_BASIC = 1,
+    GACHA_GREAT,
+    GACHA_ULTRA,
+    GACHA_MASTER,
+};
+
+enum {
+    RARITY_COMMON,
+    RARITY_UNCOMMON,
+    RARITY_RARE,
+    RARITY_ULTRA_RARE,
+};
+
+enum {
     SPR_PLAYER_DIG_1,
     SPR_PLAYER_DIG_10,
-	SPR_PLAYER_DIG_100,
-	SPR_PLAYER_DIG_1000,
+    SPR_PLAYER_DIG_100,
+    SPR_PLAYER_DIG_1000,
 };
+
+#define RARITY_COMMON_ODDS 50
+#define RARITY_UNCOMMON_ODDS 30
+#define RARITY_RARE_ODDS 15
+#define RARITY_ULTRA_RARE_ODDS 5
+
+#define GACHA_BASIC_MIN_WAGER 50
+#define GACHA_GREAT_MIN_WAGER 250
+#define GACHA_ULTRA_MIN_WAGER 1000
+#define GACHA_MASTER_MIN_WAGER 4500
 
 #define SPR_CREDIT_DIGITS SPR_CREDIT_DIG_1
 #define SPR_PLAYER_DIGITS SPR_PLAYER_DIG_1
@@ -104,130 +127,40 @@ enum {
 #define MAX_SPRITES_PLAYER 4
 
 struct Gacha {
-	u8 state;
-	u8 GachaId;
-	u8 KnobSpriteId;
-	u8 DigitalTextSpriteId;
-	u8 LotteryJPNspriteId;
-	u8 CreditSpriteIds[MAX_SPRITES_CREDIT];
-	u8 PlayerSpriteIds[MAX_SPRITES_PLAYER];	
-	u8 CreditMenu1Id;
-	u8 CreditMenu2Id;
-	u8 PokemonOne;
-	u8 PokemonTwo;
-	u8 PokemonOneSpriteId;
-	u8 PokemonTwoSpriteId;
-	u8 PokemonThreeSpriteId;
-	u8 Odds; // Chance of new Pokemon
-	u8 ArrowsSpriteId;
-	u8 CTAspriteId;
-	u8 exitToggle;
-	u16 wager;
-	u8 cursorPosition;
-	u8 Trigger;
-	u8 Basic_CommonMax; // Total Number of Pokemon in each array
-	u8 Basic_UncommonMax;
-	u8 Basic_RareMax;
-	u8 Basic_UltraRareMax;
-	u8 Great_CommonMax;
-	u8 Great_UncommonMax;
-	u8 Great_RareMax;
-	u8 Great_UltraRareMax;
-	u8 Ultra_CommonMax;
-	u8 Ultra_UncommonMax;
-	u8 Ultra_RareMax;
-	u8 Ultra_UltraRareMax;
-	u8 Master_CommonMax;
-	u8 Master_UncommonMax;
-	u8 Master_RareMax;
-	u8 Master_UltraRareMax;
-	u8 Rarity; // 0 = Common, 1 = Uncommon, 2 = Rare, 3 = Ultra Rare
-	u8 Basic_Common_Owned; // How Many Pokemon in the array does the Player Own
-	u8 Basic_Uncommon_Owned;
-	u8 Basic_Rare_Owned;
-	u8 Basic_UltraRare_Owned;
-	u8 Great_Common_Owned;
-	u8 Great_Uncommon_Owned;
-	u8 Great_Rare_Owned;
-	u8 Great_UltraRare_Owned;
-	u8 Ultra_Common_Owned;
-	u8 Ultra_Uncommon_Owned;
-	u8 Ultra_Rare_Owned;
-	u8 Ultra_UltraRare_Owned;
-	u8 Master_Common_Owned;
-	u8 Master_Uncommon_Owned;
-	u8 Master_Rare_Owned;
-	u8 Master_UltraRare_Owned;
-	u16 Basic_Total_Owned;
-	u16 Great_Total_Owned;
-	u16 Ultra_Total_Owned;
-	u16 Master_Total_Owned;
-	u16 Basic_Total_Max;
-	u16 Great_Total_Max;
-	u16 Ultra_Total_Max;
-	u16 Master_Total_Max;
-	u8 commonChance;
-	u8 uncommonChance;
-	u8 rareChance;
-	u8 ultraRareChance;
-	u8 IsNewPokemon;
-	u16 Temp_Total;
-	u16 CalculatedSpecies;
-	u8 bouncingPokeballSpriteId;
-	u8 timer;
-	u8 monSpriteId;
-	u32 waitTimer;
-	u8 gachaState;
-	u8 Input;
-	u8 textColor[3];
-	struct Pokemon GachaMon;
-};	
-
-static EWRAM_DATA struct {
-    struct Pokemon tempMon; // Used as a temp variable when swapping Pokémon
-    u32 timer;
-    u32 monPersonalities[2];
-    u8 filler_70[2];
-    u8 playerFinishStatus;
-    u8 partnerFinishStatus;
-    u16 linkData[10];
-    u8 linkTimeoutZero1;
-    u8 linkTimeoutZero2;
-    u16 linkTimeoutTimer;
-    u16 neverRead_8C;
-    u8 monSpriteIds[2];
-    u8 connectionSpriteId1; // Multi-purpose sprite ids used during the transfer sequence
-    u8 connectionSpriteId2;
-    u8 cableEndSpriteId;
-    u8 scheduleLinkTransfer;
-    u16 state;
-    u8 filler_96[0x3C];
-    u8 releasePokeballSpriteId;
+    u8 state;
+    u8 GachaId;
+    u8 KnobSpriteId;
+    u8 DigitalTextSpriteId;
+    u8 LotteryJPNspriteId;
+    u8 CreditSpriteIds[MAX_SPRITES_CREDIT];
+    u8 PlayerSpriteIds[MAX_SPRITES_PLAYER];
+    u8 CreditMenu1Id;
+    u8 CreditMenu2Id;
+    u8 PokemonOneSpriteId;
+    u8 PokemonTwoSpriteId;
+    u8 PokemonThreeSpriteId;
+    u8 newMonOdds;
+    u8 ArrowsSpriteId;
+    u8 CTAspriteId;
+    u16 wager;
+    u8 cursorPosition;
+    u8 Trigger;
+    u8 Rarity; // 0 = Common, 1 = Uncommon, 2 = Rare, 3 = Ultra Rare
+    u8 ownedCommon;
+    u8 ownedUncommon;
+    u8 ownedRare;
+    u8 ownedUltraRare;
+    u8 commonChance;
+    u8 uncommonChance;
+    u8 rareChance;
+    u8 ultraRareChance;
+    u16 CalculatedSpecies;
     u8 bouncingPokeballSpriteId;
-    u16 texX;
-    u16 texY;
-    u16 neverRead_D8;
-    u16 neverRead_DA;
-    u16 scrX;
-    u16 scrY;
-    s16 bg1vofs;
-    s16 bg1hofs;
-    s16 bg2vofs;
-    s16 bg2hofs;
-    u16 sXY;
-    u16 gbaScale;
-    u16 alpha;
-    bool8 isLinkTrade;
-    u16 monSpecies[2];
-    u16 cachedMapMusic;
-    u8 textColors[3];
-    u8 filler_F9;
-    bool8 isCableTrade;
-    u8 wirelessWinLeft;
-    u8 wirelessWinTop;
-    u8 wirelessWinRight;
-    u8 wirelessWinBottom;
-} *sTradeAnim = NULL;
+    u8 timer;
+    u8 monSpriteId;
+    u32 waitTimer;
+    u8 Input;
+};    
 
 static const u8 sText_FromGacha[] = _("You got {STR_VAR_1}!");
 
@@ -255,9 +188,6 @@ static void InitGachaScreen(void);
 static void GachaVBlankCallback(void);
 static void SpriteCB_BouncingPokeball(struct Sprite *);
 static void SpriteCB_BouncingPokeballArrive(struct Sprite *);
-static void InitTradeScreen(void);
-static void Process_A(void);
-static void EggHatchPrintMessage(u8, u8 *, u8, u8, u8);
 
 static const u8 sMessageText[] = _("NEW POKéMON : {STR_VAR_1}%");
 
@@ -405,15 +335,15 @@ static const struct BgTemplate sGachaBGtemplates[] = {
 };
 
 static const struct WindowTemplate sGachaWinTemplates[] = {
-	{
+    {
         .bg = GACHA_MENUS,
         .tilemapLeft = 16,
         .tilemapTop = 9,
         .width = 14,
         .height = 2,
         .paletteNum = 0xF,
-        .baseBlock = 0x194,		
-	},
+        .baseBlock = 0x194,
+    },
     DUMMY_WIN_TEMPLATE,
 };
 
@@ -489,37 +419,37 @@ static const struct WindowTemplate sYesNoWinTemplate =
 static const struct SpritePalette sSpritePalettes[] =
 {
     { .data = Gacha_BG_Basic_Pal,      .tag = BG_BASIC_PAL },
-	{ .data = Gacha_BG_Great_Pal,      .tag = BG_GREAT_PAL },
-	{ .data = Gacha_BG_Ultra_Pal,      .tag = BG_ULTRA_PAL },
-	{ .data = Gacha_BG_Master_Pal,     .tag = BG_MASTER_PAL },
+    { .data = Gacha_BG_Great_Pal,      .tag = BG_GREAT_PAL },
+    { .data = Gacha_BG_Ultra_Pal,      .tag = BG_ULTRA_PAL },
+    { .data = Gacha_BG_Master_Pal,     .tag = BG_MASTER_PAL },
     {}
 };
 
 static const struct SpritePalette sSpritePalettes2[] =
 {
-	{ .data = BelossomPAL,			   .tag = PALTAG_BELOSSOM },
-	{ .data = PhanpyPal,			   .tag = PALTAG_PHANPY },
-	{ .data = TeddiursaPAL,			   .tag = PALTAG_TEDDIURSA },
-	{ .data = ElekidPAL,			   .tag = PALTAG_ELEKID },
-	{ .data = HoppipPAL,  			   .tag = PALTAG_HOPPIP },
-	{ .data = sCredit_Pal,      	   .tag = PALTAG_ARROWS },	
-	{ .data = Gacha_press_a_Pal,	   .tag = PALTAG_PRESS_A },	
-	{ .data = Gacha_Knob_Pal,		   .tag = PALTAG_KNOB },
-	{ .data = Gacha_Digital_Text_Pal,  .tag = DIGITAL_TEXT_PAL },	
-	{ .data = sCredit_Pal,      	   .tag = PALTAG_INTERFACE },
-	{ .data = sPlayer_Pal,			   .tag = PALTAG_INTERFACEPLAYER },	
-	{ .data = Gacha_Lottery_Pal,	   .tag = LOTTERY_JPN_PAL },
-	{ .data = Gacha_Menu_Basic_Pal,    .tag = PALTAG_MENU_BASIC },
-	{ .data = Gacha_Menu_Great_Pal,    .tag = PALTAG_MENU_GREAT },
-	{ .data = Gacha_Menu_Ultra_Pal,    .tag = PALTAG_MENU_ULTRA },
-	{ .data = Gacha_Menu_Master_Pal,   .tag = PALTAG_MENU_MASTER },
-	{}
+    { .data = BelossomPAL,             .tag = PALTAG_BELOSSOM },
+    { .data = PhanpyPal,               .tag = PALTAG_PHANPY },
+    { .data = TeddiursaPAL,            .tag = PALTAG_TEDDIURSA },
+    { .data = ElekidPAL,               .tag = PALTAG_ELEKID },
+    { .data = HoppipPAL,               .tag = PALTAG_HOPPIP },
+    { .data = sCredit_Pal,             .tag = PALTAG_ARROWS },
+    { .data = Gacha_press_a_Pal,       .tag = PALTAG_PRESS_A },
+    { .data = Gacha_Knob_Pal,          .tag = PALTAG_KNOB },
+    { .data = Gacha_Digital_Text_Pal,  .tag = DIGITAL_TEXT_PAL },
+    { .data = sCredit_Pal,             .tag = PALTAG_INTERFACE },
+    { .data = sPlayer_Pal,             .tag = PALTAG_INTERFACEPLAYER },
+    { .data = Gacha_Lottery_Pal,       .tag = LOTTERY_JPN_PAL },
+    { .data = Gacha_Menu_Basic_Pal,    .tag = PALTAG_MENU_BASIC },
+    { .data = Gacha_Menu_Great_Pal,    .tag = PALTAG_MENU_GREAT },
+    { .data = Gacha_Menu_Ultra_Pal,    .tag = PALTAG_MENU_ULTRA },
+    { .data = Gacha_Menu_Master_Pal,   .tag = PALTAG_MENU_MASTER },
+    {}
 };
 
 static const struct SpritePalette sBall[] =
 {
-	{ .data = sPokeball_Pal,			   .tag = PALTAG_POKEBALL },
-	{}
+    { .data = sPokeball_Pal,               .tag = PALTAG_POKEBALL },
+    {}
 };
 
 static const struct CompressedSpriteSheet sSpriteSheet_Press_A =
@@ -632,7 +562,7 @@ static const struct OamData sOamData_Press_A =
     .objMode = ST_OAM_OBJ_NORMAL,
     .shape = SPRITE_SHAPE(64x32),
     .size = SPRITE_SIZE(64x32),
-	.tileNum = 0,
+    .tileNum = 0,
     .priority = 0,
 };
 
@@ -642,7 +572,7 @@ static const struct OamData sOamData_Arrows =
     .objMode = ST_OAM_OBJ_NORMAL,
     .shape = SPRITE_SHAPE(8x32),
     .size = SPRITE_SIZE(8x32),
-	.tileNum = 0,
+    .tileNum = 0,
     .priority = 0,
 };
 
@@ -652,7 +582,7 @@ static const struct OamData sOamData_Hoppip =
     .objMode = ST_OAM_OBJ_NORMAL,
     .shape = SPRITE_SHAPE(32x32),
     .size = SPRITE_SIZE(32x32),
-	.tileNum = 0,
+    .tileNum = 0,
     .priority = 0,
 };
 
@@ -662,7 +592,7 @@ static const struct OamData sOamData_Elekid =
     .objMode = ST_OAM_OBJ_NORMAL,
     .shape = SPRITE_SHAPE(32x32),
     .size = SPRITE_SIZE(32x32),
-	.tileNum = 0,
+    .tileNum = 0,
     .priority = 0,
 };
 
@@ -672,7 +602,7 @@ static const struct OamData sOamData_Teddiursa =
     .objMode = ST_OAM_OBJ_NORMAL,
     .shape = SPRITE_SHAPE(32x32),
     .size = SPRITE_SIZE(32x32),
-	.tileNum = 0,
+    .tileNum = 0,
     .priority = 0,
 };
 
@@ -682,7 +612,7 @@ static const struct OamData sOamData_Phanpy =
     .objMode = ST_OAM_OBJ_NORMAL,
     .shape = SPRITE_SHAPE(32x32),
     .size = SPRITE_SIZE(32x32),
-	.tileNum = 0,
+    .tileNum = 0,
     .priority = 0,
 };
 
@@ -692,7 +622,7 @@ static const struct OamData sOamData_Belossom =
     .objMode = ST_OAM_OBJ_NORMAL,
     .shape = SPRITE_SHAPE(32x32),
     .size = SPRITE_SIZE(32x32),
-	.tileNum = 0,
+    .tileNum = 0,
     .priority = 0,
 };
 
@@ -702,7 +632,7 @@ static const struct OamData sOamData_Menu =
     .objMode = ST_OAM_OBJ_NORMAL,
     .shape = SPRITE_SHAPE(64x64),
     .size = SPRITE_SIZE(64x64),
-	.tileNum = 0,
+    .tileNum = 0,
     .priority = 0,
 };
 
@@ -712,7 +642,7 @@ static const struct OamData sOamData_Menu_2 =
     .objMode = ST_OAM_OBJ_NORMAL,
     .shape = SPRITE_SHAPE(64x64),
     .size = SPRITE_SIZE(64x64),
-	.tileNum = 0,
+    .tileNum = 0,
     .priority = 0,
 };
 
@@ -722,7 +652,7 @@ static const struct OamData sOamData_Lottery_JPN =
     .objMode = ST_OAM_OBJ_NORMAL,
     .shape = SPRITE_SHAPE(64x64),
     .size = SPRITE_SIZE(64x64),
-	.tileNum = 0,
+    .tileNum = 0,
     .priority = 0,
 };
 
@@ -732,7 +662,7 @@ static const struct OamData sOamData_Digital_Text =
     .objMode = ST_OAM_OBJ_NORMAL,
     .shape = SPRITE_SHAPE(64x32),
     .size = SPRITE_SIZE(64x32),
-	.tileNum = 0,
+    .tileNum = 0,
     .priority = 0,
 };
 
@@ -742,7 +672,7 @@ static const struct OamData sOamData_Knob =
     .objMode = ST_OAM_OBJ_NORMAL,
     .shape = SPRITE_SHAPE(32x32),
     .size = SPRITE_SIZE(32x32),
-	.tileNum = 0,
+    .tileNum = 0,
     .priority = 0,
 };
 
@@ -859,21 +789,21 @@ static const struct SpriteTemplate sSpriteTemplate_Pokeball =
 
 static const union AnimCmd sPressAAnimCmd_1[] = 
 {
-	ANIMCMD_FRAME(32, 10),
-	ANIMCMD_FRAME(64, 10),
+    ANIMCMD_FRAME(32, 10),
+    ANIMCMD_FRAME(64, 10),
     ANIMCMD_JUMP(0)
 };
 
 static const union AnimCmd sPressAAnimCmd_0[] = 
 {
-	ANIMCMD_FRAME(0, 10),
-	ANIMCMD_FRAME(0, 10),
+    ANIMCMD_FRAME(0, 10),
+    ANIMCMD_FRAME(0, 10),
     ANIMCMD_JUMP(0)
 };
 
 static const union AnimCmd *const sPressAAnimCmds[] = {
     sPressAAnimCmd_0, // Gray
-	sPressAAnimCmd_1, // Highlight
+    sPressAAnimCmd_1, // Highlight
 };
 
 static const struct SpriteTemplate sSpriteTemplate_Press_A =
@@ -889,21 +819,21 @@ static const struct SpriteTemplate sSpriteTemplate_Press_A =
 
 static const union AnimCmd sArrowAnimCmd_1[] = 
 {
-	ANIMCMD_FRAME(8, 20),
-	ANIMCMD_FRAME(12, 20),
+    ANIMCMD_FRAME(8, 20),
+    ANIMCMD_FRAME(12, 20),
     ANIMCMD_JUMP(0)
 };
 
 static const union AnimCmd sArrowAnimCmd_0[] = 
 {
-	ANIMCMD_FRAME(0, 20),
-	ANIMCMD_FRAME(4, 20),
+    ANIMCMD_FRAME(0, 20),
+    ANIMCMD_FRAME(4, 20),
     ANIMCMD_JUMP(0)
 };
 
 static const union AnimCmd *const sArrowsAnimCmds[] = {
     sArrowAnimCmd_0, // Up and Down
-	sArrowAnimCmd_1, // Up
+    sArrowAnimCmd_1, // Up
 };
 
 static const struct SpriteTemplate sSpriteTemplate_Arrows =
@@ -930,9 +860,9 @@ static const union AnimCmd *const sMenu2AnimCmds[] = {
 
 static const union AnimCmd sHoppipAnimCmd_0[] = 
 {
-	ANIMCMD_FRAME(0, 15),
-	ANIMCMD_FRAME(16, 15),
-	ANIMCMD_FRAME(32, 15),
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(16, 15),
+    ANIMCMD_FRAME(32, 15),
     ANIMCMD_FRAME(48, 15),
     ANIMCMD_JUMP(0)
 };
@@ -954,15 +884,15 @@ static const struct SpriteTemplate sSpriteTemplate_Hoppip =
 
 static const union AnimCmd sElekidAnimCmd_0[] = 
 {
-	ANIMCMD_FRAME(0, 15),
-	ANIMCMD_FRAME(32, 15),
-	ANIMCMD_FRAME(0, 15),
-	ANIMCMD_FRAME(16, 15),
-	ANIMCMD_FRAME(0, 15),
-	ANIMCMD_FRAME(32, 15),
-	//ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(32, 15),
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(16, 15),
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(32, 15),
+    //ANIMCMD_FRAME(0, 15),
     ANIMCMD_FRAME(48, 15),
-	ANIMCMD_FRAME(32, 15),
+    ANIMCMD_FRAME(32, 15),
     ANIMCMD_JUMP(0)
 };
 
@@ -984,24 +914,24 @@ static const struct SpriteTemplate sSpriteTemplate_Elekid =
 static const union AnimCmd sTeddiursaAnimCmd_0[] = 
 {
     ANIMCMD_FRAME(16, 15),
-	ANIMCMD_FRAME(32, 15),
-	ANIMCMD_FRAME(16, 15),
+    ANIMCMD_FRAME(32, 15),
+    ANIMCMD_FRAME(16, 15),
     ANIMCMD_FRAME(0, 15),
-	ANIMCMD_FRAME(16, 15),
-	ANIMCMD_FRAME(32, 15),
-	ANIMCMD_FRAME(16, 15),
+    ANIMCMD_FRAME(16, 15),
+    ANIMCMD_FRAME(32, 15),
+    ANIMCMD_FRAME(16, 15),
     ANIMCMD_FRAME(0, 15),
-	ANIMCMD_FRAME(16, 15),
-	ANIMCMD_FRAME(32, 15),
-	ANIMCMD_FRAME(16, 15),
+    ANIMCMD_FRAME(16, 15),
+    ANIMCMD_FRAME(32, 15),
+    ANIMCMD_FRAME(16, 15),
     ANIMCMD_FRAME(0, 15),
-	ANIMCMD_FRAME(16, 15),
-	ANIMCMD_FRAME(32, 15),
-	ANIMCMD_FRAME(16, 15),
+    ANIMCMD_FRAME(16, 15),
+    ANIMCMD_FRAME(32, 15),
+    ANIMCMD_FRAME(16, 15),
     ANIMCMD_FRAME(0, 15),
-	ANIMCMD_FRAME(16, 15),
-	ANIMCMD_FRAME(32, 15),
-	ANIMCMD_FRAME(16, 15),
+    ANIMCMD_FRAME(16, 15),
+    ANIMCMD_FRAME(32, 15),
+    ANIMCMD_FRAME(16, 15),
     ANIMCMD_FRAME(48, 30),
     ANIMCMD_JUMP(0)
 };
@@ -1025,10 +955,10 @@ static const union AnimCmd sPhanpyAnimCmd_0[] =
 {
     ANIMCMD_FRAME(0, 15),
     ANIMCMD_FRAME(16, 15),
-	ANIMCMD_FRAME(48, 15),
-	ANIMCMD_FRAME(32, 15),
-	ANIMCMD_FRAME(48, 15),
-	ANIMCMD_FRAME(16, 15),
+    ANIMCMD_FRAME(48, 15),
+    ANIMCMD_FRAME(32, 15),
+    ANIMCMD_FRAME(48, 15),
+    ANIMCMD_FRAME(16, 15),
     ANIMCMD_JUMP(0)
 };
 
@@ -1051,12 +981,12 @@ static const union AnimCmd sBelossomAnimCmd_0[] =
 {
     ANIMCMD_FRAME(0, 15),
     ANIMCMD_FRAME(16, 15),
-	ANIMCMD_FRAME(0, 15),
-	ANIMCMD_FRAME(32, 15),
-	ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(32, 15),
+    ANIMCMD_FRAME(0, 15),
     ANIMCMD_FRAME(16, 15),
-	ANIMCMD_FRAME(0, 15),
-	ANIMCMD_FRAME(48, 30),
+    ANIMCMD_FRAME(0, 15),
+    ANIMCMD_FRAME(48, 30),
     ANIMCMD_JUMP(0)
 };
 
@@ -1222,23 +1152,23 @@ static const struct SpriteTemplate sSpriteTemplate_Lottery_JPN =
 
 static const union AnimCmd sKnobAnimCmd_1[] = 
 {
-	ANIMCMD_FRAME(0, 5),
-	ANIMCMD_FRAME(16, 5),
-	ANIMCMD_FRAME(32, 20),
-	ANIMCMD_FRAME(16, 5),
-	ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(0, 5),
+    ANIMCMD_FRAME(16, 5),
+    ANIMCMD_FRAME(32, 20),
+    ANIMCMD_FRAME(16, 5),
+    ANIMCMD_FRAME(0, 5),
     ANIMCMD_END
 };
 
 static const union AnimCmd sKnobAnimCmd_0[] = 
 {
-	ANIMCMD_FRAME(0, 20),
+    ANIMCMD_FRAME(0, 20),
     ANIMCMD_END
 };
 
 static const union AnimCmd *const sKnobAnimCmds[] = {
     sKnobAnimCmd_0, // Still
-	sKnobAnimCmd_1, // Rotate
+    sKnobAnimCmd_1, // Rotate
 };
 
 static const struct SpriteTemplate sSpriteTemplate_Knob =
@@ -1254,9 +1184,8 @@ static const struct SpriteTemplate sSpriteTemplate_Knob =
 
 void StartGacha(void)
 {
-	u8 taskId = 0;
     sGacha = AllocZeroed(sizeof(struct Gacha));
-    taskId = CreateTask(FadeToGachaScreen, 0);
+    CreateTask(FadeToGachaScreen, 0);
 }
 
 static void SpriteCB_BouncingPokeball(struct Sprite *sprite)
@@ -1307,7 +1236,7 @@ static void SpriteCB_BouncingPokeballArrive(struct Sprite *sprite)
 
 static void FadeToGachaScreen(u8 taskId)
 {
-	switch (gTasks[taskId].data[0])
+    switch (gTasks[taskId].data[0])
     {
     case 0:
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
@@ -1325,140 +1254,98 @@ static void FadeToGachaScreen(u8 taskId)
 
 static void BGSetup(void)
 {
-	u16 size = 0x1480;
-	
-	if (sGacha->GachaId == 1) // Basic
-	{
-		InitBgsFromTemplates(0, sGachaBGtemplates, ARRAY_COUNT(sGachaBGtemplates));
-		SetBgTilemapBuffer(GACHA_BG_BASE, AllocZeroed(BG_SCREEN_SIZE));
-		DecompressAndLoadBgGfxUsingHeap(GACHA_BG_BASE, Gacha_BG_Main, size, 0, 0);
-		CopyToBgTilemapBuffer(GACHA_BG_BASE, Gacha_BG_Main_Tilemap, 0, 0);
-		ResetPaletteFade();
-		LoadPalette(Gacha_BG_Basic_Pal, 0, sizeof(Gacha_BG_Basic_Pal));
-	}
-	else if (sGacha->GachaId == 2) // Great
-	{
-		InitBgsFromTemplates(0, sGachaBGtemplates, ARRAY_COUNT(sGachaBGtemplates));
-		SetBgTilemapBuffer(GACHA_BG_BASE, AllocZeroed(BG_SCREEN_SIZE));
-		DecompressAndLoadBgGfxUsingHeap(GACHA_BG_BASE, Gacha_BG_Main, size, 0, 0);
-		CopyToBgTilemapBuffer(GACHA_BG_BASE, Gacha_BG_Main_Tilemap, 0, 0);
-		ResetPaletteFade();
-		LoadPalette(Gacha_BG_Great_Pal, 0, sizeof(Gacha_BG_Great_Pal));		
-	}
-	else if (sGacha->GachaId == 3) // Ultra
-	{
-		InitBgsFromTemplates(0, sGachaBGtemplates, ARRAY_COUNT(sGachaBGtemplates));
-		SetBgTilemapBuffer(GACHA_BG_BASE, AllocZeroed(BG_SCREEN_SIZE));
-		DecompressAndLoadBgGfxUsingHeap(GACHA_BG_BASE, Gacha_BG_Main, size, 0, 0);
-		CopyToBgTilemapBuffer(GACHA_BG_BASE, Gacha_BG_Main_Tilemap, 0, 0);
-		ResetPaletteFade();
-		LoadPalette(Gacha_BG_Ultra_Pal, 0, sizeof(Gacha_BG_Ultra_Pal));		
-	}
-	else // Master
-	{
-		InitBgsFromTemplates(0, sGachaBGtemplates, ARRAY_COUNT(sGachaBGtemplates));
-		SetBgTilemapBuffer(GACHA_BG_BASE, AllocZeroed(BG_SCREEN_SIZE));
-		DecompressAndLoadBgGfxUsingHeap(GACHA_BG_BASE, Gacha_BG_Main, size, 0, 0);
-		CopyToBgTilemapBuffer(GACHA_BG_BASE, Gacha_BG_Main_Tilemap, 0, 0);
-		ResetPaletteFade();
-		LoadPalette(Gacha_BG_Master_Pal, 0, sizeof(Gacha_BG_Master_Pal));		
-	}
+    u16 size = 0x1480;
+
+    InitBgsFromTemplates(0, sGachaBGtemplates, ARRAY_COUNT(sGachaBGtemplates));
+    SetBgTilemapBuffer(GACHA_BG_BASE, AllocZeroed(BG_SCREEN_SIZE));
+    DecompressAndLoadBgGfxUsingHeap(GACHA_BG_BASE, Gacha_BG_Main, size, 0, 0);
+    CopyToBgTilemapBuffer(GACHA_BG_BASE, Gacha_BG_Main_Tilemap, 0, 0);
+    ResetPaletteFade();
+
+    switch (sGacha->GachaId)
+    {
+    default:
+    case GACHA_BASIC:
+        LoadPalette(Gacha_BG_Basic_Pal, 0, PLTT_SIZE_4BPP);
+        break;
+    case GACHA_GREAT:
+        LoadPalette(Gacha_BG_Great_Pal, 0, PLTT_SIZE_4BPP);
+        break;
+    case GACHA_ULTRA:
+        LoadPalette(Gacha_BG_Ultra_Pal, 0, PLTT_SIZE_4BPP);
+        break;
+    case GACHA_MASTER:
+        LoadPalette(Gacha_BG_Master_Pal, 0, PLTT_SIZE_4BPP);
+        break;
+    }
 }
 
 static void BGRed(void)
 {
-	u16 size = 0x1480;
+    u16 size = 0x1480;
 
-		InitBgsFromTemplates(0, sGachaBGtemplates, ARRAY_COUNT(sGachaBGtemplates));
-		SetBgTilemapBuffer(GACHA_BG_BASE, AllocZeroed(BG_SCREEN_SIZE));
-		DecompressAndLoadBgGfxUsingHeap(GACHA_BG_BASE, Gacha_BG_Red, size, 0, 0);
-		CopyToBgTilemapBuffer(GACHA_BG_BASE, Gacha_BG_Red_Tilemap, 0, 0);
-		ResetPaletteFade();
-		LoadPalette(Gacha_BG_Red_Pal, 0, sizeof(Gacha_BG_Red_Pal));
+    InitBgsFromTemplates(0, sGachaBGtemplates, ARRAY_COUNT(sGachaBGtemplates));
+    SetBgTilemapBuffer(GACHA_BG_BASE, AllocZeroed(BG_SCREEN_SIZE));
+    DecompressAndLoadBgGfxUsingHeap(GACHA_BG_BASE, Gacha_BG_Red, size, 0, 0);
+    CopyToBgTilemapBuffer(GACHA_BG_BASE, Gacha_BG_Red_Tilemap, 0, 0);
+    ResetPaletteFade();
+    LoadPalette(Gacha_BG_Red_Pal, 0, PLTT_SIZE_4BPP);
 }
 
 static void Shake1(void)
 {
-	u16 size = 0x1480;
-	
-	if (sGacha->GachaId == 1) // Basic
-	{
-		InitBgsFromTemplates(0, sGachaBGtemplates, ARRAY_COUNT(sGachaBGtemplates));
-		SetBgTilemapBuffer(GACHA_BG_BASE, AllocZeroed(BG_SCREEN_SIZE));
-		DecompressAndLoadBgGfxUsingHeap(GACHA_BG_BASE, Gacha_BG_Left, size, 0, 0);
-		CopyToBgTilemapBuffer(GACHA_BG_BASE, Gacha_BG_Left_Tilemap, 0, 0);
-		ResetPaletteFade();
-		LoadPalette(Gacha_BG_Basic_Pal, 0, sizeof(Gacha_BG_Basic_Pal));
-	}
-	else if (sGacha->GachaId == 2) // Great
-	{
-		InitBgsFromTemplates(0, sGachaBGtemplates, ARRAY_COUNT(sGachaBGtemplates));
-		SetBgTilemapBuffer(GACHA_BG_BASE, AllocZeroed(BG_SCREEN_SIZE));
-		DecompressAndLoadBgGfxUsingHeap(GACHA_BG_BASE, Gacha_BG_Left, size, 0, 0);
-		CopyToBgTilemapBuffer(GACHA_BG_BASE, Gacha_BG_Left_Tilemap, 0, 0);
-		ResetPaletteFade();
-		LoadPalette(Gacha_BG_Great_Pal, 0, sizeof(Gacha_BG_Great_Pal));		
-	}
-	else if (sGacha->GachaId == 3) // Ultra
-	{
-		InitBgsFromTemplates(0, sGachaBGtemplates, ARRAY_COUNT(sGachaBGtemplates));
-		SetBgTilemapBuffer(GACHA_BG_BASE, AllocZeroed(BG_SCREEN_SIZE));
-		DecompressAndLoadBgGfxUsingHeap(GACHA_BG_BASE, Gacha_BG_Left, size, 0, 0);
-		CopyToBgTilemapBuffer(GACHA_BG_BASE, Gacha_BG_Left_Tilemap, 0, 0);
-		ResetPaletteFade();
-		LoadPalette(Gacha_BG_Ultra_Pal, 0, sizeof(Gacha_BG_Ultra_Pal));		
-	}
-	else // Master
-	{
-		InitBgsFromTemplates(0, sGachaBGtemplates, ARRAY_COUNT(sGachaBGtemplates));
-		SetBgTilemapBuffer(GACHA_BG_BASE, AllocZeroed(BG_SCREEN_SIZE));
-		DecompressAndLoadBgGfxUsingHeap(GACHA_BG_BASE, Gacha_BG_Left, size, 0, 0);
-		CopyToBgTilemapBuffer(GACHA_BG_BASE, Gacha_BG_Left_Tilemap, 0, 0);
-		ResetPaletteFade();
-		LoadPalette(Gacha_BG_Master_Pal, 0, sizeof(Gacha_BG_Master_Pal));		
-	}
+    u16 size = 0x1480;
+
+    InitBgsFromTemplates(0, sGachaBGtemplates, ARRAY_COUNT(sGachaBGtemplates));
+    SetBgTilemapBuffer(GACHA_BG_BASE, AllocZeroed(BG_SCREEN_SIZE));
+    DecompressAndLoadBgGfxUsingHeap(GACHA_BG_BASE, Gacha_BG_Left, size, 0, 0);
+    CopyToBgTilemapBuffer(GACHA_BG_BASE, Gacha_BG_Left_Tilemap, 0, 0);
+    ResetPaletteFade();
+
+    switch (sGacha->GachaId)
+    {
+    default:
+    case GACHA_BASIC:
+        LoadPalette(Gacha_BG_Basic_Pal, 0, PLTT_SIZE_4BPP);
+        break;
+    case GACHA_GREAT:
+        LoadPalette(Gacha_BG_Great_Pal, 0, PLTT_SIZE_4BPP);
+        break;
+    case GACHA_ULTRA:
+        LoadPalette(Gacha_BG_Ultra_Pal, 0, PLTT_SIZE_4BPP);
+        break;
+    case GACHA_MASTER:
+        LoadPalette(Gacha_BG_Master_Pal, 0, PLTT_SIZE_4BPP);
+        break;
+    }
 }
 
 static void Shake2(void)
 {
-	u16 size = 0x1480;
-	
-	if (sGacha->GachaId == 1) // Basic
-	{
-		InitBgsFromTemplates(0, sGachaBGtemplates, ARRAY_COUNT(sGachaBGtemplates));
-		SetBgTilemapBuffer(GACHA_BG_BASE, AllocZeroed(BG_SCREEN_SIZE));
-		DecompressAndLoadBgGfxUsingHeap(GACHA_BG_BASE, Gacha_BG_Right, size, 0, 0);
-		CopyToBgTilemapBuffer(GACHA_BG_BASE, Gacha_BG_Right_Tilemap, 0, 0);
-		ResetPaletteFade();
-		LoadPalette(Gacha_BG_Basic_Pal, 0, sizeof(Gacha_BG_Basic_Pal));
-	}
-	else if (sGacha->GachaId == 2) // Great
-	{
-		InitBgsFromTemplates(0, sGachaBGtemplates, ARRAY_COUNT(sGachaBGtemplates));
-		SetBgTilemapBuffer(GACHA_BG_BASE, AllocZeroed(BG_SCREEN_SIZE));
-		DecompressAndLoadBgGfxUsingHeap(GACHA_BG_BASE, Gacha_BG_Right, size, 0, 0);
-		CopyToBgTilemapBuffer(GACHA_BG_BASE, Gacha_BG_Right_Tilemap, 0, 0);
-		ResetPaletteFade();
-		LoadPalette(Gacha_BG_Great_Pal, 0, sizeof(Gacha_BG_Great_Pal));		
-	}
-	else if (sGacha->GachaId == 3) // Ultra
-	{
-		InitBgsFromTemplates(0, sGachaBGtemplates, ARRAY_COUNT(sGachaBGtemplates));
-		SetBgTilemapBuffer(GACHA_BG_BASE, AllocZeroed(BG_SCREEN_SIZE));
-		DecompressAndLoadBgGfxUsingHeap(GACHA_BG_BASE, Gacha_BG_Right, size, 0, 0);
-		CopyToBgTilemapBuffer(GACHA_BG_BASE, Gacha_BG_Right_Tilemap, 0, 0);
-		ResetPaletteFade();
-		LoadPalette(Gacha_BG_Ultra_Pal, 0, sizeof(Gacha_BG_Ultra_Pal));		
-	}
-	else // Master
-	{
-		InitBgsFromTemplates(0, sGachaBGtemplates, ARRAY_COUNT(sGachaBGtemplates));
-		SetBgTilemapBuffer(GACHA_BG_BASE, AllocZeroed(BG_SCREEN_SIZE));
-		DecompressAndLoadBgGfxUsingHeap(GACHA_BG_BASE, Gacha_BG_Right, size, 0, 0);
-		CopyToBgTilemapBuffer(GACHA_BG_BASE, Gacha_BG_Right_Tilemap, 0, 0);
-		ResetPaletteFade();
-		LoadPalette(Gacha_BG_Master_Pal, 0, sizeof(Gacha_BG_Master_Pal));		
-	}
+    u16 size = 0x1480;
+
+    InitBgsFromTemplates(0, sGachaBGtemplates, ARRAY_COUNT(sGachaBGtemplates));
+    SetBgTilemapBuffer(GACHA_BG_BASE, AllocZeroed(BG_SCREEN_SIZE));
+    DecompressAndLoadBgGfxUsingHeap(GACHA_BG_BASE, Gacha_BG_Right, size, 0, 0);
+    CopyToBgTilemapBuffer(GACHA_BG_BASE, Gacha_BG_Right_Tilemap, 0, 0);
+    ResetPaletteFade();
+
+    switch (sGacha->GachaId)
+    {
+    default:
+    case GACHA_BASIC:
+        LoadPalette(Gacha_BG_Basic_Pal, 0, PLTT_SIZE_4BPP);
+        break;
+    case GACHA_GREAT:
+        LoadPalette(Gacha_BG_Great_Pal, 0, PLTT_SIZE_4BPP);
+        break;
+    case GACHA_ULTRA:
+        LoadPalette(Gacha_BG_Ultra_Pal, 0, PLTT_SIZE_4BPP);
+        break;
+    case GACHA_MASTER:
+        LoadPalette(Gacha_BG_Master_Pal, 0, PLTT_SIZE_4BPP);
+        break;
+    }
 }
 
 static void GachaVBlankCallback(void)
@@ -1545,27 +1432,31 @@ static void CreateCreditSprites(void)
 
     for (i = 0; i < ARRAY_COUNT(sSpriteSheets_Interface) - 1; i++)  
     {
-    LoadCompressedSpriteSheet(&sSpriteSheets_Interface[i]);
+        LoadCompressedSpriteSheet(&sSpriteSheets_Interface[i]);
     }
 
     for (i = 0; i < MAX_COIN_DIGITS; i++)
     {
-		if (i == 0){
-        sGacha->CreditSpriteIds[i + SPR_CREDIT_DIGITS] = CreateSprite(&sSpriteTemplate_CreditDigit, 207, 140, 2);
-		gSprites[sGacha->PlayerSpriteIds[i + SPR_CREDIT_DIGITS]].oam.priority = 0;
-		}
-		if (i == 1){
-        sGacha->CreditSpriteIds[i + SPR_CREDIT_DIGITS] = CreateSprite(&sSpriteTemplate_CreditDigit, 8 + 207, 140, 2);
-		gSprites[sGacha->PlayerSpriteIds[i + SPR_CREDIT_DIGITS]].oam.priority = 0;
-		}
-		if (i == 2){
-        sGacha->CreditSpriteIds[i + SPR_CREDIT_DIGITS] = CreateSprite(&sSpriteTemplate_CreditDigit, 16 + 207, 140, 2);
-		gSprites[sGacha->PlayerSpriteIds[i + SPR_CREDIT_DIGITS]].oam.priority = 0;
-		}
-		if (i == 3){
-        sGacha->CreditSpriteIds[i + SPR_CREDIT_DIGITS] = CreateSprite(&sSpriteTemplate_CreditDigit, 24 + 207, 140, 2);
-		gSprites[sGacha->PlayerSpriteIds[i + SPR_CREDIT_DIGITS]].oam.priority = 0;
-		}
+        if (i == 0)
+        {
+            sGacha->CreditSpriteIds[i + SPR_CREDIT_DIGITS] = CreateSprite(&sSpriteTemplate_CreditDigit, 207, 140, 2);
+            gSprites[sGacha->PlayerSpriteIds[i + SPR_CREDIT_DIGITS]].oam.priority = 0;
+        }
+        if (i == 1)
+        {
+            sGacha->CreditSpriteIds[i + SPR_CREDIT_DIGITS] = CreateSprite(&sSpriteTemplate_CreditDigit, 8 + 207, 140, 2);
+            gSprites[sGacha->PlayerSpriteIds[i + SPR_CREDIT_DIGITS]].oam.priority = 0;
+        }
+        if (i == 2)
+        {
+            sGacha->CreditSpriteIds[i + SPR_CREDIT_DIGITS] = CreateSprite(&sSpriteTemplate_CreditDigit, 16 + 207, 140, 2);
+            gSprites[sGacha->PlayerSpriteIds[i + SPR_CREDIT_DIGITS]].oam.priority = 0;
+        }
+        if (i == 3)
+        {
+            sGacha->CreditSpriteIds[i + SPR_CREDIT_DIGITS] = CreateSprite(&sSpriteTemplate_CreditDigit, 24 + 207, 140, 2);
+            gSprites[sGacha->PlayerSpriteIds[i + SPR_CREDIT_DIGITS]].oam.priority = 0;
+        }
     }
 }
 
@@ -1575,167 +1466,159 @@ static void CreatePlayerSprites(void)
 
     for (i = 0; i < ARRAY_COUNT(sSpriteSheets_PlayerInterface) - 1; i++)  
     {
-    LoadCompressedSpriteSheet(&sSpriteSheets_PlayerInterface[i]);
+        LoadCompressedSpriteSheet(&sSpriteSheets_PlayerInterface[i]);
     }
 
     for (i = 0; i < 4; i++)
     {
         sGacha->PlayerSpriteIds[i + SPR_PLAYER_DIGITS] = CreateSprite(&sSpriteTemplate_PlayerDigit, i * 8 + 207, 118, 2);
-		gSprites[sGacha->PlayerSpriteIds[i + SPR_PLAYER_DIGITS]].oam.priority = 0;
+        gSprites[sGacha->PlayerSpriteIds[i + SPR_PLAYER_DIGITS]].oam.priority = 0;
     }
 }
 
 static void CreateCTA(void)
 {
     LoadCompressedSpriteSheet(&sSpriteSheet_Press_A);
-	
-	sGacha->CTAspriteId = CreateSprite(&sSpriteTemplate_Press_A, 152, 116, 0);
-	gSprites[sGacha->CTAspriteId].animNum = 0; // Off
+    sGacha->CTAspriteId = CreateSprite(&sSpriteTemplate_Press_A, 152, 116, 0);
+    gSprites[sGacha->CTAspriteId].animNum = 0; // Off
 }
 
 static void CreateArrows(void)
 {
     LoadCompressedSpriteSheet(&sSpriteSheet_Arrows);
-	
-	sGacha->ArrowsSpriteId = CreateSprite(&sSpriteTemplate_Arrows, 207 + 24, 120, 0);
-	gSprites[sGacha->ArrowsSpriteId].animNum = 1; // Only Up
+    sGacha->ArrowsSpriteId = CreateSprite(&sSpriteTemplate_Arrows, 207 + 24, 120, 0);
+    gSprites[sGacha->ArrowsSpriteId].animNum = 1; // Only Up
 }
 
 static void CreateLotteryJPN(void)
 {
     LoadCompressedSpriteSheet(&sSpriteSheet_Lottery_JPN);
-	
-	sGacha->LotteryJPNspriteId = CreateSprite(&sSpriteTemplate_Lottery_JPN, 176, 32, 0);
+    sGacha->LotteryJPNspriteId = CreateSprite(&sSpriteTemplate_Lottery_JPN, 176, 32, 0);
 }
 
 static void CreateHoppip(void)
 {
-	s16 x = 142;
-	s16 y = 56;
-	s16 x2 = x + 34;
-	s16 x3 = x + 68;
-	
+    s16 x = 142;
+    s16 y = 56;
+    s16 x2 = x + 34;
+    s16 x3 = x + 68;
+
     LoadCompressedSpriteSheet(&sSpriteSheet_Hoppip);
-	
-	sGacha->PokemonOneSpriteId = CreateSprite(&sSpriteTemplate_Hoppip, x, y, 0);
-	sGacha->PokemonTwoSpriteId = CreateSprite(&sSpriteTemplate_Hoppip, x2, y, 0);	
-	sGacha->PokemonThreeSpriteId = CreateSprite(&sSpriteTemplate_Hoppip, x3, y, 0);	
+    sGacha->PokemonOneSpriteId = CreateSprite(&sSpriteTemplate_Hoppip, x, y, 0);
+    sGacha->PokemonTwoSpriteId = CreateSprite(&sSpriteTemplate_Hoppip, x2, y, 0);    
+    sGacha->PokemonThreeSpriteId = CreateSprite(&sSpriteTemplate_Hoppip, x3, y, 0);    
 }
 
-static void CreateElekid(void)
+static UNUSED void CreateElekid(void)
 {
-	s16 x = 142;
-	s16 y = 56 + 2;
-	s16 x2 = x + 34;
-	s16 x3 = x + 68;
-	
+    s16 x = 142;
+    s16 y = 56 + 2;
+    s16 x2 = x + 34;
+    s16 x3 = x + 68;
+
     LoadCompressedSpriteSheet(&sSpriteSheet_Elekid);
-	
-	sGacha->PokemonOneSpriteId = CreateSprite(&sSpriteTemplate_Elekid, x, y, 0);
-	sGacha->PokemonTwoSpriteId = CreateSprite(&sSpriteTemplate_Elekid, x2, y, 0);
-	sGacha->PokemonThreeSpriteId = CreateSprite(&sSpriteTemplate_Elekid, x3, y, 0);	
+    sGacha->PokemonOneSpriteId = CreateSprite(&sSpriteTemplate_Elekid, x, y, 0);
+    sGacha->PokemonTwoSpriteId = CreateSprite(&sSpriteTemplate_Elekid, x2, y, 0);
+    sGacha->PokemonThreeSpriteId = CreateSprite(&sSpriteTemplate_Elekid, x3, y, 0);    
 }
 
 static void CreateTeddiursa(void)
 {
-	s16 x = 142;
-	s16 y = 56;
-	s16 x2 = x + 34;
-	s16 x3 = x + 68;
-	
+    s16 x = 142;
+    s16 y = 56;
+    s16 x2 = x + 34;
+    s16 x3 = x + 68;
+
     LoadCompressedSpriteSheet(&sSpriteSheet_Teddiursa);
-	
-	sGacha->PokemonOneSpriteId = CreateSprite(&sSpriteTemplate_Teddiursa, x, y, 0);
-	sGacha->PokemonTwoSpriteId = CreateSprite(&sSpriteTemplate_Teddiursa, x2, y, 0);	
-	sGacha->PokemonThreeSpriteId = CreateSprite(&sSpriteTemplate_Teddiursa, x3, y, 0);
+    sGacha->PokemonOneSpriteId = CreateSprite(&sSpriteTemplate_Teddiursa, x, y, 0);
+    sGacha->PokemonTwoSpriteId = CreateSprite(&sSpriteTemplate_Teddiursa, x2, y, 0);    
+    sGacha->PokemonThreeSpriteId = CreateSprite(&sSpriteTemplate_Teddiursa, x3, y, 0);
 }
 
 static void CreatePhanpy(void)
 {
-	s16 x = 142;
-	s16 y = 56;
-	s16 x2 = x + 34;
-	s16 x3 = x + 68;
-	
+    s16 x = 142;
+    s16 y = 56;
+    s16 x2 = x + 34;
+    s16 x3 = x + 68;
+
     LoadCompressedSpriteSheet(&sSpriteSheet_Phanpy);
-	
-	sGacha->PokemonOneSpriteId = CreateSprite(&sSpriteTemplate_Phanpy, x, y, 0);
-	sGacha->PokemonTwoSpriteId = CreateSprite(&sSpriteTemplate_Phanpy, x2, y, 0);
-	sGacha->PokemonThreeSpriteId = CreateSprite(&sSpriteTemplate_Phanpy, x3, y, 0);
+    sGacha->PokemonOneSpriteId = CreateSprite(&sSpriteTemplate_Phanpy, x, y, 0);
+    sGacha->PokemonTwoSpriteId = CreateSprite(&sSpriteTemplate_Phanpy, x2, y, 0);
+    sGacha->PokemonThreeSpriteId = CreateSprite(&sSpriteTemplate_Phanpy, x3, y, 0);
 }
 
 static void CreateBelossom(void)
 {
-	s16 x = 142;
-	s16 y = 56;
-	s16 x2 = x + 34;
-	s16 x3 = x + 68;
-	
+    s16 x = 142;
+    s16 y = 56;
+    s16 x2 = x + 34;
+    s16 x3 = x + 68;
+
     LoadCompressedSpriteSheet(&sSpriteSheet_Belossom);
-	
-	sGacha->PokemonOneSpriteId = CreateSprite(&sSpriteTemplate_Belossom, x, y, 0);
-	sGacha->PokemonTwoSpriteId = CreateSprite(&sSpriteTemplate_Belossom, x2, y, 0);	
-	sGacha->PokemonThreeSpriteId = CreateSprite(&sSpriteTemplate_Belossom, x3, y, 0);
+    sGacha->PokemonOneSpriteId = CreateSprite(&sSpriteTemplate_Belossom, x, y, 0);
+    sGacha->PokemonTwoSpriteId = CreateSprite(&sSpriteTemplate_Belossom, x2, y, 0);    
+    sGacha->PokemonThreeSpriteId = CreateSprite(&sSpriteTemplate_Belossom, x3, y, 0);
 
 }
 
 static void CreateDigitalText(void)
 {
     LoadCompressedSpriteSheet(&sSpriteSheet_Digital_Text);
-	
-	sGacha->DigitalTextSpriteId = CreateSprite(&sSpriteTemplate_Digital_Text, 64, 25, 0);
+    sGacha->DigitalTextSpriteId = CreateSprite(&sSpriteTemplate_Digital_Text, 64, 25, 0);
 }
 
 static void CreateCreditMenu(void)
 {
-	s16 x = 144;
-	s16 y = 128;
-	s16 x2 = x + 64;
-	u8 priority = 1;
-	
+    s16 x = 144;
+    s16 y = 128;
+    u8 priority = 1;
+
     LoadCompressedSpriteSheet(&sSpriteSheet_Menu_1);
-	if (sGacha->GachaId == 1) // Basic
-	{
-	sGacha->CreditMenu1Id = CreateSprite(&sSpriteTemplate_Menu_1_Basic, x, y, priority);
-	}
-	else if (sGacha->GachaId == 2) // Great
-	{
-	sGacha->CreditMenu1Id = CreateSprite(&sSpriteTemplate_Menu_1_Great, x, y, priority);
-	}
-	else if (sGacha->GachaId == 3) // Ultra
-	{
-	sGacha->CreditMenu1Id = CreateSprite(&sSpriteTemplate_Menu_1_Ultra, x, y, priority);
-	}
-	else // Master
-	{
-	sGacha->CreditMenu1Id = CreateSprite(&sSpriteTemplate_Menu_1_Master, x, y, priority);
-	}
-	gSprites[sGacha->CreditMenu1Id].oam.priority = 1;
+
+    switch (sGacha->GachaId)
+    {
+    default:
+    case GACHA_BASIC:
+        sGacha->CreditMenu1Id = CreateSprite(&sSpriteTemplate_Menu_1_Basic, x, y, priority);
+        break;
+    case GACHA_GREAT:
+        sGacha->CreditMenu1Id = CreateSprite(&sSpriteTemplate_Menu_1_Great, x, y, priority);
+        break;
+    case GACHA_ULTRA:
+        sGacha->CreditMenu1Id = CreateSprite(&sSpriteTemplate_Menu_1_Ultra, x, y, priority);
+        break;
+    case GACHA_MASTER:
+        sGacha->CreditMenu1Id = CreateSprite(&sSpriteTemplate_Menu_1_Master, x, y, priority);
+        break;
+    }
+    gSprites[sGacha->CreditMenu1Id].oam.priority = 1;
 }
 
 static void CreatePlayerMenu(void)
 {
-	s16 x = 144;
-	s16 y = 128;
-	s16 x2 = x + 64;
-	u8 priority = 1;
-	
+    s16 x = 144;
+    s16 y = 128;
+    s16 x2 = x + 64;
+    u8 priority = 1;
+
     LoadCompressedSpriteSheet(&sSpriteSheet_Menu_2);
-	if (sGacha->GachaId == 1) // Basic
-	{
-	sGacha->CreditMenu2Id = CreateSprite(&sSpriteTemplate_Menu_2_Basic, x2, y, priority);
-	}
-	else if (sGacha->GachaId == 2) // Great
-	{
-	sGacha->CreditMenu2Id = CreateSprite(&sSpriteTemplate_Menu_2_Great, x2, y, priority);
-	}
-	else if (sGacha->GachaId == 3) // Ultra
-	{
-	sGacha->CreditMenu2Id = CreateSprite(&sSpriteTemplate_Menu_2_Ultra, x2, y, priority);
-	}
-	else // Master
-	{
-	sGacha->CreditMenu2Id = CreateSprite(&sSpriteTemplate_Menu_2_Master, x2, y, priority);
+
+    switch (sGacha->GachaId)
+    {
+    default:
+    case GACHA_BASIC:
+        sGacha->CreditMenu2Id = CreateSprite(&sSpriteTemplate_Menu_2_Basic, x2, y, priority);
+        break;
+    case GACHA_GREAT:
+        sGacha->CreditMenu2Id = CreateSprite(&sSpriteTemplate_Menu_2_Great, x2, y, priority);
+        break;
+    case GACHA_ULTRA:
+        sGacha->CreditMenu2Id = CreateSprite(&sSpriteTemplate_Menu_2_Ultra, x2, y, priority);
+        break;
+    case GACHA_MASTER:
+        sGacha->CreditMenu2Id = CreateSprite(&sSpriteTemplate_Menu_2_Master, x2, y, priority);
+        break;
     }
     gSprites[sGacha->CreditMenu2Id].oam.priority = 1;
 }
@@ -1743,17 +1626,16 @@ static void CreatePlayerMenu(void)
 static void CreateKnob(void)
 {
     LoadCompressedSpriteSheet(&sSpriteSheet_Knob);
-	
-	sGacha->KnobSpriteId = CreateSprite(&sSpriteTemplate_Knob, 76, 128, 0);
-	gSprites[sGacha->KnobSpriteId].animNum = 0; // No Rotation
+    sGacha->KnobSpriteId = CreateSprite(&sSpriteTemplate_Knob, 76, 128, 0);
+    gSprites[sGacha->KnobSpriteId].animNum = 0; // No Rotation
 }
 
 typedef struct  {
     int customNumber;
     u16 species;
-} SpeciesBasicA;
+} SpeciesGacha;
 
-static const SpeciesBasicA SpeciesBasicCommon[] = {
+static const SpeciesGacha sSpeciesGachaBasicCommon[] = {
     {0, SPECIES_SUNKERN},
     {1, SPECIES_AZURILL},
     {2, SPECIES_CATERPIE},
@@ -1793,12 +1675,7 @@ static const SpeciesBasicA SpeciesBasicCommon[] = {
     {36, SPECIES_FEEBAS}
 };
 
-typedef struct  {
-    int customNumber;
-    u16 species;
-} SpeciesBasicB;
-
-static const SpeciesBasicB SpeciesBasicUncommon[] = {
+static const SpeciesGacha sSpeciesGachaBasicUncommon[] = {
     {0, SPECIES_METAPOD},
     {1, SPECIES_KAKUNA},
     {2, SPECIES_PICHU},
@@ -1829,12 +1706,7 @@ static const SpeciesBasicB SpeciesBasicUncommon[] = {
     {27, SPECIES_SPOINK}
 };
 
-typedef struct  {
-    int customNumber;
-    u16 species;
-} SpeciesBasicC;
-
-static const SpeciesBasicC SpeciesBasicRare[] = {
+static const SpeciesGacha sSpeciesGachaBasicRare[] = {
     {0, SPECIES_RALTS},
     {1, SPECIES_TYROGUE},
     {2, SPECIES_SKITTY},
@@ -1853,12 +1725,7 @@ static const SpeciesBasicC SpeciesBasicRare[] = {
     {15, SPECIES_CORSOLA}
 };
 
-typedef struct  {
-    int customNumber;
-    u16 species;
-} SpeciesBasicD;
-
-static const SpeciesBasicD SpeciesBasicUltraRare[] = {
+static const SpeciesGacha sSpeciesGachaBasicUltraRare[] = {
     {0, SPECIES_TOGEPI},
     {1, SPECIES_CHARMANDER},
     {2, SPECIES_CYNDAQUIL},
@@ -1872,12 +1739,7 @@ static const SpeciesBasicD SpeciesBasicUltraRare[] = {
     {10, SPECIES_SHUCKLE}
 };
 
-typedef struct  {
-    int customNumber;
-    u16 species;
-} SpeciesGreatA;
-
-static const SpeciesGreatA SpeciesGreatCommon[] = {
+static const SpeciesGacha sSpeciesGreatCommon[] = {
     {0, SPECIES_JIGGLYPUFF},
     {1, SPECIES_CLEFAIRY},
     {2, SPECIES_KIRLIA},
@@ -1945,12 +1807,7 @@ static const SpeciesGreatA SpeciesGreatCommon[] = {
     {64, SPECIES_ELECTRODE}
 };
 
-typedef struct  {
-    int customNumber;
-    u16 species;
-} SpeciesGreatB;
-
-static const SpeciesGreatB SpeciesGreatUncommon[] = {
+static const SpeciesGacha sSpeciesGreatUncommon[] = {
     {0, SPECIES_FEEBAS},
     {1, SPECIES_BALTOY},
     {2, SPECIES_SNORUNT},
@@ -2005,12 +1862,7 @@ static const SpeciesGreatB SpeciesGreatUncommon[] = {
     {51, SPECIES_GOLDUCK}
 };
 
-typedef struct  {
-    int customNumber;
-    u16 species;
-} SpeciesGreatC;
-
-static const SpeciesGreatC SpeciesGreatRare[] = {
+static const SpeciesGacha sSpeciesGreatRare[] = {
     {0, SPECIES_DRATINI},
     {1, SPECIES_LARVITAR},
     {2, SPECIES_BAGON},
@@ -2054,12 +1906,7 @@ static const SpeciesGreatC SpeciesGreatRare[] = {
     {40, SPECIES_SHUCKLE}
 };
 
-typedef struct  {
-    int customNumber;
-    u16 species;
-} SpeciesGreatD;
-
-static const SpeciesGreatD SpeciesGreatUltraRare[] = {
+static const SpeciesGacha sSpeciesGreatUltraRare[] = {
     {0, SPECIES_WYNAUT},
     {1, SPECIES_DELIBIRD},
     {2, SPECIES_PORYGON},
@@ -2080,12 +1927,7 @@ static const SpeciesGreatD SpeciesGreatUltraRare[] = {
     {17, SPECIES_HERACROSS}
 };
 
-typedef struct  {
-    int customNumber;
-    u16 species;
-} SpeciesUltraA;
-
-static const SpeciesUltraA SpeciesUltraCommon[] = {
+static const SpeciesGacha sSpeciesUltraCommon[] = {
     {0, SPECIES_KRABBY},
     {1, SPECIES_EXEGGCUTE},
     {2, SPECIES_MAGNEMITE},
@@ -2151,12 +1993,7 @@ static const SpeciesUltraA SpeciesUltraCommon[] = {
     {62, SPECIES_CLOYSTER}
 };
 
-typedef struct  {
-    int customNumber;
-    u16 species;
-} SpeciesUltraB;
-
-static const SpeciesUltraB SpeciesUltraUncommon[] = {
+static const SpeciesGacha sSpeciesUltraUncommon[] = {
     {0, SPECIES_DELIBIRD},
     {1, SPECIES_LICKITUNG},
     {2, SPECIES_YANMA},
@@ -2210,12 +2047,7 @@ static const SpeciesUltraB SpeciesUltraUncommon[] = {
     {50, SPECIES_GOREBYSS}
 };
 
-typedef struct  {
-    int customNumber;
-    u16 species;
-} SpeciesUltraC;
-
-static const SpeciesUltraC SpeciesUltraRare[] = {
+static const SpeciesGacha sSpeciesUltraRare[] = {
     {0, SPECIES_DITTO},
     {1, SPECIES_EEVEE},
     {2, SPECIES_OMANYTE},
@@ -2246,12 +2078,7 @@ static const SpeciesUltraC SpeciesUltraRare[] = {
     {27, SPECIES_MILOTIC}
 };
 
-typedef struct  {
-    int customNumber;
-    u16 species;
-} SpeciesUltraD;
-
-static const SpeciesUltraD SpeciesUltraUltraRare[] = {
+static const SpeciesGacha sSpeciesUltraUltraRare[] = {
     {0, SPECIES_SHEDINJA},
     {1, SPECIES_SMEARGLE},
     {2, SPECIES_CHANSEY},
@@ -2282,12 +2109,7 @@ static const SpeciesUltraD SpeciesUltraUltraRare[] = {
     {27, SPECIES_SLAKING}
 };
 
-typedef struct  {
-    int customNumber;
-    u16 species;
-} SpeciesMasterA;
-
-static const SpeciesMasterA SpeciesMasterCommon[] = {
+static const SpeciesGacha sSpeciesMasterCommon[] = {
     {0, SPECIES_DITTO},
     {1, SPECIES_METANG},
     {2, SPECIES_SHELGON},
@@ -2308,12 +2130,7 @@ static const SpeciesMasterA SpeciesMasterCommon[] = {
     {17, SPECIES_TYPHLOSION}
 };
 
-typedef struct  {
-    int customNumber;
-    u16 species;
-} SpeciesMasterB;
-
-static const SpeciesMasterB SpeciesMasterUncommon[] = {
+static const SpeciesGacha sSpeciesMasterUncommon[] = {
     {0, SPECIES_OMASTAR},
     {1, SPECIES_KABUTOPS},
     {2, SPECIES_CRADILY},
@@ -2333,12 +2150,7 @@ static const SpeciesMasterB SpeciesMasterUncommon[] = {
     {16, SPECIES_BLISSEY}
 };
 
-typedef struct  {
-    int customNumber;
-    u16 species;
-} SpeciesMasterC;
-
-static const SpeciesMasterC SpeciesMasterRare[] = {
+static const SpeciesGacha sSpeciesMasterRare[] = {
     {0, SPECIES_ARTICUNO},
     {1, SPECIES_ZAPDOS},
     {2, SPECIES_MOLTRES},
@@ -2352,12 +2164,7 @@ static const SpeciesMasterC SpeciesMasterRare[] = {
     {10, SPECIES_LATIOS}
 };
 
-typedef struct  {
-    int customNumber;
-    u16 species;
-} SpeciesMasterD;
-
-static const SpeciesMasterD SpeciesMasterUltraRare[] = {
+static const SpeciesGacha sSpeciesMasterUltraRare[] = {
     {0, SPECIES_MEW},
     {1, SPECIES_CELEBI},
     {2, SPECIES_JIRACHI},
@@ -2372,28 +2179,27 @@ static const SpeciesMasterD SpeciesMasterUltraRare[] = {
 
 static void ShowMessage(void)
 {
-	u16 bet;
-	struct WindowTemplate template;
-		
-		
-	SetWindowTemplateFields(&template, GACHA_MENUS, 17, 10, 10, 2, 0xF, 0x194);
-	
+    u16 bet;
+    struct WindowTemplate template;
+
+    SetWindowTemplateFields(&template, GACHA_MENUS, 17, 10, 10, 2, 0xF, 0x194);
+    
     sTextWindowId = AddWindow(&template);
     FillWindowPixelBuffer(sTextWindowId, PIXEL_FILL(0));
     PutWindowTilemap(sTextWindowId);
     LoadUserWindowBorderGfx(sTextWindowId, 0x214, BG_PLTT_ID(14));
-	DrawStdWindowFrame(sTextWindowId, FALSE); 
-	bet = sGacha->Odds;
-	ConvertUIntToDecimalStringN(gStringVar1, bet, STR_CONV_MODE_LEADING_ZEROS, 3);
-	//gStringVar4[0] = '\0';
-	StringExpandPlaceholders(gStringVar4, sMessageText);
+    DrawStdWindowFrame(sTextWindowId, FALSE); 
+    bet = sGacha->newMonOdds;
+    ConvertUIntToDecimalStringN(gStringVar1, bet, STR_CONV_MODE_LEADING_ZEROS, 3);
+    //gStringVar4[0] = '\0';
+    StringExpandPlaceholders(gStringVar4, sMessageText);
     AddTextPrinterParameterized(sTextWindowId, FONT_NARROW, gStringVar4, 0, 1, 0, 0);
-	CopyWindowToVram(sTextWindowId, 3);
+    CopyWindowToVram(sTextWindowId, 3);
 }
 
 static void ResetMessage(void)
 {
-	ClearStdWindowAndFrame(sTextWindowId, TRUE);
+    ClearStdWindowAndFrame(sTextWindowId, TRUE);
     RemoveWindow(sTextWindowId);
 }
 
@@ -2409,372 +2215,428 @@ static void StartTradeScreen(void)
     sGacha->state = STATE_FADE;
 }
 
-u16 getBasicSpeciesbyNum(u16 Number) {
+static u16 GetMaxAvailableGachaRaritySpecies(u32 gachaId, u32 rarity)
+{
+    // Get the number of available Pokémon based on rarity
+    switch (gachaId)
+    {
+    default:
+    case GACHA_BASIC:
+        switch (rarity)
+        {
+        default:
+        case RARITY_COMMON:
+            return ARRAY_COUNT(sSpeciesGachaBasicCommon);
+        case RARITY_UNCOMMON:
+            return ARRAY_COUNT(sSpeciesGachaBasicUncommon);
+        case RARITY_RARE:
+            return ARRAY_COUNT(sSpeciesGachaBasicRare);
+        case RARITY_ULTRA_RARE:
+            return ARRAY_COUNT(sSpeciesGachaBasicUltraRare);
+        }
+    case GACHA_GREAT:
+        switch (rarity)
+        {
+        default:
+        case RARITY_COMMON:
+            return ARRAY_COUNT(sSpeciesGreatCommon);
+        case RARITY_UNCOMMON:
+            return ARRAY_COUNT(sSpeciesGreatUncommon);
+        case RARITY_RARE:
+            return ARRAY_COUNT(sSpeciesGreatRare);
+        case RARITY_ULTRA_RARE:
+            return ARRAY_COUNT(sSpeciesGreatUltraRare);
+        }
+    case GACHA_ULTRA:
+        switch (rarity)
+        {
+        default:
+        case RARITY_COMMON:
+            return ARRAY_COUNT(sSpeciesUltraCommon);
+        case RARITY_UNCOMMON:
+            return ARRAY_COUNT(sSpeciesUltraUncommon);
+        case RARITY_RARE:
+            return ARRAY_COUNT(sSpeciesUltraRare);
+        case RARITY_ULTRA_RARE:
+            return ARRAY_COUNT(sSpeciesUltraUltraRare);
+        }
+    case GACHA_MASTER:
+        switch (rarity)
+        {
+        default:
+        case RARITY_COMMON:
+            return ARRAY_COUNT(sSpeciesMasterCommon);
+        case RARITY_UNCOMMON:
+            return ARRAY_COUNT(sSpeciesMasterUncommon);
+        case RARITY_RARE:
+            return ARRAY_COUNT(sSpeciesMasterRare);
+        case RARITY_ULTRA_RARE:
+            return ARRAY_COUNT(sSpeciesMasterUltraRare);
+        }
+    }
+    return 0; // failsafe
+}
+
+u16 GetGachaBasicSpecies(u16 randNum)
+{
     int i;
     u16 totalMax;
 
     // Use the pre-defined totalMax values based on the rarity
-    if (sGacha->Rarity == 0) { // Common
-        totalMax = sGacha->Basic_CommonMax;
-    }
-    else if (sGacha->Rarity == 1) { // Uncommon
-        totalMax = sGacha->Basic_UncommonMax;
-    }
-    else if (sGacha->Rarity == 2) { // Rare
-        totalMax = sGacha->Basic_RareMax;
-    }
-    else if (sGacha->Rarity == 3) { // Ultra Rare
-        totalMax = sGacha->Basic_UltraRareMax;
-    }
+    totalMax = GetMaxAvailableGachaRaritySpecies(GACHA_BASIC, sGacha->Rarity);
 
     // Check if the provided Number is valid
-    if (Number >= totalMax) {
+    if (randNum >= totalMax)
         return -1;  // Return -1 if the Number is out of range for the list
-    }
 
     // Now, search for the Pokémon based on its customNumber
-    if (sGacha->Rarity == 0) { // Common
-        for (i = 0; i < totalMax; i++) {
-            if (SpeciesBasicCommon[i].customNumber == Number) {
-                return SpeciesBasicCommon[i].species;
-            }
+    switch (sGacha->Rarity)
+    {
+    default:
+    case RARITY_COMMON:
+        for (i = 0; i < totalMax; i++)
+        {
+            if (sSpeciesGachaBasicCommon[i].customNumber == randNum)
+                return sSpeciesGachaBasicCommon[i].species;
         }
-    }
-    else if (sGacha->Rarity == 1) { // Uncommon
-        for (i = 0; i < totalMax; i++) {
-            if (SpeciesBasicUncommon[i].customNumber == Number) {
-                return SpeciesBasicUncommon[i].species;
-            }
+        break;
+    case RARITY_UNCOMMON:
+        for (i = 0; i < totalMax; i++)
+        {
+            if (sSpeciesGachaBasicUncommon[i].customNumber == randNum)
+                return sSpeciesGachaBasicUncommon[i].species;
         }
-    }
-    else if (sGacha->Rarity == 2) { // Rare
-        for (i = 0; i < totalMax; i++) {
-            if (SpeciesBasicRare[i].customNumber == Number) {
-                return SpeciesBasicRare[i].species;
-            }
+        break;
+    case RARITY_RARE:
+        for (i = 0; i < totalMax; i++)
+        {
+            if (sSpeciesGachaBasicRare[i].customNumber == randNum)
+                return sSpeciesGachaBasicRare[i].species;
         }
-    }
-    else if (sGacha->Rarity == 3) { // Ultra Rare
-        for (i = 0; i < totalMax; i++) {
-            if (SpeciesBasicUltraRare[i].customNumber == Number) {
-                return SpeciesBasicUltraRare[i].species;
-            }
+        break;
+    case RARITY_ULTRA_RARE:
+        for (i = 0; i < totalMax; i++)
+        {
+            if (sSpeciesGachaBasicUltraRare[i].customNumber == randNum)
+                return sSpeciesGachaBasicUltraRare[i].species;
         }
+        break;
     }
 
     return -1; // Return -1 if customNumber is not found
 }
 
-u16 getGreatSpeciesbyNum(u16 Number) {
-    int i;
-    u16 totalMax = 0;
-
-    // Determine the totalMax based on rarity
-    if (sGacha->Rarity == 0) { // Common
-        totalMax = sGacha->Great_CommonMax;
-    }
-    else if (sGacha->Rarity == 1) { // Uncommon
-        totalMax = sGacha->Great_UncommonMax;
-    }
-    else if (sGacha->Rarity == 2) { // Rare
-        totalMax = sGacha->Great_RareMax;
-    }
-    else { // Ultra Rare
-        totalMax = sGacha->Great_UltraRareMax;
-    }
-
-    // Check if the provided Number is within the range
-    if (Number >= totalMax) {
-        return -1;  // Return -1 if out of range
-    }
-
-    // Loop through the correct array based on rarity
-    if (sGacha->Rarity == 0) { // Common
-        for (i = 0; i < totalMax; i++) {
-            if (SpeciesGreatCommon[i].customNumber == Number) {
-                return SpeciesGreatCommon[i].species;
-            }
-        }
-    }
-    else if (sGacha->Rarity == 1) { // Uncommon
-        for (i = 0; i < totalMax; i++) {
-            if (SpeciesGreatUncommon[i].customNumber == Number) {
-                return SpeciesGreatUncommon[i].species;
-            }
-        }
-    }
-    else if (sGacha->Rarity == 2) { // Rare
-        for (i = 0; i < totalMax; i++) {
-            if (SpeciesGreatRare[i].customNumber == Number) {
-                return SpeciesGreatRare[i].species;
-            }
-        }
-    }
-    else { // Ultra Rare
-        for (i = 0; i < totalMax; i++) {
-            if (SpeciesGreatUltraRare[i].customNumber == Number) {
-                return SpeciesGreatUltraRare[i].species;
-            }
-        }
-    }
-    
-    return -1; // Return -1 if customNumber is not found
-}
-
-u16 getUltraSpeciesbyNum(u16 Number) {
-    int i;
-    u16 totalMax = 0;
-
-    // Determine the totalMax based on rarity
-    if (sGacha->Rarity == 0) { // Common
-        totalMax = sGacha->Ultra_CommonMax;
-    }
-    else if (sGacha->Rarity == 1) { // Uncommon
-        totalMax = sGacha->Ultra_UncommonMax;
-    }
-    else if (sGacha->Rarity == 2) { // Rare
-        totalMax = sGacha->Ultra_RareMax;
-    }
-    else { // Ultra Rare
-        totalMax = sGacha->Ultra_UltraRareMax;
-    }
-
-    // Check if the provided Number is within the range
-    if (Number >= totalMax) {
-        return -1;  // Return -1 if out of range
-    }
-
-    // Loop through the correct array based on rarity
-    if (sGacha->Rarity == 0) { // Common
-        for (i = 0; i < totalMax; i++) {
-            if (SpeciesUltraCommon[i].customNumber == Number) {
-                return SpeciesUltraCommon[i].species;
-            }
-        }
-    }
-    else if (sGacha->Rarity == 1) { // Uncommon
-        for (i = 0; i < totalMax; i++) {
-            if (SpeciesUltraUncommon[i].customNumber == Number) {
-                return SpeciesUltraUncommon[i].species;
-            }
-        }
-    }
-    else if (sGacha->Rarity == 2) { // Rare
-        for (i = 0; i < totalMax; i++) {
-            if (SpeciesUltraRare[i].customNumber == Number) {
-                return SpeciesUltraRare[i].species;
-            }
-        }
-    }
-    else { // Ultra Rare
-        for (i = 0; i < totalMax; i++) {
-            if (SpeciesUltraUltraRare[i].customNumber == Number) {
-                return SpeciesUltraUltraRare[i].species;
-            }
-        }
-    }
-    
-    return -1; // Return -1 if customNumber is not found
-}
-
-u16 getMasterSpeciesbyNum(u16 Number) {
-    int i;
-    u16 totalMax = 0;
-
-    // Determine the totalMax based on rarity
-    if (sGacha->Rarity == 0) { // Common
-        totalMax = sGacha->Master_CommonMax;
-    }
-    else if (sGacha->Rarity == 1) { // Uncommon
-        totalMax = sGacha->Master_UncommonMax;
-    }
-    else if (sGacha->Rarity == 2) { // Rare
-        totalMax = sGacha->Master_RareMax;
-    }
-    else { // Ultra Rare
-        totalMax = sGacha->Master_UltraRareMax;
-    }
-
-    // Check if the provided Number is within the range
-    if (Number >= totalMax) {
-        return -1;  // Return -1 if out of range
-    }
-
-    // Loop through the correct array based on rarity
-    if (sGacha->Rarity == 0) { // Common
-        for (i = 0; i < totalMax; i++) {
-            if (SpeciesMasterCommon[i].customNumber == Number) {
-                return SpeciesMasterCommon[i].species;
-            }
-        }
-    }
-    else if (sGacha->Rarity == 1) { // Uncommon
-        for (i = 0; i < totalMax; i++) {
-            if (SpeciesMasterUncommon[i].customNumber == Number) {
-                return SpeciesMasterUncommon[i].species;
-            }
-        }
-    }
-    else if (sGacha->Rarity == 2) { // Rare
-        for (i = 0; i < totalMax; i++) {
-            if (SpeciesMasterRare[i].customNumber == Number) {
-                return SpeciesMasterRare[i].species;
-            }
-        }
-    }
-    else { // Ultra Rare
-        for (i = 0; i < totalMax; i++) {
-            if (SpeciesMasterUltraRare[i].customNumber == Number) {
-                return SpeciesMasterUltraRare[i].species;
-            }
-        }
-    }
-    
-    return -1; // Return -1 if customNumber is not found
-}
-
-u16 GetPokemon(u16 n) {
-	int num;
-	if (sGacha->GachaId == 1) {		 // Basic
-	num = getBasicSpeciesbyNum(n);
-	}
-	else if (sGacha->GachaId == 2) { // Great
-	num = getGreatSpeciesbyNum(n);
-	}
-	else if (sGacha->GachaId == 3) { // Ultra
-	num = getUltraSpeciesbyNum(n);
-	}
-	else { 							 // Master
-	num = getMasterSpeciesbyNum(n);
-	}
-	
-	if (num == -1) {
-        return 0;  // Or another default value indicating not found.
-    }
-	return num;
-}
-
-u8 CheckIfOwned(u16 species)
+u16 GetGachaGreatSpecies(u16 randNum)
 {
-	u16 nationalDexNo;
-	nationalDexNo = SpeciesToNationalPokedexNum(species);
-	return GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT);
+    int i;
+    u16 totalMax = 0;
+
+    // Determine the totalMax based on rarity
+    totalMax = GetMaxAvailableGachaRaritySpecies(GACHA_GREAT, sGacha->Rarity);
+
+    // Check if the provided Number is within the range
+    if (randNum >= totalMax)
+        return -1;  // Return -1 if out of range
+
+    // Loop through the correct array based on rarity
+    switch (sGacha->Rarity)
+    {
+    default:
+    case RARITY_COMMON:
+        for (i = 0; i < totalMax; i++)
+        {
+            if (sSpeciesGreatCommon[i].customNumber == randNum)
+                return sSpeciesGreatCommon[i].species;
+        }
+        break;
+    case RARITY_UNCOMMON:
+        for (i = 0; i < totalMax; i++)
+        {
+            if (sSpeciesGreatUncommon[i].customNumber == randNum)
+                return sSpeciesGreatUncommon[i].species;
+        }
+        break;
+    case RARITY_RARE:
+        for (i = 0; i < totalMax; i++)
+        {
+            if (sSpeciesGreatRare[i].customNumber == randNum)
+                return sSpeciesGreatRare[i].species;
+        }
+        break;
+    case RARITY_ULTRA_RARE:
+        for (i = 0; i < totalMax; i++)
+        {
+            if (sSpeciesGreatUltraRare[i].customNumber == randNum)
+                return sSpeciesGreatUltraRare[i].species;
+        }
+        break;
+    }
+
+    return -1; // Return -1 if customNumber is not found
+}
+
+u16 GetGachaUltraSpecies(u16 randNum)
+{
+    int i;
+    u16 totalMax = 0;
+
+    // Determine the totalMax based on rarity
+    totalMax = GetMaxAvailableGachaRaritySpecies(GACHA_ULTRA, sGacha->Rarity);
+
+    // Check if the provided Number is within the range
+    if (randNum >= totalMax)
+        return -1;  // Return -1 if out of range
+
+    // Loop through the correct array based on rarity
+    switch (sGacha->Rarity)
+    {
+    default:
+    case RARITY_COMMON:
+        for (i = 0; i < totalMax; i++)
+        {
+            if (sSpeciesUltraCommon[i].customNumber == randNum)
+                return sSpeciesUltraCommon[i].species;
+        }
+        break;
+    case RARITY_UNCOMMON:
+        for (i = 0; i < totalMax; i++)
+        {
+            if (sSpeciesUltraUncommon[i].customNumber == randNum)
+                return sSpeciesUltraUncommon[i].species;
+        }
+        break;
+    case RARITY_RARE:
+        for (i = 0; i < totalMax; i++)
+        {
+            if (sSpeciesUltraRare[i].customNumber == randNum)
+                return sSpeciesUltraRare[i].species;
+        }
+        break;
+    case RARITY_ULTRA_RARE:
+        for (i = 0; i < totalMax; i++)
+        {
+            if (sSpeciesUltraUltraRare[i].customNumber == randNum)
+                return sSpeciesUltraUltraRare[i].species;
+        }
+        break;
+    }
+
+    return -1; // Return -1 if customNumber is not found
+}
+
+u16 GetGachaMasterSpecies(u16 randNum)
+{
+    int i;
+    u16 totalMax = 0;
+
+    totalMax = GetMaxAvailableGachaRaritySpecies(GACHA_MASTER, sGacha->Rarity);
+
+    // Check if the provided Number is within the range
+    if (randNum >= totalMax)
+        return -1;  // Return -1 if out of range
+
+    switch (sGacha->Rarity)
+    {
+    default:
+    case RARITY_COMMON:
+        for (i = 0; i < totalMax; i++)
+        {
+            if (sSpeciesMasterCommon[i].customNumber == randNum)
+                return sSpeciesMasterCommon[i].species;
+        }
+        break;
+    case RARITY_UNCOMMON:
+        for (i = 0; i < totalMax; i++)
+        {
+            if (sSpeciesMasterUncommon[i].customNumber == randNum)
+                return sSpeciesMasterUncommon[i].species;
+        }
+        break;
+    case RARITY_RARE:
+        for (i = 0; i < totalMax; i++)
+        {
+            if (sSpeciesMasterRare[i].customNumber == randNum)
+                return sSpeciesMasterRare[i].species;
+        }
+        break;
+    case RARITY_ULTRA_RARE:
+        for (i = 0; i < totalMax; i++)
+        {
+            if (sSpeciesMasterUltraRare[i].customNumber == randNum)
+                return sSpeciesMasterUltraRare[i].species;
+        }
+        break;
+    }
+
+    return -1; // Return -1 if customNumber is not found
+}
+
+u16 GetGachaMon(u16 randNum)
+{
+    u32 species;
+
+    switch (sGacha->GachaId)
+    {
+    default:
+    case GACHA_BASIC:
+        species = GetGachaBasicSpecies(randNum);
+        break;
+    case GACHA_GREAT:
+        species = GetGachaGreatSpecies(randNum);
+        break;
+    case GACHA_ULTRA:
+        species = GetGachaUltraSpecies(randNum);
+        break;
+    case GACHA_MASTER:
+        species = GetGachaMasterSpecies(randNum);
+        break;
+    }
+
+    if (species >= SPECIES_EGG)
+        return SPECIES_NONE;  // Or another default value indicating not found.
+    return species;
+}
+
+static inline bool32 CheckIfOwned(u16 species)
+{
+    u16 nationalDexNo;
+    nationalDexNo = SpeciesToNationalPokedexNum(species);
+    return GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT);
+}
+
+bool32 IsNotValidOwnedSpecies(u16 species)
+{
+    if (species == SPECIES_NONE)
+        return TRUE;
+    return !CheckIfOwned(species);
+}
+
+bool32 IsNotValidUnownedSpecies(u16 species)
+{
+    if (species == SPECIES_NONE)
+        return TRUE;
+    return CheckIfOwned(species);
 }
 
 static void GetPokemonOwned(void)
 {
-	u16 species;
-	int nationalDexNo;
-	int i;
-	
-	sGacha->Basic_Common_Owned = 0;
-	sGacha->Basic_Uncommon_Owned = 0;
-	sGacha->Basic_Rare_Owned = 0;
-	sGacha->Basic_UltraRare_Owned = 0;
-	sGacha->Great_Common_Owned = 0;
-	sGacha->Great_Uncommon_Owned = 0;
-	sGacha->Great_Rare_Owned = 0;
-	sGacha->Great_UltraRare_Owned = 0;
-	sGacha->Ultra_Common_Owned = 0;
-	sGacha->Ultra_Uncommon_Owned = 0;
-	sGacha->Ultra_Rare_Owned = 0;
-	sGacha->Ultra_UltraRare_Owned = 0;
-	sGacha->Master_Common_Owned = 0;
-	sGacha->Master_Uncommon_Owned = 0;
-	sGacha->Master_Rare_Owned = 0;
-	sGacha->Master_UltraRare_Owned = 0;
-	
-	// Basic
-	for (i = 0; i < sGacha->Basic_CommonMax; i++) {
-	species = SpeciesBasicCommon[i].species;
-	nationalDexNo = SpeciesToNationalPokedexNum(species);
-	sGacha->Basic_Common_Owned = (sGacha->Basic_Common_Owned + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
-	}
-	for (i = 0; i < sGacha->Basic_UncommonMax; i++) {
-	species = SpeciesBasicUncommon[i].species;
-	nationalDexNo = SpeciesToNationalPokedexNum(species);
-	sGacha->Basic_Uncommon_Owned = (sGacha->Basic_Uncommon_Owned + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
-	}
-	for (i = 0; i < sGacha->Basic_RareMax; i++) {
-	species = SpeciesBasicRare[i].species;
-	nationalDexNo = SpeciesToNationalPokedexNum(species);
-	sGacha->Basic_Rare_Owned = (sGacha->Basic_Rare_Owned + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
-	}
-	for (i = 0; i < sGacha->Basic_UltraRareMax; i++) {
-	species = SpeciesBasicUltraRare[i].species;
-	nationalDexNo = SpeciesToNationalPokedexNum(species);
-	sGacha->Basic_UltraRare_Owned = (sGacha->Basic_UltraRare_Owned + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
-	}
-	sGacha->Basic_Total_Owned = (sGacha->Basic_Common_Owned + sGacha->Basic_Uncommon_Owned + sGacha->Basic_Rare_Owned + sGacha->Basic_UltraRare_Owned);
-	
-	// Great
-	for (i = 0; i < sGacha->Great_CommonMax; i++) {
-	species = SpeciesGreatCommon[i].species;
-	nationalDexNo = SpeciesToNationalPokedexNum(species);
-	sGacha->Great_Common_Owned = (sGacha->Great_Common_Owned + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
-	}
-	for (i = 0; i < sGacha->Great_UncommonMax; i++) {
-	species = SpeciesGreatUncommon[i].species;
-	nationalDexNo = SpeciesToNationalPokedexNum(species);
-	sGacha->Great_Uncommon_Owned = (sGacha->Great_Uncommon_Owned + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
-	}
-	for (i = 0; i < sGacha->Great_RareMax; i++) {
-	species = SpeciesGreatRare[i].species;
-	nationalDexNo = SpeciesToNationalPokedexNum(species);
-	sGacha->Great_Rare_Owned = (sGacha->Great_Rare_Owned + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
-	}
-	for (i = 0; i < sGacha->Great_UltraRareMax; i++) {
-	species = SpeciesGreatUltraRare[i].species;
-	nationalDexNo = SpeciesToNationalPokedexNum(species);
-	sGacha->Great_UltraRare_Owned = (sGacha->Great_UltraRare_Owned + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
-	}
-	sGacha->Great_Total_Owned = (sGacha->Great_Common_Owned + sGacha->Great_Uncommon_Owned + sGacha->Great_Rare_Owned + sGacha->Great_UltraRare_Owned);
-	
-	// Ultra
-	for (i = 0; i < sGacha->Ultra_CommonMax; i++) {
-	species = SpeciesUltraCommon[i].species;
-	nationalDexNo = SpeciesToNationalPokedexNum(species);
-	sGacha->Ultra_Common_Owned = (sGacha->Ultra_Common_Owned + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
-	}
-	for (i = 0; i < sGacha->Ultra_UncommonMax; i++) {
-	species = SpeciesUltraUncommon[i].species;
-	nationalDexNo = SpeciesToNationalPokedexNum(species);
-	sGacha->Ultra_Uncommon_Owned = (sGacha->Ultra_Uncommon_Owned + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
-	}
-	for (i = 0; i < sGacha->Ultra_RareMax; i++) {
-	species = SpeciesUltraRare[i].species;
-	nationalDexNo = SpeciesToNationalPokedexNum(species);
-	sGacha->Ultra_Rare_Owned = (sGacha->Ultra_Rare_Owned + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
-	}
-	for (i = 0; i < sGacha->Ultra_UltraRareMax; i++) {
-	species = SpeciesUltraUltraRare[i].species;
-	nationalDexNo = SpeciesToNationalPokedexNum(species);
-	sGacha->Ultra_UltraRare_Owned = (sGacha->Ultra_UltraRare_Owned + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
-	}
-	sGacha->Ultra_Total_Owned = (sGacha->Ultra_Common_Owned + sGacha->Ultra_Uncommon_Owned + sGacha->Ultra_Rare_Owned + sGacha->Ultra_UltraRare_Owned);
-	
-	// Master
-	for (i = 0; i < sGacha->Master_CommonMax; i++) {
-	species = SpeciesMasterCommon[i].species;
-	nationalDexNo = SpeciesToNationalPokedexNum(species);
-	sGacha->Master_Common_Owned = (sGacha->Master_Common_Owned + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
-	}
-	for (i = 0; i < sGacha->Master_UncommonMax; i++) {
-	species = SpeciesMasterUncommon[i].species;
-	nationalDexNo = SpeciesToNationalPokedexNum(species);
-	sGacha->Master_Uncommon_Owned = (sGacha->Master_Uncommon_Owned + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
-	}
-	for (i = 0; i < sGacha->Master_RareMax; i++) {
-	species = SpeciesMasterRare[i].species;
-	nationalDexNo = SpeciesToNationalPokedexNum(species);
-	sGacha->Master_Rare_Owned = (sGacha->Master_Rare_Owned + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
-	}
-	for (i = 0; i < sGacha->Master_UltraRareMax; i++) {
-	species = SpeciesMasterUltraRare[i].species;
-	nationalDexNo = SpeciesToNationalPokedexNum(species);
-	sGacha->Master_UltraRare_Owned = (sGacha->Master_UltraRare_Owned + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
-	}
-	sGacha->Master_Total_Owned = (sGacha->Master_Common_Owned + sGacha->Master_Uncommon_Owned + sGacha->Master_Rare_Owned + sGacha->Master_UltraRare_Owned);
+    u16 species;
+    int nationalDexNo;
+    int i;
+
+    sGacha->ownedCommon = 0;
+    sGacha->ownedUncommon = 0;
+    sGacha->ownedRare = 0;
+    sGacha->ownedUltraRare = 0;
+
+    switch (sGacha->GachaId)
+    {
+    default:
+    case GACHA_BASIC:
+        for (i = 0; i < ARRAY_COUNT(sSpeciesGachaBasicCommon); i++)
+        {
+            species = sSpeciesGachaBasicCommon[i].species;
+            nationalDexNo = SpeciesToNationalPokedexNum(species);
+            sGacha->ownedCommon = (sGacha->ownedCommon + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
+        }
+        for (i = 0; i < ARRAY_COUNT(sSpeciesGachaBasicUncommon); i++)
+        {
+            species = sSpeciesGachaBasicUncommon[i].species;
+            nationalDexNo = SpeciesToNationalPokedexNum(species);
+            sGacha->ownedUncommon = (sGacha->ownedUncommon + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
+        }
+        for (i = 0; i < ARRAY_COUNT(sSpeciesGachaBasicRare); i++)
+        {
+            species = sSpeciesGachaBasicRare[i].species;
+            nationalDexNo = SpeciesToNationalPokedexNum(species);
+            sGacha->ownedRare = (sGacha->ownedRare + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
+        }
+        for (i = 0; i < ARRAY_COUNT(sSpeciesGachaBasicUltraRare); i++)
+        {
+            species = sSpeciesGachaBasicUltraRare[i].species;
+            nationalDexNo = SpeciesToNationalPokedexNum(species);
+            sGacha->ownedUltraRare = (sGacha->ownedUltraRare + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
+        }
+        break;
+    case GACHA_GREAT:
+        for (i = 0; i < ARRAY_COUNT(sSpeciesGreatCommon); i++)
+        {
+            species = sSpeciesGreatCommon[i].species;
+            nationalDexNo = SpeciesToNationalPokedexNum(species);
+            sGacha->ownedCommon = (sGacha->ownedCommon + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
+        }
+        for (i = 0; i < ARRAY_COUNT(sSpeciesGreatUncommon); i++)
+        {
+            species = sSpeciesGreatUncommon[i].species;
+            nationalDexNo = SpeciesToNationalPokedexNum(species);
+            sGacha->ownedUncommon = (sGacha->ownedUncommon + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
+        }
+        for (i = 0; i < ARRAY_COUNT(sSpeciesGreatRare); i++)
+        {
+            species = sSpeciesGreatRare[i].species;
+            nationalDexNo = SpeciesToNationalPokedexNum(species);
+            sGacha->ownedRare = (sGacha->ownedRare + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
+        }
+        for (i = 0; i < ARRAY_COUNT(sSpeciesGreatUltraRare); i++)
+        {
+            species = sSpeciesGreatUltraRare[i].species;
+            nationalDexNo = SpeciesToNationalPokedexNum(species);
+            sGacha->ownedUltraRare = (sGacha->ownedUltraRare + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
+        }
+        break;
+    case GACHA_ULTRA:
+        for (i = 0; i < ARRAY_COUNT(sSpeciesUltraCommon); i++)
+        {
+            species = sSpeciesUltraCommon[i].species;
+            nationalDexNo = SpeciesToNationalPokedexNum(species);
+            sGacha->ownedCommon = (sGacha->ownedCommon + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
+        }
+        for (i = 0; i < ARRAY_COUNT(sSpeciesUltraUncommon); i++)
+        {
+            species = sSpeciesUltraUncommon[i].species;
+            nationalDexNo = SpeciesToNationalPokedexNum(species);
+            sGacha->ownedUncommon = (sGacha->ownedUncommon + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
+        }
+        for (i = 0; i < ARRAY_COUNT(sSpeciesUltraRare); i++)
+        {
+            species = sSpeciesUltraRare[i].species;
+            nationalDexNo = SpeciesToNationalPokedexNum(species);
+            sGacha->ownedRare = (sGacha->ownedRare + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
+        }
+        for (i = 0; i < ARRAY_COUNT(sSpeciesUltraUltraRare); i++)
+        {
+            species = sSpeciesUltraUltraRare[i].species;
+            nationalDexNo = SpeciesToNationalPokedexNum(species);
+            sGacha->ownedUltraRare = (sGacha->ownedUltraRare + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
+        }
+        break;
+    case GACHA_MASTER:
+        for (i = 0; i < ARRAY_COUNT(sSpeciesMasterCommon); i++)
+        {
+            species = sSpeciesMasterCommon[i].species;
+            nationalDexNo = SpeciesToNationalPokedexNum(species);
+            sGacha->ownedCommon = (sGacha->ownedCommon + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
+        }
+        for (i = 0; i < ARRAY_COUNT(sSpeciesMasterUncommon); i++)
+        {
+            species = sSpeciesMasterUncommon[i].species;
+            nationalDexNo = SpeciesToNationalPokedexNum(species);
+            sGacha->ownedUncommon = (sGacha->ownedUncommon + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
+        }
+        for (i = 0; i < ARRAY_COUNT(sSpeciesMasterRare); i++)
+        {
+            species = sSpeciesMasterRare[i].species;
+            nationalDexNo = SpeciesToNationalPokedexNum(species);
+            sGacha->ownedRare = (sGacha->ownedRare + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
+        }
+        for (i = 0; i < ARRAY_COUNT(sSpeciesMasterUltraRare); i++)
+        {
+            species = sSpeciesMasterUltraRare[i].species;
+            nationalDexNo = SpeciesToNationalPokedexNum(species);
+            sGacha->ownedUltraRare = (sGacha->ownedUltraRare + GetSetPokedexFlag(nationalDexNo, FLAG_GET_CAUGHT));
+        }
+        break;
+    }
 }
 
 u8 CalculateChanceForCategory(u16 owned, u16 available, u8 baseChance, u16 wager)
@@ -2788,21 +2650,19 @@ u8 CalculateChanceForCategory(u16 owned, u16 available, u8 baseChance, u16 wager
     // Determine minimum wager based on sGacha->GachaId
     switch (sGacha->GachaId)
     {
-        case 1:
-            minWager = 50;
-            break;
-        case 2:
-            minWager = 250;
-            break;
-        case 3:
-            minWager = 1000;
-            break;
-        case 4:
-            minWager = 4500;
-            break;
-        default:
-            minWager = 0; // Should never be 0, but failsafe
-            break;
+    default:
+    case GACHA_BASIC:
+        minWager = GACHA_BASIC_MIN_WAGER;
+        break;
+    case GACHA_GREAT:
+        minWager = GACHA_GREAT_MIN_WAGER;
+        break;
+    case GACHA_ULTRA:
+        minWager = GACHA_ULTRA_MIN_WAGER;
+        break;
+    case GACHA_MASTER:
+        minWager = GACHA_MASTER_MIN_WAGER;
+        break;
     }
 
     // If available Pokémon is 0, there is no chance
@@ -2832,334 +2692,164 @@ u8 CalculateChanceForCategory(u16 owned, u16 available, u8 baseChance, u16 wager
 // Function to determine if the player gets a new Pokémon, and the rarity
 void DeterminePokemonRarityAndNewStatus(void)
 {
-	u16 species;
+    u16 species;
     u16 totalNotOwned;
     u8 totalOwned;
     u16 totalMax;
-    u8 commonChance;
-    u8 uncommonChance;
-    u8 rareChance;
-    u8 ultraRareChance;
-	u16 newPokemonChance;
-	u16 randomValue;
-	u32 attempts = 1000;
-	
-	commonChance = sGacha->commonChance;
-    uncommonChance = sGacha->uncommonChance;
-    rareChance = sGacha->rareChance;
-    ultraRareChance = sGacha->ultraRareChance;
+    u16 newPokemonChance;
+    u16 randomValue;
+    u32 attempts = 1000;
 
-    while (1) {
-		randomValue = (Random() % 100);  // Generate random value between 0 and 100
+    while (TRUE)
+    {
+        randomValue = (Random() % 100);  // Generate random value between 0 and 100
 
-		// Determine Rarity based on the chances
-		if (randomValue < 50) {
-			sGacha->Rarity = 0; // Common
-		}
-		else if (randomValue < 80) {
-			sGacha->Rarity = 1; // Uncommon
-		}
-		else if (randomValue < 95) {
-			sGacha->Rarity = 2; // Rare
-		}
-		else {
-			sGacha->Rarity = 3; // Ultra Rare
-		}
+        // Determine Rarity based on the chances
+        if (randomValue < RARITY_COMMON_ODDS)
+            sGacha->Rarity = RARITY_COMMON; // Common
+        else if (randomValue < (RARITY_COMMON_ODDS + RARITY_UNCOMMON_ODDS))
+            sGacha->Rarity = RARITY_UNCOMMON; // Uncommon
+        else if (randomValue < (RARITY_COMMON_ODDS + RARITY_UNCOMMON_ODDS + RARITY_RARE_ODDS))
+            sGacha->Rarity = RARITY_RARE; // Rare
+        else
+            sGacha->Rarity = RARITY_ULTRA_RARE; // Ultra Rare
 
-		// Get the number of available and owned Pokémon based on rarity
-		if (sGacha->GachaId == 1) { // Basic
-			if (sGacha->Rarity == 0) { // Common
-				totalOwned = sGacha->Basic_Common_Owned;
-				totalMax = sGacha->Basic_CommonMax;
-			}
-			else if (sGacha->Rarity == 1) { // Uncommon
-				totalOwned = sGacha->Basic_Uncommon_Owned;
-				totalMax = sGacha->Basic_UncommonMax;
-			}
-			else if (sGacha->Rarity == 2) { // Rare
-				totalOwned = sGacha->Basic_Rare_Owned;
-				totalMax = sGacha->Basic_RareMax;
-			}
-			else { // Ultra Rare
-				totalOwned = sGacha->Basic_UltraRare_Owned;
-				totalMax = sGacha->Basic_UltraRareMax;
-			}
-			sGacha->Temp_Total = totalMax;
-		}
-		else if (sGacha->GachaId == 2) { // Great
-			if (sGacha->Rarity == 0) { // Common
-				totalOwned = sGacha->Great_Common_Owned;
-				totalMax = sGacha->Great_CommonMax;
-			}
-			else if (sGacha->Rarity == 1) { // Uncommon
-				totalOwned = sGacha->Great_Uncommon_Owned;
-				totalMax = sGacha->Great_UncommonMax;
-			}
-			else if (sGacha->Rarity == 2) { // Rare
-				totalOwned = sGacha->Great_Rare_Owned;
-				totalMax = sGacha->Great_RareMax;
-			}
-			else { // Ultra Rare
-				totalOwned = sGacha->Great_UltraRare_Owned;
-				totalMax = sGacha->Great_UltraRareMax;
-			}
-			sGacha->Temp_Total = totalMax;
-		}
-		else if (sGacha->GachaId == 3) { // Ultra
-			if (sGacha->Rarity == 0) { // Common
-				totalOwned = sGacha->Ultra_Common_Owned;
-				totalMax = sGacha->Ultra_CommonMax;
-			}
-			else if (sGacha->Rarity == 1) { // Uncommon
-				totalOwned = sGacha->Ultra_Uncommon_Owned;
-				totalMax = sGacha->Ultra_UncommonMax;
-			}
-			else if (sGacha->Rarity == 2) { // Rare
-				totalOwned = sGacha->Ultra_Rare_Owned;
-				totalMax = sGacha->Ultra_RareMax;
-			}
-			else { // Ultra Rare
-				totalOwned = sGacha->Ultra_UltraRare_Owned;
-				totalMax = sGacha->Ultra_UltraRareMax;
-			}
-			sGacha->Temp_Total = totalMax;
-		}
-		else { // Master
-			if (sGacha->Rarity == 0) { // Common
-				totalOwned = sGacha->Master_Common_Owned;
-				totalMax = sGacha->Master_CommonMax;
-			}
-			else if (sGacha->Rarity == 1) { // Uncommon
-				totalOwned = sGacha->Master_Uncommon_Owned;
-				totalMax = sGacha->Master_UncommonMax;
-			}
-			else if (sGacha->Rarity == 2) { // Rare
-				totalOwned = sGacha->Master_Rare_Owned;
-				totalMax = sGacha->Master_RareMax;
-			}
-			else { // Ultra Rare
-				totalOwned = sGacha->Master_UltraRare_Owned;
-				totalMax = sGacha->Master_UltraRareMax;
-			}
-			sGacha->Temp_Total = totalMax;
-		}
-		// Repeat similar logic for Great, Ultra, Master, etc.
-		// Same logic for GachaId == 2, 3, and others
+        // Get the number of available and owned Pokémon based on rarity
+        totalMax = GetMaxAvailableGachaRaritySpecies(sGacha->GachaId, sGacha->Rarity);
+        switch (sGacha->Rarity)
+        {
+        default:
+        case RARITY_COMMON:
+            totalOwned = sGacha->ownedCommon;
+            break;
+        case RARITY_UNCOMMON:
+            totalOwned = sGacha->ownedUncommon;
+            break;
+        case RARITY_RARE:
+            totalOwned = sGacha->ownedRare;
+            break;
+        case RARITY_ULTRA_RARE:
+            totalOwned = sGacha->ownedUltraRare;
+            break;
+        }
 
-		// Calculate the total number of Pokémon the player doesn't own
-		totalNotOwned = totalMax - totalOwned;
+        // Calculate the total number of Pokémon the player doesn't own
+        totalNotOwned = totalMax - totalOwned;
 
-		if (totalNotOwned <= 0) {
-			// If all Pokémon of the selected rarity are owned, restart the process (reroll)
-			continue;  // This will make the loop restart from the beginning
-		}
+        if (totalNotOwned <= 0)
+        {
+            // If all Pokémon of the selected rarity are owned, restart the process (reroll)
+            continue;  // This will make the loop restart from the beginning
+        }
 
-		// Generate a random value for the chances
-		randomValue = Random() % 100;  // Generate random value between 0-99
+        // Generate a random value for the chances
+        randomValue = Random() % 100;  // Generate random value between 0-99
 
-		// Check if we should get a new Pokémon based on the odds
-		if (sGacha->Odds >= randomValue) {
-			// Loop until a new (not owned) Pokémon is found
-			do {
-				newPokemonChance = (Random() % totalMax);  // Random pull from the available pool
-				species = GetPokemon(newPokemonChance);  // Get the Pokémon species based on the random value
-				attempts--;
-				if (attempts < 1) {
-					attempts = 1000;
-					randomValue = (Random() % 100);  // Generate random value between 0 and 100
+        // Check if we should get a new Pokémon based on the odds
+        if (sGacha->newMonOdds >= randomValue)
+        {
+            // Loop until a new (not owned) Pokémon is found
+            do {
+                newPokemonChance = (Random() % totalMax);  // Random pull from the available pool
+                species = GetGachaMon(newPokemonChance);  // Get the Pokémon species based on the random value
+                attempts--;
+                if (attempts < 1)
+                {
+                    attempts = 1000;
+                    randomValue = (Random() % 100);  // Generate random value between 0 and 100
 
-					// Determine Rarity based on the chances
-					if (randomValue < 50) {
-						sGacha->Rarity = 0; // Common
-					}
-					else if (randomValue < 80) {
-						sGacha->Rarity = 1; // Uncommon
-					}
-					else if (randomValue < 95) {
-						sGacha->Rarity = 2; // Rare
-					}
-					else {
-						sGacha->Rarity = 3; // Ultra Rare
-					}
-				}
-				// If the Pokémon is not owned (CheckIfOwned returns 0), we found a new Pokémon
-			} while (CheckIfOwned(species) == 1);  // Continue if owned (CheckIfOwned returns 1)
+                    // Determine Rarity based on the chances
+                    if (randomValue < RARITY_COMMON_ODDS)
+                        sGacha->Rarity = RARITY_COMMON;
+                    else if (randomValue < (RARITY_COMMON_ODDS + RARITY_UNCOMMON_ODDS))
+                        sGacha->Rarity = RARITY_UNCOMMON;
+                    else if (randomValue < (RARITY_COMMON_ODDS + RARITY_UNCOMMON_ODDS + RARITY_RARE_ODDS))
+                        sGacha->Rarity = RARITY_RARE;
+                    else
+                        sGacha->Rarity = RARITY_ULTRA_RARE;
+                }
+                // If the Pokémon is not owned, we found a new Pokémon
+            } while (IsNotValidUnownedSpecies(species));  // Continue if owned (IsNotValidUnownedSpecies returns TRUE)
 
-			// If we've broken out of the loop, we have a new Pokémon
-			sGacha->IsNewPokemon = 1;  // Mark as a new Pokémon
-			sGacha->CalculatedSpecies = species;  // Store the species of the new Pokémon
-			break;  // Exit the loop after finding a new Pokémon
-		}
-		else {
-			// Loop until an owned Pokémon is found
-			do {
-				newPokemonChance = (Random() % totalMax);  // Random pull from the available pool
-				species = GetPokemon(newPokemonChance);  // Get the Pokémon species based on the random value
-				attempts--;
-				if (attempts < 1) {
-					attempts = 1000;
-					randomValue = (Random() % 100);  // Generate random value between 0 and 100
+            // If we've broken out of the loop, we have a new Pokémon
+            sGacha->CalculatedSpecies = species;  // Store the species of the new Pokémon
+            break;  // Exit the loop after finding a new Pokémon
+        }
+        else
+        {
+            // Loop until an owned Pokémon is found
+            do {
+                newPokemonChance = (Random() % totalMax);  // Random pull from the available pool
+                species = GetGachaMon(newPokemonChance);  // Get the Pokémon species based on the random value
+                attempts--;
+                if (attempts < 1)
+                {
+                    attempts = 1000;
+                    randomValue = (Random() % 100);  // Generate random value between 0 and 100
 
-					// Determine Rarity based on the chances
-					if (randomValue < 50) {
-						sGacha->Rarity = 0; // Common
-					}
-					else if (randomValue < 80) {
-						sGacha->Rarity = 1; // Uncommon
-					}
-					else if (randomValue < 95) {
-						sGacha->Rarity = 2; // Rare
-					}
-					else {
-						sGacha->Rarity = 3; // Ultra Rare
-					}
-				}
+                    // Determine Rarity based on the chances
+                    if (randomValue < RARITY_COMMON_ODDS)
+                        sGacha->Rarity = RARITY_COMMON;
+                    else if (randomValue < (RARITY_COMMON_ODDS + RARITY_UNCOMMON_ODDS))
+                        sGacha->Rarity = RARITY_UNCOMMON;
+                    else if (randomValue < (RARITY_COMMON_ODDS + RARITY_UNCOMMON_ODDS + RARITY_RARE_ODDS))
+                        sGacha->Rarity = RARITY_RARE;
+                    else
+                        sGacha->Rarity = RARITY_ULTRA_RARE;
+                }
 
-				// If the Pokémon is owned (CheckIfOwned returns 1), we have an owned Pokémon
-			} while (CheckIfOwned(species) == 0);  // Continue if not owned (CheckIfOwned returns 0)
+                // If the Pokémon is owned, we have an owned Pokémon
+            } while (IsNotValidOwnedSpecies(species));  // Continue if not owned
 
-			// If we've broken out of the loop, we have an owned Pokémon
-			sGacha->IsNewPokemon = 0;  // Mark as an owned Pokémon
-			sGacha->CalculatedSpecies = species;  // Store the species of the owned Pokémon
-			break;  // Exit the loop after finding an owned Pokémon
-		}
-	}
+            // If we've broken out of the loop, we have an owned Pokémon
+            sGacha->CalculatedSpecies = species;  // Store the species of the owned Pokémon
+            break;  // Exit the loop after finding an owned Pokémon
+        }
+    }
 }
 
 static void CalculatePullOdds(void)
 {
-	u16 totalCommonOwned;
-	u16 totalCommonAvailable;
-	u16 totalUncommonOwned;
-	u16 totalUncommonAvailable;
-	u16 totalRareOwned;
-	u16 totalRareAvailable;
-	u16 totalUltraRareOwned;
-	u16 totalUltraRareAvailable;
-	u16 wager;
-	u8 commonChance;
-	u8 uncommonChance;
-	u8 rareChance;
-	u8 ultraRareChance;
-	u8 totalChance;
-	
-    // Constants
-    const u8 COMMON_ODDS = 50;    // 50% chance for common
-    const u8 UNCOMMON_ODDS = 30;  // 30% chance for uncommon
-    const u8 RARE_ODDS = 15;      // 15% chance for rare
-    const u8 ULTRA_RARE_ODDS = 5; // 5% chance for ultra rare
-	
-	if (sGacha->GachaId == 1) // Basic
-	{
-		// Variables to store the total numbers of owned and available Pokemon
-		totalCommonOwned = sGacha->Basic_Common_Owned;
-		totalCommonAvailable = sGacha->Basic_CommonMax;
-		
-		totalUncommonOwned = sGacha->Basic_Uncommon_Owned;
-		totalUncommonAvailable = sGacha->Basic_UncommonMax;
-		
-		totalRareOwned = sGacha->Basic_Rare_Owned;
-		totalRareAvailable = sGacha->Basic_RareMax;
-		
-		totalUltraRareOwned = sGacha->Basic_UltraRare_Owned;
-		totalUltraRareAvailable = sGacha->Basic_UltraRareMax;
+    u16 totalCommonAvailable;
+    u16 totalUncommonAvailable;
+    u16 totalRareAvailable;
+    u16 totalUltraRareAvailable;
+    u16 wager;
+    u8 commonChance;
+    u8 uncommonChance;
+    u8 rareChance;
+    u8 ultraRareChance;
+    u8 totalChance;
 
-		wager = sGacha->wager;  // Player's wager (0-9999)
+    totalCommonAvailable = GetMaxAvailableGachaRaritySpecies(sGacha->GachaId, RARITY_COMMON);
+    totalUncommonAvailable = GetMaxAvailableGachaRaritySpecies(sGacha->GachaId, RARITY_UNCOMMON);
+    totalRareAvailable = GetMaxAvailableGachaRaritySpecies(sGacha->GachaId, RARITY_RARE);
+    totalUltraRareAvailable = GetMaxAvailableGachaRaritySpecies(sGacha->GachaId, RARITY_ULTRA_RARE);
 
-		// Calculate the chance for each category
-		commonChance = CalculateChanceForCategory(totalCommonOwned, totalCommonAvailable, COMMON_ODDS, wager);
-		uncommonChance = CalculateChanceForCategory(totalUncommonOwned, totalUncommonAvailable, UNCOMMON_ODDS, wager);
-		rareChance = CalculateChanceForCategory(totalRareOwned, totalRareAvailable, RARE_ODDS, wager);
-		ultraRareChance = CalculateChanceForCategory(totalUltraRareOwned, totalUltraRareAvailable, ULTRA_RARE_ODDS, wager);
-	}
-	else if (sGacha->GachaId == 2) // Great
-	{
-		// Variables to store the total numbers of owned and available Pokemon
-		totalCommonOwned = sGacha->Great_Common_Owned;
-		totalCommonAvailable = sGacha->Great_CommonMax;
-		
-		totalUncommonOwned = sGacha->Great_Uncommon_Owned;
-		totalUncommonAvailable = sGacha->Great_UncommonMax;
-		
-		totalRareOwned = sGacha->Great_Rare_Owned;
-		totalRareAvailable = sGacha->Great_RareMax;
-		
-		totalUltraRareOwned = sGacha->Great_UltraRare_Owned;
-		totalUltraRareAvailable = sGacha->Great_UltraRareMax;
+    wager = sGacha->wager;  // Player's wager (0-9999)
 
-		wager = sGacha->wager;  // Player's wager (0-9999)
+    // Calculate the chance for each category
+    commonChance = CalculateChanceForCategory(sGacha->ownedCommon, totalCommonAvailable, RARITY_COMMON_ODDS, wager);
+    uncommonChance = CalculateChanceForCategory(sGacha->ownedUncommon, totalUncommonAvailable, RARITY_UNCOMMON_ODDS, wager);
+    rareChance = CalculateChanceForCategory(sGacha->ownedRare, totalRareAvailable, RARITY_RARE_ODDS, wager);
+    ultraRareChance = CalculateChanceForCategory(sGacha->ownedUltraRare, totalUltraRareAvailable, RARITY_ULTRA_RARE_ODDS, wager);
 
-		// Calculate the chance for each category
-		commonChance = CalculateChanceForCategory(totalCommonOwned, totalCommonAvailable, COMMON_ODDS, wager);
-		uncommonChance = CalculateChanceForCategory(totalUncommonOwned, totalUncommonAvailable, UNCOMMON_ODDS, wager);
-		rareChance = CalculateChanceForCategory(totalRareOwned, totalRareAvailable, RARE_ODDS, wager);
-		ultraRareChance = CalculateChanceForCategory(totalUltraRareOwned, totalUltraRareAvailable, ULTRA_RARE_ODDS, wager);
-	}
-	else if (sGacha->GachaId == 3) // Ultra
-	{
-		// Variables to store the total numbers of owned and available Pokemon
-		totalCommonOwned = sGacha->Ultra_Common_Owned;
-		totalCommonAvailable = sGacha->Ultra_CommonMax;
-		
-		totalUncommonOwned = sGacha->Ultra_Uncommon_Owned;
-		totalUncommonAvailable = sGacha->Ultra_UncommonMax;
-		
-		totalRareOwned = sGacha->Ultra_Rare_Owned;
-		totalRareAvailable = sGacha->Ultra_RareMax;
-		
-		totalUltraRareOwned = sGacha->Ultra_UltraRare_Owned;
-		totalUltraRareAvailable = sGacha->Ultra_UltraRareMax;
-
-		wager = sGacha->wager;  // Player's wager (0-9999)
-
-		// Calculate the chance for each category
-		commonChance = CalculateChanceForCategory(totalCommonOwned, totalCommonAvailable, COMMON_ODDS, wager);
-		uncommonChance = CalculateChanceForCategory(totalUncommonOwned, totalUncommonAvailable, UNCOMMON_ODDS, wager);
-		rareChance = CalculateChanceForCategory(totalRareOwned, totalRareAvailable, RARE_ODDS, wager);
-		ultraRareChance = CalculateChanceForCategory(totalUltraRareOwned, totalUltraRareAvailable, ULTRA_RARE_ODDS, wager);
-	}
-	else // Master
-	{
-		// Variables to store the total numbers of owned and available Pokemon
-		totalCommonOwned = sGacha->Master_Common_Owned;
-		totalCommonAvailable = sGacha->Master_CommonMax;
-		
-		totalUncommonOwned = sGacha->Master_Uncommon_Owned;
-		totalUncommonAvailable = sGacha->Master_UncommonMax;
-		
-		totalRareOwned = sGacha->Master_Rare_Owned;
-		totalRareAvailable = sGacha->Master_RareMax;
-		
-		totalUltraRareOwned = sGacha->Master_UltraRare_Owned;
-		totalUltraRareAvailable = sGacha->Master_UltraRareMax;
-
-		wager = sGacha->wager;  // Player's wager (0-9999)
-
-		// Calculate the chance for each category
-		commonChance = CalculateChanceForCategory(totalCommonOwned, totalCommonAvailable, COMMON_ODDS, wager);
-		uncommonChance = CalculateChanceForCategory(totalUncommonOwned, totalUncommonAvailable, UNCOMMON_ODDS, wager);
-		rareChance = CalculateChanceForCategory(totalRareOwned, totalRareAvailable, RARE_ODDS, wager);
-		ultraRareChance = CalculateChanceForCategory(totalUltraRareOwned, totalUltraRareAvailable, ULTRA_RARE_ODDS, wager);
-	}
-	
-	sGacha->commonChance = commonChance;
-	sGacha->uncommonChance = uncommonChance;
-	sGacha->rareChance = rareChance;
-	sGacha->ultraRareChance = ultraRareChance;
+    sGacha->commonChance = commonChance;
+    sGacha->uncommonChance = uncommonChance;
+    sGacha->rareChance = rareChance;
+    sGacha->ultraRareChance = ultraRareChance;
 
     // Final Odds as a sum of chances
     
-	totalChance = commonChance + uncommonChance + rareChance + ultraRareChance;
-	if (totalChance <= 100) {
-	sGacha->Odds = commonChance + uncommonChance + rareChance + ultraRareChance;
-	}
-	else {
-	sGacha->Odds = 100;
-	}	
+    totalChance = commonChance + uncommonChance + rareChance + ultraRareChance;
+    if (totalChance <= 100)
+        sGacha->newMonOdds = commonChance + uncommonChance + rareChance + ultraRareChance;
+    else
+        sGacha->newMonOdds = 100;
 }
 
 static void AButton(void)
-{   	
+{
     if (sGacha->Trigger == 1)
     {
         sGacha->state = STATE_INIT_A;
@@ -3173,172 +2863,120 @@ static void AButton(void)
 static void UpdateCursorPosition(s16 x)
 {
     // Update cursor position based on X coordinate
-    if (x == 231) {
+    if (x == 231)
         sGacha->cursorPosition = 3; // Ones
-    } else if (x == 223) {
+    else if (x == 223)
         sGacha->cursorPosition = 2; // Tens
-    } else if (x == 215) {
+    else if (x == 215)
         sGacha->cursorPosition = 1; // Hundreds
-    } else {
+    else
         sGacha->cursorPosition = 0; // Thousands
-    }
 }
 
 static void UpdateWagerDigit(int direction)
 {
-	u8 place;
+    u8 place;
     u16 tempwager;
     u8 wagerDigits[4];
     u16 newWager;
     u16 d;
-	int i;
-	u16 maxWager;
-	
-	place = sGacha->cursorPosition;
-	d = 1000;
-	tempwager = sGacha->wager;
-	
-	for (i = 0; i < 4; i++)
+    int i;
+    u16 maxWager;
+    u16 minWager;
+
+    place = sGacha->cursorPosition;
+    d = 1000;
+    tempwager = sGacha->wager;
+    
+    for (i = 0; i < 4; i++)
     {
-		if (tempwager >= d) {
-        wagerDigits[i] = tempwager / d;
-		}
-		else {
-		wagerDigits[i] = 0;
-		}
+        if (tempwager >= d)
+            wagerDigits[i] = tempwager / d;
+        else
+            wagerDigits[i] = 0;
 
         tempwager = tempwager % d;
         d = d / 10;
     }
-	maxWager = GetCoins();  // Maximum wager is the current coins
+    maxWager = GetCoins();  // Maximum wager is the current coins
     
     // wagerDigits[0] = Thousands place
-	// wagerDigits[1] = Hundreds place
+    // wagerDigits[1] = Hundreds place
     // wagerDigits[2] = Tens place
     // wagerDigits[3] = Ones place
 
-    if (direction == 0) { // Up
-        if (wagerDigits[place] == 9) {
-        // Set the current digit to 0
-			wagerDigits[place] = 0;
-			if (place > 0) {
-					place--;  // Move to the next digit on the left
-			}
+    if (direction == 0) // Up
+    {
+        if (wagerDigits[place] == 9)
+        {
+            // Set the current digit to 0
+            wagerDigits[place] = 0;
+            if (place > 0)
+                place--;  // Move to the next digit on the left
         }
 
-		// Otherwise, simply increase the digit by 1
-		wagerDigits[place]++;
-		PlaySE(SE_SELECT);
-				
+        // Otherwise, simply increase the digit by 1
+        wagerDigits[place]++;
+        PlaySE(SE_SELECT);
+                
         // Ensure the new wager doesn't exceed max available coins
         newWager = (wagerDigits[0] * 1000) + (wagerDigits[1] * 100) + (wagerDigits[2] * 10) + wagerDigits[3];
-        if (newWager > maxWager) {
-            // If the new wager exceeds available coins, revert back
+        if (newWager > maxWager) // If the new wager exceeds available coins, revert back
             newWager = GetCoins();
-        } 
-            // Update the wager if it's within the limit
-            sGacha->wager = newWager;
+        // Update the wager if it's within the limit
+        sGacha->wager = newWager;
     }
-    else if (direction == 2) { // Down
-        if (wagerDigits[place] > 0) {
+    else if (direction == 2) // Down
+    {
+        if (wagerDigits[place] > 0)
+        {
             // Decrease the digit by 1
             wagerDigits[place]--;
             sGacha->wager = (wagerDigits[0] * 1000) + (wagerDigits[1] * 100) + (wagerDigits[2] * 10) + wagerDigits[3];
-			PlaySE(SE_SELECT);
+            PlaySE(SE_SELECT);
         }
     }
 
     // Update sprite animation based on the new value
     gSprites[sGacha->ArrowsSpriteId].animNum = (wagerDigits[place] == 0) ? 1 : 0;
     SetPlayerDigits(sGacha->wager);  // Update the displayed wager
-	if (sGacha->GachaId == 1)
-	{
-		if (sGacha->wager > 49)
-		{
-			ResetMessage();
-			CalculatePullOdds();
-			sGacha->Trigger = 1;
-			//gSprites[sGacha->CTAspriteId].animPaused = FALSE;
-			gSprites[sGacha->CTAspriteId].animNum = 1; // On
-			ShowMessage();
-		}
-		else
-		{
-			ResetMessage();
-			//CalculatePullOdds();
-			sGacha->Odds = 0;
-			sGacha->Trigger = 0;		
-			gSprites[sGacha->CTAspriteId].animNum = 0; // Off
-			//gSprites[sGacha->CTAspriteId].animPaused = TRUE;
-			ShowMessage();
-		}
-	}
-	else if (sGacha->GachaId == 2)
-	{
-		if (sGacha->wager > 249)
-		{
-			ResetMessage();
-			CalculatePullOdds();
-			sGacha->Trigger = 1;
-			//gSprites[sGacha->CTAspriteId].animPaused = FALSE;
-			gSprites[sGacha->CTAspriteId].animNum = 1; // On
-			ShowMessage();
-		}
-		else
-		{
-			ResetMessage();
-			//CalculatePullOdds();
-			sGacha->Odds = 0;
-			sGacha->Trigger = 0;		
-			gSprites[sGacha->CTAspriteId].animNum = 0; // Off
-			//gSprites[sGacha->CTAspriteId].animPaused = TRUE;
-			ShowMessage();
-		}
-	}
-	else if (sGacha->GachaId == 3)
-	{
-		if (sGacha->wager > 999)
-		{
-			ResetMessage();
-			CalculatePullOdds();
-			sGacha->Trigger = 1;
-			//gSprites[sGacha->CTAspriteId].animPaused = FALSE;
-			gSprites[sGacha->CTAspriteId].animNum = 1; // On
-			ShowMessage();
-		}
-		else
-		{
-			ResetMessage();
-			//CalculatePullOdds();
-			sGacha->Odds = 0;
-			sGacha->Trigger = 0;		
-			gSprites[sGacha->CTAspriteId].animNum = 0; // Off
-			//gSprites[sGacha->CTAspriteId].animPaused = TRUE;
-			ShowMessage();
-		}
-	}
-	else
-	{
-		if (sGacha->wager > 4499)
-		{
-			ResetMessage();
-			CalculatePullOdds();
-			sGacha->Trigger = 1;
-			//gSprites[sGacha->CTAspriteId].animPaused = FALSE;
-			gSprites[sGacha->CTAspriteId].animNum = 1; // On
-			ShowMessage();
-		}
-		else
-		{
-			ResetMessage();
-			//CalculatePullOdds();
-			sGacha->Odds = 0;
-			sGacha->Trigger = 0;		
-			gSprites[sGacha->CTAspriteId].animNum = 0; // Off
-			//gSprites[sGacha->CTAspriteId].animPaused = TRUE;
-			ShowMessage();
-		}
-	}
+
+    switch (sGacha->GachaId)
+    {
+    default:
+    case GACHA_BASIC:
+        minWager = GACHA_BASIC_MIN_WAGER;
+        break;
+    case GACHA_GREAT:
+        minWager = GACHA_GREAT_MIN_WAGER;
+        break;
+    case GACHA_ULTRA:
+        minWager = GACHA_ULTRA_MIN_WAGER;
+        break;
+    case GACHA_MASTER:
+        minWager = GACHA_MASTER_MIN_WAGER;
+        break;
+    }
+
+    if (sGacha->wager >= minWager)
+    {
+        ResetMessage();
+        CalculatePullOdds();
+        sGacha->Trigger = 1;
+        //gSprites[sGacha->CTAspriteId].animPaused = FALSE;
+        gSprites[sGacha->CTAspriteId].animNum = 1; // On
+        ShowMessage();
+    }
+    else
+    {
+        ResetMessage();
+        //CalculatePullOdds();
+        sGacha->newMonOdds = 0;
+        sGacha->Trigger = 0;        
+        gSprites[sGacha->CTAspriteId].animNum = 0; // Off
+        //gSprites[sGacha->CTAspriteId].animPaused = TRUE;
+        ShowMessage();
+    }
 }
 
 static void MoveCursor(int direction)
@@ -3346,14 +2984,17 @@ static void MoveCursor(int direction)
     struct Sprite *cursorSprite = &gSprites[sGacha->ArrowsSpriteId];
     int curX = cursorSprite->x;
     int destX = curX;
-    u16 num = sGacha->wager;
     
     // Move cursor left or right (X axis)
-    if (direction == 1 || direction == 3) { // Right or Left
-        if (direction == 1 && curX < 231) {
+    if (direction == 1 || direction == 3)// Right or Left
+    {
+        if (direction == 1 && curX < 231)
+        {
             destX = curX + 8;
             PlaySE(SE_SELECT);
-        } else if (direction == 3 && curX > 207) {
+        }
+        else if (direction == 3 && curX > 207)
+        {
             destX = curX - 8;
             PlaySE(SE_SELECT);
         }
@@ -3363,7 +3004,8 @@ static void MoveCursor(int direction)
     }
     
     // Move cursor up or down (change wager digit)
-    else if (direction == 0 || direction == 2) { // Up or Down
+    else if (direction == 0 || direction == 2) // Up or Down
+    {
         UpdateWagerDigit(direction); // Update the corresponding digit
     }
 }
@@ -3374,17 +3016,7 @@ static void ExitGacha(void)
     {
         SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
         FREE_AND_SET_NULL(sGacha);
-		FREE_AND_SET_NULL(sTradeAnim);
     }
-}
-
-static void EggHatchPrintMessage(u8 windowId, u8 *string, u8 x, u8 y, u8 speed)
-{
-    FillWindowPixelBuffer(windowId, PIXEL_FILL(15));
-    sGacha->textColor[0] = 0;
-    sGacha->textColor[1] = 5;
-    sGacha->textColor[2] = 6;
-    AddTextPrinterParameterized4(windowId, FONT_NORMAL, x, y, 0, 0, sGacha->textColor, speed, string);
 }
 
 static void HandleInput_GachaComplete(void)
@@ -3401,185 +3033,142 @@ static void HandleInput_GachaComplete(void)
 
 static void HandleInput(void)
 {
-	if (sGacha->Input == 0) 
-	{
-		if (JOY_NEW(A_BUTTON))
-		{
-			AButton();
-		}
-		else if (JOY_NEW(B_BUTTON))
-		{
-			if (sGacha->exitToggle == 0) {
-			sGacha->state = GACHA_STATE_START_EXIT;
-			}
-		}
-		else if (JOY_NEW(DPAD_UP))
-		{
-			MoveCursor(0);
-		}
-		else if (JOY_NEW(DPAD_RIGHT))
-		{
-			MoveCursor(1);
-		}
-		else if (JOY_NEW(DPAD_DOWN))
-		{
-			MoveCursor(2);
-		}
-		else if (JOY_NEW(DPAD_LEFT))
-		{
-			MoveCursor(3);
-		}
-	}
-}
-
-u8 GenerateRandomIV(void) {
-    return (Random() % 17) + 15;  // Random value between 15 and 31
-}
-
-static void Fade(void)
-{
-	BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
-	sGacha->state = STATE_POKEBALL_INIT;
+    if (sGacha->Input == 0) 
+    {
+        if (JOY_NEW(A_BUTTON))
+        {
+            AButton();
+        }
+        else if (JOY_NEW(B_BUTTON))
+        {
+            sGacha->state = GACHA_STATE_START_EXIT;
+        }
+        else if (JOY_NEW(DPAD_UP))
+        {
+            MoveCursor(0);
+        }
+        else if (JOY_NEW(DPAD_RIGHT))
+        {
+            MoveCursor(1);
+        }
+        else if (JOY_NEW(DPAD_DOWN))
+        {
+            MoveCursor(2);
+        }
+        else if (JOY_NEW(DPAD_LEFT))
+        {
+            MoveCursor(3);
+        }
+    }
 }
 
 static void RemoveGarbage(void)
 {
-	DestroySpriteAndFreeResources(&gSprites[sGacha->CreditSpriteIds[0]]);
-	DestroySpriteAndFreeResources(&gSprites[sGacha->CreditSpriteIds[1]]);
-	DestroySpriteAndFreeResources(&gSprites[sGacha->CreditSpriteIds[2]]);
-	DestroySpriteAndFreeResources(&gSprites[sGacha->CreditSpriteIds[3]]);
-	DestroySpriteAndFreeResources(&gSprites[sGacha->PlayerSpriteIds[0]]);
-	DestroySpriteAndFreeResources(&gSprites[sGacha->PlayerSpriteIds[1]]);
-	DestroySpriteAndFreeResources(&gSprites[sGacha->PlayerSpriteIds[2]]);
-	DestroySpriteAndFreeResources(&gSprites[sGacha->PlayerSpriteIds[3]]);
-	DestroySpriteAndFreeResources(&gSprites[sGacha->KnobSpriteId]);
-	DestroySpriteAndFreeResources(&gSprites[sGacha->DigitalTextSpriteId]);
-	DestroySpriteAndFreeResources(&gSprites[sGacha->LotteryJPNspriteId]);
-	DestroySpriteAndFreeResources(&gSprites[sGacha->CreditMenu1Id]);
-	DestroySpriteAndFreeResources(&gSprites[sGacha->CreditMenu2Id]);
-	DestroySpriteAndFreeResources(&gSprites[sGacha->PokemonOneSpriteId]);
-	DestroySpriteAndFreeResources(&gSprites[sGacha->PokemonTwoSpriteId]);
-	DestroySpriteAndFreeResources(&gSprites[sGacha->PokemonThreeSpriteId]);
-	DestroySpriteAndFreeResources(&gSprites[sGacha->ArrowsSpriteId]);
-	DestroySpriteAndFreeResources(&gSprites[sGacha->CTAspriteId]);
-	ResetMessage();
-	sTradeAnim->bg1vofs = 0;
-	sTradeAnim->bg1hofs = 0;
-		
-	sTradeAnim->bg2vofs = 0;
-	sTradeAnim->bg2hofs = 0;
-	SetGpuReg(REG_OFFSET_BLDCNT, 0);
-	SetGpuReg(REG_OFFSET_BG2CNT, BGCNT_PRIORITY(2) |
-								 BGCNT_CHARBASE(1) |
-								 BGCNT_16COLOR |
-								 BGCNT_SCREENBASE(18) |
-								 BGCNT_TXT512x256);
-	LoadPalette(gTradeGba2_Pal, BG_PLTT_ID(1), 3 * PLTT_SIZE_4BPP);
-	DmaCopyLarge16(3, gTradeGba_Gfx, (void *) BG_CHAR_ADDR(1), 0x1420, 0x1000);
-	DmaCopy16Defvars(3, gTrade_Tilemap, (void *) BG_SCREEN_ADDR(18), 0x1000);	
-	
-	gPaletteFade.bufferTransferDisabled = TRUE;
-	gPaletteFade.bufferTransferDisabled = FALSE;
-	BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
+    DestroySpriteAndFreeResources(&gSprites[sGacha->CreditSpriteIds[0]]);
+    DestroySpriteAndFreeResources(&gSprites[sGacha->CreditSpriteIds[1]]);
+    DestroySpriteAndFreeResources(&gSprites[sGacha->CreditSpriteIds[2]]);
+    DestroySpriteAndFreeResources(&gSprites[sGacha->CreditSpriteIds[3]]);
+    DestroySpriteAndFreeResources(&gSprites[sGacha->PlayerSpriteIds[0]]);
+    DestroySpriteAndFreeResources(&gSprites[sGacha->PlayerSpriteIds[1]]);
+    DestroySpriteAndFreeResources(&gSprites[sGacha->PlayerSpriteIds[2]]);
+    DestroySpriteAndFreeResources(&gSprites[sGacha->PlayerSpriteIds[3]]);
+    DestroySpriteAndFreeResources(&gSprites[sGacha->KnobSpriteId]);
+    DestroySpriteAndFreeResources(&gSprites[sGacha->DigitalTextSpriteId]);
+    DestroySpriteAndFreeResources(&gSprites[sGacha->LotteryJPNspriteId]);
+    DestroySpriteAndFreeResources(&gSprites[sGacha->CreditMenu1Id]);
+    DestroySpriteAndFreeResources(&gSprites[sGacha->CreditMenu2Id]);
+    DestroySpriteAndFreeResources(&gSprites[sGacha->PokemonOneSpriteId]);
+    DestroySpriteAndFreeResources(&gSprites[sGacha->PokemonTwoSpriteId]);
+    DestroySpriteAndFreeResources(&gSprites[sGacha->PokemonThreeSpriteId]);
+    DestroySpriteAndFreeResources(&gSprites[sGacha->ArrowsSpriteId]);
+    DestroySpriteAndFreeResources(&gSprites[sGacha->CTAspriteId]);
+    ResetMessage();
+    SetGpuReg(REG_OFFSET_BLDCNT, 0);
+    SetGpuReg(REG_OFFSET_BG2CNT, BGCNT_PRIORITY(2) |
+                                 BGCNT_CHARBASE(1) |
+                                 BGCNT_16COLOR |
+                                 BGCNT_SCREENBASE(18) |
+                                 BGCNT_TXT512x256);
+    LoadPalette(gTradeGba2_Pal, BG_PLTT_ID(1), 3 * PLTT_SIZE_4BPP);
+    DmaCopyLarge16(3, gTradeGba_Gfx, (void *) BG_CHAR_ADDR(1), 0x1420, 0x1000);
+    DmaCopy16Defvars(3, gTrade_Tilemap, (void *) BG_SCREEN_ADDR(18), 0x1000);    
+    
+    gPaletteFade.bufferTransferDisabled = TRUE;
+    gPaletteFade.bufferTransferDisabled = FALSE;
+    BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
     SetVBlankCallback(GachaVBlankCallback);
-}
-
-static void GachaSetMonNickname(void)
-{
-    SetMonData(&sGacha->GachaMon, MON_DATA_NICKNAME, gStringVar3);
-    FreeMonSpritesGfx();
-    sGacha->state = GACHA_STATE_START_EXIT;
 }
 
 void ShowFinalMessage(void)
 {
-	struct WindowTemplate template;
+    struct WindowTemplate template;
 
-	SetWindowTemplateFields(&template, 1, 2, 15, 26, 4, 0xF, 0x194);
-	
+    SetWindowTemplateFields(&template, 1, 2, 15, 26, 4, 0xF, 0x194);
+    
     sTextWindowId = AddWindow(&template);
     FillWindowPixelBuffer(sTextWindowId, PIXEL_FILL(0));
     PutWindowTilemap(sTextWindowId);
     LoadUserWindowBorderGfx(sTextWindowId, 0x214, BG_PLTT_ID(14));
-	DrawStdWindowFrame(sTextWindowId, FALSE); 
-	StringCopy(gStringVar1, GetSpeciesName(sGacha->CalculatedSpecies));
+    DrawStdWindowFrame(sTextWindowId, FALSE); 
+    StringCopy(gStringVar1, GetSpeciesName(sGacha->CalculatedSpecies));
     StringExpandPlaceholders(gStringVar4, sText_FromGacha);
     AddTextPrinterParameterized(sTextWindowId, FONT_NORMAL, gStringVar4, 0, 1, 0, 0);
-	CopyWindowToVram(sTextWindowId, 3);
+    CopyWindowToVram(sTextWindowId, 3);
 }
 
 
 static void GachaMain(u8 taskId)
 {
-    u16 species;
-    u8 fixedIV;
-    u8 hasFixedPersonality = TRUE;
-    u32 fixedPersonality;
-    u8 trainerId[TRAINER_ID_LENGTH] = {0};  // Assuming this is set elsewhere
-    u32 playerId = GetTrainerId(trainerId);
-    u8 otIdType = OT_ID_PLAYER_ID;
-    u32 fixedOtId = playerId;
-	u16 level;
-	u8 check;
-	u8 gender;
-    u32 personality;
-	u8 party;
-	int pos = 0;
-	//struct Pokemon *mon = NULL;
-	struct Pokemon mon;
-	
-	pos = B_POSITION_OPPONENT_RIGHT;
-	//struct SpriteSheet s;
-	
-	check = 0;
-	
-	if (FlagGet(FLAG_IS_CHAMPION) == TRUE)
-	{
-		level = (Random() % 30) + 40;
-	}
-	else if (FlagGet(FLAG_BADGE08_GET) == TRUE)
-	{
-		level = (Random() % 15) + 36;
-	}
-	else if (FlagGet(FLAG_BADGE07_GET) == TRUE)
-	{
-		level = (Random() % 9) + 28;
-	}
-	else if (FlagGet(FLAG_BADGE06_GET) == TRUE)
-	{
-		level = (Random() % 10) + 21;
-	}
-	else if (FlagGet(FLAG_BADGE05_GET) == TRUE)
-	{
-		level = (Random() % 10) + 19;
-	}
-	else if (FlagGet(FLAG_BADGE04_GET) == TRUE)
-	{
-		level = (Random() % 6) + 18;
-	}
-	else if (FlagGet(FLAG_BADGE03_GET) == TRUE)
-	{
-		level = (Random() % 8) + 13;
-	}
-	else if (FlagGet(FLAG_BADGE02_GET) == TRUE)
-	{
-		level = (Random() % 6) + 7;
-	}
-	else if (FlagGet(FLAG_BADGE01_GET) == TRUE)
-	{
-		level = (Random() % 7) + 5;
-	}
-	else
-	{
-		level = (Random() % 5) + 2;
-	}
-	
+    u16 level;
+    u32 pos = B_POSITION_OPPONENT_RIGHT;
+
+    if (FlagGet(FLAG_IS_CHAMPION) == TRUE)
+    {
+        level = (Random() % 30) + 40;
+    }
+    else if (FlagGet(FLAG_BADGE08_GET) == TRUE)
+    {
+        level = (Random() % 15) + 36;
+    }
+    else if (FlagGet(FLAG_BADGE07_GET) == TRUE)
+    {
+        level = (Random() % 9) + 28;
+    }
+    else if (FlagGet(FLAG_BADGE06_GET) == TRUE)
+    {
+        level = (Random() % 10) + 21;
+    }
+    else if (FlagGet(FLAG_BADGE05_GET) == TRUE)
+    {
+        level = (Random() % 10) + 19;
+    }
+    else if (FlagGet(FLAG_BADGE04_GET) == TRUE)
+    {
+        level = (Random() % 6) + 18;
+    }
+    else if (FlagGet(FLAG_BADGE03_GET) == TRUE)
+    {
+        level = (Random() % 8) + 13;
+    }
+    else if (FlagGet(FLAG_BADGE02_GET) == TRUE)
+    {
+        level = (Random() % 6) + 7;
+    }
+    else if (FlagGet(FLAG_BADGE01_GET) == TRUE)
+    {
+        level = (Random() % 7) + 5;
+    }
+    else
+    {
+        level = (Random() % 5) + 2;
+    }
+    
     switch (sGacha->state)
     {
     case GACHA_STATE_INIT:
         if (!gPaletteFade.active) {
             sGacha->state = GACHA_STATE_PROCESS_INPUT;
-		}
+        }
         break;
     case GACHA_STATE_PROCESS_INPUT:
         HandleInput();
@@ -3599,118 +3188,108 @@ static void GachaMain(u8 taskId)
     case GACHA_STATE_EXIT:
         ExitGacha();
         break;
-	case STATE_INIT_A: // Initial state
-		sGacha->Input = 1;
-		DeterminePokemonRarityAndNewStatus();
-		PlaySE(SE_SHOP);
-		RemoveCoins(sGacha->wager);
-		sGacha->wager = 0;
-		ResetMessage();
-		gSprites[sGacha->CTAspriteId].animNum = 0;
-		gSprites[sGacha->ArrowsSpriteId].invisible = TRUE;
-		SetCreditDigits(GetCoins());
-		SetPlayerDigits(sGacha->wager);
+    case STATE_INIT_A: // Initial state
+        sGacha->Input = 1;
+        DeterminePokemonRarityAndNewStatus();
+        PlaySE(SE_SHOP);
+        RemoveCoins(sGacha->wager);
+        sGacha->wager = 0;
+        ResetMessage();
+        gSprites[sGacha->CTAspriteId].animNum = 0;
+        gSprites[sGacha->ArrowsSpriteId].invisible = TRUE;
+        SetCreditDigits(GetCoins());
+        SetPlayerDigits(sGacha->wager);
         sGacha->waitTimer = 30;  // Set the timer
         sGacha->state = STATE_TIMER_1;  // Move to next state
         break;
-
     case STATE_TIMER_1: // Waiting for timer to expire
-        if (sGacha->waitTimer > 0) {
+        if (sGacha->waitTimer > 0)
             sGacha->waitTimer--;  // Decrease timer
-        } else {
+        else
             sGacha->state = STATE_TWIST;  // Transition to next state when the timer is done
-        }
         break;
-
     case STATE_TWIST: // After timer expires, proceed with animation
         PlaySE(SE_VEND);
         gSprites[sGacha->KnobSpriteId].animNum = 1;
         sGacha->state = STATE_TIMER_2;  // Move to the next state after animation starts
         break;
-
     case STATE_TIMER_2: // Handle the next part of the delay or action
         // (You can add another waiting period if needed)
         sGacha->waitTimer = 50;  // Set the next timer
         sGacha->state = STATE_INIT_GIVE;  // Move to next state
         break;
-
     case STATE_INIT_GIVE: // Final state
-        if (sGacha->waitTimer > 0) {
+        if (sGacha->waitTimer > 0)
             sGacha->waitTimer--;  // Decrease timer
-        } else {
+        else
             sGacha->state = STATE_SHAKE_1;  // Final action after timer
-		}
-		break;	
-		
-	case STATE_SHAKE_1: // After timer expires, proceed with animation
+        break;
+    case STATE_SHAKE_1: // After timer expires, proceed with animation
         PlaySE(SE_BREAKABLE_DOOR);
         Shake1();
         sGacha->state = STATE_TIMER_3;  // Move to the next state after animation starts
         break;
-
     case STATE_TIMER_3: // Handle the next part of the delay or action
         // (You can add another waiting period if needed)
         sGacha->waitTimer = 3;  // Set the next timer
         sGacha->state = STATE_INIT_SHAKE_2;  // Move to next state
         break;
-
     case STATE_INIT_SHAKE_2: // Final state
-        if (sGacha->waitTimer > 0) {
+        if (sGacha->waitTimer > 0)
             sGacha->waitTimer--;  // Decrease timer
-        } else {
+        else
             sGacha->state = STATE_SHAKE_2;  // Final action after timer
-		}
-		break;	
-	case STATE_SHAKE_2: // After timer expires, proceed with animation
+        break;    
+    case STATE_SHAKE_2: // After timer expires, proceed with animation
         //PlaySE(SE_BREAKABLE_DOOR);
         Shake2();
         sGacha->state = STATE_TIMER_4;  // Move to the next state after animation starts
         break;
-
     case STATE_TIMER_4: // Handle the next part of the delay or action
         // (You can add another waiting period if needed)
         sGacha->waitTimer = 3;  // Set the next timer
         sGacha->state = STATE_INIT_SHAKE_3;  // Move to next state
         break;
-
     case STATE_INIT_SHAKE_3: // Final state
-        if (sGacha->waitTimer > 0) {
+        if (sGacha->waitTimer > 0)
+        {
             sGacha->waitTimer--;  // Decrease timer
-        } else {
-			BGSetup();
-			sGacha->waitTimer = 20;
+        }
+        else 
+        {
+            BGSetup();
+            sGacha->waitTimer = 20;
             sGacha->state = STATE_TIMER_5;  // Final action after timer
-		}
-		break;		
-		
-	case STATE_TIMER_5: // After timer expires, proceed with animation
-        if (sGacha->waitTimer > 0) {
+        }
+        break;
+    case STATE_TIMER_5: // After timer expires, proceed with animation
+        if (sGacha->waitTimer > 0)
             sGacha->waitTimer--;  // Decrease timer
-        } else {
-        sGacha->state = STATE_GIVE;  // Move to the next state after animation starts
-		}
-        break;	
-		
-	case STATE_GIVE:
-		StartTradeScreen();
-		break;
-	case STATE_FADE:
-		if (!gPaletteFade.active) {
-			BGRed();
-		sGacha->state = STATE_POKEBALL_INIT; }
-		break;
-	case STATE_POKEBALL_INIT:
-		RemoveGarbage();
-		sGacha->state++;
-		break;	
-	case STATE_POKEBALL_PROCESS:
-		if (!gPaletteFade.active) {
-		sGacha->state = STATE_POKEBALL_ARRIVE; }
-		break;
-	case STATE_POKEBALL_ARRIVE:	
-		LoadSpriteSheet(&sPokeBallSpriteSheet);
+        else
+            sGacha->state = STATE_GIVE;  // Move to the next state after animation starts
+        break;
+    case STATE_GIVE:
+        StartTradeScreen();
+        break;
+    case STATE_FADE:
+        if (!gPaletteFade.active)
+        {
+            BGRed();
+            sGacha->state = STATE_POKEBALL_INIT;
+        }
+        break;
+    case STATE_POKEBALL_INIT:
+        RemoveGarbage();
+        sGacha->state++;
+        break;    
+    case STATE_POKEBALL_PROCESS:
+        if (!gPaletteFade.active)
+            sGacha->state = STATE_POKEBALL_ARRIVE;
+        break;
+    case STATE_POKEBALL_ARRIVE:    
+        LoadSpriteSheet(&sPokeBallSpriteSheet);
         LoadSpritePalette(&sPokeBallSpritePalette);
-		sGacha->bouncingPokeballSpriteId = CreateSprite(&sSpriteTemplate_Pokeball, 120, -8, 0);
+        sGacha->bouncingPokeballSpriteId = CreateSprite(&sSpriteTemplate_Pokeball, 120, -8, 0);
         gSprites[sGacha->bouncingPokeballSpriteId].data[3] = 74;
         gSprites[sGacha->bouncingPokeballSpriteId].callback = SpriteCB_BouncingPokeballArrive;
         StartSpriteAnim(&gSprites[sGacha->bouncingPokeballSpriteId], 1);
@@ -3718,33 +3297,33 @@ static void GachaMain(u8 taskId)
         BlendPalettes(1 << (16 + gSprites[sGacha->bouncingPokeballSpriteId].oam.paletteNum), 16, RGB_WHITEALPHA);
         sGacha->state++;
         sGacha->timer = 0;
-		break;
-	case STATE_FADE_POKEBALL_TO_NORMAL:
-		BeginNormalPaletteFade(1 << (16 + gSprites[sGacha->bouncingPokeballSpriteId].oam.paletteNum), 1, 16, 0, RGB_WHITEALPHA);
+        break;
+    case STATE_FADE_POKEBALL_TO_NORMAL:
+        BeginNormalPaletteFade(1 << (16 + gSprites[sGacha->bouncingPokeballSpriteId].oam.paletteNum), 1, 16, 0, RGB_WHITEALPHA);
         sGacha->state++;
-		break;
-	case STATE_POKEBALL_ARRIVE_WAIT:		
-		if (gSprites[sGacha->bouncingPokeballSpriteId].callback == SpriteCallbackDummy)
-			{	CreateMon(&mon, sGacha->CalculatedSpecies, level, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
-				party = GiveMonToPlayer(&mon);
-				GetSetPokedexFlag(sGacha->CalculatedSpecies, FLAG_SET_SEEN);
-				HandleSetPokedexFlag(sGacha->CalculatedSpecies, FLAG_SET_CAUGHT, GetMonData(&mon, MON_DATA_PERSONALITY));
-				LoadCompressedPalette(GetMonSpritePalFromSpeciesAndPersonality(sGacha->CalculatedSpecies, IsMonShiny(&mon), GetMonData(&mon, MON_DATA_PERSONALITY)), OBJ_PLTT_ID(2), PLTT_SIZE_4BPP);
-				SetMultiuseSpriteTemplateToPokemon(sGacha->CalculatedSpecies, pos);
-				sGacha->monSpriteId = CreateMonPicSprite_Affine(sGacha->CalculatedSpecies, SHINY_ODDS, 0, MON_PIC_AFFINE_FRONT, 120, 60, 14, TAG_NONE);
-				gSprites[sGacha->monSpriteId].callback = SpriteCB_Null;
-				gSprites[sGacha->monSpriteId].oam.priority = 0;
-				gSprites[sGacha->monSpriteId].invisible = TRUE;
-				HandleLoadSpecialPokePic(TRUE,
-											gMonSpritesGfxPtr->spritesGfx[pos],
-											sGacha->CalculatedSpecies,
-											GetMonData(&mon, MON_DATA_PERSONALITY));
-				sGacha->state++;
-			}
-		break;
-	case STATE_SHOW_NEW_MON:
-		
-		gSprites[sGacha->monSpriteId].x = 120;
+        break;
+    case STATE_POKEBALL_ARRIVE_WAIT:        
+        if (gSprites[sGacha->bouncingPokeballSpriteId].callback == SpriteCallbackDummy)
+        {
+            CreateMon(&gEnemyParty[0], sGacha->CalculatedSpecies, level, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
+            GiveMonToPlayer(&gEnemyParty[0]);
+            GetSetPokedexFlag(sGacha->CalculatedSpecies, FLAG_SET_SEEN);
+            HandleSetPokedexFlag(sGacha->CalculatedSpecies, FLAG_SET_CAUGHT, GetMonData(&gEnemyParty[0], MON_DATA_PERSONALITY));
+            LoadCompressedPalette(GetMonFrontSpritePal(&gEnemyParty[0]), OBJ_PLTT_ID(2), PLTT_SIZE_4BPP);
+            SetMultiuseSpriteTemplateToPokemon(sGacha->CalculatedSpecies, pos);
+            sGacha->monSpriteId = CreateMonPicSprite_Affine(sGacha->CalculatedSpecies, GetMonData(&gEnemyParty[0], MON_DATA_IS_SHINY), GetMonData(&gEnemyParty[0], MON_DATA_PERSONALITY), MON_PIC_AFFINE_FRONT, 120, 60, 14, TAG_NONE);
+            gSprites[sGacha->monSpriteId].callback = SpriteCB_Null;
+            gSprites[sGacha->monSpriteId].oam.priority = 0;
+            gSprites[sGacha->monSpriteId].invisible = TRUE;
+            HandleLoadSpecialPokePic(TRUE,
+                                        gMonSpritesGfxPtr->spritesGfx[pos],
+                                        sGacha->CalculatedSpecies,
+                                        GetMonData(&gEnemyParty[0], MON_DATA_PERSONALITY));
+            sGacha->state++;
+        }
+        break;
+    case STATE_SHOW_NEW_MON:
+        gSprites[sGacha->monSpriteId].x = 120;
         gSprites[sGacha->monSpriteId].y = gSpeciesInfo[sGacha->CalculatedSpecies].frontPicYOffset + 56;
         gSprites[sGacha->monSpriteId].x2 = 0;
         gSprites[sGacha->monSpriteId].y2 = 0;
@@ -3753,7 +3332,7 @@ static void GachaMain(u8 taskId)
         FreeSpriteOamMatrix(&gSprites[sGacha->bouncingPokeballSpriteId]);
         DestroySprite(&gSprites[sGacha->bouncingPokeballSpriteId]);
         sGacha->state++;
-		break;
+        break;
     case STATE_NEW_MON_MSG:
         // Wait for Pokémon's front sprite animation
         if (gSprites[sGacha->monSpriteId].callback == SpriteCallbackDummy)
@@ -3761,8 +3340,7 @@ static void GachaMain(u8 taskId)
         break;
     case NEW_1:
         // "{mon} hatched from egg" message/fanfare
-		ShowFinalMessage();
-        //EggHatchPrintMessage(0, gStringVar4, 0, 3, TEXT_SKIP_DRAW);
+        ShowFinalMessage();
         PlayFanfare(MUS_EVOLVED);
         sGacha->state++;
         //PutWindowTilemap(0);
@@ -3778,26 +3356,18 @@ static void GachaMain(u8 taskId)
         break;
     case NEW_4:
         // Ready the nickname prompt
-		if (FlagGet(FLAG_SYS_POKEMON_GET) == FALSE){
-			FlagSet(FLAG_SYS_POKEMON_GET);
-		}
-		sGacha->state = GACHA_STATE_START_EXIT;
+        if (FlagGet(FLAG_SYS_POKEMON_GET) == FALSE)
+        {
+            FlagSet(FLAG_SYS_POKEMON_GET);
+        }
+        sGacha->state = GACHA_STATE_START_EXIT;
         break;
     }
 }
 
-static void InitTradeScreen(void)
-{
-	//SetVBlankCallback(NULL);
-    //ResetAllBgsCoordinates();
-    //ResetVramOamAndBgCntRegs();
-    //ResetBgsAndClearDma3BusyFlags(0);
-    //ResetTempTileDataBuffers();
-}
-
 static void InitGachaScreen(void)
-{	
-	sGacha->GachaId = gSpecialVar_0x8004;
+{    
+    sGacha->GachaId = gSpecialVar_0x8004;
 
     SetVBlankCallback(NULL);
     ResetAllBgsCoordinates();
@@ -3805,73 +3375,55 @@ static void InitGachaScreen(void)
     ResetBgsAndClearDma3BusyFlags(0);
     ResetTempTileDataBuffers();
 
-	BGSetup();
+    BGSetup();
 
-	ResetSpriteData();
+    ResetSpriteData();
     FreeAllSpritePalettes();
-	LoadSpritePalettes(sSpritePalettes2);
-	
-	if (sGacha->GachaId == 1) { // Basic
-	CreateHoppip();
-	}
-	else if (sGacha->GachaId == 2) { // Great
-	CreatePhanpy();
-	}
-	else if (sGacha->GachaId == 3) { // Ultra
-	CreateTeddiursa();
-	}
-	else { // Master
-	CreateBelossom();
-	}
-	CreateArrows();
-	CreateCTA();
-	CreateDigitalText();	
-	CreateKnob();
-	CreateCreditSprites();
-	CreatePlayerSprites();
-	SetCreditDigits(GetCoins());
-	SetPlayerDigits(0);	
-	CreateCreditMenu();	
-	CreatePlayerMenu();
-	CreateLotteryJPN();
-	
-	sGacha->Odds = 0;
-	InitWindows(sGachaWinTemplates);
-	LoadPalette(GetTextWindowPalette(2), 11 * 16, 32);
-	ShowMessage();
-	
-	sGacha->exitToggle = 0;
-	UpdateCursorPosition(gSprites[sGacha->ArrowsSpriteId].x);
-	sGacha->Basic_CommonMax = 37;
-	sGacha->Basic_UncommonMax = 28;
-	sGacha->Basic_RareMax = 16;
-	sGacha->Basic_UltraRareMax = 11;
-	sGacha->Great_CommonMax = 65;
-	sGacha->Great_UncommonMax = 52;
-	sGacha->Great_RareMax = 41;
-	sGacha->Great_UltraRareMax = 18;
-	sGacha->Ultra_CommonMax = 63;
-	sGacha->Ultra_UncommonMax = 51;
-	sGacha->Ultra_RareMax = 28;
-	sGacha->Ultra_UltraRareMax = 28;
-	sGacha->Master_CommonMax = 18;
-	sGacha->Master_UncommonMax = 17;
-	sGacha->Master_RareMax = 11;
-	sGacha->Master_UltraRareMax = 10;
-	sGacha->gachaState = 0;
-	sGacha->waitTimer = 0;
-	sGacha->Input = 0;
-	sGacha->Basic_Total_Max = (sGacha->Basic_CommonMax + sGacha->Basic_UncommonMax + sGacha->Basic_RareMax + sGacha->Basic_UltraRareMax);
-	sGacha->Great_Total_Max = (sGacha->Great_CommonMax + sGacha->Great_UncommonMax + sGacha->Great_RareMax + sGacha->Great_UltraRareMax);
-	sGacha->Ultra_Total_Max = (sGacha->Ultra_CommonMax + sGacha->Ultra_UncommonMax + sGacha->Ultra_RareMax + sGacha->Ultra_UltraRareMax);
-	sGacha->Master_Total_Max = (sGacha->Master_CommonMax + sGacha->Master_UncommonMax + sGacha->Master_RareMax + sGacha->Master_UltraRareMax);
-	GetPokemonOwned();
-	
-	CopyBgTilemapBufferToVram(GACHA_BG_BASE);
-	CopyBgTilemapBufferToVram(GACHA_MENUS);
+    LoadSpritePalettes(sSpritePalettes2);
+
+    switch (sGacha->GachaId)
+    {
+    default:
+    case GACHA_BASIC:
+        CreateHoppip();
+        break;
+    case GACHA_GREAT:
+        CreatePhanpy();
+        break;
+    case GACHA_ULTRA:
+        CreateTeddiursa();
+        break;
+    case GACHA_MASTER:
+        CreateBelossom();
+        break;
+    }
+    CreateArrows();
+    CreateCTA();
+    CreateDigitalText();    
+    CreateKnob();
+    CreateCreditSprites();
+    CreatePlayerSprites();
+    SetCreditDigits(GetCoins());
+    SetPlayerDigits(0);    
+    CreateCreditMenu();    
+    CreatePlayerMenu();
+    CreateLotteryJPN();
+    
+    sGacha->newMonOdds = 0;
+    InitWindows(sGachaWinTemplates);
+    LoadPalette(GetTextWindowPalette(2), 11 * 16, 32);
+    ShowMessage();
+
+    UpdateCursorPosition(gSprites[sGacha->ArrowsSpriteId].x);
+    sGacha->waitTimer = 0;
+    sGacha->Input = 0;
+    GetPokemonOwned();
+    
+    CopyBgTilemapBufferToVram(GACHA_BG_BASE);
+    CopyBgTilemapBufferToVram(GACHA_MENUS);
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON | DISPCNT_BG2_ON);
     ShowBg(GACHA_BG_BASE);
-	ShowBg(GACHA_MENUS);
+    ShowBg(GACHA_MENUS);
     BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
     SetVBlankCallback(GachaVBlankCallback);
     SetMainCallback2(GachaMainCallback);
