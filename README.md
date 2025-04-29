@@ -45,5 +45,7 @@ My intention is for each Pok&eacute;mon species to have at least one thing it's 
 - tustin's [nameboxes](https://github.com/tustin2121/pokeemerald/commit/2664c32634376c36251922464c43ad644ed42f3c)
 - Bivurnum's [map previews](https://github.com/Bivurnum/decomps-resources/wiki/FRLG-Map-Previews)
 - Archie and mudskip's [main menu](https://github.com/pret/pokeemerald/wiki/New-Main-Menu-UI-With-Mugshot-by-Archie-and-Mudskip). I made my own mugshots, though.
+- Chris Piche, AGSMG, AsparagusEduardo, huderlem, and Pokeabbie for the [game corner expansion](https://www.reddit.com/r/PokemonROMhacks/comments/1jyn9mu/chris_pich%C3%A9s_expansion_for_pokemon_emeralds_game/#lightbox)
 
 Shout out to all of the [contributors at RHH](https://github.com/rh-hideout/pokeemerald-expansion/wiki/Credits) for their long and often thankless work of making rom hacking resources for fancy fanmade Pokemon games &hearts;
+
