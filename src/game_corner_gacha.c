@@ -3307,8 +3307,8 @@ static void GachaMain(u8 taskId)
         {
             CreateMon(&gEnemyParty[0], sGacha->CalculatedSpecies, level, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
             GiveMonToPlayer(&gEnemyParty[0]);
-            GetSetPokedexFlag(sGacha->CalculatedSpecies, FLAG_SET_SEEN);
-            HandleSetPokedexFlag(sGacha->CalculatedSpecies, FLAG_SET_CAUGHT, GetMonData(&gEnemyParty[0], MON_DATA_PERSONALITY));
+            GetSetPokedexFlag(SpeciesToNationalPokedexNum(sGacha->CalculatedSpecies), FLAG_SET_SEEN);
+            HandleSetPokedexFlag(SpeciesToNationalPokedexNum(sGacha->CalculatedSpecies), FLAG_SET_CAUGHT, GetMonData(&gEnemyParty[0], MON_DATA_PERSONALITY));
             LoadCompressedPalette(GetMonFrontSpritePal(&gEnemyParty[0]), OBJ_PLTT_ID(2), PLTT_SIZE_4BPP);
             SetMultiuseSpriteTemplateToPokemon(sGacha->CalculatedSpecies, pos);
             sGacha->monSpriteId = CreateMonPicSprite_Affine(sGacha->CalculatedSpecies, GetMonData(&gEnemyParty[0], MON_DATA_IS_SHINY), GetMonData(&gEnemyParty[0], MON_DATA_PERSONALITY), MON_PIC_AFFINE_FRONT, 120, 60, 14, TAG_NONE);
