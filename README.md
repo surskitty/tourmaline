@@ -8,6 +8,13 @@ out any developers who may want to use this as well.
 
 Updated to pokeemerald-expansion v1.11.1
 
+To pull from this branch here, just simply use these commands here:
+```
+git remote add AGSMG https://github.com/agsmgmaster64/worldlinkdeluxe-ame/
+git pull AGSMG gacha-expansion
+```
+
+
 Below is the rest of the original description from Chris Piche himself:
 
 More specifically, this adds 4 pinball mini-games, Flappy Bird, Block Stacker, Snake, Blackjack, Voltorb Flip, Plinko, Mauville Derby, and Gacha Machines into the Game Corner.
