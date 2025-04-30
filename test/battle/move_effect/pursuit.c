@@ -682,7 +682,7 @@ SINGLE_BATTLE_TEST("INNATE: Pursuit ignores accuracy checks when attacking a swi
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SAND_ATTACK) == EFFECT_ACCURACY_DOWN);
         ASSUME(GetMoveEffect(MOVE_HAIL) == EFFECT_HAIL);
-        PLAYER(SPECIES_GLACEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SNOW_CLOAK); }
+        PLAYER(SPECIES_GLACEON) { Ability(ABILITY_ICE_BODY); Innates(ABILITY_SNOW_CLOAK); }
         PLAYER(SPECIES_ZIGZAGOON);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -701,7 +701,7 @@ DOUBLE_BATTLE_TEST("INNATE: Pursuit affected by Electrify fails against target w
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_ELECTRIFY) == EFFECT_ELECTRIFY);
-        PLAYER(SPECIES_LANTURN) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_VOLT_ABSORB); }
+        PLAYER(SPECIES_LANTURN) { Ability(ABILITY_ILLUMINATE); Innates(ABILITY_VOLT_ABSORB); }
         PLAYER(SPECIES_HELIOLISK);
         PLAYER(SPECIES_ZIGZAGOON);
         OPPONENT(SPECIES_WYNAUT);
@@ -720,7 +720,7 @@ DOUBLE_BATTLE_TEST("INNATE: Pursuit affected by Electrify fails against target w
 SINGLE_BATTLE_TEST("INNATE: Pursuited mon correctly switches out after it got hit and activated ability Tangling Hair")
 {
     GIVEN {
-        PLAYER(SPECIES_DUGTRIO_ALOLA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TANGLING_HAIR); }
+        PLAYER(SPECIES_DUGTRIO_ALOLA) { Ability(ABILITY_SAND_VEIL); Innates(ABILITY_TANGLING_HAIR); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -739,7 +739,7 @@ SINGLE_BATTLE_TEST("INNATE: Pursuited mon correctly switches out after it got hi
 DOUBLE_BATTLE_TEST("INNATE: Pursuited mon correctly switches out after it got hit and activated ability Tangling Hair - Doubles")
 {
     GIVEN {
-        PLAYER(SPECIES_DUGTRIO_ALOLA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TANGLING_HAIR); }
+        PLAYER(SPECIES_DUGTRIO_ALOLA) { Ability(ABILITY_SAND_VEIL); Innates(ABILITY_TANGLING_HAIR); }
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
@@ -763,9 +763,9 @@ DOUBLE_BATTLE_TEST("INNATE: Pursuited mon correctly switches out after it got hi
 SINGLE_BATTLE_TEST("INNATE: Pursuited mon correctly switches out after it got hit and activated ability Tangling Hair - Mirror Armor")
 {
     GIVEN {
-        PLAYER(SPECIES_DUGTRIO_ALOLA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TANGLING_HAIR); }
+        PLAYER(SPECIES_DUGTRIO_ALOLA) { Ability(ABILITY_SAND_VEIL); Innates(ABILITY_TANGLING_HAIR); }
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_CORVIKNIGHT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MIRROR_ARMOR); }
+        OPPONENT(SPECIES_CORVIKNIGHT) { Ability(ABILITY_PRESSURE); Innates(ABILITY_MIRROR_ARMOR); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { SWITCH(player, 1); MOVE(opponent, MOVE_PURSUIT); }
@@ -781,7 +781,7 @@ SINGLE_BATTLE_TEST("INNATE: Pursuited mon correctly switches out after it got hi
 DOUBLE_BATTLE_TEST("INNATE: Pursuited mon correctly switches out after it got hit and activated ability Cotton Down")
 {
     GIVEN {
-        PLAYER(SPECIES_ELDEGOSS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COTTON_DOWN); }
+        PLAYER(SPECIES_ELDEGOSS) { Ability(ABILITY_SAND_VEIL); Innates(ABILITY_COTTON_DOWN); }
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);

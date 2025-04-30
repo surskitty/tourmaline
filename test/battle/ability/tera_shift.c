@@ -54,7 +54,7 @@ SINGLE_BATTLE_TEST("INNATE: Tera Shift can't be suppressed by Neutralizing Gas")
 {
     GIVEN {
         PLAYER(SPECIES_TERAPAGOS_NORMAL) { Ability(ABILITY_TERA_SHIFT); }
-        OPPONENT(SPECIES_KOFFING) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NEUTRALIZING_GAS); }
+        OPPONENT(SPECIES_KOFFING) { Ability(ABILITY_LEVITATE); Innates(ABILITY_NEUTRALIZING_GAS); }
     } WHEN {
         TURN { ; }
     } SCENE {

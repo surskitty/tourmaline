@@ -235,7 +235,7 @@ SINGLE_BATTLE_TEST("INNATE: Corrosion can poison or badly poison a Pokemon regar
 
     GIVEN {
         ASSUME(MoveHasAdditionalEffect(MOVE_TWINEEDLE, MOVE_EFFECT_POISON) == TRUE);
-        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CORROSION); }
+        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_OBLIVIOUS); Innates(ABILITY_CORROSION); }
         OPPONENT(species);
     } WHEN {
         TURN { MOVE(player, MOVE_TWINEEDLE); }
@@ -257,7 +257,7 @@ SINGLE_BATTLE_TEST("INNATE: Corrosion can poison or badly poison a Steel type wi
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_POISON_POWDER) == EFFECT_POISON);
         ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
-        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CORROSION); }
+        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_OBLIVIOUS); Innates(ABILITY_CORROSION); }
         OPPONENT(SPECIES_BELDUM);
     } WHEN {
         TURN { MOVE(player, move); }
@@ -275,7 +275,7 @@ SINGLE_BATTLE_TEST("INNATE: Corrosion does not effect poison type damaging moves
 {
     GIVEN {
         ASSUME(MoveHasAdditionalEffect(MOVE_SLUDGE_BOMB, MOVE_EFFECT_POISON) == TRUE);
-        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CORROSION); }
+        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_OBLIVIOUS); Innates(ABILITY_CORROSION); }
         OPPONENT(SPECIES_BELDUM);
     } WHEN {
         TURN { MOVE(player, MOVE_SLUDGE_BOMB); }
@@ -300,7 +300,7 @@ SINGLE_BATTLE_TEST("INNATE: Corrosion can poison Poison- and Steel-type targets 
         ASSUME(GetMoveEffect(MOVE_FLING) == EFFECT_FLING);
         ASSUME(gItemsInfo[ITEM_POISON_BARB].holdEffect == HOLD_EFFECT_POISON_POWER);
         ASSUME(gItemsInfo[ITEM_TOXIC_ORB].holdEffect == HOLD_EFFECT_TOXIC_ORB);
-        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CORROSION); Item(heldItem); }
+        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_OBLIVIOUS); Innates(ABILITY_CORROSION); Item(heldItem); }
         OPPONENT(SPECIES_ODDISH);
     } WHEN {
         TURN { MOVE(player, MOVE_FLING); }
@@ -319,7 +319,7 @@ SINGLE_BATTLE_TEST("INNATE: If a Poison- or Steel-type Pokémon with Corrosion h
 {
     GIVEN {
         ASSUME(gItemsInfo[ITEM_TOXIC_ORB].holdEffect == HOLD_EFFECT_TOXIC_ORB);
-        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CORROSION); Item(ITEM_TOXIC_ORB); }
+        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_OBLIVIOUS); Innates(ABILITY_CORROSION); Item(ITEM_TOXIC_ORB); }
         OPPONENT(SPECIES_ODDISH);
     } WHEN {
         TURN { }
@@ -337,8 +337,8 @@ SINGLE_BATTLE_TEST("INNATE: If a Poison- or Steel-type Pokémon with Corrosion p
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
         ASSUME(GetMoveEffect(MOVE_POISON_POWDER) == EFFECT_POISON);
-        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CORROSION); }
-        OPPONENT(SPECIES_ABRA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SYNCHRONIZE); }
+        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_OBLIVIOUS); Innates(ABILITY_CORROSION); }
+        OPPONENT(SPECIES_ABRA) { Ability(ABILITY_INNER_FOCUS); Innates(ABILITY_SYNCHRONIZE); }
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
@@ -364,7 +364,7 @@ SINGLE_BATTLE_TEST("INNATE: Corrosion cannot bypass moves that prevent poisoning
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
         ASSUME(GetMoveEffect(MOVE_POISON_POWDER) == EFFECT_POISON);
-        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CORROSION); }
+        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_OBLIVIOUS); Innates(ABILITY_CORROSION); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SAFEGUARD); MOVE(player, move); }
@@ -386,8 +386,8 @@ SINGLE_BATTLE_TEST("INNATE: Corrosion cannot bypass abilities that prevent poiso
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
         ASSUME(GetMoveEffect(MOVE_POISON_POWDER) == EFFECT_POISON);
-        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CORROSION); }
-        OPPONENT(SPECIES_SNORLAX) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_IMMUNITY); }
+        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_OBLIVIOUS); Innates(ABILITY_CORROSION); }
+        OPPONENT(SPECIES_SNORLAX) { Ability(ABILITY_GLUTTONY); Innates(ABILITY_IMMUNITY); }
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
@@ -409,7 +409,7 @@ SINGLE_BATTLE_TEST("INNATE: Corrosion allows the Pokémon with the ability to po
         ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
         ASSUME(GetMoveEffect(MOVE_POISON_POWDER) == EFFECT_POISON);
         ASSUME(GetMoveEffect(MOVE_MAGIC_COAT) == EFFECT_MAGIC_COAT);
-        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CORROSION); }
+        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_OBLIVIOUS); Innates(ABILITY_CORROSION); }
         OPPONENT(SPECIES_BELDUM);
     } WHEN {
         TURN { MOVE(player, MOVE_MAGIC_COAT); MOVE(opponent, move); }
@@ -433,7 +433,7 @@ SINGLE_BATTLE_TEST("INNATE: Corrosion's effect is lost if the move used by the P
         ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
         ASSUME(GetMoveEffect(MOVE_POISON_POWDER) == EFFECT_POISON);
         ASSUME(GetMoveEffect(MOVE_MAGIC_COAT) == EFFECT_MAGIC_COAT);
-        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CORROSION); }
+        PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_OBLIVIOUS); Innates(ABILITY_CORROSION); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_MAGIC_COAT); MOVE(player, move); }

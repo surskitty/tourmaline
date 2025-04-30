@@ -95,7 +95,7 @@ SINGLE_BATTLE_TEST("INNATE: Maranga Berry raises the holder's Sp. Def by two sta
     GIVEN {
         ASSUME(GetMoveCategory(MOVE_SWIFT) == DAMAGE_CATEGORY_SPECIAL);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_APPLIN) { Item(ITEM_MARANGA_BERRY); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_RIPEN); }
+        OPPONENT(SPECIES_APPLIN) { Item(ITEM_MARANGA_BERRY); Ability(ABILITY_BULLETPROOF); Innates(ABILITY_RIPEN); }
     } WHEN {
         TURN { MOVE(player, MOVE_SWIFT); }
     } SCENE {

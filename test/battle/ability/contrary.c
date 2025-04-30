@@ -248,8 +248,8 @@ SINGLE_BATTLE_TEST("INNATE: Contrary raises Attack when Intimidated in a single 
     PARAMETRIZE { ability = ABILITY_CONTRARY; }
     PARAMETRIZE { ability = ABILITY_TANGLED_FEET; }
     GIVEN {
-        PLAYER(SPECIES_MIGHTYENA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
-        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_MIGHTYENA) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_TANGLED_FEET); Innates(ability); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
@@ -276,10 +276,10 @@ DOUBLE_BATTLE_TEST("INNATE: Contrary raises Attack when Intimidated in a double 
     PARAMETRIZE { abilityLeft = ABILITY_TANGLED_FEET; abilityRight = ABILITY_CONTRARY; }
 
     GIVEN {
-        PLAYER(SPECIES_MIGHTYENA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
+        PLAYER(SPECIES_MIGHTYENA) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_INTIMIDATE); }
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_LIGHT_METAL); Innates(abilityLeft); }
-        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_LIGHT_METAL); Innates(abilityRight); }
+        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_TANGLED_FEET); Innates(abilityLeft); }
+        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_TANGLED_FEET); Innates(abilityRight); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_TACKLE, target: playerLeft); MOVE(opponentRight, MOVE_TACKLE, target: playerRight); }
     } SCENE {
@@ -321,7 +321,7 @@ SINGLE_BATTLE_TEST("INNATE: Contrary raises stats after using a move which would
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_OVERHEAT, MOVE_EFFECT_SP_ATK_MINUS_2) == TRUE);
         ASSUME(GetMoveCategory(MOVE_OVERHEAT) == DAMAGE_CATEGORY_SPECIAL);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_TANGLED_FEET); Innates(ability); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_OVERHEAT); }
         TURN { MOVE(opponent, MOVE_OVERHEAT); }
@@ -364,7 +364,7 @@ SINGLE_BATTLE_TEST("INNATE: Contrary lowers a stat after using a move which woul
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SWORDS_DANCE) == EFFECT_ATTACK_UP_2);
         PLAYER(SPECIES_WOBBUFFET) { Defense(102); }
-        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_LIGHT_METAL); Innates(ability); Attack(100); }
+        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_TANGLED_FEET); Innates(ability); Attack(100); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
         TURN { MOVE(opponent, MOVE_SWORDS_DANCE); }
@@ -401,7 +401,7 @@ SINGLE_BATTLE_TEST("INNATE: Contrary raises a stat after using a move which woul
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_GROWL) == EFFECT_ATTACK_DOWN);
         PLAYER(SPECIES_WOBBUFFET) { Speed(3); }
-        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_LIGHT_METAL); Innates(ability); Speed(2); }
+        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_TANGLED_FEET); Innates(ability); Speed(2); }
     } WHEN {
         TURN { MOVE(player, MOVE_GROWL); MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
@@ -432,7 +432,7 @@ SINGLE_BATTLE_TEST("INNATE: Contrary lowers a stat after using a move which woul
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_BELLY_DRUM) == EFFECT_BELLY_DRUM);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_TANGLED_FEET); Innates(ability); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
         TURN { MOVE(opponent, MOVE_BELLY_DRUM); }
@@ -463,7 +463,7 @@ SINGLE_BATTLE_TEST("INNATE: Sticky Web raises Speed by 1 for Contrary mon on swi
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_SNIVY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CONTRARY); }
+        OPPONENT(SPECIES_SNIVY) { Ability(ABILITY_OVERGROW); Innates(ABILITY_CONTRARY); }
     } WHEN {
         TURN { MOVE(player, MOVE_STICKY_WEB); }
         TURN { SWITCH(opponent, 1); }
@@ -475,5 +475,96 @@ SINGLE_BATTLE_TEST("INNATE: Sticky Web raises Speed by 1 for Contrary mon on swi
         MESSAGE("The opposing Snivy was caught in a sticky web!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
         MESSAGE("The opposing Snivy's Speed rose!");
+    }
+}
+
+SINGLE_BATTLE_TEST("INNATE: Contrary causes Competitive or Defiant to sharply lower stats", s16 damage)
+{
+    u32 attack;
+    u32 ability;
+    PARAMETRIZE { ability = ABILITY_OVERGROW; attack = MOVE_WATER_GUN;}
+    PARAMETRIZE { ability = ABILITY_COMPETITIVE; attack = MOVE_WATER_GUN;}
+    PARAMETRIZE { ability = ABILITY_OVERGROW; attack = MOVE_TACKLE;}
+    PARAMETRIZE { ability = ABILITY_DEFIANT; attack = MOVE_TACKLE;}
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_LEER) == EFFECT_DEFENSE_DOWN);
+        PLAYER(SPECIES_SUNFLORA) { Speed(3); }
+        OPPONENT(SPECIES_SNIVY) { Ability(ABILITY_CONTRARY); Innates(ability); Speed(2); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_FLOWER_SHIELD); MOVE(opponent, attack); }
+    } SCENE {
+        MESSAGE("Sunflora used Flower Shield!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FLOWER_SHIELD, player);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Sunflora's Defense rose!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FLOWER_SHIELD, player);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+        MESSAGE("The opposing Snivy's Defense fell!");
+        ABILITY_POPUP(opponent, ABILITY_CONTRARY);
+
+        if (ability == ABILITY_COMPETITIVE) {
+            ABILITY_POPUP(opponent, ABILITY_COMPETITIVE);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+            MESSAGE("The opposing Snivy's Sp. Atk harshly fell!");
+            ABILITY_POPUP(opponent, ABILITY_CONTRARY);
+        }
+        else if (ability == ABILITY_DEFIANT){
+            ABILITY_POPUP(opponent, ABILITY_DEFIANT);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+            MESSAGE("The opposing Snivy's Attack harshly fell!");
+            ABILITY_POPUP(opponent, ABILITY_CONTRARY);
+        }
+
+        HP_BAR(player, captureDamage: &results[i].damage);
+    }
+    FINALLY {
+        EXPECT_MUL_EQ(results[1].damage, Q_4_12(2), results[0].damage);
+        EXPECT_MUL_EQ(results[3].damage, Q_4_12(2), results[2].damage);
+    }
+}
+
+SINGLE_BATTLE_TEST("INNATE: Contrary causes Competitive and Defiant to sharply lower both stats", s16 damage)
+{
+    u32 attack;
+    u32 ability1, ability2;
+    PARAMETRIZE { ability1 = ABILITY_OVERGROW; ability2 = ABILITY_OVERGROW; attack = MOVE_WATER_GUN;}
+    PARAMETRIZE { ability1 = ABILITY_DEFIANT; ability2 = ABILITY_COMPETITIVE; attack = MOVE_WATER_GUN;}
+    PARAMETRIZE { ability1 = ABILITY_OVERGROW; ability2 = ABILITY_OVERGROW; attack = MOVE_TACKLE;}
+    PARAMETRIZE { ability1 = ABILITY_DEFIANT; ability2 = ABILITY_COMPETITIVE; attack = MOVE_TACKLE;}
+
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_LEER) == EFFECT_DEFENSE_DOWN);
+        PLAYER(SPECIES_SUNFLORA) { Speed(3); }
+        OPPONENT(SPECIES_SNIVY) { Ability(ABILITY_CONTRARY); Innates(ability1, ability2); Speed(2); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_FLOWER_SHIELD); MOVE(opponent, attack); }
+    } SCENE {
+        MESSAGE("Sunflora used Flower Shield!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FLOWER_SHIELD, player);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Sunflora's Defense rose!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FLOWER_SHIELD, player);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+        MESSAGE("The opposing Snivy's Defense fell!");
+        ABILITY_POPUP(opponent, ABILITY_CONTRARY);
+
+        if (ability1 == ABILITY_COMPETITIVE) {
+            ABILITY_POPUP(opponent, ABILITY_COMPETITIVE);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+            MESSAGE("The opposing Snivy's Sp. Atk harshly fell!");
+            ABILITY_POPUP(opponent, ABILITY_CONTRARY);
+        }
+        else if (ability2 == ABILITY_DEFIANT){
+            ABILITY_POPUP(opponent, ABILITY_DEFIANT);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+            MESSAGE("The opposing Snivy's Attack harshly fell!");
+            ABILITY_POPUP(opponent, ABILITY_CONTRARY);
+        }
+
+        HP_BAR(player, captureDamage: &results[i].damage);
+    }
+    FINALLY {
+        EXPECT_MUL_EQ(results[1].damage, Q_4_12(2), results[0].damage);
+        EXPECT_MUL_EQ(results[3].damage, Q_4_12(2), results[2].damage);
     }
 }

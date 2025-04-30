@@ -146,7 +146,7 @@ SINGLE_BATTLE_TEST("INNATE: Heal Bell cures a Soundproof user (Gen5, Gen8+)")
     GIVEN {
         ASSUME(IsSoundMove(MOVE_HEAL_BELL));
         WITH_CONFIG(GEN_CONFIG_HEAL_BELL_SOUNDPROOF, config);
-        PLAYER(SPECIES_EXPLOUD) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SOUNDPROOF); Status1(STATUS1_POISON); }
+        PLAYER(SPECIES_EXPLOUD) { Ability(ABILITY_SCRAPPY); Innates(ABILITY_SOUNDPROOF); Status1(STATUS1_POISON); }
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
         TURN { MOVE(player, MOVE_HEAL_BELL, target: player); }

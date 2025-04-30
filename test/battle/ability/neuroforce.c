@@ -35,7 +35,7 @@ SINGLE_BATTLE_TEST("INNATE: Neuroforce increases the strength of super-effective
     GIVEN {
         ASSUME(GetMoveType(MOVE_SHADOW_BALL) == TYPE_GHOST);
         ASSUME(GetMoveType(MOVE_TACKLE) == TYPE_NORMAL);
-        PLAYER(SPECIES_NECROZMA_ULTRA) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_NECROZMA_ULTRA) { Ability(ABILITY_KLUTZ); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, move); }

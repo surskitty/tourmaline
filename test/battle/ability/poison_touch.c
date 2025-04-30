@@ -82,7 +82,7 @@ SINGLE_BATTLE_TEST("INNATE: Poison Touch has a 30% chance to poison when attacki
     GIVEN {
         ASSUME(GetMovePower(MOVE_TACKLE) > 0);
         ASSUME(MoveMakesContact(MOVE_TACKLE));
-        PLAYER(SPECIES_GRIMER) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_POISON_TOUCH); }
+        PLAYER(SPECIES_GRIMER) { Ability(ABILITY_STICKY_HOLD); Innates(ABILITY_POISON_TOUCH); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
@@ -104,7 +104,7 @@ SINGLE_BATTLE_TEST("INNATE: Poison Touch only applies when using contact moves")
     GIVEN {
         ASSUME(MoveMakesContact(MOVE_TACKLE));
         ASSUME(!MoveMakesContact(MOVE_SWIFT));
-        PLAYER(SPECIES_GRIMER) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_POISON_TOUCH); }
+        PLAYER(SPECIES_GRIMER) { Ability(ABILITY_STICKY_HOLD); Innates(ABILITY_POISON_TOUCH); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, move); }
@@ -132,7 +132,7 @@ SINGLE_BATTLE_TEST("INNATE: Poison Touch applies between multi-hit move hits")
         ASSUME(GetMoveEffect(MOVE_ARM_THRUST) == EFFECT_MULTI_HIT);
         ASSUME(MoveMakesContact(MOVE_ARM_THRUST));
         ASSUME(gItemsInfo[ITEM_PECHA_BERRY].holdEffect == HOLD_EFFECT_CURE_PSN);
-        PLAYER(SPECIES_GRIMER) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_POISON_TOUCH); }
+        PLAYER(SPECIES_GRIMER) { Ability(ABILITY_STICKY_HOLD); Innates(ABILITY_POISON_TOUCH); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_PECHA_BERRY); };
     } WHEN {
         TURN { MOVE(player, MOVE_ARM_THRUST); }

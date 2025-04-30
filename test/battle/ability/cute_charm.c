@@ -74,7 +74,7 @@ SINGLE_BATTLE_TEST("INNATE: Cute Charm inflicts infatuation on contact")
         ASSUME(MoveMakesContact(MOVE_TACKLE));
         ASSUME(!MoveMakesContact(MOVE_SWIFT));
         PLAYER(SPECIES_WOBBUFFET) { Gender(MON_MALE); }
-        OPPONENT(SPECIES_CLEFAIRY) { Gender(MON_FEMALE); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CUTE_CHARM); }
+        OPPONENT(SPECIES_CLEFAIRY) { Gender(MON_FEMALE); Ability(ABILITY_FRIEND_GUARD); Innates(ABILITY_CUTE_CHARM); }
     } WHEN {
         TURN { MOVE(player, move); }
         TURN { MOVE(player, move); }
@@ -99,7 +99,7 @@ SINGLE_BATTLE_TEST("INNATE: Cute Charm cannot infatuate same gender")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Gender(MON_MALE); }
-        OPPONENT(SPECIES_CLEFAIRY) { Gender(MON_MALE); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CUTE_CHARM); }
+        OPPONENT(SPECIES_CLEFAIRY) { Gender(MON_MALE); Ability(ABILITY_FRIEND_GUARD); Innates(ABILITY_CUTE_CHARM); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
         TURN { MOVE(player, MOVE_TACKLE); }
@@ -117,7 +117,7 @@ SINGLE_BATTLE_TEST("INNATE: Cute Charm triggers 30% of the time")
         ASSUME(B_ABILITY_TRIGGER_CHANCE >= GEN_4);
         ASSUME(MoveMakesContact(MOVE_TACKLE));
         PLAYER(SPECIES_WOBBUFFET) { Gender(MON_MALE); }
-        OPPONENT(SPECIES_CLEFAIRY) { Gender(MON_FEMALE); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CUTE_CHARM); }
+        OPPONENT(SPECIES_CLEFAIRY) { Gender(MON_FEMALE); Ability(ABILITY_FRIEND_GUARD); Innates(ABILITY_CUTE_CHARM); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
         TURN { MOVE(player, MOVE_TACKLE); }

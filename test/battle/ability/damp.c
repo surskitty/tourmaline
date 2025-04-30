@@ -81,7 +81,7 @@ SINGLE_BATTLE_TEST("INNATE: Damp prevents explosion-like moves from enemies")
     PARAMETRIZE { move = MOVE_MIND_BLOWN; }
     PARAMETRIZE { move = MOVE_MISTY_EXPLOSION; }
     GIVEN {
-        PLAYER(SPECIES_PARAS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DAMP); }
+        PLAYER(SPECIES_PARAS) { Ability(ABILITY_DRY_SKIN); Innates(ABILITY_DAMP); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, move); }
@@ -99,7 +99,7 @@ DOUBLE_BATTLE_TEST("INNATE: Damp prevents explosion-like moves from enemies in a
     PARAMETRIZE { move = MOVE_MIND_BLOWN; }
     PARAMETRIZE { move = MOVE_MISTY_EXPLOSION; }
     GIVEN {
-        PLAYER(SPECIES_PARAS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DAMP); }
+        PLAYER(SPECIES_PARAS) { Ability(ABILITY_DRY_SKIN); Innates(ABILITY_DAMP); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -119,7 +119,7 @@ SINGLE_BATTLE_TEST("INNATE: Damp prevents explosion-like moves from self")
     PARAMETRIZE { move = MOVE_MIND_BLOWN; }
     PARAMETRIZE { move = MOVE_MISTY_EXPLOSION; }
     GIVEN {
-        PLAYER(SPECIES_PARAS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DAMP); }
+        PLAYER(SPECIES_PARAS) { Ability(ABILITY_DRY_SKIN); Innates(ABILITY_DAMP); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, move); }
@@ -133,8 +133,8 @@ SINGLE_BATTLE_TEST("INNATE: Damp prevents damage from Aftermath")
 {
     GIVEN {
         ASSUME(MoveMakesContact(MOVE_TACKLE));
-        PLAYER(SPECIES_PARAS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DAMP); }
-        OPPONENT(SPECIES_VOLTORB) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_AFTERMATH); HP(1); }
+        PLAYER(SPECIES_PARAS) { Ability(ABILITY_DRY_SKIN); Innates(ABILITY_DAMP); }
+        OPPONENT(SPECIES_VOLTORB) { Ability(ABILITY_SOUNDPROOF); Innates(ABILITY_AFTERMATH); HP(1); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); SEND_OUT(opponent, 1); }

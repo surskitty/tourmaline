@@ -1823,7 +1823,7 @@ SINGLE_BATTLE_TEST("INNATE: Sleep Clause: Effect Spore causes sleep 11% of the t
         ASSUME(GetMoveEffect(MOVE_SPORE) == EFFECT_SLEEP);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_EFFECT_SPORE); }
+        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_POISON_HEAL); Innates(ABILITY_EFFECT_SPORE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SPORE); }
         TURN { SWITCH(player, 1); }
@@ -1847,8 +1847,8 @@ DOUBLE_BATTLE_TEST("INNATE: Sleep Clause: Effect Spore causes sleep 11% of the t
         ASSUME(GetMoveEffect(MOVE_SPORE) == EFFECT_SLEEP);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_EFFECT_SPORE); }
-        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_EFFECT_SPORE); }
+        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_POISON_HEAL); Innates(ABILITY_EFFECT_SPORE); }
+        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_POISON_HEAL); Innates(ABILITY_EFFECT_SPORE); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_SPORE, target:playerRight); MOVE(playerLeft, MOVE_TACKLE, target:opponentLeft);}
     } SCENE {
@@ -1874,7 +1874,7 @@ SINGLE_BATTLE_TEST("INNATE: Sleep Clause: Sleep from Effect Spore will not activ
         ASSUME(GetMoveEffect(MOVE_SPORE) == EFFECT_SLEEP);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_EFFECT_SPORE); }
+        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_POISON_HEAL); Innates(ABILITY_EFFECT_SPORE); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
         TURN {}
@@ -1901,8 +1901,8 @@ DOUBLE_BATTLE_TEST("INNATE: Sleep Clause: Sleep from Effect Spore will not activ
         ASSUME(GetMoveEffect(MOVE_SPORE) == EFFECT_SLEEP);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_EFFECT_SPORE); }
-        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_EFFECT_SPORE); }
+        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_POISON_HEAL); Innates(ABILITY_EFFECT_SPORE); }
+        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_POISON_HEAL); Innates(ABILITY_EFFECT_SPORE); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_TACKLE, target:opponentLeft); MOVE(opponentLeft, MOVE_SPORE, target:playerRight); }
     } SCENE {
@@ -1922,8 +1922,8 @@ SINGLE_BATTLE_TEST("INNATE: Sleep Clause: Sleep clause is deactivated when a sle
     GIVEN {
         FLAG_SET(B_FLAG_SLEEP_CLAUSE);
         ASSUME(GetMoveEffect(MOVE_SPORE) == EFFECT_SLEEP);
-        PLAYER(SPECIES_PELIPPER) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DRIZZLE); }
-        OPPONENT(SPECIES_LUVDISC) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_HYDRATION); }
+        PLAYER(SPECIES_PELIPPER) { Ability(ABILITY_RAIN_DISH); Innates(ABILITY_DRIZZLE); }
+        OPPONENT(SPECIES_LUVDISC) { Ability(ABILITY_SWIFT_SWIM); Innates(ABILITY_HYDRATION); }
     } WHEN {
         TURN { MOVE(player, MOVE_SPORE); }
         TURN { MOVE(player, MOVE_SPORE); }
@@ -1947,7 +1947,7 @@ SINGLE_BATTLE_TEST("INNATE: Sleep Clause: Sleep clause is deactivated when a sle
         FLAG_SET(B_FLAG_SLEEP_CLAUSE);
         ASSUME(GetMoveEffect(MOVE_SPORE) == EFFECT_SLEEP);
         PLAYER(SPECIES_ZIGZAGOON);
-        OPPONENT(SPECIES_SWABLU) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NATURAL_CURE); }
+        OPPONENT(SPECIES_SWABLU) { Ability(ABILITY_CLOUD_NINE); Innates(ABILITY_NATURAL_CURE); }
         OPPONENT(SPECIES_ZIGZAGOON);
     } WHEN {
         TURN { MOVE(player, MOVE_SPORE); }
@@ -1977,7 +1977,7 @@ SINGLE_BATTLE_TEST("INNATE: Sleep Clause: Sleep clause is deactivated when a sle
         FLAG_SET(B_FLAG_SLEEP_CLAUSE);
         ASSUME(GetMoveEffect(MOVE_SPORE) == EFFECT_SLEEP);
         PLAYER(SPECIES_ZIGZAGOON);
-        OPPONENT(SPECIES_DRATINI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHED_SKIN); }
+        OPPONENT(SPECIES_DRATINI) { Ability(ABILITY_MARVEL_SCALE); Innates(ABILITY_SHED_SKIN); }
     } WHEN {
         TURN { MOVE(player, MOVE_SPORE); }
         TURN { MOVE(player, MOVE_SPORE); }
@@ -2003,7 +2003,7 @@ DOUBLE_BATTLE_TEST("INNATE: Sleep Clause: Sleep clause is deactivated when a sle
         PLAYER(SPECIES_ZIGZAGOON);
         PLAYER(SPECIES_ZIGZAGOON);
         OPPONENT(SPECIES_ZIGZAGOON);
-        OPPONENT(SPECIES_CHANSEY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_HEALER); }
+        OPPONENT(SPECIES_CHANSEY) { Ability(ABILITY_NATURAL_CURE); Innates(ABILITY_HEALER); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_SPORE, target:opponentLeft); }
         TURN { MOVE(playerLeft, MOVE_SPORE, target:opponentLeft); }
@@ -2032,7 +2032,7 @@ SINGLE_BATTLE_TEST("INNATE: Sleep Clause: Sleep clause is deactivated when a sle
         ASSUME(gItemsInfo[ITEM_LAGGING_TAIL].holdEffect == HOLD_EFFECT_LAGGING_TAIL);
         PLAYER(SPECIES_ZIGZAGOON)
         PLAYER(SPECIES_DELIBIRD) { Ability(ability); }
-        OPPONENT(SPECIES_DITTO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_IMPOSTER); }
+        OPPONENT(SPECIES_DITTO) { Ability(ABILITY_LIMBER); Innates(ABILITY_IMPOSTER); }
         OPPONENT(SPECIES_ZIGZAGOON);
     } WHEN {
         TURN { MOVE(player, MOVE_SPORE); }
@@ -2071,7 +2071,7 @@ SINGLE_BATTLE_TEST("INNATE: Sleep Clause: Sleep caused by Effect Spore does not 
         PLAYER(SPECIES_ZIGZAGOON);
         PLAYER(SPECIES_ZIGZAGOON);
         PLAYER(SPECIES_ZIGZAGOON);
-        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_EFFECT_SPORE); }
+        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_POISON_HEAL); Innates(ABILITY_EFFECT_SPORE); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
         TURN { SWITCH(player, 1); MOVE(opponent, MOVE_SPORE); }
@@ -2105,7 +2105,7 @@ SINGLE_BATTLE_TEST("INNATE: Sleep Clause: Waking up after Effect Spore doesn't d
         ASSUME(MoveMakesContact(MOVE_TACKLE));
         PLAYER(SPECIES_ZIGZAGOON);
         PLAYER(SPECIES_ZIGZAGOON);
-        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_EFFECT_SPORE); }
+        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_POISON_HEAL); Innates(ABILITY_EFFECT_SPORE); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
         TURN {}
@@ -2144,7 +2144,7 @@ DOUBLE_BATTLE_TEST("INNATE: Sleep Clause: Waking up after Effect Spore doesn't d
         PLAYER(SPECIES_ZIGZAGOON);
         PLAYER(SPECIES_ZIGZAGOON);
         PLAYER(SPECIES_ZIGZAGOON);
-        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_EFFECT_SPORE); }
+        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_POISON_HEAL); Innates(ABILITY_EFFECT_SPORE); }
         OPPONENT(SPECIES_ZIGZAGOON);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_TACKLE, target: opponentLeft); MOVE(opponentRight, MOVE_SPORE, target:playerRight); }
@@ -2182,7 +2182,7 @@ SINGLE_BATTLE_TEST("INNATE: Sleep Clause: Mold Breaker Pokémon sleeping Vital S
     GIVEN {
         FLAG_SET(B_FLAG_SLEEP_CLAUSE);
         ASSUME(GetMoveEffect(MOVE_SPORE) == EFFECT_SLEEP);
-        PLAYER(SPECIES_PANCHAM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MOLD_BREAKER); }
+        PLAYER(SPECIES_PANCHAM) { Ability(ABILITY_SCRAPPY); Innates(ABILITY_MOLD_BREAKER); }
         OPPONENT(SPECIES_DELIBIRD) { Ability(ability); }
         OPPONENT(SPECIES_ZIGZAGOON);
     } WHEN {
@@ -2211,7 +2211,7 @@ SINGLE_BATTLE_TEST("INNATE: Sleep Clause: Yawn'd Pokémon slept due to Effect Sp
         ASSUME(GetMoveEffect(MOVE_SPORE) == EFFECT_SLEEP);
         ASSUME(GetMoveEffect(MOVE_YAWN) == EFFECT_YAWN);
         ASSUME(MoveMakesContact(MOVE_TACKLE));
-        PLAYER(SPECIES_BRELOOM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_EFFECT_SPORE); }
+        PLAYER(SPECIES_BRELOOM) { Ability(ABILITY_POISON_HEAL); Innates(ABILITY_EFFECT_SPORE); }
         OPPONENT(SPECIES_ZIGZAGOON);
         OPPONENT(SPECIES_ZIGZAGOON);
     } WHEN {
@@ -2236,7 +2236,7 @@ SINGLE_BATTLE_TEST("INNATE: Sleep Clause: Magic Bounce'ing a sleep move activate
     GIVEN {
         FLAG_SET(B_FLAG_SLEEP_CLAUSE);
         ASSUME(GetMoveEffect(MOVE_SPORE) == EFFECT_SLEEP);
-        PLAYER(SPECIES_ESPEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MAGIC_BOUNCE); }
+        PLAYER(SPECIES_ESPEON) { Ability(ABILITY_SYNCHRONIZE); Innates(ABILITY_MAGIC_BOUNCE); }
         PLAYER(SPECIES_ZIGZAGOON);
         OPPONENT(SPECIES_ZIGZAGOON);
         OPPONENT(SPECIES_ZIGZAGOON);
@@ -2265,7 +2265,7 @@ DOUBLE_BATTLE_TEST("INNATE: Sleep Clause: Magic Bounce reflecting Dark Void only
     GIVEN {
         FLAG_SET(B_FLAG_SLEEP_CLAUSE);
         ASSUME(GetMoveEffect(MOVE_DARK_VOID) == EFFECT_DARK_VOID);
-        PLAYER(SPECIES_ESPEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MAGIC_BOUNCE); }
+        PLAYER(SPECIES_ESPEON) { Ability(ABILITY_SYNCHRONIZE); Innates(ABILITY_MAGIC_BOUNCE); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_DARKRAI);
         OPPONENT(SPECIES_DARKRAI);

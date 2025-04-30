@@ -1100,7 +1100,7 @@ DOUBLE_BATTLE_TEST("INNATE: Rainbow flinch chance does not stack with Serene Gra
     PASSES_RANDOMLY(60, 100, RNG_SECONDARY_EFFECT);
     GIVEN {
         ASSUME(MoveHasAdditionalEffect(MOVE_BITE, MOVE_EFFECT_FLINCH) == TRUE);
-        PLAYER(SPECIES_TOGEPI) { Speed(8); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SERENE_GRACE); }
+        PLAYER(SPECIES_TOGEPI) { Speed(8); Ability(ABILITY_SUPER_LUCK); Innates(ABILITY_SERENE_GRACE); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(5); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(4); }
         OPPONENT(SPECIES_WYNAUT) { Speed(3); }
@@ -1121,7 +1121,7 @@ DOUBLE_BATTLE_TEST("INNATE: Pledge moves can not be redirected by absorbing abil
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_LILEEP) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STORM_DRAIN); }
+        OPPONENT(SPECIES_LILEEP) { Ability(ABILITY_SUCTION_CUPS); Innates(ABILITY_STORM_DRAIN); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_WATER_PLEDGE, target: opponentRight);}
@@ -1135,7 +1135,7 @@ DOUBLE_BATTLE_TEST("INNATE: Pledge move combo doesn't trigger on opponent's Pled
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_ELECTRIFY) == EFFECT_ELECTRIFY);
-        PLAYER(SPECIES_ELECTIVIRE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MOTOR_DRIVE); }
+        PLAYER(SPECIES_ELECTIVIRE) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_MOTOR_DRIVE); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
@@ -1159,7 +1159,7 @@ DOUBLE_BATTLE_TEST("INNATE: Pledge move combo doesn't trigger on opponent's Pled
 DOUBLE_BATTLE_TEST("INNATE: Pledge move combo doesn't trigger on opponent's Pledge move - Storm Drain")
 {
     GIVEN {
-        PLAYER(SPECIES_GASTRODON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STORM_DRAIN); }
+        PLAYER(SPECIES_GASTRODON) { Ability(ABILITY_STICKY_HOLD); Innates(ABILITY_STORM_DRAIN); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
@@ -1182,7 +1182,7 @@ DOUBLE_BATTLE_TEST("INNATE: Pledge move combo doesn't trigger on opponent's Pled
 DOUBLE_BATTLE_TEST("INNATE: Pledge move combo doesn't trigger on opponent's Pledge move - Sap Sipper")
 {
     GIVEN {
-        PLAYER(SPECIES_GOODRA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SAP_SIPPER); }
+        PLAYER(SPECIES_GOODRA) { Ability(ABILITY_HYDRATION); Innates(ABILITY_SAP_SIPPER); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
@@ -1205,7 +1205,7 @@ DOUBLE_BATTLE_TEST("INNATE: Pledge move combo doesn't trigger on opponent's Pled
 DOUBLE_BATTLE_TEST("INNATE: Pledge move combo doesn't trigger on opponent's Pledge move - Dry Skin")
 {
     GIVEN {
-        PLAYER(SPECIES_PARASECT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DRY_SKIN); }
+        PLAYER(SPECIES_PARASECT) { Ability(ABILITY_DAMP); Innates(ABILITY_DRY_SKIN); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
@@ -1228,7 +1228,7 @@ DOUBLE_BATTLE_TEST("INNATE: Pledge move combo doesn't trigger on opponent's Pled
 DOUBLE_BATTLE_TEST("INNATE: Pledge move combo doesn't trigger on opponent's Pledge move - Flash Fire")
 {
     GIVEN {
-        PLAYER(SPECIES_HEATRAN) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FLASH_FIRE); }
+        PLAYER(SPECIES_HEATRAN) { Ability(ABILITY_FLAME_BODY); Innates(ABILITY_FLASH_FIRE); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
@@ -1252,7 +1252,7 @@ DOUBLE_BATTLE_TEST("INNATE: Pledge move combo doesn't trigger on opponent's Pled
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_ELECTRIFY) == EFFECT_ELECTRIFY);
-        PLAYER(SPECIES_ELECTIVIRE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MOTOR_DRIVE); }
+        PLAYER(SPECIES_ELECTIVIRE) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_MOTOR_DRIVE); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
@@ -1277,7 +1277,7 @@ DOUBLE_BATTLE_TEST("INNATE: Pledge move combo doesn't trigger on opponent's Pled
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_ELECTRIFY) == EFFECT_ELECTRIFY);
-        PLAYER(SPECIES_JOLTEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_VOLT_ABSORB); }
+        PLAYER(SPECIES_JOLTEON) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_VOLT_ABSORB); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
@@ -1301,7 +1301,7 @@ DOUBLE_BATTLE_TEST("INNATE: Pledge move combo doesn't trigger on opponent's Pled
 DOUBLE_BATTLE_TEST("INNATE: Pledge move combo doesn't trigger on opponent's Pledge move - Water Absorb")
 {
     GIVEN {
-        PLAYER(SPECIES_VAPOREON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WATER_ABSORB); }
+        PLAYER(SPECIES_VAPOREON) { Ability(ABILITY_HYDRATION); Innates(ABILITY_WATER_ABSORB); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
@@ -1324,7 +1324,7 @@ DOUBLE_BATTLE_TEST("INNATE: Pledge move combo doesn't trigger on opponent's Pled
 DOUBLE_BATTLE_TEST("INNATE: Pledge move combo doesn't trigger on opponent's Pledge move - Well Baked Body")
 {
     GIVEN {
-        PLAYER(SPECIES_DACHSBUN) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WELL_BAKED_BODY); }
+        PLAYER(SPECIES_DACHSBUN) { Ability(ABILITY_AROMA_VEIL); Innates(ABILITY_WELL_BAKED_BODY); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);

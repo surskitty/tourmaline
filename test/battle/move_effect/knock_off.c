@@ -331,7 +331,7 @@ SINGLE_BATTLE_TEST("INNATE: Knock Off triggers Unburden")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Speed(60); }
-        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_UNBURDEN); Item(ITEM_LEFTOVERS); Speed(50); }
+        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_UNBURDEN); Item(ITEM_LEFTOVERS); Speed(50); }
     } WHEN {
         TURN { MOVE(player, MOVE_KNOCK_OFF); }
         TURN { MOVE(player, MOVE_CELEBRATE); }

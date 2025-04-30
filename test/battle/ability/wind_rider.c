@@ -130,7 +130,7 @@ SINGLE_BATTLE_TEST("INNATE: Wind Rider raises Attack by one stage if it sets up 
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_BRAMBLIN) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WIND_RIDER); }
+        OPPONENT(SPECIES_BRAMBLIN) { Ability(ABILITY_INFILTRATOR); Innates(ABILITY_WIND_RIDER); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_TAILWIND); }
     } SCENE {
@@ -149,7 +149,7 @@ DOUBLE_BATTLE_TEST("INNATE: Wind Rider raises Attack by one stage if Tailwind is
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_BRAMBLIN) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WIND_RIDER); }
+        OPPONENT(SPECIES_BRAMBLIN) { Ability(ABILITY_INFILTRATOR); Innates(ABILITY_WIND_RIDER); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_TAILWIND); }
     } SCENE {
@@ -166,7 +166,7 @@ SINGLE_BATTLE_TEST("INNATE: Wind Rider doesn't raise Attack if opponent sets up 
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_BRAMBLIN) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WIND_RIDER); }
+        OPPONENT(SPECIES_BRAMBLIN) { Ability(ABILITY_INFILTRATOR); Innates(ABILITY_WIND_RIDER); }
     } WHEN {
         TURN { MOVE(player, MOVE_TAILWIND); }
     } SCENE {
@@ -186,7 +186,7 @@ SINGLE_BATTLE_TEST("INNATE: Wind Rider raises Attack by one stage if switched in
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_BRAMBLIN) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WIND_RIDER); }
+        OPPONENT(SPECIES_BRAMBLIN) { Ability(ABILITY_INFILTRATOR); Innates(ABILITY_WIND_RIDER); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_TAILWIND); }
         TURN { SWITCH(opponent, 1); }
@@ -204,7 +204,7 @@ SINGLE_BATTLE_TEST("INNATE: Wind Rider raises Attack by one stage if switched in
 SINGLE_BATTLE_TEST("INNATE: Wind Rider activates when it's no longer effected by Neutralizing Gas")
 {
     GIVEN {
-        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NEUTRALIZING_GAS); }
+        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LEVITATE); Innates(ABILITY_NEUTRALIZING_GAS); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_BRAMBLIN) { Ability(ABILITY_WIND_RIDER); }
     } WHEN {
@@ -229,7 +229,7 @@ SINGLE_BATTLE_TEST("INNATE: Wind Rider absorbs Wind moves and raises Attack by o
     GIVEN {
         ASSUME(IsWindMove(MOVE_GUST));
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_BRAMBLIN) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WIND_RIDER); }
+        OPPONENT(SPECIES_BRAMBLIN) { Ability(ABILITY_INFILTRATOR); Innates(ABILITY_WIND_RIDER); }
     } WHEN {
         TURN { MOVE(player, MOVE_GUST); }
     } SCENE {

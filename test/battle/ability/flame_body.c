@@ -57,7 +57,7 @@ SINGLE_BATTLE_TEST("INNATE: Flame Body inflicts burn on contact")
         ASSUME(MoveMakesContact(MOVE_TACKLE));
         ASSUME(!MoveMakesContact(MOVE_SWIFT));
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_MAGMAR) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FLAME_BODY); }
+        OPPONENT(SPECIES_MAGMAR) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_FLAME_BODY); }
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
@@ -84,7 +84,7 @@ SINGLE_BATTLE_TEST("INNATE: Flame Body triggers 30% of the time")
         ASSUME(B_ABILITY_TRIGGER_CHANCE >= GEN_4);
         ASSUME(MoveMakesContact(MOVE_TACKLE));
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_MAGMAR) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FLAME_BODY); }
+        OPPONENT(SPECIES_MAGMAR) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_FLAME_BODY); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {

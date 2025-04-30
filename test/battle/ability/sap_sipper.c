@@ -82,7 +82,7 @@ SINGLE_BATTLE_TEST("ABILITY: Sap Sipper blocks multi-hit grass type moves")
 SINGLE_BATTLE_TEST("INNATE: Sap Sipper negates damage from Grass-type moves")
 {
     GIVEN {
-        PLAYER(SPECIES_MARILL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SAP_SIPPER); }
+        PLAYER(SPECIES_MARILL) { Ability(ABILITY_THICK_FAT); Innates(ABILITY_SAP_SIPPER); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_VINE_WHIP); }
@@ -94,7 +94,7 @@ SINGLE_BATTLE_TEST("INNATE: Sap Sipper negates damage from Grass-type moves")
 SINGLE_BATTLE_TEST("INNATE: Sap Sipper negates effects from Grass-type moves")
 {
     GIVEN {
-        PLAYER(SPECIES_MARILL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SAP_SIPPER); }
+        PLAYER(SPECIES_MARILL) { Ability(ABILITY_THICK_FAT); Innates(ABILITY_SAP_SIPPER); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SPORE); }
@@ -109,7 +109,7 @@ SINGLE_BATTLE_TEST("INNATE: Sap Sipper negates effects from Grass-type moves")
 SINGLE_BATTLE_TEST("INNATE: Sap Sipper increases Attack by one stage when hit by a Grass-type move")
 {
     GIVEN {
-        PLAYER(SPECIES_MARILL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SAP_SIPPER); }
+        PLAYER(SPECIES_MARILL) { Ability(ABILITY_THICK_FAT); Innates(ABILITY_SAP_SIPPER); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_VINE_WHIP); }
@@ -123,7 +123,7 @@ SINGLE_BATTLE_TEST("INNATE: Sap Sipper increases Attack by one stage when hit by
 SINGLE_BATTLE_TEST("INNATE: Sap Sipper does not increase Attack if already maxed")
 {
     GIVEN {
-        PLAYER(SPECIES_MARILL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SAP_SIPPER); }
+        PLAYER(SPECIES_MARILL) { Ability(ABILITY_THICK_FAT); Innates(ABILITY_SAP_SIPPER); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_BELLY_DRUM); MOVE(opponent, MOVE_VINE_WHIP); }
@@ -140,8 +140,8 @@ SINGLE_BATTLE_TEST("INNATE: Sap Sipper blocks multi-hit grass type moves")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_BULLET_SEED) == EFFECT_MULTI_HIT);
-        PLAYER(SPECIES_MARILL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SAP_SIPPER); }
-        OPPONENT(SPECIES_SHELLDER) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SKILL_LINK); }
+        PLAYER(SPECIES_MARILL) { Ability(ABILITY_THICK_FAT); Innates(ABILITY_SAP_SIPPER); }
+        OPPONENT(SPECIES_SHELLDER) { Ability(ABILITY_SHELL_ARMOR); Innates(ABILITY_SKILL_LINK); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_BULLET_SEED); }
     } SCENE {

@@ -61,7 +61,7 @@ SINGLE_BATTLE_TEST("INNATE: Teeter Dance confusion is blocked by Own Tempo")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_SLOWPOKE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_OWN_TEMPO); }
+        OPPONENT(SPECIES_SLOWPOKE) { Ability(ABILITY_OBLIVIOUS); Innates(ABILITY_OWN_TEMPO); }
     } WHEN {
         TURN { MOVE(player, MOVE_TEETER_DANCE); }
     } SCENE {

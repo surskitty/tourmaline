@@ -99,7 +99,7 @@ SINGLE_BATTLE_TEST("INNATE: Effect Spore only inflicts status on contact")
         ASSUME(MoveMakesContact(MOVE_TACKLE));
         ASSUME(!MoveMakesContact(MOVE_SWIFT));
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_EFFECT_SPORE); }
+        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_POISON_HEAL); Innates(ABILITY_EFFECT_SPORE); }
     } WHEN {
         TURN { MOVE(player, move, WITH_RNG(RNG_EFFECT_SPORE, 1)); }
         TURN {}
@@ -127,7 +127,7 @@ SINGLE_BATTLE_TEST("INNATE: Effect Spore causes poison 9% of the time")
         ASSUME(B_ABILITY_TRIGGER_CHANCE >= GEN_5);
         ASSUME(MoveMakesContact(MOVE_TACKLE));
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_EFFECT_SPORE); }
+        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_POISON_HEAL); Innates(ABILITY_EFFECT_SPORE); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
         TURN {}
@@ -146,7 +146,7 @@ SINGLE_BATTLE_TEST("INNATE: Effect Spore causes paralysis 10% of the time")
         ASSUME(B_ABILITY_TRIGGER_CHANCE >= GEN_5);
         ASSUME(MoveMakesContact(MOVE_TACKLE));
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_EFFECT_SPORE); }
+        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_POISON_HEAL); Innates(ABILITY_EFFECT_SPORE); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
         TURN {}
@@ -165,7 +165,7 @@ SINGLE_BATTLE_TEST("INNATE: Effect Spore causes sleep 11% of the time")
         ASSUME(B_ABILITY_TRIGGER_CHANCE >= GEN_5);
         ASSUME(MoveMakesContact(MOVE_TACKLE));
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_EFFECT_SPORE); }
+        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_POISON_HEAL); Innates(ABILITY_EFFECT_SPORE); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
         TURN {}

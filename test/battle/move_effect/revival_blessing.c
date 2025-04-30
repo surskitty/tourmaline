@@ -132,7 +132,7 @@ DOUBLE_BATTLE_TEST("INNATE: Revival Blessing correctly updates battler absent fl
     GIVEN {
         PLAYER(SPECIES_SALAMENCE) { Level(40); }
         PLAYER(SPECIES_PIDGEOT) { Level(40); }
-        OPPONENT(SPECIES_GEODUDE) { Level(5); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ROCK_HEAD); }
+        OPPONENT(SPECIES_GEODUDE) { Level(5); Ability(ABILITY_SAND_VEIL); Innates(ABILITY_ROCK_HEAD); }
         OPPONENT(SPECIES_STARLY) { Level(5); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_EARTHQUAKE);

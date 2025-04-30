@@ -202,7 +202,7 @@ SINGLE_BATTLE_TEST("INNATE: Relic Song is prevented by Soundproof")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_VOLTORB) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SOUNDPROOF); }
+        OPPONENT(SPECIES_VOLTORB) { Ability(ABILITY_STATIC); Innates(ABILITY_SOUNDPROOF); }
     } WHEN {
         TURN { MOVE(player, MOVE_RELIC_SONG); }
     } SCENE {
@@ -219,7 +219,7 @@ SINGLE_BATTLE_TEST("INNATE: Relic Song will become a Water-type move when used b
 {
     GIVEN {
         PLAYER(SPECIES_VULPIX);
-        OPPONENT(SPECIES_POPPLIO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_LIQUID_VOICE); }
+        OPPONENT(SPECIES_POPPLIO) { Ability(ABILITY_REGENERATOR); Innates(ABILITY_LIQUID_VOICE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_RELIC_SONG); }
     } SCENE {
@@ -233,7 +233,7 @@ SINGLE_BATTLE_TEST("INNATE: Relic Song transformation is the last thing that hap
 {
     GIVEN {
         PLAYER(SPECIES_MELOETTA_ARIA);
-        OPPONENT(SPECIES_GOSSIFLEUR) { HP(1); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COTTON_DOWN); }
+        OPPONENT(SPECIES_GOSSIFLEUR) { HP(1); Ability(ABILITY_REGENERATOR); Innates(ABILITY_COTTON_DOWN); }
     } WHEN {
         TURN { MOVE(player, MOVE_RELIC_SONG); }
     } SCENE {
@@ -252,7 +252,7 @@ SINGLE_BATTLE_TEST("INNATE: Relic Song loses the form-changing effect with Sheer
 {
     GIVEN {
         PLAYER(SPECIES_MELOETTA_ARIA) { Innates(ABILITY_SHEER_FORCE); }
-        OPPONENT(SPECIES_NIDOKING) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHEER_FORCE); }
+        OPPONENT(SPECIES_NIDOKING) { Ability(ABILITY_POISON_POINT); Innates(ABILITY_SHEER_FORCE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SKILL_SWAP); MOVE(player, MOVE_RELIC_SONG); }
     } SCENE {
@@ -269,7 +269,7 @@ SINGLE_BATTLE_TEST("INNATE: Relic Song transforms Meloetta after Magician was ac
 {
     GIVEN {
         PLAYER(SPECIES_MELOETTA_ARIA) { Innates(ABILITY_MAGICIAN); }
-        OPPONENT(SPECIES_DELPHOX) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MAGICIAN); Item(ITEM_POTION); }
+        OPPONENT(SPECIES_DELPHOX) { Ability(ABILITY_BLAZE); Innates(ABILITY_MAGICIAN); Item(ITEM_POTION); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SKILL_SWAP); MOVE(player, MOVE_RELIC_SONG); }
     } SCENE {

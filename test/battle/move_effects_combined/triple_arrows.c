@@ -101,7 +101,7 @@ SINGLE_BATTLE_TEST("INNATE: Triple Arrows's flinching is prevented by Inner Focu
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_RIOLU) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INNER_FOCUS); }
+        OPPONENT(SPECIES_RIOLU) { Ability(ABILITY_STEADFAST); Innates(ABILITY_INNER_FOCUS); }
     } WHEN {
         TURN { MOVE(player, MOVE_TRIPLE_ARROWS);
                MOVE(opponent, MOVE_TACKLE);

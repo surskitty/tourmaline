@@ -239,7 +239,7 @@ SINGLE_BATTLE_TEST("INNATE: Booster Energy will activate Quark Drive after Elect
 {
     GIVEN {
         PLAYER(SPECIES_IRON_MOTH) { Attack(100); Defense(100); Speed(100); SpAttack(110); SpDefense(100); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_QUARK_DRIVE); Item(ITEM_BOOSTER_ENERGY); }
-        OPPONENT(SPECIES_TAPU_KOKO) { Speed(100); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ELECTRIC_SURGE); };
+        OPPONENT(SPECIES_TAPU_KOKO) { Speed(100); Ability(ABILITY_TELEPATHY); Innates(ABILITY_ELECTRIC_SURGE); };
     } WHEN {
         TURN {}
         TURN {}
@@ -268,7 +268,7 @@ SINGLE_BATTLE_TEST("INNATE: Booster Energy will activate Protosynthesis after ha
 {
     GIVEN {
         PLAYER(SPECIES_RAGING_BOLT) { Attack(100); Defense(100); Speed(100); SpAttack(110); SpDefense(100); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PROTOSYNTHESIS); Item(ITEM_BOOSTER_ENERGY); }
-        OPPONENT(SPECIES_TORKOAL) { Speed(100); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DROUGHT); };
+        OPPONENT(SPECIES_TORKOAL) { Speed(100); Ability(ABILITY_SHELL_ARMOR); Innates(ABILITY_DROUGHT); };
     } WHEN {
         TURN {}
         TURN {}

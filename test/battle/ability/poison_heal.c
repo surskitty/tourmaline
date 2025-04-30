@@ -83,7 +83,7 @@ SINGLE_BATTLE_TEST("INNATE: Poison Heal heals from (Toxic) Poison damage")
     PARAMETRIZE { status = STATUS1_TOXIC_POISON; }
 
     GIVEN {
-        PLAYER(SPECIES_SHROOMISH) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_POISON_HEAL); Status1(status);  HP(1), MaxHP(400); }
+        PLAYER(SPECIES_SHROOMISH) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_POISON_HEAL); Status1(status);  HP(1), MaxHP(400); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE); }
@@ -100,7 +100,7 @@ SINGLE_BATTLE_TEST("INNATE: Poison Heal heals from Toxic Poison damage are const
     s16 turnTwoHit;
 
     GIVEN {
-        PLAYER(SPECIES_SHROOMISH) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_POISON_HEAL); Status1(STATUS1_TOXIC_POISON);  HP(1), MaxHP(400); }
+        PLAYER(SPECIES_SHROOMISH) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_POISON_HEAL); Status1(STATUS1_TOXIC_POISON);  HP(1), MaxHP(400); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { }
@@ -121,7 +121,7 @@ SINGLE_BATTLE_TEST("INNATE: Poison Heal heals from Toxic Poison damage are const
 SINGLE_BATTLE_TEST("INNATE: Poison Heal does not heal or cause damage when under Heal Block")
 {
     GIVEN {
-        PLAYER(SPECIES_SHROOMISH) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_POISON_HEAL); Status1(STATUS1_POISON);  HP(1), MaxHP(400); }
+        PLAYER(SPECIES_SHROOMISH) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_POISON_HEAL); Status1(STATUS1_POISON);  HP(1), MaxHP(400); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_HEAL_BLOCK); }
@@ -137,7 +137,7 @@ SINGLE_BATTLE_TEST("INNATE: Poison Heal does not heal or cause damage when under
 SINGLE_BATTLE_TEST("INNATE: Poison Heal activates before Toxic Orb")
 {
     GIVEN {
-        PLAYER(SPECIES_SHROOMISH) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_POISON_HEAL); Item(ITEM_TOXIC_ORB);  HP(1), MaxHP(400); }
+        PLAYER(SPECIES_SHROOMISH) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_POISON_HEAL); Item(ITEM_TOXIC_ORB);  HP(1), MaxHP(400); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE); }

@@ -71,7 +71,7 @@ SINGLE_BATTLE_TEST("INNATE: Rapid Spin activates after Toxic Debris")
     #if B_SPEED_BUFFING_RAPID_SPIN >= GEN_8
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_RAPID_SPIN, MOVE_EFFECT_SPD_PLUS_1) == TRUE);
     #endif
-        PLAYER(SPECIES_GLIMMORA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TOXIC_DEBRIS); }
+        PLAYER(SPECIES_GLIMMORA) { Ability(ABILITY_CORROSION); Innates(ABILITY_TOXIC_DEBRIS); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_RAPID_SPIN); }

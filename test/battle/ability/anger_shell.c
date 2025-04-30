@@ -108,7 +108,7 @@ SINGLE_BATTLE_TEST("INNATE: Anger Shell activates only if the target had more th
 
     GIVEN {
         ASSUME(!IsBattleMoveStatus(MOVE_TACKLE));
-        PLAYER(SPECIES_KLAWF) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ANGER_SHELL); MaxHP(maxHp); HP(hp); }
+        PLAYER(SPECIES_KLAWF) { Ability(ABILITY_SHELL_ARMOR); Innates(ABILITY_ANGER_SHELL); MaxHP(maxHp); HP(hp); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
@@ -135,7 +135,7 @@ SINGLE_BATTLE_TEST("INNATE: Anger Shell lowers Def/Sp.Def by 1 and raises Atk/Sp
     u16 maxHp = 500;
     GIVEN {
         ASSUME(!IsBattleMoveStatus(MOVE_TACKLE));
-        PLAYER(SPECIES_KLAWF) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ANGER_SHELL); MaxHP(maxHp); HP(maxHp / 2 + 1); }
+        PLAYER(SPECIES_KLAWF) { Ability(ABILITY_SHELL_ARMOR); Innates(ABILITY_ANGER_SHELL); MaxHP(maxHp); HP(maxHp / 2 + 1); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
@@ -167,8 +167,8 @@ SINGLE_BATTLE_TEST("INNATE: Anger Shell activates after all hits from a multi-hi
     u16 maxHp = 500;
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_DOUBLE_SLAP) == EFFECT_MULTI_HIT);
-        PLAYER(SPECIES_KLAWF) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ANGER_SHELL); MaxHP(maxHp); HP(maxHp / 2 + 1); }
-        OPPONENT(SPECIES_SHELLDER) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SKILL_LINK); } // Always hits 5 times.
+        PLAYER(SPECIES_KLAWF) { Ability(ABILITY_SHELL_ARMOR); Innates(ABILITY_ANGER_SHELL); MaxHP(maxHp); HP(maxHp / 2 + 1); }
+        OPPONENT(SPECIES_SHELLDER) { Ability(ABILITY_SHELL_ARMOR); Innates(ABILITY_SKILL_LINK); } // Always hits 5 times.
     } WHEN {
         TURN { MOVE(opponent, MOVE_DOUBLE_SLAP); }
     } SCENE {

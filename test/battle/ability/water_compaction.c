@@ -64,7 +64,7 @@ SINGLE_BATTLE_TEST("INNATE: Water Compaction raises Defense 2 stages when hit by
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_WATER_GUN) == TYPE_WATER);
-        PLAYER(SPECIES_SANDYGAST) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WATER_COMPACTION); }
+        PLAYER(SPECIES_SANDYGAST) { Ability(ABILITY_SAND_VEIL); Innates(ABILITY_WATER_COMPACTION); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_WATER_GUN); }
@@ -81,7 +81,7 @@ SINGLE_BATTLE_TEST("INNATE: Water Compaction raises Defense 2 stages on each hit
     GIVEN {
         ASSUME(GetMoveType(MOVE_SURGING_STRIKES) == TYPE_WATER);
         ASSUME(GetMoveStrikeCount(MOVE_SURGING_STRIKES) == 3);
-        PLAYER(SPECIES_SANDYGAST) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WATER_COMPACTION); }
+        PLAYER(SPECIES_SANDYGAST) { Ability(ABILITY_SAND_VEIL); Innates(ABILITY_WATER_COMPACTION); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SURGING_STRIKES); }
@@ -107,7 +107,7 @@ SINGLE_BATTLE_TEST("INNATE: Water Compaction does not affect damage taken from W
     PARAMETRIZE { ability = ABILITY_WATER_COMPACTION; }
     GIVEN {
         ASSUME(GetMoveType(MOVE_WATER_GUN) == TYPE_WATER);
-        PLAYER(SPECIES_SANDYGAST) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_SANDYGAST) { Ability(ABILITY_SAND_VEIL); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_WATER_GUN); }

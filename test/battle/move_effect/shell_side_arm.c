@@ -92,7 +92,7 @@ DOUBLE_BATTLE_TEST("INNATE: Shell Side Arm does not change category mid-turn")
         ASSUME(GetMoveEffect(MOVE_SCREECH) == EFFECT_DEFENSE_DOWN_2);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_SHUCKLE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CONTRARY); Defense(100); SpDefense(120); }
+        OPPONENT(SPECIES_SHUCKLE) { Ability(ABILITY_STURDY); Innates(ABILITY_CONTRARY); Defense(100); SpDefense(120); }
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_SHELL_SIDE_ARM, target: opponentLeft); MOVE(opponentLeft, MOVE_MIRROR_COAT, target: opponentLeft); }

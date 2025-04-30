@@ -137,7 +137,7 @@ SINGLE_BATTLE_TEST("INNATE: Salt Cure residual damage does not inflict any damag
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_CLEFABLE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MAGIC_GUARD); };
+        OPPONENT(SPECIES_CLEFABLE) { Ability(ABILITY_UNAWARE); Innates(ABILITY_MAGIC_GUARD); };
     } WHEN {
         TURN { MOVE(player, MOVE_SALT_CURE); }
     } SCENE {

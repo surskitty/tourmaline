@@ -307,7 +307,7 @@ DOUBLE_BATTLE_TEST("INNATE: Ally switch swaps sky drop targets if being used by 
         ASSUME(GetMoveEffect(MOVE_SKY_DROP) == EFFECT_SKY_DROP);
         PLAYER(SPECIES_FEAROW) { Speed(100); }
         PLAYER(SPECIES_XATU)   { Speed(150); }
-        OPPONENT(SPECIES_ARON) { Speed(25); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STURDY); }
+        OPPONENT(SPECIES_ARON) { Speed(25); Ability(ABILITY_ROCK_HEAD); Innates(ABILITY_STURDY); }
         OPPONENT(SPECIES_WYNAUT) { Speed(30); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_SKY_DROP, target: opponentLeft); }
@@ -342,7 +342,7 @@ DOUBLE_BATTLE_TEST("INNATE: Ally switch swaps opposing sky drop targets if partn
     u8 visibility;
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SKY_DROP) == EFFECT_SKY_DROP);
-        PLAYER(SPECIES_ARON) { Speed(25); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STURDY); }
+        PLAYER(SPECIES_ARON) { Speed(25); Ability(ABILITY_ROCK_HEAD); Innates(ABILITY_STURDY); }
         PLAYER(SPECIES_WYNAUT) { Speed(30); }
         OPPONENT(SPECIES_FEAROW) { Speed(100); }
         OPPONENT(SPECIES_XATU)   { Speed(150); }

@@ -17,7 +17,7 @@ SINGLE_BATTLE_TEST("ABILITY: Psychic Surge creates Psychic Terrain when entering
 SINGLE_BATTLE_TEST("INNATE: Psychic Surge creates Psychic Terrain when entering the battle")
 {
     GIVEN {
-        PLAYER(SPECIES_TAPU_LELE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PSYCHIC_SURGE); }
+        PLAYER(SPECIES_TAPU_LELE) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_PSYCHIC_SURGE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {}

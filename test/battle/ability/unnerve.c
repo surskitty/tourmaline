@@ -82,7 +82,7 @@ SINGLE_BATTLE_TEST("INNATE: Unnerve prevents opposing Pokémon from eating their
     PARAMETRIZE { mon = SPECIES_CALYREX_ICE, ability = ABILITY_AS_ONE_ICE_RIDER; }
     GIVEN {
         ASSUME(gItemsInfo[ITEM_RAWST_BERRY].holdEffect == HOLD_EFFECT_CURE_BRN);
-        PLAYER(mon) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(mon) { Ability(ABILITY_SWARM); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_RAWST_BERRY); Status1(STATUS1_BURN); }
     } WHEN {
         TURN { }
@@ -101,7 +101,7 @@ SINGLE_BATTLE_TEST("INNATE: Unnerve doesn't prevent opposing Pokémon from using
     PARAMETRIZE { mon = SPECIES_CALYREX_ICE, ability = ABILITY_AS_ONE_ICE_RIDER; }
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_NATURAL_GIFT) == EFFECT_NATURAL_GIFT);
-        PLAYER(mon) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(mon) { Ability(ABILITY_SWARM); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_ORAN_BERRY); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_NATURAL_GIFT); }
@@ -118,7 +118,7 @@ SINGLE_BATTLE_TEST("INNATE: Unnerve prints the correct string (player)")
     PARAMETRIZE { mon = SPECIES_JOLTIK, ability = ABILITY_UNNERVE; }
     PARAMETRIZE { mon = SPECIES_CALYREX_ICE, ability = ABILITY_AS_ONE_ICE_RIDER; }
     GIVEN {
-        PLAYER(mon) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(mon) { Ability(ABILITY_SWARM); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {}
@@ -136,7 +136,7 @@ SINGLE_BATTLE_TEST("INNATE: Unnerve prints the correct string (opponent)")
     PARAMETRIZE { mon = SPECIES_CALYREX_ICE, ability = ABILITY_AS_ONE_ICE_RIDER; }
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(mon) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(mon) { Ability(ABILITY_SWARM); Innates(ability); }
     } WHEN {
         TURN {}
     } SCENE {

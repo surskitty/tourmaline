@@ -274,7 +274,7 @@ SINGLE_BATTLE_TEST("INNATE: Teatime causes the user to consume its Berry, even i
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_LIECHI_BERRY); }
-        OPPONENT(SPECIES_EKANS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_UNNERVE); }
+        OPPONENT(SPECIES_EKANS) { Ability(ABILITY_SHED_SKIN); Innates(ABILITY_UNNERVE); }
     } WHEN {
         TURN { MOVE(player, MOVE_TEATIME); }
     } SCENE {
@@ -297,7 +297,7 @@ SINGLE_BATTLE_TEST("INNATE: Teatime triggers Volt Absorb if it has been affected
     PARAMETRIZE { move = MOVE_PLASMA_FISTS; item = ITEM_NONE; }
 
     GIVEN {
-        PLAYER(SPECIES_JOLTEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_VOLT_ABSORB); Item(item); HP(55); MaxHP(100); }
+        PLAYER(SPECIES_JOLTEON) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_VOLT_ABSORB); Item(item); HP(55); MaxHP(100); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_LIECHI_BERRY); }
     } WHEN {
         TURN {
@@ -333,7 +333,7 @@ SINGLE_BATTLE_TEST("INNATE: Teatime triggers Lightning Rod if it has been affect
     PARAMETRIZE { move = MOVE_PLASMA_FISTS; item = ITEM_NONE; }
 
     GIVEN {
-        PLAYER(SPECIES_PIKACHU) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_LIGHTNING_ROD); Item(item); }
+        PLAYER(SPECIES_PIKACHU) { Ability(ABILITY_STATIC); Innates(ABILITY_LIGHTNING_ROD); Item(item); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_LIECHI_BERRY); }
     } WHEN {
         TURN {
@@ -372,7 +372,7 @@ SINGLE_BATTLE_TEST("INNATE: Teatime triggers Motor Drive if it has been affected
     PARAMETRIZE { move = MOVE_PLASMA_FISTS; item = ITEM_NONE; }
 
     GIVEN {
-        PLAYER(SPECIES_ELECTIVIRE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MOTOR_DRIVE); Item(item); }
+        PLAYER(SPECIES_ELECTIVIRE) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_MOTOR_DRIVE); Item(item); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_LIECHI_BERRY); }
     } WHEN {
         TURN {

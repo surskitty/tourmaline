@@ -54,7 +54,7 @@ SINGLE_BATTLE_TEST("INNATE: Aftermath damages the attacker by 1/4th of its max H
     s16 aftermathDamage;
 
     GIVEN {
-        PLAYER(SPECIES_VOLTORB) { HP(1); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_AFTERMATH); };
+        PLAYER(SPECIES_VOLTORB) { HP(1); Ability(ABILITY_SOUNDPROOF); Innates(ABILITY_AFTERMATH); };
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {MOVE(opponent, MOVE_TACKLE);}
@@ -72,8 +72,8 @@ SINGLE_BATTLE_TEST("INNATE: Aftermath damages the attacker by 1/4th of its max H
 SINGLE_BATTLE_TEST("INNATE: Aftermath ability pop-up will be displayed correctly: player point of view")
 {
     GIVEN {
-        PLAYER(SPECIES_SHROOMISH) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_POISON_HEAL); };
-        OPPONENT(SPECIES_VOLTORB) { HP(1); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_AFTERMATH); };
+        PLAYER(SPECIES_SHROOMISH) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_POISON_HEAL); };
+        OPPONENT(SPECIES_VOLTORB) { HP(1); Ability(ABILITY_SOUNDPROOF); Innates(ABILITY_AFTERMATH); };
     } WHEN {
         TURN {MOVE(player, MOVE_HEADBUTT);}
     } SCENE {
@@ -86,8 +86,8 @@ SINGLE_BATTLE_TEST("INNATE: Aftermath ability pop-up will be displayed correctly
 SINGLE_BATTLE_TEST("INNATE: Aftermath ability pop-up will be displayed correctly: opponent point of view")
 {
     GIVEN {
-        PLAYER(SPECIES_VOLTORB) { HP(1); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_AFTERMATH); };
-        OPPONENT(SPECIES_SHROOMISH) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_POISON_HEAL); };
+        PLAYER(SPECIES_VOLTORB) { HP(1); Ability(ABILITY_SOUNDPROOF); Innates(ABILITY_AFTERMATH); };
+        OPPONENT(SPECIES_SHROOMISH) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_POISON_HEAL); };
     } WHEN {
         TURN {MOVE(opponent, MOVE_HEADBUTT);}
     } SCENE {

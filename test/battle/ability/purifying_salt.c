@@ -109,7 +109,7 @@ SINGLE_BATTLE_TEST("INNATE: Purifying Salt halves damage from Ghost-type moves",
     GIVEN {
         ASSUME(GetMoveType(MOVE_SHADOW_BALL) == TYPE_GHOST);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_GARGANACL) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(SPECIES_GARGANACL) { Ability(ABILITY_STURDY); Innates(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_SHADOW_BALL); }
     } SCENE {
@@ -127,7 +127,7 @@ SINGLE_BATTLE_TEST("INNATE: Purifying Salt halves damage from dynamic Ghost-type
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_TERA_BLAST) == EFFECT_TERA_BLAST);
         PLAYER(SPECIES_WOBBUFFET) { TeraType(TYPE_GHOST); }
-        OPPONENT(SPECIES_GARGANACL) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(SPECIES_GARGANACL) { Ability(ABILITY_STURDY); Innates(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_TERA_BLAST, gimmick: GIMMICK_TERA); }
     } SCENE {
@@ -140,7 +140,7 @@ SINGLE_BATTLE_TEST("INNATE: Purifying Salt halves damage from dynamic Ghost-type
 SINGLE_BATTLE_TEST("INNATE: Purifying Salt makes Rest fail")
 {
     GIVEN {
-        PLAYER(SPECIES_GARGANACL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PURIFYING_SALT); HP(1); MaxHP(100);}
+        PLAYER(SPECIES_GARGANACL) { Ability(ABILITY_STURDY); Innates(ABILITY_PURIFYING_SALT); HP(1); MaxHP(100);}
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_REST); }
@@ -166,7 +166,7 @@ SINGLE_BATTLE_TEST("INNATE: Purifying Salt grants immunity to status effects")
         ASSUME(GetMoveEffect(MOVE_THUNDER_WAVE) == EFFECT_PARALYZE);
         ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
         ASSUME(MoveHasAdditionalEffect(MOVE_POWDER_SNOW, MOVE_EFFECT_FREEZE_OR_FROSTBITE) == TRUE);
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PURIFYING_SALT); }
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_PURIFYING_SALT); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, move); }
@@ -189,7 +189,7 @@ SINGLE_BATTLE_TEST("INNATE: Purifying Salt user can't be poisoned by Toxic Spike
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_GARGANACL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PURIFYING_SALT); }
+        PLAYER(SPECIES_GARGANACL) { Ability(ABILITY_STURDY); Innates(ABILITY_PURIFYING_SALT); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TOXIC_SPIKES); }

@@ -139,7 +139,7 @@ SINGLE_BATTLE_TEST("INNATE: Upper Hand fails if the target is not using a priori
         ASSUME(GetMoveCategory(MOVE_DRAINING_KISS) == DAMAGE_CATEGORY_SPECIAL);
         ASSUME(GetMovePriority(MOVE_DRAINING_KISS) == 0);
         PLAYER(SPECIES_MIENSHAO);
-        OPPONENT(SPECIES_COMFEY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FLOWER_VEIL); }
+        OPPONENT(SPECIES_COMFEY) { Ability(ABILITY_NATURAL_CURE); Innates(ABILITY_FLOWER_VEIL); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_DRAINING_KISS); MOVE(player, MOVE_UPPER_HAND); }
     } SCENE {
@@ -158,7 +158,7 @@ SINGLE_BATTLE_TEST("INNATE: Upper Hand succeeds if the target's move is boosted 
         ASSUME(GetMoveCategory(MOVE_DRAINING_KISS) == DAMAGE_CATEGORY_SPECIAL);
         ASSUME(GetMovePriority(MOVE_DRAINING_KISS) == 0);
         PLAYER(SPECIES_MIENSHAO) { Speed(10); }
-        OPPONENT(SPECIES_COMFEY) { Speed(5); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TRIAGE); }
+        OPPONENT(SPECIES_COMFEY) { Speed(5); Ability(ABILITY_NATURAL_CURE); Innates(ABILITY_TRIAGE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_DRAINING_KISS); MOVE(player, MOVE_UPPER_HAND); }
     } SCENE {
@@ -175,7 +175,7 @@ SINGLE_BATTLE_TEST("INNATE: Upper Hand fails if the target moves first")
         ASSUME(GetMoveCategory(MOVE_DRAINING_KISS) == DAMAGE_CATEGORY_SPECIAL);
         ASSUME(GetMovePriority(MOVE_DRAINING_KISS) == 0);
         PLAYER(SPECIES_MIENSHAO) { Speed(5); }
-        OPPONENT(SPECIES_COMFEY) { Speed(10); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TRIAGE); }
+        OPPONENT(SPECIES_COMFEY) { Speed(10); Ability(ABILITY_NATURAL_CURE); Innates(ABILITY_TRIAGE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_DRAINING_KISS); MOVE(player, MOVE_UPPER_HAND); }
     } SCENE {
@@ -194,7 +194,7 @@ SINGLE_BATTLE_TEST("INNATE: Upper Hand is boosted by Sheer Force")
         ASSUME(GetMoveCategory(MOVE_EXTREME_SPEED) == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(GetMovePriority(MOVE_EXTREME_SPEED) == 2);
         ASSUME(MoveIsAffectedBySheerForce(MOVE_UPPER_HAND) == TRUE);
-        PLAYER(SPECIES_HARIYAMA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHEER_FORCE); }
+        PLAYER(SPECIES_HARIYAMA) { Ability(ABILITY_GUTS); Innates(ABILITY_SHEER_FORCE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_EXTREME_SPEED); MOVE(player, MOVE_UPPER_HAND); }

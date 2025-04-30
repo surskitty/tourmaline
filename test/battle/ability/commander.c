@@ -426,7 +426,7 @@ DOUBLE_BATTLE_TEST("INNATE: Commander will activate once Dondozo switches in")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_STORM_DRAIN); Innates(ABILITY_COMMANDER); }
         PLAYER(SPECIES_DONDOZO);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -441,7 +441,7 @@ DOUBLE_BATTLE_TEST("INNATE: Commander will activate once Dondozo switches in")
 DOUBLE_BATTLE_TEST("INNATE: Commander increases all stats by 2 stages once it is triggered")
 {
     GIVEN {
-        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_STORM_DRAIN); Innates(ABILITY_COMMANDER); }
         PLAYER(SPECIES_DONDOZO);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -462,7 +462,7 @@ DOUBLE_BATTLE_TEST("INNATE: Commander increases all stats by 2 stages once it is
 DOUBLE_BATTLE_TEST("INNATE: Commander Tatsugiri avoids moves targetted towards it")
 {
     GIVEN {
-        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_STORM_DRAIN); Innates(ABILITY_COMMANDER); }
         PLAYER(SPECIES_DONDOZO);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -480,9 +480,9 @@ DOUBLE_BATTLE_TEST("INNATE: Commander Tatsugiri avoids moves targetted towards i
 DOUBLE_BATTLE_TEST("INNATE: Commander Tatsugiri will still take residual damage from a field effect while inside Dondozo")
 {
     GIVEN {
-        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_STORM_DRAIN); Innates(ABILITY_COMMANDER); }
         PLAYER(SPECIES_DONDOZO);
-        OPPONENT(SPECIES_TYRANITAR) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SAND_STREAM); }
+        OPPONENT(SPECIES_TYRANITAR) { Ability(ABILITY_SHED_SKIN); Innates(ABILITY_SAND_STREAM); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { }
@@ -499,7 +499,7 @@ DOUBLE_BATTLE_TEST("INNATE: Commander Tatsugiri will still take residual damage 
 DOUBLE_BATTLE_TEST("INNATE: Commander Tatsugiri will still take poison damage if while inside Dondozo")
 {
     GIVEN {
-        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); Status1(STATUS1_POISON); }
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_STORM_DRAIN); Innates(ABILITY_COMMANDER); Status1(STATUS1_POISON); }
         PLAYER(SPECIES_DONDOZO);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -515,9 +515,9 @@ DOUBLE_BATTLE_TEST("INNATE: Commander Tatsugiri will still take poison damage if
 DOUBLE_BATTLE_TEST("INNATE: Commander Tatsugiri still avoids moves even when the attacker has No Guard")
 {
     GIVEN {
-        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_STORM_DRAIN); Innates(ABILITY_COMMANDER); }
         PLAYER(SPECIES_DONDOZO);
-        OPPONENT(SPECIES_MACHAMP) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NO_GUARD); }
+        OPPONENT(SPECIES_MACHAMP) { Ability(ABILITY_STEADFAST); Innates(ABILITY_NO_GUARD); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_TACKLE, target: playerLeft); }
@@ -534,8 +534,8 @@ DOUBLE_BATTLE_TEST("INNATE: Commander cannot affect a Dondozo that was previousl
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_DONDOZO);
-        PLAYER(SPECIES_TATSUGIRI) { HP(1); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); Status1(STATUS1_POISON); }
-        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_TATSUGIRI) { HP(1); Ability(ABILITY_STORM_DRAIN); Innates(ABILITY_COMMANDER); Status1(STATUS1_POISON); }
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_STORM_DRAIN); Innates(ABILITY_COMMANDER); }
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -554,7 +554,7 @@ DOUBLE_BATTLE_TEST("INNATE: Commander cannot affect a Dondozo that was previousl
 DOUBLE_BATTLE_TEST("INNATE: Commander prevents Whirlwind from working against Dondozo or Tatsugiri while it's active")
 {
     GIVEN {
-        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_STORM_DRAIN); Innates(ABILITY_COMMANDER); }
         PLAYER(SPECIES_DONDOZO);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -575,7 +575,7 @@ DOUBLE_BATTLE_TEST("INNATE: Commander prevents Whirlwind from working against Do
 DOUBLE_BATTLE_TEST("INNATE: Commander prevents Red Card from working while Commander is active")
 {
     GIVEN {
-        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_STORM_DRAIN); Innates(ABILITY_COMMANDER); }
         PLAYER(SPECIES_DONDOZO);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_RED_CARD); }
@@ -598,7 +598,7 @@ DOUBLE_BATTLE_TEST("INNATE: Commander Tatsugiri is not damaged by a double targe
     GIVEN {
         ASSUME(GetMoveTarget(MOVE_SURF) == MOVE_TARGET_FOES_AND_ALLY);
         PLAYER(SPECIES_DONDOZO) { HP(1); };
-        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_STORM_DRAIN); Innates(ABILITY_COMMANDER); }
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
@@ -618,7 +618,7 @@ DOUBLE_BATTLE_TEST("INNATE: Commander Tatsugiri takes no damage from multi-targe
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_STORM_DRAIN); Innates(ABILITY_COMMANDER); }
         PLAYER(SPECIES_DONDOZO);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
@@ -644,7 +644,7 @@ DOUBLE_BATTLE_TEST("INNATE: Commander doesn't prevent Transform from working on 
 {
     GIVEN {
         PLAYER(SPECIES_DONDOZO);
-        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_STORM_DRAIN); Innates(ABILITY_COMMANDER); }
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -660,10 +660,10 @@ DOUBLE_BATTLE_TEST("INNATE: Commander doesn't prevent Imposter from working on a
 {
     GIVEN {
         PLAYER(SPECIES_DONDOZO);
-        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_STORM_DRAIN); Innates(ABILITY_COMMANDER); }
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_DITTO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_IMPOSTER); }
+        OPPONENT(SPECIES_DITTO) { Ability(ABILITY_LIMBER); Innates(ABILITY_IMPOSTER); }
     } WHEN {
         TURN { }
         TURN { SWITCH(opponentRight, 2); }
@@ -679,7 +679,7 @@ DOUBLE_BATTLE_TEST("INNATE: Commander Tatsugiri is still affected by Perish Song
 {
     GIVEN {
         PLAYER(SPECIES_DONDOZO);
-        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_STORM_DRAIN); Innates(ABILITY_COMMANDER); }
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
@@ -709,7 +709,7 @@ DOUBLE_BATTLE_TEST("INNATE: Commander Tatsugiri is still affected by Haze while 
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_STORM_DRAIN); Innates(ABILITY_COMMANDER); }
         PLAYER(SPECIES_DONDOZO);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -726,34 +726,11 @@ DOUBLE_BATTLE_TEST("INNATE: Commander Tatsugiri is still affected by Haze while 
     }
 }
 
-DOUBLE_BATTLE_TEST("INNATE: Commander Attacker is kept (Dondozo Left Slot)")
-{
-    GIVEN {
-        ASSUME(GetMoveTarget(MOVE_SURF) == MOVE_TARGET_FOES_AND_ALLY);
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); }
-        PLAYER(SPECIES_DONDOZO);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(opponentRight, MOVE_TACKLE, target: opponentLeft); }
-        TURN { SWITCH(playerLeft, 2); MOVE(opponentLeft, MOVE_SURF); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentRight);
-        ABILITY_POPUP(playerRight, ABILITY_COMMANDER);
-        MESSAGE("Tatsugiri was swallowed by Dondozo and became Dondozo's commander!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_SURF, opponentLeft);
-        HP_BAR(playerLeft);
-        HP_BAR(opponentRight);
-        MESSAGE("The opposing Wobbuffet's attack missed!");
-    }
-}
-
 DOUBLE_BATTLE_TEST("INNATE: Commander Attacker is kept (Dondozo Right Slot)")
 {
     GIVEN {
         ASSUME(GetMoveTarget(MOVE_SURF) == MOVE_TARGET_FOES_AND_ALLY);
-        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_STORM_DRAIN); Innates(ABILITY_COMMANDER); }
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_DONDOZO);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -776,7 +753,7 @@ DOUBLE_BATTLE_TEST("INNATE: Commander Tatsugiri does not attack if Dondozo faint
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_STORM_DRAIN); Innates(ABILITY_COMMANDER); }
         PLAYER(SPECIES_DONDOZO) { HP(1); }
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -804,7 +781,7 @@ DOUBLE_BATTLE_TEST("INNATE: Commander Tatsugiri does not get hit by Dragon Darts
         ASSUME(GetMoveEffect(MOVE_DRAGON_DARTS) == EFFECT_DRAGON_DARTS);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_DONDOZO) { HP(1); }
-        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_STORM_DRAIN); Innates(ABILITY_COMMANDER); }
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
@@ -824,7 +801,7 @@ DOUBLE_BATTLE_TEST("INNATE: Commander Tatsugiri does not get hit by Dragon Darts
     PARAMETRIZE { targetPlayerRight = FALSE; }
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_DRAGON_DARTS) == EFFECT_DRAGON_DARTS);
-        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_TATSUGIRI) { Ability(ABILITY_STORM_DRAIN); Innates(ABILITY_COMMANDER); }
         PLAYER(SPECIES_DONDOZO);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);

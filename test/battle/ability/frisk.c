@@ -84,10 +84,10 @@ DOUBLE_BATTLE_TEST("ABILITY: Frisk triggers for opponent in a Double Battle afte
 DOUBLE_BATTLE_TEST("INNATE: Frisk does not trigger when pokemon hold no items")
 {
     GIVEN {
-        PLAYER(SPECIES_FURRET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FRISK); };
-        PLAYER(SPECIES_FURRET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FRISK); };
-        OPPONENT(SPECIES_SENTRET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FRISK); };
-        OPPONENT(SPECIES_SENTRET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FRISK); };
+        PLAYER(SPECIES_FURRET) { Ability(ABILITY_RUN_AWAY); Innates(ABILITY_FRISK); };
+        PLAYER(SPECIES_FURRET) { Ability(ABILITY_RUN_AWAY); Innates(ABILITY_FRISK); };
+        OPPONENT(SPECIES_SENTRET) { Ability(ABILITY_RUN_AWAY); Innates(ABILITY_FRISK); };
+        OPPONENT(SPECIES_SENTRET) { Ability(ABILITY_RUN_AWAY); Innates(ABILITY_FRISK); };
     } WHEN {
         TURN { ; }
     } SCENE {
@@ -103,8 +103,8 @@ DOUBLE_BATTLE_TEST("INNATE: Frisk does not trigger when pokemon hold no items")
 SINGLE_BATTLE_TEST("INNATE: Frisk triggers in a Single Battle")
 {
     GIVEN {
-        PLAYER(SPECIES_FURRET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FRISK); Item(ITEM_POTION); };
-        OPPONENT(SPECIES_SENTRET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FRISK); Item(ITEM_POTION); };
+        PLAYER(SPECIES_FURRET) { Ability(ABILITY_RUN_AWAY); Innates(ABILITY_FRISK); Item(ITEM_POTION); };
+        OPPONENT(SPECIES_SENTRET) { Ability(ABILITY_RUN_AWAY); Innates(ABILITY_FRISK); Item(ITEM_POTION); };
     } WHEN {
         TURN { ; }
     } SCENE {
@@ -125,7 +125,7 @@ DOUBLE_BATTLE_TEST("INNATE: Frisk triggers for player in a Double Battle after s
         ASSUME(!IsBattleMoveStatus(MOVE_POUND));
         PLAYER(SPECIES_WOBBUFFET) { HP(1); }
         PLAYER(SPECIES_WOBBUFFET) { HP(1); }
-        PLAYER(SPECIES_FURRET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FRISK); };
+        PLAYER(SPECIES_FURRET) { Ability(ABILITY_RUN_AWAY); Innates(ABILITY_FRISK); };
         OPPONENT(SPECIES_WYNAUT) { Item(ITEM_POTION); }
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
@@ -150,7 +150,7 @@ DOUBLE_BATTLE_TEST("INNATE: Frisk triggers for opponent in a Double Battle after
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
-        OPPONENT(SPECIES_FURRET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FRISK); };
+        OPPONENT(SPECIES_FURRET) { Ability(ABILITY_RUN_AWAY); Innates(ABILITY_FRISK); };
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_POUND, target: target); SEND_OUT(target, 2); }
     } SCENE {

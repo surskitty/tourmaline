@@ -147,7 +147,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Multi-target moves hit correct battlers after Seed 
 SINGLE_BATTLE_TEST("INNATE: Seed Sower sets up Grassy Terrain when hit by an attack")
 {
     GIVEN {
-        PLAYER(SPECIES_ARBOLIVA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SEED_SOWER); }
+        PLAYER(SPECIES_ARBOLIVA) { Ability(ABILITY_HARVEST); Innates(ABILITY_SEED_SOWER); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
@@ -194,10 +194,10 @@ DOUBLE_BATTLE_TEST("INNATE: Multi-target moves hit correct battlers after Seed S
     GIVEN {
         ASSUME(GetMoveTarget(MOVE_HYPER_VOICE) == MOVE_TARGET_BOTH);
         ASSUME(GetMoveTarget(MOVE_SURF) == MOVE_TARGET_FOES_AND_ALLY);
-        PLAYER(SPECIES_ARBOLIVA) { Ability(ABILITY_LIGHT_METAL); Innates(abilities[B_POSITION_PLAYER_LEFT]); }
-        PLAYER(SPECIES_ARBOLIVA) { Ability(ABILITY_LIGHT_METAL); Innates(abilities[B_POSITION_PLAYER_RIGHT]); }
-        OPPONENT(SPECIES_ARBOLIVA) { Ability(ABILITY_LIGHT_METAL); Innates(abilities[B_POSITION_OPPONENT_LEFT]); }
-        OPPONENT(SPECIES_ARBOLIVA) { Ability(ABILITY_LIGHT_METAL); Innates(abilities[B_POSITION_OPPONENT_RIGHT]); }
+        PLAYER(SPECIES_ARBOLIVA) { Ability(ABILITY_HARVEST); Innates(abilities[B_POSITION_PLAYER_LEFT]); }
+        PLAYER(SPECIES_ARBOLIVA) { Ability(ABILITY_HARVEST); Innates(abilities[B_POSITION_PLAYER_RIGHT]); }
+        OPPONENT(SPECIES_ARBOLIVA) { Ability(ABILITY_HARVEST); Innates(abilities[B_POSITION_OPPONENT_LEFT]); }
+        OPPONENT(SPECIES_ARBOLIVA) { Ability(ABILITY_HARVEST); Innates(abilities[B_POSITION_OPPONENT_RIGHT]); }
     } WHEN {
         TURN {
             MOVE(opponentLeft, (attacker == B_POSITION_OPPONENT_LEFT) ? usedMove : MOVE_CELEBRATE);

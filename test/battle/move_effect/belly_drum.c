@@ -141,7 +141,7 @@ SINGLE_BATTLE_TEST("INNATE: Belly Drum minimizes the user's Attack stat with Con
     PARAMETRIZE { raiseAttack = TRUE; }
     GIVEN {
         ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CONTRARY); }
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_CONTRARY); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         if (raiseAttack) TURN { MOVE(player, MOVE_BELLY_DRUM); }

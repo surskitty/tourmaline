@@ -30,7 +30,7 @@ SINGLE_BATTLE_TEST("INNATE: Steam Engine raises speed when hit by a Fire or Wate
     PARAMETRIZE { move = MOVE_WATER_GUN; }
     
     GIVEN {
-        PLAYER(SPECIES_COALOSSAL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STEAM_ENGINE); }
+        PLAYER(SPECIES_COALOSSAL) { Ability(ABILITY_FLAME_BODY); Innates(ABILITY_STEAM_ENGINE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, move); }

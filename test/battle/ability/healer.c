@@ -67,7 +67,7 @@ DOUBLE_BATTLE_TEST("INNATE: Healer cures adjacent ally's status condition 30% of
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { Status1(status); }
-        OPPONENT(SPECIES_CHANSEY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_HEALER); }
+        OPPONENT(SPECIES_CHANSEY) { Ability(ABILITY_NATURAL_CURE); Innates(ABILITY_HEALER); }
     } WHEN {
         TURN { }
     } SCENE {
@@ -89,7 +89,7 @@ DOUBLE_BATTLE_TEST("INNATE: Healer cures status condition before burn or poison 
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); Status1(status); }
-        OPPONENT(SPECIES_CHANSEY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_HEALER); }
+        OPPONENT(SPECIES_CHANSEY) { Ability(ABILITY_NATURAL_CURE); Innates(ABILITY_HEALER); }
     } WHEN {
         TURN {}
     } SCENE {

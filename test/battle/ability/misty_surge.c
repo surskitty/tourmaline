@@ -17,7 +17,7 @@ SINGLE_BATTLE_TEST("ABILITY: Misty Surge creates Misty Terrain when entering the
 SINGLE_BATTLE_TEST("INNATE: Misty Surge creates Misty Terrain when entering the battle")
 {
     GIVEN {
-        PLAYER(SPECIES_TAPU_FINI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MISTY_SURGE); }
+        PLAYER(SPECIES_TAPU_FINI) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_MISTY_SURGE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {}

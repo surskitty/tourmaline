@@ -346,10 +346,10 @@ DOUBLE_BATTLE_TEST("INNATE: Defiant sharply raises player's Attack after Intimid
     PARAMETRIZE { abilityLeft = ABILITY_DEFIANT; abilityRight = ABILITY_DEFIANT; }
 
     GIVEN {
-        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_LIGHT_METAL); Innates(abilityLeft); }
-        PLAYER(SPECIES_PRIMEAPE) { Ability(ABILITY_LIGHT_METAL); Innates(abilityRight); }
-        OPPONENT(SPECIES_GYARADOS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
-        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
+        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_VITAL_SPIRIT); Innates(abilityLeft); }
+        PLAYER(SPECIES_PRIMEAPE) { Ability(ABILITY_VITAL_SPIRIT); Innates(abilityRight); }
+        OPPONENT(SPECIES_GYARADOS) { Ability(ABILITY_MOXIE); Innates(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_SHED_SKIN); Innates(ABILITY_INTIMIDATE); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_TACKLE, target:opponentLeft); MOVE(playerRight, MOVE_TACKLE, target:opponentRight); }
     } SCENE {
@@ -404,10 +404,10 @@ DOUBLE_BATTLE_TEST("INNATE: Defiant sharply raises opponent's Attack after Intim
     PARAMETRIZE { abilityLeft = ABILITY_DEFIANT; abilityRight = ABILITY_DEFIANT; }
 
     GIVEN {
-        OPPONENT(SPECIES_MANKEY) { Ability(ABILITY_LIGHT_METAL); Innates(abilityLeft); }
-        OPPONENT(SPECIES_PRIMEAPE) { Ability(ABILITY_LIGHT_METAL); Innates(abilityRight); }
-        PLAYER(SPECIES_GYARADOS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
-        PLAYER(SPECIES_ARBOK) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_MANKEY) { Ability(ABILITY_VITAL_SPIRIT); Innates(abilityLeft); }
+        OPPONENT(SPECIES_PRIMEAPE) { Ability(ABILITY_VITAL_SPIRIT); Innates(abilityRight); }
+        PLAYER(SPECIES_GYARADOS) { Ability(ABILITY_MOXIE); Innates(ABILITY_INTIMIDATE); }
+        PLAYER(SPECIES_ARBOK) { Ability(ABILITY_SHED_SKIN); Innates(ABILITY_INTIMIDATE); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_TACKLE, target:playerLeft); MOVE(opponentRight, MOVE_TACKLE, target:playerRight); }
     } SCENE {
@@ -455,7 +455,7 @@ SINGLE_BATTLE_TEST("INNATE: Defiant activates after Sticky Web lowers Speed")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DEFIANT); }
+        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_DEFIANT); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_STICKY_WEB); }
@@ -478,7 +478,7 @@ SINGLE_BATTLE_TEST("INNATE: Defiant doesn't activate after Sticky Web lowers Spe
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DEFIANT); }
+        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_DEFIANT); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_STICKY_WEB); MOVE(opponent, MOVE_COURT_CHANGE); }
@@ -504,7 +504,7 @@ SINGLE_BATTLE_TEST("INNATE: Defiant correctly activates after Sticky Web lowers 
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DEFIANT); }
+        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_DEFIANT); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_STICKY_WEB); MOVE(opponent, MOVE_COURT_CHANGE); }
@@ -537,10 +537,10 @@ SINGLE_BATTLE_TEST("INNATE: Defiant correctly activates after Sticky Web lowers 
 DOUBLE_BATTLE_TEST("INNATE: Defiant is activated by Cotton Down for non-ally pokemon")
 {
     GIVEN {
-        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DEFIANT); }
-        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DEFIANT); }
-        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COTTON_DOWN); }
-        OPPONENT(SPECIES_MANKEY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DEFIANT); }
+        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_DEFIANT); }
+        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_DEFIANT); }
+        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_REGENERATOR); Innates(ABILITY_COTTON_DOWN); }
+        OPPONENT(SPECIES_MANKEY) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_DEFIANT); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_TACKLE, target: opponentLeft); }
     } SCENE {
@@ -578,7 +578,7 @@ SINGLE_BATTLE_TEST("INNATE: Defiant activates before White Herb")
     PARAMETRIZE { move = MOVE_GROWL; }
 
     GIVEN {
-        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DEFIANT); Item(ITEM_WHITE_HERB); }
+        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_DEFIANT); Item(ITEM_WHITE_HERB); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, move); }
@@ -613,7 +613,7 @@ SINGLE_BATTLE_TEST("INNATE: Defiant activates for each stat that is lowered")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_TICKLE) == EFFECT_TICKLE);
-        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DEFIANT); }
+        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_DEFIANT); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TICKLE); }
@@ -650,7 +650,7 @@ SINGLE_BATTLE_TEST("INNATE: Defiant doesn't activate if the pokemon lowers it's 
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_CLOSE_COMBAT, MOVE_EFFECT_DEF_SPDEF_DOWN));
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_MAKE_IT_RAIN, MOVE_EFFECT_SP_ATK_MINUS_1));
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_SPIN_OUT, MOVE_EFFECT_SPD_MINUS_2));
-        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DEFIANT); }
+        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_DEFIANT); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, move); }

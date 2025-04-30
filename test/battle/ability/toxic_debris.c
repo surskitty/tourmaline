@@ -129,7 +129,7 @@ SINGLE_BATTLE_TEST("INNATE: Toxic Debris sets Toxic Spikes on the opposing side 
     PARAMETRIZE { move = MOVE_SWIFT;}
 
     GIVEN {
-        PLAYER(SPECIES_GLIMMORA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TOXIC_DEBRIS); }
+        PLAYER(SPECIES_GLIMMORA) { Ability(ABILITY_CORROSION); Innates(ABILITY_TOXIC_DEBRIS); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, move); }
@@ -149,7 +149,7 @@ SINGLE_BATTLE_TEST("INNATE: Toxic Debris sets Toxic Spikes on the opposing side 
 SINGLE_BATTLE_TEST("INNATE: Toxic Debris does not activate if two layers of Toxic Spikes are already up")
 {
     GIVEN {
-        PLAYER(SPECIES_GLIMMORA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TOXIC_DEBRIS); }
+        PLAYER(SPECIES_GLIMMORA) { Ability(ABILITY_CORROSION); Innates(ABILITY_TOXIC_DEBRIS); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
@@ -173,7 +173,7 @@ SINGLE_BATTLE_TEST("INNATE: Toxic Debris does not activate if two layers of Toxi
 SINGLE_BATTLE_TEST("INNATE: If a Substitute is hit, Toxic Debris does not set Toxic Spikes")
 {
     GIVEN {
-        PLAYER(SPECIES_GLIMMORA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TOXIC_DEBRIS); }
+        PLAYER(SPECIES_GLIMMORA) { Ability(ABILITY_CORROSION); Innates(ABILITY_TOXIC_DEBRIS); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_SUBSTITUTE); }
@@ -191,7 +191,7 @@ SINGLE_BATTLE_TEST("INNATE: If a Substitute is hit, Toxic Debris does not set To
 SINGLE_BATTLE_TEST("INNATE: Each hit of a Multi Hit move activates Toxic Debris")
 {
     GIVEN {
-        PLAYER(SPECIES_GLIMMORA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TOXIC_DEBRIS); }
+        PLAYER(SPECIES_GLIMMORA) { Ability(ABILITY_CORROSION); Innates(ABILITY_TOXIC_DEBRIS); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_FURY_SWIPES); }
@@ -208,7 +208,7 @@ SINGLE_BATTLE_TEST("INNATE: Each hit of a Multi Hit move activates Toxic Debris"
 SINGLE_BATTLE_TEST("INNATE: Toxic Debris activates if user faints after physical hit")
 {
     GIVEN {
-        PLAYER(SPECIES_GLIMMORA) { HP(1); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TOXIC_DEBRIS); }
+        PLAYER(SPECIES_GLIMMORA) { HP(1); Ability(ABILITY_CORROSION); Innates(ABILITY_TOXIC_DEBRIS); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
@@ -223,7 +223,7 @@ SINGLE_BATTLE_TEST("INNATE: Toxic Debris activates if user faints after physical
 SINGLE_BATTLE_TEST("INNATE: Air Balloon is popped after Toxic Debris activates")
 {
     GIVEN {
-        PLAYER(SPECIES_GLIMMORA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TOXIC_DEBRIS); Item(ITEM_AIR_BALLOON); }
+        PLAYER(SPECIES_GLIMMORA) { Ability(ABILITY_CORROSION); Innates(ABILITY_TOXIC_DEBRIS); Item(ITEM_AIR_BALLOON); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }

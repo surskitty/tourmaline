@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("ABILITY: Speed Boost gradually boosts Speed")
 SINGLE_BATTLE_TEST("INNATE: Speed Boost gradually boosts Speed")
 {
     GIVEN {
-        PLAYER(SPECIES_TORCHIC) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SPEED_BOOST); Speed(99); }
+        PLAYER(SPECIES_TORCHIC) { Ability(ABILITY_BLAZE); Innates(ABILITY_SPEED_BOOST); Speed(99); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(100); }
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, MOVE_CELEBRATE); }

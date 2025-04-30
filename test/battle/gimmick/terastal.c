@@ -897,7 +897,7 @@ SINGLE_BATTLE_TEST("INNATE: (TERA) Terastallization's 60 BP floor occurs after T
     PARAMETRIZE { tera = GIMMICK_TERA; }
     GIVEN {
         ASSUME(GetMovePower(MOVE_MEGA_DRAIN) == 40);
-        PLAYER(SPECIES_MR_MIME) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TECHNICIAN); TeraType(TYPE_GRASS); }
+        PLAYER(SPECIES_MR_MIME) { Ability(ABILITY_SOUNDPROOF); Innates(ABILITY_TECHNICIAN); TeraType(TYPE_GRASS); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_MEGA_DRAIN, gimmick: tera); }
@@ -917,7 +917,7 @@ SINGLE_BATTLE_TEST("INNATE: (TERA) Terastallization's 60 BP floor occurs after T
     PARAMETRIZE { tera = GIMMICK_NONE; }
     PARAMETRIZE { tera = GIMMICK_TERA; }
     GIVEN {
-        PLAYER(SPECIES_MR_MIME) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TECHNICIAN); TeraType(TYPE_PSYCHIC); }
+        PLAYER(SPECIES_MR_MIME) { Ability(ABILITY_SOUNDPROOF); Innates(ABILITY_TECHNICIAN); TeraType(TYPE_PSYCHIC); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_STORED_POWER, gimmick: tera); }
@@ -934,7 +934,7 @@ SINGLE_BATTLE_TEST("INNATE: (TERA) Terastallization's 60 BP floor occurs after T
 SINGLE_BATTLE_TEST("INNATE: (TERA) Protean cannot change the type of a Terastallized Pokemon")
 {
     GIVEN {
-        PLAYER(SPECIES_GRENINJA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PROTEAN); TeraType(TYPE_GRASS); }
+        PLAYER(SPECIES_GRENINJA) { Ability(ABILITY_TORRENT); Innates(ABILITY_PROTEAN); TeraType(TYPE_GRASS); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_BUBBLE, gimmick: GIMMICK_TERA);
@@ -951,7 +951,7 @@ SINGLE_BATTLE_TEST("INNATE: (TERA) Stellar type's one-time boost factors in dyna
     s16 damage[4];
     GIVEN {
         ASSUME(GetMoveType(MOVE_WEATHER_BALL) == TYPE_NORMAL);
-        PLAYER(SPECIES_PELIPPER) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DRIZZLE); TeraType(TYPE_STELLAR); }
+        PLAYER(SPECIES_PELIPPER) { Ability(ABILITY_RAIN_DISH); Innates(ABILITY_DRIZZLE); TeraType(TYPE_STELLAR); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_WEATHER_BALL, gimmick: GIMMICK_TERA); MOVE(opponent, MOVE_RECOVER); }

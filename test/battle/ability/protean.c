@@ -37,7 +37,7 @@ SINGLE_BATTLE_TEST("INNATE: Protean changes the type of the user only once per s
 {
     GIVEN {
         PLAYER(SPECIES_REGIROCK);
-        OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PROTEAN); }
+        OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_COLOR_CHANGE); Innates(ABILITY_PROTEAN); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_WATER_GUN); }

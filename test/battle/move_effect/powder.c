@@ -297,7 +297,7 @@ DOUBLE_BATTLE_TEST("Powder damages a target using Shell Trap even if it wasn't h
 SINGLE_BATTLE_TEST("INNATE: Powder doesn't damage target if it has Magic Guard")
 {
     GIVEN {
-        PLAYER(SPECIES_ALAKAZAM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MAGIC_GUARD); }
+        PLAYER(SPECIES_ALAKAZAM) { Ability(ABILITY_INNER_FOCUS); Innates(ABILITY_MAGIC_GUARD); }
         OPPONENT(SPECIES_VIVILLON);
     } WHEN {
         TURN { MOVE(opponent, MOVE_POWDER); MOVE(player, MOVE_EMBER); }
@@ -334,7 +334,7 @@ SINGLE_BATTLE_TEST("INNATE: Powder doesn't damage target under heavy rain")
 SINGLE_BATTLE_TEST("INNATE: Powder fails if the target has Overcoat")
 {
     GIVEN {
-        PLAYER(SPECIES_FORRETRESS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_OVERCOAT); }
+        PLAYER(SPECIES_FORRETRESS) { Ability(ABILITY_STURDY); Innates(ABILITY_OVERCOAT); }
         OPPONENT(SPECIES_VIVILLON);
     } WHEN {
         TURN { MOVE(opponent, MOVE_POWDER); MOVE(player, MOVE_EMBER); }
@@ -348,7 +348,7 @@ SINGLE_BATTLE_TEST("INNATE: Powder fails if the target has Overcoat")
 SINGLE_BATTLE_TEST("INNATE: Powder prevents Protean from changing its user to Fire type")
 {
     GIVEN {
-        PLAYER(SPECIES_GRENINJA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PROTEAN); }
+        PLAYER(SPECIES_GRENINJA) { Ability(ABILITY_TORRENT); Innates(ABILITY_PROTEAN); }
         OPPONENT(SPECIES_VIVILLON);
     } WHEN {
         TURN { MOVE(opponent, MOVE_POWDER); MOVE(player, MOVE_EMBER); }

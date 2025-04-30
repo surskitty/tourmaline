@@ -66,7 +66,7 @@ SINGLE_BATTLE_TEST("INNATE: Fury Cutter counter is the same for both hits of Par
     s16 damage[4];
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PARENTAL_BOND); }
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_PARENTAL_BOND); }
         OPPONENT(SPECIES_REGIROCK);
     } WHEN {
         TURN { MOVE(player, MOVE_FURY_CUTTER); }

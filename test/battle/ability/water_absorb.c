@@ -88,7 +88,7 @@ SINGLE_BATTLE_TEST("INNATE: Water Absorb heals 25% when hit by water type moves"
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_BUBBLE) == TYPE_WATER);
-        PLAYER(SPECIES_POLIWAG) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WATER_ABSORB); HP(1); MaxHP(100); }
+        PLAYER(SPECIES_POLIWAG) { Ability(ABILITY_DAMP); Innates(ABILITY_WATER_ABSORB); HP(1); MaxHP(100); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_BUBBLE); }
@@ -103,7 +103,7 @@ SINGLE_BATTLE_TEST("INNATE: Water Absorb does not activate if protected")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_BUBBLE) == TYPE_WATER);
-        PLAYER(SPECIES_POLIWAG) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WATER_ABSORB); HP(1); MaxHP(100); }
+        PLAYER(SPECIES_POLIWAG) { Ability(ABILITY_DAMP); Innates(ABILITY_WATER_ABSORB); HP(1); MaxHP(100); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_PROTECT); MOVE(opponent, MOVE_BUBBLE); }
@@ -117,7 +117,7 @@ SINGLE_BATTLE_TEST("INNATE: Water Absorb activates on status moves")
     GIVEN {
         ASSUME(GetMoveType(MOVE_SOAK) == TYPE_WATER);
         ASSUME(GetMoveCategory(MOVE_SOAK) == DAMAGE_CATEGORY_STATUS);
-        PLAYER(SPECIES_POLIWAG) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WATER_ABSORB); HP(1); MaxHP(100); }
+        PLAYER(SPECIES_POLIWAG) { Ability(ABILITY_DAMP); Innates(ABILITY_WATER_ABSORB); HP(1); MaxHP(100); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SOAK); }
@@ -133,7 +133,7 @@ SINGLE_BATTLE_TEST("INNATE: Water Absorb is only triggered once on multi strike 
     GIVEN {
         ASSUME(GetMoveType(MOVE_WATER_SHURIKEN) == TYPE_WATER);
         ASSUME(GetMoveEffect(MOVE_WATER_SHURIKEN) == EFFECT_MULTI_HIT);
-        PLAYER(SPECIES_POLIWAG) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WATER_ABSORB); HP(1); MaxHP(100); }
+        PLAYER(SPECIES_POLIWAG) { Ability(ABILITY_DAMP); Innates(ABILITY_WATER_ABSORB); HP(1); MaxHP(100); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_WATER_SHURIKEN); }
@@ -151,7 +151,7 @@ SINGLE_BATTLE_TEST("INNATE: Water Absorb prevents Absorb Bulb and Luminous Moss 
     PARAMETRIZE { item = ITEM_LUMINOUS_MOSS; }
     GIVEN {
         ASSUME(GetMoveType(MOVE_BUBBLE) == TYPE_WATER);
-        PLAYER(SPECIES_POLIWAG) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WATER_ABSORB); HP(1); MaxHP(100); Item(item); }
+        PLAYER(SPECIES_POLIWAG) { Ability(ABILITY_DAMP); Innates(ABILITY_WATER_ABSORB); HP(1); MaxHP(100); Item(item); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_BUBBLE); }

@@ -166,7 +166,7 @@ SINGLE_BATTLE_TEST("INNATE: Eject Pack does not activate if there are no Pokémo
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_PACK); }
         PLAYER(SPECIES_WOBBUFFET) { HP(0); }
-        OPPONENT(SPECIES_EKANS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_EKANS) { Ability(ABILITY_UNNERVE); Innates(ABILITY_INTIMIDATE); }
     } WHEN {
         TURN { }
     } SCENE {
@@ -207,7 +207,7 @@ SINGLE_BATTLE_TEST("INNATE: Eject Pack activates once intimidate mon switches in
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_PACK); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_EKANS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_EKANS) { Ability(ABILITY_UNNERVE); Innates(ABILITY_INTIMIDATE); }
     } WHEN {
         TURN { SWITCH(opponent, 1); SEND_OUT(player, 1); }
     } SCENE {
@@ -221,12 +221,12 @@ DOUBLE_BATTLE_TEST("INNATE: Eject Pack will not trigger if the conditions are no
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_PACK); }
-        PLAYER(SPECIES_BELDUM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CLEAR_BODY); };
+        PLAYER(SPECIES_BELDUM) { Ability(ABILITY_LEVITATE); Innates(ABILITY_CLEAR_BODY); };
         PLAYER(SPECIES_RALTS) { Ability(ABILITY_LIGHT_METAL); Item(ITEM_EJECT_PACK); }
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_WYNAUT);
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_EKANS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_EKANS) { Ability(ABILITY_UNNERVE); Innates(ABILITY_INTIMIDATE); }
     } WHEN {
         TURN { SWITCH(opponentLeft, 2); SEND_OUT(playerLeft, 2); }
     } SCENE {

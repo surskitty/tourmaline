@@ -101,7 +101,7 @@ SINGLE_BATTLE_TEST("INNATE: Rattled boosts speed by 1 when hit by Bug, Dark or G
     PARAMETRIZE { move = MOVE_TACKLE; }
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) {Speed(42) ;}
-        OPPONENT(SPECIES_SUDOWOODO) {Speed(40); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_RATTLED);}
+        OPPONENT(SPECIES_SUDOWOODO) {Speed(40); Ability(ABILITY_STURDY); Innates(ABILITY_RATTLED);}
     } WHEN {
         TURN { MOVE(player, move); }
         TURN { MOVE(player, move); }
@@ -135,8 +135,8 @@ SINGLE_BATTLE_TEST("INNATE: Rattled boosts speed by 1 when affected by Intimidat
 {
     GIVEN {
         ASSUME(B_UPDATED_INTIMIDATE >= GEN_8);
-        PLAYER(SPECIES_GYARADOS) {Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
-        OPPONENT(SPECIES_SUDOWOODO) {Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_RATTLED); }
+        PLAYER(SPECIES_GYARADOS) {Ability(ABILITY_MOXIE); Innates(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_SUDOWOODO) {Ability(ABILITY_STURDY); Innates(ABILITY_RATTLED); }
     } WHEN {
         TURN {}
     } SCENE {
@@ -156,7 +156,7 @@ SINGLE_BATTLE_TEST("INNATE: Rattled triggers correctly when hit by U-Turn") // S
         ASSUME(GetMoveType(MOVE_U_TURN) == TYPE_BUG);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_SUDOWOODO) {Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_RATTLED); }
+        OPPONENT(SPECIES_SUDOWOODO) {Ability(ABILITY_STURDY); Innates(ABILITY_RATTLED); }
         OPPONENT(SPECIES_SUDOWOODO);
     } WHEN {
         TURN { MOVE(player, MOVE_U_TURN); SEND_OUT(player, 1); }

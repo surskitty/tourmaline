@@ -1766,7 +1766,6 @@ static u32 GetSwitchinHitsToKO(s32 damageTaken, u32 battler)
         AI_DATA->switchinCandidate.battleMon.status1 = 0;
         AI_DATA->switchinCandidate.hypotheticalStatus = FALSE;
     }
-    DebugPrintf("%S - Hits to KO: %d", GetSpeciesName(AI_DATA->switchinCandidate.battleMon.species), hitsToKO);
     return hitsToKO;
 }
 
@@ -1787,7 +1786,6 @@ static u16 GetSwitchinTypeMatchup(u32 opposingBattler, struct BattlePokemon batt
         if (atkType2 != atkType1)
             typeEffectiveness = uq4_12_multiply(typeEffectiveness, (GetTypeModifier(atkType2, defType2)));
     }
-    DebugPrintf("%S - GetSwitchinTypeMatchup: %d", GetSpeciesName(AI_DATA->switchinCandidate.battleMon.species), typeEffectiveness);
     return typeEffectiveness;
 }
 
@@ -1862,9 +1860,11 @@ static inline bool32 IsFreeSwitch(enum SwitchType switchType, u32 battlerSwitchi
             return TRUE;
         if (AI_DATA->ejectPackSwitch)
         {
+
             //u32 opposingAbility = AI_GetBattlerAbility(opposingBattler);
             // If faster, not a free switch; likely lowered own stats
-            if (!movedSecond && !AI_BATTLER_HAS_TRAIT(opposingBattler, ABILITY_INTIMIDATE) && !AI_BATTLER_HAS_TRAIT(opposingBattler, ABILITY_SUPERSWEET_SYRUP)) // Intimidate triggers switches before turn starts
+            // BattlerHasTrait used beause Intimidate/SuperSweet Syrup are always known
+            if (!movedSecond && !BattlerHasTrait(opposingBattler, ABILITY_INTIMIDATE) && !BattlerHasTrait(opposingBattler, ABILITY_SUPERSWEET_SYRUP)) // Intimidate triggers switches before turn starts
                 return FALSE;
             // Otherwise, free switch
             return TRUE;
@@ -1963,8 +1963,6 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
             // Offensive switchin decisions are based on which whether switchin moves first and whether it can win a 1v1
             isSwitchinFirst = AI_WhoStrikesFirstPartyMon(battler, opposingBattler, AI_DATA->switchinCandidate.battleMon, aiMove);
             canSwitchinWin1v1 = CanSwitchinWin1v1(hitsToKOAI, GetNoOfHitsToKOBattlerDmg(damageDealt, opposingBattler), isSwitchinFirst, isFreeSwitch);
-            DebugPrintf("%S -typematchup - %d",GetSpeciesName(AI_DATA->switchinCandidate.battleMon.species), typeMatchup);
-            DebugPrintf("CANWIN: %d", canSwitchinWin1v1);
             // Check for Baton Pass; hitsToKO requirements mean mon can boost and BP without dying whether it's slower or not
             if (aiMove == MOVE_BATON_PASS)
             {
@@ -2045,11 +2043,6 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
             }
         }
     }
-
-    DebugPrintf("TRAPPER: %d", trapperId);
-    DebugPrintf("typeMatchupEffective: %d", typeMatchupEffectiveId);
-    DebugPrintf("typeMatchup: %d", typeMatchupId);
-    DebugPrintf("Defensive: %d", defensiveMonId);
 
     batonPassId = GetRandomSwitchinWithBatonPass(aliveCount, bits, firstId, lastId, i);
 

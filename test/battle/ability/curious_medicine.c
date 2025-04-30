@@ -51,7 +51,7 @@ DOUBLE_BATTLE_TEST("INNATE: Curious Medicine resets ally's stat stages upon ente
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_SCOLIPEDE);
         OPPONENT(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_SLOWKING_GALAR) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(SPECIES_SLOWKING_GALAR) { Ability(ABILITY_OWN_TEMPO); Innates(ability); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_QUIVER_DANCE); MOVE(playerLeft, MOVE_CHARM, target: opponentLeft); }
         TURN { SWITCH(opponentRight, 2); MOVE(playerLeft, MOVE_CELEBRATE); }

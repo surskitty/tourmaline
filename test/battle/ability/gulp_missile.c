@@ -322,13 +322,13 @@ SINGLE_BATTLE_TEST("INNATE: (Gulp Missile) triggers even if the user is fainted 
 
 SINGLE_BATTLE_TEST("INNATE: (Gulp Missile) Transformed Cramorant Gulping lowers defense but is prevented by stat reduction preventing abilities")
 {
-    u32 species, ability;
-    PARAMETRIZE { species = SPECIES_METAGROSS; ability = ABILITY_CLEAR_BODY; }
-    PARAMETRIZE { species = SPECIES_CORVIKNIGHT; ability = ABILITY_MIRROR_ARMOR; }
-    PARAMETRIZE { species = SPECIES_CHATOT; ability = ABILITY_BIG_PECKS; }
+    u32 species, ability, innate;
+    PARAMETRIZE { species = SPECIES_METAGROSS; ability = ABILITY_LIGHT_METAL; innate = ABILITY_CLEAR_BODY; }
+    PARAMETRIZE { species = SPECIES_CORVIKNIGHT; ability = ABILITY_PRESSURE; innate = ABILITY_MIRROR_ARMOR; }
+    PARAMETRIZE { species = SPECIES_CHATOT; ability = ABILITY_TANGLED_FEET; innate = ABILITY_BIG_PECKS; }
     GIVEN {
         PLAYER(SPECIES_CRAMORANT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_GULP_MISSILE); }
-        OPPONENT(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(species) { Ability(ability); Innates(innate); }
     } WHEN {
         TURN { MOVE(player, MOVE_SURF); MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
@@ -338,7 +338,7 @@ SINGLE_BATTLE_TEST("INNATE: (Gulp Missile) Transformed Cramorant Gulping lowers 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
         HP_BAR(player);
         ABILITY_POPUP(player, ABILITY_GULP_MISSILE);
-        ABILITY_POPUP(opponent, ability);
+        ABILITY_POPUP(opponent, innate);
         NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
     } THEN {
         EXPECT_EQ(opponent->statStages[STAT_DEF], DEFAULT_STAT_STAGE);
@@ -348,13 +348,13 @@ SINGLE_BATTLE_TEST("INNATE: (Gulp Missile) Transformed Cramorant Gulping lowers 
 SINGLE_BATTLE_TEST("INNATE: (Gulp Missile) Transformed Cramorant Gulping lowers defense and still triggers other effects after")
 {
     // Make sure attacker and target are correct after triggering the ability
-    u32 ability;
-    PARAMETRIZE { ability = ABILITY_INFILTRATOR; }
-    PARAMETRIZE { ability = ABILITY_CLEAR_BODY; }
+    u32 ability, innate;
+    PARAMETRIZE { ability = ABILITY_CURSED_BODY; innate = ABILITY_INFILTRATOR; }
+    PARAMETRIZE { ability = ABILITY_CURSED_BODY; innate = ABILITY_CLEAR_BODY; }
     GIVEN {
         ASSUME(MoveMakesContact(MOVE_TACKLE));
         PLAYER(SPECIES_CRAMORANT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_GULP_MISSILE); Item(ITEM_ROCKY_HELMET); }
-        OPPONENT(SPECIES_DRAGAPULT) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(SPECIES_DRAGAPULT) { Ability(ability); Innates(innate); }
     } WHEN {
         TURN { MOVE(player, MOVE_SURF); MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
@@ -365,7 +365,7 @@ SINGLE_BATTLE_TEST("INNATE: (Gulp Missile) Transformed Cramorant Gulping lowers 
         HP_BAR(player);
         ABILITY_POPUP(player, ABILITY_GULP_MISSILE);
         HP_BAR(opponent);
-        if (ability == ABILITY_INFILTRATOR) {
+        if (innate == ABILITY_INFILTRATOR) {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
             MESSAGE("The opposing Dragapult's Defense fell!");
         } else {

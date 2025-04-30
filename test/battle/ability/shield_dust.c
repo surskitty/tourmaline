@@ -209,7 +209,7 @@ SINGLE_BATTLE_TEST("INNATE: Shield Dust blocks secondary effects")
         ASSUME(MoveHasAdditionalEffectWithChance(MOVE_SPIRIT_SHACKLE, MOVE_EFFECT_PREVENT_ESCAPE, 100) == TRUE);
         ASSUME(MoveHasAdditionalEffectWithChance(MOVE_PSYCHIC_NOISE, MOVE_EFFECT_PSYCHIC_NOISE, 100) == TRUE);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_VIVILLON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHIELD_DUST); }
+        OPPONENT(SPECIES_VIVILLON) { Ability(ABILITY_COMPOUND_EYES); Innates(ABILITY_SHIELD_DUST); }
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
@@ -243,7 +243,7 @@ SINGLE_BATTLE_TEST("INNATE: Shield Dust does not block primary effects")
         ASSUME(MoveHasAdditionalEffectWithChance(MOVE_PAY_DAY, MOVE_EFFECT_PAYDAY, 0) == TRUE);
         ASSUME(MoveHasAdditionalEffectWithChance(MOVE_SMACK_DOWN, MOVE_EFFECT_SMACK_DOWN, 0) == TRUE);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_VIVILLON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHIELD_DUST); }
+        OPPONENT(SPECIES_VIVILLON) { Ability(ABILITY_COMPOUND_EYES); Innates(ABILITY_SHIELD_DUST); }
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
@@ -286,7 +286,7 @@ SINGLE_BATTLE_TEST("INNATE: Shield Dust does not block self-targeting effects, p
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_LEAF_STORM, MOVE_EFFECT_SP_ATK_MINUS_2) == TRUE);
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_METEOR_ASSAULT, MOVE_EFFECT_RECHARGE) == TRUE);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_VIVILLON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHIELD_DUST); }
+        OPPONENT(SPECIES_VIVILLON) { Ability(ABILITY_COMPOUND_EYES); Innates(ABILITY_SHIELD_DUST); }
     } WHEN {
         TURN { MOVE(player, move); }
         if (move == MOVE_METEOR_ASSAULT) {
@@ -317,7 +317,7 @@ DOUBLE_BATTLE_TEST("INNATE: Shield Dust does or does not block Sparkling Aria de
     GIVEN {
         PLAYER(SPECIES_WYNAUT);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_VIVILLON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHIELD_DUST); Status1(STATUS1_BURN); }
+        OPPONENT(SPECIES_VIVILLON) { Ability(ABILITY_COMPOUND_EYES); Innates(ABILITY_SHIELD_DUST); Status1(STATUS1_BURN); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(playerRight, moveToUse, target: opponentRight); MOVE(playerLeft, MOVE_SPARKLING_ARIA); }
@@ -339,7 +339,7 @@ DOUBLE_BATTLE_TEST("INNATE: Shield Dust blocks Sparkling Aria if all other targe
 {
     GIVEN {
         PLAYER(SPECIES_PRIMARINA);
-        PLAYER(SPECIES_VIVILLON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHIELD_DUST); Status1(STATUS1_BURN); }
+        PLAYER(SPECIES_VIVILLON) { Ability(ABILITY_COMPOUND_EYES); Innates(ABILITY_SHIELD_DUST); Status1(STATUS1_BURN); }
         OPPONENT(SPECIES_WOBBUFFET) { Status1(STATUS1_BURN); }
         OPPONENT(SPECIES_WYNAUT) { Status1(STATUS1_BURN); }
     } WHEN {
@@ -353,7 +353,7 @@ SINGLE_BATTLE_TEST("INNATE: Shield Dust blocks Sparkling Aria in singles")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_VIVILLON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHIELD_DUST); Status1(STATUS1_BURN); }
+        OPPONENT(SPECIES_VIVILLON) { Ability(ABILITY_COMPOUND_EYES); Innates(ABILITY_SHIELD_DUST); Status1(STATUS1_BURN); }
     } WHEN {
         TURN { MOVE(player, MOVE_SPARKLING_ARIA); }
     } SCENE {
@@ -368,8 +368,8 @@ SINGLE_BATTLE_TEST("INNATE: Shield Dust blocks Sparkling Aria in singles")
 SINGLE_BATTLE_TEST("INNATE: Shield Dust does not prevent ability stat changes")
 {
     GIVEN {
-        PLAYER(SPECIES_VIVILLON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHIELD_DUST); }
-        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COTTON_DOWN); }
+        PLAYER(SPECIES_VIVILLON) { Ability(ABILITY_COMPOUND_EYES); Innates(ABILITY_SHIELD_DUST); }
+        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_REGENERATOR); Innates(ABILITY_COTTON_DOWN); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {

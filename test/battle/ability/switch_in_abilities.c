@@ -135,8 +135,8 @@ SINGLE_BATTLE_TEST("INNATE: Switch-in abilities trigger in Speed Order at the ba
     PARAMETRIZE { spdOpponent = 5; spdPlayer = 1; }
 
     GIVEN {
-        PLAYER(SPECIES_EKANS) { Speed(spdPlayer); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
-        OPPONENT(SPECIES_NINETALES) { Speed(spdOpponent); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DROUGHT); }
+        PLAYER(SPECIES_EKANS) { Speed(spdPlayer); Ability(ABILITY_SHED_SKIN); Innates(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_NINETALES) { Speed(spdOpponent); Ability(ABILITY_FLASH_FIRE); Innates(ABILITY_DROUGHT); }
     } WHEN {
         TURN { ; }
     } SCENE {
@@ -160,9 +160,9 @@ DOUBLE_BATTLE_TEST("INNATE: Switch-in abilities trigger in Speed Order at the ba
 
     GIVEN {
         PLAYER(SPECIES_KYOGRE) { Speed(spdPlayer1); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DRIZZLE); }
-        PLAYER(SPECIES_GYARADOS) { Speed(spdPlayer2); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
+        PLAYER(SPECIES_GYARADOS) { Speed(spdPlayer2); Ability(ABILITY_MOXIE); Innates(ABILITY_INTIMIDATE); }
         OPPONENT(SPECIES_PORYGON2) { Speed(spdOpponent1); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DOWNLOAD); }
-        OPPONENT(SPECIES_PINSIR) { Speed(spdOpponent2); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MOLD_BREAKER); }
+        OPPONENT(SPECIES_PINSIR) { Speed(spdOpponent2); Ability(ABILITY_HYPER_CUTTER); Innates(ABILITY_MOLD_BREAKER); }
     } WHEN {
         TURN { ; }
     } SCENE {
@@ -194,7 +194,7 @@ SINGLE_BATTLE_TEST("INNATE: Switch-in abilities trigger in Speed Order after pos
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
-        PLAYER(SPECIES_EKANS) { Speed(spdPlayer); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
+        PLAYER(SPECIES_EKANS) { Speed(spdPlayer); Ability(ABILITY_SHED_SKIN); Innates(ABILITY_INTIMIDATE); }
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
         OPPONENT(SPECIES_PORYGON2) { Speed(spdOpponent); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DOWNLOAD); }
     } WHEN {
@@ -223,12 +223,12 @@ DOUBLE_BATTLE_TEST("INNATE: Switch-in abilities trigger in Speed Order after pos
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
         PLAYER(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
-        PLAYER(SPECIES_TYRANITAR) { Speed(spdPlayer1); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SAND_STREAM); }
-        PLAYER(SPECIES_GYARADOS) { Speed(spdPlayer2); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
+        PLAYER(SPECIES_TYRANITAR) { Speed(spdPlayer1); Ability(ABILITY_UNNERVE); Innates(ABILITY_SAND_STREAM); }
+        PLAYER(SPECIES_GYARADOS) { Speed(spdPlayer2); Ability(ABILITY_MOXIE); Innates(ABILITY_INTIMIDATE); }
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
-        OPPONENT(SPECIES_WEEZING_GALAR) { Speed(spdOpponent1); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MISTY_SURGE); }
-        OPPONENT(SPECIES_VULPIX_ALOLA) { Speed(spdOpponent2); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SNOW_WARNING); }
+        OPPONENT(SPECIES_WEEZING_GALAR) { Speed(spdOpponent1); Ability(ABILITY_LEVITATE); Innates(ABILITY_MISTY_SURGE); }
+        OPPONENT(SPECIES_VULPIX_ALOLA) { Speed(spdOpponent2); Ability(ABILITY_SNOW_CLOAK); Innates(ABILITY_SNOW_WARNING); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_EXPLOSION); SEND_OUT(playerLeft, 2); SEND_OUT(opponentLeft, 2); SEND_OUT(playerRight, 3); SEND_OUT(opponentRight, 3); }
         TURN { ; }

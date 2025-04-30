@@ -120,7 +120,7 @@ SINGLE_BATTLE_TEST("INNATE: Big Pecks prevents Defense stage reduction from move
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_LEER) == EFFECT_DEFENSE_DOWN);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_PIDGEY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_BIG_PECKS); }
+        OPPONENT(SPECIES_PIDGEY) { Ability(ABILITY_KEEN_EYE); Innates(ABILITY_BIG_PECKS); }
     } WHEN {
         TURN { MOVE(player, MOVE_LEER); }
     } SCENE {
@@ -133,8 +133,8 @@ SINGLE_BATTLE_TEST("INNATE: Big Pecks is ignored by Mold Breaker")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_LEER) == EFFECT_DEFENSE_DOWN);
-        PLAYER(SPECIES_PINSIR) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MOLD_BREAKER); }
-        OPPONENT(SPECIES_PIDGEY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_BIG_PECKS); }
+        PLAYER(SPECIES_PINSIR) { Ability(ABILITY_HYPER_CUTTER); Innates(ABILITY_MOLD_BREAKER); }
+        OPPONENT(SPECIES_PIDGEY) { Ability(ABILITY_KEEN_EYE); Innates(ABILITY_BIG_PECKS); }
     } WHEN {
         TURN { MOVE(player, MOVE_LEER); }
     } SCENE {
@@ -154,7 +154,7 @@ SINGLE_BATTLE_TEST("INNATE: Big Pecks doesn't prevent Defense stage reduction fr
     GIVEN {
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_SUPERPOWER, MOVE_EFFECT_ATK_DEF_DOWN) == TRUE);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_PIDGEY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_BIG_PECKS); }
+        OPPONENT(SPECIES_PIDGEY) { Ability(ABILITY_KEEN_EYE); Innates(ABILITY_BIG_PECKS); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SUPERPOWER); }
         TURN {}
@@ -173,7 +173,7 @@ SINGLE_BATTLE_TEST("INNATE: Big Pecks doesn't prevent Topsy-Turvy")
         ASSUME(GetMoveEffect(MOVE_HARDEN) == EFFECT_DEFENSE_UP);
         ASSUME(GetMoveEffect(MOVE_TOPSY_TURVY) == EFFECT_TOPSY_TURVY);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_PIDGEY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_BIG_PECKS); }
+        OPPONENT(SPECIES_PIDGEY) { Ability(ABILITY_KEEN_EYE); Innates(ABILITY_BIG_PECKS); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_HARDEN); MOVE(player, MOVE_TOPSY_TURVY); }
     } SCENE {
@@ -193,7 +193,7 @@ SINGLE_BATTLE_TEST("INNATE: Big Pecks doesn't prevent Spectral Thief from resett
         ASSUME(GetMoveEffect(MOVE_SPECTRAL_THIEF) == EFFECT_SPECTRAL_THIEF);
         ASSUME(GetMoveEffect(MOVE_SOAK) == EFFECT_SOAK);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_PIDGEY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_BIG_PECKS); }
+        OPPONENT(SPECIES_PIDGEY) { Ability(ABILITY_KEEN_EYE); Innates(ABILITY_BIG_PECKS); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player,MOVE_SOAK); }
         TURN { MOVE(opponent, MOVE_HARDEN); MOVE(player, MOVE_SPECTRAL_THIEF); }
@@ -214,7 +214,7 @@ SINGLE_BATTLE_TEST("INNATE: Big Pecks doesn't prevent receiving negative Defense
         ASSUME(GetMoveEffect(MOVE_BATON_PASS) == EFFECT_BATON_PASS);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_PIDGEY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_BIG_PECKS); }
+        OPPONENT(SPECIES_PIDGEY) { Ability(ABILITY_KEEN_EYE); Innates(ABILITY_BIG_PECKS); }
     } WHEN {
         TURN { MOVE(player, MOVE_LEER);
                MOVE(opponent, MOVE_BATON_PASS);

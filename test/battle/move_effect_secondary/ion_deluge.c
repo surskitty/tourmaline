@@ -121,7 +121,7 @@ SINGLE_BATTLE_TEST("INNATE: Plasma Fists type-changing effect does not override 
 {
     GIVEN {
         PLAYER(SPECIES_KRABBY) { Speed(300); };
-        OPPONENT(SPECIES_SYLVEON) { Speed(1); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PIXILATE); }
+        OPPONENT(SPECIES_SYLVEON) { Speed(1); Ability(ABILITY_CUTE_CHARM); Innates(ABILITY_PIXILATE); }
     } WHEN {
         TURN { MOVE(player, MOVE_PLASMA_FISTS); MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
@@ -138,7 +138,7 @@ SINGLE_BATTLE_TEST("INNATE: Plasma Fists type-changing effect is applied after N
 {
     GIVEN {
         PLAYER(SPECIES_KRABBY);
-        OPPONENT(SPECIES_SKITTY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NORMALIZE); }
+        OPPONENT(SPECIES_SKITTY) { Ability(ABILITY_WONDER_SKIN); Innates(ABILITY_NORMALIZE); }
     } WHEN {
         TURN { MOVE(player, MOVE_PLASMA_FISTS); MOVE(opponent, MOVE_EMBER); }
     } SCENE {

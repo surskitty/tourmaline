@@ -59,7 +59,7 @@ SINGLE_BATTLE_TEST("INNATE: Poison Point inflicts poison on contact")
         ASSUME(MoveMakesContact(MOVE_TACKLE));
         ASSUME(!MoveMakesContact(MOVE_SWIFT));
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_NIDORAN_M) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_POISON_POINT); }
+        OPPONENT(SPECIES_NIDORAN_M) { Ability(ABILITY_RIVALRY); Innates(ABILITY_POISON_POINT); }
     } WHEN {
         TURN { MOVE(player, move); }
         TURN {}
@@ -87,7 +87,7 @@ SINGLE_BATTLE_TEST("INNATE: Poison Point triggers 30% of the time")
         ASSUME(B_ABILITY_TRIGGER_CHANCE >= GEN_4);
         ASSUME(MoveMakesContact(MOVE_TACKLE));
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_NIDORAN_M) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_POISON_POINT); }
+        OPPONENT(SPECIES_NIDORAN_M) { Ability(ABILITY_RIVALRY); Innates(ABILITY_POISON_POINT); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
         TURN {}

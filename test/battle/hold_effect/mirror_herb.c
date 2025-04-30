@@ -93,7 +93,7 @@ DOUBLE_BATTLE_TEST("INNATE: Mirror Herb does not trigger for Ally's Soul Heart's
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_MIRROR_HERB); }
-        PLAYER(SPECIES_WYNAUT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SOUL_HEART); } // Raises Sp. Atk after fainting a mon
+        PLAYER(SPECIES_WYNAUT) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_SOUL_HEART); } // Raises Sp. Atk after fainting a mon
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

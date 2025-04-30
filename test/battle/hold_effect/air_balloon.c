@@ -124,7 +124,7 @@ SINGLE_BATTLE_TEST("INNATE: Air Balloon pops before it can be stolen with Magici
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_AIR_BALLOON); };
-        OPPONENT(SPECIES_DELPHOX) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MAGICIAN); };
+        OPPONENT(SPECIES_DELPHOX) { Ability(ABILITY_BLAZE); Innates(ABILITY_MAGICIAN); };
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {

@@ -101,7 +101,7 @@ SINGLE_BATTLE_TEST("INNATE: Cotton Down drops speed by one of opposing battler i
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COTTON_DOWN); }
+        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_REGENERATOR); Innates(ABILITY_COTTON_DOWN); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
@@ -118,7 +118,7 @@ SINGLE_BATTLE_TEST("INNATE: Cotton Down drops speed by one for each multi hit")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COTTON_DOWN); }
+        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_REGENERATOR); Innates(ABILITY_COTTON_DOWN); }
     } WHEN {
         TURN { MOVE(player, MOVE_DOUBLE_KICK); }
     } SCENE {
@@ -139,7 +139,7 @@ DOUBLE_BATTLE_TEST("INNATE: Cotton Down drops speed by one of all other battlers
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COTTON_DOWN); }
+        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_REGENERATOR); Innates(ABILITY_COTTON_DOWN); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_TACKLE, target: opponentLeft); }
@@ -164,8 +164,8 @@ DOUBLE_BATTLE_TEST("INNATE: Cotton Down correctly gets blocked by stat reduction
     GIVEN {
         PLAYER(SPECIES_METAGROSS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CLEAR_BODY); }
         PLAYER(SPECIES_WYNAUT) { Item(ITEM_CLEAR_AMULET); }
-        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COTTON_DOWN); }
-        OPPONENT(SPECIES_CORVIKNIGHT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MIRROR_ARMOR); }
+        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_REGENERATOR); Innates(ABILITY_COTTON_DOWN); }
+        OPPONENT(SPECIES_CORVIKNIGHT) { Ability(ABILITY_PRESSURE); Innates(ABILITY_MIRROR_ARMOR); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_TACKLE, target: opponentLeft); }
     } SCENE {

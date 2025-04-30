@@ -42,18 +42,18 @@ TO_DO_BATTLE_TEST("ABILITY: Cloud Nine/Air Lock prevent basic weather effects, b
 
 SINGLE_BATTLE_TEST("INNATE: Cloud Nine/Air Lock prevent basic weather effects, but without them disappearing - Sandstorm")
 {
-    u32 species = 0, ability = 0;
-    PARAMETRIZE { species = SPECIES_PSYDUCK;  ability = ABILITY_CLOUD_NINE; }
-    PARAMETRIZE { species = SPECIES_RAYQUAZA; ability = ABILITY_AIR_LOCK; }
+    u32 species = 0, ability = 0, innate = 0;
+    PARAMETRIZE { species = SPECIES_PSYDUCK;  ability = ABILITY_DAMP; innate = ABILITY_CLOUD_NINE; }
+    PARAMETRIZE { species = SPECIES_RAYQUAZA; ability = ABILITY_LIGHT_METAL; innate = ABILITY_AIR_LOCK; }
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SANDSTORM) == EFFECT_SANDSTORM);
-        PLAYER(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(species) { Ability(ability); Innates(innate); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SANDSTORM); }
         TURN {}
     } SCENE {
-        ABILITY_POPUP(player, ability);
+        ABILITY_POPUP(player, innate);
         MESSAGE("The effects of the weather disappeared.");
         MESSAGE("The opposing Wobbuffet used Sandstorm!");
         MESSAGE("The sandstorm is raging.");

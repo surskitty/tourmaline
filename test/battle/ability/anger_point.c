@@ -75,7 +75,7 @@ SINGLE_BATTLE_TEST("INNATE: Anger Point raises Attack stage to maximum after rec
 {
     GIVEN {
         ASSUME(MoveAlwaysCrits(MOVE_FROST_BREATH));
-        PLAYER(SPECIES_PRIMEAPE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ANGER_POINT); }
+        PLAYER(SPECIES_PRIMEAPE) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_ANGER_POINT); }
         OPPONENT(SPECIES_SNORUNT);
     } WHEN {
         TURN { MOVE(opponent, MOVE_FROST_BREATH); }
@@ -95,7 +95,7 @@ SINGLE_BATTLE_TEST("INNATE: Anger Point does not trigger when already at maximum
     GIVEN {
         ASSUME(MoveAlwaysCrits(MOVE_FROST_BREATH));
         ASSUME(GetMoveEffect(MOVE_BELLY_DRUM) == EFFECT_BELLY_DRUM);
-        PLAYER(SPECIES_PRIMEAPE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ANGER_POINT); Speed(2); }
+        PLAYER(SPECIES_PRIMEAPE) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_ANGER_POINT); Speed(2); }
         OPPONENT(SPECIES_SNORUNT) { Speed(1); }
     } WHEN {
         TURN { MOVE(player, MOVE_BELLY_DRUM); MOVE(opponent, MOVE_FROST_BREATH); }
@@ -122,7 +122,7 @@ SINGLE_BATTLE_TEST("INNATE: Anger Point does not trigger when a substitute takes
     GIVEN {
         ASSUME(MoveAlwaysCrits(MOVE_FROST_BREATH));
         ASSUME(GetMoveEffect(MOVE_SUBSTITUTE) == EFFECT_SUBSTITUTE);
-        PLAYER(SPECIES_PRIMEAPE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ANGER_POINT); Speed(2); }
+        PLAYER(SPECIES_PRIMEAPE) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_ANGER_POINT); Speed(2); }
         OPPONENT(SPECIES_SNORUNT) { Speed(1); }
     } WHEN {
         TURN { MOVE(player, MOVE_SUBSTITUTE); MOVE(opponent, MOVE_FROST_BREATH); }

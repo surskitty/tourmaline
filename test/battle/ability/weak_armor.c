@@ -205,7 +205,7 @@ SINGLE_BATTLE_TEST("INNATE: Weak Armor lowers Defense by 1 and boosts Speed by 2
     PARAMETRIZE { move = MOVE_GUST; }
 
     GIVEN {
-        PLAYER(SPECIES_SLUGMA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WEAK_ARMOR); }
+        PLAYER(SPECIES_SLUGMA) { Ability(ABILITY_FLAME_BODY); Innates(ABILITY_WEAK_ARMOR); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, move); }
@@ -240,7 +240,7 @@ SINGLE_BATTLE_TEST("INNATE: Weak Armor does not trigger when brought in by Drago
         ASSUME(GetMoveEffect(MOVE_STEALTH_ROCK) == EFFECT_STEALTH_ROCK);
         ASSUME(GetMoveEffect(MOVE_DRAGON_TAIL) == EFFECT_HIT_SWITCH_TARGET);
         PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_SLUGMA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WEAK_ARMOR); }
+        PLAYER(SPECIES_SLUGMA) { Ability(ABILITY_FLAME_BODY); Innates(ABILITY_WEAK_ARMOR); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_STEALTH_ROCK); }
@@ -267,7 +267,7 @@ SINGLE_BATTLE_TEST("INNATE: Weak Armor does not trigger when brought in by Drago
 SINGLE_BATTLE_TEST("INNATE: Weak Armor still lowers boosts Speed if Defense can't go any lower")
 {
     GIVEN {
-        PLAYER(SPECIES_SLUGMA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WEAK_ARMOR); }
+        PLAYER(SPECIES_SLUGMA) { Ability(ABILITY_FLAME_BODY); Innates(ABILITY_WEAK_ARMOR); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SCREECH); }
@@ -294,7 +294,7 @@ SINGLE_BATTLE_TEST("INNATE: Weak Armor still lowers boosts Speed if Defense can'
 SINGLE_BATTLE_TEST("INNATE: Weak Armor still lowers Defense if Speed can't go any higher")
 {
     GIVEN {
-        PLAYER(SPECIES_SLUGMA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WEAK_ARMOR); }
+        PLAYER(SPECIES_SLUGMA) { Ability(ABILITY_FLAME_BODY); Innates(ABILITY_WEAK_ARMOR); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_AGILITY); }
@@ -322,8 +322,8 @@ SINGLE_BATTLE_TEST("INNATE: Weak Armor doesn't interrupt multi hit moves if Defe
 {
     u32 j;
     GIVEN {
-        PLAYER(SPECIES_MAGCARGO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WEAK_ARMOR); Defense(999); }
-        OPPONENT(SPECIES_CLOYSTER) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SKILL_LINK); }
+        PLAYER(SPECIES_MAGCARGO) { Ability(ABILITY_FLAME_BODY); Innates(ABILITY_WEAK_ARMOR); Defense(999); }
+        OPPONENT(SPECIES_CLOYSTER) { Ability(ABILITY_SHELL_ARMOR); Innates(ABILITY_SKILL_LINK); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SCREECH); }
         TURN { MOVE(opponent, MOVE_SCREECH); }
@@ -360,8 +360,8 @@ SINGLE_BATTLE_TEST("INNATE: Weak Armor doesn't interrupt multi hit moves if Spee
 {
     u32 j;
     GIVEN {
-        PLAYER(SPECIES_MAGCARGO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WEAK_ARMOR); Defense(999); }
-        OPPONENT(SPECIES_CLOYSTER) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SKILL_LINK); }
+        PLAYER(SPECIES_MAGCARGO) { Ability(ABILITY_FLAME_BODY); Innates(ABILITY_WEAK_ARMOR); Defense(999); }
+        OPPONENT(SPECIES_CLOYSTER) { Ability(ABILITY_SHELL_ARMOR); Innates(ABILITY_SKILL_LINK); }
     } WHEN {
         TURN { MOVE(player, MOVE_AGILITY); }
         TURN { MOVE(player, MOVE_AGILITY); }

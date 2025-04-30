@@ -147,7 +147,7 @@ SINGLE_BATTLE_TEST("INNATE: Liquid Ooze causes Absorb users to lose HP instead o
     s16 healed;
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_TENTACOOL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_LIQUID_OOZE); }
+        OPPONENT(SPECIES_TENTACOOL) { Ability(ABILITY_RAIN_DISH); Innates(ABILITY_LIQUID_OOZE); }
     } WHEN {
         TURN { MOVE(player, MOVE_ABSORB); }
     } SCENE {
@@ -167,7 +167,7 @@ SINGLE_BATTLE_TEST("INNATE: Liquid Ooze causes Leech Seed users to lose HP inste
 
     GIVEN {
         PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_TENTACOOL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_LIQUID_OOZE); }
+        OPPONENT(SPECIES_TENTACOOL) { Ability(ABILITY_RAIN_DISH); Innates(ABILITY_LIQUID_OOZE); }
     } WHEN {
         TURN { MOVE(player, MOVE_LEECH_SEED); }
     } SCENE {
@@ -185,7 +185,7 @@ DOUBLE_BATTLE_TEST("INNATE: Liquid Ooze causes Matcha Gatcha users to lose HP in
         ASSUME(GetMoveEffect(MOVE_MATCHA_GOTCHA) == EFFECT_ABSORB);
         PLAYER(SPECIES_WOBBUFFET) { HP(1); }
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_TENTACOOL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_LIQUID_OOZE); }
+        OPPONENT(SPECIES_TENTACOOL) { Ability(ABILITY_RAIN_DISH); Innates(ABILITY_LIQUID_OOZE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_MATCHA_GOTCHA); }
@@ -204,7 +204,7 @@ DOUBLE_BATTLE_TEST("INNATE: Liquid Ooze will faint Matcha Gatcha users if it dea
         ASSUME(GetMoveEffect(MOVE_MATCHA_GOTCHA) == EFFECT_ABSORB);
         PLAYER(SPECIES_WOBBUFFET) { HP(1); }
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_TENTACOOL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_LIQUID_OOZE); }
+        OPPONENT(SPECIES_TENTACOOL) { Ability(ABILITY_RAIN_DISH); Innates(ABILITY_LIQUID_OOZE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_MATCHA_GOTCHA); }
@@ -228,7 +228,7 @@ SINGLE_BATTLE_TEST("INNATE: Liquid Ooze causes Strength Sap users to lose HP ins
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET) { Attack(atkStat); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_LIQUID_OOZE); }
+        OPPONENT(SPECIES_WOBBUFFET) { Attack(atkStat); Ability(ABILITY_RAIN_DISH); Innates(ABILITY_LIQUID_OOZE); }
     } WHEN {
         TURN { MOVE(player, MOVE_STRENGTH_SAP); if (atkStat == 490) { SEND_OUT(player, 1); } }
     } SCENE {
@@ -258,7 +258,7 @@ SINGLE_BATTLE_TEST("INNATE: Liquid Ooze causes leech seed victim to faint before
     PARAMETRIZE { ability = ABILITY_LIQUID_OOZE; }
     GIVEN {
         PLAYER(SPECIES_BULBASAUR)   { HP(1); }
-        OPPONENT(SPECIES_TENTACOOL) { HP(1); Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(SPECIES_TENTACOOL) { HP(1); Ability(ABILITY_RAIN_DISH); Innates(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_LEECH_SEED); }
     } SCENE {

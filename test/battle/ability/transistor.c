@@ -73,7 +73,7 @@ SINGLE_BATTLE_TEST("INNATE: Transistor increases Electric-type attack / special 
         ASSUME(GetMoveType(MOVE_THUNDER_SHOCK) == TYPE_ELECTRIC);
         ASSUME(GetMoveCategory(MOVE_WILD_CHARGE) == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(GetMoveCategory(MOVE_THUNDER_SHOCK) == DAMAGE_CATEGORY_SPECIAL);
-        PLAYER(SPECIES_REGIELEKI) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_REGIELEKI) { Ability(ABILITY_KLUTZ); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, move); }
@@ -96,7 +96,7 @@ SINGLE_BATTLE_TEST("INNATE: Transistor is blocked by neutralizing gas", s16 dama
     GIVEN {
         ASSUME(GetMoveType(MOVE_THUNDER_SHOCK) == TYPE_ELECTRIC);
         PLAYER(SPECIES_REGIELEKI) { Ability(ABILITY_TRANSISTOR); }
-        OPPONENT(SPECIES_KOFFING) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(SPECIES_KOFFING) { Ability(ABILITY_LEVITATE); Innates(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_THUNDER_SHOCK); }
     } SCENE {

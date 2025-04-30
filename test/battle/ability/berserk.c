@@ -88,7 +88,7 @@ SINGLE_BATTLE_TEST("INNATE: Berserk activates only if the target had more than 5
 
     GIVEN {
         ASSUME(!IsBattleMoveStatus(MOVE_TACKLE));
-        PLAYER(SPECIES_DRAMPA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_BERSERK); MaxHP(maxHp); HP(hp); }
+        PLAYER(SPECIES_DRAMPA) { Ability(ABILITY_SAP_SIPPER); Innates(ABILITY_BERSERK); MaxHP(maxHp); HP(hp); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
@@ -111,7 +111,7 @@ SINGLE_BATTLE_TEST("INNATE: Berserk raises Sp.Atk by 1")
     u16 maxHp = 500;
     GIVEN {
         ASSUME(!IsBattleMoveStatus(MOVE_TACKLE));
-        PLAYER(SPECIES_DRAMPA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_BERSERK); MaxHP(maxHp); HP(maxHp / 2 + 1); }
+        PLAYER(SPECIES_DRAMPA) { Ability(ABILITY_SAP_SIPPER); Innates(ABILITY_BERSERK); MaxHP(maxHp); HP(maxHp / 2 + 1); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
@@ -131,8 +131,8 @@ SINGLE_BATTLE_TEST("INNATE: Berserk activates after all hits from a multi-hit mo
     u16 maxHp = 500;
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_DOUBLE_SLAP) == EFFECT_MULTI_HIT);
-        PLAYER(SPECIES_DRAMPA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_BERSERK); MaxHP(maxHp); HP(maxHp / 2 + 1); }
-        OPPONENT(SPECIES_SHELLDER) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SKILL_LINK); } // Always hits 5 times.
+        PLAYER(SPECIES_DRAMPA) { Ability(ABILITY_SAP_SIPPER); Innates(ABILITY_BERSERK); MaxHP(maxHp); HP(maxHp / 2 + 1); }
+        OPPONENT(SPECIES_SHELLDER) { Ability(ABILITY_SHELL_ARMOR); Innates(ABILITY_SKILL_LINK); } // Always hits 5 times.
     } WHEN {
         TURN { MOVE(opponent, MOVE_DOUBLE_SLAP); }
     } SCENE {

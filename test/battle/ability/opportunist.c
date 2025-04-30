@@ -304,7 +304,7 @@ SINGLE_BATTLE_TEST("INNATE: Opportunist only copies foe's positive stat changes 
     PARAMETRIZE { ability = ABILITY_OPPORTUNIST; }
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
-        OPPONENT(SPECIES_ESPATHRA) { Speed(5); Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(SPECIES_ESPATHRA) { Speed(5); Ability(ABILITY_FRISK); Innates(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_SHELL_SMASH); }
         TURN { MOVE(opponent, MOVE_TACKLE); }
@@ -341,10 +341,10 @@ DOUBLE_BATTLE_TEST("INNATE: Opportunist raises Attack only once when partner has
     PARAMETRIZE { abilityLeft = ABILITY_TANGLED_FEET; abilityRight = ABILITY_CONTRARY; }
 
     GIVEN {
-        PLAYER(SPECIES_MIGHTYENA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
-        PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_OPPORTUNIST); }
-        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_LIGHT_METAL); Innates(abilityLeft); }
-        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_LIGHT_METAL); Innates(abilityRight); }
+        PLAYER(SPECIES_MIGHTYENA) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_INTIMIDATE); }
+        PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_FRISK); Innates(ABILITY_OPPORTUNIST); }
+        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_TANGLED_FEET); Innates(abilityLeft); }
+        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_TANGLED_FEET); Innates(abilityRight); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_TACKLE, target: playerLeft); MOVE(opponentRight, MOVE_TACKLE, target: playerRight); }
     } SCENE {
@@ -399,7 +399,7 @@ SINGLE_BATTLE_TEST("INNATE: Opportunist does not accumulate opposing mon's stat 
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_ESPATHRA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_OPPORTUNIST); }
+        OPPONENT(SPECIES_ESPATHRA) { Ability(ABILITY_FRISK); Innates(ABILITY_OPPORTUNIST); }
     } WHEN {
         TURN { MOVE(player, MOVE_SWORDS_DANCE); }
         TURN { MOVE(player, MOVE_SWORDS_DANCE); }
@@ -418,7 +418,7 @@ SINGLE_BATTLE_TEST("INNATE: Opportunist copies each stat increase individually f
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_ZACIAN) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTREPID_SWORD); }
-        OPPONENT(SPECIES_ESPATHRA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_OPPORTUNIST); }
+        OPPONENT(SPECIES_ESPATHRA) { Ability(ABILITY_FRISK); Innates(ABILITY_OPPORTUNIST); }
     } WHEN {
         TURN { SWITCH(player, 1); }
         TURN { MOVE(player, MOVE_SWORDS_DANCE); }
@@ -435,8 +435,8 @@ SINGLE_BATTLE_TEST("INNATE: Opportunist copies each stat increase individually f
 SINGLE_BATTLE_TEST("INNATE: Opportunist doesn't copy foe stat increases gained via Opportunist")
 {
     GIVEN {
-        PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_OPPORTUNIST); }
-        OPPONENT(SPECIES_ESPATHRA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_OPPORTUNIST); }
+        PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_FRISK); Innates(ABILITY_OPPORTUNIST); }
+        OPPONENT(SPECIES_ESPATHRA) { Ability(ABILITY_FRISK); Innates(ABILITY_OPPORTUNIST); }
     } WHEN {
         TURN { MOVE(player, MOVE_SWORDS_DANCE); }
     } SCENE {
@@ -451,8 +451,8 @@ SINGLE_BATTLE_TEST("INNATE: Opportunist doesn't copy foe stat increases gained v
 SINGLE_BATTLE_TEST("INNATE: Opportunist copies foe stat increase gained via Swagger and Flatter")
 {
     GIVEN {
-        PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_OPPORTUNIST); }
-        OPPONENT(SPECIES_ESPATHRA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_OPPORTUNIST); }
+        PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_FRISK); Innates(ABILITY_OPPORTUNIST); }
+        OPPONENT(SPECIES_ESPATHRA) { Ability(ABILITY_FRISK); Innates(ABILITY_OPPORTUNIST); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_FLATTER); }
         TURN { MOVE(opponent, MOVE_SWAGGER); }
@@ -471,7 +471,7 @@ DOUBLE_BATTLE_TEST("INNATE: Opportunist doesn't copy ally stat increases")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_OPPORTUNIST); }
+        PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_FRISK); Innates(ABILITY_OPPORTUNIST); }
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -488,7 +488,7 @@ DOUBLE_BATTLE_TEST("INNATE: Opportunist copies the stat increase of each opposin
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_OPPORTUNIST); }
+        PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_FRISK); Innates(ABILITY_OPPORTUNIST); }
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -507,7 +507,7 @@ DOUBLE_BATTLE_TEST("INNATE: Opportunist copies the stat of each pokemon that wer
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_OPPORTUNIST); }
+        PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_FRISK); Innates(ABILITY_OPPORTUNIST); }
         OPPONENT(SPECIES_ZACIAN) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTREPID_SWORD); }
         OPPONENT(SPECIES_ZACIAN) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTREPID_SWORD); }
     } WHEN {
@@ -528,7 +528,7 @@ SINGLE_BATTLE_TEST("INNATE: Opportunist copies the increase not the stages")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_ESPATHRA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_OPPORTUNIST); }
+        OPPONENT(SPECIES_ESPATHRA) { Ability(ABILITY_FRISK); Innates(ABILITY_OPPORTUNIST); }
     } WHEN {
         TURN { MOVE(player, MOVE_CHARM); MOVE(opponent, MOVE_CHARM); }
         TURN { MOVE(player, MOVE_CHARM); MOVE(opponent, MOVE_CHARM); }
@@ -554,7 +554,7 @@ SINGLE_BATTLE_TEST("INNATE: Opportunist copies the increase not the stages")
 SINGLE_BATTLE_TEST("INNATE: Opportunist copies the stat increase from the incoming mon")
 {
     GIVEN {
-        PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_OPPORTUNIST); }
+        PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_FRISK); Innates(ABILITY_OPPORTUNIST); }
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
         OPPONENT(SPECIES_ZACIAN) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTREPID_SWORD); }
     } WHEN {
@@ -572,7 +572,7 @@ SINGLE_BATTLE_TEST("INNATE: Opportunist and Mirror Herb stack stat increases")
 {
     GIVEN {
         PLAYER(SPECIES_ZACIAN) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTREPID_SWORD); }
-        OPPONENT(SPECIES_ESPATHRA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_OPPORTUNIST); Item(ITEM_MIRROR_HERB); }
+        OPPONENT(SPECIES_ESPATHRA) { Ability(ABILITY_FRISK); Innates(ABILITY_OPPORTUNIST); Item(ITEM_MIRROR_HERB); }
     } WHEN {
         TURN { }
     } SCENE {

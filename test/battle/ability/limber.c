@@ -20,7 +20,7 @@ SINGLE_BATTLE_TEST("ABILITY: Limber prevents paralysis")
 SINGLE_BATTLE_TEST("INNATE: Limber prevents paralysis")
 {
     GIVEN {
-        PLAYER(SPECIES_PERSIAN) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_LIMBER); }
+        PLAYER(SPECIES_PERSIAN) { Ability(ABILITY_TECHNICIAN); Innates(ABILITY_LIMBER); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_THUNDER_SHOCK); }

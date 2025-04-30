@@ -189,7 +189,7 @@ SINGLE_BATTLE_TEST("Mind Blown does not cause the user to lose HP if there is no
 SINGLE_BATTLE_TEST("INNATE: Mind Blown hp loss is prevented by Magic Guard")
 {
     GIVEN {
-        PLAYER(SPECIES_CLEFAIRY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MAGIC_GUARD); }
+        PLAYER(SPECIES_CLEFAIRY) { Ability(ABILITY_FRIEND_GUARD); Innates(ABILITY_MAGIC_GUARD); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_MIND_BLOWN); }
@@ -204,7 +204,7 @@ SINGLE_BATTLE_TEST("INNATE: Mind Blown is blocked by Damp")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { HP(400); MaxHP(400); }
-        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DAMP); }
+        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_CLOUD_NINE); Innates(ABILITY_DAMP); }
     } WHEN {
         TURN { MOVE(player, MOVE_MIND_BLOWN); }
     } SCENE {
@@ -222,7 +222,7 @@ SINGLE_BATTLE_TEST("INNATE: Mind Blown makes the user lose HP even if it is abso
     GIVEN {
         ASSUME(GetMoveType(MOVE_MIND_BLOWN) == TYPE_FIRE);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_CYNDAQUIL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FLASH_FIRE); }
+        OPPONENT(SPECIES_CYNDAQUIL) { Ability(ABILITY_BLAZE); Innates(ABILITY_FLASH_FIRE); }
     } WHEN {
         TURN { MOVE(player, MOVE_MIND_BLOWN); }
     } SCENE {

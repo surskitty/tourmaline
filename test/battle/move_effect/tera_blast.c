@@ -190,7 +190,7 @@ SINGLE_BATTLE_TEST("Flying-type Tera Blast does not have its priority boosted by
 SINGLE_BATTLE_TEST("INNATE: Flying-type Tera Blast does not have its priority boosted by Gale Wings")
 {
     GIVEN {
-        PLAYER(SPECIES_TALONFLAME) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_GALE_WINGS); TeraType(TYPE_FLYING); }
+        PLAYER(SPECIES_TALONFLAME) { Ability(ABILITY_FLAME_BODY); Innates(ABILITY_GALE_WINGS); TeraType(TYPE_FLYING); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_TERA_BLAST, gimmick: GIMMICK_TERA); MOVE(opponent, MOVE_QUICK_ATTACK); }

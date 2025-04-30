@@ -208,7 +208,7 @@ SINGLE_BATTLE_TEST("INNATE: Shell Trap does not activate if attacker's Sheer For
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_TAUROS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHEER_FORCE); }
+        OPPONENT(SPECIES_TAUROS) { Ability(ABILITY_ANGER_POINT); Innates(ABILITY_SHEER_FORCE); }
     } WHEN {
         TURN { MOVE(player, MOVE_SHELL_TRAP); MOVE(opponent, move); }
     } SCENE {

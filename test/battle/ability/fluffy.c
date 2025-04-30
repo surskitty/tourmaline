@@ -71,7 +71,7 @@ SINGLE_BATTLE_TEST("INNATE: Fluffy halves damage taken from moves that make dire
     PARAMETRIZE { ability = ABILITY_FLUFFY; }
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_STUFFUL) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(SPECIES_STUFFUL) { Ability(ABILITY_KLUTZ); Innates(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
@@ -89,7 +89,7 @@ SINGLE_BATTLE_TEST("INNATE: Fluffy doubles damage taken from fire type moves", s
     PARAMETRIZE { ability = ABILITY_FLUFFY; }
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_STUFFUL) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(SPECIES_STUFFUL) { Ability(ABILITY_KLUTZ); Innates(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_EMBER); }
     } SCENE {
@@ -107,7 +107,7 @@ SINGLE_BATTLE_TEST("INNATE: Fluffy does not alter damage of fire-type moves that
     PARAMETRIZE { ability = ABILITY_FLUFFY; }
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_STUFFUL) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(SPECIES_STUFFUL) { Ability(ABILITY_KLUTZ); Innates(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_FIRE_PUNCH); }
     } SCENE {

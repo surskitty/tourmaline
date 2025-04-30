@@ -50,7 +50,7 @@ SINGLE_BATTLE_TEST("INNATE: Steelworker increases Steel-type move damage", s16 d
         ASSUME(GetMoveType(MOVE_FLASH_CANNON) == TYPE_STEEL);
         ASSUME(GetMoveCategory(MOVE_ANCHOR_SHOT) == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(GetMoveCategory(MOVE_FLASH_CANNON) == DAMAGE_CATEGORY_SPECIAL);
-        PLAYER(SPECIES_DHELMISE) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_DHELMISE) { Ability(ABILITY_KLUTZ); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, move); }

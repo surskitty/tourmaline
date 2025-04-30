@@ -159,7 +159,7 @@ SINGLE_BATTLE_TEST("INNATE: Recoil if miss: Supercell Slam causes recoil if it i
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_PIKACHU) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_LIGHTNING_ROD); }
+        OPPONENT(SPECIES_PIKACHU) { Ability(ABILITY_STATIC); Innates(ABILITY_LIGHTNING_ROD); }
     } WHEN {
         TURN { MOVE(player, MOVE_SUPERCELL_SLAM); }
     } SCENE {

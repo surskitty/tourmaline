@@ -110,7 +110,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Grim Neigh does not increase damage done by the sam
 DOUBLE_BATTLE_TEST("INNATE: Grim Neigh raises Sp. Attack by one stage after directly causing a Pokemon to faint")
 {
     u32 species = 0, ability = 0, abilityPopUp = 0;
-    PARAMETRIZE { species = SPECIES_SPECTRIER;            ability = ABILITY_GRIM_NEIGH;          abilityPopUp = ABILITY_GRIM_NEIGH; }
+    PARAMETRIZE { species = SPECIES_SPECTRIER;      ability = ABILITY_GRIM_NEIGH;          abilityPopUp = ABILITY_GRIM_NEIGH; }
     PARAMETRIZE { species = SPECIES_CALYREX_SHADOW; ability = ABILITY_AS_ONE_SHADOW_RIDER; abilityPopUp = ABILITY_GRIM_NEIGH; }
     GIVEN {
         ASSUME(GetMoveTarget(MOVE_DISCHARGE) == MOVE_TARGET_FOES_AND_ALLY);

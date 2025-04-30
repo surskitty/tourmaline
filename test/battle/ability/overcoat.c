@@ -25,7 +25,7 @@ SINGLE_BATTLE_TEST("INNATE: Overcoat blocks powder and spore moves")
     GIVEN {
         ASSUME(IsPowderMove(MOVE_STUN_SPORE));
         PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_PINECO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_OVERCOAT); }
+        OPPONENT(SPECIES_PINECO) { Ability(ABILITY_STURDY); Innates(ABILITY_OVERCOAT); }
     } WHEN {
         TURN { MOVE(player, MOVE_STUN_SPORE); }
     } SCENE {

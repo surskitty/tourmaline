@@ -163,7 +163,7 @@ SINGLE_BATTLE_TEST("INNATE: Psychic Terrain protects grounded battlers from prio
 SINGLE_BATTLE_TEST("INNATE: Psychic Terrain doesn't block priority moves that target the user")
 {
     GIVEN {
-        PLAYER(SPECIES_SABLEYE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PRANKSTER); HP(1); }
+        PLAYER(SPECIES_SABLEYE) { Ability(ABILITY_KEEN_EYE); Innates(ABILITY_PRANKSTER); HP(1); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_PSYCHIC_TERRAIN); }
@@ -178,7 +178,7 @@ SINGLE_BATTLE_TEST("INNATE: Psychic Terrain doesn't block priority moves that ta
 SINGLE_BATTLE_TEST("INNATE: Psychic Terrain doesn't block priority moves that target all battlers")
 {
     GIVEN {
-        PLAYER(SPECIES_SABLEYE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PRANKSTER); }
+        PLAYER(SPECIES_SABLEYE) { Ability(ABILITY_KEEN_EYE); Innates(ABILITY_PRANKSTER); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_PSYCHIC_TERRAIN); }
@@ -192,7 +192,7 @@ SINGLE_BATTLE_TEST("INNATE: Psychic Terrain doesn't block priority moves that ta
 SINGLE_BATTLE_TEST("INNATE: Psychic Terrain doesn't block priority moves that target all opponents")
 {
     GIVEN {
-        PLAYER(SPECIES_SABLEYE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PRANKSTER); }
+        PLAYER(SPECIES_SABLEYE) { Ability(ABILITY_KEEN_EYE); Innates(ABILITY_PRANKSTER); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_PSYCHIC_TERRAIN); }
@@ -206,7 +206,7 @@ SINGLE_BATTLE_TEST("INNATE: Psychic Terrain doesn't block priority moves that ta
 DOUBLE_BATTLE_TEST("INNATE: Psychic Terrain doesn't block priority moves that target allies")
 {
     GIVEN {
-        PLAYER(SPECIES_SABLEYE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PRANKSTER); }
+        PLAYER(SPECIES_SABLEYE) { Ability(ABILITY_KEEN_EYE); Innates(ABILITY_PRANKSTER); }
         PLAYER(SPECIES_WOBBUFFET) { HP(1); }
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -222,7 +222,7 @@ DOUBLE_BATTLE_TEST("INNATE: Psychic Terrain doesn't block priority moves that ta
 SINGLE_BATTLE_TEST("INNATE: Psychic Terrain doesn't block priority field moves")
 {
     GIVEN {
-        PLAYER(SPECIES_SABLEYE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PRANKSTER); }
+        PLAYER(SPECIES_SABLEYE) { Ability(ABILITY_KEEN_EYE); Innates(ABILITY_PRANKSTER); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_PSYCHIC_TERRAIN); }

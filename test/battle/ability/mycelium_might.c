@@ -118,7 +118,7 @@ SINGLE_BATTLE_TEST("INNATE: Mycelium Might vs Stall action order depends on spee
     PARAMETRIZE { speed = 101; }
     GIVEN {
         PLAYER(SPECIES_TOEDSCOOL) { Speed(100); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MYCELIUM_MIGHT); }
-        OPPONENT(SPECIES_SABLEYE) { Speed(speed); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STALL);}
+        OPPONENT(SPECIES_SABLEYE) { Speed(speed); Ability(ABILITY_KEEN_EYE); Innates(ABILITY_STALL);}
     } WHEN {
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_CELEBRATE); }
     } SCENE {

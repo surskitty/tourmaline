@@ -691,7 +691,7 @@ SINGLE_BATTLE_TEST("INNATE: Forecast transforms Castform back to normal under Cl
     GIVEN {
         PLAYER(SPECIES_CASTFORM_NORMAL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FORECAST); }
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(species) { Ability(ABILITY_DAMP); Innates(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_RAIN_DANCE); }
         TURN { SWITCH(opponent, 1); }
@@ -803,7 +803,7 @@ SINGLE_BATTLE_TEST("INNATE: Forecast transforms Castform when Cloud Nine ability
 
     GIVEN {
         PLAYER(SPECIES_CASTFORM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FORECAST); }
-        OPPONENT(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(species) { Ability(ABILITY_DAMP); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_SUNNY_DAY); MOVE(opponent, MOVE_CELEBRATE); }

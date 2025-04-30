@@ -56,7 +56,7 @@ SINGLE_BATTLE_TEST("INNATE: Regenerator heals 1/3 of max HP upon switching out")
     PARAMETRIZE { currHP = 2; }
     PARAMETRIZE { currHP = 3; }
     GIVEN {
-        PLAYER(SPECIES_SLOWBRO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_REGENERATOR); HP(currHP); }
+        PLAYER(SPECIES_SLOWBRO) { Ability(ABILITY_OWN_TEMPO); Innates(ABILITY_REGENERATOR); HP(currHP); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -81,7 +81,7 @@ SINGLE_BATTLE_TEST("INNATE: Regenerator heals 1/3 of max HP upon switching out b
     PARAMETRIZE { currHP = 2; }
     PARAMETRIZE { currHP = 1; }
     GIVEN {
-        PLAYER(SPECIES_SLOWBRO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_REGENERATOR); HP(currHP); MaxHP(5); }
+        PLAYER(SPECIES_SLOWBRO) { Ability(ABILITY_OWN_TEMPO); Innates(ABILITY_REGENERATOR); HP(currHP); MaxHP(5); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {

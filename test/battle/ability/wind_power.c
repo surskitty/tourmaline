@@ -231,8 +231,8 @@ SINGLE_BATTLE_TEST("INNATE: Wind Power sets up Charge for player when hit by a w
     PARAMETRIZE {move = MOVE_AIR_CUTTER; }
 
     GIVEN {
-        PLAYER(SPECIES_WATTREL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WIND_POWER); Speed(10); }
-        OPPONENT(SPECIES_WOBBUFFET) {Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_LIMBER); Speed(5) ;} // Limber, so it doesn't get paralyzed.
+        PLAYER(SPECIES_WATTREL) { Ability(ABILITY_VOLT_ABSORB); Innates(ABILITY_WIND_POWER); Speed(10); }
+        OPPONENT(SPECIES_WOBBUFFET) {Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_LIMBER); Speed(5) ;} // Limber, so it doesn't get paralyzed.
     } WHEN {
         TURN { MOVE(player, MOVE_THUNDERBOLT), MOVE(opponent, move); }
         TURN { MOVE(player, MOVE_THUNDERBOLT), MOVE(opponent, move); }
@@ -276,8 +276,8 @@ SINGLE_BATTLE_TEST("INNATE: Wind Power sets up Charge for opponent when hit by a
     PARAMETRIZE {move = MOVE_AIR_CUTTER; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) {Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_LIMBER); Speed(5) ;} // Limber, so it doesn't get paralyzed.
-        OPPONENT(SPECIES_WATTREL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WIND_POWER); Speed(10); }
+        PLAYER(SPECIES_WOBBUFFET) {Ability(ABILITY_TELEPATHY); Innates(ABILITY_LIMBER); Speed(5) ;} // Limber, so it doesn't get paralyzed.
+        OPPONENT(SPECIES_WATTREL) { Ability(ABILITY_VOLT_ABSORB); Innates(ABILITY_WIND_POWER); Speed(10); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_THUNDERBOLT), MOVE(player, move); }
         TURN { MOVE(opponent, MOVE_THUNDERBOLT), MOVE(player, move); }
@@ -321,10 +321,10 @@ DOUBLE_BATTLE_TEST("INNATE: Wind Power activates correctly for every battler wit
     PARAMETRIZE {abilityLeft = ABILITY_WIND_POWER, abilityRight = ABILITY_WIND_POWER; }
 
     GIVEN {
-        PLAYER(SPECIES_WATTREL) { Ability(ABILITY_LIGHT_METAL); Innates(abilityLeft); Speed(10); }
-        PLAYER(SPECIES_WATTREL) { Ability(ABILITY_LIGHT_METAL); Innates(abilityRight); Speed(5); }
-        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_LIMBER); Speed(20); }
-        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_LIMBER); Speed(15); }
+        PLAYER(SPECIES_WATTREL) { Ability(ABILITY_VOLT_ABSORB); Innates(abilityLeft); Speed(10); }
+        PLAYER(SPECIES_WATTREL) { Ability(ABILITY_VOLT_ABSORB); Innates(abilityRight); Speed(5); }
+        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_LIMBER); Speed(20); }
+        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_LIMBER); Speed(15); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_AIR_CUTTER); MOVE(opponentRight, MOVE_AIR_CUTTER);}
     } SCENE {
@@ -362,10 +362,10 @@ DOUBLE_BATTLE_TEST("INNATE: Wind Power activates correctly for every battler wit
     PARAMETRIZE {abilityLeft = ABILITY_WIND_POWER, abilityRight = ABILITY_WIND_POWER; }
 
     GIVEN {
-        PLAYER(SPECIES_WATTREL) { Ability(ABILITY_LIGHT_METAL); Innates(abilityLeft); Speed(10); }
-        PLAYER(SPECIES_WATTREL) { Ability(ABILITY_LIGHT_METAL); Innates(abilityRight); Speed(5); }
-        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_LIMBER); Speed(20); }
-        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_LIMBER); Speed(15); }
+        PLAYER(SPECIES_WATTREL) { Ability(ABILITY_VOLT_ABSORB); Innates(abilityLeft); Speed(10); }
+        PLAYER(SPECIES_WATTREL) { Ability(ABILITY_VOLT_ABSORB); Innates(abilityRight); Speed(5); }
+        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_LIMBER); Speed(20); }
+        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_LIMBER); Speed(15); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_PETAL_BLIZZARD);}
     } SCENE {
@@ -401,10 +401,10 @@ DOUBLE_BATTLE_TEST("INNATE: Wind Power activates correctly when Tailwind is used
 
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_TAILWIND) == EFFECT_TAILWIND);
-        PLAYER(SPECIES_WATTREL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WIND_POWER); Speed(10); }
-        PLAYER(SPECIES_WATTREL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WIND_POWER); Speed(5); }
-        OPPONENT(SPECIES_WATTREL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WIND_POWER); Speed(20); }
-        OPPONENT(SPECIES_WATTREL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WIND_POWER); Speed(15); }
+        PLAYER(SPECIES_WATTREL) { Ability(ABILITY_VOLT_ABSORB); Innates(ABILITY_WIND_POWER); Speed(10); }
+        PLAYER(SPECIES_WATTREL) { Ability(ABILITY_VOLT_ABSORB); Innates(ABILITY_WIND_POWER); Speed(5); }
+        OPPONENT(SPECIES_WATTREL) { Ability(ABILITY_VOLT_ABSORB); Innates(ABILITY_WIND_POWER); Speed(20); }
+        OPPONENT(SPECIES_WATTREL) { Ability(ABILITY_VOLT_ABSORB); Innates(ABILITY_WIND_POWER); Speed(15); }
     } WHEN {
         TURN { MOVE((opponentSide == TRUE) ? opponentLeft : playerLeft, MOVE_TAILWIND);}
     } SCENE {

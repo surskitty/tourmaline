@@ -224,7 +224,7 @@ SINGLE_BATTLE_TEST("INNATE: Mirror Armor lowers a stat of the attacking pokemon"
     PARAMETRIZE { move = MOVE_FAKE_TEARS; statId = STAT_SPDEF; }
 
     GIVEN {
-        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MIRROR_ARMOR);}
+        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_PRESSURE); Innates(ABILITY_MIRROR_ARMOR);}
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
         TURN { MOVE(opponent, move); }
@@ -261,8 +261,8 @@ SINGLE_BATTLE_TEST("INNATE: Mirror Armor lowers a stat of the attacking pokemon"
 SINGLE_BATTLE_TEST("INNATE: Mirror Armor triggers even if the attacking Pokemon also has Mirror Armor ability")
 {
     GIVEN {
-        PLAYER(SPECIES_CORVIKNIGHT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MIRROR_ARMOR); }
-        OPPONENT(SPECIES_CORVIKNIGHT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MIRROR_ARMOR); }
+        PLAYER(SPECIES_CORVIKNIGHT) { Ability(ABILITY_PRESSURE); Innates(ABILITY_MIRROR_ARMOR); }
+        OPPONENT(SPECIES_CORVIKNIGHT) { Ability(ABILITY_PRESSURE); Innates(ABILITY_MIRROR_ARMOR); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_LEER); }
     } SCENE {
@@ -280,8 +280,8 @@ SINGLE_BATTLE_TEST("INNATE: Mirror Armor triggers even if the attacking Pokemon 
 SINGLE_BATTLE_TEST("INNATE: Mirror Armor doesn't lower the stats of an attacking Pokemon with the Clear Body ability")
 {
     GIVEN {
-        PLAYER(SPECIES_CORVIKNIGHT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MIRROR_ARMOR); }
-        OPPONENT(SPECIES_WYNAUT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CLEAR_BODY); }
+        PLAYER(SPECIES_CORVIKNIGHT) { Ability(ABILITY_PRESSURE); Innates(ABILITY_MIRROR_ARMOR); }
+        OPPONENT(SPECIES_WYNAUT) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_CLEAR_BODY); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_LEER); }
     } SCENE {
@@ -298,8 +298,8 @@ SINGLE_BATTLE_TEST("INNATE: Mirror Armor doesn't lower the stats of an attacking
 SINGLE_BATTLE_TEST("INNATE: Mirror Armor lowers the Attack of Pokemon with Intimidate")
 {
     GIVEN {
-        PLAYER(SPECIES_CORVIKNIGHT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MIRROR_ARMOR); }
-        OPPONENT(SPECIES_GYARADOS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
+        PLAYER(SPECIES_CORVIKNIGHT) { Ability(ABILITY_PRESSURE); Innates(ABILITY_MIRROR_ARMOR); }
+        OPPONENT(SPECIES_GYARADOS) { Ability(ABILITY_MOXIE); Innates(ABILITY_INTIMIDATE); }
     } WHEN {
         TURN {}
     } SCENE {
@@ -318,7 +318,7 @@ SINGLE_BATTLE_TEST("INNATE: Mirror Armor doesn't lower the stats of an attacking
 {
     KNOWN_FAILING;
     GIVEN {
-        PLAYER(SPECIES_CORVIKNIGHT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MIRROR_ARMOR); }
+        PLAYER(SPECIES_CORVIKNIGHT) { Ability(ABILITY_PRESSURE); Innates(ABILITY_MIRROR_ARMOR); }
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SUBSTITUTE); }
@@ -338,8 +338,8 @@ SINGLE_BATTLE_TEST("INNATE: Mirror Armor doesn't lower the stats of an attacking
 SINGLE_BATTLE_TEST("INNATE: Mirror Armor raises the stat of an attacking Pokemon with Contrary")
 {
     GIVEN {
-        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MIRROR_ARMOR);}
-        OPPONENT(SPECIES_SHUCKLE) {Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CONTRARY);}
+        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_PRESSURE); Innates(ABILITY_MIRROR_ARMOR);}
+        OPPONENT(SPECIES_SHUCKLE) {Ability(ABILITY_STURDY); Innates(ABILITY_CONTRARY);}
     } WHEN {
         TURN { MOVE(opponent, MOVE_LEER); }
     } SCENE {
@@ -356,7 +356,7 @@ SINGLE_BATTLE_TEST("INNATE: Mirror Armor raises the stat of an attacking Pokemon
 SINGLE_BATTLE_TEST("INNATE: Mirror Armor doesn't lower the stat of the attacking Pokemon if it is already at -6")
 {
     GIVEN {
-        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MIRROR_ARMOR);}
+        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_PRESSURE); Innates(ABILITY_MIRROR_ARMOR);}
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
         TURN { MOVE(player, MOVE_SCREECH); }
@@ -386,7 +386,7 @@ DOUBLE_BATTLE_TEST("INNATE: Mirror Armor lowers Speed of the partner Pokemon aft
         ASSUME(GetMoveEffect(MOVE_COURT_CHANGE) == EFFECT_COURT_CHANGE);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MIRROR_ARMOR); Item(ITEM_IRON_BALL); }
+        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_PRESSURE); Innates(ABILITY_MIRROR_ARMOR); Item(ITEM_IRON_BALL); }
         OPPONENT(SPECIES_WYNAUT);
         OPPONENT(SPECIES_WYNAUT);
         OPPONENT(SPECIES_WYNAUT);
@@ -410,8 +410,8 @@ DOUBLE_BATTLE_TEST("INNATE: Mirror Armor lowers Speed of the partner Pokemon aft
 SINGLE_BATTLE_TEST("INNATE: Mirror Armor reflects Tangling Hair speed drop")
 {
     GIVEN {
-        PLAYER(SPECIES_DUGTRIO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TANGLING_HAIR); }
-        OPPONENT(SPECIES_CORVIKNIGHT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MIRROR_ARMOR); }
+        PLAYER(SPECIES_DUGTRIO) { Ability(ABILITY_SAND_VEIL); Innates(ABILITY_TANGLING_HAIR); }
+        OPPONENT(SPECIES_CORVIKNIGHT) { Ability(ABILITY_PRESSURE); Innates(ABILITY_MIRROR_ARMOR); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {

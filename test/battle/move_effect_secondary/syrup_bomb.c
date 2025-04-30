@@ -222,7 +222,7 @@ SINGLE_BATTLE_TEST("INNATE: Syrup Bomb is prevented by Bulletproof")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_CHESPIN) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_BULLETPROOF); }
+        OPPONENT(SPECIES_CHESPIN) { Ability(ABILITY_OVERGROW); Innates(ABILITY_BULLETPROOF); }
     } WHEN {
         TURN { MOVE(player, MOVE_SYRUP_BOMB); }
     } SCENE {

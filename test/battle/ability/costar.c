@@ -36,7 +36,7 @@ DOUBLE_BATTLE_TEST("INNATE: Costar copies an ally's stat stages upon entering ba
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_FLAMIGO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COSTAR); }
+        OPPONENT(SPECIES_FLAMIGO) { Ability(ABILITY_SCRAPPY); Innates(ABILITY_COSTAR); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_SWORDS_DANCE); }
         TURN { SWITCH(opponentRight, 2); MOVE(playerLeft, MOVE_CELEBRATE); }

@@ -108,7 +108,7 @@ SINGLE_BATTLE_TEST("INNATE: Stuff Cheeks can be used even if Unnerve is present"
 {
     GIVEN {
         PLAYER(SPECIES_SKWOVET) { Item(ITEM_LIECHI_BERRY); }
-        OPPONENT(SPECIES_EKANS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_UNNERVE); }
+        OPPONENT(SPECIES_EKANS) { Ability(ABILITY_SHED_SKIN); Innates(ABILITY_UNNERVE); }
     } WHEN {
         TURN { MOVE(player, MOVE_STUFF_CHEEKS); }
     } SCENE {

@@ -275,7 +275,7 @@ SINGLE_BATTLE_TEST("ABILITY: Neutralizing Gas prevents Contrary inverting stat b
 SINGLE_BATTLE_TEST("INNATE: Neutralizing Gas activates on switch-in")
 {
     GIVEN {
-        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NEUTRALIZING_GAS); }
+        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LEVITATE); Innates(ABILITY_NEUTRALIZING_GAS); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { }
@@ -288,7 +288,7 @@ SINGLE_BATTLE_TEST("INNATE: Neutralizing Gas activates on switch-in")
 SINGLE_BATTLE_TEST("INNATE: Neutralizing Gas prevents opponent's switch-in ability from activating")
 {
     GIVEN {
-        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NEUTRALIZING_GAS); }
+        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LEVITATE); Innates(ABILITY_NEUTRALIZING_GAS); }
         OPPONENT(SPECIES_ZEKROM) { Ability(ABILITY_TERAVOLT); }
     } WHEN {
         TURN { }
@@ -304,7 +304,7 @@ SINGLE_BATTLE_TEST("INNATE: Neutralizing Gas prevents opponent's switch-in abili
 DOUBLE_BATTLE_TEST("INNATE: Neutralizing Gas prevents ally's switch-in ability from activating")
 {
     GIVEN {
-        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NEUTRALIZING_GAS); }
+        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LEVITATE); Innates(ABILITY_NEUTRALIZING_GAS); }
         PLAYER(SPECIES_ZEKROM) { Ability(ABILITY_TERAVOLT); }
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -323,7 +323,7 @@ DOUBLE_BATTLE_TEST("INNATE: Neutralizing Gas ignores all battlers' ability effec
 {
     GIVEN {
         ASSUME(gMovesInfo[MOVE_SURF].target == MOVE_TARGET_FOES_AND_ALLY);
-        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NEUTRALIZING_GAS); }
+        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LEVITATE); Innates(ABILITY_NEUTRALIZING_GAS); }
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_TELEPATHY); }
         OPPONENT(SPECIES_LANTURN) { Ability(ABILITY_WATER_ABSORB); }
         OPPONENT(SPECIES_BELLIBOLT) { Ability(ABILITY_ELECTROMORPHOSIS); }
@@ -359,7 +359,7 @@ SINGLE_BATTLE_TEST("INNATE: Neutralizing Gas ignores multipliers from attacker's
     PARAMETRIZE { ability = ABILITY_LEVITATE; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
-        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LEVITATE); Innates(ability); }
         OPPONENT(SPECIES_AZUMARILL) { Ability(ABILITY_HUGE_POWER); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
@@ -379,7 +379,7 @@ SINGLE_BATTLE_TEST("INNATE: Neutralizing Gas ignores multipliers from target's a
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].makesContact == TRUE);
         ASSUME(gMovesInfo[MOVE_TACKLE].type == TYPE_NORMAL);
-        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LEVITATE); Innates(ability); }
         OPPONENT(SPECIES_BEWEAR) { Ability(ABILITY_FLUFFY); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
@@ -397,7 +397,7 @@ DOUBLE_BATTLE_TEST("INNATE: Neutralizing Gas ignores multipliers from target's a
     PARAMETRIZE { ability = ABILITY_NEUTRALIZING_GAS; }
     PARAMETRIZE { ability = ABILITY_LEVITATE; }
     GIVEN {
-        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LEVITATE); Innates(ability); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_TELEPATHY); }
         OPPONENT(SPECIES_CLEFAIRY) { Ability(ABILITY_FRIEND_GUARD); }
@@ -418,9 +418,9 @@ DOUBLE_BATTLE_TEST("INNATE: Neutralizing Gas ignores multipliers from ally's abi
     PARAMETRIZE { ability = ABILITY_LEVITATE; }
     GIVEN {
         ASSUME(gMovesInfo[MOVE_TACKLE].category == DAMAGE_CATEGORY_PHYSICAL);
-        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LEVITATE); Innates(ability); }
         PLAYER(SPECIES_WO_CHIEN) { Ability(ABILITY_TABLETS_OF_RUIN); }
-        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TELEPATHY); }
+        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_TELEPATHY); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_TACKLE, target: opponentLeft); }
@@ -442,7 +442,7 @@ DOUBLE_BATTLE_TEST("INNATE: Neutralizing Gas leaving the field allows abilities 
     PARAMETRIZE { speedPlayerRight = 2; speedOppLeft = 5; speedOppRight = 3; }
     PARAMETRIZE { speedPlayerRight = 5; speedOppLeft = 2; speedOppRight = 3; }
     GIVEN {
-        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NEUTRALIZING_GAS); Speed(4); }
+        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LEVITATE); Innates(ABILITY_NEUTRALIZING_GAS); Speed(4); }
         PLAYER(SPECIES_ZACIAN) { Ability(ABILITY_INTREPID_SWORD); Speed(speedPlayerRight); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
         OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_INTIMIDATE); Speed(speedOppLeft); }
@@ -496,7 +496,7 @@ SINGLE_BATTLE_TEST("INNATE: Neutralizing Gas prevents Insomnia from blocking Res
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_REST) == EFFECT_REST);
         PLAYER(SPECIES_DROWZEE) { Ability(ABILITY_INSOMNIA); HP(1); }
-        OPPONENT(SPECIES_WEEZING) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NEUTRALIZING_GAS); }
+        OPPONENT(SPECIES_WEEZING) { Ability(ABILITY_LEVITATE); Innates(ABILITY_NEUTRALIZING_GAS); }
     } WHEN {
         TURN { MOVE(player, MOVE_REST); }
     } SCENE {
@@ -512,7 +512,7 @@ SINGLE_BATTLE_TEST("INNATE: Neutralizing Gas prevents Trace from copying")
 {
     GIVEN {
         PLAYER(SPECIES_RALTS) { Ability(ABILITY_TRACE); }
-        OPPONENT(SPECIES_WEEZING) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NEUTRALIZING_GAS); }
+        OPPONENT(SPECIES_WEEZING) { Ability(ABILITY_LEVITATE); Innates(ABILITY_NEUTRALIZING_GAS); }
     } WHEN {
         TURN { }
     } SCENE {
@@ -529,7 +529,7 @@ SINGLE_BATTLE_TEST("INNATE: Neutralizing Gas prevents Contrary inverting stat bo
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_REST) == EFFECT_REST);
         PLAYER(SPECIES_INKAY) { Ability(ABILITY_CONTRARY); }
-        OPPONENT(SPECIES_WEEZING) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NEUTRALIZING_GAS); }
+        OPPONENT(SPECIES_WEEZING) { Ability(ABILITY_LEVITATE); Innates(ABILITY_NEUTRALIZING_GAS); }
     } WHEN {
         TURN { MOVE(player, MOVE_SWORDS_DANCE); MOVE(opponent, MOVE_LEER); }
     } SCENE {

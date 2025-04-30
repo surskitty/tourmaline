@@ -76,7 +76,7 @@ SINGLE_BATTLE_TEST("INNATE: Psychic Noise is blocked by Soundproof")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_VOLTORB) { HP(1); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SOUNDPROOF); }
+        OPPONENT(SPECIES_VOLTORB) { HP(1); Ability(ABILITY_STATIC); Innates(ABILITY_SOUNDPROOF); }
     } WHEN {
         TURN { MOVE(player, MOVE_PSYCHIC_NOISE); MOVE(opponent, MOVE_RECOVER); }
     } SCENE {
@@ -90,7 +90,7 @@ SINGLE_BATTLE_TEST("INNATE: Psychic Noise heal block effect is blocked by Aroma 
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_MILCERY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_AROMA_VEIL); }
+        OPPONENT(SPECIES_MILCERY) { Ability(ABILITY_SWEET_VEIL); Innates(ABILITY_AROMA_VEIL); }
     } WHEN {
         TURN { MOVE(player, MOVE_PSYCHIC_NOISE); MOVE(opponent, MOVE_RECOVER); }
     } SCENE {
@@ -107,7 +107,7 @@ DOUBLE_BATTLE_TEST("INNATE: Psychic Noise heal block effect is blocked by partne
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_MILCERY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_AROMA_VEIL); }
+        OPPONENT(SPECIES_MILCERY) { Ability(ABILITY_SWEET_VEIL); Innates(ABILITY_AROMA_VEIL); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_PSYCHIC_NOISE, target: opponentLeft); MOVE(opponentLeft, MOVE_RECOVER); }
     } SCENE {

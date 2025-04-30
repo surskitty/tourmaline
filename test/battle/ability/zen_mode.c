@@ -100,7 +100,7 @@ SINGLE_BATTLE_TEST("INNATE: Zen Mode switches Darmanitan's form when HP is half 
         ASSUME(gSpeciesInfo[zenSpecies].baseHP == 105);
         PLAYER(standardSpecies)
         {
-            Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ZEN_MODE);
+            Ability(ABILITY_SHEER_FORCE); Innates(ABILITY_ZEN_MODE);
             HP((GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP) / 2) + 1);
         }
         OPPONENT(SPECIES_WOBBUFFET);
@@ -129,7 +129,7 @@ SINGLE_BATTLE_TEST("INNATE: Zen Mode switches Darmanitan's form when HP is half 
         ASSUME(gSpeciesInfo[zenSpecies].baseHP == 105);
         PLAYER(standardSpecies)
         {
-            Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ZEN_MODE);
+            Ability(ABILITY_SHEER_FORCE); Innates(ABILITY_ZEN_MODE);
             HP(GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP) / 2);
         }
         OPPONENT(SPECIES_WOBBUFFET);
@@ -157,7 +157,7 @@ SINGLE_BATTLE_TEST("INNATE: Zen Mode switches Darmanitan's form when HP is heale
         ASSUME(gSpeciesInfo[zenSpecies].baseHP == 105);
         PLAYER(standardSpecies)
         {
-            Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ZEN_MODE);
+            Ability(ABILITY_SHEER_FORCE); Innates(ABILITY_ZEN_MODE);
             HP(GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP) / 2);
         }
         OPPONENT(SPECIES_WOBBUFFET);

@@ -276,7 +276,7 @@ SINGLE_BATTLE_TEST("INNATE: Protosynthesis ability pop up activates only once du
 
     GIVEN {
         PLAYER(SPECIES_WALKING_WAKE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PROTOSYNTHESIS); }
-        OPPONENT(SPECIES_NINETALES) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DROUGHT); };
+        OPPONENT(SPECIES_NINETALES) { Ability(ABILITY_FLASH_FIRE); Innates(ABILITY_DROUGHT); };
     } WHEN {
         for (turns = 0; turns < 5; turns++)
             TURN {}
@@ -305,7 +305,7 @@ SINGLE_BATTLE_TEST("INNATE: Protosynthesis activates on switch-in")
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_ROARING_MOON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PROTOSYNTHESIS); }
-        OPPONENT(SPECIES_NINETALES) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DROUGHT); };
+        OPPONENT(SPECIES_NINETALES) { Ability(ABILITY_FLASH_FIRE); Innates(ABILITY_DROUGHT); };
     } WHEN {
         TURN { SWITCH(player, 1); }
     } SCENE {
@@ -377,7 +377,7 @@ SINGLE_BATTLE_TEST("INNATE: Protosynthesis activates in Sun before Booster Energ
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_GREAT_TUSK) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PROTOSYNTHESIS); Item(ITEM_BOOSTER_ENERGY); }
-        OPPONENT(SPECIES_NINETALES) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DROUGHT); }
+        OPPONENT(SPECIES_NINETALES) { Ability(ABILITY_FLASH_FIRE); Innates(ABILITY_DROUGHT); }
     } WHEN {
         TURN { SWITCH(player, 1); }
     } SCENE {
@@ -393,7 +393,7 @@ SINGLE_BATTLE_TEST("INNATE: Protosynthesis doesn't activate for a transformed ba
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_GREAT_TUSK) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PROTOSYNTHESIS); Item(ITEM_BOOSTER_ENERGY); }
-        OPPONENT(SPECIES_NINETALES) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DROUGHT); Item(ITEM_BOOSTER_ENERGY); }
+        OPPONENT(SPECIES_NINETALES) { Ability(ABILITY_FLASH_FIRE); Innates(ABILITY_DROUGHT); Item(ITEM_BOOSTER_ENERGY); }
     } WHEN {
         TURN { SWITCH(player, 1); MOVE(opponent, MOVE_TRANSFORM); }
     } SCENE {
@@ -411,7 +411,7 @@ SINGLE_BATTLE_TEST("INNATE: Protosynthesis activates even if the Pokémon is hol
 {
     GIVEN {
         PLAYER(SPECIES_GREAT_TUSK) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PROTOSYNTHESIS); Item(ITEM_UTILITY_UMBRELLA); }
-        OPPONENT(SPECIES_NINETALES) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DROUGHT); }
+        OPPONENT(SPECIES_NINETALES) { Ability(ABILITY_FLASH_FIRE); Innates(ABILITY_DROUGHT); }
     } WHEN {
         TURN { }
     } SCENE {

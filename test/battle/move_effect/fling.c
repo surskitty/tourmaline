@@ -472,7 +472,7 @@ SINGLE_BATTLE_TEST("INNATE: Fling's secondary effects are blocked by Shield Dust
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(item); }
-        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHIELD_DUST); }
+        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_SHIELD_DUST); }
     } WHEN {
         TURN { MOVE(player, MOVE_FLING); }
     } SCENE {

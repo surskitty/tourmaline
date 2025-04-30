@@ -71,7 +71,7 @@ SINGLE_BATTLE_TEST("INNATE: Electromorphosis sets up Charge when hit by any move
         ASSUME(!IsBattleMoveStatus(MOVE_THUNDER_SHOCK));
         ASSUME(GetMoveType(MOVE_THUNDER_SHOCK) == TYPE_ELECTRIC);
 
-        PLAYER(SPECIES_BELLIBOLT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ELECTROMORPHOSIS); Speed(10); }
+        PLAYER(SPECIES_BELLIBOLT) { Ability(ABILITY_STATIC); Innates(ABILITY_ELECTROMORPHOSIS); Speed(10); }
         OPPONENT(SPECIES_WOBBUFFET) {Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_LIMBER); Speed(5) ;} // Limber, so it doesn't get paralyzed.
     }
     WHEN {

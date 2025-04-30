@@ -932,7 +932,7 @@ SINGLE_BATTLE_TEST("INNATE: Sheer Force doesn't boost Magnitude", s16 damage)
     PARAMETRIZE { ability = ABILITY_SHEER_FORCE; }
     PARAMETRIZE { ability = ABILITY_ANGER_POINT; }
     GIVEN {
-        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_ANGER_POINT); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_MAGNITUDE); }
@@ -949,7 +949,7 @@ SINGLE_BATTLE_TEST("INNATE: Sheer Force doesn't boost Eruption", s16 damage)
     PARAMETRIZE { ability = ABILITY_SHEER_FORCE; }
     PARAMETRIZE { ability = ABILITY_ANGER_POINT; }
     GIVEN {
-        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_ANGER_POINT); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_ERUPTION); }
@@ -966,7 +966,7 @@ SINGLE_BATTLE_TEST("INNATE: Sheer Force doesn't boost Water Spout", s16 damage)
     PARAMETRIZE { ability = ABILITY_SHEER_FORCE; }
     PARAMETRIZE { ability = ABILITY_ANGER_POINT; }
     GIVEN {
-        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_ANGER_POINT); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_WATER_SPOUT); }
@@ -983,7 +983,7 @@ SINGLE_BATTLE_TEST("INNATE: Sheer Force doesn't boost Present", s16 damage)
     PARAMETRIZE { ability = ABILITY_SHEER_FORCE; }
     PARAMETRIZE { ability = ABILITY_ANGER_POINT; }
     GIVEN {
-        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_ANGER_POINT); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_PRESENT); }
@@ -1000,7 +1000,7 @@ SINGLE_BATTLE_TEST("INNATE: Sheer Force doesn't boost Psywave", s16 damage)
     PARAMETRIZE { ability = ABILITY_SHEER_FORCE; }
     PARAMETRIZE { ability = ABILITY_ANGER_POINT; }
     GIVEN {
-        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_ANGER_POINT); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_PSYWAVE); }
@@ -1017,7 +1017,7 @@ SINGLE_BATTLE_TEST("INNATE: Sheer Force doesn't boost Round", s16 damage)
     PARAMETRIZE { ability = ABILITY_SHEER_FORCE; }
     PARAMETRIZE { ability = ABILITY_ANGER_POINT; }
     GIVEN {
-        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_ANGER_POINT); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_ROUND); }
@@ -1034,7 +1034,7 @@ SINGLE_BATTLE_TEST("INNATE: Sheer Force doesn't boost Gyro Ball", s16 damage)
     PARAMETRIZE { ability = ABILITY_SHEER_FORCE; }
     PARAMETRIZE { ability = ABILITY_ANGER_POINT; }
     GIVEN {
-        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_ANGER_POINT); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_GYRO_BALL); }
@@ -1051,7 +1051,7 @@ SINGLE_BATTLE_TEST("INNATE: Sheer Force doesn't boost Electro Ball", s16 damage)
     PARAMETRIZE { ability = ABILITY_SHEER_FORCE; }
     PARAMETRIZE { ability = ABILITY_ANGER_POINT; }
     GIVEN {
-        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_ANGER_POINT); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_ELECTRO_BALL); }
@@ -1068,7 +1068,7 @@ SINGLE_BATTLE_TEST("INNATE: Sheer Force doesn't boost Dragon Energy", s16 damage
     PARAMETRIZE { ability = ABILITY_SHEER_FORCE; }
     PARAMETRIZE { ability = ABILITY_ANGER_POINT; }
     GIVEN {
-        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_ANGER_POINT); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_DRAGON_ENERGY); }
@@ -1085,7 +1085,7 @@ SINGLE_BATTLE_TEST("INNATE: Sheer Force doesn't boost Belch", s16 damage)
     PARAMETRIZE { ability = ABILITY_SHEER_FORCE; }
     PARAMETRIZE { ability = ABILITY_ANGER_POINT; }
     GIVEN {
-        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_LIGHT_METAL); Innates(ability); HP(1); Item(ITEM_SITRUS_BERRY); }
+        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_ANGER_POINT); Innates(ability); HP(1); Item(ITEM_SITRUS_BERRY); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_BELCH); }
@@ -1102,7 +1102,7 @@ SINGLE_BATTLE_TEST("INNATE: Sheer Force doesn't boost Shell Trap", s16 damage)
     PARAMETRIZE { ability = ABILITY_SHEER_FORCE; }
     PARAMETRIZE { ability = ABILITY_ANGER_POINT; }
     GIVEN {
-        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_ANGER_POINT); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_SHELL_TRAP); MOVE(opponent, MOVE_TACKLE); }
@@ -1119,7 +1119,7 @@ SINGLE_BATTLE_TEST("INNATE: Sheer Force doesn't boost Burn Up", s16 damage)
     PARAMETRIZE { ability = ABILITY_SHEER_FORCE; }
     PARAMETRIZE { ability = ABILITY_ZEN_MODE; }
     GIVEN {
-        PLAYER(SPECIES_DARMANITAN) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_DARMANITAN) { Ability(ABILITY_ZEN_MODE); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_BURN_UP); }
@@ -1153,7 +1153,7 @@ SINGLE_BATTLE_TEST("INNATE: Sheer Force doesn't boost Steel Roller", s16 damage)
     PARAMETRIZE { ability = ABILITY_SHEER_FORCE; }
     PARAMETRIZE { ability = ABILITY_ANGER_POINT; }
     GIVEN {
-        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_ANGER_POINT); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_GRASSY_TERRAIN); MOVE(player, MOVE_STEEL_ROLLER); }
@@ -1170,7 +1170,7 @@ SINGLE_BATTLE_TEST("INNATE: Sheer Force doesn't boost Synchronoise", s16 damage)
     PARAMETRIZE { ability = ABILITY_SHEER_FORCE; }
     PARAMETRIZE { ability = ABILITY_ANGER_POINT; }
     GIVEN {
-        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_LIGHT_METAL); Innates(ability); HP(1); Item(ITEM_SITRUS_BERRY); }
+        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_ANGER_POINT); Innates(ability); HP(1); Item(ITEM_SITRUS_BERRY); }
         OPPONENT(SPECIES_CHANSEY);
     } WHEN {
         TURN { MOVE(player, MOVE_SYNCHRONOISE); }
@@ -1221,7 +1221,7 @@ SINGLE_BATTLE_TEST("INNATE: Sheer Force doesn't boost Bolt Beak", s16 damage)
     PARAMETRIZE { ability = ABILITY_SHEER_FORCE; }
     PARAMETRIZE { ability = ABILITY_ANGER_POINT; }
     GIVEN {
-        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_ANGER_POINT); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_BOLT_BEAK); }
@@ -1238,7 +1238,7 @@ SINGLE_BATTLE_TEST("INNATE: Sheer Force doesn't boost Fishious Rend", s16 damage
     PARAMETRIZE { ability = ABILITY_SHEER_FORCE; }
     PARAMETRIZE { ability = ABILITY_ANGER_POINT; }
     GIVEN {
-        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_ANGER_POINT); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_FISHIOUS_REND); }
@@ -1255,7 +1255,7 @@ SINGLE_BATTLE_TEST("INNATE: Sheer Force doesn't boost Comeuppance", s16 damage)
     PARAMETRIZE { ability = ABILITY_SHEER_FORCE; }
     PARAMETRIZE { ability = ABILITY_ANGER_POINT; }
     GIVEN {
-        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_ANGER_POINT); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); MOVE(player, MOVE_COMEUPPANCE); }
@@ -1272,7 +1272,7 @@ SINGLE_BATTLE_TEST("INNATE: Sheer Force doesn't boost Payback", s16 damage)
     PARAMETRIZE { ability = ABILITY_SHEER_FORCE; }
     PARAMETRIZE { ability = ABILITY_ANGER_POINT; }
     GIVEN {
-        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_TAUROS) { Ability(ABILITY_ANGER_POINT); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_PAYBACK); }
@@ -1293,10 +1293,10 @@ DOUBLE_BATTLE_TEST("INNATE: Sheer Force only boosts the damage of moves it's sup
         if (GetMoveCategory(j) != DAMAGE_CATEGORY_STATUS && !IgnoreMoveForSheerForceBoost(j))
             PARAMETRIZE { move = j; }
     GIVEN {
-        PLAYER(SPECIES_STEELIX) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHEER_FORCE); Item(ITEM_BLUK_BERRY); }
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TELEPATHY); Level(100); Item(ITEM_BLUK_BERRY); }
-        OPPONENT(SPECIES_STEELIX) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STURDY); Item(ITEM_BLUK_BERRY); }
-        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TELEPATHY); Level(100); Item(ITEM_BLUK_BERRY); }
+        PLAYER(SPECIES_STEELIX) { Ability(ABILITY_STURDY); Innates(ABILITY_SHEER_FORCE); Item(ITEM_BLUK_BERRY); }
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_TELEPATHY); Level(100); Item(ITEM_BLUK_BERRY); }
+        OPPONENT(SPECIES_STEELIX) { Ability(ABILITY_STURDY); Innates(ABILITY_STURDY); Item(ITEM_BLUK_BERRY); }
+        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_TELEPATHY); Level(100); Item(ITEM_BLUK_BERRY); }
     } WHEN {
         if (move == MOVE_ALLURING_VOICE || move == MOVE_BURNING_JEALOUSY) // Alluring Voice requires the target to boost stats to have an effect
             TURN { MOVE(opponentRight, MOVE_AGILITY); MOVE(playerRight, MOVE_AGILITY); MOVE(playerLeft, move, target: opponentRight); MOVE(opponentLeft, move, target: playerRight); }
@@ -1371,10 +1371,10 @@ DOUBLE_BATTLE_TEST("INNATE: Sheer Force only boosts the damage of moves it's sup
         if (GetMoveCategory(j) != DAMAGE_CATEGORY_STATUS && !IgnoreMoveForSheerForceBoost(j))
             PARAMETRIZE { move = j; }
     GIVEN {
-        PLAYER(SPECIES_STEELIX) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHEER_FORCE); Item(ITEM_BLUK_BERRY); }
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TELEPATHY); Level(100); Item(ITEM_BLUK_BERRY); }
-        OPPONENT(SPECIES_STEELIX) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STURDY); Item(ITEM_BLUK_BERRY); }
-        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TELEPATHY); Level(100); Item(ITEM_BLUK_BERRY); }
+        PLAYER(SPECIES_STEELIX) { Ability(ABILITY_STURDY); Innates(ABILITY_SHEER_FORCE); Item(ITEM_BLUK_BERRY); }
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_TELEPATHY); Level(100); Item(ITEM_BLUK_BERRY); }
+        OPPONENT(SPECIES_STEELIX) { Ability(ABILITY_STURDY); Innates(ABILITY_STURDY); Item(ITEM_BLUK_BERRY); }
+        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_TELEPATHY); Level(100); Item(ITEM_BLUK_BERRY); }
     } WHEN {
         if (move == MOVE_ALLURING_VOICE || move == MOVE_BURNING_JEALOUSY) // Alluring Voice requires the target to boost stats to have an effect
             TURN { MOVE(opponentRight, MOVE_AGILITY); MOVE(playerRight, MOVE_AGILITY); MOVE(playerLeft, move, target: opponentRight); MOVE(opponentLeft, move, target: playerRight); }
@@ -1449,10 +1449,10 @@ DOUBLE_BATTLE_TEST("INNATE: Sheer Force only boosts the damage of moves it's sup
         if (GetMoveCategory(j) != DAMAGE_CATEGORY_STATUS && !IgnoreMoveForSheerForceBoost(j))
             PARAMETRIZE { move = j; }
     GIVEN {
-        PLAYER(SPECIES_STEELIX) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHEER_FORCE); Item(ITEM_BLUK_BERRY); }
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TELEPATHY); Level(100); Item(ITEM_BLUK_BERRY); }
-        OPPONENT(SPECIES_STEELIX) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STURDY); Item(ITEM_BLUK_BERRY); }
-        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TELEPATHY); Level(100); Item(ITEM_BLUK_BERRY); }
+        PLAYER(SPECIES_STEELIX) { Ability(ABILITY_STURDY); Innates(ABILITY_SHEER_FORCE); Item(ITEM_BLUK_BERRY); }
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_TELEPATHY); Level(100); Item(ITEM_BLUK_BERRY); }
+        OPPONENT(SPECIES_STEELIX) { Ability(ABILITY_STURDY); Innates(ABILITY_STURDY); Item(ITEM_BLUK_BERRY); }
+        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_TELEPATHY); Level(100); Item(ITEM_BLUK_BERRY); }
     } WHEN {
         if (move == MOVE_ALLURING_VOICE || move == MOVE_BURNING_JEALOUSY) // Alluring Voice requires the target to boost stats to have an effect
             TURN { MOVE(opponentRight, MOVE_AGILITY); MOVE(playerRight, MOVE_AGILITY); MOVE(playerLeft, move, target: opponentRight); MOVE(opponentLeft, move, target: playerRight); }
@@ -1529,10 +1529,10 @@ DOUBLE_BATTLE_TEST("INNATE: Sheer Force only boosts the damage of moves it's sup
             PARAMETRIZE { move = j; }
     }
     GIVEN {
-        PLAYER(SPECIES_STEELIX) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHEER_FORCE); Item(ITEM_BLUK_BERRY); }
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TELEPATHY); Level(100); Item(ITEM_BLUK_BERRY); }
-        OPPONENT(SPECIES_STEELIX) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STURDY); Item(ITEM_BLUK_BERRY); }
-        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TELEPATHY); Level(100); Item(ITEM_BLUK_BERRY); }
+        PLAYER(SPECIES_STEELIX) { Ability(ABILITY_STURDY); Innates(ABILITY_SHEER_FORCE); Item(ITEM_BLUK_BERRY); }
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_TELEPATHY); Level(100); Item(ITEM_BLUK_BERRY); }
+        OPPONENT(SPECIES_STEELIX) { Ability(ABILITY_STURDY); Innates(ABILITY_STURDY); Item(ITEM_BLUK_BERRY); }
+        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_TELEPATHY); Level(100); Item(ITEM_BLUK_BERRY); }
     } WHEN {
         if (move == MOVE_ALLURING_VOICE || move == MOVE_BURNING_JEALOUSY) // Alluring Voice requires the target to boost stats to have an effect
             TURN { MOVE(opponentRight, MOVE_AGILITY); MOVE(playerRight, MOVE_AGILITY); MOVE(playerLeft, move, target: opponentRight); MOVE(opponentLeft, move, target: playerRight); }

@@ -35,7 +35,7 @@ TO_DO_BATTLE_TEST("ABILITY: Sand Veil doesn't increase evasion if Cloud Nine/Air
 SINGLE_BATTLE_TEST("INNATE: Sand Veil prevents damage from sandstorm")
 {
     GIVEN {
-        PLAYER(SPECIES_CACNEA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SAND_VEIL); }
+        PLAYER(SPECIES_CACNEA) { Ability(ABILITY_WATER_ABSORB); Innates(ABILITY_SAND_VEIL); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SANDSTORM); }
@@ -50,7 +50,7 @@ SINGLE_BATTLE_TEST("INNATE: Sand Veil increases evasion during sandstorm")
     PASSES_RANDOMLY(4, 5, RNG_ACCURACY);
     GIVEN {
         ASSUME(GetMoveAccuracy(MOVE_POUND) == 100);
-        PLAYER(SPECIES_SANDSHREW) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SAND_VEIL); }
+        PLAYER(SPECIES_SANDSHREW) { Ability(ABILITY_SAND_RUSH); Innates(ABILITY_SAND_VEIL); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SANDSTORM); }

@@ -117,7 +117,7 @@ SINGLE_BATTLE_TEST("INNATE: Toxic Chain inflicts bad poison when attacking")
     GIVEN {
         ASSUME(GetMoveCategory(MOVE_TACKLE) != DAMAGE_CATEGORY_STATUS);
         ASSUME(GetMovePower(MOVE_TACKLE) > 0);
-        PLAYER(SPECIES_OKIDOGI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TOXIC_CHAIN); }
+        PLAYER(SPECIES_OKIDOGI) { Ability(ABILITY_GUARD_DOG); Innates(ABILITY_TOXIC_CHAIN); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
@@ -138,7 +138,7 @@ SINGLE_BATTLE_TEST("INNATE: Toxic Chain inflicts bad poison on any hit of a mult
         ASSUME(GetMoveEffect(MOVE_DOUBLE_SLAP) == EFFECT_MULTI_HIT);
         ASSUME(GetMovePower(MOVE_DOUBLE_SLAP) > 0);
         ASSUME(gItemsInfo[ITEM_PECHA_BERRY].holdEffect == HOLD_EFFECT_CURE_PSN);
-        PLAYER(SPECIES_OKIDOGI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TOXIC_CHAIN); }
+        PLAYER(SPECIES_OKIDOGI) { Ability(ABILITY_GUARD_DOG); Innates(ABILITY_TOXIC_CHAIN); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_PECHA_BERRY); }
     } WHEN {
         TURN { MOVE(player, MOVE_DOUBLE_SLAP); }
@@ -164,7 +164,7 @@ DOUBLE_BATTLE_TEST("INNATE: Toxic Chain can inflict bad poison on both foes")
         ASSUME(GetMoveCategory(MOVE_RAZOR_LEAF) != DAMAGE_CATEGORY_STATUS);
         ASSUME(GetMoveTarget(MOVE_RAZOR_LEAF) == MOVE_TARGET_BOTH);
         ASSUME(GetMovePower(MOVE_RAZOR_LEAF) > 0);
-        PLAYER(SPECIES_OKIDOGI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TOXIC_CHAIN); }
+        PLAYER(SPECIES_OKIDOGI) { Ability(ABILITY_GUARD_DOG); Innates(ABILITY_TOXIC_CHAIN); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
@@ -200,7 +200,7 @@ SINGLE_BATTLE_TEST("INNATE: Toxic Chain makes Lum/Pecha Berry trigger before bei
         ASSUME(GetMovePower(MOVE_KNOCK_OFF) > 0);
         ASSUME(gItemsInfo[ITEM_PECHA_BERRY].holdEffect == HOLD_EFFECT_CURE_PSN);
         ASSUME(gItemsInfo[ITEM_LUM_BERRY].holdEffect == HOLD_EFFECT_CURE_STATUS);
-        PLAYER(SPECIES_OKIDOGI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TOXIC_CHAIN); }
+        PLAYER(SPECIES_OKIDOGI) { Ability(ABILITY_GUARD_DOG); Innates(ABILITY_TOXIC_CHAIN); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(item); }
     } WHEN {
         TURN { MOVE(player, MOVE_KNOCK_OFF, WITH_RNG(RNG_TOXIC_CHAIN, TRUE)); }

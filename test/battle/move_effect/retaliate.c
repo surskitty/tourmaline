@@ -166,11 +166,11 @@ DOUBLE_BATTLE_TEST("INNATE: Retaliate works with passive damage")
         ASSUME(GetMoveEffect(MOVE_LEECH_SEED) == EFFECT_LEECH_SEED);
         ASSUME(GetMoveAdditionalEffectById(MOVE_MAGMA_STORM, 0)->moveEffect == MOVE_EFFECT_WRAP);
         ASSUME(GetMoveAdditionalEffectById(MOVE_FLAME_BURST, 0)->moveEffect == MOVE_EFFECT_FLAME_BURST);
-        PLAYER(SPECIES_WYNAUT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHADOW_TAG); HP(18); }
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHADOW_TAG); }
+        PLAYER(SPECIES_WYNAUT) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_SHADOW_TAG); HP(18); }
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_SHADOW_TAG); }
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_CLEFABLE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MAGIC_GUARD); Level(1); }
-        OPPONENT(SPECIES_CLEFABLE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MAGIC_GUARD); }
+        OPPONENT(SPECIES_CLEFABLE) { Ability(ABILITY_UNAWARE); Innates(ABILITY_MAGIC_GUARD); Level(1); }
+        OPPONENT(SPECIES_CLEFABLE) { Ability(ABILITY_UNAWARE); Innates(ABILITY_MAGIC_GUARD); }
     } WHEN {
         TURN { MOVE(opponentRight, move2, target: moveTarget); MOVE(opponentLeft, move, target: moveTarget); MOVE(playerLeft, MOVE_CELEBRATE); SEND_OUT(playerLeft, 2); }
         TURN { MOVE(opponentRight, MOVE_CELEBRATE, target: moveTarget); MOVE(playerLeft, MOVE_RETALIATE, target: opponentRight); }
@@ -192,7 +192,7 @@ SINGLE_BATTLE_TEST("INNATE: Retaliate works with Perish Song")
         ASSUME(GetMoveEffect(MOVE_PERISH_SONG) == EFFECT_PERISH_SONG);
         PLAYER(SPECIES_WYNAUT);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_KOMMO_O) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SOUNDPROOF); }
+        OPPONENT(SPECIES_KOMMO_O) { Ability(ABILITY_BULLETPROOF); Innates(ABILITY_SOUNDPROOF); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_PERISH_SONG); }
         TURN { MOVE(opponent, MOVE_CELEBRATE); }

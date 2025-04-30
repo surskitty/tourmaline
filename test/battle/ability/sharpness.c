@@ -37,7 +37,7 @@ SINGLE_BATTLE_TEST("INNATE: Sharpness increases the power of slicing moves", s16
     GIVEN {
         ASSUME(IsSlicingMove(MOVE_AERIAL_ACE));
         ASSUME(!IsSlicingMove(MOVE_SCRATCH));
-        PLAYER(SPECIES_GALLADE) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_GALLADE) { Ability(ABILITY_STEADFAST); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, move); }

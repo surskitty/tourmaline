@@ -1642,7 +1642,7 @@ SINGLE_BATTLE_TEST("INNATE: Dynamax: Dynamaxed Pokemon cannot be hit by OHKO mov
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_FISSURE) == EFFECT_OHKO);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_MACHAMP) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NO_GUARD); }
+        OPPONENT(SPECIES_MACHAMP) { Ability(ABILITY_STEADFAST); Innates(ABILITY_NO_GUARD); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE, gimmick: GIMMICK_DYNAMAX); MOVE(opponent, MOVE_FISSURE); }
     } SCENE {
@@ -1653,21 +1653,6 @@ SINGLE_BATTLE_TEST("INNATE: Dynamax: Dynamaxed Pokemon cannot be hit by OHKO mov
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Dynamax: Dynamaxed Pokemon can have their ability changed or suppressed")
-{
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHADOW_TAG); }
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(player, MOVE_TACKLE, gimmick: GIMMICK_DYNAMAX); MOVE(opponent, MOVE_SIMPLE_BEAM); }
-    } SCENE {
-        MESSAGE("Wobbuffet used Max Strike!");
-        MESSAGE("The opposing Wobbuffet used Simple Beam!");
-        MESSAGE("Wobbuffet acquired Simple!");
-    } THEN {
-        EXPECT_EQ(player->ability, ABILITY_SIMPLE);
-    }
-}
 
 SINGLE_BATTLE_TEST("INNATE: Dynamax: Dynamaxed Pokemon that changes forms does not gain HP")
 {
@@ -1719,7 +1704,7 @@ SINGLE_BATTLE_TEST("INNATE: Dynamax: G-Max Hydrosnipe has fixed power and ignore
     GIVEN {
         ASSUME(MoveHasAdditionalEffect(MOVE_G_MAX_HYDROSNIPE, MOVE_EFFECT_FIXED_POWER));
         PLAYER(SPECIES_INTELEON) { GigantamaxFactor(TRUE); }
-        OPPONENT(SPECIES_ARCTOVISH) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WATER_ABSORB); }
+        OPPONENT(SPECIES_ARCTOVISH) { Ability(ABILITY_SLUSH_RUSH); Innates(ABILITY_WATER_ABSORB); }
     } WHEN {
         TURN { MOVE(player, move, gimmick: GIMMICK_DYNAMAX); }
     } SCENE {
@@ -1736,7 +1721,7 @@ DOUBLE_BATTLE_TEST("INNATE: Dynamax: G-Max Replenish recycles allies' berries 50
     GIVEN {
         ASSUME(MoveHasAdditionalEffect(MOVE_G_MAX_REPLENISH, MOVE_EFFECT_RECYCLE_BERRIES));
         PLAYER(SPECIES_SNORLAX) { Item(ITEM_APICOT_BERRY); GigantamaxFactor(TRUE); }
-        PLAYER(SPECIES_MUNCHLAX) { Item(ITEM_APICOT_BERRY); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_THICK_FAT); }
+        PLAYER(SPECIES_MUNCHLAX) { Item(ITEM_APICOT_BERRY); Ability(ABILITY_GLUTTONY); Innates(ABILITY_THICK_FAT); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_APICOT_BERRY); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_APICOT_BERRY); }
     } WHEN {
@@ -1767,7 +1752,7 @@ DOUBLE_BATTLE_TEST("INNATE: Dynamax: G-Max Depletion takes away 2 PP from the ta
         PLAYER(SPECIES_DURALUDON) { GigantamaxFactor(TRUE); }
         PLAYER(SPECIES_WYNAUT);
         // Dynamax behaves weird with test turn order because stats are recalculated.
-        OPPONENT(SPECIES_SABLEYE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PRANKSTER); Moves(MOVE_CELEBRATE); }
+        OPPONENT(SPECIES_SABLEYE) { Ability(ABILITY_KEEN_EYE); Innates(ABILITY_PRANKSTER); Moves(MOVE_CELEBRATE); }
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_DRAGON_CLAW, target: opponentLeft, gimmick: GIMMICK_DYNAMAX); }

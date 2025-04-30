@@ -236,7 +236,7 @@ DOUBLE_BATTLE_TEST("Eject Button activation will not trigger an attack from the 
 SINGLE_BATTLE_TEST("INNATE: Eject Button is not activated by a Sheer Force boosted move")
 {
     GIVEN {
-        PLAYER(SPECIES_NIDOKING) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHEER_FORCE); }
+        PLAYER(SPECIES_NIDOKING) { Ability(ABILITY_POISON_POINT); Innates(ABILITY_SHEER_FORCE); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_BUTTON); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -257,7 +257,7 @@ SINGLE_BATTLE_TEST("INNATE: Eject Button is not activated by a Sheer Force boost
 SINGLE_BATTLE_TEST("INNATE: Eject Button is not blocked by trapping abilities or moves")
 {
     GIVEN {
-        PLAYER(SPECIES_DUGTRIO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ARENA_TRAP); }
+        PLAYER(SPECIES_DUGTRIO) { Ability(ABILITY_SAND_VEIL); Innates(ABILITY_ARENA_TRAP); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_BUTTON); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -278,7 +278,7 @@ SINGLE_BATTLE_TEST("INNATE: Eject Button is not triggered after given to player 
     GIVEN {
         PLAYER(SPECIES_REGIELEKI) { Item(ITEM_EJECT_BUTTON); }
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_SNEASEL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PICKPOCKET); }
+        OPPONENT(SPECIES_SNEASEL) { Ability(ABILITY_INNER_FOCUS); Innates(ABILITY_PICKPOCKET); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {

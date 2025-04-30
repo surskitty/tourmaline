@@ -77,7 +77,7 @@ SINGLE_BATTLE_TEST("INNATE: Mind's Eye allows to hit Ghost-type Pokémon with No
     PARAMETRIZE { move = MOVE_KARATE_CHOP; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MINDS_EYE); };
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_MINDS_EYE); };
         OPPONENT(SPECIES_GASTLY);
     } WHEN {
         TURN { MOVE(player, move); }
@@ -95,7 +95,7 @@ SINGLE_BATTLE_TEST("INNATE: Mind's Eye doesn't bypass a Ghost-type's Wonder Guar
     PARAMETRIZE { move = MOVE_KARATE_CHOP; }
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SCRAPPY); };
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_SCRAPPY); };
         OPPONENT(SPECIES_SHEDINJA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WONDER_GUARD); };
     } WHEN {
         TURN { MOVE(player, move); }
@@ -125,7 +125,7 @@ AI_SINGLE_BATTLE_TEST("INNATE: AI doesn't use accuracy-lowering moves if it know
 
     GIVEN {
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MINDS_EYE); }
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_MINDS_EYE); }
         OPPONENT(SPECIES_BASCULEGION) { Moves(MOVE_CELEBRATE, moveAI); Ability(ABILITY_LIGHT_METAL); Innates(abilityAI); }
     } WHEN {
             TURN { MOVE(player, MOVE_TACKLE); }

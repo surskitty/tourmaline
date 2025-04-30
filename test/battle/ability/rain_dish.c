@@ -34,7 +34,7 @@ SINGLE_BATTLE_TEST("ABILITY: Rain Dish doesn't recover HP if Cloud Nine/Air Lock
 SINGLE_BATTLE_TEST("INNATE: Rain Dish recovers 1/16th of Max HP in Rain")
 {
     GIVEN {
-        PLAYER(SPECIES_LUDICOLO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_RAIN_DISH); HP(1); MaxHP(100); }
+        PLAYER(SPECIES_LUDICOLO) { Ability(ABILITY_SWIFT_SWIM); Innates(ABILITY_RAIN_DISH); HP(1); MaxHP(100); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_RAIN_DANCE); }
@@ -48,8 +48,8 @@ SINGLE_BATTLE_TEST("INNATE: Rain Dish recovers 1/16th of Max HP in Rain")
 SINGLE_BATTLE_TEST("INNATE: Rain Dish doesn't recover HP if Cloud Nine/Air Lock is on the field")
 {
     GIVEN {
-        PLAYER(SPECIES_LUDICOLO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_RAIN_DISH); HP(1); MaxHP(100); }
-        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CLOUD_NINE); }
+        PLAYER(SPECIES_LUDICOLO) { Ability(ABILITY_SWIFT_SWIM); Innates(ABILITY_RAIN_DISH); HP(1); MaxHP(100); }
+        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_DAMP); Innates(ABILITY_CLOUD_NINE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_RAIN_DANCE); }
     } SCENE {

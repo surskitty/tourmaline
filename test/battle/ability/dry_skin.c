@@ -130,7 +130,7 @@ SINGLE_BATTLE_TEST("ABILITY: Dry Skin prevents Absorb Bulb and Luminous Moss fro
 SINGLE_BATTLE_TEST("INNATE: Dry Skin causes 1/8th Max HP damage in Sun")
 {
     GIVEN {
-        PLAYER(SPECIES_PARASECT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DRY_SKIN); HP(100); MaxHP(200); }
+        PLAYER(SPECIES_PARASECT) { Ability(ABILITY_DAMP); Innates(ABILITY_DRY_SKIN); HP(100); MaxHP(200); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_SUNNY_DAY); }
@@ -146,7 +146,7 @@ TO_DO_BATTLE_TEST("INNATE: Dry Skin doesn't get damaged in Sun if Cloud Nine/Air
 SINGLE_BATTLE_TEST("INNATE: Dry Skin heals 1/8th Max HP in Rain")
 {
     GIVEN {
-        PLAYER(SPECIES_PARASECT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DRY_SKIN); HP(100); MaxHP(200); }
+        PLAYER(SPECIES_PARASECT) { Ability(ABILITY_DAMP); Innates(ABILITY_DRY_SKIN); HP(100); MaxHP(200); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_RAIN_DANCE); }
@@ -172,7 +172,7 @@ SINGLE_BATTLE_TEST("INNATE: Dry Skin increases damage taken from Fire-type moves
         ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[0] == TYPE_PSYCHIC);
         ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[1] == TYPE_PSYCHIC);
         PLAYER(SPECIES_WOBBUFFET) { SpAttack(71); }
-        OPPONENT(SPECIES_PARASECT) { Ability(ABILITY_LIGHT_METAL); Innates(ability); SpDefense(165); }
+        OPPONENT(SPECIES_PARASECT) { Ability(ABILITY_DAMP); Innates(ability); SpDefense(165); }
     } WHEN {
         TURN { MOVE(player, MOVE_EMBER); }
     } SCENE {
@@ -191,7 +191,7 @@ SINGLE_BATTLE_TEST("INNATE: Dry Skin heals 25% when hit by water type moves")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_BUBBLE) == TYPE_WATER);
-        PLAYER(SPECIES_PARASECT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DRY_SKIN); HP(100); MaxHP(200); }
+        PLAYER(SPECIES_PARASECT) { Ability(ABILITY_DAMP); Innates(ABILITY_DRY_SKIN); HP(100); MaxHP(200); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_BUBBLE); }
@@ -206,7 +206,7 @@ SINGLE_BATTLE_TEST("INNATE: Dry Skin does not activate if protected")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_BUBBLE) == TYPE_WATER);
-        PLAYER(SPECIES_PARASECT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DRY_SKIN); HP(100); MaxHP(200); }
+        PLAYER(SPECIES_PARASECT) { Ability(ABILITY_DAMP); Innates(ABILITY_DRY_SKIN); HP(100); MaxHP(200); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_PROTECT); MOVE(opponent, MOVE_BUBBLE); }
@@ -220,7 +220,7 @@ SINGLE_BATTLE_TEST("INNATE: Dry Skin is only triggered once on multi strike move
     GIVEN {
         ASSUME(GetMoveType(MOVE_WATER_SHURIKEN) == TYPE_WATER);
         ASSUME(GetMoveEffect(MOVE_WATER_SHURIKEN) == EFFECT_MULTI_HIT);
-        PLAYER(SPECIES_PARASECT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DRY_SKIN); HP(100); MaxHP(200); }
+        PLAYER(SPECIES_PARASECT) { Ability(ABILITY_DAMP); Innates(ABILITY_DRY_SKIN); HP(100); MaxHP(200); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_WATER_SHURIKEN); }
@@ -238,7 +238,7 @@ SINGLE_BATTLE_TEST("INNATE: Dry Skin prevents Absorb Bulb and Luminous Moss from
     PARAMETRIZE { item = ITEM_LUMINOUS_MOSS; }
     GIVEN {
         ASSUME(GetMoveType(MOVE_BUBBLE) == TYPE_WATER);
-        PLAYER(SPECIES_PARASECT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DRY_SKIN); HP(100); MaxHP(200); Item(item); }
+        PLAYER(SPECIES_PARASECT) { Ability(ABILITY_DAMP); Innates(ABILITY_DRY_SKIN); HP(100); MaxHP(200); Item(item); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_BUBBLE); }

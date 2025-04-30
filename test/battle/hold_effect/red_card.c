@@ -530,7 +530,7 @@ SINGLE_BATTLE_TEST("INNATE: Red Card does not activate if stolen by Magician")
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_RED_CARD); }
-        OPPONENT(SPECIES_FENNEKIN) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MAGICIAN); Item(item); }
+        OPPONENT(SPECIES_FENNEKIN) { Ability(ABILITY_BLAZE); Innates(ABILITY_MAGICIAN); Item(item); }
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
@@ -555,7 +555,7 @@ DOUBLE_BATTLE_TEST("INNATE: Red Card activates but fails if the attacker has Suc
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_RED_CARD); }
         PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_OCTILLERY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SUCTION_CUPS); }
+        OPPONENT(SPECIES_OCTILLERY) { Ability(ABILITY_MOODY); Innates(ABILITY_SUCTION_CUPS); }
         OPPONENT(SPECIES_WYNAUT);
         OPPONENT(SPECIES_UNOWN);
     } WHEN {
@@ -584,7 +584,7 @@ DOUBLE_BATTLE_TEST("INNATE: Red Card activates but fails if the attacker has Gua
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_RED_CARD); }
         PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_OKIDOGI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_GUARD_DOG); }
+        OPPONENT(SPECIES_OKIDOGI) { Ability(ABILITY_TOXIC_CHAIN); Innates(ABILITY_GUARD_DOG); }
         OPPONENT(SPECIES_WYNAUT);
         OPPONENT(SPECIES_UNOWN);
     } WHEN {
@@ -616,7 +616,7 @@ SINGLE_BATTLE_TEST("INNATE: Red Card does not activate if attacker's Sheer Force
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_RED_CARD); }
-        OPPONENT(SPECIES_TAUROS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHEER_FORCE); }
+        OPPONENT(SPECIES_TAUROS) { Ability(ABILITY_ANGER_POINT); Innates(ABILITY_SHEER_FORCE); }
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
         TURN { MOVE(opponent, move); }

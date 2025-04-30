@@ -29,7 +29,7 @@ SINGLE_BATTLE_TEST("INNATE: Shed Skin triggers 33% of the time")
     GIVEN {
         ASSUME(MoveMakesContact(MOVE_TACKLE));
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_ARBOK) { Status1(STATUS1_POISON); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHED_SKIN); }
+        OPPONENT(SPECIES_ARBOK) { Status1(STATUS1_POISON); Ability(ABILITY_SHED_SKIN); Innates(ABILITY_SHED_SKIN); }
     } WHEN {
         TURN;
     } SCENE {

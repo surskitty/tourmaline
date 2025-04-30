@@ -62,7 +62,7 @@ SINGLE_BATTLE_TEST("INNATE: Insomnia prevents sleep")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SPORE) == EFFECT_SLEEP);
-        PLAYER(SPECIES_DROWZEE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INSOMNIA); }
+        PLAYER(SPECIES_DROWZEE) { Ability(ABILITY_INSOMNIA); Innates(ABILITY_INSOMNIA); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SPORE); }
@@ -80,7 +80,7 @@ SINGLE_BATTLE_TEST("INNATE: Insomnia prevents yawn")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_YAWN) == EFFECT_YAWN);
-        PLAYER(SPECIES_DROWZEE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INSOMNIA); }
+        PLAYER(SPECIES_DROWZEE) { Ability(ABILITY_INSOMNIA); Innates(ABILITY_INSOMNIA); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_YAWN); }
@@ -100,7 +100,7 @@ SINGLE_BATTLE_TEST("INNATE: Insomnia prevents rest")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_REST) == EFFECT_REST);
-        PLAYER(SPECIES_DROWZEE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INSOMNIA); HP(1); }
+        PLAYER(SPECIES_DROWZEE) { Ability(ABILITY_INSOMNIA); Innates(ABILITY_INSOMNIA); HP(1); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_REST); }

@@ -31,7 +31,7 @@ SINGLE_BATTLE_TEST("ABILITY: Hydration doesn't cure status conditions if Cloud N
 SINGLE_BATTLE_TEST("INNATE: Hydration cures non-volatile Status conditions if it is raining")
 {
     GIVEN {
-        PLAYER(SPECIES_VAPOREON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_HYDRATION); Status1(STATUS1_BURN); }
+        PLAYER(SPECIES_VAPOREON) { Ability(ABILITY_WATER_ABSORB); Innates(ABILITY_HYDRATION); Status1(STATUS1_BURN); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_RAIN_DANCE); }
@@ -45,8 +45,8 @@ SINGLE_BATTLE_TEST("INNATE: Hydration cures non-volatile Status conditions if it
 SINGLE_BATTLE_TEST("INNATE: Hydration doesn't cure status conditions if Cloud Nine/Air Lock is on the field")
 {
     GIVEN {
-        PLAYER(SPECIES_VAPOREON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_HYDRATION); Status1(STATUS1_BURN); }
-        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CLOUD_NINE); }
+        PLAYER(SPECIES_VAPOREON) { Ability(ABILITY_WATER_ABSORB); Innates(ABILITY_HYDRATION); Status1(STATUS1_BURN); }
+        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_DAMP); Innates(ABILITY_CLOUD_NINE); }
     } WHEN {
         TURN { MOVE(player, MOVE_RAIN_DANCE); }
     } SCENE {

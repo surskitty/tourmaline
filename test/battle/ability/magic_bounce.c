@@ -139,7 +139,7 @@ SINGLE_BATTLE_TEST("INNATE: Magic Bounce bounces back status moves")
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
         PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MAGIC_BOUNCE); }
+        OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_SYNCHRONIZE); Innates(ABILITY_MAGIC_BOUNCE); }
     } WHEN {
         TURN { MOVE(player, MOVE_TOXIC); }
     } SCENE {
@@ -157,7 +157,7 @@ SINGLE_BATTLE_TEST("INNATE: Magic Bounce bounces back powder moves")
         ASSUME(IsPowderMove(MOVE_STUN_SPORE));
         ASSUME(GetMoveEffect(MOVE_STUN_SPORE) == EFFECT_PARALYZE);
         PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MAGIC_BOUNCE); }
+        OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_SYNCHRONIZE); Innates(ABILITY_MAGIC_BOUNCE); }
     } WHEN {
         TURN { MOVE(player, MOVE_STUN_SPORE); }
     } SCENE {
@@ -175,7 +175,7 @@ SINGLE_BATTLE_TEST("INNATE: Magic Bounce cannot bounce back powder moves against
         ASSUME(IsPowderMove(MOVE_STUN_SPORE));
         ASSUME(gSpeciesInfo[SPECIES_ODDISH].types[0] == TYPE_GRASS);
         PLAYER(SPECIES_ODDISH);
-        OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MAGIC_BOUNCE); }
+        OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_SYNCHRONIZE); Innates(ABILITY_MAGIC_BOUNCE); }
     } WHEN {
         TURN { MOVE(player, MOVE_STUN_SPORE); }
     } SCENE {
@@ -195,7 +195,7 @@ DOUBLE_BATTLE_TEST("INNATE: Magic Bounce bounces back moves hitting both foes at
         ASSUME(GetMoveTarget(MOVE_LEER) == MOVE_TARGET_BOTH);
         PLAYER(SPECIES_ABRA);
         PLAYER(SPECIES_KADABRA);
-        OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MAGIC_BOUNCE); }
+        OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_SYNCHRONIZE); Innates(ABILITY_MAGIC_BOUNCE); }
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_LEER); }
@@ -227,8 +227,8 @@ DOUBLE_BATTLE_TEST("INNATE: Magic Bounce bounces back moves hitting foes field")
         ASSUME(GetMoveTarget(MOVE_STEALTH_ROCK) == MOVE_TARGET_OPPONENTS_FIELD);
         PLAYER(SPECIES_ABRA);
         PLAYER(SPECIES_KADABRA);
-        OPPONENT(battlerOne) { Ability(ABILITY_LIGHT_METAL); Innates(abilityBattlerOne); }
-        OPPONENT(battlerTwo) { Ability(ABILITY_LIGHT_METAL); Innates(abilityBattlerTwo); }
+        OPPONENT(battlerOne) { Ability(ABILITY_KEEN_EYE); Innates(abilityBattlerOne); }
+        OPPONENT(battlerTwo) { Ability(ABILITY_SYNCHRONIZE); Innates(abilityBattlerTwo); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_STEALTH_ROCK); }
     } SCENE {
@@ -251,8 +251,8 @@ SINGLE_BATTLE_TEST("INNATE: Magic Bounce bounced back status moves can not be bo
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
-        PLAYER(SPECIES_ESPEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MAGIC_BOUNCE); }
-        OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MAGIC_BOUNCE); }
+        PLAYER(SPECIES_ESPEON) { Ability(ABILITY_SYNCHRONIZE); Innates(ABILITY_MAGIC_BOUNCE); }
+        OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_SYNCHRONIZE); Innates(ABILITY_MAGIC_BOUNCE); }
     } WHEN {
         TURN { MOVE(player, MOVE_TOXIC); }
     } SCENE {

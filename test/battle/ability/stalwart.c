@@ -57,7 +57,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Stalwart stops Lightning Rod and Storm Drain from r
 DOUBLE_BATTLE_TEST("INNATE: Stalwart ignores redirection from Follow-Me")
 {
     GIVEN {
-        PLAYER(SPECIES_ARCHALUDON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STALWART); }
+        PLAYER(SPECIES_ARCHALUDON) { Ability(ABILITY_STURDY); Innates(ABILITY_STALWART); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -73,15 +73,15 @@ DOUBLE_BATTLE_TEST("INNATE: Stalwart ignores redirection from Follow-Me")
 
 DOUBLE_BATTLE_TEST("INNATE: Stalwart stops Lightning Rod and Storm Drain from redirecting moves")
 {
-    u32 ability, species;
-    PARAMETRIZE { ability = ABILITY_STORM_DRAIN; species = SPECIES_LUMINEON; }
-    PARAMETRIZE { ability = ABILITY_LIGHTNING_ROD; species = SPECIES_RAICHU; }
+    u32 ability, innate, species;
+    PARAMETRIZE { ability = ABILITY_SWIFT_SWIM; innate = ABILITY_STORM_DRAIN; species = SPECIES_LUMINEON; }
+    PARAMETRIZE { ability = ABILITY_STATIC; innate = ABILITY_LIGHTNING_ROD; species = SPECIES_RAICHU; }
     GIVEN {
         ASSUME(GetMoveType(MOVE_SPARK) == TYPE_ELECTRIC);
         ASSUME(GetMoveType(MOVE_WATER_GUN) == TYPE_WATER);
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STALWART); }
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_STALWART); }
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(species) { Ability(ability); Innates(innate); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {
@@ -94,7 +94,7 @@ DOUBLE_BATTLE_TEST("INNATE: Stalwart stops Lightning Rod and Storm Drain from re
         if (B_REDIRECT_ABILITY_IMMUNITY >= GEN_5) {
             HP_BAR(opponentRight);
             NONE_OF {
-                ABILITY_POPUP(opponentLeft, ability);
+                ABILITY_POPUP(opponentLeft, innate);
                 ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
                 MESSAGE("The opposing Raichu's Sp. Atk rose!");
             }

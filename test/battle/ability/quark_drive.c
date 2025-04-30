@@ -290,7 +290,7 @@ SINGLE_BATTLE_TEST("INNATE: Quark Drive activates on switch-in")
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_IRON_MOTH) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_QUARK_DRIVE); }
-        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ELECTRIC_SURGE); };
+        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_ELECTRIC_SURGE); };
     } WHEN {
         TURN { SWITCH(player, 1); }
     } SCENE {
@@ -306,7 +306,7 @@ SINGLE_BATTLE_TEST("INNATE: Quark Drive activates on Electric Terrain even if no
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_IRON_JUGULIS].types[0] == TYPE_FLYING || gSpeciesInfo[SPECIES_IRON_JUGULIS].types[1] == TYPE_FLYING);
         PLAYER(SPECIES_IRON_JUGULIS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_QUARK_DRIVE); }
-        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ELECTRIC_SURGE); };
+        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_ELECTRIC_SURGE); };
     } WHEN {
         TURN { }
     } SCENE {
@@ -319,7 +319,7 @@ SINGLE_BATTLE_TEST("INNATE: Quark Drive boosts Attack 1st in case of a stat tie"
 {
     GIVEN {
         PLAYER(SPECIES_IRON_TREADS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_QUARK_DRIVE); Attack(5); Defense(5); SpAttack(5); SpDefense(5); Speed(5); }
-        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ELECTRIC_SURGE); Speed(5); }
+        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_ELECTRIC_SURGE); Speed(5); }
     } WHEN {
         TURN { }
     } SCENE {
@@ -333,7 +333,7 @@ SINGLE_BATTLE_TEST("INNATE: Quark Drive boosts Defense 2nd in case of a stat tie
 {
     GIVEN {
         PLAYER(SPECIES_IRON_TREADS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_QUARK_DRIVE); Attack(4); Defense(5); SpAttack(5); SpDefense(5); Speed(5); }
-        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ELECTRIC_SURGE); Speed(5); }
+        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_ELECTRIC_SURGE); Speed(5); }
     } WHEN {
         TURN { }
     } SCENE {
@@ -347,7 +347,7 @@ SINGLE_BATTLE_TEST("INNATE: Quark Drive boosts Special Attack 3rd in case of a s
 {
     GIVEN {
         PLAYER(SPECIES_IRON_TREADS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_QUARK_DRIVE); Attack(4); Defense(4); SpAttack(5); SpDefense(5); Speed(5); }
-        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ELECTRIC_SURGE); Speed(5); }
+        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_ELECTRIC_SURGE); Speed(5); }
     } WHEN {
         TURN { }
     } SCENE {
@@ -361,7 +361,7 @@ SINGLE_BATTLE_TEST("INNATE: Quark Drive boosts Special Defense 4th in case of a 
 {
     GIVEN {
         PLAYER(SPECIES_IRON_TREADS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_QUARK_DRIVE); Attack(4); Defense(4); SpAttack(4); SpDefense(5); Speed(5); }
-        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ELECTRIC_SURGE); Speed(5); }
+        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_ELECTRIC_SURGE); Speed(5); }
     } WHEN {
         TURN { }
     } SCENE {
@@ -376,7 +376,7 @@ SINGLE_BATTLE_TEST("INNATE: Quark Drive activates in Electric Terrain before Boo
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_IRON_TREADS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_QUARK_DRIVE); Item(ITEM_BOOSTER_ENERGY); }
-        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ELECTRIC_SURGE); }
+        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_ELECTRIC_SURGE); }
     } WHEN {
         TURN { SWITCH(player, 1); }
     } SCENE {
@@ -392,7 +392,7 @@ SINGLE_BATTLE_TEST("INNATE: Quark Drive doesn't activate for a transformed battl
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_IRON_TREADS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_QUARK_DRIVE); Item(ITEM_BOOSTER_ENERGY); }
-        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ELECTRIC_SURGE); Item(ITEM_BOOSTER_ENERGY); }
+        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_ELECTRIC_SURGE); Item(ITEM_BOOSTER_ENERGY); }
     } WHEN {
         TURN { SWITCH(player, 1); MOVE(opponent, MOVE_TRANSFORM); }
     } SCENE {

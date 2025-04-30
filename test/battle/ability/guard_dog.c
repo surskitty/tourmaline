@@ -33,9 +33,9 @@ SINGLE_BATTLE_TEST("INNATE: Guard Dog raises Attack when intimidated", s16 damag
     PARAMETRIZE { ability = ABILITY_INTIMIDATE; }
     PARAMETRIZE { ability = ABILITY_SHED_SKIN; }
     GIVEN {
-        PLAYER(SPECIES_OKIDOGI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_GUARD_DOG); }
+        PLAYER(SPECIES_OKIDOGI) { Ability(ABILITY_TOXIC_CHAIN); Innates(ABILITY_GUARD_DOG); }
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_SHED_SKIN); Innates(ability); }
     } WHEN {
         TURN { SWITCH(opponent, 1); }
         TURN { MOVE(player, MOVE_TACKLE); }

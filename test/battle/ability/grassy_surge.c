@@ -17,7 +17,7 @@ SINGLE_BATTLE_TEST("ABILITY: Grassy Surge creates Grassy Terrain when entering t
 SINGLE_BATTLE_TEST("INNATE: Grassy Surge creates Grassy Terrain when entering the battle")
 {
     GIVEN {
-        PLAYER(SPECIES_TAPU_BULU) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_GRASSY_SURGE); }
+        PLAYER(SPECIES_TAPU_BULU) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_GRASSY_SURGE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {}

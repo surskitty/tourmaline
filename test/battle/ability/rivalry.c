@@ -107,7 +107,7 @@ SINGLE_BATTLE_TEST("INNATE: Rivalry increases power by x1.25 towards Pokémon of
     PARAMETRIZE { species = SPECIES_NIDOQUEEN; ability = ABILITY_RIVALRY; }
 
     GIVEN {
-        PLAYER(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(species) { Ability(ABILITY_POISON_POINT); Innates(ability); }
         OPPONENT(species);
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
@@ -129,7 +129,7 @@ SINGLE_BATTLE_TEST("INNATE: Rivalry decreases power by x0.75 towards Pokémon of
     PARAMETRIZE { species1 = SPECIES_NIDOQUEEN; species2 = SPECIES_NIDOKING; ability = ABILITY_RIVALRY; }
 
     GIVEN {
-        PLAYER(species1) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(species1) { Ability(ABILITY_POISON_POINT); Innates(ability); }
         OPPONENT(species2);
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
@@ -152,7 +152,7 @@ SINGLE_BATTLE_TEST("INNATE: Rivalry doesn't modify power if the attacker is gend
 
     GIVEN {
         PLAYER(SPECIES_PORYGON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_RIVALRY); } // No genderless mon naturally gets Rivalry
-        OPPONENT(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); };
+        OPPONENT(species) { Ability(ABILITY_POISON_POINT); Innates(ability); };
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
@@ -174,7 +174,7 @@ SINGLE_BATTLE_TEST("INNATE: Rivalry doesn't modify power if the target is gender
     PARAMETRIZE { species = SPECIES_NIDOQUEEN; ability = ABILITY_RIVALRY; }
 
     GIVEN {
-        PLAYER(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); };
+        PLAYER(species) { Ability(ABILITY_POISON_POINT); Innates(ability); };
         OPPONENT(SPECIES_PORYGON);
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }

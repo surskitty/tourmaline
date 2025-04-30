@@ -57,7 +57,7 @@ SINGLE_BATTLE_TEST("INNATE: Static inflicts paralysis on contact")
         ASSUME(MoveMakesContact(MOVE_TACKLE));
         ASSUME(!MoveMakesContact(MOVE_SWIFT));
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_PIKACHU) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STATIC); }
+        OPPONENT(SPECIES_PIKACHU) { Ability(ABILITY_LIGHTNING_ROD); Innates(ABILITY_STATIC); }
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
@@ -84,7 +84,7 @@ SINGLE_BATTLE_TEST("INNATE: Static triggers 30% of the time")
         ASSUME(B_ABILITY_TRIGGER_CHANCE >= GEN_4);
         ASSUME(MoveMakesContact(MOVE_TACKLE));
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_PIKACHU) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STATIC); }
+        OPPONENT(SPECIES_PIKACHU) { Ability(ABILITY_LIGHTNING_ROD); Innates(ABILITY_STATIC); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {

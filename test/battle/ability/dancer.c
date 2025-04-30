@@ -611,7 +611,7 @@ DOUBLE_BATTLE_TEST("INNATE: Dancer still activates after Red Card")
 DOUBLE_BATTLE_TEST("INNATE: Dancer still activate after Red Card even if blocked by Suction Cups")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SUCTION_CUPS); }
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_SUCTION_CUPS); }
         PLAYER(SPECIES_ORICORIO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DANCER); }
         PLAYER(SPECIES_CHANSEY);
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_RED_CARD); }

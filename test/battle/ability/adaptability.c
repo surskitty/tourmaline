@@ -72,7 +72,7 @@ SINGLE_BATTLE_TEST("INNATE: Adaptability increases same-type attack bonus from x
     PARAMETRIZE { ability = ABILITY_HYPER_CUTTER; }
     PARAMETRIZE { ability = ABILITY_ADAPTABILITY; }
     GIVEN {
-        PLAYER(SPECIES_CRAWDAUNT) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_CRAWDAUNT) { Ability(ABILITY_SHELL_ARMOR); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_WATER_GUN); }
@@ -92,7 +92,7 @@ SINGLE_BATTLE_TEST("INNATE: (TERA) Terastallizing into a different type with Ada
     PARAMETRIZE { tera = GIMMICK_NONE; }
     PARAMETRIZE { tera = GIMMICK_TERA; }
     GIVEN {
-        PLAYER(SPECIES_CRAWDAUNT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ADAPTABILITY); TeraType(TYPE_NORMAL); }
+        PLAYER(SPECIES_CRAWDAUNT) { Ability(ABILITY_SHELL_ARMOR); Innates(ABILITY_ADAPTABILITY); TeraType(TYPE_NORMAL); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_HEADBUTT, gimmick: tera); }
@@ -112,7 +112,7 @@ SINGLE_BATTLE_TEST("INNATE: (TERA) Terastallizing into the same type with Adapta
     PARAMETRIZE { tera = GIMMICK_NONE; }
     PARAMETRIZE { tera = GIMMICK_TERA; }
     GIVEN {
-        PLAYER(SPECIES_CRAWDAUNT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ADAPTABILITY); TeraType(TYPE_WATER); }
+        PLAYER(SPECIES_CRAWDAUNT) { Ability(ABILITY_SHELL_ARMOR); Innates(ABILITY_ADAPTABILITY); TeraType(TYPE_WATER); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_WATER_PULSE, gimmick: tera); }

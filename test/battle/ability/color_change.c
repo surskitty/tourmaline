@@ -192,7 +192,7 @@ SINGLE_BATTLE_TEST("INNATE: Color Change does not change the type of a dual-type
 {
     GIVEN {
         PLAYER(SPECIES_KECLEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COLOR_CHANGE); }
-        OPPONENT(SPECIES_SLOWBRO) { Innates(ABILITY_COLOR_CHANGE); }
+        OPPONENT(SPECIES_SLOWBRO) { Ability(ABILITY_OWN_TEMPO); Innates(ABILITY_COLOR_CHANGE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SKILL_SWAP); MOVE(player, MOVE_PSYCHO_CUT); }
     } SCENE {
@@ -209,7 +209,7 @@ SINGLE_BATTLE_TEST("INNATE: Color Change does not change the type of a dual-type
 {
     GIVEN {
         PLAYER(SPECIES_KECLEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COLOR_CHANGE); }
-        OPPONENT(SPECIES_SLOWBRO) { Innates(ABILITY_COLOR_CHANGE); }
+        OPPONENT(SPECIES_SLOWBRO) { Ability(ABILITY_OWN_TEMPO); Innates(ABILITY_COLOR_CHANGE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SKILL_SWAP); MOVE(player, MOVE_PSYCHO_CUT); }
     } SCENE {

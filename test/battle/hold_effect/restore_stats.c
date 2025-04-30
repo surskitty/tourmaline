@@ -222,7 +222,7 @@ SINGLE_BATTLE_TEST("INNATE: White Herb restores stats after Attack was lowered b
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_WHITE_HERB); }
-        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_SHED_SKIN); Innates(ABILITY_INTIMIDATE); }
     } WHEN {
         TURN { ; }
     } SCENE {
@@ -241,7 +241,7 @@ DOUBLE_BATTLE_TEST("INNATE: White Herb restores stats after Attack was lowered b
     GIVEN {
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_WHITE_HERB); }
         OPPONENT(SPECIES_WYNAUT) { Item(ITEM_WHITE_HERB); }
-        PLAYER(SPECIES_ARBOK) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
+        PLAYER(SPECIES_ARBOK) { Ability(ABILITY_SHED_SKIN); Innates(ABILITY_INTIMIDATE); }
         PLAYER(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { ; }
@@ -268,7 +268,7 @@ SINGLE_BATTLE_TEST("INNATE: White Herb restores stats after Attack was lowered b
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_WHITE_HERB); }
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_SHED_SKIN); Innates(ABILITY_INTIMIDATE); }
     } WHEN {
         TURN { SWITCH(opponent, 1); MOVE(player, MOVE_CLOSE_COMBAT); }
     } SCENE {
@@ -298,7 +298,7 @@ SINGLE_BATTLE_TEST("INNATE: White Herb wont have time to activate if it is knock
     GIVEN {
         ASSUME(MoveHasAdditionalEffect(MOVE_THIEF, MOVE_EFFECT_STEAL_ITEM) == TRUE);
         ASSUME(GetMoveEffect(MOVE_KNOCK_OFF) == EFFECT_KNOCK_OFF);
-        PLAYER(SPECIES_SLUGMA) {  Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WEAK_ARMOR); Item(ITEM_WHITE_HERB); }
+        PLAYER(SPECIES_SLUGMA) {  Ability(ABILITY_FLAME_BODY); Innates(ABILITY_WEAK_ARMOR); Item(ITEM_WHITE_HERB); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, move); }
@@ -327,8 +327,8 @@ SINGLE_BATTLE_TEST("INNATE: White Herb wont have time to activate if it is knock
 SINGLE_BATTLE_TEST("INNATE: White Herb wont have time to activate if Magician steals it")
 {
     GIVEN {
-        PLAYER(SPECIES_SLUGMA) {  Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WEAK_ARMOR); Item(ITEM_WHITE_HERB); }
-        OPPONENT(SPECIES_FENNEKIN) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MAGICIAN); }
+        PLAYER(SPECIES_SLUGMA) {  Ability(ABILITY_FLAME_BODY); Innates(ABILITY_WEAK_ARMOR); Item(ITEM_WHITE_HERB); }
+        OPPONENT(SPECIES_FENNEKIN) { Ability(ABILITY_BLAZE); Innates(ABILITY_MAGICIAN); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
@@ -359,7 +359,7 @@ SINGLE_BATTLE_TEST("INNATE: White Herb has correct interactions with Intimidate 
 
     GIVEN {
         PLAYER(species) { Ability(ability); Item(ITEM_WHITE_HERB); }
-        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_SHED_SKIN); Innates(ABILITY_INTIMIDATE); }
     } WHEN {
         TURN { ; }
     } SCENE {

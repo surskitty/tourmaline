@@ -182,7 +182,7 @@ DOUBLE_BATTLE_TEST("INNATE: Order Up increases a stat based on Tatsugiri's form"
         PLAYER(species) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); }
         PLAYER(SPECIES_DONDOZO);
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_VOLBEAT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PRANKSTER); };
+        OPPONENT(SPECIES_VOLBEAT) { Ability(ABILITY_ILLUMINATE); Innates(ABILITY_PRANKSTER); };
     } WHEN {
         TURN { MOVE(opponentRight, MOVE_HAZE); MOVE(playerRight, MOVE_ORDER_UP, target: opponentLeft); }
     } SCENE {
@@ -230,7 +230,7 @@ DOUBLE_BATTLE_TEST("INNATE: Order Up increases a stat based on Tatsugiri's form 
         PLAYER(species) { HP(1); Status1(STATUS1_POISON); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); }
         PLAYER(SPECIES_DONDOZO);
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_VOLBEAT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PRANKSTER); };
+        OPPONENT(SPECIES_VOLBEAT) { Ability(ABILITY_ILLUMINATE); Innates(ABILITY_PRANKSTER); };
     } WHEN {
         TURN { }
         TURN { MOVE(opponentRight, MOVE_HAZE); MOVE(playerRight, MOVE_ORDER_UP, target: opponentLeft); }
@@ -277,7 +277,7 @@ DOUBLE_BATTLE_TEST("INNATE: Order Up is boosted by Sheer Force without removing 
         PLAYER(SPECIES_DONDOZO) { Speed(10); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHEER_FORCE); }
         PLAYER(SPECIES_TATSUGIRI_CURLY) { Speed(9); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(8); }
-        OPPONENT(SPECIES_TAUROS) { Speed(21); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHEER_FORCE); }
+        OPPONENT(SPECIES_TAUROS) { Speed(21); Ability(ABILITY_ANGER_POINT); Innates(ABILITY_SHEER_FORCE); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_ORDER_UP, target: opponentLeft); }
     } SCENE {

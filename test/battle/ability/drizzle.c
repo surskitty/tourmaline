@@ -30,7 +30,7 @@ SINGLE_BATTLE_TEST("INNATE: Drizzle summons rain", s16 damage)
     PARAMETRIZE { ability = ABILITY_DAMP; }
 
     GIVEN {
-        PLAYER(SPECIES_POLITOED) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_POLITOED) { Ability(ABILITY_DAMP); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_BUBBLE); }

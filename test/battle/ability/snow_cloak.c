@@ -60,7 +60,7 @@ SINGLE_BATTLE_TEST("INNATE: Snow Cloak prevents damage from hail")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Innates(ABILITY_SNOW_CLOAK); }
-        OPPONENT(SPECIES_GLACEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SNOW_CLOAK); }
+        OPPONENT(SPECIES_GLACEON) { Ability(ABILITY_ICE_BODY); Innates(ABILITY_SNOW_CLOAK); }
     } WHEN {
         TURN { MOVE(player, MOVE_HAIL); MOVE(opponent, MOVE_SKILL_SWAP); }
     } SCENE {
@@ -73,7 +73,7 @@ SINGLE_BATTLE_TEST("INNATE: Snow Cloak increases evasion during hail")
     PASSES_RANDOMLY(4, 5, RNG_ACCURACY);
     GIVEN {
         ASSUME(GetMoveAccuracy(MOVE_POUND) == 100);
-        PLAYER(SPECIES_GLACEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SNOW_CLOAK); }
+        PLAYER(SPECIES_GLACEON) { Ability(ABILITY_ICE_BODY); Innates(ABILITY_SNOW_CLOAK); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_HAIL); }
@@ -87,8 +87,8 @@ SINGLE_BATTLE_TEST("INNATE: Snow Cloak doesn't increase evasion if Cloud Nine/Ai
 {
     PASSES_RANDOMLY(10, 10, RNG_ACCURACY);
     GIVEN {
-        PLAYER(SPECIES_GLACEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SNOW_CLOAK); }
-        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CLOUD_NINE); }
+        PLAYER(SPECIES_GLACEON) { Ability(ABILITY_ICE_BODY); Innates(ABILITY_SNOW_CLOAK); }
+        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_DAMP); Innates(ABILITY_CLOUD_NINE); }
     } WHEN {
         TURN { MOVE(player, MOVE_HAIL); MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
@@ -101,7 +101,7 @@ SINGLE_BATTLE_TEST("INNATE: Snow Cloak increases evasion during snow")
     PASSES_RANDOMLY(4, 5, RNG_ACCURACY);
     GIVEN {
         ASSUME(GetMoveAccuracy(MOVE_POUND) == 100);
-        PLAYER(SPECIES_GLACEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SNOW_CLOAK); }
+        PLAYER(SPECIES_GLACEON) { Ability(ABILITY_ICE_BODY); Innates(ABILITY_SNOW_CLOAK); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SNOWSCAPE); }

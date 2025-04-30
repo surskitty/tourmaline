@@ -150,7 +150,7 @@ SINGLE_BATTLE_TEST("INNATE: Explosion is blocked by Ability Damp")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DAMP); }
+        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_CLOUD_NINE); Innates(ABILITY_DAMP); }
     } WHEN {
         TURN { MOVE(player, MOVE_EXPLOSION); }
     } SCENE {
@@ -166,9 +166,9 @@ SINGLE_BATTLE_TEST("INNATE: Explosion is blocked by Ability Damp")
 DOUBLE_BATTLE_TEST("INNATE: Explosion boosted by Galvanize is correctly blocked by Volt Absorb")
 {
     GIVEN {
-        PLAYER(SPECIES_GEODUDE_ALOLA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_GALVANIZE); }
+        PLAYER(SPECIES_GEODUDE_ALOLA) { Ability(ABILITY_STURDY); Innates(ABILITY_GALVANIZE); }
         PLAYER(SPECIES_WYNAUT) { HP(1); }
-        OPPONENT(SPECIES_LANTURN) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_VOLT_ABSORB); }
+        OPPONENT(SPECIES_LANTURN) { Ability(ABILITY_ILLUMINATE); Innates(ABILITY_VOLT_ABSORB); }
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_EXPLOSION); }

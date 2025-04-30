@@ -50,7 +50,7 @@ SINGLE_BATTLE_TEST("INNATE: Dragon's Maw increases Dragon-type move damage", s16
         ASSUME(GetMoveType(MOVE_DRAGON_BREATH) == TYPE_DRAGON);
         ASSUME(GetMoveCategory(MOVE_DRAGON_CLAW) == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(GetMoveCategory(MOVE_DRAGON_BREATH) == DAMAGE_CATEGORY_SPECIAL);
-        PLAYER(SPECIES_REGIDRAGO) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_REGIDRAGO) { Ability(ABILITY_KLUTZ); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, move); }

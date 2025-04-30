@@ -6951,13 +6951,15 @@ u32 GetBattlerTrait(u8 battlerId, u8 traitNum){
         }
     }
     #endif
-    
+        
     if (traitNum == 0){
-        return GetBattlerAbility(battlerId);
+        {
         //DebugPrintf("ABILITY: %S", gAbilitiesInfo[GetBattlerAbility(battlerId)].name);
+        return GetBattlerAbility(battlerId);
+        }
     }
     else
-    {
+    { 
         // Load natural Innate if not a Test
         if (ability == -1)
             ability = GetSpeciesInnate(gBattleMons[battlerId].species, traitNum, gBattleMons[battlerId].personality, isEnemyMon);

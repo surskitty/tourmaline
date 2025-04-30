@@ -109,7 +109,7 @@ SINGLE_BATTLE_TEST("INNATE: Mummy/Lingering Aroma replace the attacker's ability
         ASSUME(MoveMakesContact(MOVE_AQUA_JET));
         ASSUME(!MoveMakesContact(MOVE_WATER_GUN));
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(species) { Ability(ABILITY_GLUTTONY); Innates(ability); }
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {

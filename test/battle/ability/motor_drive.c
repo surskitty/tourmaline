@@ -17,7 +17,7 @@ SINGLE_BATTLE_TEST("INNATE: Motor Drive absorbs status moves")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_EMOLGA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MOTOR_DRIVE); }
+        OPPONENT(SPECIES_EMOLGA) { Ability(ABILITY_STATIC); Innates(ABILITY_MOTOR_DRIVE); }
     } WHEN {
         TURN { MOVE(player, MOVE_THUNDER_WAVE); }
     } SCENE {

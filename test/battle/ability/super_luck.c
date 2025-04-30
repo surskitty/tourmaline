@@ -35,7 +35,7 @@ SINGLE_BATTLE_TEST("INNATE: Super Luck increases the critical hit ratio by 1 sta
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_TOGEPI].baseSpeed == 20);
         WITH_CONFIG(GEN_CONFIG_CRIT_CHANCE, genConfig);
-        PLAYER(SPECIES_TOGEPI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SUPER_LUCK); };
+        PLAYER(SPECIES_TOGEPI) { Ability(ABILITY_SERENE_GRACE); Innates(ABILITY_SUPER_LUCK); };
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }

@@ -52,7 +52,7 @@ SINGLE_BATTLE_TEST("INNATE: Earth Eater heals 25% when hit by ground type moves"
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_MUD_SLAP) == TYPE_GROUND);
-        PLAYER(SPECIES_ORTHWORM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_EARTH_EATER); HP(1); MaxHP(100); }
+        PLAYER(SPECIES_ORTHWORM) { Ability(ABILITY_SAND_VEIL); Innates(ABILITY_EARTH_EATER); HP(1); MaxHP(100); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_MUD_SLAP); }
@@ -67,7 +67,7 @@ SINGLE_BATTLE_TEST("INNATE: Earth Eater does not activate if protected")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_MUD_SLAP) == TYPE_GROUND);
-        PLAYER(SPECIES_ORTHWORM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_EARTH_EATER); HP(1); MaxHP(100); }
+        PLAYER(SPECIES_ORTHWORM) { Ability(ABILITY_SAND_VEIL); Innates(ABILITY_EARTH_EATER); HP(1); MaxHP(100); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_PROTECT); MOVE(opponent, MOVE_MUD_SLAP); }
@@ -84,7 +84,7 @@ SINGLE_BATTLE_TEST("INNATE: Earth Eater activates on status moves")
     GIVEN {
         ASSUME(GetMoveType(MOVE_SAND_ATTACK) == TYPE_GROUND);
         ASSUME(GetMoveCategory(MOVE_SAND_ATTACK) == DAMAGE_CATEGORY_STATUS);
-        PLAYER(SPECIES_ORTHWORM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_EARTH_EATER); HP(1); MaxHP(100); }
+        PLAYER(SPECIES_ORTHWORM) { Ability(ABILITY_SAND_VEIL); Innates(ABILITY_EARTH_EATER); HP(1); MaxHP(100); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SAND_ATTACK); }

@@ -202,19 +202,20 @@ SINGLE_BATTLE_TEST("INNATE: Keen Eye, Gen9+ Illuminate & Minds Eye prevent accur
 {
     u16 ability;
     u32 species;
+    u16 innate;
 
-    PARAMETRIZE { species = SPECIES_HITMONCHAN; ability = ABILITY_KEEN_EYE; }
-    PARAMETRIZE { species = SPECIES_STARYU; ability = ABILITY_ILLUMINATE; }
-    PARAMETRIZE { species = SPECIES_URSALUNA_BLOODMOON; ability = ABILITY_MINDS_EYE; }
+    PARAMETRIZE { species = SPECIES_HITMONCHAN; ability = ABILITY_INNER_FOCUS; innate = ABILITY_KEEN_EYE; }
+    PARAMETRIZE { species = SPECIES_STARYU; ability = ABILITY_NATURAL_CURE; innate = ABILITY_ILLUMINATE; }
+    PARAMETRIZE { species = SPECIES_URSALUNA_BLOODMOON; ability = ABILITY_HEAVY_METAL; innate = ABILITY_MINDS_EYE; }
 
     PASSES_RANDOMLY(100, 100, RNG_ACCURACY);
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(species) { Ability(ability); Innates(innate); }
     } WHEN {
         TURN { MOVE(player, MOVE_SAND_ATTACK); MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
-        ABILITY_POPUP(opponent, ability);
+        ABILITY_POPUP(opponent, innate);
         NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         if (species == SPECIES_HITMONCHAN)
             MESSAGE("The opposing Hitmonchan's Keen Eye prevents accuracy loss!");
@@ -230,16 +231,17 @@ SINGLE_BATTLE_TEST("INNATE: Keen Eye, Gen9+ Illuminate & Minds Eye ignore target
 {
     u16 ability;
     u32 species;
+    u16 innate;
 
-    PARAMETRIZE { species = SPECIES_HITMONCHAN; ability = ABILITY_KEEN_EYE; }
-    PARAMETRIZE { species = SPECIES_STARYU; ability = ABILITY_ILLUMINATE; }
-    PARAMETRIZE { species = SPECIES_URSALUNA_BLOODMOON; ability = ABILITY_MINDS_EYE; }
+    PARAMETRIZE { species = SPECIES_HITMONCHAN; ability = ABILITY_INNER_FOCUS; innate = ABILITY_KEEN_EYE; }
+    PARAMETRIZE { species = SPECIES_STARYU; ability = ABILITY_NATURAL_CURE; innate = ABILITY_ILLUMINATE; }
+    PARAMETRIZE { species = SPECIES_URSALUNA_BLOODMOON; ability = ABILITY_HEAVY_METAL; innate = ABILITY_MINDS_EYE; }
 
     PASSES_RANDOMLY(100, 100, RNG_ACCURACY);
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_DOUBLE_TEAM) == EFFECT_EVASION_UP);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(species) { Ability(ability); Innates(innate); }
     } WHEN {
         TURN { MOVE(player, MOVE_DOUBLE_TEAM); MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
@@ -251,7 +253,7 @@ SINGLE_BATTLE_TEST("INNATE: Keen Eye, Gen9+ Illuminate & Minds Eye ignore target
 
 SINGLE_BATTLE_TEST("INNATE: Keen Eye, Gen9+ Illuminate & Minds Eye are ignored by Mold Breaker abilities")
 {
-    u16 abilityPlayer = ABILITY_NONE, abilityOpponent = ABILITY_NONE;
+    u16 abilityPlayer = ABILITY_NONE, abilityOpponent = ABILITY_NONE, innateOpponent = ABILITY_NONE;
     u16 speciesPlayer = SPECIES_NONE, speciesOpponent = SPECIES_NONE;
 
     u32 j;
@@ -263,15 +265,15 @@ SINGLE_BATTLE_TEST("INNATE: Keen Eye, Gen9+ Illuminate & Minds Eye are ignored b
 
     for (j = 0; j < ARRAY_COUNT(moldBreakerAbilities); j++) {
         speciesPlayer = moldBreakerAbilities[j][0]; abilityPlayer = moldBreakerAbilities[j][1];
-        PARAMETRIZE { speciesOpponent = SPECIES_HITMONCHAN; abilityOpponent = ABILITY_KEEN_EYE; }
-        PARAMETRIZE { speciesOpponent = SPECIES_STARYU; abilityOpponent = ABILITY_ILLUMINATE; }
-        PARAMETRIZE { speciesOpponent = SPECIES_URSALUNA_BLOODMOON; abilityOpponent = ABILITY_MINDS_EYE; }
+        PARAMETRIZE { speciesOpponent = SPECIES_HITMONCHAN; abilityOpponent = ABILITY_INNER_FOCUS; innateOpponent = ABILITY_KEEN_EYE; }
+        PARAMETRIZE { speciesOpponent = SPECIES_STARYU; abilityOpponent = ABILITY_NATURAL_CURE; innateOpponent = ABILITY_ILLUMINATE; }
+        PARAMETRIZE { speciesOpponent = SPECIES_URSALUNA_BLOODMOON; abilityOpponent = ABILITY_HEAVY_METAL; innateOpponent = ABILITY_MINDS_EYE; }
     }
 
     PASSES_RANDOMLY(GetMoveAccuracy(MOVE_TACKLE) * 3 / 4, 100, RNG_ACCURACY);
     GIVEN {
         PLAYER(speciesPlayer) { Ability(ABILITY_LIGHT_METAL); Innates(abilityPlayer); }
-        OPPONENT(speciesOpponent) { Ability(ABILITY_LIGHT_METAL); Innates(abilityOpponent); }
+        OPPONENT(speciesOpponent) { Ability(abilityOpponent); Innates(innateOpponent); }
     } WHEN {
         TURN { MOVE(player, MOVE_SAND_ATTACK); MOVE(opponent, MOVE_TACKLE); }
     } SCENE {
@@ -286,16 +288,17 @@ SINGLE_BATTLE_TEST("INNATE: Keen Eye, Gen9+ Illuminate & Minds Eye don't prevent
 {
     u16 ability;
     u32 species;
+    u16 innate;
 
-    PARAMETRIZE { species = SPECIES_HITMONCHAN; ability = ABILITY_KEEN_EYE; }
-    PARAMETRIZE { species = SPECIES_STARYU; ability = ABILITY_ILLUMINATE; }
-    PARAMETRIZE { species = SPECIES_URSALUNA_BLOODMOON; ability = ABILITY_MINDS_EYE; }
+    PARAMETRIZE { species = SPECIES_HITMONCHAN; ability = ABILITY_INNER_FOCUS; innate = ABILITY_KEEN_EYE; }
+    PARAMETRIZE { species = SPECIES_STARYU; ability = ABILITY_NATURAL_CURE; innate = ABILITY_ILLUMINATE; }
+    PARAMETRIZE { species = SPECIES_URSALUNA_BLOODMOON; ability = ABILITY_HEAVY_METAL; innate = ABILITY_MINDS_EYE; }
 
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_HONE_CLAWS) == EFFECT_ATTACK_ACCURACY_UP);
         ASSUME(GetMoveEffect(MOVE_TOPSY_TURVY) == EFFECT_TOPSY_TURVY);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(species) { Ability(ability); Innates(innate); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_HONE_CLAWS); MOVE(player, MOVE_TOPSY_TURVY); }
     } SCENE {
@@ -326,15 +329,17 @@ SINGLE_BATTLE_TEST("INNATE: Keen Eye, Gen9+ Illuminate & Minds Eye don't prevent
 {
     u16 ability;
     u32 species;
-    PARAMETRIZE { species = SPECIES_HITMONCHAN; ability = ABILITY_KEEN_EYE; }
-    PARAMETRIZE { species = SPECIES_STARYU; ability = ABILITY_ILLUMINATE; }
-    PARAMETRIZE { species = SPECIES_URSALUNA_BLOODMOON; ability = ABILITY_MINDS_EYE; }
+    u16 innate;
+
+    PARAMETRIZE { species = SPECIES_HITMONCHAN; ability = ABILITY_INNER_FOCUS; innate = ABILITY_KEEN_EYE; }
+    PARAMETRIZE { species = SPECIES_STARYU; ability = ABILITY_NATURAL_CURE; innate = ABILITY_ILLUMINATE; }
+    PARAMETRIZE { species = SPECIES_URSALUNA_BLOODMOON; ability = ABILITY_HEAVY_METAL; innate = ABILITY_MINDS_EYE; }
 
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_BATON_PASS) == EFFECT_BATON_PASS);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(species) { Ability(ability); Innates(innate); }
     } WHEN {
         TURN { MOVE(player, MOVE_SAND_ATTACK);
                MOVE(opponent, MOVE_BATON_PASS);
@@ -358,15 +363,16 @@ SINGLE_BATTLE_TEST("INNATE: Keen Eye & Gen9+ Illuminate don't prevent Spectral T
 {
     u16 ability;
     u32 species;
+    u16 innate;
 
-    PARAMETRIZE { species = SPECIES_HITMONCHAN; ability = ABILITY_KEEN_EYE; }
-    PARAMETRIZE { species = SPECIES_STARYU; ability = ABILITY_ILLUMINATE; }
+    PARAMETRIZE { species = SPECIES_HITMONCHAN; ability = ABILITY_INNER_FOCUS; innate = ABILITY_KEEN_EYE; }
+    PARAMETRIZE { species = SPECIES_STARYU; ability = ABILITY_NATURAL_CURE; innate = ABILITY_ILLUMINATE; }
 
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_HONE_CLAWS) == EFFECT_ATTACK_ACCURACY_UP);
         ASSUME(GetMoveEffect(MOVE_SPECTRAL_THIEF) == EFFECT_SPECTRAL_THIEF);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(species) { Ability(ability); Innates(innate); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_HONE_CLAWS); MOVE(player, MOVE_SPECTRAL_THIEF); }
     } SCENE {

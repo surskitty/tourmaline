@@ -314,7 +314,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Pickup doesn't trigger more than once per turn")
 SINGLE_BATTLE_TEST("INNATE: Pickup grants an item used by another Pokémon")
 {
     GIVEN {
-        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PICKUP); }
+        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_PICKUP); }
         OPPONENT(SPECIES_WOBBUFFET) { MaxHP(100); HP(51); Item(ITEM_SITRUS_BERRY); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
@@ -331,7 +331,7 @@ WILD_BATTLE_TEST("INNATE: Pickup grants an item used by itself in wild battles (
 {
     GIVEN {
         ASSUME(B_PICKUP_WILD >= GEN_9);
-        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PICKUP); MaxHP(100); HP(51); Item(ITEM_SITRUS_BERRY); }
+        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_PICKUP); MaxHP(100); HP(51); Item(ITEM_SITRUS_BERRY); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
@@ -348,7 +348,7 @@ SINGLE_BATTLE_TEST("INNATE: Pickup doesn't grant the user their item outside wil
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_ZIGZAGOON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PICKUP); MaxHP(500); HP(251); Item(ITEM_SITRUS_BERRY); }
+        OPPONENT(SPECIES_ZIGZAGOON) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_PICKUP); MaxHP(500); HP(251); Item(ITEM_SITRUS_BERRY); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {
@@ -366,7 +366,7 @@ SINGLE_BATTLE_TEST("INNATE: Pickup doesn't grant another Pokémon's popped Air B
 {
     GIVEN {
         ASSUME(gItemsInfo[ITEM_AIR_BALLOON].holdEffect == HOLD_EFFECT_AIR_BALLOON);
-        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PICKUP); }
+        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_PICKUP); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_AIR_BALLOON); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
@@ -385,7 +385,7 @@ SINGLE_BATTLE_TEST("INNATE: Pickup doesn't grant an item not used that turn")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PICKUP); }
+        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_PICKUP); }
         OPPONENT(SPECIES_WOBBUFFET) { MaxHP(100); HP(51); Item(ITEM_SITRUS_BERRY); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
@@ -405,7 +405,7 @@ SINGLE_BATTLE_TEST("INNATE: Pickup doesn't grant an item not used that turn")
 SINGLE_BATTLE_TEST("INNATE: Pickup doesn't grant an item after its holder faints")
 {
     GIVEN {
-        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PICKUP); }
+        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_PICKUP); }
         OPPONENT(SPECIES_WOBBUFFET) { MaxHP(100); HP(51); Item(ITEM_SITRUS_BERRY); }
         OPPONENT(SPECIES_WOBBUFFET) { MaxHP(100); HP(51); Item(ITEM_SITRUS_BERRY); }
     } WHEN {
@@ -426,7 +426,7 @@ SINGLE_BATTLE_TEST("INNATE: Pickup doesn't grant an used item if holder is repla
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_PARTING_SHOT) == EFFECT_PARTING_SHOT);
         PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PICKUP); }
+        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_PICKUP); }
         OPPONENT(SPECIES_WOBBUFFET) { MaxHP(300); HP(151); Item(ITEM_SITRUS_BERRY); }
         OPPONENT(SPECIES_WOBBUFFET) { MaxHP(300); HP(151); Item(ITEM_SITRUS_BERRY); }
     } WHEN {
@@ -450,7 +450,7 @@ SINGLE_BATTLE_TEST("INNATE: Pickup doesn't grant an item if it destroyed the ite
 {
     GIVEN {
         ASSUME(MoveHasAdditionalEffect(MOVE_INCINERATE, MOVE_EFFECT_INCINERATE));
-        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PICKUP); }
+        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_PICKUP); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_SITRUS_BERRY); }
     } WHEN {
         TURN { MOVE(player, MOVE_INCINERATE); }
@@ -469,7 +469,7 @@ SINGLE_BATTLE_TEST("INNATE: Pickup doesn't grant an item if it knocked off that 
 {
     GIVEN {
         ASSUME(MoveHasAdditionalEffect(MOVE_KNOCK_OFF, MOVE_EFFECT_KNOCK_OFF));
-        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PICKUP); }
+        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_PICKUP); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_SITRUS_BERRY); }
     } WHEN {
         TURN { MOVE(player, MOVE_KNOCK_OFF); }
@@ -488,7 +488,7 @@ SINGLE_BATTLE_TEST("INNATE: Pickup doesn't grant an item if the user eats it wit
 {
     GIVEN {
         ASSUME(MoveHasAdditionalEffect(MOVE_BUG_BITE, MOVE_EFFECT_BUG_BITE));
-        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PICKUP); }
+        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_PICKUP); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_SITRUS_BERRY); }
     } WHEN {
         TURN { MOVE(player, MOVE_BUG_BITE); }
@@ -507,7 +507,7 @@ SINGLE_BATTLE_TEST("INNATE: Pickup doesn't grant an used item if its user alread
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_RECYCLE) == EFFECT_RECYCLE);
-        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PICKUP); }
+        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_PICKUP); }
         OPPONENT(SPECIES_WOBBUFFET) { MaxHP(100); HP(51); Item(ITEM_SITRUS_BERRY); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); MOVE(opponent, MOVE_RECYCLE); }
@@ -527,7 +527,7 @@ SINGLE_BATTLE_TEST("INNATE: Pickup restores an item that has been Flinged")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_FLING) == EFFECT_FLING);
-        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PICKUP); }
+        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_PICKUP); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_SITRUS_BERRY); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_FLING); }
@@ -544,7 +544,7 @@ SINGLE_BATTLE_TEST("INNATE: Pickup restores an item that was used by Natural Gif
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_NATURAL_GIFT) == EFFECT_NATURAL_GIFT);
-        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PICKUP); }
+        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_PICKUP); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_SITRUS_BERRY); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_NATURAL_GIFT); }
@@ -560,10 +560,10 @@ SINGLE_BATTLE_TEST("INNATE: Pickup restores an item that was used by Natural Gif
 DOUBLE_BATTLE_TEST("INNATE: Pickup triggers based on Speed order")
 {
     GIVEN {
-        PLAYER(SPECIES_ZIGZAGOON) { Speed(1); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PICKUP); }
+        PLAYER(SPECIES_ZIGZAGOON) { Speed(1); Ability(ABILITY_QUICK_FEET); Innates(ABILITY_PICKUP); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(2); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(3); MaxHP(100); HP(51); Item(ITEM_SITRUS_BERRY); }
-        OPPONENT(SPECIES_ZIGZAGOON) { Speed(50); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PICKUP); }
+        OPPONENT(SPECIES_ZIGZAGOON) { Speed(50); Ability(ABILITY_QUICK_FEET); Innates(ABILITY_PICKUP); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_TACKLE, target: opponentLeft); }
     } SCENE {
@@ -581,7 +581,7 @@ DOUBLE_BATTLE_TEST("INNATE: Pickup grants a random item used by another Pokémon
     PASSES_RANDOMLY(1, 3, RNG_PICKUP);
     GIVEN {
         ASSUME(gItemsInfo[ITEM_WHITE_HERB].holdEffect == HOLD_EFFECT_RESTORE_STATS);
-        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PICKUP); }
+        PLAYER(SPECIES_ZIGZAGOON) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_PICKUP); }
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_WHITE_HERB); }
         OPPONENT(SPECIES_WOBBUFFET) { MaxHP(100); HP(51); Item(ITEM_SITRUS_BERRY); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_WHITE_HERB); }
@@ -598,7 +598,7 @@ DOUBLE_BATTLE_TEST("INNATE: Pickup grants a random item used by another Pokémon
 DOUBLE_BATTLE_TEST("INNATE: Pickup doesn't trigger more than once per turn")
 {
     GIVEN {
-        PLAYER(SPECIES_ZIGZAGOON) { HP(1); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PICKUP); }
+        PLAYER(SPECIES_ZIGZAGOON) { HP(1); Ability(ABILITY_QUICK_FEET); Innates(ABILITY_PICKUP); }
         PLAYER(SPECIES_WOBBUFFET) { MaxHP(100); HP(51); Item(ITEM_SITRUS_BERRY); }
         OPPONENT(SPECIES_WOBBUFFET) { MaxHP(100); HP(51); Item(ITEM_SITRUS_BERRY); }
         OPPONENT(SPECIES_WOBBUFFET) { MaxHP(100); HP(51); Item(ITEM_SITRUS_BERRY); }

@@ -117,7 +117,7 @@ SINGLE_BATTLE_TEST("INNATE: Protective Pads doesn't reduce tough claws damage", 
     PARAMETRIZE { item = ITEM_NONE; }
     PARAMETRIZE { item = ITEM_PROTECTIVE_PADS; }
     GIVEN {
-        PLAYER(SPECIES_BINACLE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TOUGH_CLAWS); Item(item); }
+        PLAYER(SPECIES_BINACLE) { Ability(ABILITY_SNIPER); Innates(ABILITY_TOUGH_CLAWS); Item(item); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }

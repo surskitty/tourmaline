@@ -294,7 +294,7 @@ SINGLE_BATTLE_TEST("INNATE: Imposter doesn't apply the heroic transformation mes
     GIVEN {
         PLAYER(SPECIES_PALAFIN_ZERO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ZERO_TO_HERO); }
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_DITTO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_IMPOSTER); }
+        OPPONENT(SPECIES_DITTO) { Ability(ABILITY_LIMBER); Innates(ABILITY_IMPOSTER); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { SWITCH(player, 1); SWITCH(opponent, 1); }

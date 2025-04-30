@@ -78,7 +78,7 @@ SINGLE_BATTLE_TEST("INNATE: Tangling Hair drops opposing mon's speed if ability 
 
     GIVEN {
         ASSUME(MoveMakesContact(MOVE_SWIFT) == FALSE);
-        PLAYER(SPECIES_DUGTRIO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TANGLING_HAIR); }
+        PLAYER(SPECIES_DUGTRIO) { Ability(ABILITY_SAND_VEIL); Innates(ABILITY_TANGLING_HAIR); }
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
         TURN { MOVE(opponent, move); }
@@ -96,7 +96,7 @@ SINGLE_BATTLE_TEST("INNATE: Tangling Hair does not cause Rocky Helmet miss activ
 {
     GIVEN {
         ASSUME(gItemsInfo[ITEM_ROCKY_HELMET].holdEffect == HOLD_EFFECT_ROCKY_HELMET);
-        PLAYER(SPECIES_DUGTRIO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TANGLING_HAIR); Item(ITEM_ROCKY_HELMET); }
+        PLAYER(SPECIES_DUGTRIO) { Ability(ABILITY_SAND_VEIL); Innates(ABILITY_TANGLING_HAIR); Item(ITEM_ROCKY_HELMET); }
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
@@ -113,8 +113,8 @@ SINGLE_BATTLE_TEST("INNATE: Tangling Hair does not cause Rocky Helmet miss activ
 SINGLE_BATTLE_TEST("INNATE: Tangling Hair Speed stat drop triggers defiant and keeps original attacker/target")
 {
     GIVEN {
-        PLAYER(SPECIES_DUGTRIO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TANGLING_HAIR); Item(ITEM_ROCKY_HELMET); }
-        OPPONENT(SPECIES_PAWNIARD) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DEFIANT); }
+        PLAYER(SPECIES_DUGTRIO) { Ability(ABILITY_SAND_VEIL); Innates(ABILITY_TANGLING_HAIR); Item(ITEM_ROCKY_HELMET); }
+        OPPONENT(SPECIES_PAWNIARD) { Ability(ABILITY_INNER_FOCUS); Innates(ABILITY_DEFIANT); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_TACKLE); }
     } SCENE {

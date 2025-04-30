@@ -157,7 +157,7 @@ SINGLE_BATTLE_TEST("INNATE: Octolock Defense reduction is prevented by Big Pecks
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_PIDGEY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_BIG_PECKS); }
+        OPPONENT(SPECIES_PIDGEY) { Ability(ABILITY_KEEN_EYE); Innates(ABILITY_BIG_PECKS); }
     } WHEN {
         TURN { MOVE(player, MOVE_OCTOLOCK); }
     } SCENE {
@@ -175,7 +175,7 @@ SINGLE_BATTLE_TEST("INNATE: Octolock triggers Defiant for both stat reductions")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_BISHARP) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DEFIANT); }
+        OPPONENT(SPECIES_BISHARP) { Ability(ABILITY_INNER_FOCUS); Innates(ABILITY_DEFIANT); }
     } WHEN {
         TURN { MOVE(player, MOVE_OCTOLOCK); }
     } SCENE {

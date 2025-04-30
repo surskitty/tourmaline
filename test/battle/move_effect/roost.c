@@ -448,7 +448,7 @@ SINGLE_BATTLE_TEST("INNATE: Roost suppresses the user's Flying-typing this turn,
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_SKARMORY].types[0] == TYPE_STEEL);
         ASSUME(gSpeciesInfo[SPECIES_SKARMORY].types[1] == TYPE_FLYING);
-        PLAYER(SPECIES_SKARMORY) { HP(50); MaxHP(100); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STURDY); }
+        PLAYER(SPECIES_SKARMORY) { HP(50); MaxHP(100); Ability(ABILITY_KEEN_EYE); Innates(ABILITY_STURDY); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_EARTHQUAKE); }
@@ -501,7 +501,7 @@ SINGLE_BATTLE_TEST("INNATE: Roost prevents a Flying-type user from being protect
 {
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_RAYQUAZA].types[1] == TYPE_FLYING);
-        PLAYER(SPECIES_RAYQUAZA) { HP(1); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DELTA_STREAM); }
+        PLAYER(SPECIES_RAYQUAZA) { HP(1); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_LIGHT_METAL); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); MOVE(opponent, MOVE_ICE_BEAM); }
@@ -520,7 +520,7 @@ SINGLE_BATTLE_TEST("INNATE: Roost's effect is lifted after Grassy Terrain's heal
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_SWELLOW].types[0] == TYPE_NORMAL);
         ASSUME(gSpeciesInfo[SPECIES_SWELLOW].types[1] == TYPE_FLYING);
-        PLAYER(SPECIES_SWELLOW) { HP(1); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_GRASSY_SURGE); }
+        PLAYER(SPECIES_SWELLOW) { HP(1); Ability(ABILITY_GUTS); Innates(ABILITY_GRASSY_SURGE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_ROOST); }

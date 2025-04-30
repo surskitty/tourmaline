@@ -45,7 +45,7 @@ SINGLE_BATTLE_TEST("INNATE: OHKO moves can hit semi-invulnerable mons when the u
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SHEER_COLD) == EFFECT_OHKO);
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NO_GUARD); }
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_NO_GUARD); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_FLY); }

@@ -53,7 +53,7 @@ WILD_BATTLE_TEST("INNATE: Poke Toy lets the player escape from a wild battle eve
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_DIGLETT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ARENA_TRAP); }
+        OPPONENT(SPECIES_DIGLETT) { Ability(ABILITY_SAND_VEIL); Innates(ABILITY_ARENA_TRAP); }
     } WHEN {
         TURN { USE_ITEM(player, ITEM_POKE_TOY); }
     } SCENE {

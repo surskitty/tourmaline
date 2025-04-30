@@ -138,7 +138,7 @@ SINGLE_BATTLE_TEST("INNATE: Stamina raises Defense by 1 when hit by a move")
         ASSUME(!IsBattleMoveStatus(MOVE_GUST));
         ASSUME(GetMoveCategory(MOVE_GUST) == DAMAGE_CATEGORY_SPECIAL);
         ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STAMINA); }
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_STAMINA); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, move); }
@@ -167,8 +167,8 @@ DOUBLE_BATTLE_TEST("INNATE: Stamina activates correctly for every battler with t
 
     GIVEN {
         ASSUME(GetMoveTarget(MOVE_EARTHQUAKE) == MOVE_TARGET_FOES_AND_ALLY);
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(abilityLeft); Speed(10); }
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(abilityRight); Speed(5); }
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(abilityLeft); Speed(10); }
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(abilityRight); Speed(5); }
         OPPONENT(SPECIES_WOBBUFFET) {Speed(20); }
         OPPONENT(SPECIES_WOBBUFFET) {Speed(15); }
     } WHEN {
@@ -203,7 +203,7 @@ SINGLE_BATTLE_TEST("INNATE: Stamina activates for every hit of a multi hit move"
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_MUDBRAY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STAMINA); }
+        OPPONENT(SPECIES_MUDBRAY) { Ability(ABILITY_OWN_TEMPO); Innates(ABILITY_STAMINA); }
     } WHEN {
         TURN { MOVE(player, MOVE_DOUBLE_KICK); }
     } SCENE {
@@ -219,7 +219,7 @@ SINGLE_BATTLE_TEST("INNATE: Stamina activates for every hit of a multi hit move"
 SINGLE_BATTLE_TEST("INNATE: Stamina is not activated by users own Substitute")
 {
     GIVEN {
-        PLAYER(SPECIES_MUDBRAY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STAMINA); }
+        PLAYER(SPECIES_MUDBRAY) { Ability(ABILITY_OWN_TEMPO); Innates(ABILITY_STAMINA); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_SUBSTITUTE); }

@@ -56,7 +56,7 @@ SINGLE_BATTLE_TEST("INNATE: Photon Geyser ignores ignorable Abilities like Battl
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_LAPRAS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SHELL_ARMOR); }
+        OPPONENT(SPECIES_LAPRAS) { Ability(ABILITY_WATER_ABSORB); Innates(ABILITY_SHELL_ARMOR); }
     } WHEN {
         TURN { MOVE(player, MOVE_PHOTON_GEYSER, criticalHit: TRUE); }
     } SCENE {

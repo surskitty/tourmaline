@@ -24,7 +24,7 @@ SINGLE_BATTLE_TEST("INNATE: Liquid voice turns a sound move into a Water-type mo
 {
     GIVEN {
         PLAYER(SPECIES_TYPHLOSION);
-        OPPONENT(SPECIES_PRIMARINA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_LIQUID_VOICE); }
+        OPPONENT(SPECIES_PRIMARINA) { Ability(ABILITY_TORRENT); Innates(ABILITY_LIQUID_VOICE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_HYPER_VOICE); }
     } SCENE {

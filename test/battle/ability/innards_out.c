@@ -138,7 +138,7 @@ SINGLE_BATTLE_TEST("INNATE: Innards Out deal dmg on fainting equal to the amount
     PARAMETRIZE { hp = 100; } // This takes out Wobbuffet.
 
     GIVEN {
-        PLAYER(SPECIES_PYUKUMUKU) { HP(hp); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INNARDS_OUT); }
+        PLAYER(SPECIES_PYUKUMUKU) { HP(hp); Ability(ABILITY_UNAWARE); Innates(ABILITY_INNARDS_OUT); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { HP(70); SpAttack(1000); }
         OPPONENT(SPECIES_WOBBUFFET);
@@ -158,9 +158,9 @@ SINGLE_BATTLE_TEST("INNATE: Innards Out deal dmg on fainting equal to the amount
 SINGLE_BATTLE_TEST("INNATE: Innards Out does not damage Magic Guard Pokemon")
 {
     GIVEN {
-        PLAYER(SPECIES_PYUKUMUKU) { HP(1); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INNARDS_OUT); }
+        PLAYER(SPECIES_PYUKUMUKU) { HP(1); Ability(ABILITY_UNAWARE); Innates(ABILITY_INNARDS_OUT); }
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_CLEFABLE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MAGIC_GUARD); }
+        OPPONENT(SPECIES_CLEFABLE) { Ability(ABILITY_UNAWARE); Innates(ABILITY_MAGIC_GUARD); }
         ASSUME(!IsBattleMoveStatus(MOVE_PSYCHIC));
     } WHEN {
         TURN { MOVE(opponent, MOVE_PSYCHIC); SEND_OUT(player, 1); }
@@ -176,7 +176,7 @@ SINGLE_BATTLE_TEST("INNATE: Innards Out uses correct damage amount for Future Si
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_FUTURE_SIGHT) == EFFECT_FUTURE_SIGHT);
-        PLAYER(SPECIES_PYUKUMUKU) { HP(1); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INNARDS_OUT); }
+        PLAYER(SPECIES_PYUKUMUKU) { HP(1); Ability(ABILITY_UNAWARE); Innates(ABILITY_INNARDS_OUT); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
@@ -196,7 +196,7 @@ SINGLE_BATTLE_TEST("INNATE: Innards Out doesn't trigger if Future Sight user is 
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_FUTURE_SIGHT) == EFFECT_FUTURE_SIGHT);
-        PLAYER(SPECIES_PYUKUMUKU) { HP(1); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INNARDS_OUT); }
+        PLAYER(SPECIES_PYUKUMUKU) { HP(1); Ability(ABILITY_UNAWARE); Innates(ABILITY_INNARDS_OUT); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
@@ -219,7 +219,7 @@ SINGLE_BATTLE_TEST("INNATE: Innards Out triggers if Future Sight user is back on
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_FUTURE_SIGHT) == EFFECT_FUTURE_SIGHT);
-        PLAYER(SPECIES_PYUKUMUKU) { HP(1); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INNARDS_OUT); }
+        PLAYER(SPECIES_PYUKUMUKU) { HP(1); Ability(ABILITY_UNAWARE); Innates(ABILITY_INNARDS_OUT); }
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {

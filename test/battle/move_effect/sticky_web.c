@@ -305,7 +305,7 @@ SINGLE_BATTLE_TEST("INNATE: Sticky Web raises Speed by 1 for a Pokemon with Cont
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_SHUCKLE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CONTRARY); }
+        OPPONENT(SPECIES_SHUCKLE) { Ability(ABILITY_STURDY); Innates(ABILITY_CONTRARY); }
     } WHEN {
         TURN { MOVE(player, MOVE_STICKY_WEB); }
         TURN { SWITCH(opponent, 1); }
@@ -335,7 +335,7 @@ DOUBLE_BATTLE_TEST("INNATE: Sticky Web has correct interactions with Mirror Armo
     GIVEN {
         PLAYER(SPECIES_SQUIRTLE);
         PLAYER(SPECIES_CHARMANDER);
-        PLAYER(SPECIES_CORVIKNIGHT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MIRROR_ARMOR); Item(ITEM_IRON_BALL); } // Iron Ball, so that flying type Corviknight is affected by Sticky Web.
+        PLAYER(SPECIES_CORVIKNIGHT) { Ability(ABILITY_PRESSURE); Innates(ABILITY_MIRROR_ARMOR); Item(ITEM_IRON_BALL); } // Iron Ball, so that flying type Corviknight is affected by Sticky Web.
         OPPONENT(SPECIES_CATERPIE);
         OPPONENT(SPECIES_WEEDLE);
     } WHEN {
@@ -380,7 +380,7 @@ DOUBLE_BATTLE_TEST("INNATE: Sticky Web has correct interactions with Mirror Armo
     GIVEN {
         PLAYER(SPECIES_SQUIRTLE) { Speed(speedPlayer); }
         PLAYER(SPECIES_CHARMANDER) { Speed(speedPlayer); }
-        PLAYER(SPECIES_CORVIKNIGHT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MIRROR_ARMOR); Item(ITEM_IRON_BALL); Speed(speedOpponent); } // Iron Ball, so that flying type Corviknight is affected by Sticky Web.
+        PLAYER(SPECIES_CORVIKNIGHT) { Ability(ABILITY_PRESSURE); Innates(ABILITY_MIRROR_ARMOR); Item(ITEM_IRON_BALL); Speed(speedOpponent); } // Iron Ball, so that flying type Corviknight is affected by Sticky Web.
         OPPONENT(SPECIES_CATERPIE) { Speed(speedOpponent); }
         OPPONENT(SPECIES_WEEDLE) { Speed(speedOpponent); }
         OPPONENT(SPECIES_PIDGEY) { Speed(speedOpponent); } // Flying type,so not affected by Sticky Web.
@@ -425,7 +425,7 @@ DOUBLE_BATTLE_TEST("INNATE: Sticky Web has correct interactions with Mirror Armo
         ASSUME(GetMoveEffect(MOVE_MEMENTO) == EFFECT_MEMENTO);
         PLAYER(SPECIES_SQUIRTLE) {Speed(5); }
         PLAYER(SPECIES_CHARMANDER) {Speed(5); }
-        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MIRROR_ARMOR); Item(ITEM_IRON_BALL); Speed(5); } // Iron Ball, so that flying type Corviknight is affected by Sticky Web.
+        PLAYER(SPECIES_CORVIKNIGHT) {Ability(ABILITY_PRESSURE); Innates(ABILITY_MIRROR_ARMOR); Item(ITEM_IRON_BALL); Speed(5); } // Iron Ball, so that flying type Corviknight is affected by Sticky Web.
         OPPONENT(SPECIES_CATERPIE) {Speed(7); }
         OPPONENT(SPECIES_WEEDLE) {Speed(7); }
         if (hasReplacement) {
@@ -469,7 +469,7 @@ DOUBLE_BATTLE_TEST("INNATE: Sticky Web setter has their speed lowered with Mirro
     GIVEN {
         PLAYER(SPECIES_SQUIRTLE);
         PLAYER(SPECIES_CHARMANDER);
-        PLAYER(SPECIES_CORVIKNIGHT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MIRROR_ARMOR); Item(ITEM_IRON_BALL); } // Iron Ball, so that flying type Corviknight is affected by Sticky Web.
+        PLAYER(SPECIES_CORVIKNIGHT) { Ability(ABILITY_PRESSURE); Innates(ABILITY_MIRROR_ARMOR); Item(ITEM_IRON_BALL); } // Iron Ball, so that flying type Corviknight is affected by Sticky Web.
         OPPONENT(SPECIES_CATERPIE);
         OPPONENT(SPECIES_NATU);
     } WHEN {

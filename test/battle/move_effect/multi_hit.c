@@ -290,7 +290,7 @@ SINGLE_BATTLE_TEST("INNATE: Multi hit Moves hit the maximum amount with Skill Li
     PASSES_RANDOMLY(100, 100, RNG_HITS);
 
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SKILL_LINK); };
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_SKILL_LINK); };
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_BULLET_SEED); }
@@ -313,7 +313,7 @@ SINGLE_BATTLE_TEST("INNATE: Scale Shot decreases defense and increases speed aft
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SCALE_SHOT) == EFFECT_MULTI_HIT);
         PLAYER(SPECIES_BAGON) { Item(item); }
-        OPPONENT(SPECIES_SLUGMA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WEAK_ARMOR); }
+        OPPONENT(SPECIES_SLUGMA) { Ability(ABILITY_FLAME_BODY); Innates(ABILITY_WEAK_ARMOR); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_SCALE_SHOT); SEND_OUT(opponent, 1); }

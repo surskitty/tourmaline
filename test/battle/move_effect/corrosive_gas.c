@@ -125,7 +125,7 @@ SINGLE_BATTLE_TEST("INNATE: Corrosive Gas doesn't destroy the item of a Pokemon 
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_MUK) {Item(ITEM_POISON_BARB); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STICKY_HOLD); }
+        OPPONENT(SPECIES_MUK) {Item(ITEM_POISON_BARB); Ability(ABILITY_STICKY_HOLD); Innates(ABILITY_STICKY_HOLD); }
     } WHEN {
         TURN { MOVE(player, MOVE_CORROSIVE_GAS); }
     } SCENE {

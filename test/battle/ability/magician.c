@@ -33,7 +33,7 @@ SINGLE_BATTLE_TEST("INNATE: Magician does not get self-damage recoil after steal
     GIVEN {
         ASSUME(gItemsInfo[ITEM_LIFE_ORB].holdEffect == HOLD_EFFECT_LIFE_ORB);
         ASSUME(!IsBattleMoveStatus(MOVE_TACKLE));
-        PLAYER(SPECIES_DELPHOX) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MAGICIAN); Item(ITEM_NONE); }
+        PLAYER(SPECIES_DELPHOX) { Ability(ABILITY_BLAZE); Innates(ABILITY_MAGICIAN); Item(ITEM_NONE); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_LIFE_ORB); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }

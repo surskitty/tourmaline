@@ -69,7 +69,7 @@ WILD_BATTLE_TEST("INNATE: Ion Deluge works the same way as always when used by a
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_LANTURN) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_VOLT_ABSORB); HP(1); }
+        OPPONENT(SPECIES_LANTURN) { Ability(ABILITY_ILLUMINATE); Innates(ABILITY_VOLT_ABSORB); HP(1); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_ION_DELUGE); }
     } SCENE {

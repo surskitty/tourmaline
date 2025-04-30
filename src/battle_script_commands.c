@@ -12623,15 +12623,15 @@ static u32 ChangeStatBuffs(s8 statValue, u32 statId, u32 flags, const u8 *BS_ptr
         {
             if (flags == STAT_CHANGE_ALLOW_PTR)
             {
-                if (SearchTraits(battlerTraits, ABILITY_KEEN_EYE))
+                if (SearchTraits(battlerTraits, ABILITY_KEEN_EYE) && statId == STAT_ACC)
                     battlerAbility = ABILITY_KEEN_EYE;
-                else if (SearchTraits(battlerTraits, ABILITY_MINDS_EYE))
+                else if (SearchTraits(battlerTraits, ABILITY_MINDS_EYE) && statId == STAT_ACC)
                     battlerAbility = ABILITY_MINDS_EYE;
-                else if (SearchTraits(battlerTraits, ABILITY_ILLUMINATE))
+                else if (SearchTraits(battlerTraits, ABILITY_ILLUMINATE) && statId == STAT_ACC)
                     battlerAbility = ABILITY_ILLUMINATE;
-                else if (SearchTraits(battlerTraits, ABILITY_HYPER_CUTTER))
+                else if (SearchTraits(battlerTraits, ABILITY_HYPER_CUTTER) && statId == STAT_ATK)
                     battlerAbility = ABILITY_HYPER_CUTTER;
-                else if (SearchTraits(battlerTraits, ABILITY_BIG_PECKS))
+                else if (SearchTraits(battlerTraits, ABILITY_BIG_PECKS)&& statId == STAT_DEF)
                     battlerAbility = ABILITY_BIG_PECKS;
                 BattleScriptPush(BS_ptr);
                 gBattleScripting.battler = battler;

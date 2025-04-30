@@ -234,8 +234,8 @@ SINGLE_BATTLE_TEST("INNATE: Hit Escape: U-turn switches the user out after Ice F
 SINGLE_BATTLE_TEST("INNATE: Hit Escape: Held items are consumed immediately after a mon switched in by U-turn and Intimidate activates after it: player side")
 {
     GIVEN {
-        PLAYER(SPECIES_TAPU_KOKO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ELECTRIC_SURGE); };
-        PLAYER(SPECIES_EKANS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); Item(ITEM_ELECTRIC_SEED); }
+        PLAYER(SPECIES_TAPU_KOKO) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_ELECTRIC_SURGE); };
+        PLAYER(SPECIES_EKANS) { Ability(ABILITY_SHED_SKIN); Innates(ABILITY_INTIMIDATE); Item(ITEM_ELECTRIC_SEED); }
         OPPONENT(SPECIES_WYNAUT) { HP(1); }
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
@@ -257,8 +257,8 @@ SINGLE_BATTLE_TEST("INNATE: Hit Escape: Held items are consumed immediately afte
 SINGLE_BATTLE_TEST("INNATE: Hit Escape: Held items are consumed immediately after a mon switched in by U-turn and Intimidate activates after it: opposing side")
 {
     GIVEN {
-        PLAYER(SPECIES_TAPU_KOKO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ELECTRIC_SURGE); };
-        PLAYER(SPECIES_EKANS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE);  }
+        PLAYER(SPECIES_TAPU_KOKO) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_ELECTRIC_SURGE); };
+        PLAYER(SPECIES_EKANS) { Ability(ABILITY_SHED_SKIN); Innates(ABILITY_INTIMIDATE);  }
         OPPONENT(SPECIES_WYNAUT) { HP(1); }
         OPPONENT(SPECIES_WYNAUT) { Item(ITEM_ELECTRIC_SEED); }
     } WHEN {
@@ -280,8 +280,8 @@ SINGLE_BATTLE_TEST("INNATE: Hit Escape: Held items are consumed immediately afte
 SINGLE_BATTLE_TEST("INNATE: Hit Escape: Electric Seed boost is received by the right pokemon after U-turn and Intimidate")
 {
     GIVEN {
-        PLAYER(SPECIES_TAPU_KOKO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ELECTRIC_SURGE); };
-        PLAYER(SPECIES_EKANS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); Item(ITEM_ELECTRIC_SEED); }
+        PLAYER(SPECIES_TAPU_KOKO) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_ELECTRIC_SURGE); };
+        PLAYER(SPECIES_EKANS) { Ability(ABILITY_SHED_SKIN); Innates(ABILITY_INTIMIDATE); Item(ITEM_ELECTRIC_SEED); }
         OPPONENT(SPECIES_WYNAUT);
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {

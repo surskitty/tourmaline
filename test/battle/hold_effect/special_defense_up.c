@@ -72,7 +72,7 @@ SINGLE_BATTLE_TEST("Apicot Berry raises Sp. Def by one stage when HP drops to 1/
 SINGLE_BATTLE_TEST("INNATE: Apicot Berry raises Sp. Def by one stage when HP drops to 1/2 or below if holder has Gluttony")
 {
     GIVEN {
-        PLAYER(SPECIES_BELLSPROUT) { MaxHP(80); HP(80); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_GLUTTONY); Item(ITEM_APICOT_BERRY); }
+        PLAYER(SPECIES_BELLSPROUT) { MaxHP(80); HP(80); Ability(ABILITY_CHLOROPHYLL); Innates(ABILITY_GLUTTONY); Item(ITEM_APICOT_BERRY); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_DRAGON_RAGE); }
@@ -88,7 +88,7 @@ SINGLE_BATTLE_TEST("INNATE: Apicot Berry raises Sp. Def by one stage when HP dro
 SINGLE_BATTLE_TEST("INNATE: Apicot Berry raises Sp. Def by one stage when HP drops to 1/4 or below if holder has Ripen")
 {
     GIVEN {
-        PLAYER(SPECIES_APPLIN) { MaxHP(160); HP(80); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_RIPEN); Item(ITEM_APICOT_BERRY); }
+        PLAYER(SPECIES_APPLIN) { MaxHP(160); HP(80); Ability(ABILITY_BULLETPROOF); Innates(ABILITY_RIPEN); Item(ITEM_APICOT_BERRY); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_DRAGON_RAGE); }

@@ -86,7 +86,7 @@ SINGLE_BATTLE_TEST("INNATE: Stench has a 10% chance to flinch")
     PASSES_RANDOMLY(1, 10, RNG_STENCH);
     GIVEN {
         ASSUME(GetMovePower(MOVE_TACKLE) > 0);
-        PLAYER(SPECIES_GRIMER) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STENCH); }
+        PLAYER(SPECIES_GRIMER) { Ability(ABILITY_LIQUID_OOZE); Innates(ABILITY_STENCH); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); MOVE(opponent, MOVE_CELEBRATE); }
@@ -102,7 +102,7 @@ SINGLE_BATTLE_TEST("INNATE: Stench does not stack with King's Rock")
         ASSUME(gItemsInfo[ITEM_KINGS_ROCK].holdEffect == HOLD_EFFECT_FLINCH);
         ASSUME(GetMovePower(MOVE_TACKLE) > 0);
 
-        PLAYER(SPECIES_GRIMER) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STENCH); Item(ITEM_KINGS_ROCK); }
+        PLAYER(SPECIES_GRIMER) { Ability(ABILITY_LIQUID_OOZE); Innates(ABILITY_STENCH); Item(ITEM_KINGS_ROCK); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); MOVE(opponent, MOVE_CELEBRATE); }
@@ -118,7 +118,7 @@ DOUBLE_BATTLE_TEST("INNATE: Stench only triggers if target takes damage")
         ASSUME(MoveHasAdditionalEffectWithChance(MOVE_FAKE_OUT, MOVE_EFFECT_FLINCH, 100));
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_GRIMER) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STENCH); }
+        OPPONENT(SPECIES_GRIMER) { Ability(ABILITY_LIQUID_OOZE); Innates(ABILITY_STENCH); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {
@@ -142,7 +142,7 @@ DOUBLE_BATTLE_TEST("INNATE: Stench doesn't trigger if partner uses a move")
         ASSUME(MoveHasAdditionalEffectWithChance(MOVE_FAKE_OUT, MOVE_EFFECT_FLINCH, 100));
         PLAYER(SPECIES_WOBBUFFET) { Speed(20); }
         PLAYER(SPECIES_WYNAUT) { Speed(10); }
-        OPPONENT(SPECIES_GRIMER) { Speed(100); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STENCH); }
+        OPPONENT(SPECIES_GRIMER) { Speed(100); Ability(ABILITY_LIQUID_OOZE); Innates(ABILITY_STENCH); }
         OPPONENT(SPECIES_WOBBUFFET) {Speed(50); }
     } WHEN {
         TURN {

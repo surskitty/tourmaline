@@ -399,7 +399,7 @@ SINGLE_BATTLE_TEST("INNATE: Intimidate (opponent) lowers player's attack after s
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_SHED_SKIN); Innates(ability); }
     } WHEN {
         TURN { SWITCH(opponent, 1); }
         TURN { MOVE(player, MOVE_TACKLE); }
@@ -424,7 +424,7 @@ SINGLE_BATTLE_TEST("INNATE: Intimidate (opponent) lowers player's attack after K
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Speed(2); }
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
-        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_LIGHT_METAL); Innates(ability); Speed(1); }
+        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_SHED_SKIN); Innates(ability); Speed(1); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); SEND_OUT(opponent, 1); }
         TURN { MOVE(player, MOVE_TACKLE); }
@@ -448,11 +448,11 @@ DOUBLE_BATTLE_TEST("INNATE: Intimidate doesn't activate on an empty field in a d
         ASSUME(GetMoveEffect(MOVE_EXPLOSION) == EFFECT_EXPLOSION);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET) { HP(1); }
-        PLAYER(SPECIES_EKANS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
+        PLAYER(SPECIES_EKANS) { Ability(ABILITY_UNNERVE); Innates(ABILITY_INTIMIDATE); }
         PLAYER(SPECIES_ABRA);
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
-        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_SHED_SKIN); Innates(ABILITY_INTIMIDATE); }
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_EXPLOSION); SEND_OUT(playerLeft, 2); SEND_OUT(opponentLeft, 2); SEND_OUT(playerRight, 3); SEND_OUT(opponentRight, 3); }
@@ -522,7 +522,7 @@ DOUBLE_BATTLE_TEST("INNATE: Intimidate activates on an empty slot")
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_CROAGUNK);
         PLAYER(SPECIES_WYNAUT);
-        PLAYER(SPECIES_HITMONTOP) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
+        PLAYER(SPECIES_HITMONTOP) { Ability(ABILITY_STEADFAST); Innates(ABILITY_INTIMIDATE); }
         OPPONENT(SPECIES_RALTS);
         OPPONENT(SPECIES_AZURILL);
     } WHEN {
@@ -556,9 +556,9 @@ DOUBLE_BATTLE_TEST("INNATE: Intimidate activates on an empty slot")
 DOUBLE_BATTLE_TEST("INNATE: Intimidate activates immediately after the mon was switched in as long as one opposing mon is alive")
 {
     GIVEN {
-        PLAYER(SPECIES_TAPU_KOKO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ELECTRIC_SURGE); };
+        PLAYER(SPECIES_TAPU_KOKO) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_ELECTRIC_SURGE); };
         PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_EKANS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); Item(ITEM_ELECTRIC_SEED); }
+        PLAYER(SPECIES_EKANS) { Ability(ABILITY_SHED_SKIN); Innates(ABILITY_INTIMIDATE); Item(ITEM_ELECTRIC_SEED); }
         OPPONENT(SPECIES_WYNAUT) { HP(1); }
         OPPONENT(SPECIES_WYNAUT);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -581,7 +581,7 @@ SINGLE_BATTLE_TEST("INNATE: Intimidate can not further lower opponents Atk stat 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_SHED_SKIN); Innates(ABILITY_INTIMIDATE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_CHARM); }
         TURN { MOVE(opponent, MOVE_CHARM); }
@@ -607,7 +607,7 @@ DOUBLE_BATTLE_TEST("INNATE: Intimidate is not going to trigger if a mon switches
     GIVEN {
         PLAYER(SPECIES_WYNAUT);
         PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_EKANS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
+        PLAYER(SPECIES_EKANS) { Ability(ABILITY_UNNERVE); Innates(ABILITY_INTIMIDATE); }
         OPPONENT(SPECIES_WYNAUT) { HP(1); }
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_TREECKO);
@@ -634,7 +634,7 @@ DOUBLE_BATTLE_TEST("INNATE: Intimidate is not going to trigger if a mon switches
 SINGLE_BATTLE_TEST("INNATE: Intimidate activates when it's no longer effected by Neutralizing Gas - switching out")
 {
     GIVEN {
-        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NEUTRALIZING_GAS); }
+        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LEVITATE); Innates(ABILITY_NEUTRALIZING_GAS); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_INTIMIDATE); }
     } WHEN {
@@ -659,7 +659,7 @@ SINGLE_BATTLE_TEST("INNATE: Intimidate activates when it's no longer affected by
         ASSUME(GetMoveEffect(MOVE_U_TURN) == EFFECT_HIT_ESCAPE);
         ASSUME(GetMoveEffect(MOVE_HEALING_WISH) == EFFECT_HEALING_WISH);
         ASSUME(GetMoveEffect(MOVE_BATON_PASS) == EFFECT_BATON_PASS);
-        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NEUTRALIZING_GAS); }
+        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LEVITATE); Innates(ABILITY_NEUTRALIZING_GAS); }
         PLAYER(SPECIES_WOBBUFFET) { HP(1); }
         OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_INTIMIDATE); }
     } WHEN {
@@ -690,7 +690,7 @@ SINGLE_BATTLE_TEST("INNATE: Intimidate activates when it's no longer affected by
         ASSUME(GetMoveEffect(MOVE_GROWL) == EFFECT_ATTACK_DOWN);
         ASSUME(GetMoveEffect(MOVE_ROAR) == EFFECT_ROAR);
         ASSUME(GetMoveEffect(MOVE_DRAGON_TAIL) == EFFECT_HIT_SWITCH_TARGET);
-        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NEUTRALIZING_GAS); Item(item); }
+        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LEVITATE); Innates(ABILITY_NEUTRALIZING_GAS); Item(item); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_INTIMIDATE); }
     } WHEN {
@@ -719,7 +719,7 @@ SINGLE_BATTLE_TEST("INNATE: Intimidate activates when it's no longer affected by
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_FELL_STINGER) == EFFECT_FELL_STINGER);
-        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NEUTRALIZING_GAS); HP(1); }
+        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LEVITATE); Innates(ABILITY_NEUTRALIZING_GAS); HP(1); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_INTIMIDATE); }
     } WHEN {
@@ -741,10 +741,10 @@ DOUBLE_BATTLE_TEST("INNATE: Intimidate will correctly decrease the attack of the
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_PACK); }
         PLAYER(SPECIES_WYNAUT);
-        PLAYER(SPECIES_WALKING_WAKE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PROTOSYNTHESIS); Item(ITEM_BOOSTER_ENERGY); }
+        PLAYER(SPECIES_WALKING_WAKE) { Ability(ABILITY_SHED_SKIN); Innates(ABILITY_PROTOSYNTHESIS); Item(ITEM_BOOSTER_ENERGY); }
         OPPONENT(SPECIES_WYNAUT);
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_EKANS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_EKANS) { Ability(ABILITY_UNNERVE); Innates(ABILITY_INTIMIDATE); }
     } WHEN {
         TURN { SWITCH(opponentLeft, 2); SEND_OUT(playerLeft, 2); }
     } SCENE {
@@ -767,7 +767,7 @@ SINGLE_BATTLE_TEST("INNATE: Intimdate does not lose timing after mega evolution 
         ASSUME(gMovesInfo[MOVE_U_TURN].effect == EFFECT_HIT_ESCAPE);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_MANECTRIC) { Item(ITEM_MANECTITE); }
-        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_SHED_SKIN); Innates(ABILITY_INTIMIDATE); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_U_TURN, gimmick: GIMMICK_MEGA); SEND_OUT(opponent, 1); }
     } SCENE {

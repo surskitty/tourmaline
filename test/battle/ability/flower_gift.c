@@ -243,13 +243,13 @@ SINGLE_BATTLE_TEST("INNATE: Flower Gift transforms Cherrim back to normal when w
 
 SINGLE_BATTLE_TEST("INNATE: Flower Gift transforms Cherrim back to normal under Cloud Nine/Air Lock")
 {
-    u32 species = 0, ability = 0;
-    PARAMETRIZE { species = SPECIES_PSYDUCK;  ability = ABILITY_CLOUD_NINE; }
-    PARAMETRIZE { species = SPECIES_RAYQUAZA; ability = ABILITY_AIR_LOCK; }
+    u32 species = 0, ability = 0, innate = 0;
+    PARAMETRIZE { species = SPECIES_PSYDUCK;  ability = ABILITY_DAMP; innate = ABILITY_CLOUD_NINE; }
+    PARAMETRIZE { species = SPECIES_RAYQUAZA; ability = ABILITY_AIR_LOCK; innate = ABILITY_AIR_LOCK; }
     GIVEN {
         PLAYER(SPECIES_CHERRIM_OVERCAST) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FLOWER_GIFT); }
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(species) { Ability(ability); Innates(innate); }
     } WHEN {
         TURN { MOVE(player, MOVE_SUNNY_DAY); }
         TURN { SWITCH(opponent, 1); }
@@ -259,7 +259,7 @@ SINGLE_BATTLE_TEST("INNATE: Flower Gift transforms Cherrim back to normal under 
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FORM_CHANGE, player);
         MESSAGE("Cherrim transformed!");
         // back to normal
-        ABILITY_POPUP(opponent, ability);
+        ABILITY_POPUP(opponent, innate);
         ABILITY_POPUP(player, ABILITY_FLOWER_GIFT);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FORM_CHANGE, player);
         MESSAGE("Cherrim transformed!");

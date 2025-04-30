@@ -244,7 +244,7 @@ SINGLE_BATTLE_TEST("INNATE: Berserk Gene does not confuse a Pokemon with Own Tem
     PARAMETRIZE { item = ITEM_BERSERK_GENE; }
     GIVEN {
         ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
-        PLAYER(SPECIES_SLOWBRO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_OWN_TEMPO); Item(item); }
+        PLAYER(SPECIES_SLOWBRO) { Ability(ABILITY_OBLIVIOUS); Innates(ABILITY_OWN_TEMPO); Item(item); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {
@@ -276,11 +276,11 @@ DOUBLE_BATTLE_TEST("INNATE: Berserk Gene does not confuse a Pokemon with Own Tem
     GIVEN {
         ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
         if (positionLeft) {
-            PLAYER(SPECIES_SLOWBRO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_OWN_TEMPO); Item(item); }
+            PLAYER(SPECIES_SLOWBRO) { Ability(ABILITY_OBLIVIOUS); Innates(ABILITY_OWN_TEMPO); Item(item); }
             PLAYER(SPECIES_WOBBUFFET);
         } else {
             PLAYER(SPECIES_WOBBUFFET);
-            PLAYER(SPECIES_SLOWBRO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_OWN_TEMPO); Item(item); }
+            PLAYER(SPECIES_SLOWBRO) { Ability(ABILITY_OBLIVIOUS); Innates(ABILITY_OWN_TEMPO); Item(item); }
         }
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -309,7 +309,7 @@ SINGLE_BATTLE_TEST("INNATE: Berserk Gene does not confuse on Misty Terrain but s
 {
     GIVEN {
         ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
-        PLAYER(SPECIES_TAPU_FINI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MISTY_SURGE); Item(ITEM_BERSERK_GENE); }
+        PLAYER(SPECIES_TAPU_FINI) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_MISTY_SURGE); Item(ITEM_BERSERK_GENE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {

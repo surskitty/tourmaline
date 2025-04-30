@@ -45,7 +45,7 @@ SINGLE_BATTLE_TEST("INNATE: Ice Scales halves the damage from special moves", s1
         ASSUME(GetMoveEffect(MOVE_PSYSHOCK) == EFFECT_PSYSHOCK);
         ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_FROSMOTH) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(SPECIES_FROSMOTH) { Ability(ABILITY_SHIELD_DUST); Innates(ability); }
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {

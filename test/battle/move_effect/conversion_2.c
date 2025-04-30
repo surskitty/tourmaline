@@ -209,7 +209,7 @@ SINGLE_BATTLE_TEST("Conversion 2 fails if the targeted move is Stellar Type")
 SINGLE_BATTLE_TEST("INNATE: Conversion 2's type change considers move types changed by Normalize and Electrify")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NORMALIZE); }
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_NORMALIZE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_ELECTRIFY); MOVE(opponent, MOVE_POUND); }

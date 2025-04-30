@@ -50,7 +50,7 @@ SINGLE_BATTLE_TEST("INNATE: Rocky Payload increases Rock-type move damage", s16 
         ASSUME(GetMoveType(MOVE_POWER_GEM) == TYPE_ROCK);
         ASSUME(GetMoveCategory(MOVE_ROCK_THROW) == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(GetMoveCategory(MOVE_POWER_GEM) == DAMAGE_CATEGORY_SPECIAL);
-        PLAYER(SPECIES_BOMBIRDIER) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        PLAYER(SPECIES_BOMBIRDIER) { Ability(ABILITY_KEEN_EYE); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, move); }

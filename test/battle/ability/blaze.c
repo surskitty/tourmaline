@@ -26,7 +26,7 @@ SINGLE_BATTLE_TEST("INNATE: Blaze boosts Fire-type moves in a pinch", s16 damage
     PARAMETRIZE { hp = 33; }
     GIVEN {
         ASSUME(GetMoveType(MOVE_EMBER) == TYPE_FIRE);
-        PLAYER(SPECIES_CHARMANDER) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_BLAZE); MaxHP(99); HP(hp); }
+        PLAYER(SPECIES_CHARMANDER) { Ability(ABILITY_SOLAR_POWER); Innates(ABILITY_BLAZE); MaxHP(99); HP(hp); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_EMBER); }

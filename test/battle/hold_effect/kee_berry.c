@@ -94,7 +94,7 @@ SINGLE_BATTLE_TEST("INNATE: Kee Berry raises the holder's Defense by two stages 
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_APPLIN) { Item(ITEM_KEE_BERRY); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_RIPEN); }
+        OPPONENT(SPECIES_APPLIN) { Item(ITEM_KEE_BERRY); Ability(ABILITY_BULLETPROOF); Innates(ABILITY_RIPEN); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {

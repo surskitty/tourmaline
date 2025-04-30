@@ -296,7 +296,7 @@ SINGLE_BATTLE_TEST("INNATE: Shell Bell activates after Rough Skin")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_SHELL_BELL); }
-        OPPONENT(SPECIES_GIBLE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ROUGH_SKIN); }
+        OPPONENT(SPECIES_GIBLE) { Ability(ABILITY_SAND_VEIL); Innates(ABILITY_ROUGH_SKIN); }
     } WHEN {
         TURN { MOVE(player, MOVE_TACKLE); }
     } SCENE {

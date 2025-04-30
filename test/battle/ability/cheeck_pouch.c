@@ -26,7 +26,7 @@ SINGLE_BATTLE_TEST("INNATE: Cheek Pouch activation doesn't mutate damage when re
     s16 healing;
 
     GIVEN {
-        PLAYER(SPECIES_GREEDENT) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CHEEK_POUCH); Item(ITEM_CHOPLE_BERRY); HP(100); }
+        PLAYER(SPECIES_GREEDENT) { Ability(ABILITY_GLUTTONY); Innates(ABILITY_CHEEK_POUCH); Item(ITEM_CHOPLE_BERRY); HP(100); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_KARATE_CHOP); }

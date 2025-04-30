@@ -108,7 +108,7 @@ SINGLE_BATTLE_TEST("INNATE: Roar fails against target with Guard Dog")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_OKIDOGI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_GUARD_DOG); }
+        OPPONENT(SPECIES_OKIDOGI) { Ability(ABILITY_TOXIC_CHAIN); Innates(ABILITY_GUARD_DOG); }
         OPPONENT(SPECIES_CHARMANDER);
     } WHEN {
         TURN { MOVE(player, MOVE_ROAR); }
@@ -126,7 +126,7 @@ SINGLE_BATTLE_TEST("INNATE: Roar fails to switch out target with Suction Cups")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_OCTILLERY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_SUCTION_CUPS); }
+        OPPONENT(SPECIES_OCTILLERY) { Ability(ABILITY_MOODY); Innates(ABILITY_SUCTION_CUPS); }
         OPPONENT(SPECIES_CHARMANDER);
     } WHEN {
         TURN { MOVE(player, MOVE_ROAR); }

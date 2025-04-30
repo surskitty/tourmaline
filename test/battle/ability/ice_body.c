@@ -60,7 +60,7 @@ SINGLE_BATTLE_TEST("INNATE: Ice Body prevents damage from hail")
     PARAMETRIZE { move = MOVE_SNOWSCAPE; }
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Innates(ABILITY_ICE_BODY); }
-        OPPONENT(SPECIES_GLALIE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ICE_BODY); }
+        OPPONENT(SPECIES_GLALIE) { Ability(ABILITY_INNER_FOCUS); Innates(ABILITY_ICE_BODY); }
     } WHEN {
         TURN { MOVE(player, move); MOVE(opponent, MOVE_SKILL_SWAP); }
     } SCENE {
@@ -74,7 +74,7 @@ SINGLE_BATTLE_TEST("INNATE: Ice Body recovers 1/16th of Max HP in hail.")
     PARAMETRIZE { move = MOVE_HAIL; }
     PARAMETRIZE { move = MOVE_SNOWSCAPE; }
     GIVEN {
-        PLAYER(SPECIES_GLALIE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ICE_BODY); HP(1); MaxHP(100); }
+        PLAYER(SPECIES_GLALIE) { Ability(ABILITY_INNER_FOCUS); Innates(ABILITY_ICE_BODY); HP(1); MaxHP(100); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, move); }
@@ -91,8 +91,8 @@ SINGLE_BATTLE_TEST("INNATE: Ice Body doesn't recover HP if Cloud Nine/Air Lock i
     PARAMETRIZE { move = MOVE_HAIL; }
     PARAMETRIZE { move = MOVE_SNOWSCAPE; }
     GIVEN {
-        PLAYER(SPECIES_GLALIE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ICE_BODY); HP(1); MaxHP(100); }
-        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CLOUD_NINE); }
+        PLAYER(SPECIES_GLALIE) { Ability(ABILITY_INNER_FOCUS); Innates(ABILITY_ICE_BODY); HP(1); MaxHP(100); }
+        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_DAMP); Innates(ABILITY_CLOUD_NINE); }
     } WHEN {
         TURN { MOVE(opponent, move); }
     } SCENE {

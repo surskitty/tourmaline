@@ -211,7 +211,7 @@ SINGLE_BATTLE_TEST("INNATE: Spicy Extract Defense loss is prevented by Big Pecks
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_PIDGEY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_BIG_PECKS); }
+        OPPONENT(SPECIES_PIDGEY) { Ability(ABILITY_KEEN_EYE); Innates(ABILITY_BIG_PECKS); }
     } WHEN {
         TURN { MOVE(player, MOVE_SPICY_EXTRACT); }
     } SCENE {
@@ -232,7 +232,7 @@ SINGLE_BATTLE_TEST("INNATE: Spicy Extract stat changes will be inverted by Contr
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_SNIVY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CONTRARY); }
+        OPPONENT(SPECIES_SNIVY) { Ability(ABILITY_OVERGROW); Innates(ABILITY_CONTRARY); }
     } WHEN {
         TURN { MOVE(player, MOVE_SPICY_EXTRACT); }
     } SCENE {
@@ -254,7 +254,7 @@ SINGLE_BATTLE_TEST("INNATE: Spicy Extract against Clear Amulet and Contrary rais
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_SNIVY) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CONTRARY); Item(ITEM_CLEAR_AMULET); }
+        OPPONENT(SPECIES_SNIVY) { Ability(ABILITY_OVERGROW); Innates(ABILITY_CONTRARY); Item(ITEM_CLEAR_AMULET); }
     } WHEN {
         TURN { MOVE(player, MOVE_SPICY_EXTRACT); }
     } SCENE {
