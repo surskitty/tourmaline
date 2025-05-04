@@ -423,7 +423,7 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
     s32 firstId;
     s32 lastId;
     struct Pokemon *party;
-    u16 monAbility, aiMove;
+    u16 aiMove; //monAbility
     u32 opposingBattler = GetOppositeBattler(battler);
     u32 incomingMove = AI_DATA->lastUsedMove[opposingBattler];
     u32 incomingType = GetMoveType(incomingMove);
@@ -436,11 +436,11 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
         return FALSE;
     if (gBattleStruct->prevTurnSpecies[battler] != gBattleMons[battler].species) // AI mon has changed, player's behaviour no longer reliable; note to override this if using AI_FLAG_PREDICT_MOVE
         return FALSE; 
+    
     if (HasSuperEffectiveMoveAgainstOpponents(battler, TRUE) && (RandomPercentage(RNG_AI_SWITCH_ABSORBING_STAY_IN, STAY_IN_ABSORBING_PERCENTAGE) || AI_DATA->aiSwitchPredictionInProgress))
         return FALSE;
     if (AreStatsRaised(battler))
         return FALSE;
-
     // Don't switch if mon could OHKO
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
@@ -455,7 +455,6 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
             }
         }
     }
-
     if (IsDoubleBattle())
     {
         battlerIn1 = battler;
@@ -469,7 +468,6 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
         battlerIn1 = battler;
         battlerIn2 = battler;
     }
-
     // Create an array of possible absorb abilities so the AI considers all of them
     if (predictedType == TYPE_FIRE)
     {
@@ -506,14 +504,15 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
     {
         return FALSE;
     }
-
     // Check current mon for all absorbing abilities
     for (i = 0; i < numAbsorbingAbilities; i++)
     {
-        if (gBattleMons[battler].ability == absorbingTypeAbilities[i])
-            return FALSE;
+        if (BattlerHasTrait(battler, absorbingTypeAbilities[i]))
+            {
+                
+                return FALSE;
+            }
     }
-
     // Check party for mon with ability that absorbs move
     GetAIPartyIndexes(battler, &firstId, &lastId);
     party = GetBattlerParty(battler);
@@ -533,12 +532,12 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
         if (IsAceMon(battler, i))
             continue;
 
-        monAbility = GetMonAbility(&party[i]);
+        //monAbility = GetMonAbility(&party[i]);
 
         for (j = 0; j < numAbsorbingAbilities; j++)
         {
             // Found a mon
-            if (absorbingTypeAbilities[j] == monAbility && RandomPercentage(RNG_AI_SWITCH_ABSORBING, GetSwitchChance(SHOULD_SWITCH_ABSORBS_MOVE)))
+            if (MonHasTrait(&party[i], absorbingTypeAbilities[j], TRUE) && RandomPercentage(RNG_AI_SWITCH_ABSORBING, GetSwitchChance(SHOULD_SWITCH_ABSORBS_MOVE)))
                 return SetSwitchinAndSwitch(battler, i);
         }
     }
@@ -590,7 +589,7 @@ static bool32 ShouldSwitchIfTrapperInParty(u32 battler)
         monAbility = GetMonAbility(&party[i]);
         species = GetMonData(&party[i], MON_DATA_SPECIES);
         personality = GetMonData(&party[i], MON_DATA_PERSONALITY);
-        if (CanAbilityTrapOpponent(monAbility, opposingBattler, species, personality) || (CanAbilityTrapOpponent(AI_GetBattlerAbility(opposingBattler), opposingBattler, species, personality) && monAbility == ABILITY_TRACE))
+        if (CanAbilityTrapOpponent(monAbility, opposingBattler, species, personality) || (CanAbilityTrapOpponent(AI_GetBattlerAbility(opposingBattler), battler, gBattleMons[opposingBattler].species, gBattleMons[opposingBattler].personality) && monAbility == ABILITY_TRACE))
         {
             // If mon in slot i is the most suitable switchin candidate, then it's a trapper than wins 1v1
             if (i == AI_DATA->mostSuitableMonId[battler] && RandomPercentage(RNG_AI_SWITCH_FREE_TURN, GetSwitchChance(SHOULD_SWITCH_FREE_TURN)))
@@ -614,8 +613,8 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
     //Perish Song
     if (gStatuses3[battler] & STATUS3_PERISH_SONG
         && gDisableStructs[battler].perishSongTimer == 0
-        && !AISearchTraits(AIBattlerTraits, ABILITY_SOUNDPROOF
-        && RandomPercentage(RNG_AI_SWITCH_PERISH_SONG, GetSwitchChance(SHOULD_SWITCH_PERISH_SONG))))
+        && !AISearchTraits(AIBattlerTraits, ABILITY_SOUNDPROOF)
+        && RandomPercentage(RNG_AI_SWITCH_PERISH_SONG, GetSwitchChance(SHOULD_SWITCH_PERISH_SONG)))
         return SetSwitchinAndSwitch(battler, PARTY_SIZE);
 
     if (AI_THINKING_STRUCT->aiFlags[GetThinkingBattler(battler)] & AI_FLAG_SMART_SWITCHING)
@@ -1691,7 +1690,7 @@ static u32 GetSwitchinHitsToKO(s32 damageTaken, u32 battler)
         currentHP = currentHP - damageTaken;
 
         // One shot prevention effects
-        if (damageTaken >= maxHP && startingHP == maxHP && (heldItemEffect == HOLD_EFFECT_FOCUS_SASH || (!opponentCanBreakMold && B_STURDY >= GEN_5 && ability == ABILITY_STURDY)) && hitsToKO < 1)
+        if (damageTaken >= maxHP && startingHP == maxHP && (heldItemEffect == HOLD_EFFECT_FOCUS_SASH || (!opponentCanBreakMold && B_STURDY >= GEN_5 && (ability == ABILITY_STURDY || SpeciesHasInnate(AI_DATA->switchinCandidate.battleMon.species, ABILITY_STURDY, AI_DATA->switchinCandidate.battleMon.personality, TRUE)))) && hitsToKO < 1)
             currentHP = 1;
 
         // If mon is still alive, apply weather impact first, as it might KO the mon before it can heal with its item (order is weather -> item -> status)
@@ -1772,7 +1771,6 @@ static u32 GetSwitchinHitsToKO(s32 damageTaken, u32 battler)
 
 static u16 GetSwitchinTypeMatchup(u32 opposingBattler, struct BattlePokemon battleMon)
 {
-
     // Check type matchup
     u16 typeEffectiveness = UQ_4_12(1.0);
     u8 atkType1 = gSpeciesInfo[gBattleMons[opposingBattler].species].types[0], atkType2 = gSpeciesInfo[gBattleMons[opposingBattler].species].types[1],
@@ -1862,9 +1860,11 @@ static inline bool32 IsFreeSwitch(enum SwitchType switchType, u32 battlerSwitchi
             return TRUE;
         if (AI_DATA->ejectPackSwitch)
         {
-            u32 opposingAbility = AI_GetBattlerAbility(opposingBattler);
+
+            //u32 opposingAbility = AI_GetBattlerAbility(opposingBattler);
             // If faster, not a free switch; likely lowered own stats
-            if (!movedSecond && opposingAbility != ABILITY_INTIMIDATE && opposingAbility != ABILITY_SUPERSWEET_SYRUP) // Intimidate triggers switches before turn starts
+            // BattlerHasTrait used beause Intimidate/SuperSweet Syrup are always known
+            if (!movedSecond && !BattlerHasTrait(opposingBattler, ABILITY_INTIMIDATE) && !BattlerHasTrait(opposingBattler, ABILITY_SUPERSWEET_SYRUP)) // Intimidate triggers switches before turn starts
                 return FALSE;
             // Otherwise, free switch
             return TRUE;
@@ -1905,6 +1905,7 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
     u16 bestResist = UQ_4_12(1.0), bestResistEffective = UQ_4_12(1.0), typeMatchup;
     bool32 isFreeSwitch = IsFreeSwitch(switchType, battlerIn1, opposingBattler), isSwitchinFirst, canSwitchinWin1v1;
 
+
     // Iterate through mons
     for (i = firstId; i < lastId; i++)
     {
@@ -1936,6 +1937,7 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
         // Get max number of hits for player to KO AI mon and type matchup for defensive switching
         hitsToKOAI = GetSwitchinHitsToKO(GetMaxDamagePlayerCouldDealToSwitchin(battler, opposingBattler, AI_DATA->switchinCandidate.battleMon), battler);
         typeMatchup = GetSwitchinTypeMatchup(opposingBattler, AI_DATA->switchinCandidate.battleMon);
+        
 
         // Track max hits to KO and set defensive mon
         if(hitsToKOAI > maxHitsToKO)
@@ -1961,7 +1963,6 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
             // Offensive switchin decisions are based on which whether switchin moves first and whether it can win a 1v1
             isSwitchinFirst = AI_WhoStrikesFirstPartyMon(battler, opposingBattler, AI_DATA->switchinCandidate.battleMon, aiMove);
             canSwitchinWin1v1 = CanSwitchinWin1v1(hitsToKOAI, GetNoOfHitsToKOBattlerDmg(damageDealt, opposingBattler), isSwitchinFirst, isFreeSwitch);
-
             // Check for Baton Pass; hitsToKO requirements mean mon can boost and BP without dying whether it's slower or not
             if (aiMove == MOVE_BATON_PASS)
             {

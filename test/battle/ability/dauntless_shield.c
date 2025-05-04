@@ -6,7 +6,7 @@ ASSUMPTIONS
     ASSUME(B_DAUNTLESS_SHIELD == GEN_9);
 }
 
-SINGLE_BATTLE_TEST("Dauntless Shield raises Defense by one stage")
+SINGLE_BATTLE_TEST("ABILITY: Dauntless Shield raises Defense by one stage")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("Dauntless Shield raises Defense by one stage")
     }
 }
 
-SINGLE_BATTLE_TEST("Dauntless Shield raises Defense by one stage only once per battle")
+SINGLE_BATTLE_TEST("ABILITY: Dauntless Shield raises Defense by one stage only once per battle")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -45,7 +45,7 @@ SINGLE_BATTLE_TEST("Dauntless Shield raises Defense by one stage only once per b
     }
 }
 
-SINGLE_BATTLE_TEST("Dauntless Shield activates when it's no longer effected by Neutralizing Gas")
+SINGLE_BATTLE_TEST("ABILITY: Dauntless Shield activates when it's no longer effected by Neutralizing Gas")
 {
     GIVEN {
         PLAYER(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); }
@@ -64,3 +64,42 @@ SINGLE_BATTLE_TEST("Dauntless Shield activates when it's no longer effected by N
     }
 }
 
+
+SINGLE_BATTLE_TEST("INNATE: Dauntless Shield raises Defense by one stage")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ZAMAZENTA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DAUNTLESS_SHIELD); }
+    } WHEN {
+        TURN { }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_DAUNTLESS_SHIELD);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+        MESSAGE("The opposing Zamazenta's Dauntless Shield raised its Defense!");
+    } THEN {
+        EXPECT_EQ(opponent->statStages[STAT_DEF], DEFAULT_STAT_STAGE + 1);
+    }
+}
+
+SINGLE_BATTLE_TEST("INNATE: Dauntless Shield raises Defense by one stage only once per battle")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_ZAMAZENTA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DAUNTLESS_SHIELD); }
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { SWITCH(opponent, 1); }
+        TURN { SWITCH(opponent, 0); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_DAUNTLESS_SHIELD);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+        MESSAGE("The opposing Zamazenta's Dauntless Shield raised its Defense!");
+        NONE_OF {
+            ABILITY_POPUP(opponent, ABILITY_DAUNTLESS_SHIELD);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+            MESSAGE("The opposing Zamazenta's Dauntless Shield raised its Defense!");
+        }
+    } THEN {
+        EXPECT_EQ(opponent->statStages[STAT_DEF], DEFAULT_STAT_STAGE);
+    }
+}

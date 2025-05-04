@@ -236,3 +236,88 @@ SINGLE_BATTLE_TEST("Berserk Gene causes confusion timer to not tick down", u32 s
         EXPECT_EQ(results[0].status2, results[1].status2);
     }
 }
+
+SINGLE_BATTLE_TEST("INNATE: Berserk Gene does not confuse a Pokemon with Own Tempo but still raises attack sharply in a single battle", s16 damage)
+{
+    u16 item;
+    PARAMETRIZE { item = ITEM_NONE; }
+    PARAMETRIZE { item = ITEM_BERSERK_GENE; }
+    GIVEN {
+        ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
+        PLAYER(SPECIES_SLOWBRO) { Ability(ABILITY_OBLIVIOUS); Innates(ABILITY_OWN_TEMPO); Item(item); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN {
+            MOVE(player, MOVE_TACKLE);
+        }
+    } SCENE {
+        if (item == ITEM_BERSERK_GENE)
+        {
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+            MESSAGE("Using Berserk Gene, the Attack of Slowbro sharply rose!");
+            ABILITY_POPUP(player, ABILITY_OWN_TEMPO);
+            MESSAGE("Slowbro's Own Tempo prevents confusion!");
+        }
+        HP_BAR(opponent, captureDamage: &results[i].damage);
+        NOT MESSAGE("Slowbro became confused!");
+    } FINALLY {
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(2.0), results[1].damage);
+    }
+}
+
+DOUBLE_BATTLE_TEST("INNATE: Berserk Gene does not confuse a Pokemon with Own Tempo but still raises attack sharply in a double battle", s16 damage)
+{
+    u16 item;
+    bool8 positionLeft = FALSE;
+
+    PARAMETRIZE { item = ITEM_NONE; }
+    PARAMETRIZE { item = ITEM_BERSERK_GENE; positionLeft = TRUE; }
+    PARAMETRIZE { item = ITEM_BERSERK_GENE; positionLeft = FALSE; }
+    GIVEN {
+        ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
+        if (positionLeft) {
+            PLAYER(SPECIES_SLOWBRO) { Ability(ABILITY_OBLIVIOUS); Innates(ABILITY_OWN_TEMPO); Item(item); }
+            PLAYER(SPECIES_WOBBUFFET);
+        } else {
+            PLAYER(SPECIES_WOBBUFFET);
+            PLAYER(SPECIES_SLOWBRO) { Ability(ABILITY_OBLIVIOUS); Innates(ABILITY_OWN_TEMPO); Item(item); }
+        }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN {
+            MOVE((positionLeft != 0) ? playerLeft : playerRight, MOVE_TACKLE, target: opponentLeft);
+        }
+    } SCENE {
+        if (item == ITEM_BERSERK_GENE)
+        {
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, (positionLeft != 0) ? playerLeft : playerRight);
+            MESSAGE("Using Berserk Gene, the Attack of Slowbro sharply rose!");
+            ABILITY_POPUP((positionLeft != 0) ? playerLeft : playerRight, ABILITY_OWN_TEMPO);
+            MESSAGE("Slowbro's Own Tempo prevents confusion!");
+        }
+        HP_BAR(opponentLeft, captureDamage: &results[i].damage);
+        NOT MESSAGE("Slowbro became confused!");
+    } FINALLY {
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(2.0), results[1].damage);
+        EXPECT_MUL_EQ(results[0].damage, Q_4_12(2.0), results[2].damage);
+        EXPECT_EQ(((positionLeft != 0) ? playerLeft : playerRight)->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 2);
+    }
+}
+
+SINGLE_BATTLE_TEST("INNATE: Berserk Gene does not confuse on Misty Terrain but still raises attack sharply")
+{
+    GIVEN {
+        ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
+        PLAYER(SPECIES_TAPU_FINI) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_MISTY_SURGE); Item(ITEM_BERSERK_GENE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN {
+            MOVE(player, MOVE_TACKLE);
+        }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Using Berserk Gene, the Attack of Tapu Fini sharply rose!");
+        NOT MESSAGE("Tapu Fini became confused!");
+    }
+}

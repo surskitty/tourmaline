@@ -134,9 +134,6 @@ void SetAiLogicDataForTurn(struct AiLogicData *aiData);
 void ResetDynamicAiFunc(void);
 
 bool8 BattlerHasInnate(u8 battlerId, u16 ability);
-bool8 GetBattlerInnateNum(u8 battlerId, u16 ability); //Used for ability checks to itterate through Innates
-
-u8 GetBattlerInnate(u8 battlerId, u8 traitNum); //Used for ability checks to itterate through Innates
 u8 BattlerHasTrait(u8 battlerId, u16 ability); //Returns the trait slot number of the given ability. Starts at 1 for the primary Ability and returns 0 if the ability is not found. 
 u8 BattlerHasTraitPlain(u8 battlerId, u16 ability); //BattlerHasTrait for functions already under GetBattlerAbility to avoid infinite loops.
 void PushTraitStack(u8 battlerId, u16 ability); //Pushes an ability to the trait stack

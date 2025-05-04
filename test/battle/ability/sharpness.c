@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("Sharpness increases the power of slicing moves", s16 damage)
+SINGLE_BATTLE_TEST("ABILITY: Sharpness increases the power of slicing moves", s16 damage)
 {
     u32 move;
     u16 ability;
@@ -14,6 +14,30 @@ SINGLE_BATTLE_TEST("Sharpness increases the power of slicing moves", s16 damage)
         ASSUME(IsSlicingMove(MOVE_AERIAL_ACE));
         ASSUME(!IsSlicingMove(MOVE_SCRATCH));
         PLAYER(SPECIES_GALLADE) { Ability(ability); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, move); }
+    } SCENE {
+        HP_BAR(opponent, captureDamage: &results[i].damage);
+    } FINALLY {
+        EXPECT_MUL_EQ(results[1].damage, Q_4_12(1.5), results[0].damage); // Sharpness affects slicing moves
+        EXPECT_EQ(results[2].damage, results[3].damage); // Sharpness does not affect non-slicing moves
+    }
+}
+
+SINGLE_BATTLE_TEST("INNATE: Sharpness increases the power of slicing moves", s16 damage)
+{
+    u32 move;
+    u16 ability;
+    PARAMETRIZE { move = MOVE_AERIAL_ACE; ability = ABILITY_SHARPNESS; }
+    PARAMETRIZE { move = MOVE_AERIAL_ACE; ability = ABILITY_STEADFAST; }
+    PARAMETRIZE { move = MOVE_SCRATCH; ability = ABILITY_SHARPNESS; }
+    PARAMETRIZE { move = MOVE_SCRATCH; ability = ABILITY_STEADFAST; }
+
+    GIVEN {
+        ASSUME(IsSlicingMove(MOVE_AERIAL_ACE));
+        ASSUME(!IsSlicingMove(MOVE_SCRATCH));
+        PLAYER(SPECIES_GALLADE) { Ability(ABILITY_STEADFAST); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, move); }

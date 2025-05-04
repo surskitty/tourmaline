@@ -63,7 +63,7 @@ enum {
 ({for (int traitLoop = 0; traitLoop < MAX_MON_TRAITS; traitLoop++)\
 {battlerTraits[traitLoop] = GetBattlerTrait(battler, traitLoop);\
 }})
-//DebugPrintf("Battler[%d] - Trait[%d]: %S", battler, i,  gAbilitiesInfo[battlerTraits[i]].name);\
+//DebugPrintf("%S - Battler[%d] - Trait[%d]: %S", GetSpeciesName(gBattleMons[battler].species), battler, traitLoop,  gAbilitiesInfo[battlerTraits[traitLoop]].name);\
 
 // Special cases
 #define ABILITYEFFECT_MUD_SPORT                  252 // Only used if B_SPORT_TURNS >= GEN_6
@@ -227,6 +227,7 @@ bool32 TryPrimalReversion(u32 battler);
 bool32 IsNeutralizingGasOnField(void);
 bool32 IsMoldBreakerTypeAbility(u32 battler, u32 ability);
 bool32 HasMoldBreakerTypeAbility(u32 battler);
+bool32 CanBreakThroughAbility(u32 battlerAtk, u32 battlerDef, u32 ability);
 u32 GetBattlerAbility(u32 battler);
 u32 GetBattlerTrait(u8 battler, u8 traitNum);
 u32 IsAbilityOnSide(u32 battler, u32 ability);

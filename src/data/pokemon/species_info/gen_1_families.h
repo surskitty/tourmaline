@@ -20699,3 +20699,4 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
 #ifdef __INTELLISENSE__
 };
 #endif
+
