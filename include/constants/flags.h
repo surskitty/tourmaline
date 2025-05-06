@@ -45,11 +45,11 @@
 
 #define FLAG_FORCE_SHINY     0x20 // P_FLAG_FORCE_SHINY
 #define FLAG_SMART_WILDS     0x21 // B_SMART_WILD_AI_FLAG
-#define FLAG_UNUSED_0x022    0x22 // BLACKJACK_FLAG_INSURANCE
-#define FLAG_UNUSED_0x023    0x23 // BLACKJACK_FLAG_RESET
-#define FLAG_UNUSED_0x024    0x24 // BLACKJACK_FLAG_BLACKJACK
-#define FLAG_UNUSED_0x025    0x25 // DERBY_FLAG_NICKNAME
-#define FLAG_UNUSED_0x026    0x26 // DERBY_FLAG_RESET
+#define FLAG_UNUSED_0x022    0x22 // unused
+#define FLAG_UNUSED_0x023    0x23 // derby
+#define FLAG_UNUSED_0x024    0x24 // derby
+#define FLAG_UNUSED_0x025    0x25 // unused
+#define FLAG_UNUSED_0x026    0x26 // unused
 #define FLAG_UNUSED_0x027    0x27 // Unused Flag
 #define FLAG_UNUSED_0x028    0x28 // Unused Flag
 #define FLAG_UNUSED_0x029    0x29 // Unused Flag

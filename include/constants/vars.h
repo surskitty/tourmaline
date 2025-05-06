@@ -124,12 +124,12 @@
 #define VAR_ROUTE109_STATE                               0x4068 // derby
 #define VAR_ROUTE110_STATE                               0x4069
 #define VAR_ROUTE111_STATE                               0x406A // derby
-#define VAR_ROUTE112_STATE                               0x406B // blackjack
+#define VAR_ROUTE112_STATE                               0x406B // unused
 #define VAR_ROUTE113_STATE                               0x406C // FLAPPY_VAR_HIGH_SCORE
 #define VAR_ROUTE114_STATE                               0x406D // GAME_CORNER_VAR_ID_CHECK
-#define VAR_ROUTE115_STATE                               0x406E // blackjack
+#define VAR_ROUTE115_STATE                               0x406E // unused
 #define VAR_ROUTE116_STATE                               0x406F
-#define VAR_ROUTE117_STATE                               0x4070 // blackjack
+#define VAR_ROUTE117_STATE                               0x4070 // unused
 #define VAR_ROUTE118_STATE                               0x4071
 #define VAR_ROUTE119_STATE                               0x4072
 #define VAR_ROUTE120_STATE                               0x4073 // Unused Var
@@ -266,10 +266,10 @@
 #define VAR_RIVAL_RAYQUAZA_CALL_STEP_COUNTER             0x40F6
 #define VAR_SURF_MON_SLOT                                0x40F7 // Surfing Mon party slot
 #define VAR_FREEZESURFBLOB                               0x40F8 // Set on surf init to stop blob overlay being offset incorrectly
-#define VAR_UNUSED_0x40F9                                0x40F9 // blackjack
-#define VAR_UNUSED_0x40FA                                0x40FA // blackjack
-#define VAR_UNUSED_0x40FB                                0x40FB // blackjack
-#define VAR_UNUSED_0x40FC                                0x40FC // BLACKJACK_VAR_OPTION2_TILE
+#define VAR_UNUSED_0x40F9                                0x40F9 // unused
+#define VAR_UNUSED_0x40FA                                0x40FA // unused
+#define VAR_UNUSED_0x40FB                                0x40FB // unused
+#define VAR_UNUSED_0x40FC                                0x40FC // unused
 #define VAR_UNUSED_0x40FD                                0x40FD // Starting Statuses
 #define VAR_UNUSED_0x40FE                                0x40FE // Starting Status timer (currently unused)
 #define VAR_TIMES_PET_PEACEFUL_POKEMON                   0x40FF // Used for petting the dog.
