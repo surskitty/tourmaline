@@ -38,67 +38,67 @@
 
 enum
 {
-    HIT_0,
-	HIT_1,
-	HIT_2,
+    HIT_PLAY_CARD,
+    HIT_1,
+    HIT_CHECK_SCORE,
 };
 
 enum
 {
     DOUBLE_0,
-	DOUBLE_1,
-	DOUBLE_2,
-	DOUBLE_3,
-	DOUBLE_4,
+    DOUBLE_1,
+    DOUBLE_2,
+    DOUBLE_3,
+    DOUBLE_4,
 };
 
 enum
 {
     hitBJ_0,
-	hitBJ_1,
-	hitBJ_2,
+    hitBJ_1,
+    hitBJ_2,
 };
 
 enum
 {
     STAND_0,
-	STAND_1,
-	STAND_2,
-	STAND_3,
-	STAND_4,
-	STAND_5,
+    STAND_1,
+    STAND_CHECK_INSURANCE,
+    STAND_3,
+    STAND_4,
+    STAND_5,
 };
 
 enum
 {
     WIN_0,
-	WIN_1,
-	WIN_2,
-	WIN_3,
-	WIN_4,
+    WIN_1,
+    WIN_2,
+    WIN_3,
+    WIN_4,
 };
 
 enum
 {
     LOSE_0,
-	LOSE_1,
-	LOSE_2,
+    LOSE_1,
+    LOSE_2,
 };
 
 enum
 {
     BUST_0,
-	BUST_1,
-	BUST_2,
+    BUST_1,
+    BUST_2,
 };
 
 enum
 {
     PUSH_0,
-	PUSH_1,
-	PUSH_2,
-	PUSH_3,
-	PUSH_4,
+    PUSH_1,
+    PUSH_2,
+    PUSH_3,
+    PUSH_4,
 };
 
 enum
@@ -124,8 +124,73 @@ enum {
 };
 
 enum {
-	SPR_DEALER_DIG_1,
+    SPR_DEALER_DIG_1,
     SPR_DEALER_DIG_10,
+};
+// 0 = Bet, 1 = Hit, 2 = Double, 3 = Insurance, 4 = None
+enum
+{
+    OPTION_BET,
+    OPTION_HIT,
+    OPTION_DOUBLE,
+    OPTION_INSURANCE,
+    OPTION_NONE,
+};
+
+enum {
+    CARD_HEARTS_2,
+    CARD_HEARTS_3,
+    CARD_HEARTS_4,
+    CARD_HEARTS_5,
+    CARD_HEARTS_6,
+    CARD_HEARTS_7,
+    CARD_HEARTS_8,
+    CARD_HEARTS_9,
+    CARD_HEARTS_10,
+    CARD_HEARTS_JACK,
+    CARD_HEARTS_QUEEN,
+    CARD_HEARTS_KING,
+    CARD_HEARTS_ACE,
+    CARD_CLUBS_2,
+    CARD_CLUBS_3,
+    CARD_CLUBS_4,
+    CARD_CLUBS_5,
+    CARD_CLUBS_6,
+    CARD_CLUBS_7,
+    CARD_CLUBS_8,
+    CARD_CLUBS_9,
+    CARD_CLUBS_10,
+    CARD_CLUBS_JACK,
+    CARD_CLUBS_QUEEN,
+    CARD_CLUBS_KING,
+    CARD_CLUBS_ACE,
+    CARD_DIAMONDS_2,
+    CARD_DIAMONDS_3,
+    CARD_DIAMONDS_4,
+    CARD_DIAMONDS_5,
+    CARD_DIAMONDS_6,
+    CARD_DIAMONDS_7,
+    CARD_DIAMONDS_8,
+    CARD_DIAMONDS_9,
+    CARD_DIAMONDS_10,
+    CARD_DIAMONDS_JACK,
+    CARD_DIAMONDS_QUEEN,
+    CARD_DIAMONDS_KING,
+    CARD_DIAMONDS_ACE,
+    CARD_SPADES_2,
+    CARD_SPADES_3,
+    CARD_SPADES_4,
+    CARD_SPADES_5,
+    CARD_SPADES_6,
+    CARD_SPADES_7,
+    CARD_SPADES_8,
+    CARD_SPADES_9,
+    CARD_SPADES_10,
+    CARD_SPADES_JACK,
+    CARD_SPADES_QUEEN,
+    CARD_SPADES_KING,
+    CARD_SPADES_ACE,
+    CARD_COUNT,
 };
 
 #define SPR_CREDIT_DIGITS SPR_CREDIT_DIG_1
@@ -137,15 +202,6 @@ enum {
 #define SPR_CREDIT_DIG_100 2
 #define SPR_CREDIT_DIG_1000 3
 
-#define hitState HIT_0
-#define doubleState DOUBLE_0
-#define hitBJState hitBJ_0
-#define standState STAND_0
-#define winState WIN_0
-#define loseState LOSE_0
-#define bustState BUST_0
-#define pushState PUSH_0
-
 #define MAX_SPRITES_CREDIT 4
 #define MAX_SPRITES_PLAYER 2
 #define MAX_SPRITES_DEALER 2
@@ -153,57 +209,68 @@ enum {
 #define MAX_PLAYER_CARDS 9
 #define MAX_DEALER_CARDS 9
 
+#define CARD_SCORE_2     2
+#define CARD_SCORE_3     3
+#define CARD_SCORE_4     4
+#define CARD_SCORE_5     5
+#define CARD_SCORE_6     6
+#define CARD_SCORE_7     7
+#define CARD_SCORE_8     8
+#define CARD_SCORE_9     9
+#define CARD_SCORE_10    10
+#define CARD_SCORE_FACE  10
+#define CARD_SCORE_ACE   0
+
+#define CARD_SCORE_ACE_EXPANDED  11
+#define CARD_SCORE_ACE_SHURNK    1
+#define CARD_SCORE_BLACK_JACK    21
+
 struct BlackJack {
     u8 state;
-	//
+    //
     u8 numPlayerCards;
     u8 numDealerCards;
-	//
-	u8 cursorSpriteId;
-	//
-	u8 CreditSpriteIds[MAX_SPRITES_CREDIT];
-	u8 PlayerSpriteIds[MAX_SPRITES_PLAYER];
-	u8 DealerSpriteIds[MAX_SPRITES_DEALER];
-	//
-	u8 option1SpriteId;
-	u8 option2SpriteId;
-	u8 option3SpriteId;
-	// Player card IDs and numbers (to store their sprites and values)
-	u8 playerCardIds[MAX_PLAYER_CARDS];
-	u8 playerCardNumbers[MAX_PLAYER_CARDS];
+    u8 cursorSpriteId;
+    u8 CreditSpriteIds[MAX_SPRITES_CREDIT];
+    u8 PlayerSpriteIds[MAX_SPRITES_PLAYER];
+    u8 DealerSpriteIds[MAX_SPRITES_DEALER];
+    u8 option1SpriteId;
+    u8 option2SpriteId;
+    u8 option3SpriteId;
+    // Player card IDs and numbers (to store their sprites and values)
+    u8 playerCardIds[MAX_PLAYER_CARDS];
+    u8 playerCardNumbers[MAX_PLAYER_CARDS];
 
-	// Dealer card IDs and numbers
-	u8 dealerCardIds[MAX_DEALER_CARDS];
-	u8 dealerCardNumbers[MAX_DEALER_CARDS];
-	//						Facedown Sprite ID
-	u8 DealerFaceDownId;
-	//
-	u8 CurrentLoadedSuit;
-	//
-	u8 LogoId;
-	
-	//						Ace Values (1 or 11)
-	u8 AceHearts;
-	u8 AceDiamonds;
-	u8 AceClubs;
-	u8 AceSpades;
-	//
-	u8 AceAdjustPlayer;
-	u8 AceAdjustDealer;
-	//
-	u32 waitTimer;
-	//
-	u8 hitState;
-	u8 doubleState;
-	u8 hitBJState;
-	u8 standState;
-	u8 winState;
-	u8 loseState;
-	u8 bustState;
-	u8 pushState;
-	//
-	u8 exitToggle;
-	//
+    // Dealer card IDs and numbers
+    u8 dealerCardIds[MAX_DEALER_CARDS];
+    u8 dealerCardNumbers[MAX_DEALER_CARDS];
+    //                        Facedown Sprite ID
+    u8 DealerFaceDownId;
+    u8 LogoId;
+
+    u32 waitTimer;
+    u8 hitState;
+    u8 doubleState;
+    u8 hitBJState;
+    u8 standState;
+    u8 winState;
+    u8 loseState;
+    u8 bustState;
+    u8 pushState;
+    u8 hasBlackJack:1;
+    u8 clearBlackJack:1;
+    u8 insuranceBet:1;
+    u8 AceAdjustPlayer:1;
+    u8 AceAdjustDealer:1;
+    u8 optionMode:3;
+    u8 exitToggle:1;
+    u8 unused:7;
+    u8 dealerScore;
+    u8 playerScore;
+    u16 betBlackJack;
+    u16 optionTileNum1;
+    u16 optionTileNum2;
+    u16 optionTileNum3;
 };
 
 static EWRAM_DATA struct BlackJack *sBlackJack = NULL;
@@ -216,10 +283,6 @@ static void CreateCursorSprite(void);
 static void CreateOptions(void);
 static void AdjustCards(void);
 static void CreateFacedown(void);
-static void LoadHeartsSpriteSheet(void);
-static void LoadDiamondsSpriteSheet(void);
-static void LoadClubsSpriteSheet(void);
-static void LoadSpadesSpriteSheet(void);
 static void ShuffleCards(void);
 static void UpdateCards(void);
 static void SetCardSprite(u8 cardId, u8 cardNum, u8 cardIndex, u8 isPlayerCard);
@@ -240,7 +303,7 @@ static const u8 sText_Push[] = _("PUSH!");
 static const u8 sText_BlackJack[] = _("BLACKJACK!");
 static const u8 sText_Betting[] = _("Your current\nbet is ¥{STR_VAR_1}.");
 static const u8 sText_NoBetting[] = _("Your current\nbet is ¥0.");
-static const u8 sText_NoMoney[] = _("You do not have\nenough COINS.");
+static const u8 sText_NoCoins[] = _("You do not have\nenough Coins.");
 static const u8 sHelpBarHitStandText[] = _("{DPAD_UPDOWN}PICK  {A_BUTTON}SELECT  {B_BUTTON}EXIT");
 
 static const u32 sBJBackgroundGfx[] = INCBIN_U32("graphics/blackjack/background_tiles.4bpp.lz");
@@ -323,13 +386,6 @@ static const u16 sCursorTiles_Pal[] = INCBIN_U16("graphics/blackjack/cursor.gbap
 static const u32 sPopup_Gfx[] = INCBIN_U32("graphics/blackjack/popup.4bpp.lz");
 
 static void ShowHelpBar(const u8 *str);
-static void ShowHit(const u8 *str);
-static void ShowStand(const u8 *str);
-static void ShowDouble(const u8 *str);
-static void ShowInsurance(const u8 *str);
-static void ShowPlus(const u8 *str);
-static void ShowMinus(const u8 *str);
-static void ShowBet(const u8 *str);
 static void SetCreditDigits(u16);
 static void SetPlayerDigits(u16);
 static void SetDealerDigits(u16);
@@ -341,11 +397,10 @@ static void CreatePopUpSprite();
 #define BJ_BG_BASE 1
 #define BJ_WIN_MENU 2
 
-static const u8 cardPoints[52] = {
-    2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 0, // Hearts (0-12)
-    2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 0, // Diamonds (13-25)
-    2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 0, // Clubs (26-38)
-    2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 0, // Spades (39-51)
+struct PlayingCard {
+    u8 points;
+    const struct CompressedSpriteSheet sheet;
+    const struct SpriteTemplate template;
 };
 
 struct CardPosition {
@@ -395,15 +450,15 @@ static const struct WindowTemplate sBJWinTemplates[] = {
         .paletteNum = 11,
         .baseBlock = 0x73,
     },
-	{
+    {
         .bg = BJ_WIN_MENU,
         .tilemapLeft = 3,
         .tilemapTop = 15,
         .width = 14,
         .height = 4,
         .paletteNum = 0xF,
-        .baseBlock = 0x194,		
-	},
+        .baseBlock = 0x194,        
+    },
     DUMMY_WIN_TEMPLATE,
 };
 
@@ -494,18 +549,18 @@ static const struct WindowTemplate sBJWinTemplates[] = {
 static const struct SpritePalette sSpritePalettes[] =
 {
     { .data = sCredit_Pal,      .tag = PALTAG_INTERFACE },
-	{ .data = sPlayer_Pal,		.tag = PALTAG_INTERFACEPLAYER },
-	{ .data = sDealer_Pal,		.tag = PALTAG_INTERFACEDEALER },
-	{ .data = sCursorTiles_Pal, .tag = PALTAG_CURSOR },
-	{ .data = sCursorTiles_Pal, .tag = PALTAG_OPTION1 },
-	{ .data = sCursorTiles_Pal, .tag = PALTAG_OPTION2 },
-	{ .data = sCursorTiles_Pal, .tag = PALTAG_OPTION3 },
-	{ .data = sCards_Pal,		.tag = PALTAG_CARDS_HEARTS },
-	{ .data = sCards_Pal,		.tag = PALTAG_FACEDOWN },
-	{ .data = sCards_Pal,		.tag = PALTAG_CARDS_CLUBS },
-	{ .data = sCards_Pal,		.tag = PALTAG_CARDS_DIAMONDS },
-	{ .data = sCards_Pal,		.tag = PALTAG_CARDS_SPADES },
-	{ .data = sCursorTiles_Pal, .tag = PALTAG_POPUP },
+    { .data = sPlayer_Pal,        .tag = PALTAG_INTERFACEPLAYER },
+    { .data = sDealer_Pal,        .tag = PALTAG_INTERFACEDEALER },
+    { .data = sCursorTiles_Pal, .tag = PALTAG_CURSOR },
+    { .data = sCursorTiles_Pal, .tag = PALTAG_OPTION1 },
+    { .data = sCursorTiles_Pal, .tag = PALTAG_OPTION2 },
+    { .data = sCursorTiles_Pal, .tag = PALTAG_OPTION3 },
+    { .data = sCards_Pal,        .tag = PALTAG_CARDS_HEARTS },
+    { .data = sCards_Pal,        .tag = PALTAG_FACEDOWN },
+    { .data = sCards_Pal,        .tag = PALTAG_CARDS_CLUBS },
+    { .data = sCards_Pal,        .tag = PALTAG_CARDS_DIAMONDS },
+    { .data = sCards_Pal,        .tag = PALTAG_CARDS_SPADES },
+    { .data = sCursorTiles_Pal, .tag = PALTAG_POPUP },
     {}
 };
 
@@ -921,7 +976,7 @@ static const struct OamData sOamData_Cards_Hearts =
     .objMode = ST_OAM_OBJ_NORMAL,
     .shape = SPRITE_SHAPE(32x64),
     .size = SPRITE_SIZE(32x64),
-	.tileNum = 0,
+    .tileNum = 0,
     .priority = 0,
 };
 
@@ -931,7 +986,7 @@ static const struct OamData sOamData_Cards_Diamonds =
     .objMode = ST_OAM_OBJ_NORMAL,
     .shape = SPRITE_SHAPE(32x64),
     .size = SPRITE_SIZE(32x64),
-	.tileNum = 0,
+    .tileNum = 0,
     .priority = 0,
 };
 
@@ -941,7 +996,7 @@ static const struct OamData sOamData_Cards_Clubs =
     .objMode = ST_OAM_OBJ_NORMAL,
     .shape = SPRITE_SHAPE(32x64),
     .size = SPRITE_SIZE(32x64),
-	.tileNum = 0,
+    .tileNum = 0,
     .priority = 0,
 };
 
@@ -951,7 +1006,7 @@ static const struct OamData sOamData_Cards_Spades =
     .objMode = ST_OAM_OBJ_NORMAL,
     .shape = SPRITE_SHAPE(32x64),
     .size = SPRITE_SIZE(32x64),
-	.tileNum = 0,
+    .tileNum = 0,
     .priority = 0,
 };
 
@@ -961,7 +1016,7 @@ static const struct OamData sOamData_Facedown =
     .objMode = ST_OAM_OBJ_NORMAL,
     .shape = SPRITE_SHAPE(32x64),
     .size = SPRITE_SIZE(32x64),
-	.tileNum = 0,
+    .tileNum = 0,
     .priority = 0,
 };
 
@@ -971,7 +1026,7 @@ static const struct OamData sOamData_Cursor =
     .objMode = ST_OAM_OBJ_NORMAL,
     .shape = SPRITE_SHAPE(64x32),
     .size = SPRITE_SIZE(64x32),
-	.tileNum = 0,
+    .tileNum = 0,
     .priority = 0,
 };
 
@@ -981,7 +1036,7 @@ static const struct OamData sOamData_Popup =
     .objMode = ST_OAM_OBJ_NORMAL,
     .shape = SPRITE_SHAPE(64x64),
     .size = SPRITE_SIZE(64x64),
-	.tileNum = 0,
+    .tileNum = 0,
     .priority = 0,
 };
 
@@ -991,7 +1046,7 @@ static const struct OamData sOamData_Option1 =
     .objMode = ST_OAM_OBJ_NORMAL,
     .shape = SPRITE_SHAPE(32x16),
     .size = SPRITE_SIZE(32x16),
-	.tileNum = 0,
+    .tileNum = 0,
     .priority = 0,
 };
 
@@ -1001,7 +1056,7 @@ static const struct OamData sOamData_Option2 =
     .objMode = ST_OAM_OBJ_NORMAL,
     .shape = SPRITE_SHAPE(32x16),
     .size = SPRITE_SIZE(32x16),
-	.tileNum = 0,
+    .tileNum = 0,
     .priority = 0,
 };
 
@@ -1011,7 +1066,7 @@ static const struct OamData sOamData_Option3 =
     .objMode = ST_OAM_OBJ_NORMAL,
     .shape = SPRITE_SHAPE(32x16),
     .size = SPRITE_SIZE(32x16),
-	.tileNum = 0,
+    .tileNum = 0,
     .priority = 0,
 };
 
@@ -1653,16 +1708,331 @@ static const struct SpriteTemplate sSpriteTemplate_Option3 =
     .callback = SpriteCallbackDummy,
 };
 
+const struct PlayingCard sPlayingCards[CARD_COUNT] =
+{
+    [CARD_HEARTS_2] =
+    {
+        .points = CARD_SCORE_2,
+        .sheet = sSpriteSheet_Cards_Hearts_2,
+        .template = sSpriteTemplate_Cards_Hearts_2,
+    },
+    [CARD_HEARTS_3] =
+    {
+        .points = CARD_SCORE_3,
+        .sheet = sSpriteSheet_Cards_Hearts_3,
+        .template = sSpriteTemplate_Cards_Hearts_3,
+    },
+    [CARD_HEARTS_4] =
+    {
+        .points = CARD_SCORE_4,
+        .sheet = sSpriteSheet_Cards_Hearts_4,
+        .template = sSpriteTemplate_Cards_Hearts_4,
+    },
+    [CARD_HEARTS_5] =
+    {
+        .points = CARD_SCORE_5,
+        .sheet = sSpriteSheet_Cards_Hearts_5,
+        .template = sSpriteTemplate_Cards_Hearts_5,
+    },
+    [CARD_HEARTS_6] =
+    {
+        .points = CARD_SCORE_6,
+        .sheet = sSpriteSheet_Cards_Hearts_6,
+        .template = sSpriteTemplate_Cards_Hearts_6,
+    },
+    [CARD_HEARTS_7] =
+    {
+        .points = CARD_SCORE_7,
+        .sheet = sSpriteSheet_Cards_Hearts_7,
+        .template = sSpriteTemplate_Cards_Hearts_7,
+    },
+    [CARD_HEARTS_8] =
+    {
+        .points = CARD_SCORE_8,
+        .sheet = sSpriteSheet_Cards_Hearts_8,
+        .template = sSpriteTemplate_Cards_Hearts_8,
+    },
+    [CARD_HEARTS_9] =
+    {
+        .points = CARD_SCORE_9,
+        .sheet = sSpriteSheet_Cards_Hearts_9,
+        .template = sSpriteTemplate_Cards_Hearts_9,
+    },
+    [CARD_HEARTS_10] =
+    {
+        .points = CARD_SCORE_10,
+        .sheet = sSpriteSheet_Cards_Hearts_10,
+        .template = sSpriteTemplate_Cards_Hearts_10,
+    },
+    [CARD_HEARTS_JACK] =
+    {
+        .points = CARD_SCORE_FACE,
+        .sheet = sSpriteSheet_Cards_Hearts_J,
+        .template = sSpriteTemplate_Cards_Hearts_J,
+    },
+    [CARD_HEARTS_QUEEN] =
+    {
+        .points = CARD_SCORE_FACE,
+        .sheet = sSpriteSheet_Cards_Hearts_Q,
+        .template = sSpriteTemplate_Cards_Hearts_Q,
+    },
+    [CARD_HEARTS_KING] =
+    {
+        .points = CARD_SCORE_FACE,
+        .sheet = sSpriteSheet_Cards_Hearts_K,
+        .template = sSpriteTemplate_Cards_Hearts_K,
+    },
+    [CARD_HEARTS_ACE] =
+    {
+        .points = CARD_SCORE_ACE,
+        .sheet = sSpriteSheet_Cards_Hearts_A,
+        .template = sSpriteTemplate_Cards_Hearts_A,
+    },
+    [CARD_CLUBS_2] =
+    {
+        .points = CARD_SCORE_2,
+        .sheet = sSpriteSheet_Cards_Clubs_2,
+        .template = sSpriteTemplate_Cards_Clubs_2,
+    },
+    [CARD_CLUBS_3] =
+    {
+        .points = CARD_SCORE_3,
+        .sheet = sSpriteSheet_Cards_Clubs_3,
+        .template = sSpriteTemplate_Cards_Clubs_3,
+    },
+    [CARD_CLUBS_4] =
+    {
+        .points = CARD_SCORE_4,
+        .sheet = sSpriteSheet_Cards_Clubs_4,
+        .template = sSpriteTemplate_Cards_Clubs_4,
+    },
+    [CARD_CLUBS_5] =
+    {
+        .points = CARD_SCORE_5,
+        .sheet = sSpriteSheet_Cards_Clubs_5,
+        .template = sSpriteTemplate_Cards_Clubs_5,
+    },
+    [CARD_CLUBS_6] =
+    {
+        .points = CARD_SCORE_6,
+        .sheet = sSpriteSheet_Cards_Clubs_6,
+        .template = sSpriteTemplate_Cards_Clubs_6,
+    },
+    [CARD_CLUBS_7] =
+    {
+        .points = CARD_SCORE_7,
+        .sheet = sSpriteSheet_Cards_Clubs_7,
+        .template = sSpriteTemplate_Cards_Clubs_7,
+    },
+    [CARD_CLUBS_8] =
+    {
+        .points = CARD_SCORE_8,
+        .sheet = sSpriteSheet_Cards_Clubs_8,
+        .template = sSpriteTemplate_Cards_Clubs_8,
+    },
+    [CARD_CLUBS_9] =
+    {
+        .points = CARD_SCORE_9,
+        .sheet = sSpriteSheet_Cards_Clubs_9,
+        .template = sSpriteTemplate_Cards_Clubs_9,
+    },
+    [CARD_CLUBS_10] =
+    {
+        .points = CARD_SCORE_10,
+        .sheet = sSpriteSheet_Cards_Clubs_10,
+        .template = sSpriteTemplate_Cards_Clubs_10,
+    },
+    [CARD_CLUBS_JACK] =
+    {
+        .points = CARD_SCORE_FACE,
+        .sheet = sSpriteSheet_Cards_Clubs_J,
+        .template = sSpriteTemplate_Cards_Clubs_J,
+    },
+    [CARD_CLUBS_QUEEN] =
+    {
+        .points = CARD_SCORE_FACE,
+        .sheet = sSpriteSheet_Cards_Clubs_Q,
+        .template = sSpriteTemplate_Cards_Clubs_Q,
+    },
+    [CARD_CLUBS_KING] =
+    {
+        .points = CARD_SCORE_FACE,
+        .sheet = sSpriteSheet_Cards_Clubs_K,
+        .template = sSpriteTemplate_Cards_Clubs_K,
+    },
+    [CARD_CLUBS_ACE] =
+    {
+        .points = CARD_SCORE_ACE,
+        .sheet = sSpriteSheet_Cards_Clubs_A,
+        .template = sSpriteTemplate_Cards_Clubs_A,
+    },
+    [CARD_DIAMONDS_2] =
+    {
+        .points = CARD_SCORE_2,
+        .sheet = sSpriteSheet_Cards_Diamonds_2,
+        .template = sSpriteTemplate_Cards_Diamonds_2,
+    },
+    [CARD_DIAMONDS_3] =
+    {
+        .points = CARD_SCORE_3,
+        .sheet = sSpriteSheet_Cards_Diamonds_3,
+        .template = sSpriteTemplate_Cards_Diamonds_3,
+    },
+    [CARD_DIAMONDS_4] =
+    {
+        .points = CARD_SCORE_4,
+        .sheet = sSpriteSheet_Cards_Diamonds_4,
+        .template = sSpriteTemplate_Cards_Diamonds_4,
+    },
+    [CARD_DIAMONDS_5] =
+    {
+        .points = CARD_SCORE_5,
+        .sheet = sSpriteSheet_Cards_Diamonds_5,
+        .template = sSpriteTemplate_Cards_Diamonds_5,
+    },
+    [CARD_DIAMONDS_6] =
+    {
+        .points = CARD_SCORE_6,
+        .sheet = sSpriteSheet_Cards_Diamonds_6,
+        .template = sSpriteTemplate_Cards_Diamonds_6,
+    },
+    [CARD_DIAMONDS_7] =
+    {
+        .points = CARD_SCORE_7,
+        .sheet = sSpriteSheet_Cards_Diamonds_7,
+        .template = sSpriteTemplate_Cards_Diamonds_7,
+    },
+    [CARD_DIAMONDS_8] =
+    {
+        .points = CARD_SCORE_8,
+        .sheet = sSpriteSheet_Cards_Diamonds_8,
+        .template = sSpriteTemplate_Cards_Diamonds_8,
+    },
+    [CARD_DIAMONDS_9] =
+    {
+        .points = CARD_SCORE_9,
+        .sheet = sSpriteSheet_Cards_Diamonds_9,
+        .template = sSpriteTemplate_Cards_Diamonds_9,
+    },
+    [CARD_DIAMONDS_10] =
+    {
+        .points = CARD_SCORE_10,
+        .sheet = sSpriteSheet_Cards_Diamonds_10,
+        .template = sSpriteTemplate_Cards_Diamonds_10,
+    },
+    [CARD_DIAMONDS_JACK] =
+    {
+        .points = CARD_SCORE_FACE,
+        .sheet = sSpriteSheet_Cards_Diamonds_J,
+        .template = sSpriteTemplate_Cards_Diamonds_J,
+    },
+    [CARD_DIAMONDS_QUEEN] =
+    {
+        .points = CARD_SCORE_FACE,
+        .sheet = sSpriteSheet_Cards_Diamonds_Q,
+        .template = sSpriteTemplate_Cards_Diamonds_Q,
+    },
+    [CARD_DIAMONDS_KING] =
+    {
+        .points = CARD_SCORE_FACE,
+        .sheet = sSpriteSheet_Cards_Diamonds_K,
+        .template = sSpriteTemplate_Cards_Diamonds_K,
+    },
+    [CARD_DIAMONDS_ACE] =
+    {
+        .points = CARD_SCORE_ACE,
+        .sheet = sSpriteSheet_Cards_Diamonds_A,
+        .template = sSpriteTemplate_Cards_Diamonds_A,
+    },
+    [CARD_SPADES_2] =
+    {
+        .points = CARD_SCORE_2,
+        .sheet = sSpriteSheet_Cards_Spades_2,
+        .template = sSpriteTemplate_Cards_Spades_2,
+    },
+    [CARD_SPADES_3] =
+    {
+        .points = CARD_SCORE_3,
+        .sheet = sSpriteSheet_Cards_Spades_3,
+        .template = sSpriteTemplate_Cards_Spades_3,
+    },
+    [CARD_SPADES_4] =
+    {
+        .points = CARD_SCORE_4,
+        .sheet = sSpriteSheet_Cards_Spades_4,
+        .template = sSpriteTemplate_Cards_Spades_4,
+    },
+    [CARD_SPADES_5] =
+    {
+        .points = CARD_SCORE_5,
+        .sheet = sSpriteSheet_Cards_Spades_5,
+        .template = sSpriteTemplate_Cards_Spades_5,
+    },
+    [CARD_SPADES_6] =
+    {
+        .points = CARD_SCORE_6,
+        .sheet = sSpriteSheet_Cards_Spades_6,
+        .template = sSpriteTemplate_Cards_Spades_6,
+    },
+    [CARD_SPADES_7] =
+    {
+        .points = CARD_SCORE_7,
+        .sheet = sSpriteSheet_Cards_Spades_7,
+        .template = sSpriteTemplate_Cards_Spades_7,
+    },
+    [CARD_SPADES_8] =
+    {
+        .points = CARD_SCORE_8,
+        .sheet = sSpriteSheet_Cards_Spades_8,
+        .template = sSpriteTemplate_Cards_Spades_8,
+    },
+    [CARD_SPADES_9] =
+    {
+        .points = CARD_SCORE_9,
+        .sheet = sSpriteSheet_Cards_Spades_9,
+        .template = sSpriteTemplate_Cards_Spades_9,
+    },
+    [CARD_SPADES_10] =
+    {
+        .points = CARD_SCORE_10,
+        .sheet = sSpriteSheet_Cards_Spades_10,
+        .template = sSpriteTemplate_Cards_Spades_10,
+    },
+    [CARD_SPADES_JACK] =
+    {
+        .points = CARD_SCORE_FACE,
+        .sheet = sSpriteSheet_Cards_Spades_J,
+        .template = sSpriteTemplate_Cards_Spades_J,
+    },
+    [CARD_SPADES_QUEEN] =
+    {
+        .points = CARD_SCORE_FACE,
+        .sheet = sSpriteSheet_Cards_Spades_Q,
+        .template = sSpriteTemplate_Cards_Spades_Q,
+    },
+    [CARD_SPADES_KING] =
+    {
+        .points = CARD_SCORE_FACE,
+        .sheet = sSpriteSheet_Cards_Spades_K,
+        .template = sSpriteTemplate_Cards_Spades_K,
+    },
+    [CARD_SPADES_ACE] =
+    {
+        .points = CARD_SCORE_ACE,
+        .sheet = sSpriteSheet_Cards_Spades_A,
+        .template = sSpriteTemplate_Cards_Spades_A,
+    },
+};
+
 void StartBlackJack(void)
 {
-	u8 taskId = 0;
     sBlackJack = AllocZeroed(sizeof(struct BlackJack));
-    taskId = CreateTask(FadeToBJScreen, 0);
+    CreateTask(FadeToBJScreen, 0);
 }
 
 static void FadeToBJScreen(u8 taskId)
 {
-	switch (gTasks[taskId].data[0])
+    switch (gTasks[taskId].data[0])
     {
     case 0:
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
@@ -1769,22 +2139,18 @@ static void SetCreditDigits(u16 num)
         u8 digit = num / d;
 
         gSprites[sBlackJack->CreditSpriteIds[i + SPR_CREDIT_DIGITS]].invisible = FALSE;
-
         gSprites[sBlackJack->CreditSpriteIds[i + SPR_CREDIT_DIGITS]].oam.tileNum =
-            gSprites[sBlackJack->CreditSpriteIds[i + SPR_CREDIT_DIGITS]].sheetTileStart + (digit * 2);
-
+        gSprites[sBlackJack->CreditSpriteIds[i + SPR_CREDIT_DIGITS]].sheetTileStart + (digit * 2);
         gSprites[sBlackJack->CreditSpriteIds[i + SPR_CREDIT_DIGITS]].oam.priority = 2;
 
         num = num % d;
         d = d / 10;
     }
 
-    for (i = 0; i < 4; i++) {
-        if (gSprites[sBlackJack->CreditSpriteIds[i + SPR_CREDIT_DIGITS]].invisible == FALSE) {
-
-        } else {
+    for (i = 0; i < 4; i++)
+    {
+        if (gSprites[sBlackJack->CreditSpriteIds[i + SPR_CREDIT_DIGITS]].invisible)
             gSprites[sBlackJack->CreditSpriteIds[i + SPR_CREDIT_DIGITS]].invisible = FALSE;
-        }
     }
 
     BuildOamBuffer();
@@ -1802,27 +2168,20 @@ static void SetPlayerDigits(u16 num)
 
         gSprites[sBlackJack->PlayerSpriteIds[i + SPR_PLAYER_DIGITS]].invisible = FALSE;
 
-        if (i == 0 && isSingleDigit) {
+        if (i == 0 && isSingleDigit)
             digit = 0;
-        }
-        
-        else if (i == 1 && isSingleDigit) {
+        else if (i == 1 && isSingleDigit)
             digit = num;
-        }
 
         gSprites[sBlackJack->PlayerSpriteIds[i + SPR_PLAYER_DIGITS]].oam.tileNum =
-            gSprites[sBlackJack->PlayerSpriteIds[i + SPR_PLAYER_DIGITS]].sheetTileStart + (digit * 2);
+        gSprites[sBlackJack->PlayerSpriteIds[i + SPR_PLAYER_DIGITS]].sheetTileStart + (digit * 2);
 
         gSprites[sBlackJack->PlayerSpriteIds[i + SPR_PLAYER_DIGITS]].oam.priority = 2;
 
         num = num % d;
         d = d / 10;
-
-        if (isSingleDigit && i == 1) {
-            //gSprites[sBlackJack->PlayerSpriteIds[i + SPR_PLAYER_DIGITS]].invisible = TRUE;
-        }
     }
-	BuildOamBuffer();
+    BuildOamBuffer();
 }
 
 static void SetDealerDigits(u16 num)
@@ -1837,27 +2196,20 @@ static void SetDealerDigits(u16 num)
 
         gSprites[sBlackJack->DealerSpriteIds[i + SPR_DEALER_DIGITS]].invisible = FALSE;
 
-        if (i == 0 && isSingleDigit) {
+        if (i == 0 && isSingleDigit)
             digit = 0;
-        }
-
-        else if (i == 1 && isSingleDigit) {
+        else if (i == 1 && isSingleDigit)
             digit = num;
-        }
 
         gSprites[sBlackJack->DealerSpriteIds[i + SPR_DEALER_DIGITS]].oam.tileNum =
-            gSprites[sBlackJack->DealerSpriteIds[i + SPR_DEALER_DIGITS]].sheetTileStart + (digit * 2);
+        gSprites[sBlackJack->DealerSpriteIds[i + SPR_DEALER_DIGITS]].sheetTileStart + (digit * 2);
 
         gSprites[sBlackJack->DealerSpriteIds[i + SPR_DEALER_DIGITS]].oam.priority = 2;
 
         num = num % d;
         d = d / 10; 
-
-        if (isSingleDigit && i == 1) {
-            //gSprites[sBlackJack->DealerSpriteIds[i + SPR_DEALER_DIGITS]].invisible = TRUE;
-        }
     }
-	BuildOamBuffer();
+    BuildOamBuffer();
 }
 
 static void CreateCreditSprites(void)
@@ -1871,18 +2223,14 @@ static void CreateCreditSprites(void)
 
     for (i = 0; i < MAX_COIN_DIGITS; i++)
     {
-		if (i == 0){
-        sBlackJack->CreditSpriteIds[i + SPR_CREDIT_DIGITS] = CreateSprite(&sSpriteTemplate_CreditDigit, 188, 39, 2);
-		}
-		if (i == 1){
-        sBlackJack->CreditSpriteIds[i + SPR_CREDIT_DIGITS] = CreateSprite(&sSpriteTemplate_CreditDigit, 8 + 188, 39, 2);
-		}
-		if (i == 2){
-        sBlackJack->CreditSpriteIds[i + SPR_CREDIT_DIGITS] = CreateSprite(&sSpriteTemplate_CreditDigit, 16 + 188, 39, 2);
-		}
-		if (i == 3){
-        sBlackJack->CreditSpriteIds[i + SPR_CREDIT_DIGITS] = CreateSprite(&sSpriteTemplate_CreditDigit, 24 + 188, 39, 2);
-		}
+        if (i == 0)
+            sBlackJack->CreditSpriteIds[i + SPR_CREDIT_DIGITS] = CreateSprite(&sSpriteTemplate_CreditDigit, 188, 39, 2);
+        if (i == 1)
+            sBlackJack->CreditSpriteIds[i + SPR_CREDIT_DIGITS] = CreateSprite(&sSpriteTemplate_CreditDigit, 8 + 188, 39, 2);
+        if (i == 2)
+            sBlackJack->CreditSpriteIds[i + SPR_CREDIT_DIGITS] = CreateSprite(&sSpriteTemplate_CreditDigit, 16 + 188, 39, 2);
+        if (i == 3)
+            sBlackJack->CreditSpriteIds[i + SPR_CREDIT_DIGITS] = CreateSprite(&sSpriteTemplate_CreditDigit, 24 + 188, 39, 2);
     }
 }
 
@@ -1916,67 +2264,74 @@ static void CreateDealerSprites(void)
     }
 }
 
-static void SetMode(u16 num)
+static void SetMode(void)
 {
-	gSprites[sBlackJack->option1SpriteId].oam.tileNum = (VarGet(BLACKJACK_VAR_OPTION1_TILE));
-	gSprites[sBlackJack->option2SpriteId].oam.tileNum = (VarGet(BLACKJACK_VAR_OPTION2_TILE));
-	gSprites[sBlackJack->option3SpriteId].oam.tileNum = (VarGet(BLACKJACK_VAR_OPTION3_TILE));
-	
-	if (num == 0) // +100, -100, BET
-	{
-		gSprites[sBlackJack->option1SpriteId].oam.tileNum = (VarGet(BLACKJACK_VAR_OPTION1_TILE));
-		gSprites[sBlackJack->option2SpriteId].oam.tileNum = (VarGet(BLACKJACK_VAR_OPTION2_TILE));
-		gSprites[sBlackJack->option3SpriteId].oam.tileNum = (VarGet(BLACKJACK_VAR_OPTION3_TILE));
-		gSprites[sBlackJack->cursorSpriteId].y = 57;
-		gSprites[sBlackJack->cursorSpriteId].invisible = FALSE;
-		gSprites[sBlackJack->option1SpriteId].invisible = FALSE;
-		gSprites[sBlackJack->option2SpriteId].invisible = FALSE;
-		gSprites[sBlackJack->option3SpriteId].invisible = FALSE;
-	}
-	if (num == 1) // HIT, STAND, NONE
-	{
-		gSprites[sBlackJack->option1SpriteId].oam.tileNum = (VarGet(BLACKJACK_VAR_OPTION1_TILE) + 8);
-		gSprites[sBlackJack->option2SpriteId].oam.tileNum = (VarGet(BLACKJACK_VAR_OPTION2_TILE) + 8);
-		gSprites[sBlackJack->cursorSpriteId].y = 57;
-		gSprites[sBlackJack->cursorSpriteId].invisible = FALSE;	
-		gSprites[sBlackJack->option1SpriteId].invisible = FALSE;
-		gSprites[sBlackJack->option2SpriteId].invisible = FALSE;
-		gSprites[sBlackJack->option3SpriteId].invisible = TRUE;		
-	}
-	if (num == 2) // HIT, STAND, DOUBLE
-	{
-		gSprites[sBlackJack->option1SpriteId].oam.tileNum = (VarGet(BLACKJACK_VAR_OPTION1_TILE) + 8);
-		gSprites[sBlackJack->option2SpriteId].oam.tileNum = (VarGet(BLACKJACK_VAR_OPTION2_TILE) + 8);
-		gSprites[sBlackJack->option3SpriteId].oam.tileNum = (VarGet(BLACKJACK_VAR_OPTION3_TILE) + 8);
-		gSprites[sBlackJack->cursorSpriteId].y = 57;
-		gSprites[sBlackJack->cursorSpriteId].invisible = FALSE;
-		gSprites[sBlackJack->option1SpriteId].invisible = FALSE;
-		gSprites[sBlackJack->option2SpriteId].invisible = FALSE;
-		gSprites[sBlackJack->option3SpriteId].invisible = FALSE;		
-	}
-	if (num == 3) // HIT, STAND, INSURE
-	{
-		gSprites[sBlackJack->option1SpriteId].oam.tileNum = (VarGet(BLACKJACK_VAR_OPTION1_TILE) + 8);
-		gSprites[sBlackJack->option2SpriteId].oam.tileNum = (VarGet(BLACKJACK_VAR_OPTION2_TILE) + 8);
-		gSprites[sBlackJack->option3SpriteId].oam.tileNum = (VarGet(BLACKJACK_VAR_OPTION3_TILE) + 16);
-		gSprites[sBlackJack->cursorSpriteId].y = 57;
-		gSprites[sBlackJack->cursorSpriteId].invisible = FALSE;
-		gSprites[sBlackJack->option1SpriteId].invisible = FALSE;
-		gSprites[sBlackJack->option2SpriteId].invisible = FALSE;
-		gSprites[sBlackJack->option3SpriteId].invisible = FALSE;		
-	}
-	if (num >= 4) // NONE, NONE, NONE
-	{
-		gSprites[sBlackJack->cursorSpriteId].invisible = TRUE;
-		gSprites[sBlackJack->option1SpriteId].invisible = TRUE;
-		gSprites[sBlackJack->option2SpriteId].invisible = TRUE;
-		gSprites[sBlackJack->option3SpriteId].invisible = TRUE;		
-	}
+    u32 num = sBlackJack->optionMode;
+
+    gSprites[sBlackJack->option1SpriteId].oam.tileNum = sBlackJack->optionTileNum1;
+    gSprites[sBlackJack->option2SpriteId].oam.tileNum = sBlackJack->optionTileNum2;
+    gSprites[sBlackJack->option3SpriteId].oam.tileNum = sBlackJack->optionTileNum3;
+    
+    if (num == 0) // +100, -100, BET
+    {
+        gSprites[sBlackJack->option1SpriteId].oam.tileNum = sBlackJack->optionTileNum1;
+        gSprites[sBlackJack->option2SpriteId].oam.tileNum = sBlackJack->optionTileNum2;
+        gSprites[sBlackJack->option3SpriteId].oam.tileNum = sBlackJack->optionTileNum3;
+        gSprites[sBlackJack->cursorSpriteId].y = 57;
+        gSprites[sBlackJack->cursorSpriteId].invisible = FALSE;
+        gSprites[sBlackJack->option1SpriteId].invisible = FALSE;
+        gSprites[sBlackJack->option2SpriteId].invisible = FALSE;
+        gSprites[sBlackJack->option3SpriteId].invisible = FALSE;
+    }
+    if (num == 1) // HIT, STAND, NONE
+    {
+        gSprites[sBlackJack->option1SpriteId].oam.tileNum = sBlackJack->optionTileNum1 + 8;
+        gSprites[sBlackJack->option2SpriteId].oam.tileNum = sBlackJack->optionTileNum2 + 8;
+        gSprites[sBlackJack->cursorSpriteId].y = 57;
+        gSprites[sBlackJack->cursorSpriteId].invisible = FALSE;    
+        gSprites[sBlackJack->option1SpriteId].invisible = FALSE;
+        gSprites[sBlackJack->option2SpriteId].invisible = FALSE;
+        gSprites[sBlackJack->option3SpriteId].invisible = TRUE;        
+    }
+    if (num == 2) // HIT, STAND, DOUBLE
+    {
+        gSprites[sBlackJack->option1SpriteId].oam.tileNum = sBlackJack->optionTileNum1 + 8;
+        gSprites[sBlackJack->option2SpriteId].oam.tileNum = sBlackJack->optionTileNum2 + 8;
+        gSprites[sBlackJack->option3SpriteId].oam.tileNum = sBlackJack->optionTileNum3 + 8;
+        gSprites[sBlackJack->cursorSpriteId].y = 57;
+        gSprites[sBlackJack->cursorSpriteId].invisible = FALSE;
+        gSprites[sBlackJack->option1SpriteId].invisible = FALSE;
+        gSprites[sBlackJack->option2SpriteId].invisible = FALSE;
+        gSprites[sBlackJack->option3SpriteId].invisible = FALSE;        
+    }
+    if (num == 3) // HIT, STAND, INSURE
+    {
+        gSprites[sBlackJack->option1SpriteId].oam.tileNum = sBlackJack->optionTileNum1 + 8;
+        gSprites[sBlackJack->option2SpriteId].oam.tileNum = sBlackJack->optionTileNum2 + 8;
+        gSprites[sBlackJack->option3SpriteId].oam.tileNum = sBlackJack->optionTileNum3 + 16;
+        gSprites[sBlackJack->cursorSpriteId].y = 57;
+        gSprites[sBlackJack->cursorSpriteId].invisible = FALSE;
+        gSprites[sBlackJack->option1SpriteId].invisible = FALSE;
+        gSprites[sBlackJack->option2SpriteId].invisible = FALSE;
+        gSprites[sBlackJack->option3SpriteId].invisible = FALSE;        
+    }
+    if (num >= 4) // NONE, NONE, NONE
+    {
+        gSprites[sBlackJack->cursorSpriteId].invisible = TRUE;
+        gSprites[sBlackJack->option1SpriteId].invisible = TRUE;
+        gSprites[sBlackJack->option2SpriteId].invisible = TRUE;
+        gSprites[sBlackJack->option3SpriteId].invisible = TRUE;        
+    }
+}
+
+static inline void SetOptionMode(u16 optionMode)
+{
+    sBlackJack->optionMode = optionMode;
+    SetMode();
 }
 
 static void InitBJScreen(void)
-{	
-
+{
     SetVBlankCallback(NULL);
     ResetAllBgsCoordinates();
     ResetVramOamAndBgCntRegs();
@@ -1990,79 +2345,70 @@ static void InitBJScreen(void)
     ResetPaletteFade();
     LoadPalette(sBJBackgroundPalette, 0, sizeof(sBJBackgroundPalette));
 
-	ResetSpriteData();
+    ResetSpriteData();
     FreeAllSpritePalettes();
-	LoadSpritePalettes(sSpritePalettes);
+    LoadSpritePalettes(sSpritePalettes);
 
-	FlagClear(BLACKJACK_FLAG_INSURANCE);
-	VarSet(BLACKJACK_VAR_PLAYER, 0);
-	VarSet(BLACKJACK_VAR_DEALER, 0);
-	
-	if ((GetCoins()) >= 10) // If you can afford to play
-		{
-		VarSet(BLACKJACK_VAR_OPTIONS, 0); // 0 = Bet, 1 = Hit, 2 = Double, 3 = Insurance, 4 = None
-		}
-	else // Not enough coins
-		{
-		VarSet(BLACKJACK_VAR_OPTIONS, 4); // 0 = Bet, 1 = Hit, 2 = Double, 3 = Insurance, 4 = None
-		}
-	
-	FlagClear(BLACKJACK_FLAG_BLACKJACK);
-	CreateCreditSprites();
-	
-	CreatePlayerSprites();
-	CreateDealerSprites();
-	SetCreditDigits(GetCoins());
-	SetPlayerDigits(VarGet(BLACKJACK_VAR_PLAYER));
-	SetDealerDigits(VarGet(BLACKJACK_VAR_DEALER));
-	CreateCursorSprite();
-	CreateOptions();
-	VarSet(BLACKJACK_VAR_OPTION1_TILE, (gSprites[sBlackJack->option1SpriteId].oam.tileNum));
-	VarSet(BLACKJACK_VAR_OPTION2_TILE, (gSprites[sBlackJack->option2SpriteId].oam.tileNum));
-	VarSet(BLACKJACK_VAR_OPTION3_TILE, (gSprites[sBlackJack->option3SpriteId].oam.tileNum));
-	SetMode(VarGet(BLACKJACK_VAR_OPTIONS));
-	CreatePopUpSprite();
-	
-	CreateFacedown();
-	sBlackJack->numPlayerCards = 0;
-	sBlackJack->numDealerCards = 0;
-	sBlackJack->AceHearts = 11;
-	sBlackJack->AceDiamonds = 11;
-	sBlackJack->AceClubs = 11;
-	sBlackJack->AceSpades = 11;
-	sBlackJack->AceAdjustPlayer = 0;
-	sBlackJack->AceAdjustDealer = 0;
-	sBlackJack->exitToggle =  0;
-	AdjustCards();
-	ShuffleCards();
-	
-	gSprites[sBlackJack->CreditSpriteIds[0 + SPR_CREDIT_DIGITS]].x = 188;
-	
-	DeactivateAllTextPrinters();
-	
-	
-	
+    sBlackJack->insuranceBet = FALSE;
+    sBlackJack->betBlackJack = 0;
+    sBlackJack->playerScore = 0;
+    sBlackJack->dealerScore = 0;
+    
+    if ((GetCoins()) >= 10) // If you can afford to play
+        sBlackJack->optionMode = OPTION_BET;
+    else // Not enough coins
+        sBlackJack->optionMode = OPTION_NONE;
+
+    sBlackJack->hasBlackJack = FALSE;
+    CreateCreditSprites();
+    
+    CreatePlayerSprites();
+    CreateDealerSprites();
+    SetCreditDigits(GetCoins());
+    SetPlayerDigits(sBlackJack->playerScore);
+    SetDealerDigits(sBlackJack->dealerScore);
+    CreateCursorSprite();
+    CreateOptions();
+    sBlackJack->optionTileNum1 = gSprites[sBlackJack->option1SpriteId].oam.tileNum;
+    sBlackJack->optionTileNum2 = gSprites[sBlackJack->option2SpriteId].oam.tileNum;
+    sBlackJack->optionTileNum3 = gSprites[sBlackJack->option3SpriteId].oam.tileNum;
+    SetMode();
+    CreatePopUpSprite();
+    
+    CreateFacedown();
+    sBlackJack->numPlayerCards = 0;
+    sBlackJack->numDealerCards = 0;
+    sBlackJack->AceAdjustPlayer = FALSE;
+    sBlackJack->AceAdjustDealer = FALSE;
+    sBlackJack->exitToggle = FALSE;
+    AdjustCards();
+    ShuffleCards();
+    
+    gSprites[sBlackJack->CreditSpriteIds[0 + SPR_CREDIT_DIGITS]].x = 188;
+    
+    DeactivateAllTextPrinters();
+
     InitWindows(sBJWinTemplates);
-	
-	LoadPalette(GetTextWindowPalette(2), 11 * 16, 32);
+    
+    LoadPalette(GetTextWindowPalette(2), 11 * 16, 32);
     ShowHelpBar(sHelpBarHitStandText);
-	PrintInitMessage();
-	
-	CopyBgTilemapBufferToVram(BJ_BG_BASE);
-	CopyBgTilemapBufferToVram(BJ_WIN_MENU);
+    PrintInitMessage();
+    
+    CopyBgTilemapBufferToVram(BJ_BG_BASE);
+    CopyBgTilemapBufferToVram(BJ_WIN_MENU);
     SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON | DISPCNT_BG2_ON);
     ShowBg(BJ_BG_BASE);
-	ShowBg(BJ_WIN_MENU);
+    ShowBg(BJ_WIN_MENU);
     BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
     SetVBlankCallback(BJVBlankCallback);
     SetMainCallback2(BJMainCallback);
     CreateTask(BJMain, 1);
 }
 
-static void BGrefresh(void)
+static void RefreshBlackJackBG(void)
 {
-	//HideBg(BJ_WIN_MENU);
-	ClearStdWindowAndFrame(sTextWindowId, TRUE);
+    //HideBg(BJ_WIN_MENU);
+    ClearStdWindowAndFrame(sTextWindowId, TRUE);
     RemoveWindow(sTextWindowId);
 }
 
@@ -2071,9 +2417,8 @@ static void BJMain(u8 taskId)
     switch (sBlackJack->state)
     {
     case BJ_STATE_INIT:
-        if (!gPaletteFade.active) {
+        if (!gPaletteFade.active)
             sBlackJack->state = BJ_STATE_PROCESS_INPUT;
-		}
         break;
     case BJ_STATE_PROCESS_INPUT:
         HandleInput();
@@ -2081,7 +2426,6 @@ static void BJMain(u8 taskId)
     case BJ_STATE_COMPLETED_WAIT_FOR_SOUND:
         if (IsSEPlaying())
             break;
-
         PlayFanfare(MUS_SLOTS_WIN);
         sBlackJack->state = BJ_STATE_PROCESS_COMPLETED_INPUT;
     case BJ_STATE_PROCESS_COMPLETED_INPUT:
@@ -2098,31 +2442,32 @@ static void BJMain(u8 taskId)
 
 static void ShowMessage(const u8 *str)
 {
-	struct WindowTemplate template;
-	SetWindowTemplateFields(&template, BJ_WIN_MENU, 3, 15, 14, 4, 0xF, 0x194);
-	
+    struct WindowTemplate template;
+    SetWindowTemplateFields(&template, BJ_WIN_MENU, 3, 15, 14, 4, 0xF, 0x194);
+
     sTextWindowId = AddWindow(&template);
     FillWindowPixelBuffer(sTextWindowId, PIXEL_FILL(0));
     PutWindowTilemap(sTextWindowId);
     LoadUserWindowBorderGfx(sTextWindowId, 0x214, BG_PLTT_ID(14));
-	DrawStdWindowFrame(sTextWindowId, FALSE); 
+    DrawStdWindowFrame(sTextWindowId, FALSE); 
     AddTextPrinterParameterized(sTextWindowId, FONT_NORMAL, str, 0, 1, 0, 0);
-	CopyWindowToVram(sTextWindowId, 3);
+    CopyWindowToVram(sTextWindowId, 3);
 }
 
 static void PrintInitMessage(void)
 {
-	u8 bet;
-	bet = VarGet(BLACKJACK_VAR_BET);
-	
-	if (GetCoins() > 9) { // You can play
-	ConvertUIntToDecimalStringN(gStringVar1, bet, STR_CONV_MODE_LEFT_ALIGN, 3);
-		ShowMessage(sText_NoBetting);
-	}
-	else
-	{
-		ShowMessage(sText_NoMoney);
-	}
+    u8 bet;
+    bet = sBlackJack->betBlackJack;
+    
+    if (GetCoins() > 9)
+    { // You can play
+        ConvertUIntToDecimalStringN(gStringVar1, bet, STR_CONV_MODE_LEFT_ALIGN, 3);
+        ShowMessage(sText_NoBetting);
+    }
+    else
+    {
+        ShowMessage(sText_NoCoins);
+    }
 }
 
 static void HandleInput_BJComplete(void)
@@ -2142,14 +2487,13 @@ static void HandleInput(void)
     if (JOY_NEW(A_BUTTON))
     {
         AButton();
-		if (FlagGet(BLACKJACK_FLAG_RESET) == TRUE) {
-			FlagClear(BLACKJACK_FLAG_RESET); }
+        if (sBlackJack->clearBlackJack)
+            sBlackJack->clearBlackJack = FALSE;
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        if (sBlackJack->exitToggle == 0) {
-        sBlackJack->state = BJ_STATE_START_EXIT;
-		}
+        if (sBlackJack->exitToggle == FALSE)
+            sBlackJack->state = BJ_STATE_START_EXIT;
     }
     else if (JOY_NEW(DPAD_UP))
     {
@@ -2164,24 +2508,28 @@ static void HandleInput(void)
 static void UpdateCardVisibility(void)
 {
     int i;
-    
-    for (i = 0; i < sBlackJack->numPlayerCards; i++) {
+
+    for (i = 0; i < sBlackJack->numPlayerCards; i++)
+    {
         gSprites[sBlackJack->playerCardIds[i]].invisible = FALSE;
     }
 
-    for (i = sBlackJack->numPlayerCards; i < MAX_PLAYER_CARDS; i++) {
+    for (i = sBlackJack->numPlayerCards; i < MAX_PLAYER_CARDS; i++)
+    {
         gSprites[sBlackJack->playerCardIds[i]].invisible = TRUE;
     }
 
-    for (i = 0; i < sBlackJack->numDealerCards; i++) {
+    for (i = 0; i < sBlackJack->numDealerCards; i++)
+    {
         gSprites[sBlackJack->dealerCardIds[i]].invisible = FALSE;
     }
 
-    for (i = sBlackJack->numDealerCards; i < MAX_DEALER_CARDS; i++) {
+    for (i = sBlackJack->numDealerCards; i < MAX_DEALER_CARDS; i++)
+    {
         gSprites[sBlackJack->dealerCardIds[i]].invisible = TRUE;
     }
-	
-	BuildOamBuffer();
+
+    BuildOamBuffer();
 }
 
 static void HideAllCards(void)
@@ -2201,49 +2549,48 @@ static void DeleteCards(void)
 {
     u8 i;
     // Loop through and destroy all player cards
-    for (i = 0; i < MAX_PLAYER_CARDS; i++) {
-        if (sBlackJack->playerCardIds[i] != 0) {
+    for (i = 0; i < MAX_PLAYER_CARDS; i++)
+    {
+        if (sBlackJack->playerCardIds[i] != 0)
             DestroySpriteAndFreeResources(&gSprites[sBlackJack->playerCardIds[i]]);
-        }
     }
     
     // Loop through and destroy all dealer cards
-    for (i = 0; i < MAX_DEALER_CARDS; i++) {
-        if (sBlackJack->dealerCardIds[i] != 0) {
+    for (i = 0; i < MAX_DEALER_CARDS; i++)
+    {
+        if (sBlackJack->dealerCardIds[i] != 0)
             DestroySpriteAndFreeResources(&gSprites[sBlackJack->dealerCardIds[i]]);
-        }
     }
 }
 
-static void Reset(void)
+static void ResetBlackJack(void)
 {
-	HideAllCards();
-	BuildOamBuffer();
-	BGrefresh();
-	FlagClear(BLACKJACK_FLAG_BLACKJACK);
-	VarSet(BLACKJACK_VAR_BET, 0);
-	VarSet(BLACKJACK_VAR_DEALER, 0);
-	VarSet(BLACKJACK_VAR_PLAYER, 0);
-	sBlackJack->numDealerCards = 0;
-	sBlackJack->numPlayerCards = 0;
-	sBlackJack->AceAdjustPlayer = 0;
-	sBlackJack->AceAdjustDealer = 0;
-	gSprites[sBlackJack->DealerFaceDownId].invisible = TRUE;
-	gSprites[sBlackJack->LogoId].invisible = FALSE;
-	SetDealerDigits(VarGet(BLACKJACK_VAR_DEALER));
-	SetPlayerDigits(VarGet(BLACKJACK_VAR_PLAYER));
-	SetCreditDigits(GetCoins());
-	DeleteCards();
-	LoadSpritePalettes(sSpritePalettes);
-	ShuffleCards();
-	AdjustCards();
-	VarSet(BLACKJACK_VAR_OPTIONS, 0);
-	SetMode(VarGet(BLACKJACK_VAR_OPTIONS));
-	sBlackJack->exitToggle = 0;
-	FlagSet(BLACKJACK_FLAG_RESET);
-	DeactivateAllTextPrinters();
-	PrintInitMessage();
-	return;
+    HideAllCards();
+    BuildOamBuffer();
+    RefreshBlackJackBG();
+    sBlackJack->hasBlackJack = FALSE;
+    sBlackJack->betBlackJack = 0;
+    sBlackJack->dealerScore = 0;
+    sBlackJack->playerScore = 0;
+    sBlackJack->numDealerCards = 0;
+    sBlackJack->numPlayerCards = 0;
+    sBlackJack->AceAdjustPlayer = FALSE;
+    sBlackJack->AceAdjustDealer = FALSE;
+    gSprites[sBlackJack->DealerFaceDownId].invisible = TRUE;
+    gSprites[sBlackJack->LogoId].invisible = FALSE;
+    SetDealerDigits(sBlackJack->dealerScore);
+    SetPlayerDigits(sBlackJack->playerScore);
+    SetCreditDigits(GetCoins());
+    DeleteCards();
+    LoadSpritePalettes(sSpritePalettes);
+    ShuffleCards();
+    AdjustCards();
+    SetOptionMode(OPTION_BET);
+    sBlackJack->exitToggle = FALSE;
+    sBlackJack->clearBlackJack = TRUE;
+    DeactivateAllTextPrinters();
+    PrintInitMessage();
+    return;
 }
 
 static void Push(void)
@@ -2251,894 +2598,776 @@ static void Push(void)
     switch (sBlackJack->pushState)
     {
         case PUSH_0:
-            VarSet(BLACKJACK_VAR_OPTIONS, 4);
-            SetMode(VarGet(BLACKJACK_VAR_OPTIONS));
+            SetOptionMode(OPTION_NONE);
             PlaySE(SE_BOO);
-			ShowMessage(sText_Push);
+            ShowMessage(sText_Push);
             sBlackJack->waitTimer = 100000;
-            sBlackJack->pushState = 1;
+            sBlackJack->pushState = PUSH_1;
             break;
-
         case PUSH_1:
-            if (sBlackJack->waitTimer > 0) {
+            if (sBlackJack->waitTimer > 0)
                 sBlackJack->waitTimer--;
-            } else {
-                sBlackJack->pushState = 2;
-            }
+            else
+                sBlackJack->pushState = PUSH_2;
             break;
-
         case PUSH_2:
-		
             PlaySE(SE_SHOP);
-            AddCoins(VarGet(BLACKJACK_VAR_BET));
+            AddCoins(sBlackJack->betBlackJack);
             SetCreditDigits(GetCoins());
             sBlackJack->waitTimer = 30;
-            sBlackJack->pushState = 3;
+            sBlackJack->pushState = PUSH_3;
             break;
-
         case PUSH_3:
-            if (sBlackJack->waitTimer > 0) {
+            if (sBlackJack->waitTimer > 0)
                 sBlackJack->waitTimer--;
-            } else {
-                sBlackJack->pushState = 4;
-            }
+            else
+                sBlackJack->pushState = PUSH_4;
             break;
-
         case PUSH_4:
-			BGrefresh();
-            Reset();
-			return;
+            RefreshBlackJackBG();
+            ResetBlackJack();
+            return;
     }
 }
 
 static void ProcessPush(void)
 {
-	sBlackJack->pushState = PUSH_0;
-	while (sBlackJack->pushState != PUSH_4)
-	{
-		Push();
-	}
-	Push();
+    sBlackJack->pushState = PUSH_0;
+    while (sBlackJack->pushState != PUSH_4)
+    {
+        Push();
+    }
+    Push();
 }
 
 static void Bust(void)
-{	
-	switch (sBlackJack->bustState)
+{    
+    switch (sBlackJack->bustState)
     {
-		case BUST_0:
-		
-			VarSet(BLACKJACK_VAR_OPTIONS, 4);
-			SetMode(VarGet(BLACKJACK_VAR_OPTIONS));
-			PlaySE(SE_FAILURE);
-			ShowMessage(sText_Bust);
-			sBlackJack->waitTimer = 100000;
+        case BUST_0:
+            SetOptionMode(OPTION_NONE);
+            PlaySE(SE_FAILURE);
+            ShowMessage(sText_Bust);
+            sBlackJack->waitTimer = 100000;
             sBlackJack->bustState = BUST_1;
             break;
-
         case BUST_1:
-
-			if (sBlackJack->waitTimer > 0) {
+            if (sBlackJack->waitTimer > 0)
                 sBlackJack->waitTimer--;
-            } else {
+            else
                 sBlackJack->bustState = BUST_2;
-            }
-            break;
-			
-		case BUST_2:
-			BGrefresh();
-            Reset();
-			return;
-	}
+            break;            
+        case BUST_2:
+            RefreshBlackJackBG();
+            ResetBlackJack();
+            return;
+    }
 }
 
 static void ProcessBust(void)
 {
-	sBlackJack->bustState = BUST_0;
-	while (sBlackJack->bustState != BUST_2)
-	{
-		Bust();
-	}
-	Bust();
+    sBlackJack->bustState = BUST_0;
+    while (sBlackJack->bustState != BUST_2)
+    {
+        Bust();
+    }
+    Bust();
 }
 
 static void Lose(void)
-{	
-	switch (sBlackJack->loseState)
-	{
-		case LOSE_0:
-		
-			VarSet(BLACKJACK_VAR_OPTIONS, 4);
-			SetMode(VarGet(BLACKJACK_VAR_OPTIONS));
-			PlaySE(SE_FAILURE);
-			ShowMessage(sText_YouLose);
-			sBlackJack->waitTimer = 100000;
+{    
+    switch (sBlackJack->loseState)
+    {
+        case LOSE_0:
+            SetOptionMode(OPTION_NONE);
+            PlaySE(SE_FAILURE);
+            ShowMessage(sText_YouLose);
+            sBlackJack->waitTimer = 100000;
             sBlackJack->loseState = LOSE_1;
             break;
-
         case LOSE_1:
-
-			if (sBlackJack->waitTimer > 0) {
+            if (sBlackJack->waitTimer > 0)
                 sBlackJack->waitTimer--;
-            } else {
+            else
                 sBlackJack->loseState = LOSE_2;
-            }
             break;
-			
-		case LOSE_2:
-			BGrefresh();
-            Reset();
-			return;
-	}
+        case LOSE_2:
+            RefreshBlackJackBG();
+            ResetBlackJack();
+            return;
+    }
 }
 
 static void ProcessLose(void)
 {
-	sBlackJack->loseState = LOSE_0;
-	while (sBlackJack->loseState != LOSE_2)
-	{
-		Lose();
-	}
-	Lose();
+    sBlackJack->loseState = LOSE_0;
+    while (sBlackJack->loseState != LOSE_2)
+    {
+        Lose();
+    }
+    Lose();
 }
 
 static void Win(void)
 {
-	u16 winnings;
-	
-	switch (sBlackJack->winState)
-	{
-		case WIN_0:
-		
-			VarSet(BLACKJACK_VAR_OPTIONS, 4);
-			SetMode(VarGet(BLACKJACK_VAR_OPTIONS));
-			PlaySE(SE_RG_POKE_JUMP_SUCCESS);
-			ShowMessage(sText_YouWin);
-			sBlackJack->waitTimer = 100000;
+    u16 winnings;
+
+    switch (sBlackJack->winState)
+    {
+        case WIN_0:
+            SetOptionMode(OPTION_NONE);
+            PlaySE(SE_RG_POKE_JUMP_SUCCESS);
+            ShowMessage(sText_YouWin);
+            sBlackJack->waitTimer = 100000;
             sBlackJack->winState = WIN_1;
             break;
-
-		case WIN_1:
-		
-            if (sBlackJack->waitTimer > 0) {
+        case WIN_1:
+            if (sBlackJack->waitTimer > 0)
                 sBlackJack->waitTimer--;
-            } else {
+            else
                 sBlackJack->winState = WIN_2;
-            }
             break;
-		
-		case WIN_2:
-		
-			PlaySE(SE_SHOP);
-			if (((VarGet(BLACKJACK_VAR_BET) * 2) + GetCoins()) < 9999)
-			{
-				if (FlagGet(BLACKJACK_FLAG_BLACKJACK) == TRUE)
-				{
-					// 3:2 payout
-					winnings = (VarGet(BLACKJACK_VAR_BET) * 3) / 2;
-					
-					if ((GetCoins() + winnings) <= 9999)
-					{
-						AddCoins(winnings);
-					}
-					else
-					{
-						SetCoins(9999);
-					}
-				}
-				else
-				{
-					// Regular 1:1 payout
-					winnings = VarGet(BLACKJACK_VAR_BET) * 2;
-					
-					if ((GetCoins() + winnings) <= 9999)
-					{
-						AddCoins(winnings);
-					}
-					else
-					{
-						SetCoins(9999);
-					}
-				}
-			}
-			else
-			{
-				SetCoins(9999);
-			}
-			SetCreditDigits(GetCoins());
-			sBlackJack->waitTimer = 30;
-			sBlackJack->winState = WIN_3;
-			break;
-			
-		case WIN_3:
-		
-            if (sBlackJack->waitTimer > 0) {
-                sBlackJack->waitTimer--;
-            } else {
-                
-                sBlackJack->winState = WIN_4;
+        case WIN_2:
+            PlaySE(SE_SHOP);
+            if (((sBlackJack->betBlackJack * 2) + GetCoins()) < 9999)
+            {
+                if (sBlackJack->hasBlackJack)
+                {
+                    winnings = (sBlackJack->betBlackJack * 3) / 2; // 3:2 payout
+                }
+                else
+                {
+                    // Regular 1:1 payout
+                    winnings = sBlackJack->betBlackJack * 2;
+                }
+                if ((GetCoins() + winnings) <= 9999)
+                    AddCoins(winnings);
+                else
+                    SetCoins(9999);
             }
-            break;	
-			
-		case WIN_4:
-			BGrefresh();
-            Reset();
-			return;
-	}
+            else
+            {
+                SetCoins(9999);
+            }
+            SetCreditDigits(GetCoins());
+            sBlackJack->waitTimer = 30;
+            sBlackJack->winState = WIN_3;
+            break;
+        case WIN_3:
+            if (sBlackJack->waitTimer > 0)
+                sBlackJack->waitTimer--;
+            else
+                sBlackJack->winState = WIN_4;
+            break;
+        case WIN_4:
+            RefreshBlackJackBG();
+            ResetBlackJack();
+            return;
+    }
 }
 
 static void ProcessWin(void)
 {
-	sBlackJack->winState = WIN_0;
-	while (sBlackJack->winState != WIN_4)
-	{
-		Win();
-	}
-	Win();
+    sBlackJack->winState = WIN_0;
+    while (sBlackJack->winState != WIN_4)
+    {
+        Win();
+    }
+    Win();
 }
 
 static void Stand(void)
 {
-	u8 DCardPoints;
-	
-	switch (sBlackJack->standState)
-	{
-		case STAND_0:
-	
-			VarSet(BLACKJACK_VAR_OPTIONS, 4);
-			SetMode(VarGet(BLACKJACK_VAR_OPTIONS));
-			PlaySE(SE_REPEL);
-			sBlackJack->numDealerCards = 2;
-			gSprites[sBlackJack->DealerFaceDownId].invisible = TRUE;
-			UpdateCardVisibility();
-			AdjustCards();
-			DCardPoints = cardPoints[sBlackJack->dealerCardNumbers[1]];
-			if (DCardPoints == 0)
-				{
-					if (VarGet(BLACKJACK_VAR_DEALER) == 11)
-						{
-							DCardPoints = 1;
-						}
-					else
-						{
-							DCardPoints = 11;
-						}
-				}
-			VarSet(BLACKJACK_VAR_DEALER, (VarGet(BLACKJACK_VAR_DEALER) + DCardPoints));
-			SetDealerDigits(VarGet(BLACKJACK_VAR_DEALER));
-			sBlackJack->waitTimer = 100000;
+    u8 DCardPoints;
+    
+    switch (sBlackJack->standState)
+    {
+        case STAND_0:
+            SetOptionMode(OPTION_NONE);
+            PlaySE(SE_REPEL);
+            sBlackJack->numDealerCards = 2;
+            gSprites[sBlackJack->DealerFaceDownId].invisible = TRUE;
+            UpdateCardVisibility();
+            AdjustCards();
+            DCardPoints = sPlayingCards[sBlackJack->dealerCardNumbers[1]].points;
+            if (DCardPoints == CARD_SCORE_ACE)
+            {
+                if (sBlackJack->dealerScore == CARD_SCORE_ACE_EXPANDED)
+                    DCardPoints = CARD_SCORE_ACE_SHURNK;
+                else
+                    DCardPoints = CARD_SCORE_ACE_EXPANDED;
+            }
+            sBlackJack->dealerScore += DCardPoints;
+            SetDealerDigits(sBlackJack->dealerScore);
+            sBlackJack->waitTimer = 100000;
             sBlackJack->standState = STAND_1;
             break;
-
-		case STAND_1:
-		
-            if (sBlackJack->waitTimer > 0) {
-                sBlackJack->waitTimer--;
-            } else {
-                
-				if (FlagGet(BLACKJACK_FLAG_BLACKJACK) == FALSE) {
-					sBlackJack->standState = STAND_2;
-				}
-				else {
-					FlagClear(BLACKJACK_FLAG_BLACKJACK);
-					sBlackJack->standState = STAND_5;
-				}
-            }
-            break;
-		
-		case STAND_2:
-	
-			if (FlagGet(BLACKJACK_FLAG_INSURANCE) == TRUE)
-			{
-				if (VarGet(BLACKJACK_VAR_DEALER) == 21)
-				{
-					AddCoins(VarGet(BLACKJACK_VAR_BET));
-					FlagClear(BLACKJACK_FLAG_INSURANCE);
-				}
-				else {
-					FlagClear(BLACKJACK_FLAG_INSURANCE);
-				}
-			}
-			
-			sBlackJack->standState = STAND_3;
-            break;
-			
-		case STAND_3:	
-		
-			if (VarGet(BLACKJACK_VAR_DEALER) < 17) {
-
-				PlaySE(SE_REPEL);
-				sBlackJack->numDealerCards++;
-				UpdateCardVisibility();
-				AdjustCards();
-				DCardPoints = cardPoints[sBlackJack->dealerCardNumbers[(sBlackJack->numDealerCards - 1)]];
-				if (DCardPoints == 0)
-				{
-					if ((VarGet(BLACKJACK_VAR_DEALER) + 11) > 21)
-					{
-						DCardPoints = 1;
-					}
-					else
-					{
-						DCardPoints = 11;
-					}
-				}
-				VarSet(BLACKJACK_VAR_DEALER, (VarGet(BLACKJACK_VAR_DEALER) + DCardPoints));
-					if (VarGet(BLACKJACK_VAR_DEALER) > 21)
-					{
-						if (cardPoints[sBlackJack->dealerCardNumbers[0]] == 0) {
-							if (sBlackJack->AceAdjustDealer == 0) {
-								VarSet(BLACKJACK_VAR_DEALER, (VarGet(BLACKJACK_VAR_DEALER) - 10));
-								sBlackJack->AceAdjustDealer = 1;
-							}
-						}
-						else if (cardPoints[sBlackJack->dealerCardNumbers[1]] == 0) {
-							if (sBlackJack->AceAdjustDealer == 0) {
-								VarSet(BLACKJACK_VAR_DEALER, (VarGet(BLACKJACK_VAR_DEALER) - 10));
-								sBlackJack->AceAdjustDealer = 1;
-							}
-						}
-					}
-				SetDealerDigits(VarGet(BLACKJACK_VAR_DEALER));
-				sBlackJack->waitTimer = 100000;
-				sBlackJack->standState = STAND_4;
-				break;
-			}
-			else {
-				sBlackJack->standState = STAND_5;
-				break;
-			}
-		
-		case STAND_4:
-		
-            if (sBlackJack->waitTimer > 0) {
-                sBlackJack->waitTimer--;
-            } else {
-                
-                sBlackJack->standState = STAND_3;
-            }
-            break;
-			
-		case STAND_5:
-		
-			BGrefresh();
-		
-			if (VarGet(BLACKJACK_VAR_DEALER) < 22) 
-			{
-				if (VarGet(BLACKJACK_VAR_DEALER) > VarGet(BLACKJACK_VAR_PLAYER)) // Dealer Wins
-				{
-					ProcessLose();
-					if (FlagGet(BLACKJACK_FLAG_RESET) == TRUE) {
-					return; }
-				}
-				else if (VarGet(BLACKJACK_VAR_DEALER) < VarGet(BLACKJACK_VAR_PLAYER)) // Player Wins
-				{
-					ProcessWin();
-					if (FlagGet(BLACKJACK_FLAG_RESET) == TRUE) {
-					return; }
-				}
-				if (VarGet(BLACKJACK_VAR_DEALER) == VarGet(BLACKJACK_VAR_PLAYER)) // Push
-				{
-					ProcessPush();
-					if (FlagGet(BLACKJACK_FLAG_RESET) == TRUE) {
-					return; }
-				}
-			}
-			else if (VarGet(BLACKJACK_VAR_DEALER) > 21) // Dealer Busts
-			{
-				ProcessWin();
-				if (FlagGet(BLACKJACK_FLAG_RESET) == TRUE) {
-					return; }
-			}
-			return;
-	}
-}
-
-static void ProcessStand(void)
-{
-	sBlackJack->standState = STAND_0;
-	while (sBlackJack->standState != STAND_5)
-	{
-		Stand();
-	}
-	Stand();
-}
-
-static void HitBlackJack(void)
-{	
-	switch (sBlackJack->hitBJState)
-	{
-		case hitBJ_0:
-	
-		VarSet(BLACKJACK_VAR_OPTIONS, 4);
-		SetMode(VarGet(BLACKJACK_VAR_OPTIONS));
-		PlaySE(SE_APPLAUSE);
-		ShowMessage(sText_BlackJack);
-		sBlackJack->waitTimer = 300000;
-            sBlackJack->hitBJState = hitBJ_1;
-            break;
-
-		case 1:
-		
-            if (sBlackJack->waitTimer > 0) {
-                sBlackJack->waitTimer--;
-            } else {
-                sBlackJack->hitBJState = hitBJ_2;
-            }
-            break;
-
-		case 2:
-			
-			BGrefresh();
-			FlagSet(BLACKJACK_FLAG_BLACKJACK);
-			ProcessStand();
-			return;
-	}
-}
-
-static void ProcessHitBJ(void)
-{
-	sBlackJack->hitBJState = hitBJ_0;
-	while (sBlackJack->hitBJState != hitBJ_2)
-	{
-		HitBlackJack();
-	}
-	HitBlackJack();
-}
-
-static void Double(void)
-{
-	u8 playerCardPoints;
-	
-	switch (sBlackJack->doubleState)
-	{
-		case DOUBLE_0:
-	
-			PlaySE(SE_SHOP);
-			SetCoins(GetCoins() - VarGet(BLACKJACK_VAR_BET));
-			VarSet(BLACKJACK_VAR_BET, (VarGet(BLACKJACK_VAR_BET) * 2));
-			SetCreditDigits(GetCoins());
-			VarSet(BLACKJACK_VAR_OPTIONS, 4);
-			SetMode(VarGet(BLACKJACK_VAR_OPTIONS));
-			sBlackJack->waitTimer = 100000;
-            sBlackJack->doubleState = DOUBLE_1;
-            break;
-
-		case DOUBLE_1:
-		
-            if (sBlackJack->waitTimer > 0) {
-                sBlackJack->waitTimer--;
-            } else {
-                sBlackJack->doubleState = DOUBLE_2;
-            }
-            break;
-			
-		case DOUBLE_2:
-	
-			PlaySE(SE_REPEL);
-			sBlackJack->numPlayerCards = (sBlackJack->numPlayerCards + 1);
-			UpdateCardVisibility();
-			AdjustCards();
-			playerCardPoints = cardPoints[sBlackJack->playerCardNumbers[(sBlackJack->numPlayerCards - 1)]];
-			if (playerCardPoints == 0){
-                if ((VarGet(BLACKJACK_VAR_PLAYER) + 11) > 21)
-                {
-                    playerCardPoints = 1;
-                }
-                else
-                {
-                    playerCardPoints = 11;
-                }
-			}
-			VarSet(BLACKJACK_VAR_PLAYER, (VarGet(BLACKJACK_VAR_PLAYER) + playerCardPoints));
-			SetPlayerDigits(VarGet(BLACKJACK_VAR_PLAYER));
-			sBlackJack->waitTimer = 100000;
-            sBlackJack->doubleState = DOUBLE_3;
-            break;
-
-		case DOUBLE_3:
-		
-            if (sBlackJack->waitTimer > 0) {
-                sBlackJack->waitTimer--;
-            } else {
-                sBlackJack->doubleState = DOUBLE_4;
-            }
-            break;
-	
-		case DOUBLE_4:
-		
-			BGrefresh();
-			if (VarGet(BLACKJACK_VAR_PLAYER) > 21)
-			{
-				ProcessBust();
-				if (FlagGet(BLACKJACK_FLAG_RESET) == TRUE) {
-					return; }
-			}
-			else
-			{
-				ProcessStand();
-				if (FlagGet(BLACKJACK_FLAG_RESET) == TRUE) {
-					return; }
-			}
-			return;
-	}
-}
-
-static void ProcessDouble(void)
-{
-	sBlackJack->doubleState = DOUBLE_0;
-	while (sBlackJack->doubleState != DOUBLE_4)
-	{
-		Double();
-	}
-	Double();
-}
-
-static void Hit(void)
-{
-    u8 playerCardPoints;
-	int i;
-
-    switch (sBlackJack->hitState)
-    {
-        case HIT_0:
-            PlaySE(SE_REPEL);
-            VarSet(BLACKJACK_VAR_OPTIONS, 4);
-            SetMode(VarGet(BLACKJACK_VAR_OPTIONS));
-            sBlackJack->numPlayerCards = (sBlackJack->numPlayerCards + 1);
-			AdjustCards();
-            UpdateCardVisibility();
-            playerCardPoints = cardPoints[sBlackJack->playerCardNumbers[(sBlackJack->numPlayerCards - 1)]];
-            if (playerCardPoints == 0)
+        case STAND_1:
+            if (sBlackJack->waitTimer > 0)
             {
-                if ((VarGet(BLACKJACK_VAR_PLAYER) + 11) > 21)
-                {
-                    playerCardPoints = 1;
-                }
-                else
-                {
-                    playerCardPoints = 11;
-                }
-            }
-            VarSet(BLACKJACK_VAR_PLAYER, (VarGet(BLACKJACK_VAR_PLAYER) + playerCardPoints));
-            if (VarGet(BLACKJACK_VAR_PLAYER) > 21)
-			{
-				for (i = 0; i < sBlackJack->numPlayerCards; i++) 
-				{
-					if (cardPoints[sBlackJack->playerCardNumbers[i]] == 0) 
-					{
-						if (sBlackJack->AceAdjustPlayer == 0) 
-						{
-							VarSet(BLACKJACK_VAR_PLAYER, (VarGet(BLACKJACK_VAR_PLAYER) - 10));
-							sBlackJack->AceAdjustPlayer = 1;
-						}
-					}
-				}
-			}
-            SetPlayerDigits(VarGet(BLACKJACK_VAR_PLAYER));
-            sBlackJack->waitTimer = 100000;
-            sBlackJack->hitState = HIT_1;
-            break;
-
-        case HIT_1:
-            if (sBlackJack->waitTimer > 0) {
                 sBlackJack->waitTimer--;
-            } else {
-                sBlackJack->hitState = HIT_2;
-            }
-            break;
-        
-        case HIT_2:
-            if (VarGet(BLACKJACK_VAR_PLAYER) > 21)
-            {
-                ProcessBust();
-                if (FlagGet(BLACKJACK_FLAG_RESET) == TRUE) {
-                    return;
-                }
-            }
-            else if (VarGet(BLACKJACK_VAR_PLAYER) == 21)
-            {
-                ProcessStand();
-                if (FlagGet(BLACKJACK_FLAG_RESET) == TRUE) {
-                    return;
-                }
-            }
-            else if (sBlackJack->numPlayerCards == 9)
-            {
-                ProcessStand();
-                if (FlagGet(BLACKJACK_FLAG_RESET) == TRUE) {
-                    return;
-                }
             }
             else
             {
-                VarSet(BLACKJACK_VAR_OPTIONS, 1);
-                SetMode(VarGet(BLACKJACK_VAR_OPTIONS));
+                if (sBlackJack->hasBlackJack == FALSE)
+                {
+                    sBlackJack->standState = STAND_CHECK_INSURANCE;
+                }
+                else
+                {
+                    sBlackJack->hasBlackJack = FALSE;
+                    sBlackJack->standState = STAND_5;
+                }
+            }
+            break;
+        case STAND_CHECK_INSURANCE:
+            if (sBlackJack->insuranceBet == TRUE)
+            {
+                if (sBlackJack->dealerScore == CARD_SCORE_BLACK_JACK)
+                    AddCoins(sBlackJack->betBlackJack);
+                sBlackJack->insuranceBet = FALSE;
+            }
+            sBlackJack->standState = STAND_3;
+            break;
+        case STAND_3:
+            if (sBlackJack->dealerScore < 17)
+            {
+                PlaySE(SE_REPEL);
+                sBlackJack->numDealerCards++;
+                UpdateCardVisibility();
+                AdjustCards();
+                DCardPoints = sPlayingCards[sBlackJack->dealerCardNumbers[(sBlackJack->numDealerCards - 1)]].points;
+                if (DCardPoints == CARD_SCORE_ACE)
+                {
+                    if ((sBlackJack->dealerScore + CARD_SCORE_ACE_EXPANDED) > CARD_SCORE_BLACK_JACK)
+                        DCardPoints = CARD_SCORE_ACE_SHURNK;
+                    else
+                        DCardPoints = CARD_SCORE_ACE_EXPANDED;
+                }
+                sBlackJack->dealerScore += DCardPoints;
+                if (sBlackJack->dealerScore > CARD_SCORE_BLACK_JACK)
+                {
+                    if (sPlayingCards[sBlackJack->dealerCardNumbers[0]].points == CARD_SCORE_ACE)
+                    {
+                        if (sBlackJack->AceAdjustDealer == FALSE)
+                        {
+                            sBlackJack->dealerScore -= (CARD_SCORE_ACE_EXPANDED - CARD_SCORE_ACE_SHURNK);
+                            sBlackJack->AceAdjustDealer = TRUE;
+                        }
+                    }
+                    else if (sPlayingCards[sBlackJack->dealerCardNumbers[1]].points == CARD_SCORE_ACE)
+                    {
+                        if (sBlackJack->AceAdjustDealer == FALSE)
+                        {
+                            sBlackJack->dealerScore -= (CARD_SCORE_ACE_EXPANDED - CARD_SCORE_ACE_SHURNK);
+                            sBlackJack->AceAdjustDealer = TRUE;
+                        }
+                    }
+                }
+                SetDealerDigits(sBlackJack->dealerScore);
+                sBlackJack->waitTimer = 100000;
+                sBlackJack->standState = STAND_4;
+                break;
+            }
+            else
+            {
+                sBlackJack->standState = STAND_5;
+                break;
+            }
+        case STAND_4:
+            if (sBlackJack->waitTimer > 0)
+                sBlackJack->waitTimer--;
+            else
+                sBlackJack->standState = STAND_3;
+            break;
+        case STAND_5:
+            RefreshBlackJackBG();
+
+            if (sBlackJack->dealerScore < 22) 
+            {
+                if (sBlackJack->dealerScore > sBlackJack->playerScore) // Dealer Wins
+                {
+                    ProcessLose();
+                    if (sBlackJack->clearBlackJack)
+                        return;
+                }
+                else if (sBlackJack->dealerScore < sBlackJack->playerScore) // Player Wins
+                {
+                    ProcessWin();
+                    if (sBlackJack->clearBlackJack)
+                        return;
+                }
+                if (sBlackJack->dealerScore == sBlackJack->playerScore) // Push
+                {
+                    ProcessPush();
+                    if (sBlackJack->clearBlackJack)
+                        return;
+                }
+            }
+            else if (sBlackJack->dealerScore > CARD_SCORE_BLACK_JACK) // Dealer Busts
+            {
+                ProcessWin();
+                if (sBlackJack->clearBlackJack)
+                    return;
             }
             return;
     }
 }
 
+static void ProcessStand(void)
+{
+    sBlackJack->standState = STAND_0;
+    while (sBlackJack->standState != STAND_5)
+    {
+        Stand();
+    }
+    Stand();
+}
+
+static void HitBlackJack(void)
+{    
+    switch (sBlackJack->hitBJState)
+    {
+        case hitBJ_0:
+            SetOptionMode(OPTION_NONE);
+            PlaySE(SE_APPLAUSE);
+            ShowMessage(sText_BlackJack);
+            sBlackJack->waitTimer = 300000;
+            sBlackJack->hitBJState = hitBJ_1;
+            break;
+        case hitBJ_1:
+            if (sBlackJack->waitTimer > 0)
+                sBlackJack->waitTimer--;
+            else
+                sBlackJack->hitBJState = hitBJ_2;
+            break;
+        case hitBJ_2:
+            RefreshBlackJackBG();
+            sBlackJack->hasBlackJack = TRUE;
+            ProcessStand();
+            return;
+    }
+}
+
+static void ProcessHitBJ(void)
+{
+    sBlackJack->hitBJState = hitBJ_0;
+    while (sBlackJack->hitBJState != hitBJ_2)
+    {
+        HitBlackJack();
+    }
+    HitBlackJack();
+}
+
+static void Double(void)
+{
+    u8 playerCardPoints;
+    
+    switch (sBlackJack->doubleState)
+    {
+        case DOUBLE_0:
+            PlaySE(SE_SHOP);
+            SetCoins(GetCoins() - sBlackJack->betBlackJack);
+            sBlackJack->betBlackJack = sBlackJack->betBlackJack * 2;
+            SetCreditDigits(GetCoins());
+            SetOptionMode(OPTION_NONE);
+            sBlackJack->waitTimer = 100000;
+            sBlackJack->doubleState = DOUBLE_1;
+            break;
+        case DOUBLE_1:
+            if (sBlackJack->waitTimer > 0)
+                sBlackJack->waitTimer--;
+            else
+                sBlackJack->doubleState = DOUBLE_2;
+            break;
+        case DOUBLE_2:
+            PlaySE(SE_REPEL);
+            sBlackJack->numPlayerCards = (sBlackJack->numPlayerCards + 1);
+            UpdateCardVisibility();
+            AdjustCards();
+            playerCardPoints = sPlayingCards[sBlackJack->playerCardNumbers[(sBlackJack->numPlayerCards - 1)]].points;
+            if (playerCardPoints == CARD_SCORE_ACE)
+            {
+                if ((sBlackJack->playerScore + CARD_SCORE_ACE_EXPANDED) > CARD_SCORE_BLACK_JACK)
+                    playerCardPoints = CARD_SCORE_ACE_SHURNK;
+                else
+                    playerCardPoints = CARD_SCORE_ACE_EXPANDED;
+            }
+            sBlackJack->playerScore += playerCardPoints;
+            SetPlayerDigits(sBlackJack->playerScore);
+            sBlackJack->waitTimer = 100000;
+            sBlackJack->doubleState = DOUBLE_3;
+            break;
+        case DOUBLE_3:
+            if (sBlackJack->waitTimer > 0)
+                sBlackJack->waitTimer--;
+            else
+                sBlackJack->doubleState = DOUBLE_4;
+            break;
+        case DOUBLE_4:
+            RefreshBlackJackBG();
+            if (sBlackJack->playerScore > CARD_SCORE_BLACK_JACK)
+            {
+                ProcessBust();
+                if (sBlackJack->clearBlackJack == TRUE)
+                    return;
+            }
+            else
+            {
+                ProcessStand();
+                if (sBlackJack->clearBlackJack == TRUE)
+                    return;
+            }
+            return;
+    }
+}
+
+static void ProcessDouble(void)
+{
+    sBlackJack->doubleState = DOUBLE_0;
+    while (sBlackJack->doubleState != DOUBLE_4)
+    {
+        Double();
+    }
+    Double();
+}
+
+static void Hit(void)
+{
+    u8 playerCardPoints;
+    int i;
+
+    switch (sBlackJack->hitState)
+    {
+    case HIT_PLAY_CARD:
+        PlaySE(SE_REPEL);
+        SetOptionMode(OPTION_NONE);
+        sBlackJack->numPlayerCards = (sBlackJack->numPlayerCards + 1);
+        AdjustCards();
+        UpdateCardVisibility();
+        playerCardPoints = sPlayingCards[sBlackJack->playerCardNumbers[(sBlackJack->numPlayerCards - 1)]].points;
+        if (playerCardPoints == CARD_SCORE_ACE)
+        {
+            if ((sBlackJack->playerScore + CARD_SCORE_ACE_EXPANDED) > CARD_SCORE_BLACK_JACK)
+                playerCardPoints = CARD_SCORE_ACE_SHURNK;
+            else
+                playerCardPoints = CARD_SCORE_ACE_EXPANDED;
+        }
+        sBlackJack->playerScore += playerCardPoints;
+        if (sBlackJack->playerScore > CARD_SCORE_BLACK_JACK)
+        {
+            for (i = 0; i < sBlackJack->numPlayerCards; i++) 
+            {
+                if (sPlayingCards[sBlackJack->playerCardNumbers[i]].points == CARD_SCORE_ACE) 
+                {
+                    if (sBlackJack->AceAdjustPlayer == FALSE) 
+                    {
+                        sBlackJack->playerScore -= 10;
+                        sBlackJack->AceAdjustPlayer = TRUE;
+                    }
+                }
+            }
+        }
+        SetPlayerDigits(sBlackJack->playerScore);
+        sBlackJack->waitTimer = 100000;
+        sBlackJack->hitState = HIT_1;
+        break;
+    case HIT_1:
+        if (sBlackJack->waitTimer > 0)
+            sBlackJack->waitTimer--;
+        else
+            sBlackJack->hitState = HIT_CHECK_SCORE;
+        break;
+    case HIT_CHECK_SCORE:
+        if (sBlackJack->playerScore > CARD_SCORE_BLACK_JACK)
+        {
+            ProcessBust();
+            if (sBlackJack->clearBlackJack == TRUE)
+                return;
+        }
+        else if (sBlackJack->playerScore == CARD_SCORE_BLACK_JACK)
+        {
+            ProcessStand();
+            if (sBlackJack->clearBlackJack == TRUE)
+                return;
+        }
+        else if (sBlackJack->numPlayerCards == 9)
+        {
+            ProcessStand();
+            if (sBlackJack->clearBlackJack == TRUE)
+                return;
+        }
+        else
+        {
+            SetOptionMode(OPTION_HIT);
+        }
+        return;
+    }
+}
+
 static void AButton(void)
 {
-	u32 bet;
-	u8 num;
-	u8 playerCard1Points;
-	u8 playerCard2Points;
-	u8 dealerCard1Points;
-	u8 taskId1;
-	u8 taskId2;
-	
-	if (VarGet(BLACKJACK_VAR_OPTIONS) != 4)
-	{
-		if (gSprites[sBlackJack->cursorSpriteId].y == 57) // Top
-		{
-			if (VarGet(BLACKJACK_VAR_OPTIONS) == 0) // +100
-			{
-				if ((GetCoins()) > 9) // enough
-				{
-					BGrefresh();
-					PlaySE(SE_VEND);
-					RemoveCoins(10);
-					VarSet(BLACKJACK_VAR_BET, (VarGet(BLACKJACK_VAR_BET) + 10));
-					bet = VarGet(BLACKJACK_VAR_BET);
-					num = CountDigits(VarGet(BLACKJACK_VAR_BET));
-					SetCreditDigits(GetCoins());
-					ConvertUIntToDecimalStringN(gStringVar1, bet, STR_CONV_MODE_LEADING_ZEROS, num);
-					gStringVar4[0] = '\0';
-					StringExpandPlaceholders(gStringVar4, sText_Betting);
-					ShowMessage(gStringVar4);
-				}
-				else // Not Enough
-				{
-					PlaySE(SE_FAILURE);
-				}
-			}
-			if ((VarGet(BLACKJACK_VAR_OPTIONS) == 1) || (VarGet(BLACKJACK_VAR_OPTIONS) == 2) || (VarGet(BLACKJACK_VAR_OPTIONS) == 3)) { // Hit
-				if ((VarGet(BLACKJACK_VAR_BET)) > 9) // Enough
-				{
-					PlaySE(SE_CARD);
-					//delay?
-					
-					sBlackJack->hitState = HIT_0;
-					    while (sBlackJack->hitState != HIT_2)
-						{
-							Hit();
-						}
-						Hit();
-					return;
-				}
-				else
-				{
-					PlaySE(SE_FAILURE);
-				}
-			}
-			return;
-		}
-		if (gSprites[sBlackJack->cursorSpriteId].y == (57 + 16)) // Middle
-		{
-			if (VarGet(BLACKJACK_VAR_OPTIONS) == 0) // -100
-			{
-				if (VarGet(BLACKJACK_VAR_BET) > 0) // Existing Bet
-				{
-					BGrefresh();
-					PlaySE(SE_VEND);
-					AddCoins(10);
-					VarSet(BLACKJACK_VAR_BET, (VarGet(BLACKJACK_VAR_BET) - 10));
-					bet = VarGet(BLACKJACK_VAR_BET);
-					num = CountDigits(VarGet(BLACKJACK_VAR_BET));
-					SetCreditDigits(GetCoins());
-					ConvertUIntToDecimalStringN(gStringVar1, bet, STR_CONV_MODE_LEADING_ZEROS, num);
-					gStringVar4[0] = '\0';
-					StringExpandPlaceholders(gStringVar4, sText_Betting);
-					ShowMessage(gStringVar4);
-				}
-				else // No existing bet
-				{
-						PlaySE(SE_FAILURE);
-				}	
-			}	
-			if ((VarGet(BLACKJACK_VAR_OPTIONS) == 1) || (VarGet(BLACKJACK_VAR_OPTIONS) == 2) || (VarGet(BLACKJACK_VAR_OPTIONS) == 3)) { // Stand
-				PlaySE(SE_CARD);
-				// delay?
-				
-				ProcessStand();
-				if (FlagGet(BLACKJACK_FLAG_RESET) == TRUE) {
-				return; }
-			}
-			return;
-		}
-		if (gSprites[sBlackJack->cursorSpriteId].y == (57 + 32)) // Bottom
-		{
-			if (VarGet(BLACKJACK_VAR_OPTIONS) == 0) // Bet
-			{
-				if ((VarGet(BLACKJACK_VAR_BET)) > 9) // Enough
-					{
-						sBlackJack->exitToggle = 1;
-						PlaySE(SE_SHOP);
-						VarSet(BLACKJACK_VAR_OPTIONS, 4);
-						SetMode(VarGet(BLACKJACK_VAR_OPTIONS));
-						// delay?
-						
-						gSprites[sBlackJack->LogoId].invisible = TRUE;
-						BGrefresh();
-						sBlackJack->numPlayerCards = 2;
-						sBlackJack->numDealerCards = 1;
-						AdjustCards();
-						UpdateCardVisibility();
-						gSprites[sBlackJack->DealerFaceDownId].invisible = FALSE;
-						PlaySE(SE_REPEL);						
-						// delay?
-						
-						playerCard1Points = cardPoints[sBlackJack->playerCardNumbers[0]];
-						playerCard2Points = cardPoints[sBlackJack->playerCardNumbers[1]];
-						
-						 if (playerCard1Points != 0 && playerCard2Points != 0)
-						{
-							VarSet(BLACKJACK_VAR_PLAYER, playerCard1Points + playerCard2Points);
-						}
-						else if (playerCard1Points == 0 && playerCard2Points == 0)
-						{
-							VarSet(BLACKJACK_VAR_PLAYER, 12);
-						}
-						else if (playerCard1Points == 0 && playerCard2Points != 0)
-						{
-							VarSet(BLACKJACK_VAR_PLAYER, 11 + playerCard2Points);
-						}
-						else if (playerCard1Points != 0 && playerCard2Points == 0)
-						{
-							VarSet(BLACKJACK_VAR_PLAYER, playerCard1Points + 11);
-						}
+    u32 bet;
+    u8 num;
+    u8 playerCard1Points;
+    u8 playerCard2Points;
+    u8 dealerCard1Points;
 
-						dealerCard1Points = cardPoints[sBlackJack->dealerCardNumbers[0]];
-						
-						if (dealerCard1Points == 0)
-						{
-							VarSet(BLACKJACK_VAR_DEALER, 11);
-						}
-						else
-						{
-							VarSet(BLACKJACK_VAR_DEALER, dealerCard1Points);
-						}
-						SetPlayerDigits(VarGet(BLACKJACK_VAR_PLAYER));
-						SetDealerDigits(VarGet(BLACKJACK_VAR_DEALER));
-						if (VarGet(BLACKJACK_VAR_PLAYER) == 21)
-						{
-							ProcessHitBJ();
-							return;
-						}
-						
-						if ((VarGet(BLACKJACK_VAR_PLAYER) != 9) && (VarGet(BLACKJACK_VAR_PLAYER) != 10) && (VarGet(BLACKJACK_VAR_PLAYER) != 11) &&
-							(VarGet(BLACKJACK_VAR_DEALER) != 11))
-						{
-							VarSet(BLACKJACK_VAR_OPTIONS, 1);
-							SetMode(VarGet(BLACKJACK_VAR_OPTIONS));
-							return;
-						}
+    if (sBlackJack->optionMode != OPTION_NONE)
+    {
+        if (gSprites[sBlackJack->cursorSpriteId].y == 57) // Top
+        {
+            if (sBlackJack->optionMode == OPTION_BET) // +100
+            {
+                if ((GetCoins()) > 9) // enough
+                {
+                    RefreshBlackJackBG();
+                    PlaySE(SE_VEND);
+                    RemoveCoins(10);
+                    sBlackJack->betBlackJack += 10;
+                    bet = sBlackJack->betBlackJack;
+                    num = CountDigits(sBlackJack->betBlackJack);
+                    SetCreditDigits(GetCoins());
+                    ConvertUIntToDecimalStringN(gStringVar1, bet, STR_CONV_MODE_LEADING_ZEROS, num);
+                    gStringVar4[0] = '\0';
+                    StringExpandPlaceholders(gStringVar4, sText_Betting);
+                    ShowMessage(gStringVar4);
+                }
+                else // Not Enough
+                {
+                    PlaySE(SE_FAILURE);
+                }
+            }
+            if ((sBlackJack->optionMode == OPTION_HIT)
+             || (sBlackJack->optionMode == OPTION_DOUBLE)
+             || (sBlackJack->optionMode == OPTION_INSURANCE))
+            {
+                if (sBlackJack->betBlackJack > 9) // Enough
+                {
+                    PlaySE(SE_CARD);
+                    //delay?
+                    
+                    sBlackJack->hitState = HIT_PLAY_CARD;
+                    while (sBlackJack->hitState != HIT_CHECK_SCORE)
+                    {
+                        Hit();
+                    }
+                    Hit();
+                    return;
+                }
+                else
+                {
+                    PlaySE(SE_FAILURE);
+                }
+            }
+            return;
+        }
+        if (gSprites[sBlackJack->cursorSpriteId].y == (57 + 16)) // Middle
+        {
+            if (sBlackJack->optionMode == OPTION_BET) // -100
+            {
+                if (sBlackJack->betBlackJack > 0) // Existing Bet
+                {
+                    RefreshBlackJackBG();
+                    PlaySE(SE_VEND);
+                    AddCoins(10);
+                    sBlackJack->betBlackJack -= 10;
+                    bet = sBlackJack->betBlackJack;
+                    num = CountDigits(sBlackJack->betBlackJack);
+                    SetCreditDigits(GetCoins());
+                    ConvertUIntToDecimalStringN(gStringVar1, bet, STR_CONV_MODE_LEADING_ZEROS, num);
+                    gStringVar4[0] = '\0';
+                    StringExpandPlaceholders(gStringVar4, sText_Betting);
+                    ShowMessage(gStringVar4);
+                }
+                else // No existing bet
+                {
+                        PlaySE(SE_FAILURE);
+                }    
+            }    
+            if ((sBlackJack->optionMode == OPTION_HIT)
+             || (sBlackJack->optionMode == OPTION_DOUBLE)
+             || (sBlackJack->optionMode == OPTION_INSURANCE))
+            {
+                PlaySE(SE_CARD);
+                // delay?
+                
+                ProcessStand();
+                if (sBlackJack->clearBlackJack == TRUE)
+                    return;
+            }
+            return;
+        }
+        if (gSprites[sBlackJack->cursorSpriteId].y == (57 + 32)) // Bottom
+        {
+            if (sBlackJack->optionMode == OPTION_BET) // Bet
+            {
+                if (sBlackJack->betBlackJack > 9) // Enough
+                    {
+                        sBlackJack->exitToggle = TRUE;
+                        PlaySE(SE_SHOP);
+                        SetOptionMode(OPTION_NONE);
+                        // delay?
+                        
+                        gSprites[sBlackJack->LogoId].invisible = TRUE;
+                        RefreshBlackJackBG();
+                        sBlackJack->numPlayerCards = 2;
+                        sBlackJack->numDealerCards = 1;
+                        AdjustCards();
+                        UpdateCardVisibility();
+                        gSprites[sBlackJack->DealerFaceDownId].invisible = FALSE;
+                        PlaySE(SE_REPEL);                        
+                        // delay?
+                        
+                        playerCard1Points = sPlayingCards[sBlackJack->playerCardNumbers[0]].points;
+                        playerCard2Points = sPlayingCards[sBlackJack->playerCardNumbers[1]].points;
+                        
+                         if (playerCard1Points != CARD_SCORE_ACE && playerCard2Points != CARD_SCORE_ACE)
+                            sBlackJack->playerScore = playerCard1Points + playerCard2Points;
+                        else if (playerCard1Points == CARD_SCORE_ACE && playerCard2Points == CARD_SCORE_ACE)
+                            sBlackJack->playerScore = 12;
+                        else if (playerCard1Points == CARD_SCORE_ACE && playerCard2Points != CARD_SCORE_ACE)
+                            sBlackJack->playerScore = CARD_SCORE_ACE_EXPANDED + playerCard2Points;
+                        else if (playerCard1Points != CARD_SCORE_ACE && playerCard2Points == CARD_SCORE_ACE)
+                            sBlackJack->playerScore = playerCard1Points + CARD_SCORE_ACE_EXPANDED;
 
-						if ((VarGet(BLACKJACK_VAR_PLAYER) >= 9) && (VarGet(BLACKJACK_VAR_PLAYER) <= 11) &&
-							(VarGet(BLACKJACK_VAR_DEALER) != 11))
-						{
-							if (GetCoins() > VarGet(BLACKJACK_VAR_BET)) {
-							VarSet(BLACKJACK_VAR_OPTIONS, 2);
-							SetMode(VarGet(BLACKJACK_VAR_OPTIONS));
-							}
-							else
-							{
-								VarSet(BLACKJACK_VAR_OPTIONS, 1);
-								SetMode(VarGet(BLACKJACK_VAR_OPTIONS));
-							}
-							return;
-						}
+                        dealerCard1Points = sPlayingCards[sBlackJack->dealerCardNumbers[0]].points;
+                        
+                        if (dealerCard1Points == CARD_SCORE_ACE)
+                            sBlackJack->dealerScore = CARD_SCORE_ACE_EXPANDED;
+                        else
+                            sBlackJack->dealerScore = dealerCard1Points;
+                        SetPlayerDigits(sBlackJack->playerScore);
+                        SetDealerDigits(sBlackJack->dealerScore);
+                        if (sBlackJack->playerScore == CARD_SCORE_BLACK_JACK)
+                        {
+                            ProcessHitBJ();
+                            return;
+                        }
 
-						if ((VarGet(BLACKJACK_VAR_DEALER) == 11))
-						{
-							if (GetCoins() > (VarGet(BLACKJACK_VAR_BET) / 2)) {
-							VarSet(BLACKJACK_VAR_OPTIONS, 3);
-							SetMode(VarGet(BLACKJACK_VAR_OPTIONS));
-							}
-							else
-							{
-								VarSet(BLACKJACK_VAR_OPTIONS, 1);
-								SetMode(VarGet(BLACKJACK_VAR_OPTIONS));
-							}
-							return;
-						}
-					}
-					else
-					{
-						PlaySE(SE_FAILURE);
-					}
-				}
-			if (VarGet(BLACKJACK_VAR_OPTIONS) == 2) // Double	
-			{
-				PlaySE(SE_SHOP);
-				VarSet(BLACKJACK_VAR_OPTIONS, 4);
-				SetMode(VarGet(BLACKJACK_VAR_OPTIONS));
-				// delay?
-				
-				ProcessDouble();
-				if (FlagGet(BLACKJACK_FLAG_RESET) == TRUE) {
-				return; }
-			}
-			if (VarGet(BLACKJACK_VAR_OPTIONS) == 3) // Insurance
-			{
-				PlaySE(SE_SHOP);
-				VarSet(BLACKJACK_VAR_OPTIONS, 4);
-				SetMode(VarGet(BLACKJACK_VAR_OPTIONS));
-				RemoveCoins(VarGet(BLACKJACK_VAR_BET) / 2);
-				SetCreditDigits(GetCoins());
-				// delay?
-				FlagSet(BLACKJACK_FLAG_INSURANCE);
-				VarSet(BLACKJACK_VAR_OPTIONS, 1);
-				SetMode(VarGet(BLACKJACK_VAR_OPTIONS));
-			}
-			return;
-		}
-	}
-	else
-	{
-		PlaySE(SE_FAILURE);
-		return;
-	}
+                        if ((sBlackJack->playerScore != 9) && (sBlackJack->playerScore != 10) && (sBlackJack->playerScore != 11) &&
+                            (sBlackJack->dealerScore != 11))
+                        {
+                            SetOptionMode(OPTION_HIT);
+                            return;
+                        }
+
+                        if ((sBlackJack->playerScore >= 9) && (sBlackJack->playerScore <= 11) &&
+                            (sBlackJack->dealerScore != 11))
+                        {
+                            if (GetCoins() > sBlackJack->betBlackJack)
+                                SetOptionMode(OPTION_DOUBLE);
+                            else
+                                SetOptionMode(OPTION_HIT);
+                            return;
+                        }
+
+                        if (sBlackJack->dealerScore == 11)
+                        {
+                            if (GetCoins() > (sBlackJack->betBlackJack / 2))
+                                SetOptionMode(OPTION_INSURANCE);
+                            else
+                                SetOptionMode(OPTION_HIT);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        PlaySE(SE_FAILURE);
+                    }
+                }
+            if (sBlackJack->optionMode == OPTION_DOUBLE) // Double    
+            {
+                PlaySE(SE_SHOP);
+                SetOptionMode(OPTION_NONE);
+                // delay?
+                
+                ProcessDouble();
+                if (sBlackJack->clearBlackJack == TRUE)
+                    return;
+            }
+            if (sBlackJack->optionMode == OPTION_INSURANCE) // Insurance
+            {
+                PlaySE(SE_SHOP);
+                SetOptionMode(OPTION_NONE);
+                RemoveCoins(sBlackJack->betBlackJack / 2);
+                SetCreditDigits(GetCoins());
+                // delay?
+                sBlackJack->insuranceBet = TRUE;
+                SetOptionMode(OPTION_HIT);
+            }
+            return;
+        }
+    }
+    else
+    {
+        PlaySE(SE_FAILURE);
+        return;
+    }
 }
 
 static void MoveCursor(int direction)
 {
-    struct Sprite *cursorSprite = &gSprites[sBlackJack->cursorSpriteId];
     int curY;
     int destY;
-	curY = gSprites[sBlackJack->cursorSpriteId].y;
-	destY = curY;
-	
-	if (((VarGet(BLACKJACK_VAR_OPTIONS)) != 1) && (VarGet(BLACKJACK_VAR_OPTIONS) != 4)) {
-		switch (direction)
-		{
-			case 0: if (curY > 57) destY = curY - 16; break;
-			case 2: if (curY < 89) destY = curY + 16; break;
-		}
-	}
-	if (VarGet(BLACKJACK_VAR_OPTIONS) == 1){
-		switch (direction)
-		{
-			case 0: if (curY > 57) destY = curY - 16; break;
-			case 2: if (curY < 73) destY = curY + 16; break;
-		}
-	}
-	if (VarGet(BLACKJACK_VAR_OPTIONS) == 4){
-		return;
-	}
-	if (curY == destY) {
-		PlaySE(SE_WALL_HIT);
+    curY = gSprites[sBlackJack->cursorSpriteId].y;
+    destY = curY;
+    
+    if ((sBlackJack->optionMode != OPTION_HIT) && (sBlackJack->optionMode != OPTION_NONE))
+    {
+        switch (direction)
+        {
+            case 0: if (curY > 57) destY = curY - 16; break;
+            case 2: if (curY < 89) destY = curY + 16; break;
+        }
+    }
+    if (sBlackJack->optionMode == OPTION_HIT)
+    {
+        switch (direction)
+        {
+            case 0: if (curY > 57) destY = curY - 16; break;
+            case 2: if (curY < 73) destY = curY + 16; break;
+        }
+    }
+    if (sBlackJack->optionMode == OPTION_NONE)
+    {
         return;
-	}
-	gSprites[sBlackJack->cursorSpriteId].y = destY;
-	PlaySE(SE_CLICK);
+    }
+    if (curY == destY)
+    {
+        PlaySE(SE_WALL_HIT);
+        return;
+    }
+    gSprites[sBlackJack->cursorSpriteId].y = destY;
+    PlaySE(SE_CLICK);
 }
-
-#define TOTAL_CARDS 52
 
 static void ShuffleCards(void)
 {
-    unsigned int allCardNumbers[TOTAL_CARDS];
-    unsigned int temp;
-    unsigned int i, j;
+    u32 allCardNumbers[CARD_COUNT];
+    u32 temp;
+    u32 i, j;
 
-    for (i = 0; i < TOTAL_CARDS; i++) {
+    for (i = 0; i < CARD_COUNT; i++)
+    {
         allCardNumbers[i] = i;
     }
 
-    for (i = 0; i < TOTAL_CARDS; i++) {
-        j = Random() % TOTAL_CARDS;
+    for (i = 0; i < CARD_COUNT; i++)
+    {
+        j = Random() % CARD_COUNT;
         temp = allCardNumbers[i];
         allCardNumbers[i] = allCardNumbers[j];
         allCardNumbers[j] = temp;
     }
 
-    for (i = 0; i < MAX_PLAYER_CARDS; i++) {
+    for (i = 0; i < MAX_PLAYER_CARDS; i++)
+    {
         sBlackJack->playerCardNumbers[i] = allCardNumbers[i];
     }
 
-    for (i = 0; i < MAX_DEALER_CARDS; i++) {
+    for (i = 0; i < MAX_DEALER_CARDS; i++)
+    {
         sBlackJack->dealerCardNumbers[i] = allCardNumbers[MAX_PLAYER_CARDS + i];
     }
 
@@ -3147,179 +3376,111 @@ static void ShuffleCards(void)
 
 static void UpdateCards(void)
 {
-	u8 i;
+    u8 i;
     // Update player cards
-    for (i = 0; i < MAX_PLAYER_CARDS; i++) {
+    for (i = 0; i < MAX_PLAYER_CARDS; i++)
+    {
         SetCardSprite(sBlackJack->playerCardIds[i], sBlackJack->playerCardNumbers[i], i, 1);
     }
 
     // Update dealer cards
-    for (i = 0; i < MAX_DEALER_CARDS; i++) {
+    for (i = 0; i < MAX_DEALER_CARDS; i++)
+    {
         SetCardSprite(sBlackJack->dealerCardIds[i], sBlackJack->dealerCardNumbers[i], i + MAX_PLAYER_CARDS, 0);
     }
 }
 
 static void SetCardSprite(u8 cardId, u8 cardNum, u8 cardIndex, u8 isPlayerCard)
 {
-    unsigned int tileNum = cardNum % 13;
     s16 x = cardPositions[cardIndex].x;
     s16 y = cardPositions[cardIndex].y;
     u8 subpriority = cardPositions[cardIndex].priority;
 
-    const struct CompressedSpriteSheet* sheet = NULL;
-    const struct SpriteTemplate* template = NULL;
-	struct SpriteSheet spriteSheet;
+    LoadCompressedSpriteSheet(&sPlayingCards[cardNum].sheet);
 
-    switch (cardNum)
-    {
-        case 0: sheet = &sSpriteSheet_Cards_Hearts_2; template = &sSpriteTemplate_Cards_Hearts_2; break;
-        case 1: sheet = &sSpriteSheet_Cards_Hearts_3; template = &sSpriteTemplate_Cards_Hearts_3; break;
-        case 2: sheet = &sSpriteSheet_Cards_Hearts_4; template = &sSpriteTemplate_Cards_Hearts_4; break;
-        case 3: sheet = &sSpriteSheet_Cards_Hearts_5; template = &sSpriteTemplate_Cards_Hearts_5; break;
-        case 4: sheet = &sSpriteSheet_Cards_Hearts_6; template = &sSpriteTemplate_Cards_Hearts_6; break;
-        case 5: sheet = &sSpriteSheet_Cards_Hearts_7; template = &sSpriteTemplate_Cards_Hearts_7; break;
-        case 6: sheet = &sSpriteSheet_Cards_Hearts_8; template = &sSpriteTemplate_Cards_Hearts_8; break;
-        case 7: sheet = &sSpriteSheet_Cards_Hearts_9; template = &sSpriteTemplate_Cards_Hearts_9; break;
-        case 8: sheet = &sSpriteSheet_Cards_Hearts_10; template = &sSpriteTemplate_Cards_Hearts_10; break;
-        case 9: sheet = &sSpriteSheet_Cards_Hearts_J; template = &sSpriteTemplate_Cards_Hearts_J; break;
-        case 10: sheet = &sSpriteSheet_Cards_Hearts_Q; template = &sSpriteTemplate_Cards_Hearts_Q; break;
-        case 11: sheet = &sSpriteSheet_Cards_Hearts_K; template = &sSpriteTemplate_Cards_Hearts_K; break;
-        case 12: sheet = &sSpriteSheet_Cards_Hearts_A; template = &sSpriteTemplate_Cards_Hearts_A; break;
-        case 13: sheet = &sSpriteSheet_Cards_Clubs_2; template = &sSpriteTemplate_Cards_Clubs_2; break;
-        case 14: sheet = &sSpriteSheet_Cards_Clubs_3; template = &sSpriteTemplate_Cards_Clubs_3; break;
-        case 15: sheet = &sSpriteSheet_Cards_Clubs_4; template = &sSpriteTemplate_Cards_Clubs_4; break;
-        case 16: sheet = &sSpriteSheet_Cards_Clubs_5; template = &sSpriteTemplate_Cards_Clubs_5; break;
-        case 17: sheet = &sSpriteSheet_Cards_Clubs_6; template = &sSpriteTemplate_Cards_Clubs_6; break;
-        case 18: sheet = &sSpriteSheet_Cards_Clubs_7; template = &sSpriteTemplate_Cards_Clubs_7; break;
-        case 19: sheet = &sSpriteSheet_Cards_Clubs_8; template = &sSpriteTemplate_Cards_Clubs_8; break;
-        case 20: sheet = &sSpriteSheet_Cards_Clubs_9; template = &sSpriteTemplate_Cards_Clubs_9; break;
-        case 21: sheet = &sSpriteSheet_Cards_Clubs_10; template = &sSpriteTemplate_Cards_Clubs_10; break;
-        case 22: sheet = &sSpriteSheet_Cards_Clubs_J; template = &sSpriteTemplate_Cards_Clubs_J; break;
-        case 23: sheet = &sSpriteSheet_Cards_Clubs_Q; template = &sSpriteTemplate_Cards_Clubs_Q; break;
-        case 24: sheet = &sSpriteSheet_Cards_Clubs_K; template = &sSpriteTemplate_Cards_Clubs_K; break;
-        case 25: sheet = &sSpriteSheet_Cards_Clubs_A; template = &sSpriteTemplate_Cards_Clubs_A; break;
-        case 26: sheet = &sSpriteSheet_Cards_Diamonds_2; template = &sSpriteTemplate_Cards_Diamonds_2; break;
-        case 27: sheet = &sSpriteSheet_Cards_Diamonds_3; template = &sSpriteTemplate_Cards_Diamonds_3; break;
-        case 28: sheet = &sSpriteSheet_Cards_Diamonds_4; template = &sSpriteTemplate_Cards_Diamonds_4; break;
-        case 29: sheet = &sSpriteSheet_Cards_Diamonds_5; template = &sSpriteTemplate_Cards_Diamonds_5; break;
-        case 30: sheet = &sSpriteSheet_Cards_Diamonds_6; template = &sSpriteTemplate_Cards_Diamonds_6; break;
-        case 31: sheet = &sSpriteSheet_Cards_Diamonds_7; template = &sSpriteTemplate_Cards_Diamonds_7; break;
-        case 32: sheet = &sSpriteSheet_Cards_Diamonds_8; template = &sSpriteTemplate_Cards_Diamonds_8; break;
-        case 33: sheet = &sSpriteSheet_Cards_Diamonds_9; template = &sSpriteTemplate_Cards_Diamonds_9; break;
-        case 34: sheet = &sSpriteSheet_Cards_Diamonds_10; template = &sSpriteTemplate_Cards_Diamonds_10; break;
-        case 35: sheet = &sSpriteSheet_Cards_Diamonds_J; template = &sSpriteTemplate_Cards_Diamonds_J; break;
-        case 36: sheet = &sSpriteSheet_Cards_Diamonds_Q; template = &sSpriteTemplate_Cards_Diamonds_Q; break;
-        case 37: sheet = &sSpriteSheet_Cards_Diamonds_K; template = &sSpriteTemplate_Cards_Diamonds_K; break;
-        case 38: sheet = &sSpriteSheet_Cards_Diamonds_A; template = &sSpriteTemplate_Cards_Diamonds_A; break;
-        case 39: sheet = &sSpriteSheet_Cards_Spades_2; template = &sSpriteTemplate_Cards_Spades_2; break;
-        case 40: sheet = &sSpriteSheet_Cards_Spades_3; template = &sSpriteTemplate_Cards_Spades_3; break;
-        case 41: sheet = &sSpriteSheet_Cards_Spades_4; template = &sSpriteTemplate_Cards_Spades_4; break;
-        case 42: sheet = &sSpriteSheet_Cards_Spades_5; template = &sSpriteTemplate_Cards_Spades_5; break;
-        case 43: sheet = &sSpriteSheet_Cards_Spades_6; template = &sSpriteTemplate_Cards_Spades_6; break;
-        case 44: sheet = &sSpriteSheet_Cards_Spades_7; template = &sSpriteTemplate_Cards_Spades_7; break;
-        case 45: sheet = &sSpriteSheet_Cards_Spades_8; template = &sSpriteTemplate_Cards_Spades_8; break;
-        case 46: sheet = &sSpriteSheet_Cards_Spades_9; template = &sSpriteTemplate_Cards_Spades_9; break;
-        case 47: sheet = &sSpriteSheet_Cards_Spades_10; template = &sSpriteTemplate_Cards_Spades_10; break;
-        case 48: sheet = &sSpriteSheet_Cards_Spades_J; template = &sSpriteTemplate_Cards_Spades_J; break;
-        case 49: sheet = &sSpriteSheet_Cards_Spades_Q; template = &sSpriteTemplate_Cards_Spades_Q; break;
-        case 50: sheet = &sSpriteSheet_Cards_Spades_K; template = &sSpriteTemplate_Cards_Spades_K; break;
-        case 51: sheet = &sSpriteSheet_Cards_Spades_A; template = &sSpriteTemplate_Cards_Spades_A; break;
-        default: return; // Invalid card number
-    }
-
-    LoadCompressedSpriteSheet(sheet);
-
-    cardId = CreateSprite(template, x, y, subpriority);
-	gSprites[cardId].oam.priority = 1;
+    cardId = CreateSprite(&sPlayingCards[cardNum].template, x, y, subpriority);
+    gSprites[cardId].oam.priority = 1;
     gSprites[cardId].invisible = TRUE;
-	
-	if (isPlayerCard == 1) {
+
+    if (isPlayerCard == 1)
+    {
         sBlackJack->playerCardIds[cardIndex] = cardId;
         sBlackJack->playerCardNumbers[cardIndex] = cardNum;
-    } else {
+    }
+    else
+    {
         sBlackJack->dealerCardIds[cardIndex - MAX_PLAYER_CARDS] = cardId;
         sBlackJack->dealerCardNumbers[cardIndex - MAX_PLAYER_CARDS] = cardNum;
     }
 }
 
-static void LoadHeartsSpriteSheet(void)
-{
-    LoadCompressedSpriteSheet(&sSpriteSheet_Cards_Hearts_A);
-}
-
 static void CreateFacedown(void)
 {
     LoadCompressedSpriteSheet(&sSpriteSheet_Facedown);
-	
-	sBlackJack->DealerFaceDownId = CreateSprite(&sSpriteTemplate_Facedown, 48, 56, 0);
+    sBlackJack->DealerFaceDownId = CreateSprite(&sSpriteTemplate_Facedown, 48, 56, 0);
     gSprites[sBlackJack->DealerFaceDownId].oam.priority = 0;
-	gSprites[sBlackJack->DealerFaceDownId].invisible = TRUE;
+    gSprites[sBlackJack->DealerFaceDownId].invisible = TRUE;
 }
 
 static void CreateCursorSprite(void)
-{	
+{    
     LoadCompressedSpriteSheet(&sSpriteSheet_Cursor);
-	
-	sBlackJack->cursorSpriteId = CreateSprite(&sSpriteTemplate_Cursor, 173, 57, 9);
+    sBlackJack->cursorSpriteId = CreateSprite(&sSpriteTemplate_Cursor, 173, 57, 9);
     gSprites[sBlackJack->cursorSpriteId].oam.priority = 3;
 }
 
 static void CreatePopUpSprite(void)
 {
     LoadCompressedSpriteSheet(&sSpriteSheet_Popup);
-	
-	sBlackJack->LogoId = CreateSprite(&sSpriteTemplate_Popup, 80, 72, 1);
+    sBlackJack->LogoId = CreateSprite(&sSpriteTemplate_Popup, 80, 72, 1);
     gSprites[sBlackJack->LogoId].oam.priority = 3;
 }
 
 static void CreateOptions(void)
 {
     LoadCompressedSpriteSheet(&sSpriteSheet_Option1);
-	
-	sBlackJack->option1SpriteId = CreateSprite(&sSpriteTemplate_Option1, 219, 58, 9);
+    sBlackJack->option1SpriteId = CreateSprite(&sSpriteTemplate_Option1, 219, 58, 9);
     gSprites[sBlackJack->option1SpriteId].oam.priority = 2;
-	
+
     LoadCompressedSpriteSheet(&sSpriteSheet_Option2);
-	
-	sBlackJack->option2SpriteId = CreateSprite(&sSpriteTemplate_Option2, 219, 74, 9);
+    sBlackJack->option2SpriteId = CreateSprite(&sSpriteTemplate_Option2, 219, 74, 9);
     gSprites[sBlackJack->option2SpriteId].oam.priority = 2;
-	
+
     LoadCompressedSpriteSheet(&sSpriteSheet_Option3);
-	
-	sBlackJack->option3SpriteId = CreateSprite(&sSpriteTemplate_Option3, 219, 90, 9);
-    gSprites[sBlackJack->option3SpriteId].oam.priority = 2;	
+    sBlackJack->option3SpriteId = CreateSprite(&sSpriteTemplate_Option3, 219, 90, 9);
+    gSprites[sBlackJack->option3SpriteId].oam.priority = 2;    
 }
 
 static void AdjustCards(void)
 {
-	if (sBlackJack->numPlayerCards > 5)
-	{
-		gSprites[sBlackJack->playerCardIds[1]].x = 128;	
-		gSprites[sBlackJack->playerCardIds[2]].x = 112;	
-		gSprites[sBlackJack->playerCardIds[3]].x = 96;	
-		gSprites[sBlackJack->playerCardIds[4]].x = 80;	
-	}
-	else
-	{
-		gSprites[sBlackJack->playerCardIds[1]].x = 112;	
-		gSprites[sBlackJack->playerCardIds[2]].x = 80;	
-		gSprites[sBlackJack->playerCardIds[3]].x = 48;	
-		gSprites[sBlackJack->playerCardIds[4]].x = 16;
-	}
-		if (sBlackJack->numDealerCards > 5)
-	{
-		gSprites[sBlackJack->dealerCardIds[1]].x = 32;	
-		gSprites[sBlackJack->dealerCardIds[2]].x = 48;	
-		gSprites[sBlackJack->dealerCardIds[3]].x = 64;	
-		gSprites[sBlackJack->dealerCardIds[4]].x = 80;	
-	}
-	else
-	{
-		gSprites[sBlackJack->dealerCardIds[1]].x = 48;	
-		gSprites[sBlackJack->dealerCardIds[2]].x = 80;	
-		gSprites[sBlackJack->dealerCardIds[3]].x = 112;	
-		gSprites[sBlackJack->dealerCardIds[4]].x = 144;	
-	}
+    if (sBlackJack->numPlayerCards > 5)
+    {
+        gSprites[sBlackJack->playerCardIds[1]].x = 128;    
+        gSprites[sBlackJack->playerCardIds[2]].x = 112;    
+        gSprites[sBlackJack->playerCardIds[3]].x = 96;    
+        gSprites[sBlackJack->playerCardIds[4]].x = 80;    
+    }
+    else
+    {
+        gSprites[sBlackJack->playerCardIds[1]].x = 112;    
+        gSprites[sBlackJack->playerCardIds[2]].x = 80;    
+        gSprites[sBlackJack->playerCardIds[3]].x = 48;    
+        gSprites[sBlackJack->playerCardIds[4]].x = 16;
+    }
+    if (sBlackJack->numDealerCards > 5)
+    {
+        gSprites[sBlackJack->dealerCardIds[1]].x = 32;    
+        gSprites[sBlackJack->dealerCardIds[2]].x = 48;    
+        gSprites[sBlackJack->dealerCardIds[3]].x = 64;    
+        gSprites[sBlackJack->dealerCardIds[4]].x = 80;    
+    }
+    else
+    {
+        gSprites[sBlackJack->dealerCardIds[1]].x = 48;    
+        gSprites[sBlackJack->dealerCardIds[2]].x = 80;    
+        gSprites[sBlackJack->dealerCardIds[3]].x = 112;    
+        gSprites[sBlackJack->dealerCardIds[4]].x = 144;    
+    }
 }
 
 static void BJVBlankCallback(void)
@@ -3334,7 +3495,7 @@ static void ShowHelpBar(const u8 *str)
     const u8 color[3] = { TEXT_COLOR_TRANSPARENT, 1, 2 };
 
     FillWindowPixelBuffer(0, 0xFF);
-	DeactivateAllTextPrinters();
+    DeactivateAllTextPrinters();
     AddTextPrinterParameterized3(0, 0, GetStringRightAlignXOffset(0, str, 240) - 4, 0, color, 0, str);
     PutWindowTilemap(0);
     CopyWindowToVram(0, 3);
@@ -3342,11 +3503,11 @@ static void ShowHelpBar(const u8 *str)
 
 static void StartExitBJ(void)
 {
-	if (VarGet(BLACKJACK_VAR_BET) > 0)
-	{
-		AddCoins(VarGet(BLACKJACK_VAR_BET));
-		VarSet(BLACKJACK_VAR_BET, 0);
-	}
+    if (sBlackJack->betBlackJack)
+    {
+        AddCoins(sBlackJack->betBlackJack);
+        sBlackJack->betBlackJack = 0;
+    }
     BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
     sBlackJack->state = BJ_STATE_EXIT;
 }
