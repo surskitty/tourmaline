@@ -437,7 +437,6 @@ static bool32 CheckMeowthCollision(struct Ball *ball, struct Meowth *meowth, u32
 static bool32 CheckJewelCollision(struct Ball *ball, struct MeowthJewel *jewel, u8 *outCollisionNormal);
 static bool32 IsJewelSpaceOccupied(u16 xPos, u16 destYPos, struct MeowthJewel *jewels);
 static bool32 CheckMeowthJewelsCollision(struct Ball *ball, struct Meowth *meowth, u8 *outCollisionNormal);
-static int GetNumActiveJewels(struct Meowth *meowth);
 static struct MeowthJewel *TryCreateNewJewel(struct Meowth *meowth, int ballXPos);
 static void UpdateJewels(struct MeowthJewel *jewels);
 static void UpdateMeowthSprite(struct Sprite *sprite);
@@ -2206,7 +2205,6 @@ static void CreatePlayerSprites(void)
 
     for (i = 0; i < ARRAY_COUNT(sSpriteSheets_PlayerInterface) - 1; i++)  
     {
-        struct SpriteSheet s;
         LoadCompressedSpriteSheet(&sSpriteSheets_PlayerInterface[i]);
     }
 
@@ -2219,13 +2217,11 @@ static void CreatePlayerSprites(void)
 
 static void PlayPinballGame(u8 gameType)
 {
-    u8 taskId;
-
     ScriptContext_Stop();
     sPinballGame = AllocZeroed(sizeof(*sPinballGame));
     sPinballGame->gameType = gameType;
     sPinballGame->returnMainCallback = CB2_ReturnToFieldContinueScriptPlayMapMusic;
-    taskId = CreateTask(FadeToPinballScreen, 0);
+    CreateTask(FadeToPinballScreen, 0);
 }
 
 static void FadeToPinballScreen(u8 taskId)
@@ -2886,7 +2882,7 @@ static void HandleBallPhysics(void)
 
     if ((ball->yPos >> 8) > 168)
     {
-        ball->yPos == 170 << 8;
+        //ball->yPos == 170 << 8;
         LoseBall();
     }
 }
@@ -3065,7 +3061,6 @@ static void HandleTilt(struct Ball *ball, struct Tilt *tilt, int xDelta, int yDe
 static bool32 HandleFlippers(struct Ball *ball, u16 *outYForce, u8 *outCollisionNormal, int *outCollisionAmplification)
 {
     bool32 collided;
-    struct Flipper *flipper;
 
     UpdateFlipperState(&sPinballGame->rightFlipper);
     UpdateFlipperState(&sPinballGame->leftFlipper);
@@ -3555,21 +3550,6 @@ static void ApplyCollisionForces(struct Ball *ball, u16 flipperYForce, int colli
 static void UpdateCamera(void)
 {
     int scrollX, scrollY;
-    int stagePixelWidth = sPinballGame->stageTileWidth * 8;
-    int stagePixelHeight = sPinballGame->stageTileHeight * 8;
-    struct Ball *ball = &sPinballGame->ball;
-
-    // scrollX = (ball->xPos >> 8) - (DISPLAY_WIDTH / 2);
-    // if (scrollX < 0)
-    //     scrollX = 0;
-    // if (scrollX > stagePixelWidth - DISPLAY_WIDTH)
-    //     scrollX = stagePixelWidth - DISPLAY_WIDTH;
-
-    // scrollY = (ball->yPos >> 8) - (DISPLAY_HEIGHT / 2);
-    // if (scrollY < 0)
-    //     scrollY = 0;
-    // if (scrollY > stagePixelHeight - DISPLAY_HEIGHT)
-    //     scrollY = stagePixelHeight - DISPLAY_HEIGHT;
 
     scrollX = -40; // Center the game in the middle of the screen
     scrollY = 0;
@@ -3894,20 +3874,9 @@ static bool32 CheckMeowthJewelsCollision(struct Ball *ball, struct Meowth *meowt
     return FALSE;
 }
 
-static int GetNumActiveJewels(struct Meowth *meowth)
-{
-    int i, count;
-    for (i = 0; i < MAX_MEOWTH_JEWELS; i++)
-    {
-        if (meowth->jewels[i].state != JEWEL_STATE_HIDDEN)
-            count++;
-    }
-    return count;
-}
-
 static struct MeowthJewel *TryCreateNewJewel(struct Meowth *meowth, int ballXPos)
 {
-    int i, count;
+    int i;
     for (i = 0; i < MAX_MEOWTH_JEWELS; i++)
     {
         if (meowth->jewels[i].state == JEWEL_STATE_HIDDEN)
