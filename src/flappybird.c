@@ -1705,7 +1705,7 @@ static void FlappyBirdMain(u8 taskId)
             gSprites[sFlappy->GameOverSpriteId].y = 80;
             if (sFlappy->timerDelay == 0)
             {
-                if (sFlappy->Points > VarGet(FLAPPY_VAR_HIGH_SCORE))
+                if (FLAPPY_VAR_HIGH_SCORE != 0 && sFlappy->Points > VarGet(FLAPPY_VAR_HIGH_SCORE))
                 {
                     PlayFanfare(MUS_LEVEL_UP);
                     VarSet(FLAPPY_VAR_HIGH_SCORE, sFlappy->Points);
@@ -1716,7 +1716,7 @@ static void FlappyBirdMain(u8 taskId)
                 }
                 else
                 {
-                StartExitFlappyBird();
+                    StartExitFlappyBird();
                 }
             }
             else
@@ -1783,7 +1783,10 @@ static void InitFlappyBirdScreen(void)
     CreateCreditSprites();
     SetCreditDigits(0);
     CreateHiScoreSprites();
-    SetScoreDigits(VarGet(FLAPPY_VAR_HIGH_SCORE));
+    if (FLAPPY_VAR_HIGH_SCORE != 0)
+        SetScoreDigits(VarGet(FLAPPY_VAR_HIGH_SCORE));
+    else
+        SetScoreDigits(0);
     CreateScore();
     CreateScore2();
     CreateButterfree();

@@ -25,7 +25,9 @@ MauvilleCity_GameCorner_MapScripts::
 	.set COINS_PRICE_500, 10000
 
 TrainerId_Onframe:
+.if GAME_CORNER_VAR_ID_CHECK != 0
 	map_script_2 GAME_CORNER_VAR_ID_CHECK, 0, BouncerCheck
+.endif
 	.2byte 0
 	
 BouncerCheck::
@@ -442,7 +444,9 @@ VF_Loop::
 VF_Cash_Out::	
 	addcoins GAME_CORNER_VAR_WINNINGS
 	setvar GAME_CORNER_VAR_WINNINGS, 0
+.if FLIP_VAR_LEVEL != 0
 	setvar FLIP_VAR_LEVEL, 0
+.endif
 	updatecoinsbox 1, 1
 	playse SE_SHOP
 	savebgm MUS_DUMMY
