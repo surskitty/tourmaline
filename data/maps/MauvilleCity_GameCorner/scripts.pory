@@ -1,9 +1,11 @@
+mapscripts MauvilleCity_GameCorner_MapScripts {
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        GAME_CORNER_VAR_ID_CHECK, 0: BouncerCheck
+    ]
+}
+
 raw `
 .set LOCALID_BOUNCER, 24
-
-MauvilleCity_GameCorner_MapScripts::
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, TrainerId_Onframe
-	.byte 0
 
     @ Game Corner prices
 	.set TM_DOUBLE_TEAM_COINS, 1500
@@ -25,10 +27,6 @@ MauvilleCity_GameCorner_MapScripts::
 	.set COINS_PRICE_50,  1000
 	.set COINS_PRICE_500, 10000
 
-TrainerId_Onframe:
-	map_script_2 GAME_CORNER_VAR_ID_CHECK, 0, BouncerCheck
-	.2byte 0
-	
 BouncerCheck::
 	lockall
 	applymovement LOCALID_BOUNCER, Common_Movement_WalkInPlaceFasterLeft
@@ -453,59 +451,6 @@ VF_Cash_Out::
 	releaseall
 	end
 	
-MauvilleCity_GameCorner_EventScript_Gacha_Basic::
-	lockall
-	checkitem ITEM_COIN_CASE
-	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoCoinCase
-	setvar VAR_0x8004, 1
-	playbgm MUS_RG_CINNABAR, FALSE
-	special StartGacha
-	waitstate
-	savebgm MUS_DUMMY
-	fadedefaultbgm
-	releaseall
-	end
-	
-	
-MauvilleCity_GameCorner_EventScript_Gacha_Great::
-	lockall
-	checkitem ITEM_COIN_CASE
-	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoCoinCase
-	setvar VAR_0x8004, 2
-	playbgm MUS_RG_CINNABAR, FALSE
-	special StartGacha
-	waitstate
-	savebgm MUS_DUMMY
-	fadedefaultbgm
-	releaseall
-	end
-	
-MauvilleCity_GameCorner_EventScript_Gacha_Ultra::
-	lockall
-	checkitem ITEM_COIN_CASE
-	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoCoinCase
-	setvar VAR_0x8004, 3
-	playbgm MUS_RG_CINNABAR, FALSE
-	special StartGacha
-	waitstate
-	savebgm MUS_DUMMY
-	fadedefaultbgm
-	releaseall
-	end
-	
-MauvilleCity_GameCorner_EventScript_Gacha_Master::
-	lockall
-	checkitem ITEM_COIN_CASE
-	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoCoinCase
-	setvar VAR_0x8004, 4
-	playbgm MUS_RG_CINNABAR, FALSE
-	special StartGacha
-	waitstate
-	savebgm MUS_DUMMY
-	fadedefaultbgm
-	releaseall
-	end
-
 MauvilleCity_GameCorner_CancelBJ::
 	closemessage
 	releaseall
@@ -1511,16 +1456,6 @@ MauvilleCity_GameCorner_EventScript_SlotMachine11::
 	releaseall
 	end
 
-MauvilleCity_GameCorner_EventScript_NoCoinCase::
-	msgbox MauvilleCity_GameCorner_Text_CantPlayWithNoCoinCase, MSGBOX_DEFAULT
-	releaseall
-	end
-
-MauvilleCity_GameCorner_EventScript_NoCoinCase2::
-	msgbox MauvilleCity_GameCorner_Text_CantBuyWithNoCoinCase, MSGBOX_DEFAULT
-	releaseall
-	end	
-
 MauvilleCity_GameCorner_Text_ThisIsMauvilleGameCorner:
 	.string "This is MAUVILLE GAME CORNER.$"
 
@@ -1680,42 +1615,37 @@ MauvilleCity_GameCorner_Text_SendToYourHomePC:
 	.string "We'll send it to your PC at home.$"
 
 MauvilleCity_GameCorner_Text_NotEnoughCoins:
-	.string "You don't have enough COINS.$"
+	.string "You don't have enough Coins.$"
 
 PB_YOU_WON_TEXT:
 	.string "You won\n"
-	.string "{STR_VAR_1} COINS!$"
+	.string "{STR_VAR_1} Coins!$"
 
 PB_Not_Enough:
-	.string "It's a PINBALL MACHINE!\p"
-	.string "You don't have enough COINS…$"
+	.string "It's a Pinball Machine!\p"
+	.string "You don't have enough Coins…$"
 	
 Snake_Not_Enough:
-	.string "It's ONIX!\p"
-	.string "You don't have enough COINS…$"	
+	.string "It's Onix!\p"
+	.string "You don't have enough Coins…$"	
 	
 Bjuice_Not_Enough:
-	.string "You don't have enough COINS.$"	
+	.string "You don't have enough Coins.$"	
 	
 Bird_Not_Enough:
-	.string "It's FLUTTERFREE!\p"
-	.string "You don't have enough COINS…$"		
+	.string "It's Flutterfree!\p"
+	.string "You don't have enough Coins…$"		
 	
 BS_Not_Enough:
-	.string "It's BLOCK BUILDER!\p"
-	.string "You don't have enough COINS…$"	
+	.string "It's Block Builder!\p"
+	.string "You don't have enough Coins…$"	
 
 Flip_Not_Enough:
-	.string "It's VOLTORB FLIP!\p"
-	.string "You don't have enough COINS…$"
+	.string "It's Voltorb Flip!\p"
+	.string "You don't have enough Coins…$"
 
-@ Unused
-MauvilleCity_GameCorner_Text_NoRoomForPlacingDecor:
-	.string "There isn't any room available for\n"
-	.string "placing {STR_VAR_1}.$"
-	
 MauvilleCity_GameCorner_Text_VF_Keep_Going:
-	.string "You've made {STR_VAR_1} COINS.\n"
+	.string "You've made {STR_VAR_1} Coins.\n"
 	.string "Keep going?$"
 
 MauvilleCity_GameCorner_Text_OhIsThatSo:
@@ -1729,13 +1659,9 @@ MauvilleCity_GameCorner_Text_SoYourChoiceIsX:
 MauvilleCity_GameCorner_Text_HereYouGo:
 	.string "Here you go!$"
 
-@ Unused
-MauvilleCity_GameCorner_Text_CantCarryAnyMore:
-	.string "Oh, you can't carry any more than that.$"
-
 MauvilleCity_GameCorner_Text_GotTwoOfSameDollWantOne:
 	.string "I made a mistake and got two of\n"
-	.string "the same DOLLS.\p"
+	.string "the same Dolls.\p"
 	.string "Would you like one of them?$"
 
 MauvilleCity_GameCorner_Text_HereYouGo2:
@@ -1755,24 +1681,24 @@ MauvilleCity_GameCorner_Text_CantWinJackpot:
 
 MauvilleCity_GameCorner_Text_NeedCoinCaseGoNextDoor:
 	.string "Hey, kid, if you want to play here,\n"
-	.string "you need a COIN CASE.\p"
+	.string "you need a Coin Case.\p"
 	.string "I think the young lady next door\n"
 	.string "had one. Go see her!$"
 
 MauvilleCity_GameCorner_Text_LuckOnlyLastSoLongTakeCoins:
 	.string "My luck can only last so long.\n"
 	.string "This is too much for me.\l"
-	.string "Here, take some COINS!$"
+	.string "Here, take some Coins!$"
 
 MauvilleCity_GameCorner_Text_MauvilleSomethingForEveryone:
-	.string "MAUVILLE has something for\n"
+	.string "Mauville has something for\n"
 	.string "everyone.\p"
-	.string "For me, it's the GAME CORNER.$"
+	.string "For me, it's the Game Corner.$"
 
 MauvilleCity_GameCorner_Text_RouletteTablesDifferentRates:
-	.string "The ROULETTE tables have different\n"
+	.string "The Roulette tables have different\n"
 	.string "rates.\p"
-	.string "Check your COINS if you're going to\n"
+	.string "Check your Coins if you're going to\n"
 	.string "pick a table.$"
 
 MauvilleCity_GameCorner_Text_EasyToLoseTrackOfTime:
@@ -1780,22 +1706,22 @@ MauvilleCity_GameCorner_Text_EasyToLoseTrackOfTime:
 	.string "I should get back to work.$"
 
 MauvilleCity_GameCorner_Text_CoinsAreNeededToPlay:
-	.string "COINS are needed to play here\n"
-	.string "in the GAME CORNER.$"
+	.string "Coins are needed to play here\n"
+	.string "in the Game Corner.$"
 	
-	MauvilleCity_GameCorner_Text_Dealer:
-	.string "Some say BLACKJACK is about skill.\n"
+MauvilleCity_GameCorner_Text_Dealer:
+	.string "Some say Blackjack is about skill.\n"
 	.string "Others say it's about luck.\p"
 	.string "I say it's about having fun…\n"
 	.string "and maybe winning big!$"
 	
-	MauvilleCity_GameCorner_Text_Dealer2:
+MauvilleCity_GameCorner_Text_Dealer2:
 	.string "You can bet anything divisible\n"
 	.string "by 10 here.\p"
 	.string "Maybe you should go all in!$"	
 
 MauvilleCity_GameCorner_Text_VFGuy1:
-	.string "You want to play VOLTORB FLIP?\p"
+	.string "You want to play Voltorb Flip?\p"
 	.string "You need to be on the other\n"
 	.string "side of the table.$"
 	
@@ -1804,41 +1730,96 @@ MauvilleCity_GameCorner_Text_VFGuy2:
 	.string "the table, pal.$"	
 
 MauvilleCity_GameCorner_Text_RouletteOnlyLuck:
-	.string "This ROULETTE thing…\n"
+	.string "This Roulette thing…\n"
 	.string "It's rather demanding.\p"
 	.string "Win or lose, it's only by luck.$"
 
 MauvilleCity_GameCorner_Text_UpTo3CoinsCanBeUsed:
-	.string "Up to three COINS can be used to play\n"
-	.string "the SLOTS.$"
+	.string "Up to three Coins can be used to play\n"
+	.string "the Slots.$"
 
 MauvilleCity_GameCorner_Text_DifficultToStopOn7:
 	.string "It's very difficult to make it stop\n"
 	.string "right on “7.”\p"
-	.string "If it stops on “7” during the REEL TIME\n"
-	.string "bonus game, you'll receive extra COINS.$"
+	.string "If it stops on “7” during the Reel Time\n"
+	.string "bonus game, you'll receive extra Coins.$"
 
 MauvilleCity_GameCorner_Text_HeresSomeSlotsInfo:
 	.string "Here's some information for you\n"
-	.string "about the SLOTS.\p"
+	.string "about the Slots.\p"
 	.string "The more lightning bolts you stock,\n"
-	.string "the more REEL TIME chances you get.\p"
+	.string "the more Reel Time chances you get.\p"
 	.string "In a game with the maximum five\n"
-	.string "REEL TIME chances…\p"
+	.string "Reel Time chances…\p"
 	.string "It is possible to receive four regular\n"
 	.string "bonuses, then a big bonus.\p"
-	.string "That would total 660 COINS, but it's\n"
+	.string "That would total 660 Coins, but it's\n"
 	.string "very difficult to get.$"
 
-MauvilleCity_GameCorner_Text_CantPlayWithNoCoinCase:
-	.string "You can't play if you don't have\n"
-	.string "a COIN CASE.$"
-
-MauvilleCity_GameCorner_Text_CantBuyWithNoCoinCase:
-	.string "Huh? Looks like you need\n"
-	.string "a COIN CASE.$"
-	
 MauvilleCity_GameCorner_Text_Juice:
-	.string "BERRY JUICE!\n"
-	.string "Just 10 COINS.$"	
+	.string "Berry Juice!\n"
+	.string "Just 10 Coins.$"	
 `
+
+
+script MauvilleCity_GameCorner_EventScript_NoCoinCase {
+	msgbox(format("You can't play if you don't have a Coin Case."), MSGBOX_DEFAULT)
+	releaseall
+}
+
+script MauvilleCity_GameCorner_EventScript_NoCoinCase2 {
+	msgbox(format("Huh? Looks like you need a Coin Case."), MSGBOX_DEFAULT)
+	releaseall
+}
+
+script MauvilleCity_GameCorner_EventScript_Gacha_Basic {
+	lockall
+	checkitem(ITEM_COIN_CASE)
+	goto_if_eq(VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoCoinCase)
+	setvar(VAR_0x8004, 1)
+	playbgm(MUS_RG_CINNABAR, FALSE)
+	special(StartGacha)
+	waitstate
+	savebgm(MUS_DUMMY)
+	fadedefaultbgm
+	releaseall
+}
+
+script MauvilleCity_GameCorner_EventScript_Gacha_Great {
+	lockall
+	checkitem(ITEM_COIN_CASE)
+	goto_if_eq(VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoCoinCase)
+	setvar(VAR_0x8004, 2)
+	playbgm(MUS_RG_CINNABAR, FALSE)
+	special(StartGacha)
+	waitstate
+	savebgm(MUS_DUMMY)
+	fadedefaultbgm
+	releaseall
+}
+
+script MauvilleCity_GameCorner_EventScript_Gacha_Ultra {
+	lockall
+	checkitem(ITEM_COIN_CASE)
+	goto_if_eq(VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoCoinCase)
+	setvar(VAR_0x8004, 3)
+	playbgm(MUS_RG_CINNABAR, FALSE)
+	special(StartGacha)
+	waitstate
+	savebgm(MUS_DUMMY)
+	fadedefaultbgm
+	releaseall
+}
+
+script MauvilleCity_GameCorner_EventScript_Gacha_Master {
+	lockall
+	checkitem(ITEM_COIN_CASE)
+	goto_if_eq(VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoCoinCase)
+	setvar(VAR_0x8004, 4)
+	playbgm(MUS_RG_CINNABAR, FALSE)
+	special(StartGacha)
+	waitstate
+	savebgm(MUS_DUMMY)
+	fadedefaultbgm
+	releaseall
+}

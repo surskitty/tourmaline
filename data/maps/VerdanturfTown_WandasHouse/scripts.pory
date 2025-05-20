@@ -23,7 +23,7 @@ script VerdanturfTown_WandasHouse_EventScript_Wally {
 script VerdanturfTown_WandasHouse_EventScript_WallysUncle {
     lock
     faceplayer
-    speakername("Wally's Uncle")
+    speakername(CommonName_Text_WallysUncle)
     if (flag(FLAG_DEFEATED_WALLY_VICTORY_ROAD)) {
         msgbox(format("Is that right?\n"
             "Wally's gone away that far all by himself…\p"
