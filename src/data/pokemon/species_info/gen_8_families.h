@@ -3883,7 +3883,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_HUMAN_LIKE),
 #if !TESTING
         .abilities = { ABILITY_TECHNICIAN, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_LIMBER },
+        .innates = { ABILITY_LIMBER, ABILITY_REGENERATOR },
 #else
         .abilities = { ABILITY_LIMBER, ABILITY_NONE, ABILITY_TECHNICIAN },
 #endif
@@ -3952,7 +3952,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_HUMAN_LIKE),
 #if !TESTING
         .abilities = { ABILITY_TECHNICIAN, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_LIMBER },
+        .innates = { ABILITY_LIMBER, ABILITY_REGENERATOR, },
 #else
         .abilities = { ABILITY_LIMBER, ABILITY_NONE, ABILITY_TECHNICIAN },
 #endif

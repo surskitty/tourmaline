@@ -2023,7 +2023,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
 #if !TESTING
-        .abilities = { ABILITY_STURDY, ABILITY_CLEAR_BODY, ABILITY_NONE },
+        .abilities = { ABILITY_STURDY, ABILITY_CLEAR_BODY, ABILITY_SAND_STREAM },
         .innates = { ABILITY_PURIFYING_SALT },
 #else
         .abilities = { ABILITY_PURIFYING_SALT, ABILITY_STURDY, ABILITY_CLEAR_BODY },
@@ -2092,7 +2092,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
 #if !TESTING
-        .abilities = { ABILITY_STURDY, ABILITY_CLEAR_BODY, ABILITY_NONE },
+        .abilities = { ABILITY_STURDY, ABILITY_CLEAR_BODY, ABILITY_SAND_STREAM },
         .innates = { ABILITY_PURIFYING_SALT },
 #else
         .abilities = { ABILITY_PURIFYING_SALT, ABILITY_STURDY, ABILITY_CLEAR_BODY },
@@ -2160,8 +2160,8 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
 #if !TESTING
-        .abilities = { ABILITY_STURDY, ABILITY_CLEAR_BODY, ABILITY_NONE },
-        .innates = { ABILITY_PURIFYING_SALT },
+        .abilities = { ABILITY_STURDY, ABILITY_CLEAR_BODY, ABILITY_SAND_STREAM },
+        .innates = { ABILITY_PURIFYING_SALT, ABILITY_HEALER },
 #else
         .abilities = { ABILITY_PURIFYING_SALT, ABILITY_STURDY, ABILITY_CLEAR_BODY },
 #endif

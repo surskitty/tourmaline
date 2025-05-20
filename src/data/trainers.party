@@ -4969,8 +4969,18 @@ Level: 50
 Limestone (Armaldo)
 Level: 50
 
+Siderite (Minior)
+Level: 50
+Shiny: Yes
+
 Basalt (Probopass) (M)
 Level: 50
+Ability: Lightning Rod
+Nature: Modest
+- Volt Switch
+- Dazzling Gleam
+- Wide Guard
+- Power Gem
 
 Siderite (Aggron) @ Aggronite
 Level: 50
@@ -5042,6 +5052,9 @@ Muay Thai (Bewear) (F)
 Level: 50
 
 Aikido (Grapploct) (M)
+Level: 50
+
+Swarmer (Crabominable) (M)
 Level: 50
 
 Sumo (Hariyama) (F) @ Sitrus Berry
@@ -5249,15 +5262,23 @@ Mugshot: Purple
 Party Size: 6
 Pool Rules: Basic
 
-Torkoal @ Heat Rock
+Torkoal @ Eject Button
 Level: 50
 Ability: Drought
 Tags: Lead
+- Sunny Day
+- Eruption
+- Earth Power
+- Yawn
 
 Ninetales @ Heat Rock
 Level: 50
 Ability: Drought
 Tags: Lead
+- Sunny Day
+- Heat Wave
+- Encore
+- Solar Beam
 
 Dachsbun
 Level: 50
@@ -6095,11 +6116,9 @@ AI: Basic Trainer
 
 Taillow @ Oran Berry
 Level: 16
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 Zigzagoon @ Oran Berry
 Level: 16
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 === TRAINER_COLTON ===
 Name: Colton
@@ -6234,7 +6253,6 @@ AI: Basic Trainer
 
 Roselia @ Oran Berry
 Level: 17
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 === TRAINER_VANESSA ===
 Name: Vanessa
@@ -6447,7 +6465,6 @@ AI: Basic Trainer
 
 Meditite
 Level: 18
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - High Jump Kick
 - Meditate
 - Confusion
@@ -12153,15 +12170,12 @@ AI: Basic Trainer
 
 Marill
 Level: 15
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Shroomish
 Level: 15
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Numel
 Level: 15
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_SALLY ===
 Name: Sally
@@ -12259,15 +12273,19 @@ AI: Basic Trainer
 
 Surskit
 Level: 6
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Wurmple
 Level: 6
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Blipbug
 Level: 6
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Sewaddle
 Level: 6
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JOSE ===
 Name: Jose
@@ -13087,7 +13105,9 @@ AI: Basic Trainer
 
 Ralts
 Level: 16
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+
+Budew
+Level: 16
 
 === TRAINER_WALLY_VR_1 ===
 Name: Wally
@@ -13097,10 +13117,12 @@ Gender: Male
 Music: Male
 Items: Full Restore / Full Restore
 Double Battle: Yes
-AI: Basic Trainer
+AI: Smart Trainer
+Pool Rules: Basic
 
 Altaria
 Level: 44
+Tags: Lead
 - Aerial Ace
 - Safeguard
 - Dragon Breath
@@ -13108,12 +13130,13 @@ Level: 44
 
 Delcatty
 Level: 43
+Tags: Lead
 - Sing
 - Assist
 - Charm
 - Feint Attack
 
-Roselia
+Roserade
 Level: 44
 - Magical Leaf
 - Leech Seed
@@ -13134,6 +13157,22 @@ Level: 45
 - Psychic
 - Future Sight
 
+Altaria @ Altarianite
+Level: 44
+Tags: Ace
+- Aerial Ace
+- Safeguard
+- Dragon Breath
+- Dragon Dance
+
+Gardevoir @ Gardevoirite
+Level: 45
+Tags: Ace
+- Double Team
+- Calm Mind
+- Psychic
+- Future Sight
+
 === TRAINER_WALLY_VR_2 ===
 Name: Wally
 Class: Rival
@@ -13143,6 +13182,7 @@ Music: Male
 Items: Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer
+Pool Rules: Basic
 
 Altaria
 Level: 47
@@ -13165,7 +13205,7 @@ Level: 47
 - Giga Drain
 - Toxic
 
-Magnezone
+Magneton
 Level: 44
 - Supersonic
 - Thunderbolt
@@ -13263,18 +13303,6 @@ Shiftry
 Level: 34
 
 Nosepass
-Level: 34
-
-=== TRAINER_KOJI_1 ===
-Name: Koji
-Class: Black Belt
-Pic: Black Belt
-Gender: Male
-Music: Intense
-Double Battle: Yes
-AI: Basic Trainer
-
-Mienfoo
 Level: 34
 
 === TRAINER_WAYNE ===
@@ -15248,15 +15276,12 @@ AI: Basic Trainer
 
 Pelipper
 Level: 36
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 Clobbopus
 Level: 36
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 Tentacruel
 Level: 36
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 === TRAINER_PABLO_2 ===
 Name: Pablo
@@ -15328,15 +15353,30 @@ AI: Basic Trainer
 
 Pelipper
 Level: 43
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 Starmie
 Level: 43
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 Starmie
 Level: 43
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
+
+=== TRAINER_KOJI_1 ===
+Name: Koji
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Intense
+Double Battle: Yes
+AI: Basic Trainer
+
+Makuhita
+Level: 34
+
+Mienfoo
+Level: 34
+
+Stufful
+Level: 34
 
 === TRAINER_KOJI_2 ===
 Name: Koji
@@ -15349,11 +15389,12 @@ AI: Basic Trainer
 
 Mienfoo
 Level: 37
-IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 
-Mienfoo
+Makuhita
 Level: 37
-IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
+
+Stufful
+Level: 37
 
 === TRAINER_KOJI_3 ===
 Name: Koji
@@ -15366,15 +15407,12 @@ AI: Basic Trainer
 
 Makuhita
 Level: 39
-IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
-Mienfoo
+Mienshao
 Level: 39
-IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
-Mienfoo
+Bewear
 Level: 39
-IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 === TRAINER_KOJI_4 ===
 Name: Koji
@@ -15387,15 +15425,12 @@ AI: Basic Trainer
 
 Hariyama
 Level: 41
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
-Mienfoo
+Mienshao
 Level: 41
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
-Mienfoo
+Bewear
 Level: 41
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 === TRAINER_KOJI_5 ===
 Name: Koji
@@ -15408,15 +15443,12 @@ AI: Basic Trainer
 
 Hariyama
 Level: 43
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
+
+Mienshao
+Level: 43
 
 Bewear
 Level: 43
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
-
-Bewear
-Level: 43
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 === TRAINER_CRISTIN_2 ===
 Name: Cristin

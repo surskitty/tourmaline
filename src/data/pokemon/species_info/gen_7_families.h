@@ -1407,7 +1407,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_3),
 #if !TESTING
         .abilities = { ABILITY_HYPER_CUTTER, ABILITY_HYPER_CUTTER, ABILITY_GLUTTONY},
-        .innates = { ABILITY_ANGER_POINT, ABILITY_IRON_FIST  },
+        .innates = { ABILITY_ANGER_POINT, ABILITY_ANGER_SHELL, ABILITY_IRON_FIST },
 #else
         .abilities = { ABILITY_HYPER_CUTTER, ABILITY_IRON_FIST, ABILITY_ANGER_POINT },
 #endif
@@ -3396,7 +3396,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+#if !TESTING
+        .abilities = { ABILITY_FLUFFY, ABILITY_KLUTZ, ABILITY_RECKLESS },
+        .innates = { ABILITY_CUTE_CHARM, ABILITY_FLUFFY },
+#else
         .abilities = { ABILITY_FLUFFY, ABILITY_KLUTZ, ABILITY_CUTE_CHARM },
+#endif
         .bodyColor = BODY_COLOR_PINK,
         .speciesName = _("Stufful"),
         .cryId = CRY_STUFFUL,
@@ -3464,7 +3469,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_FLUFFY, ABILITY_KLUTZ, ABILITY_UNNERVE },
+#if !TESTING
+        .abilities = { ABILITY_FLUFFY, ABILITY_KLUTZ, ABILITY_RECKLESS },
+        .innates = { ABILITY_CUTE_CHARM, ABILITY_FLUFFY, ABILITY_OVERCOAT },
+#else
+        .abilities = { ABILITY_FLUFFY, ABILITY_KLUTZ, ABILITY_CUTE_CHARM },
+#endif
         .bodyColor = BODY_COLOR_PINK,
         .speciesName = _("Bewear"),
         .cryId = CRY_BEWEAR,
@@ -4069,7 +4079,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
+#if !TESTING
+        .abilities = { ABILITY_SAND_VEIL, ABILITY_NONE, ABILITY_ARENA_TRAP },
+        .innates = { ABILITY_WATER_COMPACTION, },
+#else
         .abilities = { ABILITY_WATER_COMPACTION, ABILITY_NONE, ABILITY_SAND_VEIL },
+#endif
         .bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Sandygast"),
         .cryId = CRY_SANDYGAST,
@@ -4134,7 +4149,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
+#if !TESTING
+        .abilities = { ABILITY_SAND_VEIL, ABILITY_NONE, ABILITY_ARENA_TRAP },
+        .innates = { ABILITY_WATER_COMPACTION, ABILITY_CURSED_BODY },
+#else
         .abilities = { ABILITY_WATER_COMPACTION, ABILITY_NONE, ABILITY_SAND_VEIL },
+#endif
         .bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Palossand"),
         .cryId = CRY_PALOSSAND,
@@ -4464,6 +4484,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
             gShinyOverworldPalette_MiniorMeteor             \
         )                                                   \
         .formChangeTable = sMinior ##Form##FormChangeTable, \
+        .innates = { ABILITY_STURDY, ABILITY_OVERCOAT },    \
         MINIOR_MISC_INFO(BODY_COLOR_BROWN),                 \
     }
 
@@ -4493,6 +4514,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .iconPalIndex = iconPal,                                \
         SHADOW(-2, 12, SHADOW_SIZE_S)                           \
         .formChangeTable = sMinior ##Form##FormChangeTable,     \
+        .innates = { ABILITY_WIND_RIDER, ABILITY_DAZZLING },    \
         MINIOR_MISC_INFO(color),                                \
     }
 

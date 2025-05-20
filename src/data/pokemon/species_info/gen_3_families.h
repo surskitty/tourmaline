@@ -4458,7 +4458,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
 #if !TESTING
-        .abilities = { ABILITY_STURDY, ABILITY_SAND_FORCE, ABILITY_NONE },
+        .abilities = { ABILITY_STURDY, ABILITY_SAND_FORCE, ABILITY_LIGHTNING_ROD },
         .innates = { ABILITY_MAGNET_PULL },
 #else
         .abilities = { ABILITY_STURDY, ABILITY_MAGNET_PULL, ABILITY_SAND_FORCE },
@@ -4539,8 +4539,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
 #if !TESTING
-        .abilities = { ABILITY_STURDY, ABILITY_SAND_FORCE, ABILITY_NONE },
-        .innates = { ABILITY_MAGNET_PULL },
+        .abilities = { ABILITY_STURDY, ABILITY_SAND_FORCE, ABILITY_LIGHTNING_ROD },
+        .innates = { ABILITY_MAGNET_PULL, ABILITY_ELECTROMORPHOSIS, ABILITY_ANALYTIC },
 #else
         .abilities = { ABILITY_STURDY, ABILITY_MAGNET_PULL, ABILITY_SAND_FORCE },
 #endif
