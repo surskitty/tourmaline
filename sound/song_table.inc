@@ -570,6 +570,7 @@ gSongTable::
 	song mus_casino_plus_7, 0, 0
 	song mus_casino_plus_8, 0, 0
 	song mus_casino_plus_9, 0, 0
+	song mus_casino_plus_gacha, 0, 0
 	song ph_trap_blend, 2, 2
 	song ph_trap_held, 2, 2
 	song ph_trap_solo, 2, 2
