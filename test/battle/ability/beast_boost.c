@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Beast Boost boosts the most proficient stat when knocking out a target")
+SINGLE_BATTLE_TEST("Beast Boost boosts the most proficient stat when knocking out a target")
 {
     u8 stats[] = {1, 1, 1, 1, 1};
     PARAMETRIZE { stats[0] = 255; }

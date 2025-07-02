@@ -7,7 +7,7 @@ ASSUMPTIONS
     ASSUME(GetMoveCategory(MOVE_ROUND) == DAMAGE_CATEGORY_SPECIAL);
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Protosynthesis boosts the highest stat")
+SINGLE_BATTLE_TEST("Protosynthesis boosts the highest stat")
 {
     GIVEN {
         PLAYER(SPECIES_WALKING_WAKE) { Ability(ABILITY_PROTOSYNTHESIS); }
@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("ABILITY: Protosynthesis boosts the highest stat")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Protosynthesis boosts either Attack or Special Attack, not both")
+SINGLE_BATTLE_TEST("Protosynthesis boosts either Attack or Special Attack, not both")
 {
     u16 species;
     u32 move;
@@ -54,7 +54,7 @@ SINGLE_BATTLE_TEST("ABILITY: Protosynthesis boosts either Attack or Special Atta
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Protosynthesis ability pop up activates only once during the duration of sunny day")
+SINGLE_BATTLE_TEST("Protosynthesis ability pop up activates only once during the duration of sunny day")
 {
     u16 turns;
 
@@ -84,7 +84,7 @@ SINGLE_BATTLE_TEST("ABILITY: Protosynthesis ability pop up activates only once d
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Protosynthesis activates on switch-in")
+SINGLE_BATTLE_TEST("Protosynthesis activates on switch-in")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -100,7 +100,7 @@ SINGLE_BATTLE_TEST("ABILITY: Protosynthesis activates on switch-in")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Protosynthesis prioritizes stats in the case of a tie in the following order: Atk, Def, Sp.Atk, Sp.Def, Speed")
+SINGLE_BATTLE_TEST("Protosynthesis prioritizes stats in the case of a tie in the following order: Atk, Def, Sp.Atk, Sp.Def, Speed")
 {
     u8 stats[] = {1, 1, 1, 1, 1};
 
@@ -133,7 +133,7 @@ SINGLE_BATTLE_TEST("ABILITY: Protosynthesis prioritizes stats in the case of a t
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Protosynthesis activates in Sun before Booster Energy")
+SINGLE_BATTLE_TEST("Protosynthesis activates in Sun before Booster Energy")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -149,7 +149,7 @@ SINGLE_BATTLE_TEST("ABILITY: Protosynthesis activates in Sun before Booster Ener
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Protosynthesis doesn't activate for a transformed battler")
+SINGLE_BATTLE_TEST("Protosynthesis doesn't activate for a transformed battler")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -169,7 +169,7 @@ SINGLE_BATTLE_TEST("ABILITY: Protosynthesis doesn't activate for a transformed b
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Protosynthesis activates even if the Pokémon is holding an Utility Umbrella")
+SINGLE_BATTLE_TEST("Protosynthesis activates even if the Pokémon is holding an Utility Umbrella")
 {
     GIVEN {
         PLAYER(SPECIES_GREAT_TUSK) { Ability(ABILITY_PROTOSYNTHESIS); Item(ITEM_UTILITY_UMBRELLA); }
@@ -182,7 +182,7 @@ SINGLE_BATTLE_TEST("ABILITY: Protosynthesis activates even if the Pokémon is ho
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Protosynthesis doesn't activate if Cloud Nine/Air Lock is on the field")
+SINGLE_BATTLE_TEST("Protosynthesis doesn't activate if Cloud Nine/Air Lock is on the field")
 {
     u32 species, ability;
     PARAMETRIZE { species = SPECIES_RAYQUAZA; ability = ABILITY_AIR_LOCK; }

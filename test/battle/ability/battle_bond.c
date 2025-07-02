@@ -7,7 +7,7 @@ ASSUMPTIONS
 }
 
 // Battle Bond transforms the pokemon when fainting any battler(opposing or partner), unless it's the last pokemon and the battle ends.
-SINGLE_BATTLE_TEST("ABILITY: Battle Bond transforms player's Greninja - Singles")
+SINGLE_BATTLE_TEST("Battle Bond transforms player's Greninja - Singles")
 {
     u32 monsCountPlayer, monsCountOpponent;
 
@@ -55,7 +55,7 @@ SINGLE_BATTLE_TEST("ABILITY: Battle Bond transforms player's Greninja - Singles"
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Battle Bond transforms opponent's Greninja - Singles")
+SINGLE_BATTLE_TEST("Battle Bond transforms opponent's Greninja - Singles")
 {
     u32 monsCountPlayer, monsCountOpponent;
 
@@ -103,7 +103,7 @@ SINGLE_BATTLE_TEST("ABILITY: Battle Bond transforms opponent's Greninja - Single
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Battle Bond transforms player's Greninja when fainting its Ally")
+DOUBLE_BATTLE_TEST("Battle Bond transforms player's Greninja when fainting its Ally")
 {
     u32 monsCountPlayer, monsCountOpponent;
 

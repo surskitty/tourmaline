@@ -7,7 +7,7 @@ ASSUMPTIONS
     ASSUME(GetMovePower(MOVE_SCRATCH) > 0);
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Aerilate can not turn certain moves into Flying type moves")
+SINGLE_BATTLE_TEST("Aerilate can not turn certain moves into Flying type moves")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_WEATHER_BALL; }
@@ -29,7 +29,7 @@ SINGLE_BATTLE_TEST("ABILITY: Aerilate can not turn certain moves into Flying typ
     }
 }
 
-SINGLE_BATTLE_TEST("Aerilate can not turn certain moves into Flying type moves")
+SINGLE_BATTLE_TEST("INNATE: Aerilate can not turn certain moves into Flying type moves")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_WEATHER_BALL; }

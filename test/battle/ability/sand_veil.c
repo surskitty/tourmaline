@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Sand Veil prevents damage from sandstorm")
+SINGLE_BATTLE_TEST("Sand Veil prevents damage from sandstorm")
 {
     GIVEN {
         PLAYER(SPECIES_CACNEA) { Ability(ABILITY_SAND_VEIL); }
@@ -14,7 +14,7 @@ SINGLE_BATTLE_TEST("ABILITY: Sand Veil prevents damage from sandstorm")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Sand Veil increases evasion during sandstorm")
+SINGLE_BATTLE_TEST("Sand Veil increases evasion during sandstorm")
 {
     PASSES_RANDOMLY(4, 5, RNG_ACCURACY);
     GIVEN {
