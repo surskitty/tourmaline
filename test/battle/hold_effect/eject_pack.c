@@ -161,75 +161,81 @@ SINGLE_BATTLE_TEST("Eject Pack will miss timing to switch out user if Eject Butt
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Eject Pack does not activate if there are no Pokémon left to battle")
+DOUBLE_BATTLE_TEST("Eject Pack: Only the fastest Eject Pack will activate after an ability stat drop")
 {
+    u32 speed;
+    u32 species, ability;
+
+    PARAMETRIZE { species = SPECIES_EKANS; ability = ABILITY_INTIMIDATE; speed = 1; }
+    PARAMETRIZE { species = SPECIES_EKANS; ability = ABILITY_INTIMIDATE; speed = 11; }
+
+    PARAMETRIZE { species = SPECIES_DIPPLIN; ability = ABILITY_SUPERSWEET_SYRUP; speed = 1; }
+    PARAMETRIZE { species = SPECIES_DIPPLIN; ability = ABILITY_SUPERSWEET_SYRUP; speed = 11; }
+
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_PACK); }
-        PLAYER(SPECIES_WOBBUFFET) { HP(0); }
-        OPPONENT(SPECIES_EKANS) { Ability(ABILITY_UNNERVE); Innates(ABILITY_INTIMIDATE); }
+        PLAYER(SPECIES_WOBBUFFET) { Speed(10); Item(ITEM_EJECT_PACK); }
+        PLAYER(SPECIES_WYNAUT) { Speed(speed); Item(ITEM_EJECT_PACK); }
+        PLAYER(SPECIES_WOBBUFFET) { Speed(3); }
+        OPPONENT(SPECIES_WYNAUT)  { Speed(4); }
+        OPPONENT(SPECIES_WOBBUFFET)  { Speed(5); }
+        OPPONENT(species) { Speed(6); Ability(ability); }
     } WHEN {
-        TURN { }
+        TURN {
+            SWITCH(opponentLeft, 2);
+            if (speed == 11)
+                SEND_OUT(playerRight, 2);
+            else
+                SEND_OUT(playerLeft, 2);
+        }
     } SCENE {
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        NONE_OF {
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-            MESSAGE("Wobbuffet is switched out with the Eject Pack!");
+        ABILITY_POPUP(opponentLeft, ability);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
+        if (speed == 11) {
+            NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, playerRight);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerRight);
+            NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerLeft);
+        } else {
+            NONE_OF {
+                ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, playerLeft);
+                ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerRight);
+            }
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerLeft);
         }
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Eject Pack will miss timing to switch out user if Emergency Exit was activated on target")
+DOUBLE_BATTLE_TEST("Eject Pack: Only the fastest Eject Pack will activate after a move stat drop")
 {
+    u32 speed;
+
+    PARAMETRIZE { speed = 1; }
+    PARAMETRIZE { speed = 11; }
+
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_PACK); }
-        PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_GOLISOPOD) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_EMERGENCY_EXIT); MaxHP(263); HP(133); };
-        OPPONENT(SPECIES_WYNAUT);
+        PLAYER(SPECIES_WOBBUFFET) { Speed(10); Item(ITEM_EJECT_PACK); }
+        PLAYER(SPECIES_WYNAUT) { Speed(speed); Item(ITEM_EJECT_PACK); }
+        PLAYER(SPECIES_WOBBUFFET) { Speed(3); }
+        OPPONENT(SPECIES_WYNAUT)  { Speed(4); }
+        OPPONENT(SPECIES_WOBBUFFET)  { Speed(5); }
     } WHEN {
-        TURN { MOVE(player, MOVE_OVERHEAT); SEND_OUT(opponent, 1); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_OVERHEAT, player);
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        NONE_OF {
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-            MESSAGE("Wobbuffet is switched out with the Eject Pack!");
+        TURN {
+            MOVE(opponentLeft, MOVE_BUBBLE);
+            if (speed == 11)
+                SEND_OUT(playerRight, 2);
+            else
+                SEND_OUT(playerLeft, 2);
         }
-        ABILITY_POPUP(opponent, ABILITY_EMERGENCY_EXIT);
-    } THEN {
-        EXPECT(player->species == SPECIES_WOBBUFFET);
-        EXPECT(opponent->species == SPECIES_WYNAUT);
-    }
-}
-
-SINGLE_BATTLE_TEST("INNATE: Eject Pack activates once intimidate mon switches in")
-{
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_PACK); }
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_EKANS) { Ability(ABILITY_UNNERVE); Innates(ABILITY_INTIMIDATE); }
-    } WHEN {
-        TURN { SWITCH(opponent, 1); SEND_OUT(player, 1); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
-        MESSAGE("Wobbuffet is switched out with the Eject Pack!");
-    }
-}
-
-DOUBLE_BATTLE_TEST("INNATE: Eject Pack will not trigger if the conditions are not met")
-{
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_PACK); }
-        PLAYER(SPECIES_BELDUM) { Ability(ABILITY_LEVITATE); Innates(ABILITY_CLEAR_BODY); };
-        PLAYER(SPECIES_RALTS) { Ability(ABILITY_LIGHT_METAL); Item(ITEM_EJECT_PACK); }
-        PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_EKANS) { Ability(ABILITY_UNNERVE); Innates(ABILITY_INTIMIDATE); }
-    } WHEN {
-        TURN { SWITCH(opponentLeft, 2); SEND_OUT(playerLeft, 2); }
-    } SCENE {
-
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_BUBBLE, opponentLeft);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
+        if (speed == 11) {
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerRight);
+            NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerLeft);
+        } else {
+            NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerRight);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, playerLeft);
+        }
     }
 }

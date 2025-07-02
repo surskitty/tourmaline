@@ -40,7 +40,7 @@ SINGLE_BATTLE_TEST("ABILITY: Vessel of Ruin's message displays correctly after a
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_EXPLOSION); SEND_OUT(player, 1); SEND_OUT(opponent, 1); }
-        TURN { MOVE(player, MOVE_TACKLE); MOVE(opponent, MOVE_RUINATION); }
+        TURN { MOVE(player, MOVE_SCRATCH); MOVE(opponent, MOVE_RUINATION); }
     } SCENE {
         HP_BAR(opponent, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, opponent);
@@ -129,7 +129,7 @@ SINGLE_BATTLE_TEST("INNATE: Vessel of Ruin's message displays correctly after al
         OPPONENT(SPECIES_TING_LU);
     } WHEN {
         TURN { MOVE(player, MOVE_EXPLOSION); SEND_OUT(player, 1); SEND_OUT(opponent, 1); }
-        TURN { MOVE(player, MOVE_RUINATION); MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(player, MOVE_RUINATION); MOVE(opponent, MOVE_SCRATCH); }
     } SCENE {
         HP_BAR(player, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, player);

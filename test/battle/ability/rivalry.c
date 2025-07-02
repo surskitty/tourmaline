@@ -20,9 +20,9 @@ SINGLE_BATTLE_TEST("ABILITY: Rivalry increases power by x1.25 towards Pokémon o
         PLAYER(species) { Ability(ability); }
         OPPONENT(species);
     } WHEN {
-        TURN { MOVE(player, MOVE_TACKLE); }
+        TURN { MOVE(player, MOVE_SCRATCH); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
         EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.25), results[1].damage);
@@ -42,9 +42,9 @@ SINGLE_BATTLE_TEST("ABILITY: Rivalry decreases power by x0.75 towards Pokémon o
         PLAYER(species1) { Ability(ability); }
         OPPONENT(species2);
     } WHEN {
-        TURN { MOVE(player, MOVE_TACKLE); }
+        TURN { MOVE(player, MOVE_SCRATCH); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
         EXPECT_MUL_EQ(results[0].damage, Q_4_12(0.75), results[1].damage);
@@ -65,9 +65,9 @@ SINGLE_BATTLE_TEST("ABILITY: Rivalry doesn't modify power if the attacker is gen
         PLAYER(SPECIES_PORYGON) { Ability(ABILITY_TRACE); } // No genderless mon naturally gets Rivalry
         OPPONENT(species) { Ability(ability); };
     } WHEN {
-        TURN { MOVE(player, MOVE_TACKLE); }
+        TURN { MOVE(player, MOVE_SCRATCH); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
         EXPECT(results[0].damage == results[1].damage);
@@ -88,9 +88,9 @@ SINGLE_BATTLE_TEST("ABILITY: Rivalry doesn't modify power if the target is gende
         PLAYER(species) { Ability(ability); };
         OPPONENT(SPECIES_PORYGON);
     } WHEN {
-        TURN { MOVE(player, MOVE_TACKLE); }
+        TURN { MOVE(player, MOVE_SCRATCH); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
         EXPECT(results[0].damage == results[1].damage);

@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Comatose prevents status-inducing moves")
+SINGLE_BATTLE_TEST("Comatose prevents status-inducing moves")
 {
     u32 move;
 
@@ -24,7 +24,7 @@ SINGLE_BATTLE_TEST("ABILITY: Comatose prevents status-inducing moves")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Comatose may be suppressed if pokemon transformed into a pokemon with Comatose ability and was under the effects of Gastro Acid")
+SINGLE_BATTLE_TEST("Comatose may be suppressed if pokemon transformed into a pokemon with Comatose ability and was under the effects of Gastro Acid")
 {
     u32 move;
 
@@ -56,25 +56,34 @@ SINGLE_BATTLE_TEST("ABILITY: Comatose may be suppressed if pokemon transformed i
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Comatose prevents status-inducing moves")
+SINGLE_BATTLE_TEST("Comatose pokemon doesn't get poisoned by Toxic Spikes on switch-in")
 {
-    u32 move;
-
-    PARAMETRIZE { move = MOVE_TOXIC; }
-    PARAMETRIZE { move = MOVE_POISONPOWDER; }
-    PARAMETRIZE { move = MOVE_SLEEP_POWDER; }
-    PARAMETRIZE { move = MOVE_THUNDER_WAVE; }
-
     GIVEN {
-        PLAYER(SPECIES_KOMALA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMATOSE); }
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_KOMALA) { Ability(ABILITY_COMATOSE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(opponent, move); }
+        TURN { MOVE(opponent, MOVE_TOXIC_SPIKES); }
+        TURN { SWITCH(player, 1); }
     } SCENE {
-        MESSAGE("Komala is drowsing!");
-
-        NOT ANIMATION(ANIM_TYPE_MOVE, move, opponent);
+        NOT STATUS_ICON(player, STATUS1_POISON);
         ABILITY_POPUP(player, ABILITY_COMATOSE);
-        MESSAGE("It doesn't affect Komala…");
+        NOT HP_BAR(player);
+    }
+}
+
+SINGLE_BATTLE_TEST("Comatose pokemon don't get poisoned by Toxic Spikes on switch-in if forced in by phazing with Mold Breaker")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_KOMALA) { Ability(ABILITY_COMATOSE); }
+        OPPONENT(SPECIES_PINSIR) { Ability(ABILITY_MOLD_BREAKER); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_TOXIC_SPIKES); }
+        TURN { MOVE(opponent, MOVE_DRAGON_TAIL); }
+    } SCENE {
+        NOT STATUS_ICON(player, STATUS1_POISON);
+        ABILITY_POPUP(player, ABILITY_COMATOSE);
+        NOT HP_BAR(player);
     }
 }

@@ -30,8 +30,10 @@ SINGLE_BATTLE_TEST("ABILITY: Corrosion can poison or badly poison a Steel type w
     PARAMETRIZE { move = MOVE_TOXIC; }
 
     GIVEN {
-        ASSUME(GetMoveEffect(MOVE_POISON_POWDER) == EFFECT_POISON);
-        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
+        ASSUME(GetMoveEffect(MOVE_POISON_POWDER) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_POISON_POWDER) == MOVE_EFFECT_POISON);
+        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_TOXIC) == MOVE_EFFECT_TOXIC);
         PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_CORROSION); }
         OPPONENT(SPECIES_BELDUM);
     } WHEN {
@@ -73,7 +75,8 @@ SINGLE_BATTLE_TEST("ABILITY: Corrosion can poison Poison- and Steel-type targets
 
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_FLING) == EFFECT_FLING);
-        ASSUME(gItemsInfo[ITEM_POISON_BARB].holdEffect == HOLD_EFFECT_POISON_POWER);
+        ASSUME(gItemsInfo[ITEM_POISON_BARB].holdEffect == HOLD_EFFECT_TYPE_POWER);
+        ASSUME(gItemsInfo[ITEM_POISON_BARB].secondaryId == TYPE_POISON);
         ASSUME(gItemsInfo[ITEM_TOXIC_ORB].holdEffect == HOLD_EFFECT_TOXIC_ORB);
         PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_CORROSION); Item(heldItem); }
         OPPONENT(SPECIES_ODDISH);
@@ -110,8 +113,10 @@ SINGLE_BATTLE_TEST("ABILITY: If a Poison- or Steel-type Pokémon with Corrosion 
     PARAMETRIZE { move = MOVE_TOXIC; }
     PARAMETRIZE { move = MOVE_POISON_POWDER; }
     GIVEN {
-        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
-        ASSUME(GetMoveEffect(MOVE_POISON_POWDER) == EFFECT_POISON);
+        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_TOXIC) == MOVE_EFFECT_TOXIC);
+        ASSUME(GetMoveEffect(MOVE_POISON_POWDER) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_POISON_POWDER) == MOVE_EFFECT_POISON);
         PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_CORROSION); }
         OPPONENT(SPECIES_ABRA) { Ability(ABILITY_SYNCHRONIZE); }
     } WHEN {
@@ -137,8 +142,10 @@ SINGLE_BATTLE_TEST("ABILITY: Corrosion cannot bypass moves that prevent poisonin
     PARAMETRIZE { move = MOVE_TOXIC; }
     PARAMETRIZE { move = MOVE_POISON_POWDER; }
     GIVEN {
-        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
-        ASSUME(GetMoveEffect(MOVE_POISON_POWDER) == EFFECT_POISON);
+        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_TOXIC) == MOVE_EFFECT_TOXIC);
+        ASSUME(GetMoveEffect(MOVE_POISON_POWDER) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_POISON_POWDER) == MOVE_EFFECT_POISON);
         PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_CORROSION); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -159,8 +166,10 @@ SINGLE_BATTLE_TEST("ABILITY: Corrosion cannot bypass abilities that prevent pois
     PARAMETRIZE { move = MOVE_TOXIC; }
     PARAMETRIZE { move = MOVE_POISON_POWDER; }
     GIVEN {
-        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
-        ASSUME(GetMoveEffect(MOVE_POISON_POWDER) == EFFECT_POISON);
+        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_TOXIC) == MOVE_EFFECT_TOXIC);
+        ASSUME(GetMoveEffect(MOVE_POISON_POWDER) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_POISON_POWDER) == MOVE_EFFECT_POISON);
         PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_CORROSION); }
         OPPONENT(SPECIES_SNORLAX) { Ability(ABILITY_IMMUNITY); }
     } WHEN {
@@ -181,8 +190,10 @@ SINGLE_BATTLE_TEST("ABILITY: Corrosion allows the Pokémon with the ability to p
     PARAMETRIZE { move = MOVE_TOXIC; }
     PARAMETRIZE { move = MOVE_POISON_POWDER; }
     GIVEN {
-        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
-        ASSUME(GetMoveEffect(MOVE_POISON_POWDER) == EFFECT_POISON);
+        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_TOXIC) == MOVE_EFFECT_TOXIC);
+        ASSUME(GetMoveEffect(MOVE_POISON_POWDER) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_POISON_POWDER) == MOVE_EFFECT_POISON);
         ASSUME(GetMoveEffect(MOVE_MAGIC_COAT) == EFFECT_MAGIC_COAT);
         PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_CORROSION); }
         OPPONENT(SPECIES_BELDUM);
@@ -205,8 +216,10 @@ SINGLE_BATTLE_TEST("ABILITY: Corrosion's effect is lost if the move used by the 
     PARAMETRIZE { move = MOVE_TOXIC; }
     PARAMETRIZE { move = MOVE_POISON_POWDER; }
     GIVEN {
-        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
-        ASSUME(GetMoveEffect(MOVE_POISON_POWDER) == EFFECT_POISON);
+        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_TOXIC) == MOVE_EFFECT_TOXIC);
+        ASSUME(GetMoveEffect(MOVE_POISON_POWDER) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_POISON_POWDER) == MOVE_EFFECT_POISON);
         ASSUME(GetMoveEffect(MOVE_MAGIC_COAT) == EFFECT_MAGIC_COAT);
         PLAYER(SPECIES_SALANDIT) { Ability(ABILITY_CORROSION); }
         OPPONENT(SPECIES_WOBBUFFET);
