@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-DOUBLE_BATTLE_TEST("ABILITY: Supreme Overlord boosts Attack by an additive 10% per fainted mon on its side upon switch in", s16 damage)
+DOUBLE_BATTLE_TEST("Supreme Overlord boosts Attack by an additive 10% per fainted mon on its side upon switch in", s16 damage)
 {
     bool32 switchMon = 0;
     PARAMETRIZE { switchMon = FALSE; }
@@ -32,7 +32,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Supreme Overlord boosts Attack by an additive 10% p
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Supreme Overlord's boost caps at a 1.5x multipler", s16 damage)
+DOUBLE_BATTLE_TEST("Supreme Overlord's boost caps at a 1.5x multipler", s16 damage)
 {
     u32 faintCount = 0;
     PARAMETRIZE { faintCount = 5; }
@@ -64,7 +64,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Supreme Overlord's boost caps at a 1.5x multipler",
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Supreme Overlord does not boost attack if party members are already fainted at the start of the battle", s16 damage)
+SINGLE_BATTLE_TEST("Supreme Overlord does not boost attack if party members are already fainted at the start of the battle", s16 damage)
 {
     u32 fainted = 0;
 
@@ -92,7 +92,7 @@ SINGLE_BATTLE_TEST("ABILITY: Supreme Overlord does not boost attack if party mem
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Supreme Overlord's message displays correctly after all battlers fainted - Player")
+SINGLE_BATTLE_TEST("Supreme Overlord's message displays correctly after all battlers fainted - Player")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_EXPLOSION) == EFFECT_EXPLOSION);
@@ -113,7 +113,7 @@ SINGLE_BATTLE_TEST("ABILITY: Supreme Overlord's message displays correctly after
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Supreme Overlord's message displays correctly after all battlers fainted - Opponent")
+SINGLE_BATTLE_TEST("Supreme Overlord's message displays correctly after all battlers fainted - Opponent")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_EXPLOSION) == EFFECT_EXPLOSION);

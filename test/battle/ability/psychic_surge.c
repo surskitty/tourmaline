@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Psychic Surge creates Psychic Terrain when entering the battle")
+SINGLE_BATTLE_TEST("Psychic Surge creates Psychic Terrain when entering the battle")
 {
     GIVEN {
         PLAYER(SPECIES_TAPU_LELE) { Ability(ABILITY_PSYCHIC_SURGE); }

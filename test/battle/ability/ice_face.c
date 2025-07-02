@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Ice Face blocks physical moves, changing Eiscue into its Noice Face form")
+SINGLE_BATTLE_TEST("Ice Face blocks physical moves, changing Eiscue into its Noice Face form")
 {
     GIVEN {
         ASSUME(GetMoveCategory(MOVE_SCRATCH) == DAMAGE_CATEGORY_PHYSICAL);
@@ -15,7 +15,7 @@ SINGLE_BATTLE_TEST("ABILITY: Ice Face blocks physical moves, changing Eiscue int
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Ice Face does not block special moves, Eiscue stays in Ice Face form")
+SINGLE_BATTLE_TEST("Ice Face does not block special moves, Eiscue stays in Ice Face form")
 {
     GIVEN {
         ASSUME(GetMoveCategory(MOVE_SCRATCH) == DAMAGE_CATEGORY_PHYSICAL);
@@ -29,7 +29,7 @@ SINGLE_BATTLE_TEST("ABILITY: Ice Face does not block special moves, Eiscue stays
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Ice Face is restored if hail or snow begins while Noice Face Eiscue is out")
+SINGLE_BATTLE_TEST("Ice Face is restored if hail or snow begins while Noice Face Eiscue is out")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_SNOWSCAPE; }
@@ -54,7 +54,7 @@ SINGLE_BATTLE_TEST("ABILITY: Ice Face is restored if hail or snow begins while N
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Ice Face is restored if Noice Face Eiscue is sent in while hail or snow is active")
+SINGLE_BATTLE_TEST("Ice Face is restored if Noice Face Eiscue is sent in while hail or snow is active")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_SNOWSCAPE; }
@@ -80,7 +80,7 @@ SINGLE_BATTLE_TEST("ABILITY: Ice Face is restored if Noice Face Eiscue is sent i
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Ice Face is not restored if Eiscue changes into Noice Face form while there's already hail or snow")
+SINGLE_BATTLE_TEST("Ice Face is not restored if Eiscue changes into Noice Face form while there's already hail or snow")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_SNOWSCAPE; }
@@ -102,7 +102,7 @@ SINGLE_BATTLE_TEST("ABILITY: Ice Face is not restored if Eiscue changes into Noi
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Ice Face form change persists after switching out")
+SINGLE_BATTLE_TEST("Ice Face form change persists after switching out")
 {
     GIVEN {
         ASSUME(GetMoveCategory(MOVE_SCRATCH) == DAMAGE_CATEGORY_PHYSICAL);
@@ -120,7 +120,7 @@ SINGLE_BATTLE_TEST("ABILITY: Ice Face form change persists after switching out")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Ice Face doesn't transform Eiscue if Cloud Nine/Air Lock is on the field")
+SINGLE_BATTLE_TEST("Ice Face doesn't transform Eiscue if Cloud Nine/Air Lock is on the field")
 {
     GIVEN {
         ASSUME(GetMoveCategory(MOVE_SCRATCH) == DAMAGE_CATEGORY_PHYSICAL);
@@ -136,7 +136,7 @@ SINGLE_BATTLE_TEST("ABILITY: Ice Face doesn't transform Eiscue if Cloud Nine/Air
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Ice Face is not restored if hail or snow and Eiscue are already out")
+SINGLE_BATTLE_TEST("Ice Face is not restored if hail or snow and Eiscue are already out")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_SNOWSCAPE; }

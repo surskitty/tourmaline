@@ -7,7 +7,7 @@ ASSUMPTIONS
     ASSUME(GetMovePower(MOVE_HYPER_VOICE) > 0);
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Liquid voice turns a sound move into a Water-type move")
+SINGLE_BATTLE_TEST("Liquid voice turns a sound move into a Water-type move")
 {
     GIVEN {
         PLAYER(SPECIES_TYPHLOSION);

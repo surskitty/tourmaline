@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Tera Shell makes all moves against Terapagos not very effective when at full HP")
+SINGLE_BATTLE_TEST("Tera Shell makes all moves against Terapagos not very effective when at full HP")
 {
     u16 hp;
     PARAMETRIZE { hp = 100; }
@@ -30,7 +30,7 @@ SINGLE_BATTLE_TEST("ABILITY: Tera Shell makes all moves against Terapagos not ve
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Tera Shell makes all hits of multi-hit moves against Terapagos not very effective")
+SINGLE_BATTLE_TEST("Tera Shell makes all hits of multi-hit moves against Terapagos not very effective")
 {
     s16 firstHit;
     s16 secondHit;
@@ -53,7 +53,7 @@ SINGLE_BATTLE_TEST("ABILITY: Tera Shell makes all hits of multi-hit moves agains
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Tera Shell only makes the first hit of a double battle turn not very effective")
+DOUBLE_BATTLE_TEST("Tera Shell only makes the first hit of a double battle turn not very effective")
 {
     s16 firstHit;
     s16 secondHit;
@@ -78,7 +78,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Tera Shell only makes the first hit of a double bat
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Tera Shell only makes the first hit against Terapagos from a multi-target move not very effective")
+DOUBLE_BATTLE_TEST("Tera Shell only makes the first hit against Terapagos from a multi-target move not very effective")
 {
     GIVEN {
         PLAYER(SPECIES_TERAPAGOS_TERASTAL) { Ability(ABILITY_TERA_SHELL); }
@@ -98,7 +98,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Tera Shell only makes the first hit against Terapag
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Tera Shell respects immunity")
+SINGLE_BATTLE_TEST("Tera Shell respects immunity")
 {
     GIVEN {
         PLAYER(SPECIES_TERAPAGOS_TERASTAL) { Ability(ABILITY_TERA_SHELL); }

@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Oblivious prevents Infatuation")
+SINGLE_BATTLE_TEST("Oblivious prevents Infatuation")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_ATTRACT) == EFFECT_ATTRACT);
@@ -16,7 +16,7 @@ SINGLE_BATTLE_TEST("ABILITY: Oblivious prevents Infatuation")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Oblivious prevents Captivate")
+SINGLE_BATTLE_TEST("Oblivious prevents Captivate")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_CAPTIVATE) == EFFECT_CAPTIVATE);
@@ -31,7 +31,7 @@ SINGLE_BATTLE_TEST("ABILITY: Oblivious prevents Captivate")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Oblivious prevents Taunt")
+SINGLE_BATTLE_TEST("Oblivious prevents Taunt")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_TAUNT) == EFFECT_TAUNT);
@@ -50,7 +50,7 @@ SINGLE_BATTLE_TEST("ABILITY: Oblivious prevents Taunt")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Oblivious prevents Intimidate")
+SINGLE_BATTLE_TEST("Oblivious prevents Intimidate")
 {
     GIVEN {
         ASSUME(B_UPDATED_INTIMIDATE >= GEN_8);

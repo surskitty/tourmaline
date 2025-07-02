@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Sturdy prevents OHKO moves")
+SINGLE_BATTLE_TEST("Sturdy prevents OHKO moves")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_FISSURE) == EFFECT_OHKO);
@@ -18,7 +18,7 @@ SINGLE_BATTLE_TEST("ABILITY: Sturdy prevents OHKO moves")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Sturdy prevents OHKOs")
+SINGLE_BATTLE_TEST("Sturdy prevents OHKOs")
 {
     GIVEN {
         PLAYER(SPECIES_GEODUDE) { Ability(ABILITY_STURDY); MaxHP(100); HP(100); }
@@ -33,7 +33,7 @@ SINGLE_BATTLE_TEST("ABILITY: Sturdy prevents OHKOs")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Sturdy does not prevent non-OHKOs")
+SINGLE_BATTLE_TEST("Sturdy does not prevent non-OHKOs")
 {
     GIVEN {
         PLAYER(SPECIES_GEODUDE) { Ability(ABILITY_STURDY); MaxHP(100); HP(99); }

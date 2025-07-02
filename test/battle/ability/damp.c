@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Damp prevents explosion-like moves from enemies")
+SINGLE_BATTLE_TEST("Damp prevents explosion-like moves from enemies")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_EXPLOSION; }
@@ -19,7 +19,7 @@ SINGLE_BATTLE_TEST("ABILITY: Damp prevents explosion-like moves from enemies")
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Damp prevents explosion-like moves from enemies in a double battle")
+DOUBLE_BATTLE_TEST("Damp prevents explosion-like moves from enemies in a double battle")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_EXPLOSION; }
@@ -39,7 +39,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Damp prevents explosion-like moves from enemies in 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Damp prevents explosion-like moves from self")
+SINGLE_BATTLE_TEST("Damp prevents explosion-like moves from self")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_EXPLOSION; }
@@ -57,7 +57,7 @@ SINGLE_BATTLE_TEST("ABILITY: Damp prevents explosion-like moves from self")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Damp prevents damage from Aftermath")
+SINGLE_BATTLE_TEST("Damp prevents damage from Aftermath")
 {
     GIVEN {
         ASSUME(MoveMakesContact(MOVE_SCRATCH));

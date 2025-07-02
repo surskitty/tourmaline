@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Snow Cloak prevents damage from hail")
+SINGLE_BATTLE_TEST("Snow Cloak prevents damage from hail")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -13,7 +13,7 @@ SINGLE_BATTLE_TEST("ABILITY: Snow Cloak prevents damage from hail")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Snow Cloak increases evasion during hail")
+SINGLE_BATTLE_TEST("Snow Cloak increases evasion during hail")
 {
     PASSES_RANDOMLY(4, 5, RNG_ACCURACY);
     GIVEN {
@@ -28,7 +28,7 @@ SINGLE_BATTLE_TEST("ABILITY: Snow Cloak increases evasion during hail")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Snow Cloak doesn't increase evasion if Cloud Nine/Air Lock is on the field")
+SINGLE_BATTLE_TEST("Snow Cloak doesn't increase evasion if Cloud Nine/Air Lock is on the field")
 {
     PASSES_RANDOMLY(10, 10, RNG_ACCURACY);
     GIVEN {
@@ -41,7 +41,7 @@ SINGLE_BATTLE_TEST("ABILITY: Snow Cloak doesn't increase evasion if Cloud Nine/A
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Snow Cloak increases evasion during snow")
+SINGLE_BATTLE_TEST("Snow Cloak increases evasion during snow")
 {
     PASSES_RANDOMLY(4, 5, RNG_ACCURACY);
     GIVEN {

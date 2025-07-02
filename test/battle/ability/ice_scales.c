@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Ice Scales halves the damage from special moves", s16 damage)
+SINGLE_BATTLE_TEST("Ice Scales halves the damage from special moves", s16 damage)
 {
     u32 move;
     u16 ability;

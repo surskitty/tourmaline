@@ -2,7 +2,7 @@
 #include "test/battle.h"
 
 //  This test is eyes on only
-SINGLE_BATTLE_TEST("ABILITY: Illusion can only imitate Normal Form terapagos")
+SINGLE_BATTLE_TEST("Illusion can only imitate Normal Form terapagos")
 {
     GIVEN {
         PLAYER(SPECIES_ZOROARK) { Moves(MOVE_CELEBRATE); }

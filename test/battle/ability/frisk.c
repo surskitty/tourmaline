@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-DOUBLE_BATTLE_TEST("ABILITY: Frisk does not trigger when pokemon hold no items")
+DOUBLE_BATTLE_TEST("Frisk does not trigger when pokemon hold no items")
 {
     GIVEN {
         PLAYER(SPECIES_FURRET) { Ability(ABILITY_FRISK); };
@@ -20,7 +20,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Frisk does not trigger when pokemon hold no items")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Frisk triggers in a Single Battle")
+SINGLE_BATTLE_TEST("Frisk triggers in a Single Battle")
 {
     GIVEN {
         PLAYER(SPECIES_FURRET) { Ability(ABILITY_FRISK); Item(ITEM_POTION); };
@@ -35,7 +35,7 @@ SINGLE_BATTLE_TEST("ABILITY: Frisk triggers in a Single Battle")
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Frisk triggers for player in a Double Battle after switching-in after fainting")
+DOUBLE_BATTLE_TEST("Frisk triggers for player in a Double Battle after switching-in after fainting")
 {
     struct BattlePokemon *target = NULL;
     PARAMETRIZE { target = playerLeft; }
@@ -58,7 +58,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Frisk triggers for player in a Double Battle after 
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Frisk triggers for opponent in a Double Battle after switching-in after fainting")
+DOUBLE_BATTLE_TEST("Frisk triggers for opponent in a Double Battle after switching-in after fainting")
 {
     struct BattlePokemon *target = NULL;
     PARAMETRIZE { target = opponentLeft; }

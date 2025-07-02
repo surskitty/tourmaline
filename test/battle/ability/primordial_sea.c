@@ -7,7 +7,7 @@ ASSUMPTIONS
     ASSUME(GetMoveType(MOVE_EMBER) == TYPE_FIRE);
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Primordial Sea blocks damaging Fire-type moves")
+SINGLE_BATTLE_TEST("Primordial Sea blocks damaging Fire-type moves")
 {
     GIVEN {
         PLAYER(SPECIES_KYOGRE) {Item(ITEM_BLUE_ORB);}
@@ -29,7 +29,7 @@ SINGLE_BATTLE_TEST("ABILITY: Primordial Sea blocks damaging Fire-type moves")
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Primordial Sea blocks damaging Fire-type moves and prints the message only once with moves hitting multiple targets")
+DOUBLE_BATTLE_TEST("Primordial Sea blocks damaging Fire-type moves and prints the message only once with moves hitting multiple targets")
 {
     GIVEN {
         ASSUME(!IsBattleMoveStatus(MOVE_ERUPTION));
@@ -52,7 +52,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Primordial Sea blocks damaging Fire-type moves and 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Primordial Sea does not block a move if pokemon is asleep and uses a Fire-type move") // Sleep/confusion/paralysis all happen before the check for primal weather
+SINGLE_BATTLE_TEST("Primordial Sea does not block a move if pokemon is asleep and uses a Fire-type move") // Sleep/confusion/paralysis all happen before the check for primal weather
 {
     GIVEN {
         PLAYER(SPECIES_KYOGRE) {Item(ITEM_BLUE_ORB);}

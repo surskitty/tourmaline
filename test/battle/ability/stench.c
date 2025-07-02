@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Stench has a 10% chance to flinch")
+SINGLE_BATTLE_TEST("Stench has a 10% chance to flinch")
 {
     PASSES_RANDOMLY(1, 10, RNG_STENCH);
     GIVEN {
@@ -15,7 +15,7 @@ SINGLE_BATTLE_TEST("ABILITY: Stench has a 10% chance to flinch")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Stench does not stack with King's Rock")
+SINGLE_BATTLE_TEST("Stench does not stack with King's Rock")
 {
     PASSES_RANDOMLY(1, 10, RNG_STENCH);
     GIVEN {
@@ -31,7 +31,7 @@ SINGLE_BATTLE_TEST("ABILITY: Stench does not stack with King's Rock")
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Stench only triggers if target takes damage")
+DOUBLE_BATTLE_TEST("Stench only triggers if target takes damage")
 {
     GIVEN {
         ASSUME(GetMovePower(MOVE_SCRATCH) > 0);
@@ -55,7 +55,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Stench only triggers if target takes damage")
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Stench doesn't trigger if partner uses a move")
+DOUBLE_BATTLE_TEST("Stench doesn't trigger if partner uses a move")
 {
     GIVEN {
         ASSUME(GetMovePower(MOVE_SCRATCH) > 0);

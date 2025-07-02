@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Shed Skin triggers 33% of the time")
+SINGLE_BATTLE_TEST("Shed Skin triggers 33% of the time")
 {
     if (B_ABILITY_TRIGGER_CHANCE == GEN_4)
         PASSES_RANDOMLY(30, 100, RNG_SHED_SKIN);

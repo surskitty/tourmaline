@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-DOUBLE_BATTLE_TEST("ABILITY: Healer cures adjacent ally's status condition 30% of the time")
+DOUBLE_BATTLE_TEST("Healer cures adjacent ally's status condition 30% of the time")
 {
     u16 status;
     PARAMETRIZE { status = STATUS1_SLEEP; }
@@ -24,7 +24,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Healer cures adjacent ally's status condition 30% o
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Healer cures status condition before burn or poison damage is dealt")
+DOUBLE_BATTLE_TEST("Healer cures status condition before burn or poison damage is dealt")
 {
     u16 status;
     PARAMETRIZE { status = STATUS1_POISON; }
@@ -46,7 +46,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Healer cures status condition before burn or poison
 }
 
 // Triple battles
-TO_DO_BATTLE_TEST("ABILITY: Healer has a 30% chance of curing each of its ally's status conditions independently");
+TO_DO_BATTLE_TEST("Healer has a 30% chance of curing each of its ally's status conditions independently");
 
 DOUBLE_BATTLE_TEST("INNATE: Healer cures adjacent ally's status condition 30% of the time")
 {

@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Rocky Payload increases Rock-type move damage", s16 damage)
+SINGLE_BATTLE_TEST("Rocky Payload increases Rock-type move damage", s16 damage)
 {
     u32 move;
     u16 ability;

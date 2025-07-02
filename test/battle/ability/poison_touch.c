@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Poison Touch has a 30% chance to poison when attacking with contact moves")
+SINGLE_BATTLE_TEST("Poison Touch has a 30% chance to poison when attacking with contact moves")
 {
     PASSES_RANDOMLY(3, 10, RNG_POISON_TOUCH);
     GIVEN {
@@ -20,7 +20,7 @@ SINGLE_BATTLE_TEST("ABILITY: Poison Touch has a 30% chance to poison when attack
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Poison Touch only applies when using contact moves")
+SINGLE_BATTLE_TEST("Poison Touch only applies when using contact moves")
 {
     u32 move;
 
@@ -51,7 +51,7 @@ SINGLE_BATTLE_TEST("ABILITY: Poison Touch only applies when using contact moves"
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Poison Touch applies between multi-hit move hits")
+SINGLE_BATTLE_TEST("Poison Touch applies between multi-hit move hits")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_ARM_THRUST) == EFFECT_MULTI_HIT);

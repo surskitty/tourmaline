@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Own Tempo prevents Intimidate but no other stat down changes")
+SINGLE_BATTLE_TEST("Own Tempo prevents Intimidate but no other stat down changes")
 {
     GIVEN {
         ASSUME(B_UPDATED_INTIMIDATE >= GEN_8);
@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("ABILITY: Own Tempo prevents Intimidate but no other stat dow
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Own Tempo prevents confusion from moves by the opponent")
+SINGLE_BATTLE_TEST("Own Tempo prevents confusion from moves by the opponent")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_CONFUSE_RAY) == EFFECT_CONFUSE);
@@ -36,7 +36,7 @@ SINGLE_BATTLE_TEST("ABILITY: Own Tempo prevents confusion from moves by the oppo
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Own Tempo prevents confusion from moves by the user")
+SINGLE_BATTLE_TEST("Own Tempo prevents confusion from moves by the user")
 {
     GIVEN {
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_PETAL_DANCE, MOVE_EFFECT_THRASH));
@@ -56,7 +56,7 @@ SINGLE_BATTLE_TEST("ABILITY: Own Tempo prevents confusion from moves by the user
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Mold Breaker ignores Own Tempo")
+SINGLE_BATTLE_TEST("Mold Breaker ignores Own Tempo")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_CONFUSE_RAY) == EFFECT_CONFUSE);
@@ -70,7 +70,7 @@ SINGLE_BATTLE_TEST("ABILITY: Mold Breaker ignores Own Tempo")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Mold Breaker does not prevent Own Tempo from curing confusion right after")
+SINGLE_BATTLE_TEST("Mold Breaker does not prevent Own Tempo from curing confusion right after")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_CONFUSE_RAY) == EFFECT_CONFUSE);
@@ -89,7 +89,7 @@ SINGLE_BATTLE_TEST("ABILITY: Mold Breaker does not prevent Own Tempo from curing
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Own Tempo cures confusion if it's obtained via Skill Swap")
+SINGLE_BATTLE_TEST("Own Tempo cures confusion if it's obtained via Skill Swap")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_CONFUSE_RAY) == EFFECT_CONFUSE);
@@ -111,7 +111,7 @@ SINGLE_BATTLE_TEST("ABILITY: Own Tempo cures confusion if it's obtained via Skil
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Own Tempo prevents confusion from items")
+SINGLE_BATTLE_TEST("Own Tempo prevents confusion from items")
 {
     GIVEN {
         ASSUME(gItemsInfo[ITEM_BERSERK_GENE].holdEffect == HOLD_EFFECT_BERSERK_GENE);

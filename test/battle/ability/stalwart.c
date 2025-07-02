@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-DOUBLE_BATTLE_TEST("ABILITY: Stalwart ignores redirection from Follow-Me")
+DOUBLE_BATTLE_TEST("Stalwart ignores redirection from Follow-Me")
 {
     GIVEN {
         PLAYER(SPECIES_ARCHALUDON) { Ability(ABILITY_STALWART); }
@@ -18,7 +18,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Stalwart ignores redirection from Follow-Me")
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Stalwart stops Lightning Rod and Storm Drain from redirecting moves")
+DOUBLE_BATTLE_TEST("Stalwart stops Lightning Rod and Storm Drain from redirecting moves")
 {
     u32 ability, species;
     PARAMETRIZE { ability = ABILITY_STORM_DRAIN; species = SPECIES_LUMINEON; }

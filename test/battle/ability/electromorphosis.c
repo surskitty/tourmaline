@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Electromorphosis sets up Charge when hit by any move")
+SINGLE_BATTLE_TEST("Electromorphosis sets up Charge when hit by any move")
 {
     s16 dmgBefore, dmgAfter;
     u16 move;

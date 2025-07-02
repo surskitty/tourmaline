@@ -8,7 +8,7 @@ ASSUMPTIONS
     ASSUME(GetMoveEffect(MOVE_SUNNY_DAY) == EFFECT_SUNNY_DAY);
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Harvest has a 50% chance to restore a Berry at the end of the turn")
+SINGLE_BATTLE_TEST("Harvest has a 50% chance to restore a Berry at the end of the turn")
 {
     PASSES_RANDOMLY(1, 2, RNG_HARVEST);
     GIVEN {
@@ -24,7 +24,7 @@ SINGLE_BATTLE_TEST("ABILITY: Harvest has a 50% chance to restore a Berry at the 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Harvest always restores a Berry in Sunlight")
+SINGLE_BATTLE_TEST("Harvest always restores a Berry in Sunlight")
 {
     PASSES_RANDOMLY(1, 1, RNG_HARVEST);
     GIVEN {
@@ -41,7 +41,7 @@ SINGLE_BATTLE_TEST("ABILITY: Harvest always restores a Berry in Sunlight")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Harvest doesn't always restore a Berry if Cloud Nine/Air Lock is on the field")
+SINGLE_BATTLE_TEST("Harvest doesn't always restore a Berry if Cloud Nine/Air Lock is on the field")
 {
     PASSES_RANDOMLY(1, 2, RNG_HARVEST);
     GIVEN {
@@ -58,7 +58,7 @@ SINGLE_BATTLE_TEST("ABILITY: Harvest doesn't always restore a Berry if Cloud Nin
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Harvest restores a Berry even after being switched out and back in")
+SINGLE_BATTLE_TEST("Harvest restores a Berry even after being switched out and back in")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_PARTING_SHOT) == EFFECT_PARTING_SHOT);
@@ -77,7 +77,7 @@ SINGLE_BATTLE_TEST("ABILITY: Harvest restores a Berry even after being switched 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Harvest restores a Berry consumed by Fling")
+SINGLE_BATTLE_TEST("Harvest restores a Berry consumed by Fling")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_FLING) == EFFECT_FLING);
@@ -94,7 +94,7 @@ SINGLE_BATTLE_TEST("ABILITY: Harvest restores a Berry consumed by Fling")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Harvest restores a Berry consumed by Natural Gift")
+SINGLE_BATTLE_TEST("Harvest restores a Berry consumed by Natural Gift")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_NATURAL_GIFT) == EFFECT_NATURAL_GIFT);
@@ -111,9 +111,9 @@ SINGLE_BATTLE_TEST("ABILITY: Harvest restores a Berry consumed by Natural Gift")
     }
 }
 
-TO_DO_BATTLE_TEST("ABILITY: Harvest only works once per turn"); // Check for berries that are consumed immediately, like Pecha Berry
+TO_DO_BATTLE_TEST("Harvest only works once per turn"); // Check for berries that are consumed immediately, like Pecha Berry
 
-SINGLE_BATTLE_TEST("ABILITY: Harvest doesn't restore a Berry when destroyed by Incinerate")
+SINGLE_BATTLE_TEST("Harvest doesn't restore a Berry when destroyed by Incinerate")
 {
     PASSES_RANDOMLY(1, 1, RNG_HARVEST);
     GIVEN {
@@ -131,7 +131,7 @@ SINGLE_BATTLE_TEST("ABILITY: Harvest doesn't restore a Berry when destroyed by I
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Harvest doesn't restore a Berry when knocked off by Knock Off")
+SINGLE_BATTLE_TEST("Harvest doesn't restore a Berry when knocked off by Knock Off")
 {
     PASSES_RANDOMLY(1, 1, RNG_HARVEST);
     GIVEN {
@@ -149,7 +149,7 @@ SINGLE_BATTLE_TEST("ABILITY: Harvest doesn't restore a Berry when knocked off by
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Harvest doesn't restore a Berry when eaten by Bug Bite/Pluck")
+SINGLE_BATTLE_TEST("Harvest doesn't restore a Berry when eaten by Bug Bite/Pluck")
 {
     PASSES_RANDOMLY(1, 1, RNG_HARVEST);
     GIVEN {
@@ -167,7 +167,7 @@ SINGLE_BATTLE_TEST("ABILITY: Harvest doesn't restore a Berry when eaten by Bug B
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Harvest doesn't restore a Berry that's collected via Pickup")
+SINGLE_BATTLE_TEST("Harvest doesn't restore a Berry that's collected via Pickup")
 {
     GIVEN {
         PLAYER(SPECIES_ZIGZAGOON) { Speed(50); Ability(ABILITY_PICKUP); }
@@ -186,7 +186,7 @@ SINGLE_BATTLE_TEST("ABILITY: Harvest doesn't restore a Berry that's collected vi
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Harvest order is affected by speed")
+DOUBLE_BATTLE_TEST("Harvest order is affected by speed")
 {
     GIVEN {
         PLAYER(SPECIES_EXEGGUTOR) { Speed(2); Ability(ABILITY_HARVEST); MaxHP(500); HP(251); Item(ITEM_SITRUS_BERRY); }
@@ -206,7 +206,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Harvest order is affected by speed")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Harvest doesn't restore a Berry when transfered to another Pokémon")
+SINGLE_BATTLE_TEST("Harvest doesn't restore a Berry when transfered to another Pokémon")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_TRICK) == EFFECT_TRICK);
@@ -223,7 +223,7 @@ SINGLE_BATTLE_TEST("ABILITY: Harvest doesn't restore a Berry when transfered to 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Harvest can restore a Berry that was transferred from another Pokémon")
+SINGLE_BATTLE_TEST("Harvest can restore a Berry that was transferred from another Pokémon")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_TRICK) == EFFECT_TRICK);
@@ -242,7 +242,7 @@ SINGLE_BATTLE_TEST("ABILITY: Harvest can restore a Berry that was transferred fr
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Harvest can only restore the newest berry consumed that was transferred from another Pokémon instead of its original Berry")
+SINGLE_BATTLE_TEST("Harvest can only restore the newest berry consumed that was transferred from another Pokémon instead of its original Berry")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_TRICK) == EFFECT_TRICK);

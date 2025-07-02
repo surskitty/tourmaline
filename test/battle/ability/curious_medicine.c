@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-DOUBLE_BATTLE_TEST("ABILITY: Curious Medicine resets ally's stat stages upon entering battle")
+DOUBLE_BATTLE_TEST("Curious Medicine resets ally's stat stages upon entering battle")
 {
     u32 ability;
 

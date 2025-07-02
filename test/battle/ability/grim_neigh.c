@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-DOUBLE_BATTLE_TEST("ABILITY: Grim Neigh raises Sp. Attack by one stage after directly causing a Pokemon to faint")
+DOUBLE_BATTLE_TEST("Grim Neigh raises Sp. Attack by one stage after directly causing a Pokemon to faint")
 {
     u32 species = 0, ability = 0, abilityPopUp = 0;
     PARAMETRIZE { species = SPECIES_SPECTRIER;            ability = ABILITY_GRIM_NEIGH;          abilityPopUp = ABILITY_GRIM_NEIGH; }
@@ -31,7 +31,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Grim Neigh raises Sp. Attack by one stage after dir
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Grim Neigh does not trigger if Pokemon faint to indirect damage or damage from other Pokemon")
+DOUBLE_BATTLE_TEST("Grim Neigh does not trigger if Pokemon faint to indirect damage or damage from other Pokemon")
 {
     u32 species = 0, ability = 0, abilityPopUp = 0;
     PARAMETRIZE { species = SPECIES_SPECTRIER;            ability = ABILITY_GRIM_NEIGH;          abilityPopUp = ABILITY_GRIM_NEIGH; }
@@ -67,7 +67,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Grim Neigh does not trigger if Pokemon faint to ind
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Grim Neigh does not increase damage done by the same move that causes another Pokemon to faint")
+DOUBLE_BATTLE_TEST("Grim Neigh does not increase damage done by the same move that causes another Pokemon to faint")
 {
     s16 damage[2];
     u32 species = 0, ability = 0, abilityPopUp = 0;

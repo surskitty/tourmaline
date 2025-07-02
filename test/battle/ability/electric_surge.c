@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Electric Surge creates Electric Terrain when entering the battle")
+SINGLE_BATTLE_TEST("Electric Surge creates Electric Terrain when entering the battle")
 {
     GIVEN {
         PLAYER(SPECIES_TAPU_KOKO) { Ability(ABILITY_ELECTRIC_SURGE); }

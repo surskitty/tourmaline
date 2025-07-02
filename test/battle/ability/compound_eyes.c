@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Compound Eyes raises accuracy")
+SINGLE_BATTLE_TEST("Compound Eyes raises accuracy")
 {
     PASSES_RANDOMLY(91, 100, RNG_ACCURACY);
     GIVEN {
@@ -16,7 +16,7 @@ SINGLE_BATTLE_TEST("ABILITY: Compound Eyes raises accuracy")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Compound Eyes does not affect OHKO moves")
+SINGLE_BATTLE_TEST("Compound Eyes does not affect OHKO moves")
 {
     PASSES_RANDOMLY(30, 100, RNG_ACCURACY);
     GIVEN {

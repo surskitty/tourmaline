@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Magic Guard prevents recoil damage to the user")
+SINGLE_BATTLE_TEST("Magic Guard prevents recoil damage to the user")
 {
     GIVEN {
         ASSUME(GetMoveRecoil(MOVE_DOUBLE_EDGE) == 33);
@@ -16,7 +16,7 @@ SINGLE_BATTLE_TEST("ABILITY: Magic Guard prevents recoil damage to the user")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Magic Guard ignores immobilization that can be caused by paralysis")
+SINGLE_BATTLE_TEST("Magic Guard ignores immobilization that can be caused by paralysis")
 {
     if (B_MAGIC_GUARD == GEN_4)
         PASSES_RANDOMLY(1, 1, RNG_PARALYSIS);
@@ -32,7 +32,7 @@ SINGLE_BATTLE_TEST("ABILITY: Magic Guard ignores immobilization that can be caus
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Magic Guard does not ignore speed stat changes caused by paralysis")
+SINGLE_BATTLE_TEST("Magic Guard does not ignore speed stat changes caused by paralysis")
 {
     GIVEN {
         PLAYER(SPECIES_CLEFABLE) { Speed(100); Ability(ABILITY_MAGIC_GUARD); Status1(STATUS1_PARALYSIS);}

@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Cute Charm inflicts infatuation on contact")
+SINGLE_BATTLE_TEST("Cute Charm inflicts infatuation on contact")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_SCRATCH; }
@@ -31,7 +31,7 @@ SINGLE_BATTLE_TEST("ABILITY: Cute Charm inflicts infatuation on contact")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Cute Charm cannot infatuate same gender")
+SINGLE_BATTLE_TEST("Cute Charm cannot infatuate same gender")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Gender(MON_MALE); }
@@ -46,7 +46,7 @@ SINGLE_BATTLE_TEST("ABILITY: Cute Charm cannot infatuate same gender")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Cute Charm triggers 30% of the time")
+SINGLE_BATTLE_TEST("Cute Charm triggers 30% of the time")
 {
     PASSES_RANDOMLY(3, 10, RNG_CUTE_CHARM);
     GIVEN {

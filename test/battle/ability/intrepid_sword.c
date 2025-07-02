@@ -6,7 +6,7 @@ ASSUMPTIONS
     ASSUME(B_INTREPID_SWORD == GEN_9);
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Intrepid Sword raises Attack by one stage")
+SINGLE_BATTLE_TEST("Intrepid Sword raises Attack by one stage")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("ABILITY: Intrepid Sword raises Attack by one stage")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Intrepid Sword raises Attack by one stage only once per battle")
+SINGLE_BATTLE_TEST("Intrepid Sword raises Attack by one stage only once per battle")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -45,7 +45,7 @@ SINGLE_BATTLE_TEST("ABILITY: Intrepid Sword raises Attack by one stage only once
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Intrepid Sword activates when it's no longer effected by Neutralizing Gas")
+SINGLE_BATTLE_TEST("Intrepid Sword activates when it's no longer effected by Neutralizing Gas")
 {
     GIVEN {
         PLAYER(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); }
@@ -64,7 +64,7 @@ SINGLE_BATTLE_TEST("ABILITY: Intrepid Sword activates when it's no longer effect
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Intrepid Sword and Dauntless Shield both can be Skill Swapped and active their effects on the Skill Swap user")
+SINGLE_BATTLE_TEST("Intrepid Sword and Dauntless Shield both can be Skill Swapped and active their effects on the Skill Swap user")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);

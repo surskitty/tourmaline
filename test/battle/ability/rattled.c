@@ -13,7 +13,7 @@ ASSUMPTIONS
     ASSUME(!IsBattleMoveStatus(MOVE_SCRATCH));
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Rattled boosts speed by 1 when hit by Bug, Dark or Ghost type move")
+SINGLE_BATTLE_TEST("Rattled boosts speed by 1 when hit by Bug, Dark or Ghost type move")
 {
     u16 move;
     PARAMETRIZE { move = MOVE_FURY_CUTTER; }
@@ -52,7 +52,7 @@ SINGLE_BATTLE_TEST("ABILITY: Rattled boosts speed by 1 when hit by Bug, Dark or 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Rattled boosts speed by 1 when affected by Intimidate")
+SINGLE_BATTLE_TEST("Rattled boosts speed by 1 when affected by Intimidate")
 {
     GIVEN {
         ASSUME(B_UPDATED_INTIMIDATE >= GEN_8);
@@ -70,7 +70,7 @@ SINGLE_BATTLE_TEST("ABILITY: Rattled boosts speed by 1 when affected by Intimida
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Rattled triggers correctly when hit by U-Turn") // Specific test here, because of #3124
+SINGLE_BATTLE_TEST("Rattled triggers correctly when hit by U-Turn") // Specific test here, because of #3124
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_U_TURN) == EFFECT_HIT_ESCAPE);

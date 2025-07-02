@@ -7,7 +7,7 @@ ASSUMPTIONS
     ASSUME(GetMoveCategory(MOVE_SWIFT) == DAMAGE_CATEGORY_SPECIAL);
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Toxic Debris sets Toxic Spikes on the opposing side if hit by a physical attack")
+SINGLE_BATTLE_TEST("Toxic Debris sets Toxic Spikes on the opposing side if hit by a physical attack")
 {
     u32 move;
 
@@ -32,7 +32,7 @@ SINGLE_BATTLE_TEST("ABILITY: Toxic Debris sets Toxic Spikes on the opposing side
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Toxic Debris does not activate if two layers of Toxic Spikes are already up")
+SINGLE_BATTLE_TEST("Toxic Debris does not activate if two layers of Toxic Spikes are already up")
 {
     GIVEN {
         PLAYER(SPECIES_GLIMMORA) { Ability(ABILITY_TOXIC_DEBRIS); }
@@ -56,7 +56,7 @@ SINGLE_BATTLE_TEST("ABILITY: Toxic Debris does not activate if two layers of Tox
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: If a Substitute is hit, Toxic Debris does not set Toxic Spikes")
+SINGLE_BATTLE_TEST("If a Substitute is hit, Toxic Debris does not set Toxic Spikes")
 {
     GIVEN {
         PLAYER(SPECIES_GLIMMORA) { Ability(ABILITY_TOXIC_DEBRIS); }
@@ -74,7 +74,7 @@ SINGLE_BATTLE_TEST("ABILITY: If a Substitute is hit, Toxic Debris does not set T
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Each hit of a Multi Hit move activates Toxic Debris")
+SINGLE_BATTLE_TEST("Each hit of a Multi Hit move activates Toxic Debris")
 {
     GIVEN {
         PLAYER(SPECIES_GLIMMORA) { Ability(ABILITY_TOXIC_DEBRIS); }
@@ -91,7 +91,7 @@ SINGLE_BATTLE_TEST("ABILITY: Each hit of a Multi Hit move activates Toxic Debris
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Toxic Debris activates if user faints after physical hit")
+SINGLE_BATTLE_TEST("Toxic Debris activates if user faints after physical hit")
 {
     GIVEN {
         PLAYER(SPECIES_GLIMMORA) { HP(1); Ability(ABILITY_TOXIC_DEBRIS); }
@@ -106,7 +106,7 @@ SINGLE_BATTLE_TEST("ABILITY: Toxic Debris activates if user faints after physica
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Air Balloon is popped after Toxic Debris activates")
+SINGLE_BATTLE_TEST("Air Balloon is popped after Toxic Debris activates")
 {
     GIVEN {
         PLAYER(SPECIES_GLIMMORA) { Ability(ABILITY_TOXIC_DEBRIS); Item(ITEM_AIR_BALLOON); }

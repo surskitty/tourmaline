@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Anger Shell activates only if the target had more than 50% of its HP")
+SINGLE_BATTLE_TEST("Anger Shell activates only if the target had more than 50% of its HP")
 {
     bool32 activates = FALSE;
     u16 maxHp = 500, hp = 0;
@@ -37,7 +37,7 @@ SINGLE_BATTLE_TEST("ABILITY: Anger Shell activates only if the target had more t
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Anger Shell lowers Def/Sp.Def by 1 and raises Atk/Sp.Atk/Spd by 1")
+SINGLE_BATTLE_TEST("Anger Shell lowers Def/Sp.Def by 1 and raises Atk/Sp.Atk/Spd by 1")
 {
     u16 maxHp = 500;
     GIVEN {
@@ -68,7 +68,7 @@ SINGLE_BATTLE_TEST("ABILITY: Anger Shell lowers Def/Sp.Def by 1 and raises Atk/S
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Anger Shell activates after all hits from a multi-hit move")
+SINGLE_BATTLE_TEST("Anger Shell activates after all hits from a multi-hit move")
 {
     u32 j;
     u16 maxHp = 500;

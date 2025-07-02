@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Cotton Down drops speed by one of opposing battler if hit by a damaging move")
+SINGLE_BATTLE_TEST("Cotton Down drops speed by one of opposing battler if hit by a damaging move")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -18,7 +18,7 @@ SINGLE_BATTLE_TEST("ABILITY: Cotton Down drops speed by one of opposing battler 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Cotton Down drops speed by one for each multi hit")
+SINGLE_BATTLE_TEST("Cotton Down drops speed by one for each multi hit")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -38,7 +38,7 @@ SINGLE_BATTLE_TEST("ABILITY: Cotton Down drops speed by one for each multi hit")
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Cotton Down drops speed by one of all other battlers on the field")
+DOUBLE_BATTLE_TEST("Cotton Down drops speed by one of all other battlers on the field")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -63,7 +63,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Cotton Down drops speed by one of all other battler
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Cotton Down correctly gets blocked by stat reduction preventing abilities")
+DOUBLE_BATTLE_TEST("Cotton Down correctly gets blocked by stat reduction preventing abilities")
 {
     GIVEN {
         PLAYER(SPECIES_METAGROSS) { Ability(ABILITY_CLEAR_BODY); }

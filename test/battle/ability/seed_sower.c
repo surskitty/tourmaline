@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Seed Sower sets up Grassy Terrain when hit by an attack")
+SINGLE_BATTLE_TEST("Seed Sower sets up Grassy Terrain when hit by an attack")
 {
     GIVEN {
         PLAYER(SPECIES_ARBOLIVA) { Ability(ABILITY_SEED_SOWER); }
@@ -25,7 +25,7 @@ SINGLE_BATTLE_TEST("ABILITY: Seed Sower sets up Grassy Terrain when hit by an at
     }                                                   \
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Multi-target moves hit correct battlers after Seed Sower is triggered") // #2796
+DOUBLE_BATTLE_TEST("Multi-target moves hit correct battlers after Seed Sower is triggered") // #2796
 {
     u32 j, k, l;
     u16 usedMove = MOVE_NONE;

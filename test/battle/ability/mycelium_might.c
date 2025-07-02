@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Mycelium Might causes the user to move last in the priority bracket if it uses a status move")
+SINGLE_BATTLE_TEST("Mycelium Might causes the user to move last in the priority bracket if it uses a status move")
 {
     GIVEN {
         PLAYER(SPECIES_TOEDSCOOL) { Speed(100); Ability(ABILITY_MYCELIUM_MIGHT); }
@@ -15,7 +15,7 @@ SINGLE_BATTLE_TEST("ABILITY: Mycelium Might causes the user to move last in the 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Mycelium Might will respect the speed if both battlers have the ability")
+SINGLE_BATTLE_TEST("Mycelium Might will respect the speed if both battlers have the ability")
 {
     GIVEN {
         PLAYER(SPECIES_TOEDSCOOL) { Speed(100); Ability(ABILITY_MYCELIUM_MIGHT); }
@@ -30,7 +30,7 @@ SINGLE_BATTLE_TEST("ABILITY: Mycelium Might will respect the speed if both battl
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Mycelium Might ignores opposing abilities")
+SINGLE_BATTLE_TEST("Mycelium Might ignores opposing abilities")
 {
     GIVEN {
         PLAYER(SPECIES_TOEDSCOOL) { Speed(100); Ability(ABILITY_MYCELIUM_MIGHT); }
@@ -44,7 +44,7 @@ SINGLE_BATTLE_TEST("ABILITY: Mycelium Might ignores opposing abilities")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Mycelium Might vs Stall action order depends on speed")
+SINGLE_BATTLE_TEST("Mycelium Might vs Stall action order depends on speed")
 {
     u32 speed;
     PARAMETRIZE { speed = 99; }

@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-DOUBLE_BATTLE_TEST("ABILITY: Teraform Zero clears weather and terrain upon activation")
+DOUBLE_BATTLE_TEST("Teraform Zero clears weather and terrain upon activation")
 {
     GIVEN {
         PLAYER(SPECIES_TERAPAGOS_TERASTAL);
@@ -17,7 +17,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Teraform Zero clears weather and terrain upon activ
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Teraform Zero can be supressed")
+DOUBLE_BATTLE_TEST("Teraform Zero can be supressed")
 {
     GIVEN {
         PLAYER(SPECIES_TERAPAGOS_TERASTAL);
@@ -36,7 +36,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Teraform Zero can be supressed")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Teraform Zero can be replaced")
+SINGLE_BATTLE_TEST("Teraform Zero can be replaced")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_WORRY_SEED) == EFFECT_WORRY_SEED);
@@ -54,7 +54,7 @@ SINGLE_BATTLE_TEST("ABILITY: Teraform Zero can be replaced")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Teraform Zero cannot be swapped")
+SINGLE_BATTLE_TEST("Teraform Zero cannot be swapped")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);
@@ -68,7 +68,7 @@ SINGLE_BATTLE_TEST("ABILITY: Teraform Zero cannot be swapped")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Teraform Zero cannot be copied")
+SINGLE_BATTLE_TEST("Teraform Zero cannot be copied")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_ROLE_PLAY) == EFFECT_ROLE_PLAY);
@@ -82,7 +82,7 @@ SINGLE_BATTLE_TEST("ABILITY: Teraform Zero cannot be copied")
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Teraform Zero shouldn't cause Neutralizing Gas to show it's popup when trying to activate")
+DOUBLE_BATTLE_TEST("Teraform Zero shouldn't cause Neutralizing Gas to show it's popup when trying to activate")
 {
     GIVEN {
         PLAYER(SPECIES_TERAPAGOS_TERASTAL);

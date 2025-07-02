@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Innards Out deal dmg on fainting equal to the amount of dmg inflicted on the Innards Out mon")
+SINGLE_BATTLE_TEST("Innards Out deal dmg on fainting equal to the amount of dmg inflicted on the Innards Out mon")
 {
     u16 hp = 0;
     PARAMETRIZE { hp = 5; }
@@ -26,7 +26,7 @@ SINGLE_BATTLE_TEST("ABILITY: Innards Out deal dmg on fainting equal to the amoun
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Innards Out does not trigger after Gastro Acid has been used")
+SINGLE_BATTLE_TEST("Innards Out does not trigger after Gastro Acid has been used")
 {
     GIVEN {
         PLAYER(SPECIES_PYUKUMUKU) { HP(1); Ability(ABILITY_INNARDS_OUT); }
@@ -49,7 +49,7 @@ SINGLE_BATTLE_TEST("ABILITY: Innards Out does not trigger after Gastro Acid has 
 }
 
 // According to Showdown Innards Out triggers, but does nothing.
-SINGLE_BATTLE_TEST("ABILITY: Innards Out does not damage Magic Guard Pokemon")
+SINGLE_BATTLE_TEST("Innards Out does not damage Magic Guard Pokemon")
 {
     GIVEN {
         PLAYER(SPECIES_PYUKUMUKU) { HP(1); Ability(ABILITY_INNARDS_OUT); }
@@ -66,7 +66,7 @@ SINGLE_BATTLE_TEST("ABILITY: Innards Out does not damage Magic Guard Pokemon")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Innards Out uses correct damage amount for Future Sight")
+SINGLE_BATTLE_TEST("Innards Out uses correct damage amount for Future Sight")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_FUTURE_SIGHT) == EFFECT_FUTURE_SIGHT);
@@ -86,7 +86,7 @@ SINGLE_BATTLE_TEST("ABILITY: Innards Out uses correct damage amount for Future S
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Innards Out doesn't trigger if Future Sight user is not on field")
+SINGLE_BATTLE_TEST("Innards Out doesn't trigger if Future Sight user is not on field")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_FUTURE_SIGHT) == EFFECT_FUTURE_SIGHT);
@@ -109,7 +109,7 @@ SINGLE_BATTLE_TEST("ABILITY: Innards Out doesn't trigger if Future Sight user is
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Innards Out triggers if Future Sight user is back on the field")
+SINGLE_BATTLE_TEST("Innards Out triggers if Future Sight user is back on the field")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_FUTURE_SIGHT) == EFFECT_FUTURE_SIGHT);

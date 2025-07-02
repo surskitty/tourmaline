@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Switch-in abilities trigger in Speed Order at the battle's start - Single Battle")
+SINGLE_BATTLE_TEST("Switch-in abilities trigger in Speed Order at the battle's start - Single Battle")
 {
     u32 spdPlayer, spdOpponent;
 
@@ -24,7 +24,7 @@ SINGLE_BATTLE_TEST("ABILITY: Switch-in abilities trigger in Speed Order at the b
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Switch-in abilities trigger in Speed Order at the battle's start - Double Battle")
+DOUBLE_BATTLE_TEST("Switch-in abilities trigger in Speed Order at the battle's start - Double Battle")
 {
     u32 spdPlayer1, spdPlayer2, spdOpponent1, spdOpponent2;
 
@@ -59,7 +59,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Switch-in abilities trigger in Speed Order at the b
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Switch-in abilities trigger in Speed Order after post-KO switch - Single Battle")
+SINGLE_BATTLE_TEST("Switch-in abilities trigger in Speed Order after post-KO switch - Single Battle")
 {
     u32 spdPlayer, spdOpponent;
 
@@ -86,7 +86,7 @@ SINGLE_BATTLE_TEST("ABILITY: Switch-in abilities trigger in Speed Order after po
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Switch-in abilities trigger in Speed Order after post-KO switch - Double Battle")
+DOUBLE_BATTLE_TEST("Switch-in abilities trigger in Speed Order after post-KO switch - Double Battle")
 {
     u32 spdPlayer1, spdPlayer2, spdOpponent1, spdOpponent2;
 

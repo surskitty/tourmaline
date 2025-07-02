@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Storm Drain absorbs Water-type moves and increases the Sp. Attack [Gen5+]")
+SINGLE_BATTLE_TEST("Storm Drain absorbs Water-type moves and increases the Sp. Attack [Gen5+]")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_WATER_GUN) == TYPE_WATER);
@@ -31,7 +31,7 @@ SINGLE_BATTLE_TEST("ABILITY: Storm Drain absorbs Water-type moves and increases 
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Storm Drain forces single-target Water-type moves to target the Pokémon with this Ability.")
+DOUBLE_BATTLE_TEST("Storm Drain forces single-target Water-type moves to target the Pokémon with this Ability.")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_WATER_GUN) == TYPE_WATER);

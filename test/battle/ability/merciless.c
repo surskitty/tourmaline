@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Merciless causes a move to result in a critical hit if the target is poisoned")
+SINGLE_BATTLE_TEST("Merciless causes a move to result in a critical hit if the target is poisoned")
 {
     GIVEN {
         PLAYER(SPECIES_MAREANIE) { Ability(ABILITY_MERCILESS); }

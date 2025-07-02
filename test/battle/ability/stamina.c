@@ -15,7 +15,7 @@
     STAMINA_STAT_RAISE(target, msg);                            \
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Stamina raises Defense by 1 when hit by a move")
+SINGLE_BATTLE_TEST("Stamina raises Defense by 1 when hit by a move")
 {
     s16 turnOneHit, turnTwoHit;
     u16 move;
@@ -47,7 +47,7 @@ SINGLE_BATTLE_TEST("ABILITY: Stamina raises Defense by 1 when hit by a move")
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Stamina activates correctly for every battler with the ability when hit by a multi target move")
+DOUBLE_BATTLE_TEST("Stamina activates correctly for every battler with the ability when hit by a multi target move")
 {
     u16 abilityLeft, abilityRight;
 
@@ -89,7 +89,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Stamina activates correctly for every battler with 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Stamina activates for every hit of a multi hit move")
+SINGLE_BATTLE_TEST("Stamina activates for every hit of a multi hit move")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -106,7 +106,7 @@ SINGLE_BATTLE_TEST("ABILITY: Stamina activates for every hit of a multi hit move
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Stamina is not activated by users own Substitute")
+SINGLE_BATTLE_TEST("Stamina is not activated by users own Substitute")
 {
     GIVEN {
         PLAYER(SPECIES_MUDBRAY) { Ability(ABILITY_STAMINA); }

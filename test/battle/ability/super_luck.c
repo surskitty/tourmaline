@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Super Luck increases the critical hit ratio by 1 stage")
+SINGLE_BATTLE_TEST("Super Luck increases the critical hit ratio by 1 stage")
 {
     u32 j, genConfig = 0, passes = 0, trials = 0;
 
@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("ABILITY: Super Luck increases the critical hit ratio by 1 st
     }
 }
 
-TO_DO_BATTLE_TEST("ABILITY: Super Luck increases the chances of wild Pokémon holding items (Gen8+)");
+TO_DO_BATTLE_TEST("Super Luck increases the chances of wild Pokémon holding items (Gen8+)");
 
 SINGLE_BATTLE_TEST("INNATE: Super Luck increases the critical hit ratio by 1 stage")
 {

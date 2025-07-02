@@ -7,7 +7,7 @@ ASSUMPTIONS
     ASSUME(GetMoveCategory(MOVE_ECHOED_VOICE) == DAMAGE_CATEGORY_SPECIAL);
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Defeatist halves Attack when HP <= 50%", s16 damage)
+SINGLE_BATTLE_TEST("Defeatist halves Attack when HP <= 50%", s16 damage)
 {
     u32 hp;
     PARAMETRIZE { hp = 400; }
@@ -26,7 +26,7 @@ SINGLE_BATTLE_TEST("ABILITY: Defeatist halves Attack when HP <= 50%", s16 damage
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Defeatist halves Special Attack when HP <= 50%", s16 damage)
+SINGLE_BATTLE_TEST("Defeatist halves Special Attack when HP <= 50%", s16 damage)
 {
     u32 hp;
     PARAMETRIZE { hp = 400; }

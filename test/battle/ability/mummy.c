@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Mummy/Lingering Aroma replace the attacker's ability on contact")
+SINGLE_BATTLE_TEST("Mummy/Lingering Aroma replace the attacker's ability on contact")
 {
     u32 move, ability, species;
 
@@ -35,7 +35,7 @@ SINGLE_BATTLE_TEST("ABILITY: Mummy/Lingering Aroma replace the attacker's abilit
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Mummy and Lingering Aroma don't replace each other")
+SINGLE_BATTLE_TEST("Mummy and Lingering Aroma don't replace each other")
 {
     u32 ability1, species1, ability2, species2;
 
@@ -64,7 +64,7 @@ SINGLE_BATTLE_TEST("ABILITY: Mummy and Lingering Aroma don't replace each other"
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Mummy doesn't replace abilities that can't be suppressed")
+SINGLE_BATTLE_TEST("Mummy doesn't replace abilities that can't be suppressed")
 {
     u32 species, ability;
 

@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-DOUBLE_BATTLE_TEST("ABILITY: Defiant sharply raises player's Attack after Intimidate")
+DOUBLE_BATTLE_TEST("Defiant sharply raises player's Attack after Intimidate")
 {
     u32 abilityLeft, abilityRight;
 
@@ -59,7 +59,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Defiant sharply raises player's Attack after Intimi
 }
 
 // Same as above, but for opponent.
-DOUBLE_BATTLE_TEST("ABILITY: Defiant sharply raises opponent's Attack after Intimidate")
+DOUBLE_BATTLE_TEST("Defiant sharply raises opponent's Attack after Intimidate")
 {
     u32 abilityLeft, abilityRight;
 
@@ -116,7 +116,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Defiant sharply raises opponent's Attack after Inti
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Defiant activates after Sticky Web lowers Speed")
+SINGLE_BATTLE_TEST("Defiant activates after Sticky Web lowers Speed")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -139,7 +139,7 @@ SINGLE_BATTLE_TEST("ABILITY: Defiant activates after Sticky Web lowers Speed")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Defiant doesn't activate after Sticky Web lowers Speed if Court Changed")
+SINGLE_BATTLE_TEST("Defiant doesn't activate after Sticky Web lowers Speed if Court Changed")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -165,7 +165,7 @@ SINGLE_BATTLE_TEST("ABILITY: Defiant doesn't activate after Sticky Web lowers Sp
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Defiant correctly activates after Sticky Web lowers Speed if Court Changed")
+SINGLE_BATTLE_TEST("Defiant correctly activates after Sticky Web lowers Speed if Court Changed")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -199,7 +199,7 @@ SINGLE_BATTLE_TEST("ABILITY: Defiant correctly activates after Sticky Web lowers
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Defiant is activated by Cotton Down for non-ally pokemon")
+DOUBLE_BATTLE_TEST("Defiant is activated by Cotton Down for non-ally pokemon")
 {
     GIVEN {
         PLAYER(SPECIES_MANKEY) { Ability(ABILITY_DEFIANT); }
@@ -235,7 +235,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Defiant is activated by Cotton Down for non-ally po
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Defiant activates before White Herb")
+SINGLE_BATTLE_TEST("Defiant activates before White Herb")
 {
     u32 move;
 
@@ -274,7 +274,7 @@ SINGLE_BATTLE_TEST("ABILITY: Defiant activates before White Herb")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Defiant activates for each stat that is lowered")
+SINGLE_BATTLE_TEST("Defiant activates for each stat that is lowered")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_TICKLE) == EFFECT_TICKLE);
@@ -301,7 +301,7 @@ SINGLE_BATTLE_TEST("ABILITY: Defiant activates for each stat that is lowered")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Defiant doesn't activate if the pokemon lowers it's own stats")
+SINGLE_BATTLE_TEST("Defiant doesn't activate if the pokemon lowers it's own stats")
 {
     u32 move;
 

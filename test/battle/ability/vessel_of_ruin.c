@@ -7,7 +7,7 @@ ASSUMPTIONS
     ASSUME(GetMoveEffect(MOVE_ENTRAINMENT) == EFFECT_ENTRAINMENT);
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Vessel of Ruin reduces Sp. Atk if opposing mon's ability doesn't match")
+SINGLE_BATTLE_TEST("Vessel of Ruin reduces Sp. Atk if opposing mon's ability doesn't match")
 {
     s16 damage[2];
 
@@ -30,7 +30,7 @@ SINGLE_BATTLE_TEST("ABILITY: Vessel of Ruin reduces Sp. Atk if opposing mon's ab
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Vessel of Ruin's message displays correctly after all battlers fainted - Player")
+SINGLE_BATTLE_TEST("Vessel of Ruin's message displays correctly after all battlers fainted - Player")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_EXPLOSION) == EFFECT_EXPLOSION);
@@ -52,7 +52,7 @@ SINGLE_BATTLE_TEST("ABILITY: Vessel of Ruin's message displays correctly after a
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Vessel of Ruin's message displays correctly after all battlers fainted - Opponent")
+SINGLE_BATTLE_TEST("Vessel of Ruin's message displays correctly after all battlers fainted - Opponent")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_EXPLOSION) == EFFECT_EXPLOSION);

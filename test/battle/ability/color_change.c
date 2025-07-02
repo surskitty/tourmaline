@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Color Change changes the type of a Pokemon being hit by a move if the type of the move and the Pokemon are different")
+SINGLE_BATTLE_TEST("Color Change changes the type of a Pokemon being hit by a move if the type of the move and the Pokemon are different")
 {
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_KECLEON].types[0] != TYPE_PSYCHIC && gSpeciesInfo[SPECIES_KECLEON].types[1] != TYPE_PSYCHIC);
@@ -17,7 +17,7 @@ SINGLE_BATTLE_TEST("ABILITY: Color Change changes the type of a Pokemon being hi
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Color Change does not change the type when hit by a move that's the same type as itself")
+SINGLE_BATTLE_TEST("Color Change does not change the type when hit by a move that's the same type as itself")
 {
     GIVEN {
         ASSUME(gSpeciesInfo[SPECIES_KECLEON].types[0] == TYPE_NORMAL || gSpeciesInfo[SPECIES_KECLEON].types[1] == TYPE_NORMAL);
@@ -35,7 +35,7 @@ SINGLE_BATTLE_TEST("ABILITY: Color Change does not change the type when hit by a
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Color Change does not change the type of a dual-type Pokemon when hit by a move that shares its primary type")
+SINGLE_BATTLE_TEST("Color Change does not change the type of a dual-type Pokemon when hit by a move that shares its primary type")
 {
     GIVEN {
         PLAYER(SPECIES_KECLEON) { Ability(ABILITY_COLOR_CHANGE); }
@@ -52,7 +52,7 @@ SINGLE_BATTLE_TEST("ABILITY: Color Change does not change the type of a dual-typ
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Color Change does not change the type of a dual-type Pokemon when hit by a move that shares its secondary type")
+SINGLE_BATTLE_TEST("Color Change does not change the type of a dual-type Pokemon when hit by a move that shares its secondary type")
 {
     GIVEN {
         PLAYER(SPECIES_KECLEON) { Ability(ABILITY_COLOR_CHANGE); }
@@ -69,7 +69,7 @@ SINGLE_BATTLE_TEST("ABILITY: Color Change does not change the type of a dual-typ
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Color Change changes the user to Electric type if hit by a move while the opponent is under the effect of Electrify")
+SINGLE_BATTLE_TEST("Color Change changes the user to Electric type if hit by a move while the opponent is under the effect of Electrify")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -83,7 +83,7 @@ SINGLE_BATTLE_TEST("ABILITY: Color Change changes the user to Electric type if h
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Color Change changes the type when a Pokemon is hit by Future Sight")
+SINGLE_BATTLE_TEST("Color Change changes the type when a Pokemon is hit by Future Sight")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -100,7 +100,7 @@ SINGLE_BATTLE_TEST("ABILITY: Color Change changes the type when a Pokemon is hit
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Color Change changes the type when a Pokemon is hit by Doom Desire")
+SINGLE_BATTLE_TEST("Color Change changes the type when a Pokemon is hit by Doom Desire")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -117,7 +117,7 @@ SINGLE_BATTLE_TEST("ABILITY: Color Change changes the type when a Pokemon is hit
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Color Change changes the type to Electric when a Pokemon is hit by a forseen attack under the effect of Electrify")
+SINGLE_BATTLE_TEST("Color Change changes the type to Electric when a Pokemon is hit by a forseen attack under the effect of Electrify")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -134,7 +134,7 @@ SINGLE_BATTLE_TEST("ABILITY: Color Change changes the type to Electric when a Po
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Color Change changes the type to Normal when a Pokemon is hit by a forseen attack under the effect of Normalize")
+SINGLE_BATTLE_TEST("Color Change changes the type to Normal when a Pokemon is hit by a forseen attack under the effect of Normalize")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_NORMALIZE); }

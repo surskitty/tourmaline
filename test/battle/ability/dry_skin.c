@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Dry Skin causes 1/8th Max HP damage in Sun")
+SINGLE_BATTLE_TEST("Dry Skin causes 1/8th Max HP damage in Sun")
 {
     GIVEN {
         PLAYER(SPECIES_PARASECT) { Ability(ABILITY_DRY_SKIN); HP(100); MaxHP(200); }
@@ -15,9 +15,9 @@ SINGLE_BATTLE_TEST("ABILITY: Dry Skin causes 1/8th Max HP damage in Sun")
     }
 }
 
-TO_DO_BATTLE_TEST("ABILITY: Dry Skin doesn't get damaged in Sun if Cloud Nine/Air Lock is on the field");
+TO_DO_BATTLE_TEST("Dry Skin doesn't get damaged in Sun if Cloud Nine/Air Lock is on the field");
 
-SINGLE_BATTLE_TEST("ABILITY: Dry Skin heals 1/8th Max HP in Rain")
+SINGLE_BATTLE_TEST("Dry Skin heals 1/8th Max HP in Rain")
 {
     GIVEN {
         PLAYER(SPECIES_PARASECT) { Ability(ABILITY_DRY_SKIN); HP(100); MaxHP(200); }
@@ -31,9 +31,9 @@ SINGLE_BATTLE_TEST("ABILITY: Dry Skin heals 1/8th Max HP in Rain")
     }
 }
 
-TO_DO_BATTLE_TEST("ABILITY: Dry Skin doesn't heal in Rain if Cloud Nine/Air Lock is on the field");
+TO_DO_BATTLE_TEST("Dry Skin doesn't heal in Rain if Cloud Nine/Air Lock is on the field");
 
-SINGLE_BATTLE_TEST("ABILITY: Dry Skin increases damage taken from Fire-type moves by 25%", s16 damage)
+SINGLE_BATTLE_TEST("Dry Skin increases damage taken from Fire-type moves by 25%", s16 damage)
 {
     u32 ability;
     PARAMETRIZE { ability = ABILITY_EFFECT_SPORE; }
@@ -61,7 +61,7 @@ SINGLE_BATTLE_TEST("ABILITY: Dry Skin increases damage taken from Fire-type move
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Dry Skin heals 25% when hit by water type moves")
+SINGLE_BATTLE_TEST("Dry Skin heals 25% when hit by water type moves")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_BUBBLE) == TYPE_WATER);
@@ -76,7 +76,7 @@ SINGLE_BATTLE_TEST("ABILITY: Dry Skin heals 25% when hit by water type moves")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Dry Skin does not activate if protected")
+SINGLE_BATTLE_TEST("Dry Skin does not activate if protected")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_BUBBLE) == TYPE_WATER);
@@ -89,7 +89,7 @@ SINGLE_BATTLE_TEST("ABILITY: Dry Skin does not activate if protected")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Dry Skin is only triggered once on multi strike moves")
+SINGLE_BATTLE_TEST("Dry Skin is only triggered once on multi strike moves")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_WATER_SHURIKEN) == TYPE_WATER);
@@ -105,7 +105,7 @@ SINGLE_BATTLE_TEST("ABILITY: Dry Skin is only triggered once on multi strike mov
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Dry Skin prevents Absorb Bulb and Luminous Moss from activating")
+SINGLE_BATTLE_TEST("Dry Skin prevents Absorb Bulb and Luminous Moss from activating")
 {
     u32 item;
     PARAMETRIZE { item = ITEM_ABSORB_BULB; }

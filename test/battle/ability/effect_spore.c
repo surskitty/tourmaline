@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Effect Spore only inflicts status on contact")
+SINGLE_BATTLE_TEST("Effect Spore only inflicts status on contact")
 {
     u32 move;
 
@@ -32,7 +32,7 @@ SINGLE_BATTLE_TEST("ABILITY: Effect Spore only inflicts status on contact")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Effect Spore causes poison 9% of the time")
+SINGLE_BATTLE_TEST("Effect Spore causes poison 9% of the time")
 {
     PASSES_RANDOMLY(9, 100, RNG_EFFECT_SPORE);
     GIVEN {
@@ -51,7 +51,7 @@ SINGLE_BATTLE_TEST("ABILITY: Effect Spore causes poison 9% of the time")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Effect Spore causes paralysis 10% of the time")
+SINGLE_BATTLE_TEST("Effect Spore causes paralysis 10% of the time")
 {
     PASSES_RANDOMLY(10, 100, RNG_EFFECT_SPORE);
     GIVEN {
@@ -70,7 +70,7 @@ SINGLE_BATTLE_TEST("ABILITY: Effect Spore causes paralysis 10% of the time")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Effect Spore causes sleep 11% of the time")
+SINGLE_BATTLE_TEST("Effect Spore causes sleep 11% of the time")
 {
     PASSES_RANDOMLY(11, 100, RNG_EFFECT_SPORE);
     GIVEN {

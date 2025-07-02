@@ -6,7 +6,7 @@ ASSUMPTIONS
     ASSUME(GetMoveCategory(MOVE_SCRATCH) == DAMAGE_CATEGORY_PHYSICAL);
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Contrary raises Attack when Intimidated in a single battle", s16 damage)
+SINGLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a single battle", s16 damage)
 {
     u32 ability;
     PARAMETRIZE { ability = ABILITY_CONTRARY; }
@@ -30,7 +30,7 @@ SINGLE_BATTLE_TEST("ABILITY: Contrary raises Attack when Intimidated in a single
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Contrary raises Attack when Intimidated in a double battle", s16 damageLeft, s16 damageRight)
+DOUBLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a double battle", s16 damageLeft, s16 damageRight)
 {
     u32 abilityLeft, abilityRight;
 
@@ -76,7 +76,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Contrary raises Attack when Intimidated in a double
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Contrary raises stats after using a move which would normally lower them: Overheat", s16 damageBefore, s16 damageAfter)
+SINGLE_BATTLE_TEST("Contrary raises stats after using a move which would normally lower them: Overheat", s16 damageBefore, s16 damageAfter)
 {
     u32 ability;
     PARAMETRIZE { ability = ABILITY_CONTRARY; }
@@ -120,7 +120,7 @@ SINGLE_BATTLE_TEST("ABILITY: Contrary raises stats after using a move which woul
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Contrary lowers a stat after using a move which would normally raise it: Swords Dance", s16 damageBefore, s16 damageAfter)
+SINGLE_BATTLE_TEST("Contrary lowers a stat after using a move which would normally raise it: Swords Dance", s16 damageBefore, s16 damageAfter)
 {
     u32 ability;
     PARAMETRIZE { ability = ABILITY_CONTRARY; }
@@ -157,7 +157,7 @@ SINGLE_BATTLE_TEST("ABILITY: Contrary lowers a stat after using a move which wou
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Contrary raises a stat after using a move which would normally lower it: Growl", s16 damage)
+SINGLE_BATTLE_TEST("Contrary raises a stat after using a move which would normally lower it: Growl", s16 damage)
 {
     u32 ability;
     PARAMETRIZE { ability = ABILITY_CONTRARY; }
@@ -188,7 +188,7 @@ SINGLE_BATTLE_TEST("ABILITY: Contrary raises a stat after using a move which wou
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Contrary lowers a stat after using a move which would normally raise it: Belly Drum", s16 damageBefore, s16 damageAfter)
+SINGLE_BATTLE_TEST("Contrary lowers a stat after using a move which would normally raise it: Belly Drum", s16 damageBefore, s16 damageAfter)
 {
     u32 ability;
     PARAMETRIZE { ability = ABILITY_CONTRARY; }
@@ -222,7 +222,7 @@ SINGLE_BATTLE_TEST("ABILITY: Contrary lowers a stat after using a move which wou
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Sticky Web raises Speed by 1 for Contrary mon on switch-in")
+SINGLE_BATTLE_TEST("Sticky Web raises Speed by 1 for Contrary mon on switch-in")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);

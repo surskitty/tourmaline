@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Hydration cures non-volatile Status conditions if it is raining")
+SINGLE_BATTLE_TEST("Hydration cures non-volatile Status conditions if it is raining")
 {
     GIVEN {
         PLAYER(SPECIES_VAPOREON) { Ability(ABILITY_HYDRATION); Status1(STATUS1_BURN); }
@@ -15,7 +15,7 @@ SINGLE_BATTLE_TEST("ABILITY: Hydration cures non-volatile Status conditions if i
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Hydration doesn't cure status conditions if Cloud Nine/Air Lock is on the field")
+SINGLE_BATTLE_TEST("Hydration doesn't cure status conditions if Cloud Nine/Air Lock is on the field")
 {
     GIVEN {
         PLAYER(SPECIES_VAPOREON) { Ability(ABILITY_HYDRATION); Status1(STATUS1_BURN); }

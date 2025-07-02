@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Minior Meteor transforms into Minior Core on switch-in if it has 1/2 or less health")
+SINGLE_BATTLE_TEST("Minior Meteor transforms into Minior Core on switch-in if it has 1/2 or less health")
 {
     GIVEN {
         PLAYER(SPECIES_WYNAUT);
@@ -17,7 +17,7 @@ SINGLE_BATTLE_TEST("ABILITY: Minior Meteor transforms into Minior Core on switch
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Minior Core transforms into Minior Meteor on switch-in if it more then 1/2 health")
+SINGLE_BATTLE_TEST("Minior Core transforms into Minior Meteor on switch-in if it more then 1/2 health")
 {
     GIVEN {
         PLAYER(SPECIES_WYNAUT);

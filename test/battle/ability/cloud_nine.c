@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Cloud Nine/Air Lock prevent basic weather effects, but without them disappearing - Sandstorm")
+SINGLE_BATTLE_TEST("Cloud Nine/Air Lock prevent basic weather effects, but without them disappearing - Sandstorm")
 {
     u32 species = 0, ability = 0;
     PARAMETRIZE { species = SPECIES_PSYDUCK;  ability = ABILITY_CLOUD_NINE; }
@@ -29,14 +29,14 @@ SINGLE_BATTLE_TEST("ABILITY: Cloud Nine/Air Lock prevent basic weather effects, 
     }
 }
 
-TO_DO_BATTLE_TEST("ABILITY: Cloud Nine/Air Lock prevent basic weather effects, but without them disappearing - Sun");
-TO_DO_BATTLE_TEST("ABILITY: Cloud Nine/Air Lock prevent basic weather effects, but without them disappearing - Rain");
-TO_DO_BATTLE_TEST("ABILITY: Cloud Nine/Air Lock prevent basic weather effects, but without them disappearing - Hail");
-TO_DO_BATTLE_TEST("ABILITY: Cloud Nine/Air Lock prevent basic weather effects, but without them disappearing - Snow");
-TO_DO_BATTLE_TEST("ABILITY: Cloud Nine/Air Lock prevent basic weather effects, but without them disappearing - Fog");
-TO_DO_BATTLE_TEST("ABILITY: Cloud Nine/Air Lock prevent basic weather effects, but without them disappearing - Primal Sun");
-TO_DO_BATTLE_TEST("ABILITY: Cloud Nine/Air Lock prevent basic weather effects, but without them disappearing - Primal Rain");
-TO_DO_BATTLE_TEST("ABILITY: Cloud Nine/Air Lock prevent basic weather effects, but without them disappearing - Strong Winds");
+TO_DO_BATTLE_TEST("Cloud Nine/Air Lock prevent basic weather effects, but without them disappearing - Sun");
+TO_DO_BATTLE_TEST("Cloud Nine/Air Lock prevent basic weather effects, but without them disappearing - Rain");
+TO_DO_BATTLE_TEST("Cloud Nine/Air Lock prevent basic weather effects, but without them disappearing - Hail");
+TO_DO_BATTLE_TEST("Cloud Nine/Air Lock prevent basic weather effects, but without them disappearing - Snow");
+TO_DO_BATTLE_TEST("Cloud Nine/Air Lock prevent basic weather effects, but without them disappearing - Fog");
+TO_DO_BATTLE_TEST("Cloud Nine/Air Lock prevent basic weather effects, but without them disappearing - Primal Sun");
+TO_DO_BATTLE_TEST("Cloud Nine/Air Lock prevent basic weather effects, but without them disappearing - Primal Rain");
+TO_DO_BATTLE_TEST("Cloud Nine/Air Lock prevent basic weather effects, but without them disappearing - Strong Winds");
 
 // Moves and abilities that are affected by weather should have new tests that check for Clould Nine/Air Lock, like Mold-Breaker Abilities
 

@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Speed Boost gradually boosts Speed")
+SINGLE_BATTLE_TEST("Speed Boost gradually boosts Speed")
 {
     GIVEN {
         PLAYER(SPECIES_TORCHIC) { Ability(ABILITY_SPEED_BOOST); Speed(99); }

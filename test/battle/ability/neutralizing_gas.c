@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Neutralizing Gas activates on switch-in")
+SINGLE_BATTLE_TEST("Neutralizing Gas activates on switch-in")
 {
     GIVEN {
         PLAYER(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); }
@@ -14,7 +14,7 @@ SINGLE_BATTLE_TEST("ABILITY: Neutralizing Gas activates on switch-in")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Neutralizing Gas prevents opponent's switch-in ability from activating")
+SINGLE_BATTLE_TEST("Neutralizing Gas prevents opponent's switch-in ability from activating")
 {
     GIVEN {
         PLAYER(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); }
@@ -30,7 +30,7 @@ SINGLE_BATTLE_TEST("ABILITY: Neutralizing Gas prevents opponent's switch-in abil
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Neutralizing Gas prevents ally's switch-in ability from activating")
+DOUBLE_BATTLE_TEST("Neutralizing Gas prevents ally's switch-in ability from activating")
 {
     GIVEN {
         PLAYER(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); }
@@ -48,7 +48,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Neutralizing Gas prevents ally's switch-in ability 
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Neutralizing Gas ignores all battlers' ability effects")
+DOUBLE_BATTLE_TEST("Neutralizing Gas ignores all battlers' ability effects")
 {
     GIVEN {
         ASSUME(GetMoveTarget(MOVE_SURF) == MOVE_TARGET_FOES_AND_ALLY);
@@ -81,7 +81,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Neutralizing Gas ignores all battlers' ability effe
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Neutralizing Gas ignores multipliers from attacker's ability", s16 damage)
+SINGLE_BATTLE_TEST("Neutralizing Gas ignores multipliers from attacker's ability", s16 damage)
 {
     u32 ability;
     PARAMETRIZE { ability = ABILITY_NEUTRALIZING_GAS; }
@@ -100,7 +100,7 @@ SINGLE_BATTLE_TEST("ABILITY: Neutralizing Gas ignores multipliers from attacker'
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Neutralizing Gas ignores multipliers from target's ability", s16 damage)
+SINGLE_BATTLE_TEST("Neutralizing Gas ignores multipliers from target's ability", s16 damage)
 {
     u32 ability;
     PARAMETRIZE { ability = ABILITY_NEUTRALIZING_GAS; }
@@ -120,7 +120,7 @@ SINGLE_BATTLE_TEST("ABILITY: Neutralizing Gas ignores multipliers from target's 
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Neutralizing Gas ignores multipliers from target's ally's ability", s16 damage)
+DOUBLE_BATTLE_TEST("Neutralizing Gas ignores multipliers from target's ally's ability", s16 damage)
 {
     u32 ability;
     PARAMETRIZE { ability = ABILITY_NEUTRALIZING_GAS; }
@@ -140,7 +140,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Neutralizing Gas ignores multipliers from target's 
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Neutralizing Gas ignores multipliers from ally's ability", s16 damage)
+DOUBLE_BATTLE_TEST("Neutralizing Gas ignores multipliers from ally's ability", s16 damage)
 {
     u32 ability;
     PARAMETRIZE { ability = ABILITY_NEUTRALIZING_GAS; }
@@ -161,7 +161,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Neutralizing Gas ignores multipliers from ally's ab
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Neutralizing Gas leaving the field allows abilities to activate in turn order")
+DOUBLE_BATTLE_TEST("Neutralizing Gas leaving the field allows abilities to activate in turn order")
 {
     u32 speedPlayerRight, speedOppLeft, speedOppRight;
     PARAMETRIZE { speedPlayerRight = 5; speedOppLeft = 3; speedOppRight = 2; }
@@ -220,7 +220,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Neutralizing Gas leaving the field allows abilities
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Neutralizing Gas prevents Insomnia from blocking Rest")
+SINGLE_BATTLE_TEST("Neutralizing Gas prevents Insomnia from blocking Rest")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_REST) == EFFECT_REST);
@@ -237,7 +237,7 @@ SINGLE_BATTLE_TEST("ABILITY: Neutralizing Gas prevents Insomnia from blocking Re
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Neutralizing Gas prevents Trace from copying it")
+SINGLE_BATTLE_TEST("Neutralizing Gas prevents Trace from copying it")
 {
     GIVEN {
         PLAYER(SPECIES_RALTS) { Ability(ABILITY_TRACE); }
@@ -253,7 +253,7 @@ SINGLE_BATTLE_TEST("ABILITY: Neutralizing Gas prevents Trace from copying it")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Neutralizing Gas prevents Contrary inverting stat boosts")
+SINGLE_BATTLE_TEST("Neutralizing Gas prevents Contrary inverting stat boosts")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_REST) == EFFECT_REST);

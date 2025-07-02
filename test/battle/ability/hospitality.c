@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-DOUBLE_BATTLE_TEST("ABILITY: Hospitality user restores 25% of ally's health")
+DOUBLE_BATTLE_TEST("Hospitality user restores 25% of ally's health")
 {
     s16 health;
 
@@ -30,7 +30,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Hospitality user restores 25% of ally's health")
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Hospitality user restores 25% of ally's health on switch-in")
+DOUBLE_BATTLE_TEST("Hospitality user restores 25% of ally's health on switch-in")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET)
@@ -49,7 +49,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Hospitality user restores 25% of ally's health on s
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Hospitality ignores Substitute")
+DOUBLE_BATTLE_TEST("Hospitality ignores Substitute")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -69,7 +69,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Hospitality ignores Substitute")
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Hospitality does not trigger if there is no ally on the field")
+DOUBLE_BATTLE_TEST("Hospitality does not trigger if there is no ally on the field")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { HP(1);  }
@@ -90,7 +90,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Hospitality does not trigger if there is no ally on
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Hospitality is blocked by Heal Block")
+DOUBLE_BATTLE_TEST("Hospitality is blocked by Heal Block")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_HEAL_BLOCK) == EFFECT_HEAL_BLOCK);

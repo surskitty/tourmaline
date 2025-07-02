@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Leaf Guard prevents non-volatile status conditions in sun")
+SINGLE_BATTLE_TEST("Leaf Guard prevents non-volatile status conditions in sun")
 {
     u32 move;
     u16 status;
@@ -31,9 +31,9 @@ SINGLE_BATTLE_TEST("ABILITY: Leaf Guard prevents non-volatile status conditions 
     }
 }
 
-TO_DO_BATTLE_TEST("ABILITY: Leaf Guard doesn't prevent non-volatile status conditions if Cloud Nine/Air Lock is on the field");
+TO_DO_BATTLE_TEST("Leaf Guard doesn't prevent non-volatile status conditions if Cloud Nine/Air Lock is on the field");
 
-SINGLE_BATTLE_TEST("ABILITY: Leaf Guard prevents status conditions from Flame Orb and Toxic Orb")
+SINGLE_BATTLE_TEST("Leaf Guard prevents status conditions from Flame Orb and Toxic Orb")
 {
     u32 item;
     PARAMETRIZE { item = ITEM_FLAME_ORB; }
@@ -55,9 +55,9 @@ SINGLE_BATTLE_TEST("ABILITY: Leaf Guard prevents status conditions from Flame Or
     }
 }
 
-TO_DO_BATTLE_TEST("ABILITY: Leaf Guard doesn't prevent status conditions from Flame Orb and Toxic Orb if Cloud Nine/Air Lock is on the field");
+TO_DO_BATTLE_TEST("Leaf Guard doesn't prevent status conditions from Flame Orb and Toxic Orb if Cloud Nine/Air Lock is on the field");
 
-SINGLE_BATTLE_TEST("ABILITY: Leaf Guard prevents Rest during sun")
+SINGLE_BATTLE_TEST("Leaf Guard prevents Rest during sun")
 {
     GIVEN {
         ASSUME(B_LEAF_GUARD_PREVENTS_REST >= GEN_5);
@@ -75,7 +75,7 @@ SINGLE_BATTLE_TEST("ABILITY: Leaf Guard prevents Rest during sun")
     }
 }
 
-TO_DO_BATTLE_TEST("ABILITY: Leaf Guard doesn't prevent Rest if Cloud Nine/Air Lock is on the field");
+TO_DO_BATTLE_TEST("Leaf Guard doesn't prevent Rest if Cloud Nine/Air Lock is on the field");
 
 SINGLE_BATTLE_TEST("INNATE: Leaf Guard prevents non-volatile status conditions in sun")
 {

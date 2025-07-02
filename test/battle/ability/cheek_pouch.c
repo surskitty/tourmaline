@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Cheek Pouch activation doesn't mutate damage when restoring HP mid battle")
+SINGLE_BATTLE_TEST("Cheek Pouch activation doesn't mutate damage when restoring HP mid battle")
 {
     s16 damage;
     s16 healing;

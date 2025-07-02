@@ -10,7 +10,7 @@ ASSUMPTIONS
     ASSUME(GetMoveType(MOVE_FIRE_PUNCH) == TYPE_FIRE);
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Fluffy halves damage taken from moves that make direct contact", s16 damage)
+SINGLE_BATTLE_TEST("Fluffy halves damage taken from moves that make direct contact", s16 damage)
 {
     u32 ability;
     PARAMETRIZE { ability = ABILITY_KLUTZ; }
@@ -28,7 +28,7 @@ SINGLE_BATTLE_TEST("ABILITY: Fluffy halves damage taken from moves that make dir
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Fluffy doubles damage taken from fire type moves", s16 damage)
+SINGLE_BATTLE_TEST("Fluffy doubles damage taken from fire type moves", s16 damage)
 {
     u32 ability;
     PARAMETRIZE { ability = ABILITY_KLUTZ; }
@@ -46,7 +46,7 @@ SINGLE_BATTLE_TEST("ABILITY: Fluffy doubles damage taken from fire type moves", 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Fluffy does not alter damage of fire-type moves that make direct contact", s16 damage)
+SINGLE_BATTLE_TEST("Fluffy does not alter damage of fire-type moves that make direct contact", s16 damage)
 {
     u32 ability;
     PARAMETRIZE { ability = ABILITY_KLUTZ; }

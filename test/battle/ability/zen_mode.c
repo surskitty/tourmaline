@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Zen Mode switches Darmanitan's form when HP is half or less at the end of the turn")
+SINGLE_BATTLE_TEST("Zen Mode switches Darmanitan's form when HP is half or less at the end of the turn")
 {
     u16 standardSpecies, zenSpecies;
     PARAMETRIZE { standardSpecies = SPECIES_DARMANITAN_STANDARD;          zenSpecies = SPECIES_DARMANITAN_ZEN; }
@@ -30,7 +30,7 @@ SINGLE_BATTLE_TEST("ABILITY: Zen Mode switches Darmanitan's form when HP is half
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Zen Mode switches Darmanitan's form when HP is half or less before the first turn")
+SINGLE_BATTLE_TEST("Zen Mode switches Darmanitan's form when HP is half or less before the first turn")
 {
     u16 standardSpecies, zenSpecies;
     PARAMETRIZE { standardSpecies = SPECIES_DARMANITAN_STANDARD;          zenSpecies = SPECIES_DARMANITAN_ZEN; }
@@ -58,7 +58,7 @@ SINGLE_BATTLE_TEST("ABILITY: Zen Mode switches Darmanitan's form when HP is half
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Zen Mode switches Darmanitan's form when HP is healed above half")
+SINGLE_BATTLE_TEST("Zen Mode switches Darmanitan's form when HP is healed above half")
 {
     u16 standardSpecies, zenSpecies;
     PARAMETRIZE { standardSpecies = SPECIES_DARMANITAN_STANDARD;          zenSpecies = SPECIES_DARMANITAN_ZEN; }

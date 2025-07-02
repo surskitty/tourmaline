@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Shield Dust blocks secondary effects")
+SINGLE_BATTLE_TEST("Shield Dust blocks secondary effects")
 {
     u16 move;
     PARAMETRIZE { move = MOVE_NUZZLE; }
@@ -40,7 +40,7 @@ SINGLE_BATTLE_TEST("ABILITY: Shield Dust blocks secondary effects")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Shield Dust does not block primary effects")
+SINGLE_BATTLE_TEST("Shield Dust does not block primary effects")
 {
     u16 move;
     PARAMETRIZE { move = MOVE_INFESTATION; }
@@ -84,7 +84,7 @@ SINGLE_BATTLE_TEST("ABILITY: Shield Dust does not block primary effects")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Shield Dust does not block self-targeting effects, primary or secondary")
+SINGLE_BATTLE_TEST("Shield Dust does not block self-targeting effects, primary or secondary")
 {
     u16 move;
     PARAMETRIZE { move = MOVE_POWER_UP_PUNCH; }
@@ -121,7 +121,7 @@ SINGLE_BATTLE_TEST("ABILITY: Shield Dust does not block self-targeting effects, 
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Shield Dust does or does not block Sparkling Aria depending on number of targets hit")
+DOUBLE_BATTLE_TEST("Shield Dust does or does not block Sparkling Aria depending on number of targets hit")
 {
     u32 moveToUse;
     PARAMETRIZE { moveToUse = MOVE_FINAL_GAMBIT; }
@@ -147,7 +147,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Shield Dust does or does not block Sparkling Aria d
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Shield Dust blocks Sparkling Aria if all other targets avoid getting hit by")
+DOUBLE_BATTLE_TEST("Shield Dust blocks Sparkling Aria if all other targets avoid getting hit by")
 {
     GIVEN {
         PLAYER(SPECIES_PRIMARINA);
@@ -161,7 +161,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Shield Dust blocks Sparkling Aria if all other targ
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Shield Dust blocks Sparkling Aria in singles")
+SINGLE_BATTLE_TEST("Shield Dust blocks Sparkling Aria in singles")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -177,7 +177,7 @@ SINGLE_BATTLE_TEST("ABILITY: Shield Dust blocks Sparkling Aria in singles")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Shield Dust does not prevent ability stat changes")
+SINGLE_BATTLE_TEST("Shield Dust does not prevent ability stat changes")
 {
     GIVEN {
         PLAYER(SPECIES_VIVILLON) { Ability(ABILITY_SHIELD_DUST); }

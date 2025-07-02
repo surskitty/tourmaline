@@ -2,7 +2,7 @@
 #include "test/battle.h"
 
 
-SINGLE_BATTLE_TEST("ABILITY: Stance Change changes Aegislash from Shield to Blade when using a damaging move")
+SINGLE_BATTLE_TEST("Stance Change changes Aegislash from Shield to Blade when using a damaging move")
 {
     u16 move;
     PARAMETRIZE { move = MOVE_SCRATCH; }
@@ -32,7 +32,7 @@ SINGLE_BATTLE_TEST("ABILITY: Stance Change changes Aegislash from Shield to Blad
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Stance Change changes Aegislash from Blade to Shield when using King's Shield")
+SINGLE_BATTLE_TEST("Stance Change changes Aegislash from Blade to Shield when using King's Shield")
 {
     u16 move;
     PARAMETRIZE { move = MOVE_PROTECT; }
@@ -61,7 +61,7 @@ SINGLE_BATTLE_TEST("ABILITY: Stance Change changes Aegislash from Blade to Shiel
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Stance Change doesn't change Aegislash to Shield if King's Shield is called by a different move - Sleep Talk")
+SINGLE_BATTLE_TEST("Stance Change doesn't change Aegislash to Shield if King's Shield is called by a different move - Sleep Talk")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SLEEP_TALK) == EFFECT_SLEEP_TALK);

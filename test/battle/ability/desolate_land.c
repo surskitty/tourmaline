@@ -7,7 +7,7 @@ ASSUMPTIONS
     ASSUME(GetMoveType(MOVE_WATER_GUN) == TYPE_WATER);
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Desolate Land blocks damaging Water-type moves")
+SINGLE_BATTLE_TEST("Desolate Land blocks damaging Water-type moves")
 {
     GIVEN {
         PLAYER(SPECIES_GROUDON) {Item(ITEM_RED_ORB);}
@@ -29,7 +29,7 @@ SINGLE_BATTLE_TEST("ABILITY: Desolate Land blocks damaging Water-type moves")
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Desolate Land blocks damaging Water-type moves and prints the message only once with moves hitting multiple targets")
+DOUBLE_BATTLE_TEST("Desolate Land blocks damaging Water-type moves and prints the message only once with moves hitting multiple targets")
 {
     GIVEN {
         ASSUME(!IsBattleMoveStatus(MOVE_SURF));
@@ -53,7 +53,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Desolate Land blocks damaging Water-type moves and 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Desolate Land does not block a move if pokemon is asleep and uses a Water-type move") // Sleep/confusion/paralysis all happen before the check for primal weather
+SINGLE_BATTLE_TEST("Desolate Land does not block a move if pokemon is asleep and uses a Water-type move") // Sleep/confusion/paralysis all happen before the check for primal weather
 {
     GIVEN {
         PLAYER(SPECIES_GROUDON) {Item(ITEM_RED_ORB);}

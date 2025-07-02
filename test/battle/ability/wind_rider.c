@@ -7,7 +7,7 @@ ASSUMPTIONS
     ASSUME(IsWindMove(MOVE_TAILWIND));
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Wind Rider raises Attack by one stage if it sets up Tailwind")
+SINGLE_BATTLE_TEST("Wind Rider raises Attack by one stage if it sets up Tailwind")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -24,7 +24,7 @@ SINGLE_BATTLE_TEST("ABILITY: Wind Rider raises Attack by one stage if it sets up
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Wind Rider raises Attack by one stage if Tailwind is setup by its partner")
+DOUBLE_BATTLE_TEST("Wind Rider raises Attack by one stage if Tailwind is setup by its partner")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -43,7 +43,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Wind Rider raises Attack by one stage if Tailwind i
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Wind Rider doesn't raise Attack if opponent sets up Tailwind")
+SINGLE_BATTLE_TEST("Wind Rider doesn't raise Attack if opponent sets up Tailwind")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -62,7 +62,7 @@ SINGLE_BATTLE_TEST("ABILITY: Wind Rider doesn't raise Attack if opponent sets up
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Wind Rider raises Attack by one stage if switched into Tailwind on its side of the field")
+SINGLE_BATTLE_TEST("Wind Rider raises Attack by one stage if switched into Tailwind on its side of the field")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -82,7 +82,7 @@ SINGLE_BATTLE_TEST("ABILITY: Wind Rider raises Attack by one stage if switched i
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Wind Rider activates when it's no longer effected by Neutralizing Gas")
+SINGLE_BATTLE_TEST("Wind Rider activates when it's no longer effected by Neutralizing Gas")
 {
     GIVEN {
         PLAYER(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); }
@@ -105,7 +105,7 @@ SINGLE_BATTLE_TEST("ABILITY: Wind Rider activates when it's no longer effected b
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Wind Rider absorbs Wind moves and raises Attack by one stage")
+SINGLE_BATTLE_TEST("Wind Rider absorbs Wind moves and raises Attack by one stage")
 {
     GIVEN {
         ASSUME(IsWindMove(MOVE_GUST));

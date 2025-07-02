@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Poison Heal heals from (Toxic) Poison damage")
+SINGLE_BATTLE_TEST("Poison Heal heals from (Toxic) Poison damage")
 {
     u8 status;
     PARAMETRIZE { status = STATUS1_POISON; }
@@ -19,7 +19,7 @@ SINGLE_BATTLE_TEST("ABILITY: Poison Heal heals from (Toxic) Poison damage")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Poison Heal heals from Toxic Poison damage are constant")
+SINGLE_BATTLE_TEST("Poison Heal heals from Toxic Poison damage are constant")
 {
     s16 turnOneHit;
     s16 turnTwoHit;
@@ -43,7 +43,7 @@ SINGLE_BATTLE_TEST("ABILITY: Poison Heal heals from Toxic Poison damage are cons
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Poison Heal does not heal or cause damage when under Heal Block")
+SINGLE_BATTLE_TEST("Poison Heal does not heal or cause damage when under Heal Block")
 {
     GIVEN {
         PLAYER(SPECIES_SHROOMISH) { Ability(ABILITY_POISON_HEAL); Status1(STATUS1_POISON);  HP(1), MaxHP(400); }
@@ -59,7 +59,7 @@ SINGLE_BATTLE_TEST("ABILITY: Poison Heal does not heal or cause damage when unde
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Poison Heal activates before Toxic Orb")
+SINGLE_BATTLE_TEST("Poison Heal activates before Toxic Orb")
 {
     GIVEN {
         PLAYER(SPECIES_SHROOMISH) { Ability(ABILITY_POISON_HEAL); Item(ITEM_TOXIC_ORB);  HP(1), MaxHP(400); }

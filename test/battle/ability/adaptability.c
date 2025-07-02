@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Adaptability increases same-type attack bonus from x1.5 to x2", s16 damage)
+SINGLE_BATTLE_TEST("Adaptability increases same-type attack bonus from x1.5 to x2", s16 damage)
 {
     u32 ability;
     PARAMETRIZE { ability = ABILITY_HYPER_CUTTER; }
@@ -21,7 +21,7 @@ SINGLE_BATTLE_TEST("ABILITY: Adaptability increases same-type attack bonus from 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: (TERA) Terastallizing into a different type with Adaptability gives 2.0x STAB", s16 damage)
+SINGLE_BATTLE_TEST("(TERA) Terastallizing into a different type with Adaptability gives 2.0x STAB", s16 damage)
 {
     bool32 tera;
     PARAMETRIZE { tera = GIMMICK_NONE; }
@@ -41,7 +41,7 @@ SINGLE_BATTLE_TEST("ABILITY: (TERA) Terastallizing into a different type with Ad
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: (TERA) Terastallizing into the same type with Adaptability gives 2.25x STAB", s16 damage)
+SINGLE_BATTLE_TEST("(TERA) Terastallizing into the same type with Adaptability gives 2.25x STAB", s16 damage)
 {
     bool32 tera;
     PARAMETRIZE { tera = GIMMICK_NONE; }
@@ -61,7 +61,7 @@ SINGLE_BATTLE_TEST("ABILITY: (TERA) Terastallizing into the same type with Adapt
     }
 }
 
-TO_DO_BATTLE_TEST("ABILITY: Adaptability does not affect Stellar-type moves");
+TO_DO_BATTLE_TEST("Adaptability does not affect Stellar-type moves");
 
 #include "global.h"
 #include "test/battle.h"

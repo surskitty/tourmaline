@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Aftermath damages the attacker by 1/4th of its max HP if fainted by a contact move")
+SINGLE_BATTLE_TEST("Aftermath damages the attacker by 1/4th of its max HP if fainted by a contact move")
 {
     s16 aftermathDamage;
 
@@ -21,7 +21,7 @@ SINGLE_BATTLE_TEST("ABILITY: Aftermath damages the attacker by 1/4th of its max 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Aftermath ability pop-up will be displayed correctly: player point of view")
+SINGLE_BATTLE_TEST("Aftermath ability pop-up will be displayed correctly: player point of view")
 {
     GIVEN {
         PLAYER(SPECIES_SHROOMISH) { Ability(ABILITY_POISON_HEAL); };
@@ -35,7 +35,7 @@ SINGLE_BATTLE_TEST("ABILITY: Aftermath ability pop-up will be displayed correctl
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Aftermath ability pop-up will be displayed correctly: opponent point of view")
+SINGLE_BATTLE_TEST("Aftermath ability pop-up will be displayed correctly: opponent point of view")
 {
     GIVEN {
         PLAYER(SPECIES_VOLTORB) { HP(1); Ability(ABILITY_AFTERMATH); };

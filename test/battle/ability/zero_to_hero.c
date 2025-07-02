@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Zero to Hero transforms Palafin when it switches out")
+SINGLE_BATTLE_TEST("Zero to Hero transforms Palafin when it switches out")
 {
     GIVEN {
         PLAYER(SPECIES_PALAFIN_ZERO) { Ability(ABILITY_ZERO_TO_HERO); }
@@ -20,7 +20,7 @@ SINGLE_BATTLE_TEST("ABILITY: Zero to Hero transforms Palafin when it switches ou
     } THEN { EXPECT_EQ(player->species, SPECIES_PALAFIN_HERO); }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Zero to Hero can't be suppressed by Neutralizing Gas")
+SINGLE_BATTLE_TEST("Zero to Hero can't be suppressed by Neutralizing Gas")
 {
     GIVEN {
         PLAYER(SPECIES_PALAFIN_ZERO) { Ability(ABILITY_ZERO_TO_HERO); }
@@ -36,7 +36,7 @@ SINGLE_BATTLE_TEST("ABILITY: Zero to Hero can't be suppressed by Neutralizing Ga
     } THEN { EXPECT_EQ(player->species, SPECIES_PALAFIN_HERO); }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Zero to Hero transforms both player and opponent")
+SINGLE_BATTLE_TEST("Zero to Hero transforms both player and opponent")
 {
     GIVEN {
         PLAYER(SPECIES_PALAFIN_ZERO) { Ability(ABILITY_ZERO_TO_HERO); }
@@ -57,7 +57,7 @@ SINGLE_BATTLE_TEST("ABILITY: Zero to Hero transforms both player and opponent")
         }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Zero to Hero will activate if a switch move is used")
+SINGLE_BATTLE_TEST("Zero to Hero will activate if a switch move is used")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_FLIP_TURN) == EFFECT_HIT_ESCAPE);
@@ -74,7 +74,7 @@ SINGLE_BATTLE_TEST("ABILITY: Zero to Hero will activate if a switch move is used
     } THEN { EXPECT_EQ(player->species, SPECIES_PALAFIN_HERO); }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Gastro Acid, Worry Seed, and Simple Beam fail if the target has the Ability Zero to Hero")
+SINGLE_BATTLE_TEST("Gastro Acid, Worry Seed, and Simple Beam fail if the target has the Ability Zero to Hero")
 {
     u16 move;
 
@@ -96,7 +96,7 @@ SINGLE_BATTLE_TEST("ABILITY: Gastro Acid, Worry Seed, and Simple Beam fail if th
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Transform doesn't apply the heroic transformation message when copying Palafin")
+SINGLE_BATTLE_TEST("Transform doesn't apply the heroic transformation message when copying Palafin")
 {
     GIVEN {
         PLAYER(SPECIES_PALAFIN_ZERO) { Ability(ABILITY_ZERO_TO_HERO); }
@@ -114,7 +114,7 @@ SINGLE_BATTLE_TEST("ABILITY: Transform doesn't apply the heroic transformation m
     } THEN { EXPECT_EQ(player->species, SPECIES_PALAFIN_HERO); }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Imposter doesn't apply the heroic transformation message when copying Palafin")
+SINGLE_BATTLE_TEST("Imposter doesn't apply the heroic transformation message when copying Palafin")
 {
     GIVEN {
         PLAYER(SPECIES_PALAFIN_ZERO) { Ability(ABILITY_ZERO_TO_HERO); }
@@ -136,7 +136,7 @@ SINGLE_BATTLE_TEST("ABILITY: Imposter doesn't apply the heroic transformation me
     } THEN { EXPECT_EQ(player->species, SPECIES_PALAFIN_HERO); }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Zero to Hero's message displays correctly after all battlers fainted - Player")
+SINGLE_BATTLE_TEST("Zero to Hero's message displays correctly after all battlers fainted - Player")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_EXPLOSION) == EFFECT_EXPLOSION);
@@ -159,7 +159,7 @@ SINGLE_BATTLE_TEST("ABILITY: Zero to Hero's message displays correctly after all
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Zero to Hero's message displays correctly after all battlers fainted - Opponent")
+SINGLE_BATTLE_TEST("Zero to Hero's message displays correctly after all battlers fainted - Opponent")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_EXPLOSION) == EFFECT_EXPLOSION);
@@ -183,7 +183,7 @@ SINGLE_BATTLE_TEST("ABILITY: Zero to Hero's message displays correctly after all
 }
 
 // Write Trace test and move this one to that file (including every other ability that can't be copied)
-SINGLE_BATTLE_TEST("ABILITY: Zero to Hero cannot be copied by Trace")
+SINGLE_BATTLE_TEST("Zero to Hero cannot be copied by Trace")
 {
     GIVEN {
         PLAYER(SPECIES_PALAFIN_ZERO) { Ability(ABILITY_ZERO_TO_HERO); }

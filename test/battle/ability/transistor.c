@@ -4,7 +4,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Transistor increases Electric-type attack / special attack", s16 damage)
+SINGLE_BATTLE_TEST("Transistor increases Electric-type attack / special attack", s16 damage)
 {
     u32 move;
     u16 ability;
@@ -36,7 +36,7 @@ SINGLE_BATTLE_TEST("ABILITY: Transistor increases Electric-type attack / special
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Transistor is blocked by neutralizing gas", s16 damage)
+SINGLE_BATTLE_TEST("Transistor is blocked by neutralizing gas", s16 damage)
 {
     u16 ability;
     PARAMETRIZE { ability = ABILITY_NEUTRALIZING_GAS; }

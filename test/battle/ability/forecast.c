@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform in weather from an opponent's move")
+SINGLE_BATTLE_TEST("Forecast transforms Castform in weather from an opponent's move")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_SUNNY_DAY; }
@@ -34,7 +34,7 @@ SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform in weather from an opp
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform in weather from its own move")
+SINGLE_BATTLE_TEST("Forecast transforms Castform in weather from its own move")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_SUNNY_DAY; }
@@ -67,7 +67,7 @@ SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform in weather from its ow
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Forecast transforms Castform in weather from a partner's move")
+DOUBLE_BATTLE_TEST("Forecast transforms Castform in weather from a partner's move")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_SUNNY_DAY; }
@@ -102,7 +102,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Forecast transforms Castform in weather from a part
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Forecast transforms all Castforms present in weather")
+DOUBLE_BATTLE_TEST("Forecast transforms all Castforms present in weather")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_SUNNY_DAY; }
@@ -155,7 +155,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Forecast transforms all Castforms present in weathe
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform in weather from an ability")
+SINGLE_BATTLE_TEST("Forecast transforms Castform in weather from an ability")
 {
     u32 species, ability;
     PARAMETRIZE { species = SPECIES_KYOGRE; ability = ABILITY_DRIZZLE; }
@@ -187,7 +187,7 @@ SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform in weather from an abi
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform in primal weather")
+SINGLE_BATTLE_TEST("Forecast transforms Castform in primal weather")
 {
     u32 species, item, ability;
     PARAMETRIZE { species = SPECIES_KYOGRE; ability = ABILITY_PRIMORDIAL_SEA; item = ITEM_BLUE_ORB; }
@@ -216,7 +216,7 @@ SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform in primal weather")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform back to normal when weather expires")
+SINGLE_BATTLE_TEST("Forecast transforms Castform back to normal when weather expires")
 {
     GIVEN {
         PLAYER(SPECIES_CASTFORM_NORMAL) { Ability(ABILITY_FORECAST); }
@@ -242,7 +242,7 @@ SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform back to normal when we
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform back to normal when Sandstorm is active")
+SINGLE_BATTLE_TEST("Forecast transforms Castform back to normal when Sandstorm is active")
 {
     GIVEN {
         PLAYER(SPECIES_CASTFORM_NORMAL) { Ability(ABILITY_FORECAST); }
@@ -264,7 +264,7 @@ SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform back to normal when Sa
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform back to normal under Cloud Nine/Air Lock")
+SINGLE_BATTLE_TEST("Forecast transforms Castform back to normal under Cloud Nine/Air Lock")
 {
     u32 species = 0, ability = 0;
     PARAMETRIZE { species = SPECIES_PSYDUCK;  ability = ABILITY_CLOUD_NINE; }
@@ -291,7 +291,7 @@ SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform back to normal under C
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform on switch-in")
+SINGLE_BATTLE_TEST("Forecast transforms Castform on switch-in")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -312,7 +312,7 @@ SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform on switch-in")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform when weather changes")
+SINGLE_BATTLE_TEST("Forecast transforms Castform when weather changes")
 {
     GIVEN {
         PLAYER(SPECIES_CASTFORM_NORMAL) { Ability(ABILITY_FORECAST); }
@@ -334,7 +334,7 @@ SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform when weather changes")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform back to normal when its ability is suppressed")
+SINGLE_BATTLE_TEST("Forecast transforms Castform back to normal when its ability is suppressed")
 {
     GIVEN {
         ASSUME(B_WEATHER_FORMS >= GEN_5);
@@ -356,7 +356,7 @@ SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform back to normal when it
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform back when it switches out")
+SINGLE_BATTLE_TEST("Forecast transforms Castform back when it switches out")
 {
     GIVEN {
         ASSUME(B_WEATHER_FORMS >= GEN_5);
@@ -377,7 +377,7 @@ SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform back when it switches 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform back when it uses a move that forces it to switch out")
+SINGLE_BATTLE_TEST("Forecast transforms Castform back when it uses a move that forces it to switch out")
 {
     GIVEN {
         ASSUME(B_WEATHER_FORMS >= GEN_5);
@@ -398,7 +398,7 @@ SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform back when it uses a mo
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Forecast transforms Castform when Cloud Nine ability user leaves the field")
+SINGLE_BATTLE_TEST("Forecast transforms Castform when Cloud Nine ability user leaves the field")
 {
     u32 species = 0, ability = 0;
     PARAMETRIZE { species = SPECIES_PSYDUCK;  ability = ABILITY_CLOUD_NINE; }

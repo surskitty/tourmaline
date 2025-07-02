@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Schooling switches Level 20+ Wishiwashi's form when HP is 25-percent or less at the end of the turn")
+SINGLE_BATTLE_TEST("Schooling switches Level 20+ Wishiwashi's form when HP is 25-percent or less at the end of the turn")
 {
     u16 level;
     PARAMETRIZE { level = 19; }
@@ -37,7 +37,7 @@ SINGLE_BATTLE_TEST("ABILITY: Schooling switches Level 20+ Wishiwashi's form when
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Schooling switches Level 20+ Wishiwashi's form when HP is over 25-percent before the first turn")
+SINGLE_BATTLE_TEST("Schooling switches Level 20+ Wishiwashi's form when HP is over 25-percent before the first turn")
 {
     u16 level;
     bool32 overQuarterHP;
@@ -73,7 +73,7 @@ SINGLE_BATTLE_TEST("ABILITY: Schooling switches Level 20+ Wishiwashi's form when
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Schooling switches Level 20+ Wishiwashi's form when HP is healed above 25-percent")
+SINGLE_BATTLE_TEST("Schooling switches Level 20+ Wishiwashi's form when HP is healed above 25-percent")
 {
     u16 level;
     PARAMETRIZE { level = 19; }

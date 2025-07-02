@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Mind's Eye allows to hit Ghost-type Pokémon with Normal- and Fighting-type moves")
+SINGLE_BATTLE_TEST("Mind's Eye allows to hit Ghost-type Pokémon with Normal- and Fighting-type moves")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_SCRATCH; }
@@ -19,7 +19,7 @@ SINGLE_BATTLE_TEST("ABILITY: Mind's Eye allows to hit Ghost-type Pokémon with N
 }
 
 // No current official way to test this, effect based on Smogon's NatDex format.
-SINGLE_BATTLE_TEST("ABILITY: Mind's Eye doesn't bypass a Ghost-type's Wonder Guard")
+SINGLE_BATTLE_TEST("Mind's Eye doesn't bypass a Ghost-type's Wonder Guard")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_SCRATCH; }
@@ -42,7 +42,7 @@ SINGLE_BATTLE_TEST("ABILITY: Mind's Eye doesn't bypass a Ghost-type's Wonder Gua
 
 //// AI TESTS ////
 
-AI_SINGLE_BATTLE_TEST("ABILITY: AI doesn't use accuracy-lowering moves if it knows that the foe has Mind's Eye")
+AI_SINGLE_BATTLE_TEST("AI doesn't use accuracy-lowering moves if it knows that the foe has Mind's Eye")
 {
     u32 abilityAI = ABILITY_NONE;
 

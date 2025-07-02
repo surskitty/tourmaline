@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Inner Focus prevents intimidate")
+SINGLE_BATTLE_TEST("Inner Focus prevents intimidate")
 {
     s16 turnOneHit;
     s16 turnTwoHit;
@@ -27,7 +27,7 @@ SINGLE_BATTLE_TEST("ABILITY: Inner Focus prevents intimidate")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Inner Focus prevents flinching")
+SINGLE_BATTLE_TEST("Inner Focus prevents flinching")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -43,7 +43,7 @@ SINGLE_BATTLE_TEST("ABILITY: Inner Focus prevents flinching")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Mold Breaker ignores Inner Focus")
+SINGLE_BATTLE_TEST("Mold Breaker ignores Inner Focus")
 {
     GIVEN {
         PLAYER(SPECIES_PINSIR) { Ability(ABILITY_MOLD_BREAKER); };

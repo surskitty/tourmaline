@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Flower Gift transforms Cherrim in harsh sunlight")
+SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim in harsh sunlight")
 {
     GIVEN {
         PLAYER(SPECIES_CHERRIM_OVERCAST) { Ability(ABILITY_FLOWER_GIFT); }
@@ -17,9 +17,9 @@ SINGLE_BATTLE_TEST("ABILITY: Flower Gift transforms Cherrim in harsh sunlight")
     }
 }
 
-TO_DO_BATTLE_TEST("ABILITY: Flower Gift doesn't transform Cherrim if Cloud Nine/Air Lock is on the field");
+TO_DO_BATTLE_TEST("Flower Gift doesn't transform Cherrim if Cloud Nine/Air Lock is on the field");
 
-SINGLE_BATTLE_TEST("ABILITY: Flower Gift transforms Cherrim back to normal when weather changes")
+SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back to normal when weather changes")
 {
     GIVEN {
         PLAYER(SPECIES_CHERRIM_OVERCAST) { Ability(ABILITY_FLOWER_GIFT); }
@@ -41,7 +41,7 @@ SINGLE_BATTLE_TEST("ABILITY: Flower Gift transforms Cherrim back to normal when 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Flower Gift transforms Cherrim back to normal when its ability is suppressed")
+SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back to normal when its ability is suppressed")
 {
     GIVEN {
         ASSUME(B_WEATHER_FORMS >= GEN_5);
@@ -63,7 +63,7 @@ SINGLE_BATTLE_TEST("ABILITY: Flower Gift transforms Cherrim back to normal when 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Flower Gift transforms Cherrim back to normal under Cloud Nine/Air Lock")
+SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back to normal under Cloud Nine/Air Lock")
 {
     u32 species = 0, ability = 0;
     PARAMETRIZE { species = SPECIES_PSYDUCK;  ability = ABILITY_CLOUD_NINE; }
@@ -90,7 +90,7 @@ SINGLE_BATTLE_TEST("ABILITY: Flower Gift transforms Cherrim back to normal under
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Flower Gift increases the attack of Cherrim and its allies by 1.5x", s16 damageL, s16 damageR)
+DOUBLE_BATTLE_TEST("Flower Gift increases the attack of Cherrim and its allies by 1.5x", s16 damageL, s16 damageR)
 {
     bool32 sunny;
     PARAMETRIZE { sunny = FALSE; }
@@ -125,7 +125,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Flower Gift increases the attack of Cherrim and its
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Flower Gift increases the Sp. Def of Cherrim and its allies by 1.5x", s16 damageL, s16 damageR)
+DOUBLE_BATTLE_TEST("Flower Gift increases the Sp. Def of Cherrim and its allies by 1.5x", s16 damageL, s16 damageR)
 {
     bool32 sunny;
     PARAMETRIZE { sunny = FALSE; }
@@ -157,7 +157,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Flower Gift increases the Sp. Def of Cherrim and it
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Flower Gift transforms Cherrim back when it switches out")
+SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back when it switches out")
 {
     GIVEN {
         ASSUME(B_WEATHER_FORMS >= GEN_5);
@@ -178,7 +178,7 @@ SINGLE_BATTLE_TEST("ABILITY: Flower Gift transforms Cherrim back when it switche
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Flower Gift transforms Cherrim back when it uses a move that forces it to switch out")
+SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back when it uses a move that forces it to switch out")
 {
     GIVEN {
         ASSUME(B_WEATHER_FORMS >= GEN_5);
@@ -199,7 +199,7 @@ SINGLE_BATTLE_TEST("ABILITY: Flower Gift transforms Cherrim back when it uses a 
     }
 }
 
-TO_DO_BATTLE_TEST("ABILITY: Flower Gift does not transform Cherrim back to normal when suppressed if Cherrim is Dynamaxed");
+TO_DO_BATTLE_TEST("Flower Gift does not transform Cherrim back to normal when suppressed if Cherrim is Dynamaxed");
 
 SINGLE_BATTLE_TEST("INNATE: Flower Gift transforms Cherrim in harsh sunlight")
 {

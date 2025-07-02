@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Scrappy prevents intimidate")
+SINGLE_BATTLE_TEST("Scrappy prevents intimidate")
 {
     s16 turnOneHit;
     s16 turnTwoHit;
@@ -27,7 +27,7 @@ SINGLE_BATTLE_TEST("ABILITY: Scrappy prevents intimidate")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Scrappy allows to hit Ghost-type Pokémon with Normal- and Fighting-type moves")
+SINGLE_BATTLE_TEST("Scrappy allows to hit Ghost-type Pokémon with Normal- and Fighting-type moves")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_SCRATCH; }
@@ -44,7 +44,7 @@ SINGLE_BATTLE_TEST("ABILITY: Scrappy allows to hit Ghost-type Pokémon with Norm
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Scrappy doesn't bypass a Ghost-type's Wonder Guard")
+SINGLE_BATTLE_TEST("Scrappy doesn't bypass a Ghost-type's Wonder Guard")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_SCRATCH; }

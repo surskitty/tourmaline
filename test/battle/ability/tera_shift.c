@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Tera Shift transforms Terapagos into its Terastal form on switch in")
+SINGLE_BATTLE_TEST("Tera Shift transforms Terapagos into its Terastal form on switch in")
 {
     GIVEN {
         PLAYER(SPECIES_TERAPAGOS_NORMAL) { Ability(ABILITY_TERA_SHIFT); }
@@ -17,7 +17,7 @@ SINGLE_BATTLE_TEST("ABILITY: Tera Shift transforms Terapagos into its Terastal f
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Tera Shift can't be suppressed by Neutralizing Gas")
+SINGLE_BATTLE_TEST("Tera Shift can't be suppressed by Neutralizing Gas")
 {
     GIVEN {
         PLAYER(SPECIES_TERAPAGOS_NORMAL) { Ability(ABILITY_TERA_SHIFT); }

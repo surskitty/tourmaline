@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke prevent intimidate")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent intimidate")
 {
     s16 turnOneHit;
     s16 turnTwoHit;
@@ -37,7 +37,7 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke preven
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke prevent stat stage reduction from moves")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent stat stage reduction from moves")
 {
     u16 move = MOVE_NONE;
     u32 j, species = SPECIES_NONE, ability = ABILITY_NONE;
@@ -84,7 +84,7 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke preven
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke prevent Sticky Web effect on switchin")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent Sticky Web effect on switchin")
 {
     u32 species, ability;
     PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; }
@@ -112,7 +112,7 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke preven
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't prevent stat stage reduction from moves used by the user")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent stat stage reduction from moves used by the user")
 {
     u32 species, ability;
     PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; }
@@ -135,7 +135,7 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Mold Breaker, Teravolt, and Turboblaze ignore Clear Body and White Smoke, but not Full Metal Body")
+SINGLE_BATTLE_TEST("Mold Breaker, Teravolt, and Turboblaze ignore Clear Body and White Smoke, but not Full Metal Body")
 {
     u32 j, k, species = SPECIES_NONE, ability = ABILITY_NONE;
     u16 breakerAbility = ABILITY_NONE;
@@ -195,7 +195,7 @@ SINGLE_BATTLE_TEST("ABILITY: Mold Breaker, Teravolt, and Turboblaze ignore Clear
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't prevent Speed reduction from Iron Ball")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Speed reduction from Iron Ball")
 {
     u32 j, species = SPECIES_NONE, ability = ABILITY_NONE;
     u16 heldItem = ITEM_NONE;
@@ -237,7 +237,7 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't prevent Speed reduction from paralysis")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Speed reduction from paralysis")
 {
     u32 species, ability;
 
@@ -273,7 +273,7 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't prevent Attack reduction from burn", s16 damage)
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Attack reduction from burn", s16 damage)
 {
     bool32 burned = FALSE;
     u32 species, ability;
@@ -297,7 +297,7 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't prevent receiving negative stat changes from Baton Pass")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent receiving negative stat changes from Baton Pass")
 {
     u32 species, ability;
 
@@ -327,7 +327,7 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't prevent Topsy-Turvy")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Topsy-Turvy")
 {
     u32 species, ability;
 
@@ -368,7 +368,7 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't prevent Spectral Thief from resetting positive stat changes")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Spectral Thief from resetting positive stat changes")
 {
     u32 species, ability;
 
@@ -413,7 +413,7 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke protect from Protect's secondary effects")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke protect from Protect's secondary effects")
 {
     u32 move = MOVE_NONE;
     u32 species = SPECIES_NONE;

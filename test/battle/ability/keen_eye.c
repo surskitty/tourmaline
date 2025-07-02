@@ -8,7 +8,7 @@ ASSUMPTIONS
     ASSUME(B_ILLUMINATE_EFFECT >= GEN_9);
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Keen Eye, Gen9+ Illuminate & Minds Eye prevent accuracy stage reduction from moves")
+SINGLE_BATTLE_TEST("Keen Eye, Gen9+ Illuminate & Minds Eye prevent accuracy stage reduction from moves")
 {
     u16 ability;
     u32 species;
@@ -36,7 +36,7 @@ SINGLE_BATTLE_TEST("ABILITY: Keen Eye, Gen9+ Illuminate & Minds Eye prevent accu
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Keen Eye, Gen9+ Illuminate & Minds Eye ignore target's evasion stat")
+SINGLE_BATTLE_TEST("Keen Eye, Gen9+ Illuminate & Minds Eye ignore target's evasion stat")
 {
     u16 ability;
     u32 species;
@@ -59,7 +59,7 @@ SINGLE_BATTLE_TEST("ABILITY: Keen Eye, Gen9+ Illuminate & Minds Eye ignore targe
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Keen Eye, Gen9+ Illuminate & Minds Eye are ignored by Mold Breaker abilities")
+SINGLE_BATTLE_TEST("Keen Eye, Gen9+ Illuminate & Minds Eye are ignored by Mold Breaker abilities")
 {
     u16 abilityPlayer = ABILITY_NONE, abilityOpponent = ABILITY_NONE;
     u16 speciesPlayer = SPECIES_NONE, speciesOpponent = SPECIES_NONE;
@@ -92,7 +92,7 @@ SINGLE_BATTLE_TEST("ABILITY: Keen Eye, Gen9+ Illuminate & Minds Eye are ignored 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Keen Eye, Gen9+ Illuminate & Minds Eye don't prevent Topsy-Turvy")
+SINGLE_BATTLE_TEST("Keen Eye, Gen9+ Illuminate & Minds Eye don't prevent Topsy-Turvy")
 {
     u16 ability;
     u32 species;
@@ -132,7 +132,7 @@ SINGLE_BATTLE_TEST("ABILITY: Keen Eye, Gen9+ Illuminate & Minds Eye don't preven
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Keen Eye, Gen9+ Illuminate & Minds Eye don't prevent receiving negative Attack stage changes from Baton Pass")
+SINGLE_BATTLE_TEST("Keen Eye, Gen9+ Illuminate & Minds Eye don't prevent receiving negative Attack stage changes from Baton Pass")
 {
     u16 ability;
     u32 species;
@@ -164,7 +164,7 @@ SINGLE_BATTLE_TEST("ABILITY: Keen Eye, Gen9+ Illuminate & Minds Eye don't preven
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Keen Eye & Gen9+ Illuminate don't prevent Spectral Thief from resetting positive accuracy stage changes")
+SINGLE_BATTLE_TEST("Keen Eye & Gen9+ Illuminate don't prevent Spectral Thief from resetting positive accuracy stage changes")
 {
     u16 ability;
     u32 species;

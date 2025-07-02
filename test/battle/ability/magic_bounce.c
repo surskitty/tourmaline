@@ -2,7 +2,7 @@
 #include "test/battle.h"
 
 
-SINGLE_BATTLE_TEST("ABILITY: Magic Bounce bounces back status moves")
+SINGLE_BATTLE_TEST("Magic Bounce bounces back status moves")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_NON_VOLATILE_STATUS);
@@ -20,7 +20,7 @@ SINGLE_BATTLE_TEST("ABILITY: Magic Bounce bounces back status moves")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Magic Bounce bounces back powder moves")
+SINGLE_BATTLE_TEST("Magic Bounce bounces back powder moves")
 {
     GIVEN {
         ASSUME(IsPowderMove(MOVE_STUN_SPORE));
@@ -39,7 +39,7 @@ SINGLE_BATTLE_TEST("ABILITY: Magic Bounce bounces back powder moves")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Magic Bounce cannot bounce back powder moves against Grass Types")
+SINGLE_BATTLE_TEST("Magic Bounce cannot bounce back powder moves against Grass Types")
 {
     GIVEN {
         ASSUME(IsPowderMove(MOVE_STUN_SPORE));
@@ -58,7 +58,7 @@ SINGLE_BATTLE_TEST("ABILITY: Magic Bounce cannot bounce back powder moves agains
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Magic Bounce bounces back moves hitting both foes at two foes")
+DOUBLE_BATTLE_TEST("Magic Bounce bounces back moves hitting both foes at two foes")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_LEER) == EFFECT_DEFENSE_DOWN);
@@ -84,7 +84,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Magic Bounce bounces back moves hitting both foes a
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Magic Bounce bounces back moves hitting foes field")
+DOUBLE_BATTLE_TEST("Magic Bounce bounces back moves hitting foes field")
 {
     u32 battlerOne, battlerTwo, abilityBattlerOne, abilityBattlerTwo;
 
@@ -117,7 +117,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Magic Bounce bounces back moves hitting foes field"
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Magic Bounce bounced back status moves can not be bounced back by Magic Bounce")
+SINGLE_BATTLE_TEST("Magic Bounce bounced back status moves can not be bounced back by Magic Bounce")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_NON_VOLATILE_STATUS);

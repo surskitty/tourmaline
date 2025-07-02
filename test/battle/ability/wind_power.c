@@ -15,7 +15,7 @@ ASSUMPTIONS
     ASSUME(!IsWindMove(MOVE_SCRATCH));
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Wind Power sets up Charge for player when hit by a wind move")
+SINGLE_BATTLE_TEST("Wind Power sets up Charge for player when hit by a wind move")
 {
     s16 dmgBefore, dmgAfter;
     u16 move;
@@ -60,7 +60,7 @@ SINGLE_BATTLE_TEST("ABILITY: Wind Power sets up Charge for player when hit by a 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Wind Power sets up Charge for opponent when hit by a wind move")
+SINGLE_BATTLE_TEST("Wind Power sets up Charge for opponent when hit by a wind move")
 {
     s16 dmgBefore, dmgAfter;
     u16 move;
@@ -105,7 +105,7 @@ SINGLE_BATTLE_TEST("ABILITY: Wind Power sets up Charge for opponent when hit by 
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Wind Power activates correctly for every battler with the ability when hit by a 2/3 target move")
+DOUBLE_BATTLE_TEST("Wind Power activates correctly for every battler with the ability when hit by a 2/3 target move")
 {
     u16 abilityLeft, abilityRight;
 
@@ -146,7 +146,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Wind Power activates correctly for every battler wi
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Wind Power activates correctly for every battler with the ability when hit by a 3 target move")
+DOUBLE_BATTLE_TEST("Wind Power activates correctly for every battler with the ability when hit by a 3 target move")
 {
     u16 abilityLeft, abilityRight;
 
@@ -185,7 +185,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Wind Power activates correctly for every battler wi
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Wind Power activates correctly when Tailwind is used")
+DOUBLE_BATTLE_TEST("Wind Power activates correctly when Tailwind is used")
 {
     bool8 opponentSide;
 

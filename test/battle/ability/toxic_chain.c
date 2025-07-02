@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Toxic Chain inflicts bad poison when attacking")
+SINGLE_BATTLE_TEST("Toxic Chain inflicts bad poison when attacking")
 {
     PASSES_RANDOMLY(3, 10, RNG_TOXIC_CHAIN);
     GIVEN {
@@ -21,7 +21,7 @@ SINGLE_BATTLE_TEST("ABILITY: Toxic Chain inflicts bad poison when attacking")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Toxic Chain inflicts bad poison on any hit of a multi-hit move")
+SINGLE_BATTLE_TEST("Toxic Chain inflicts bad poison on any hit of a multi-hit move")
 {
     GIVEN {
         ASSUME(GetMoveCategory(MOVE_DOUBLE_SLAP) != DAMAGE_CATEGORY_STATUS);
@@ -48,7 +48,7 @@ SINGLE_BATTLE_TEST("ABILITY: Toxic Chain inflicts bad poison on any hit of a mul
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Toxic Chain can inflict bad poison on both foes")
+DOUBLE_BATTLE_TEST("Toxic Chain can inflict bad poison on both foes")
 {
     GIVEN {
         ASSUME(GetMoveCategory(MOVE_RAZOR_LEAF) != DAMAGE_CATEGORY_STATUS);
@@ -77,7 +77,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Toxic Chain can inflict bad poison on both foes")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Toxic Chain makes Lum/Pecha Berry trigger before being knocked off")
+SINGLE_BATTLE_TEST("Toxic Chain makes Lum/Pecha Berry trigger before being knocked off")
 {
     u16 item = 0;
 

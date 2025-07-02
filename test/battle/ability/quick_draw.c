@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Quick Draw has a 30% chance of going first")
+SINGLE_BATTLE_TEST("Quick Draw has a 30% chance of going first")
 {
     PASSES_RANDOMLY(3, 10, RNG_QUICK_DRAW);
     GIVEN {
@@ -16,7 +16,7 @@ SINGLE_BATTLE_TEST("ABILITY: Quick Draw has a 30% chance of going first")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Quick Draw does not activate 70% of the time")
+SINGLE_BATTLE_TEST("Quick Draw does not activate 70% of the time")
 {
     PASSES_RANDOMLY(7, 10, RNG_QUICK_DRAW);
     GIVEN {

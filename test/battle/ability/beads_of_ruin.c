@@ -7,7 +7,7 @@ ASSUMPTIONS
     ASSUME(GetMoveEffect(MOVE_ROLE_PLAY) == EFFECT_ROLE_PLAY);
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Beads of Ruin reduces Sp. Def if opposing mon's ability doesn't match")
+SINGLE_BATTLE_TEST("Beads of Ruin reduces Sp. Def if opposing mon's ability doesn't match")
 {
     s16 damage[2];
 
@@ -30,7 +30,7 @@ SINGLE_BATTLE_TEST("ABILITY: Beads of Ruin reduces Sp. Def if opposing mon's abi
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Beads of Ruin's message displays correctly after all battlers fainted - Player")
+SINGLE_BATTLE_TEST("Beads of Ruin's message displays correctly after all battlers fainted - Player")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_EXPLOSION) == EFFECT_EXPLOSION);
@@ -52,7 +52,7 @@ SINGLE_BATTLE_TEST("ABILITY: Beads of Ruin's message displays correctly after al
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Beads of Ruin's message displays correctly after all battlers fainted - Opponent")
+SINGLE_BATTLE_TEST("Beads of Ruin's message displays correctly after all battlers fainted - Opponent")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_EXPLOSION) == EFFECT_EXPLOSION);

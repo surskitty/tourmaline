@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Steam Engine raises speed when hit by a Fire or Water move")
+SINGLE_BATTLE_TEST("Steam Engine raises speed when hit by a Fire or Water move")
 {
     u16 move;
 
