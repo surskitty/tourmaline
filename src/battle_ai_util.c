@@ -793,47 +793,47 @@ struct SimulatedDamage AI_CalcDamage(u32 move, u32 battlerAtk, u32 battlerDef, u
                 s32 damageByRollType = 0;
 
                 s32 oneTripleKickHit = CalculateMoveDamageVars(&damageCalcData, fixedBasePower,
-                                                               effectivenessMultiplier, weather,
-                                                               aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                                                               aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
+                                                                effectivenessMultiplier, weather,
+                                                                aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
+                                                                aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
 
                 damageByRollType = GetDamageByRollType(oneTripleKickHit, DMG_ROLL_LOWEST);
                 simDamage.minimum += ApplyModifiersAfterDmgRoll(damageByRollType, &damageCalcData, effectivenessMultiplier,
-                                                                aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                                                                aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
+                                                                aiData->abilities[battlerAtk], aiData->abilities[battlerDef],
+                                                                aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef]);
 
                 damageByRollType = GetDamageByRollType(oneTripleKickHit, DMG_ROLL_DEFAULT);
                 simDamage.median += ApplyModifiersAfterDmgRoll(damageByRollType, &damageCalcData, effectivenessMultiplier,
-                                                               aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                                                               aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
+                                                                aiData->abilities[battlerAtk], aiData->abilities[battlerDef],
+                                                                aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef]);
 
                 damageByRollType = GetDamageByRollType(oneTripleKickHit, DMG_ROLL_HIGHEST);
                 simDamage.maximum += ApplyModifiersAfterDmgRoll(damageByRollType, &damageCalcData, effectivenessMultiplier,
-                                                                aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                                                                aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
+                                                            aiData->abilities[battlerAtk], aiData->abilities[battlerDef],
+                                                            aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef]);
             }
         }
         else
         {
             u32 damage = CalculateMoveDamageVars(&damageCalcData, fixedBasePower,
-                                                 effectivenessMultiplier, weather,
-                                                 aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                                                 aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
+                                                            effectivenessMultiplier, weather,
+                                                            aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
+                                                            aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
 
             simDamage.minimum = GetDamageByRollType(damage, DMG_ROLL_LOWEST);
             simDamage.minimum = ApplyModifiersAfterDmgRoll(simDamage.minimum, &damageCalcData, effectivenessMultiplier,
-                                                           aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                                                           aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
+                                                            aiData->abilities[battlerAtk], aiData->abilities[battlerDef],
+                                                            aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef]);
 
             simDamage.median = GetDamageByRollType(damage, DMG_ROLL_DEFAULT);
             simDamage.median = ApplyModifiersAfterDmgRoll(simDamage.median, &damageCalcData, effectivenessMultiplier,
-                                                          aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                                                          aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
-
+                                                            aiData->abilities[battlerAtk], aiData->abilities[battlerDef],
+                                                            aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef]);
+                                                            
             simDamage.maximum = GetDamageByRollType(damage, DMG_ROLL_HIGHEST);
             simDamage.maximum = ApplyModifiersAfterDmgRoll(simDamage.maximum, &damageCalcData, effectivenessMultiplier,
-                                                           aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef],
-                                                           aiData->abilities[battlerAtk], aiData->abilities[battlerDef]);
+                                                            aiData->abilities[battlerAtk], aiData->abilities[battlerDef],
+                                                            aiData->holdEffects[battlerAtk], aiData->holdEffects[battlerDef]);
         }
 
         if (GetActiveGimmick(battlerAtk) != GIMMICK_Z_MOVE)
@@ -894,7 +894,7 @@ static bool32 AI_IsMoveEffectInPlus(u32 battlerAtk, u32 battlerDef, u32 move, s3
             return TRUE;
         break;
     case EFFECT_PURSUIT:
-        if(noOfHitsToKo == 1)
+        if (noOfHitsToKo == 1)
             return TRUE;
         break;
     default:
@@ -1016,6 +1016,7 @@ static bool32 AI_IsMoveEffectInMinus(u32 battlerAtk, u32 battlerDef, u32 move, s
     {
     case EFFECT_MAX_HP_50_RECOIL:
     case EFFECT_MIND_BLOWN:
+    case EFFECT_CHLOROBLAST:
     case EFFECT_EXPLOSION:
     case EFFECT_FINAL_GAMBIT:
         return TRUE;

@@ -1390,16 +1390,16 @@
 	.byte \battler
 	.endm
 
-	.macro tryintimidatejectpack
-	callnative BS_TryIntimidatEjectpack
+	.macro tryintimidateejectpack
+	callnative BS_TryIntimidateEjectPack
 	.endm
 
 	.macro allyswitchswapbattlers
 	callnative BS_AllySwitchSwapBattler
 	.endm
 
-	.macro allyswitchfailchance jumpInstr:req
-	callnative BS_AllySwitchFailChance
+	.macro tryallyswitch jumpInstr:req
+	callnative BS_TryAllySwitch
 	.4byte \jumpInstr
 	.endm
 
@@ -2463,6 +2463,12 @@
 	jumpifnottype BS_ATTACKER, TYPE_GRASS, 1f
 	jumpifability BS_ATTACKER_SIDE, ABILITY_FLOWER_VEIL, \jumpInstr
 	1:
+	.endm
+
+	.macro jumpifabilitycantbesuppressed battler:req, jumpInstr:req
+	callnative BS_JumpIfAbilityCantBeSuppressed
+	.byte \battler
+	.4byte \jumpInstr
 	.endm
 
 	.macro setallytonexttarget jumpInstr:req
