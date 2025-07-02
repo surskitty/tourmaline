@@ -2570,11 +2570,6 @@
 	.4byte \jumpInstr
 	.endm
 
-	.macro jumpifnowhiteout jumpInstr:req
-	callnative BS_JumpIfNoWhiteOut
-	.4byte \jumpInstr
-	.endm
-
 	.macro pushtraitstack battler:req, ability:req
 	callnative BS_PushTraitStack
 	.byte \battler

@@ -1505,7 +1505,7 @@ bool32 DoesBattlerIgnoreAbilityChecks(u32 battlerAtk, u32 atkAbility, u32 move)
     if (gAiThinkingStruct->aiFlags[battlerAtk] & AI_FLAG_NEGATE_UNAWARE)
         return FALSE;   // AI handicap flag: doesn't understand ability suppression concept
 
-    if (HasMoldBreakerTypeAbility(battlerAtk) || MoveIgnoresTargetAbility(move))
+    if (IsMoldBreakerTypeAbility(battlerAtk, atkAbility) || MoveIgnoresTargetAbility(move))
         return TRUE;
 
     return FALSE;
@@ -1594,6 +1594,8 @@ bool32 IsHazardMove(u32 move)
     case EFFECT_STICKY_WEB:
     case EFFECT_STEALTH_ROCK:
         return TRUE;
+    default:
+        return FALSE;
     }
 
     u32 additionalEffectCount = GetMoveAdditionalEffectCount(move);
@@ -1622,6 +1624,8 @@ bool32 IsHazardClearingMove(u32 move)
         if (B_DEFOG_EFFECT_CLEARING >= GEN_6)
             return TRUE;
         break;
+    default:
+        return FALSE;
     }
 
     u32 additionalEffectCount = GetMoveAdditionalEffectCount(move);
@@ -1945,6 +1949,9 @@ void ProtectChecks(u32 battlerAtk, u32 battlerDef, u32 move, u32 predictedMove, 
 // stat stages
 bool32 ShouldLowerStat(u32 battlerAtk, u32 battlerDef, u32 abilityDef, u32 stat)
 {
+    u16 AIBattlerTraits[MAX_MON_TRAITS];
+    AI_STORE_BATTLER_TRAITS(battlerDef);
+
     if (gBattleMons[battlerDef].statStages[stat] == MIN_STAT_STAGE)
         return FALSE;
 
@@ -3297,8 +3304,8 @@ static inline bool32 DoesBattlerBenefitFromAllVolatileStatus(u32 battler, u32 ab
       || AISearchTraits(AIBattlerTraits, ABILITY_QUICK_FEET)
       || AISearchTraits(AIBattlerTraits, ABILITY_MAGIC_GUARD)
       || (AISearchTraits(AIBattlerTraits, ABILITY_GUTS) && HasMoveWithCategory(battler, DAMAGE_CATEGORY_PHYSICAL))
-      || HasMoveEffect(battler, EFFECT_FACADE)
-      || HasMoveEffect(battler, EFFECT_PSYCHO_SHIFT))
+      || HasMoveWithEffect(battler, EFFECT_FACADE)
+      || HasMoveWithEffect(battler, EFFECT_PSYCHO_SHIFT))
         return TRUE;    // battler can be poisoned and has move/ability that synergizes with being poisoned
     return FALSE;
 }
@@ -3475,7 +3482,7 @@ bool32 AI_CanBeInfatuated(u32 battlerAtk, u32 battlerDef, u32 defAbility)
 
 u32 ShouldTryToFlinch(u32 battlerAtk, u32 battlerDef, u32 atkAbility, u32 defAbility, u32 move)
 {
-    if (((!HasMoldBreakerTypeAbility(battlerAtk) && (AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_SHIELD_DUST) || AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_INNER_FOCUS)))
+    if (((!IsMoldBreakerTypeAbility(battlerAtk, atkAbility) && (AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_SHIELD_DUST) || AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_INNER_FOCUS)))
       || gAiLogicData->holdEffects[battlerDef] == HOLD_EFFECT_COVERT_CLOAK
       || DoesSubstituteBlockMove(battlerAtk, battlerDef, move)
       || AI_IsSlower(battlerAtk, battlerDef, move))) // Opponent goes first
@@ -3521,7 +3528,7 @@ bool32 ShouldFakeOut(u32 battlerAtk, u32 battlerDef, u32 move)
     || gAiLogicData->holdEffects[battlerAtk] == HOLD_EFFECT_CHOICE_BAND
     || gAiLogicData->holdEffects[battlerDef] == HOLD_EFFECT_COVERT_CLOAK
     || DoesSubstituteBlockMove(battlerAtk, battlerDef, move)
-    || (!HasMoldBreakerTypeAbility(battlerAtk)
+    || (!IsMoldBreakerTypeAbility(battlerAtk, gAiLogicData->abilities[battlerAtk])
     && (AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_SHIELD_DUST) || AI_BATTLER_HAS_TRAIT(battlerDef, ABILITY_INNER_FOCUS))))
         return FALSE;
 
@@ -4348,7 +4355,7 @@ void IncreasePoisonScore(u32 battlerAtk, u32 battlerDef, u32 move, s32 *score)
             ADJUST_SCORE_PTR(WEAK_EFFECT);    // stall tactic
 
         if (IsPowerBasedOnStatus(battlerAtk, EFFECT_DOUBLE_POWER_ON_ARG_STATUS, STATUS1_PSN_ANY)
-          || HasMoveEffect(battlerAtk, EFFECT_VENOM_DRENCH)
+          || HasMoveWithEffect(battlerAtk, EFFECT_VENOM_DRENCH)
           || AI_BATTLER_HAS_TRAIT(battlerAtk, ABILITY_MERCILESS))
             ADJUST_SCORE_PTR(DECENT_EFFECT);
         else

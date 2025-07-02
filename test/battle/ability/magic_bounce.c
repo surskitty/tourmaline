@@ -140,7 +140,8 @@ SINGLE_BATTLE_TEST("Magic Bounce bounced back status moves can not be bounced ba
 SINGLE_BATTLE_TEST("INNATE: Magic Bounce bounces back status moves")
 {
     GIVEN {
-        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
+        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_TOXIC) == MOVE_EFFECT_TOXIC);
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_SYNCHRONIZE); Innates(ABILITY_MAGIC_BOUNCE); }
     } WHEN {
@@ -158,7 +159,8 @@ SINGLE_BATTLE_TEST("INNATE: Magic Bounce bounces back powder moves")
 {
     GIVEN {
         ASSUME(IsPowderMove(MOVE_STUN_SPORE));
-        ASSUME(GetMoveEffect(MOVE_STUN_SPORE) == EFFECT_PARALYZE);
+        ASSUME(GetMoveEffect(MOVE_STUN_SPORE) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_STUN_SPORE) == MOVE_EFFECT_PARALYSIS);
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_SYNCHRONIZE); Innates(ABILITY_MAGIC_BOUNCE); }
     } WHEN {
@@ -253,7 +255,8 @@ DOUBLE_BATTLE_TEST("INNATE: Magic Bounce bounces back moves hitting foes field")
 SINGLE_BATTLE_TEST("INNATE: Magic Bounce bounced back status moves can not be bounced back by Magic Bounce")
 {
     GIVEN {
-        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
+        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_TOXIC) == MOVE_EFFECT_TOXIC);
         PLAYER(SPECIES_ESPEON) { Ability(ABILITY_SYNCHRONIZE); Innates(ABILITY_MAGIC_BOUNCE); }
         OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_SYNCHRONIZE); Innates(ABILITY_MAGIC_BOUNCE); }
     } WHEN {

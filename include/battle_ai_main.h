@@ -106,7 +106,7 @@ enum AIScore
     return score;                   \
 }
 
-#define AI_BATTLER_HAS_TRAIT(battlerID, abilityToCheck) (AgAiLogicData->abilities[battlerID] == abilityToCheck || BattlerHasInnate(battlerID, abilityToCheck)) //Useful to make calculations faster, used only for AI stuff
+#define AI_BATTLER_HAS_TRAIT(battlerID, abilityToCheck) (gAiLogicData->abilities[battlerID] == abilityToCheck || BattlerHasInnate(battlerID, abilityToCheck)) //Useful to make calculations faster, used only for AI stuff
 
 #define AI_STORE_BATTLER_TRAITS(battlerID) \
 ({for (int traitLoop = 0; traitLoop < MAX_MON_TRAITS; traitLoop++)\

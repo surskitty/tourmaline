@@ -1939,9 +1939,9 @@ s32 CalcCritChanceStage(u32 battlerAtk, u32 battlerDef, u32 move, bool32 recordA
     AI_STORE_BATTLER_TRAITS(battlerDef);
 
     abilityDef = ABILITY_NONE;
-    if (AI_DATA->aiCalcInProgress ? AISearchTraits(AIBattlerTraits, ABILITY_BATTLE_ARMOR) : SearchTraits(battlerTraits, ABILITY_BATTLE_ARMOR))
+    if (gAiLogicData->aiCalcInProgress ? AISearchTraits(AIBattlerTraits, ABILITY_BATTLE_ARMOR) : SearchTraits(battlerTraits, ABILITY_BATTLE_ARMOR))
         abilityDef = ABILITY_BATTLE_ARMOR;
-    if (AI_DATA->aiCalcInProgress ? AISearchTraits(AIBattlerTraits, ABILITY_SHELL_ARMOR) : SearchTraits(battlerTraits, ABILITY_SHELL_ARMOR))
+    if (gAiLogicData->aiCalcInProgress ? AISearchTraits(AIBattlerTraits, ABILITY_SHELL_ARMOR) : SearchTraits(battlerTraits, ABILITY_SHELL_ARMOR))
         abilityDef = ABILITY_SHELL_ARMOR;
 
     if (gSideStatuses[battlerDef] & SIDE_STATUS_LUCKY_CHANT)
@@ -18799,7 +18799,7 @@ void BS_JumpIfIntimidateAbilityPrevented(void)
     }
     if (BattlerHasTrait(gBattlerTarget, ABILITY_GUARD_DOG))
     {
-        ability = ABILITY_GUARD_DOG;:
+        ability = ABILITY_GUARD_DOG;
         //hasAbility = TRUE;
         gBattlescriptCurrInstr = BattleScript_IntimidateInReverse;
     }
@@ -18814,12 +18814,60 @@ void BS_JumpIfIntimidateAbilityPrevented(void)
         gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
-void BS_TryIntimidatEjectpack(void)
+void BS_TryIntimidateEjectPack(void)
 {
-    NATIVE_ARGS(u8 battler, u16 ability);
-    u32 battler = GetBattlerForBattleScript(cmd->battler);
-    PushTraitStack(battler, cmd->ability);
+    NATIVE_ARGS();
+
+    u32 affectedBattler = 0xFF;
+    u32 battler = BATTLE_OPPOSITE(gBattlerAttacker);
+    u32 partnerBattler = BATTLE_PARTNER(battler);
+
+    bool32 ejectPackBattler = CanEjectPackTrigger(gBattlerAttacker, battler, MOVE_NONE);
+    bool32 ejectPackPartnerBattler = CanEjectPackTrigger(gBattlerAttacker, partnerBattler, MOVE_NONE);
+
+    if (ejectPackBattler && ejectPackPartnerBattler)
+    {
+        u32 battlerSpeed = GetBattlerTotalSpeedStat(battler);
+        u32 partnerbattlerSpeed = GetBattlerTotalSpeedStat(partnerBattler);
+
+        if (battlerSpeed >= partnerbattlerSpeed)
+            affectedBattler = battler;
+        else
+            affectedBattler = partnerBattler;
+    }
+    else if (ejectPackBattler)
+    {
+        affectedBattler = battler;
+    }
+    else if (ejectPackPartnerBattler)
+    {
+        affectedBattler = partnerBattler;
+    }
+
     gBattlescriptCurrInstr = cmd->nextInstr;
+    if (affectedBattler != 0xFF)
+    {
+        gProtectStructs[battler].statFell = FALSE;
+        gProtectStructs[partnerBattler].statFell = FALSE;
+        gAiLogicData->ejectPackSwitch = TRUE;
+        gBattleScripting.battler = affectedBattler;
+        gLastUsedItem = gBattleMons[affectedBattler].item;
+        RecordItemEffectBattle(affectedBattler, HOLD_EFFECT_EJECT_PACK);
+        BattleScriptPushCursor();
+        gBattlescriptCurrInstr = BattleScript_EjectPackActivate_Ret;
+    }
+}
+
+void BS_JumpIfCanGigantamax(void)
+{
+    NATIVE_ARGS(u8 battler, const u8 *jumpInstr);
+    u32 battler = GetBattlerForBattleScript(cmd->battler);
+
+    if (GetMonData(GetBattlerMon(battler), MON_DATA_GIGANTAMAX_FACTOR)
+      && GetGMaxTargetSpecies(gBattleMons[battler].species) != SPECIES_NONE)
+        gBattlescriptCurrInstr = cmd->jumpInstr;
+    else
+        gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
 void BS_JumpIfLastUsedItemHoldEffect(void)
@@ -18851,4 +18899,12 @@ void BS_JumpIfAbilityCantBeSuppressed(void)
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;
+}
+
+void BS_PushTraitStack(void)
+{
+    NATIVE_ARGS(u8 battler, u16 ability);
+    u32 battler = GetBattlerForBattleScript(cmd->battler);
+    PushTraitStack(battler, cmd->ability);
+    gBattlescriptCurrInstr = cmd->nextInstr;
 }

@@ -238,10 +238,10 @@ SINGLE_BATTLE_TEST("INNATE: Shield Dust does not block primary effects")
 
     GIVEN {
         ASSUME(MoveHasAdditionalEffectWithChance(MOVE_INFESTATION, MOVE_EFFECT_WRAP, 0) == TRUE);
-        ASSUME(MoveHasAdditionalEffectWithChance(MOVE_THOUSAND_ARROWS, MOVE_EFFECT_SMACK_DOWN, 0) == TRUE);
+        ASSUME(MoveHasAdditionalEffectWithChance(MOVE_THOUSAND_ARROWS, EFFECT_SMACK_DOWN, 0) == TRUE);
         ASSUME(MoveHasAdditionalEffectWithChance(MOVE_JAW_LOCK, MOVE_EFFECT_TRAP_BOTH, 0) == TRUE);
         ASSUME(MoveHasAdditionalEffectWithChance(MOVE_PAY_DAY, MOVE_EFFECT_PAYDAY, 0) == TRUE);
-        ASSUME(MoveHasAdditionalEffectWithChance(MOVE_SMACK_DOWN, MOVE_EFFECT_SMACK_DOWN, 0) == TRUE);
+        ASSUME(MoveHasAdditionalEffectWithChance(MOVE_SMACK_DOWN, EFFECT_SMACK_DOWN, 0) == TRUE);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_VIVILLON) { Ability(ABILITY_COMPOUND_EYES); Innates(ABILITY_SHIELD_DUST); }
     } WHEN {

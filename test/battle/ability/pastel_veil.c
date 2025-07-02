@@ -221,7 +221,8 @@ DOUBLE_BATTLE_TEST("INNATE: Pastel Veil prevents Poison Sting poison on partner"
 SINGLE_BATTLE_TEST("INNATE: Pastel Veil immediately cures Mold Breaker poison")
 {
     GIVEN {
-        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
+        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_TOXIC) == MOVE_EFFECT_TOXIC);
         PLAYER(SPECIES_PINSIR) { Ability(ABILITY_HYPER_CUTTER); Innates(ABILITY_MOLD_BREAKER); }
         OPPONENT(SPECIES_PONYTA_GALAR) { Ability(ABILITY_PASTEL_VEIL); Innates(ABILITY_PASTEL_VEIL); }
     } WHEN {
@@ -239,7 +240,8 @@ SINGLE_BATTLE_TEST("INNATE: Pastel Veil immediately cures Mold Breaker poison")
 DOUBLE_BATTLE_TEST("INNATE: Pastel Veil does not cure Mold Breaker poison on partner")
 {
     GIVEN {
-        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
+        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_TOXIC) == MOVE_EFFECT_TOXIC);
         PLAYER(SPECIES_PINSIR) { Ability(ABILITY_HYPER_CUTTER); Innates(ABILITY_MOLD_BREAKER); }
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_PONYTA_GALAR) { Ability(ABILITY_PASTEL_VEIL); Innates(ABILITY_PASTEL_VEIL); }
@@ -256,7 +258,8 @@ DOUBLE_BATTLE_TEST("INNATE: Pastel Veil does not cure Mold Breaker poison on par
 SINGLE_BATTLE_TEST("INNATE: Pastel Veil prevents Toxic bad poison")
 {
     GIVEN {
-        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
+        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_TOXIC) == MOVE_EFFECT_TOXIC);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_PONYTA_GALAR) { Ability(ABILITY_PASTEL_VEIL); Innates(ABILITY_PASTEL_VEIL); }
     } WHEN {
@@ -272,7 +275,8 @@ SINGLE_BATTLE_TEST("INNATE: Pastel Veil prevents Toxic bad poison")
 DOUBLE_BATTLE_TEST("INNATE: Pastel Veil prevents Toxic bad poison on partner")
 {
     GIVEN {
-        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
+        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_TOXIC) == MOVE_EFFECT_TOXIC);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_PONYTA_GALAR) { Ability(ABILITY_PASTEL_VEIL); Innates(ABILITY_PASTEL_VEIL); }

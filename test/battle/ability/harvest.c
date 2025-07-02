@@ -390,7 +390,7 @@ SINGLE_BATTLE_TEST("INNATE: Harvest doesn't restore a Berry when knocked off by 
 {
     PASSES_RANDOMLY(1, 1, RNG_HARVEST);
     GIVEN {
-        ASSUME(MoveHasAdditionalEffect(MOVE_KNOCK_OFF, MOVE_EFFECT_KNOCK_OFF));
+        ASSUME(MoveHasAdditionalEffect(MOVE_KNOCK_OFF, EFFECT_KNOCK_OFF));
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_EXEGGUTOR) { Ability(ABILITY_CHLOROPHYLL); Innates(ABILITY_HARVEST); Item(ITEM_SITRUS_BERRY); }
     } WHEN {

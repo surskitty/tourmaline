@@ -197,7 +197,8 @@ SINGLE_BATTLE_TEST("INNATE: Hyper Cutter prevents Attack stage reduction from mo
 SINGLE_BATTLE_TEST("INNATE: Hyper Cutter doesn't prevent Attack reduction from burn")
 {
     GIVEN {
-        ASSUME(GetMoveEffect(MOVE_WILL_O_WISP) == EFFECT_WILL_O_WISP);
+        ASSUME(GetMoveEffect(MOVE_WILL_O_WISP) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_WILL_O_WISP) == MOVE_EFFECT_BURN);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_KRABBY) { Ability(ABILITY_SHELL_ARMOR); Innates(ABILITY_HYPER_CUTTER); }
     } WHEN {

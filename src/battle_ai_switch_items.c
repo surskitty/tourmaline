@@ -273,7 +273,7 @@ static bool32 ShouldSwitchIfHasBadOdds(u32 battler)
 
     // Check if mon gets one shot
     if (maxDamageTaken > gBattleMons[battler].hp
-        && !(gItemsInfo[gBattleMons[battler].item].holdEffect == HOLD_EFFECT_FOCUS_SASH || (!HasMoldBreakerTypeAbility(opposingBattler) && B_STURDY >= GEN_5 && AI_BATTLER_HAS_TRAIT(battler, ABILITY_STURDY))))
+        && !(gItemsInfo[gBattleMons[battler].item].holdEffect == HOLD_EFFECT_FOCUS_SASH || (!IsMoldBreakerTypeAbility(opposingBattler, gBattleMons[opposingBattler].ability) && B_STURDY >= GEN_5 && AI_BATTLER_HAS_TRAIT(battler, ABILITY_STURDY))))
     {
         getsOneShot = TRUE;
     }
@@ -469,7 +469,7 @@ static bool32 FindMonThatAbsorbsOpponentsMove(u32 battler)
         return FALSE;
     if (AreStatsRaised(battler))
         return FALSE;
-    if (HasMoldBreakerTypeAbility(opposingBattler, gAiLogicData->abilities[opposingBattler]))
+    if (IsMoldBreakerTypeAbility(opposingBattler, gAiLogicData->abilities[opposingBattler]))
         return FALSE;
     // Don't switch if mon could OHKO
     for (i = 0; i < MAX_MON_MOVES; i++)
@@ -692,9 +692,9 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
             AI_STORE_BATTLER_TRAITS(opposingBattler);
 
             if (gBattleMons[battler].statStages[STAT_EVASION] > (DEFAULT_STAT_STAGE + 3)
-                && !AI_BATTLER_HAS_TRAIT(AIBattlerTraits, ABILITY_UNAWARE)
-                && !AI_BATTLER_HAS_TRAIT(AIBattlerTraits, ABILITY_KEEN_EYE)
-                && !AI_BATTLER_HAS_TRAIT(AIBattlerTraits, ABILITY_MINDS_EYE)
+                && !AI_BATTLER_HAS_TRAIT(opposingBattler, ABILITY_UNAWARE)
+                && !AI_BATTLER_HAS_TRAIT(opposingBattler, ABILITY_KEEN_EYE)
+                && !AI_BATTLER_HAS_TRAIT(opposingBattler, ABILITY_MINDS_EYE)
                 && (B_ILLUMINATE_EFFECT >= GEN_9 && !AI_BATTLER_HAS_TRAIT(opposingBattler, ABILITY_ILLUMINATE))
                 && !(gBattleMons[battler].status2 & STATUS2_FORESIGHT)
                 && !(gStatuses3[battler] & STATUS3_MIRACLE_EYED))
@@ -871,6 +871,7 @@ static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 perc
         u16 species, monAbility;
         uq4_12_t typeMultiplier;
         u16 moveFlags = 0;
+        struct Pokemon *mon;
 
         if (!IsValidForBattle(&party[i]))
             continue;
@@ -887,7 +888,8 @@ static bool32 FindMonWithFlagsAndSuperEffective(u32 battler, u16 flags, u32 perc
 
         species = GetMonData(&party[i], MON_DATA_SPECIES_OR_EGG);
         monAbility = GetMonAbility(&party[i]);
-        typeMultiplier = CalcPartyMonTypeEffectivenessMultiplier(gLastLandedMoves[battler], species, monAbility, gBattlerTarget);
+        mon = &gPlayerParty[i];
+        typeMultiplier = CalcPartyMonTypeEffectivenessMultiplier(gLastLandedMoves[battler], species, monAbility, mon);
         UpdateMoveResultFlags(typeMultiplier, &moveFlags);
         if (moveFlags & flags)
         {
@@ -1794,8 +1796,8 @@ static u32 GetSwitchinHitsToKO(s32 damageTaken, u32 battler)
     u16 maxHP = gAiLogicData->switchinCandidate.battleMon.maxHP, item = gAiLogicData->switchinCandidate.battleMon.item, heldItemEffect = GetItemHoldEffect(item);
     u8 weatherDuration = gWishFutureKnock.weatherDuration, holdEffectParam = GetItemHoldEffectParam(item);
     u32 opposingBattler = GetOppositeBattler(battler);
-    u32 ability = gAiLogicData->switchinCandidate.battleMon.ability; //opposingAbility = gBattleMons[opposingBattler].ability
-    bool32 usedSingleUseHealingItem = FALSE, opponentCanBreakMold = HasMoldBreakerTypeAbility(opposingBattler);
+    u32 opposingAbility = gBattleMons[opposingBattler].ability, ability = gAiLogicData->switchinCandidate.battleMon.ability;
+    bool32 usedSingleUseHealingItem = FALSE, opponentCanBreakMold = IsMoldBreakerTypeAbility(opposingBattler, opposingAbility);
     s32 currentHP = startingHP;
 
     // No damage being dealt

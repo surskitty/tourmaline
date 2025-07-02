@@ -650,10 +650,11 @@ static u32 PpStallReduction(u32 move, u32 battlerAtk)
         u32 species = GetMonData(&gPlayerParty[partyIndex], MON_DATA_SPECIES);
         u32 abilityAtk = ABILITY_NONE;
         u32 abilityDef = GetPartyMonAbility(&gPlayerParty[partyIndex]);
+        struct Pokemon *mon = &gPlayerParty[partyIndex];
         u32 moveType = GetBattleMoveType(move); //  Probably doesn't handle dynamic types right now
         if (CanAbilityAbsorbMove(battlerAtk, tempBattleMonIndex, abilityDef, move, moveType, ABILITY_CHECK_TRIGGER)
          || CanAbilityBlockMove(battlerAtk, tempBattleMonIndex, abilityAtk, abilityDef, move, ABILITY_CHECK_TRIGGER)
-         || (CalcPartyMonTypeEffectivenessMultiplier(move, species, abilityDef) == 0))
+         || (CalcPartyMonTypeEffectivenessMultiplier(move, species, abilityDef, mon) == 0))
         {
             totalStallValue += currentStallValue;
         }
@@ -1008,6 +1009,8 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     u32 abilityAtk = aiData->abilities[battlerAtk];
     u32 abilityDef = aiData->abilities[battlerDef];
     s32 atkPriority = GetBattleMovePriority(battlerAtk, abilityAtk, move);
+    u16 AIBattlerTraits[MAX_MON_TRAITS];
+    AI_STORE_BATTLER_TRAITS(battlerDef);
 
     if (IS_TARGETING_PARTNER(battlerAtk, battlerDef))
         return score;
@@ -1100,7 +1103,9 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                     case EFFECT_CURSE:
                         if (IS_BATTLER_OF_TYPE(battlerAtk, TYPE_GHOST)) // Don't use Curse if you're a ghost type vs a Magic Guard user, they'll take no damage.
                             ADJUST_SCORE(-5);
-                        break;  
+                        break;
+                    default:
+                        break;
                 }
 
                 switch(nonVolatileStatus)
@@ -1109,6 +1114,8 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                 case MOVE_EFFECT_TOXIC:
                 case MOVE_EFFECT_BURN:
                     ADJUST_SCORE(-5);
+                    break;
+                default:
                     break;
                 }
             }
@@ -1131,7 +1138,7 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             && (nonVolatileStatus == MOVE_EFFECT_SLEEP))
                 RETURN_SCORE_MINUS(10);
             if (AISearchTraits(AIBattlerTraits, ABILITY_FLOWER_VEIL)
-            && (IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS) && (IsNonVolatileStatusMoveEffect(move))))
+            && (IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS) && (IsNonVolatileStatusMove(move))))
                 RETURN_SCORE_MINUS(10);
             if (AISearchTraits(AIBattlerTraits, ABILITY_MAGIC_BOUNCE)
             && MoveCanBeBouncedBack(move))
@@ -1140,15 +1147,15 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
             && IsStatLoweringEffect(moveEffect))
                 RETURN_SCORE_MINUS(20);
             if (AISearchTraits(AIBattlerTraits, ABILITY_COMATOSE)
-            && IsNonVolatileStatusMoveEffect(moveEffect))
+            && IsNonVolatileStatusMove(moveEffect))
                 RETURN_SCORE_MINUS(10);
             if (AISearchTraits(AIBattlerTraits, ABILITY_SHIELDS_DOWN)
-            && IsShieldsDownProtected(battlerAtk, aiData->abilities[battlerAtk]) && IsNonVolatileStatusMoveEffect(move))
+            && IsShieldsDownProtected(battlerAtk, aiData->abilities[battlerAtk]) && IsNonVolatileStatusMove(move))
                 RETURN_SCORE_MINUS(10);
             if (AISearchTraits(AIBattlerTraits, ABILITY_LEAF_GUARD)
             && ((AI_GetWeather() & B_WEATHER_SUN)
             && aiData->holdEffects[battlerDef] != HOLD_EFFECT_UTILITY_UMBRELLA
-            && IsNonVolatileStatusMoveEffect(move)))
+            && IsNonVolatileStatusMove(move)))
                 RETURN_SCORE_MINUS(10);
             
             // def ability checks
@@ -1166,16 +1173,15 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                  && (MoveCanBeBouncedBack(move) && moveTarget & (MOVE_TARGET_BOTH | MOVE_TARGET_FOES_AND_ALLY | MOVE_TARGET_OPPONENTS_FIELD)))
                     RETURN_SCORE_MINUS(20);
                 if (AISearchTraits(AIBattlerTraits, ABILITY_SWEET_VEIL)
-                 && (moveEffect == EFFECT_SLEEP || moveEffect == EFFECT_YAWN))
+                 && (nonVolatileStatus == MOVE_EFFECT_SLEEP))
                     RETURN_SCORE_MINUS(20);
                 if (AISearchTraits(AIBattlerTraits, ABILITY_FLOWER_VEIL)
-                 && ((IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS)) && (IsNonVolatileStatusMoveEffect(moveEffect) || IsStatLoweringEffect(moveEffect))))
+                 && ((IS_BATTLER_OF_TYPE(battlerDef, TYPE_GRASS)) && (IsNonVolatileStatusMove(moveEffect) || IsStatLoweringEffect(moveEffect))))
                     RETURN_SCORE_MINUS(10);
                 if (AISearchTraits(AIBattlerTraits, ABILITY_AROMA_VEIL)
                  && (IsAromaVeilProtectedEffect(moveEffect)))
                     RETURN_SCORE_MINUS(10);
             } // def partner ability checks
-        } // ignore def ability check
 
         // gen7+ dark type mons immune to priority->elevated moves from prankster
         if (B_PRANKSTER_DARK_TYPES >= GEN_7 && IS_BATTLER_OF_TYPE(battlerDef, TYPE_DARK)
@@ -1244,7 +1250,6 @@ static s32 AI_CheckBadMove(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
     }
 
     // check move effects
-    u16 AIBattlerTraits[MAX_MON_TRAITS];
     AI_STORE_BATTLER_TRAITS(battlerAtk);
 
     switch (moveEffect)
@@ -3189,7 +3194,7 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                      || AISearchTraits(AIBattlerTraits, ABILITY_MOTOR_DRIVE)
                      || AISearchTraits(AIBattlerTraits, ABILITY_VOLT_ABSORB)))
                      {
-                        if (B_REDIRECT_ABILITY_IMMUNITY < GEN_5 && BattlerHasTrait(battlerAtkPartner, ABILITY_LIGHTNING_ROD, TRUE))
+                        if (B_REDIRECT_ABILITY_IMMUNITY < GEN_5 && BattlerHasTrait(battlerAtkPartner, ABILITY_LIGHTNING_ROD))
                         {
                             RETURN_SCORE_MINUS(10);
                         }
@@ -3236,7 +3241,7 @@ static s32 AI_DoubleBattle(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
                  || AISearchTraits(AIBattlerTraits, ABILITY_WATER_ABSORB)
                  || AISearchTraits(AIBattlerTraits, ABILITY_STORM_DRAIN)))
                 {
-                    if (B_REDIRECT_ABILITY_IMMUNITY < GEN_5 && BattlerHasTrait(battlerAtkPartner, ABILITY_STORM_DRAIN, TRUE))
+                    if (B_REDIRECT_ABILITY_IMMUNITY < GEN_5 && BattlerHasTrait(battlerAtkPartner, ABILITY_STORM_DRAIN))
                     {
                         RETURN_SCORE_MINUS(10);
                     }
@@ -6196,6 +6201,7 @@ u8 BattlerHasInnate(u8 battlerId, u16 ability) {
 //Returns the trait slot number of the given ability. Starts at 1 for the primary Ability and returns 0 if the ability is not found. Use for individual checks.
 u8 BattlerHasTrait(u8 battlerId, u16 ability) 
 {
+    bool32 hasAbilityShield = GetBattlerHoldEffectIgnoreAbility(battlerId, TRUE) == HOLD_EFFECT_ABILITY_SHIELD;
     u8 traitNum = 0;
 
     if (GetBattlerAbility(battlerId) == ability)
@@ -6207,7 +6213,7 @@ u8 BattlerHasTrait(u8 battlerId, u16 ability)
         if (traitNum > 1
          && !gBattleStruct->bypassMoldBreakerChecks
          && GetBattlerHoldEffectIgnoreAbility(battlerId, TRUE) != HOLD_EFFECT_ABILITY_SHIELD
-         && CanBreakThroughAbility(gBattlerAttacker, battlerId, ability))
+         && CanBreakThroughAbility(gBattlerAttacker, battlerId, ability, hasAbilityShield))
         {
             return 0;
         }
