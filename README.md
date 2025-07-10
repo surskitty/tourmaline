@@ -22,6 +22,8 @@ The Trait System allows you to assign more than one ability to each pokemon for 
 - A useful template for organizing pokemon and assigning Traits can be found here: https://docs.google.com/spreadsheets/d/1pNtGGapXx20svfM0PpztHYHJnbgvXHS8tc_i-h0a0Po/edit?gid=0#gid=0
 Note that the Data sheet includes a collumn for automatically generating the .innate line to be added into Expansion's lists based on how you fill out the Pokemon's innate list.
 
+- The AI system largely works the same just with Innates added on top and fixed.  This means the AI can still treat Abilities as unknown until they learn what the Ability is directly, but Innates will always be treated as known.
+
 Basic code bedrock design comes from old Emerald Redux code with permission.
 
 Huge thanks to the RH Hideout discord community for their help, advice, and testing, especially Alex, Surskitty, Kleem, Meister_anon, and MGriffin who helped make this possible.
