@@ -1,7 +1,7 @@
 # Trait System (Full Release)
 
 This is the full release of the Multi-Ability function I'm calling the Trait System!
-Currently updated to Pokeemerald Expansion 1.11.1
+Currently updated to Pokeemerald Expansion 1.12.1
 
 The Trait System allows you to assign more than one ability to each pokemon for more complex and more interesting setups.
 
