@@ -1,0 +1,3 @@
+[submodule "poryscript"]
+	path = poryscript
+	url = https://github.com/huderlem/poryscript
