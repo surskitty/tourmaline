@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Anger Point raises Attack stage to maximum after receiving a critical hit")
+SINGLE_BATTLE_TEST("Anger Point raises Attack stage to maximum after receiving a critical hit")
 {
     GIVEN {
         ASSUME(MoveAlwaysCrits(MOVE_FROST_BREATH));
@@ -20,7 +20,7 @@ SINGLE_BATTLE_TEST("ABILITY: Anger Point raises Attack stage to maximum after re
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Anger Point does not trigger when already at maximum Attack stage")
+SINGLE_BATTLE_TEST("Anger Point does not trigger when already at maximum Attack stage")
 {
     GIVEN {
         ASSUME(MoveAlwaysCrits(MOVE_FROST_BREATH));
@@ -45,9 +45,9 @@ SINGLE_BATTLE_TEST("ABILITY: Anger Point does not trigger when already at maximu
     }
 }
 
-TO_DO_BATTLE_TEST("ABILITY: Anger Point triggers when a substitute takes the hit (Gen4)");
+TO_DO_BATTLE_TEST("Anger Point triggers when a substitute takes the hit (Gen4)");
 
-SINGLE_BATTLE_TEST("ABILITY: Anger Point does not trigger when a substitute takes the hit (Gen5+)")
+SINGLE_BATTLE_TEST("Anger Point does not trigger when a substitute takes the hit (Gen5+)")
 {
     GIVEN {
         ASSUME(MoveAlwaysCrits(MOVE_FROST_BREATH));
@@ -71,7 +71,7 @@ SINGLE_BATTLE_TEST("ABILITY: Anger Point does not trigger when a substitute take
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Anger Point raises Attack stage to maximum after receiving a critical hit")
+SINGLE_BATTLE_TEST("Anger Point raises Attack stage to maximum after receiving a critical hit (Trait)")
 {
     GIVEN {
         ASSUME(MoveAlwaysCrits(MOVE_FROST_BREATH));
@@ -90,7 +90,7 @@ SINGLE_BATTLE_TEST("INNATE: Anger Point raises Attack stage to maximum after rec
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Anger Point does not trigger when already at maximum Attack stage")
+SINGLE_BATTLE_TEST("Anger Point does not trigger when already at maximum Attack stage (Trait)")
 {
     GIVEN {
         ASSUME(MoveAlwaysCrits(MOVE_FROST_BREATH));
@@ -115,9 +115,9 @@ SINGLE_BATTLE_TEST("INNATE: Anger Point does not trigger when already at maximum
     }
 }
 
-TO_DO_BATTLE_TEST("INNATE: Anger Point triggers when a substitute takes the hit (Gen4)");
+TO_DO_BATTLE_TEST("Anger Point triggers when a substitute takes the hit (Gen4) (Trait)");
 
-SINGLE_BATTLE_TEST("INNATE: Anger Point does not trigger when a substitute takes the hit (Gen5+)")
+SINGLE_BATTLE_TEST("Anger Point does not trigger when a substitute takes the hit (Gen5+) (Trait)")
 {
     GIVEN {
         ASSUME(MoveAlwaysCrits(MOVE_FROST_BREATH));

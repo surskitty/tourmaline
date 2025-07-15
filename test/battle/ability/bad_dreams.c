@@ -2,7 +2,7 @@
 #include "test/battle.h"
 
 // Also checks that non-sleeping enemy is not affected.
-SINGLE_BATTLE_TEST("ABILITY: Bad Dreams causes the sleeping enemy Pokemon to lose 1/8 of hp")
+SINGLE_BATTLE_TEST("Bad Dreams causes the sleeping enemy Pokemon to lose 1/8 of HP")
 {
     u32 status;
     PARAMETRIZE { status = STATUS1_NONE; }
@@ -35,7 +35,7 @@ SINGLE_BATTLE_TEST("ABILITY: Bad Dreams causes the sleeping enemy Pokemon to los
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Bad Dreams does not activate if only the partner Pokemon is sleeping")
+DOUBLE_BATTLE_TEST("Bad Dreams does not activate if only the partner Pokemon is sleeping")
 {
     GIVEN {
         PLAYER(SPECIES_DARKRAI);
@@ -57,7 +57,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Bad Dreams does not activate if only the partner Po
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Bad Dreams activates for both sleeping pokemon on the player side")
+DOUBLE_BATTLE_TEST("Bad Dreams activates for both sleeping pokemon on the player side")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) {Status1(STATUS1_SLEEP);}
@@ -80,7 +80,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Bad Dreams activates for both sleeping pokemon on t
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Bad Dreams faints both sleeping Pokemon on player side")
+DOUBLE_BATTLE_TEST("Bad Dreams faints both sleeping Pokemon on player side")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) {Status1(STATUS1_SLEEP); HP(1);}
@@ -102,7 +102,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Bad Dreams faints both sleeping Pokemon on player s
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Bad Dreams faints both sleeping Pokemon on opponent side")
+DOUBLE_BATTLE_TEST("Bad Dreams faints both sleeping Pokemon on opponent side")
 {
     GIVEN {
         PLAYER(SPECIES_DARKRAI);
@@ -125,13 +125,13 @@ DOUBLE_BATTLE_TEST("ABILITY: Bad Dreams faints both sleeping Pokemon on opponent
 }
 
 // Also checks that non-sleeping enemy is not affected.
-SINGLE_BATTLE_TEST("INNATE: Bad Dreams causes the sleeping enemy Pokemon to lose 1/8 of hp")
+SINGLE_BATTLE_TEST("Bad Dreams causes the sleeping enemy Pokemon to lose 1/8 of HP (Trait)")
 {
     u32 status;
     PARAMETRIZE { status = STATUS1_NONE; }
     PARAMETRIZE { status = STATUS1_SLEEP; }
     GIVEN {
-        PLAYER(SPECIES_DARKRAI);
+        PLAYER(SPECIES_DARKRAI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_BAD_DREAMS); }
         OPPONENT(SPECIES_WOBBUFFET) {Status1(status);}
     } WHEN {
         TURN {;}
@@ -158,10 +158,10 @@ SINGLE_BATTLE_TEST("INNATE: Bad Dreams causes the sleeping enemy Pokemon to lose
     }
 }
 
-DOUBLE_BATTLE_TEST("INNATE: Bad Dreams does not activate if only the partner Pokemon is sleeping")
+DOUBLE_BATTLE_TEST("Bad Dreams does not activate if only the partner Pokemon is sleeping (Trait)")
 {
     GIVEN {
-        PLAYER(SPECIES_DARKRAI);
+        PLAYER(SPECIES_DARKRAI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_BAD_DREAMS); }
         PLAYER(SPECIES_WOBBUFFET) {Status1(STATUS1_SLEEP);}
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -180,12 +180,12 @@ DOUBLE_BATTLE_TEST("INNATE: Bad Dreams does not activate if only the partner Pok
     }
 }
 
-DOUBLE_BATTLE_TEST("INNATE: Bad Dreams activates for both sleeping pokemon on the player side")
+DOUBLE_BATTLE_TEST("Bad Dreams activates for both sleeping pokemon on the player side (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) {Status1(STATUS1_SLEEP);}
         PLAYER(SPECIES_WOBBUFFET) {Status1(STATUS1_SLEEP);}
-        OPPONENT(SPECIES_DARKRAI);
+        OPPONENT(SPECIES_DARKRAI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_BAD_DREAMS); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {;}
@@ -203,14 +203,14 @@ DOUBLE_BATTLE_TEST("INNATE: Bad Dreams activates for both sleeping pokemon on th
     }
 }
 
-DOUBLE_BATTLE_TEST("INNATE: Bad Dreams faints both sleeping Pokemon on player side")
+DOUBLE_BATTLE_TEST("Bad Dreams faints both sleeping Pokemon on player side (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) {Status1(STATUS1_SLEEP); HP(1);}
         PLAYER(SPECIES_WOBBUFFET) {Status1(STATUS1_SLEEP); HP(1);}
         PLAYER(SPECIES_WOBBUFFET) {Status1(STATUS1_SLEEP);}
         PLAYER(SPECIES_WOBBUFFET) {Status1(STATUS1_SLEEP);}
-        OPPONENT(SPECIES_DARKRAI);
+        OPPONENT(SPECIES_DARKRAI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_BAD_DREAMS); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {SEND_OUT(playerLeft, 2); SEND_OUT(playerRight, 3);}
@@ -225,10 +225,10 @@ DOUBLE_BATTLE_TEST("INNATE: Bad Dreams faints both sleeping Pokemon on player si
     }
 }
 
-DOUBLE_BATTLE_TEST("INNATE: Bad Dreams faints both sleeping Pokemon on opponent side")
+DOUBLE_BATTLE_TEST("Bad Dreams faints both sleeping Pokemon on opponent side (Trait)")
 {
     GIVEN {
-        PLAYER(SPECIES_DARKRAI);
+        PLAYER(SPECIES_DARKRAI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_BAD_DREAMS); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) {Status1(STATUS1_SLEEP); HP(1);}
         OPPONENT(SPECIES_WOBBUFFET) {Status1(STATUS1_SLEEP); HP(1);}

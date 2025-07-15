@@ -12,7 +12,7 @@ SINGLE_BATTLE_TEST("Liechi Berry raises the holder's Attack by one stage when HP
 {
     u32 move;
 
-    PARAMETRIZE { move = MOVE_TACKLE; }
+    PARAMETRIZE { move = MOVE_SCRATCH; }
     PARAMETRIZE { move = MOVE_DRAGON_RAGE; }
 
     GIVEN {
@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("Liechi Berry raises the holder's Attack by one stage when HP
         TURN { MOVE(opponent, move); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, move, opponent);
-        if (move == MOVE_TACKLE) {
+        if (move == MOVE_SCRATCH) {
             NONE_OF {
                 ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
                 MESSAGE("Using Liechi Berry, the Attack of Wobbuffet rose!");
@@ -69,7 +69,7 @@ SINGLE_BATTLE_TEST("Liechi Berry raises Attack by one stage when HP drops to 1/4
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Liechi Berry raises Attack by one stage when HP drops to 1/2 or below if holder has Gluttony")
+SINGLE_BATTLE_TEST("Liechi Berry raises Attack by one stage when HP drops to 1/2 or below if holder has Gluttony (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_BELLSPROUT) { MaxHP(80); HP(80); Ability(ABILITY_CHLOROPHYLL); Innates(ABILITY_GLUTTONY); Item(ITEM_LIECHI_BERRY); }
@@ -85,7 +85,7 @@ SINGLE_BATTLE_TEST("INNATE: Liechi Berry raises Attack by one stage when HP drop
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Liechi Berry raises Attack by one stage when HP drops to 1/4 or below if holder has Ripen")
+SINGLE_BATTLE_TEST("Liechi Berry raises Attack by one stage when HP drops to 1/4 or below if holder has Ripen (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_APPLIN) { MaxHP(160); HP(80); Ability(ABILITY_CHLOROPHYLL); Innates(ABILITY_RIPEN); Item(ITEM_LIECHI_BERRY); }

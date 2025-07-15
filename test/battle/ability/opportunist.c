@@ -3,10 +3,10 @@
 
 ASSUMPTIONS
 {
-    ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
+    ASSUME(GetMoveCategory(MOVE_SCRATCH) == DAMAGE_CATEGORY_PHYSICAL);
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Opportunist only copies foe's positive stat changes in a turn", s16 damage)
+SINGLE_BATTLE_TEST("Opportunist only copies foe's positive stat changes in a turn", s16 damage)
 {
     u32 ability;
     PARAMETRIZE { ability = ABILITY_FRISK; }
@@ -16,15 +16,15 @@ SINGLE_BATTLE_TEST("ABILITY: Opportunist only copies foe's positive stat changes
         OPPONENT(SPECIES_ESPATHRA) { Speed(5); Ability(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_SHELL_SMASH); }
-        TURN { MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(opponent, MOVE_SCRATCH); }
     } SCENE {
         if (ability == ABILITY_FRISK) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_SHELL_SMASH, player);
-            ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponent);
             HP_BAR(player, captureDamage: &results[i].damage);
         } else {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_SHELL_SMASH, player);
-            ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponent);
             HP_BAR(player, captureDamage: &results[i].damage);
         }
     } FINALLY {
@@ -40,7 +40,7 @@ SINGLE_BATTLE_TEST("ABILITY: Opportunist only copies foe's positive stat changes
 }
 
 
-DOUBLE_BATTLE_TEST("ABILITY: Opportunist raises Attack only once when partner has Intimidate against Contrary foe in a double battle", s16 damageLeft, s16 damageRight)
+DOUBLE_BATTLE_TEST("Opportunist raises Attack only once when partner has Intimidate against Contrary foe in a double battle", s16 damageLeft, s16 damageRight)
 {
     u32 abilityLeft, abilityRight;
 
@@ -55,7 +55,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Opportunist raises Attack only once when partner ha
         OPPONENT(SPECIES_SPINDA) { Ability(abilityLeft); }
         OPPONENT(SPECIES_SPINDA) { Ability(abilityRight); }
     } WHEN {
-        TURN { MOVE(opponentLeft, MOVE_TACKLE, target: playerLeft); MOVE(opponentRight, MOVE_TACKLE, target: playerRight); }
+        TURN { MOVE(opponentLeft, MOVE_SCRATCH, target: playerLeft); MOVE(opponentRight, MOVE_SCRATCH, target: playerRight); }
     } SCENE {
         ABILITY_POPUP(playerLeft, ABILITY_INTIMIDATE);
         if (abilityLeft == ABILITY_CONTRARY) {
@@ -104,7 +104,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Opportunist raises Attack only once when partner ha
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Opportunist does not accumulate opposing mon's stat changes")
+SINGLE_BATTLE_TEST("Opportunist does not accumulate opposing mon's stat changes")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -122,7 +122,7 @@ SINGLE_BATTLE_TEST("ABILITY: Opportunist does not accumulate opposing mon's stat
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Opportunist copies each stat increase individually from ability and move")
+SINGLE_BATTLE_TEST("Opportunist copies each stat increase individually from ability and move")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -141,7 +141,7 @@ SINGLE_BATTLE_TEST("ABILITY: Opportunist copies each stat increase individually 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Opportunist doesn't copy foe stat increases gained via Opportunist")
+SINGLE_BATTLE_TEST("Opportunist doesn't copy foe stat increases gained via Opportunist")
 {
     GIVEN {
         PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_OPPORTUNIST); }
@@ -157,7 +157,7 @@ SINGLE_BATTLE_TEST("ABILITY: Opportunist doesn't copy foe stat increases gained 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Opportunist copies foe stat increase gained via Swagger and Flatter")
+SINGLE_BATTLE_TEST("Opportunist copies foe stat increase gained via Swagger and Flatter")
 {
     GIVEN {
         PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_OPPORTUNIST); }
@@ -176,7 +176,7 @@ SINGLE_BATTLE_TEST("ABILITY: Opportunist copies foe stat increase gained via Swa
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Opportunist doesn't copy ally stat increases")
+DOUBLE_BATTLE_TEST("Opportunist doesn't copy ally stat increases")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -193,7 +193,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Opportunist doesn't copy ally stat increases")
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Opportunist copies the stat increase of each opposing mon")
+DOUBLE_BATTLE_TEST("Opportunist copies the stat increase of each opposing mon")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -212,7 +212,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Opportunist copies the stat increase of each opposi
 }
 
 
-DOUBLE_BATTLE_TEST("ABILITY: Opportunist copies the stat of each pokemon that were raised at the same time")
+DOUBLE_BATTLE_TEST("Opportunist copies the stat of each pokemon that were raised at the same time")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -233,7 +233,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Opportunist copies the stat of each pokemon that we
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Opportunist copies the increase not the stages")
+SINGLE_BATTLE_TEST("Opportunist copies the increase not the stages")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -260,16 +260,16 @@ SINGLE_BATTLE_TEST("ABILITY: Opportunist copies the increase not the stages")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Opportunist copies the stat increase from the incoming mon")
+SINGLE_BATTLE_TEST("Opportunist copies the stat increase from the incoming mon")
 {
     GIVEN {
         PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_OPPORTUNIST); }
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
         OPPONENT(SPECIES_ZACIAN) { Ability(ABILITY_INTREPID_SWORD); }
     } WHEN {
-        TURN { MOVE(player, MOVE_TACKLE); SEND_OUT(opponent, 1); }
+        TURN { MOVE(player, MOVE_SCRATCH); SEND_OUT(opponent, 1); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
         ABILITY_POPUP(opponent, ABILITY_INTREPID_SWORD);
         ABILITY_POPUP(player, ABILITY_OPPORTUNIST);
     } THEN {
@@ -277,7 +277,7 @@ SINGLE_BATTLE_TEST("ABILITY: Opportunist copies the stat increase from the incom
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Opportunist and Mirror Herb stack stat increases")
+SINGLE_BATTLE_TEST("Opportunist and Mirror Herb stack stat increases")
 {
     GIVEN {
         PLAYER(SPECIES_ZACIAN) { Ability(ABILITY_INTREPID_SWORD); }
@@ -297,7 +297,7 @@ SINGLE_BATTLE_TEST("ABILITY: Opportunist and Mirror Herb stack stat increases")
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Opportunist only copies foe's positive stat changes in a turn", s16 damage)
+SINGLE_BATTLE_TEST("Opportunist only copies foe's positive stat changes in a turn (Trait)", s16 damage)
 {
     u32 ability;
     PARAMETRIZE { ability = ABILITY_FRISK; }
@@ -307,15 +307,15 @@ SINGLE_BATTLE_TEST("INNATE: Opportunist only copies foe's positive stat changes 
         OPPONENT(SPECIES_ESPATHRA) { Speed(5); Ability(ABILITY_FRISK); Innates(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_SHELL_SMASH); }
-        TURN { MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(opponent, MOVE_SCRATCH); }
     } SCENE {
         if (ability == ABILITY_FRISK) {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_SHELL_SMASH, player);
-            ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponent);
             HP_BAR(player, captureDamage: &results[i].damage);
         } else {
             ANIMATION(ANIM_TYPE_MOVE, MOVE_SHELL_SMASH, player);
-            ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponent);
             HP_BAR(player, captureDamage: &results[i].damage);
         }
     } FINALLY {
@@ -331,7 +331,7 @@ SINGLE_BATTLE_TEST("INNATE: Opportunist only copies foe's positive stat changes 
 }
 
 
-DOUBLE_BATTLE_TEST("INNATE: Opportunist raises Attack only once when partner has Intimidate against Contrary foe in a double battle", s16 damageLeft, s16 damageRight)
+DOUBLE_BATTLE_TEST("Opportunist raises Attack only once when partner has Intimidate against Contrary foe in a double battle (Trait)", s16 damageLeft, s16 damageRight)
 {
     u32 abilityLeft, abilityRight;
 
@@ -346,7 +346,7 @@ DOUBLE_BATTLE_TEST("INNATE: Opportunist raises Attack only once when partner has
         OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_TANGLED_FEET); Innates(abilityLeft); }
         OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_TANGLED_FEET); Innates(abilityRight); }
     } WHEN {
-        TURN { MOVE(opponentLeft, MOVE_TACKLE, target: playerLeft); MOVE(opponentRight, MOVE_TACKLE, target: playerRight); }
+        TURN { MOVE(opponentLeft, MOVE_SCRATCH, target: playerLeft); MOVE(opponentRight, MOVE_SCRATCH, target: playerRight); }
     } SCENE {
         ABILITY_POPUP(playerLeft, ABILITY_INTIMIDATE);
         if (abilityLeft == ABILITY_CONTRARY) {
@@ -395,7 +395,7 @@ DOUBLE_BATTLE_TEST("INNATE: Opportunist raises Attack only once when partner has
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Opportunist does not accumulate opposing mon's stat changes")
+SINGLE_BATTLE_TEST("Opportunist does not accumulate opposing mon's stat changes (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -413,7 +413,7 @@ SINGLE_BATTLE_TEST("INNATE: Opportunist does not accumulate opposing mon's stat 
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Opportunist copies each stat increase individually from ability and move")
+SINGLE_BATTLE_TEST("Opportunist copies each stat increase individually from ability and move (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -432,7 +432,7 @@ SINGLE_BATTLE_TEST("INNATE: Opportunist copies each stat increase individually f
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Opportunist doesn't copy foe stat increases gained via Opportunist")
+SINGLE_BATTLE_TEST("Opportunist doesn't copy foe stat increases gained via Opportunist (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_FRISK); Innates(ABILITY_OPPORTUNIST); }
@@ -448,7 +448,7 @@ SINGLE_BATTLE_TEST("INNATE: Opportunist doesn't copy foe stat increases gained v
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Opportunist copies foe stat increase gained via Swagger and Flatter")
+SINGLE_BATTLE_TEST("Opportunist copies foe stat increase gained via Swagger and Flatter (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_FRISK); Innates(ABILITY_OPPORTUNIST); }
@@ -467,7 +467,7 @@ SINGLE_BATTLE_TEST("INNATE: Opportunist copies foe stat increase gained via Swag
     }
 }
 
-DOUBLE_BATTLE_TEST("INNATE: Opportunist doesn't copy ally stat increases")
+DOUBLE_BATTLE_TEST("Opportunist doesn't copy ally stat increases (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -484,7 +484,7 @@ DOUBLE_BATTLE_TEST("INNATE: Opportunist doesn't copy ally stat increases")
     }
 }
 
-DOUBLE_BATTLE_TEST("INNATE: Opportunist copies the stat increase of each opposing mon")
+DOUBLE_BATTLE_TEST("Opportunist copies the stat increase of each opposing mon (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -503,7 +503,7 @@ DOUBLE_BATTLE_TEST("INNATE: Opportunist copies the stat increase of each opposin
 }
 
 
-DOUBLE_BATTLE_TEST("INNATE: Opportunist copies the stat of each pokemon that were raised at the same time")
+DOUBLE_BATTLE_TEST("Opportunist copies the stat of each pokemon that were raised at the same time (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -524,7 +524,7 @@ DOUBLE_BATTLE_TEST("INNATE: Opportunist copies the stat of each pokemon that wer
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Opportunist copies the increase not the stages")
+SINGLE_BATTLE_TEST("Opportunist copies the increase not the stages (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -551,16 +551,16 @@ SINGLE_BATTLE_TEST("INNATE: Opportunist copies the increase not the stages")
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Opportunist copies the stat increase from the incoming mon")
+SINGLE_BATTLE_TEST("Opportunist copies the stat increase from the incoming mon (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_ESPATHRA) { Ability(ABILITY_FRISK); Innates(ABILITY_OPPORTUNIST); }
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
         OPPONENT(SPECIES_ZACIAN) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTREPID_SWORD); }
     } WHEN {
-        TURN { MOVE(player, MOVE_TACKLE); SEND_OUT(opponent, 1); }
+        TURN { MOVE(player, MOVE_SCRATCH); SEND_OUT(opponent, 1); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
         ABILITY_POPUP(opponent, ABILITY_INTREPID_SWORD);
         ABILITY_POPUP(player, ABILITY_OPPORTUNIST);
     } THEN {
@@ -568,7 +568,7 @@ SINGLE_BATTLE_TEST("INNATE: Opportunist copies the stat increase from the incomi
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Opportunist and Mirror Herb stack stat increases")
+SINGLE_BATTLE_TEST("Opportunist and Mirror Herb stack stat increases (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_ZACIAN) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTREPID_SWORD); }

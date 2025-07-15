@@ -1,11 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-ASSUMPTIONS
-{
-}
-
-SINGLE_BATTLE_TEST("ABILITY: Poison Puppeteer confuses target if it was poisoned by a damaging move")
+SINGLE_BATTLE_TEST("Poison Puppeteer confuses target if it was poisoned by a damaging move")
 {
     GIVEN {
         ASSUME(MoveHasAdditionalEffect(MOVE_POISON_STING, MOVE_EFFECT_POISON) == TRUE);
@@ -24,7 +20,7 @@ SINGLE_BATTLE_TEST("ABILITY: Poison Puppeteer confuses target if it was poisoned
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Poison Puppeteer confuses target if it was (badly) poisoned by a status move")
+SINGLE_BATTLE_TEST("Poison Puppeteer confuses target if it was (badly) poisoned by a status move")
 {
     u32 move;
 
@@ -50,7 +46,7 @@ SINGLE_BATTLE_TEST("ABILITY: Poison Puppeteer confuses target if it was (badly) 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Poison Puppeteer does not trigger if poison is Toxic Spikes induced")
+SINGLE_BATTLE_TEST("Poison Puppeteer does not trigger if poison is Toxic Spikes induced")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_TOXIC_SPIKES) == EFFECT_TOXIC_SPIKES);
@@ -72,7 +68,7 @@ SINGLE_BATTLE_TEST("ABILITY: Poison Puppeteer does not trigger if poison is Toxi
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Poison Puppeteer confuses target if it was poisoned by a damaging move")
+SINGLE_BATTLE_TEST("Poison Puppeteer confuses target if it was poisoned by a damaging move (Trait)")
 {
     GIVEN {
         ASSUME(MoveHasAdditionalEffect(MOVE_POISON_STING, MOVE_EFFECT_POISON) == TRUE);
@@ -91,7 +87,7 @@ SINGLE_BATTLE_TEST("INNATE: Poison Puppeteer confuses target if it was poisoned 
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Poison Puppeteer confuses target if it was (badly) poisoned by a status move")
+SINGLE_BATTLE_TEST("Poison Puppeteer confuses target if it was (badly) poisoned by a status move (Trait)")
 {
     u32 move;
 
@@ -117,7 +113,7 @@ SINGLE_BATTLE_TEST("INNATE: Poison Puppeteer confuses target if it was (badly) p
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Poison Puppeteer does not trigger if poison is Toxic Spikes induced")
+SINGLE_BATTLE_TEST("Poison Puppeteer does not trigger if poison is Toxic Spikes induced (Trait)")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_TOXIC_SPIKES) == EFFECT_TOXIC_SPIKES);

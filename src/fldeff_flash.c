@@ -159,24 +159,6 @@ void CB2_DoChangeMap(void)
 
 static bool8 TryDoMapTransition(void)
 {
-    u8 i;
-    u8 fromType = GetLastUsedWarpMapType();
-    u8 toType = GetCurrentMapType();
-
-    if (GetLastUsedWarpMapSectionId() != gMapHeader.regionMapSectionId && (MapHasPreviewScreen_HandleQLState2(gMapHeader.regionMapSectionId, MPS_TYPE_CAVE) == TRUE || MapHasPreviewScreen_HandleQLState2(gMapHeader.regionMapSectionId, MPS_TYPE_BASIC) == TRUE))
-    {
-        RunMapPreviewScreen(gMapHeader.regionMapSectionId);
-        return TRUE;
-    }
-    for (i = 0; sTransitionTypes[i].fromType; i++)
-    {
-        if (sTransitionTypes[i].fromType == fromType && sTransitionTypes[i].toType == toType)
-        {
-            sTransitionTypes[i].func();
-            return TRUE;
-        }
-    }
-
     return FALSE;
 }
 

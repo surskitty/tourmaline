@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Electric Surge creates Electric Terrain when entering the battle")
+SINGLE_BATTLE_TEST("Electric Surge creates Electric Terrain when entering the battle")
 {
     GIVEN {
         PLAYER(SPECIES_TAPU_KOKO) { Ability(ABILITY_ELECTRIC_SURGE); }
@@ -14,7 +14,7 @@ SINGLE_BATTLE_TEST("ABILITY: Electric Surge creates Electric Terrain when enteri
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Electric Surge creates Electric Terrain when entering the battle")
+SINGLE_BATTLE_TEST("Electric Surge creates Electric Terrain when entering the battle (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_TAPU_KOKO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ELECTRIC_SURGE); }
@@ -26,3 +26,4 @@ SINGLE_BATTLE_TEST("INNATE: Electric Surge creates Electric Terrain when enterin
         MESSAGE("An electric current ran across the battlefield!");
     }
 }
+

@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Leaf Guard prevents non-volatile status conditions in sun")
+SINGLE_BATTLE_TEST("Leaf Guard prevents non-volatile status conditions in sun")
 {
     u32 move;
     u16 status;
@@ -11,10 +11,14 @@ SINGLE_BATTLE_TEST("ABILITY: Leaf Guard prevents non-volatile status conditions 
     PARAMETRIZE { move = MOVE_TOXIC; status = STATUS1_TOXIC_POISON; }
     // PARAMETRIZE { move = MOVE_POWDER_SNOW; status = STATUS1_FREEZE; } // Pointless since you can't freeze in sunlight anyway
     GIVEN {
-        ASSUME(GetMoveEffect(MOVE_WILL_O_WISP) == EFFECT_WILL_O_WISP);
-        ASSUME(GetMoveEffect(MOVE_HYPNOSIS) == EFFECT_SLEEP);
-        ASSUME(GetMoveEffect(MOVE_THUNDER_WAVE) == EFFECT_PARALYZE);
-        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
+        ASSUME(GetMoveEffect(MOVE_WILL_O_WISP) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_WILL_O_WISP) == MOVE_EFFECT_BURN);
+        ASSUME(GetMoveEffect(MOVE_HYPNOSIS) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_HYPNOSIS) == MOVE_EFFECT_SLEEP);
+        ASSUME(GetMoveEffect(MOVE_THUNDER_WAVE) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_THUNDER_WAVE) == MOVE_EFFECT_PARALYSIS);
+        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_TOXIC) == MOVE_EFFECT_TOXIC);
         PLAYER(SPECIES_LEAFEON) { Ability(ABILITY_LEAF_GUARD); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -27,9 +31,9 @@ SINGLE_BATTLE_TEST("ABILITY: Leaf Guard prevents non-volatile status conditions 
     }
 }
 
-TO_DO_BATTLE_TEST("ABILITY: Leaf Guard doesn't prevent non-volatile status conditions if Cloud Nine/Air Lock is on the field");
+TO_DO_BATTLE_TEST("Leaf Guard doesn't prevent non-volatile status conditions if Cloud Nine/Air Lock is on the field");
 
-SINGLE_BATTLE_TEST("ABILITY: Leaf Guard prevents status conditions from Flame Orb and Toxic Orb")
+SINGLE_BATTLE_TEST("Leaf Guard prevents status conditions from Flame Orb and Toxic Orb")
 {
     u32 item;
     PARAMETRIZE { item = ITEM_FLAME_ORB; }
@@ -51,9 +55,9 @@ SINGLE_BATTLE_TEST("ABILITY: Leaf Guard prevents status conditions from Flame Or
     }
 }
 
-TO_DO_BATTLE_TEST("ABILITY: Leaf Guard doesn't prevent status conditions from Flame Orb and Toxic Orb if Cloud Nine/Air Lock is on the field");
+TO_DO_BATTLE_TEST("Leaf Guard doesn't prevent status conditions from Flame Orb and Toxic Orb if Cloud Nine/Air Lock is on the field");
 
-SINGLE_BATTLE_TEST("ABILITY: Leaf Guard prevents Rest during sun")
+SINGLE_BATTLE_TEST("Leaf Guard prevents Rest during sun")
 {
     GIVEN {
         ASSUME(B_LEAF_GUARD_PREVENTS_REST >= GEN_5);
@@ -71,9 +75,9 @@ SINGLE_BATTLE_TEST("ABILITY: Leaf Guard prevents Rest during sun")
     }
 }
 
-TO_DO_BATTLE_TEST("ABILITY: Leaf Guard doesn't prevent Rest if Cloud Nine/Air Lock is on the field");
+TO_DO_BATTLE_TEST("Leaf Guard doesn't prevent Rest if Cloud Nine/Air Lock is on the field");
 
-SINGLE_BATTLE_TEST("INNATE: Leaf Guard prevents non-volatile status conditions in sun")
+SINGLE_BATTLE_TEST("Leaf Guard prevents non-volatile status conditions in sun (Trait)")
 {
     u32 move;
     u16 status;
@@ -83,10 +87,14 @@ SINGLE_BATTLE_TEST("INNATE: Leaf Guard prevents non-volatile status conditions i
     PARAMETRIZE { move = MOVE_TOXIC; status = STATUS1_TOXIC_POISON; }
     // PARAMETRIZE { move = MOVE_POWDER_SNOW; status = STATUS1_FREEZE; } // Pointless since you can't freeze in sunlight anyway
     GIVEN {
-        ASSUME(GetMoveEffect(MOVE_WILL_O_WISP) == EFFECT_WILL_O_WISP);
-        ASSUME(GetMoveEffect(MOVE_HYPNOSIS) == EFFECT_SLEEP);
-        ASSUME(GetMoveEffect(MOVE_THUNDER_WAVE) == EFFECT_PARALYZE);
-        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
+        ASSUME(GetMoveEffect(MOVE_WILL_O_WISP) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_WILL_O_WISP) == MOVE_EFFECT_BURN);
+        ASSUME(GetMoveEffect(MOVE_HYPNOSIS) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_HYPNOSIS) == MOVE_EFFECT_SLEEP);
+        ASSUME(GetMoveEffect(MOVE_THUNDER_WAVE) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_THUNDER_WAVE) == MOVE_EFFECT_PARALYSIS);
+        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_TOXIC) == MOVE_EFFECT_TOXIC);
         PLAYER(SPECIES_LEAFEON) { Ability(ABILITY_CHLOROPHYLL); Innates(ABILITY_LEAF_GUARD); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -99,9 +107,9 @@ SINGLE_BATTLE_TEST("INNATE: Leaf Guard prevents non-volatile status conditions i
     }
 }
 
-TO_DO_BATTLE_TEST("INNATE: Leaf Guard doesn't prevent non-volatile status conditions if Cloud Nine/Air Lock is on the field");
+TO_DO_BATTLE_TEST("Leaf Guard doesn't prevent non-volatile status conditions if Cloud Nine/Air Lock is on the field (Trait)");
 
-SINGLE_BATTLE_TEST("INNATE: Leaf Guard prevents status conditions from Flame Orb and Toxic Orb")
+SINGLE_BATTLE_TEST("Leaf Guard prevents status conditions from Flame Orb and Toxic Orb (Trait)")
 {
     u32 item;
     PARAMETRIZE { item = ITEM_FLAME_ORB; }
@@ -123,9 +131,9 @@ SINGLE_BATTLE_TEST("INNATE: Leaf Guard prevents status conditions from Flame Orb
     }
 }
 
-TO_DO_BATTLE_TEST("INNATE: Leaf Guard doesn't prevent status conditions from Flame Orb and Toxic Orb if Cloud Nine/Air Lock is on the field");
+TO_DO_BATTLE_TEST("Leaf Guard doesn't prevent status conditions from Flame Orb and Toxic Orb if Cloud Nine/Air Lock is on the field (Trait)");
 
-SINGLE_BATTLE_TEST("INNATE: Leaf Guard prevents Rest during sun")
+SINGLE_BATTLE_TEST("Leaf Guard prevents Rest during sun (Trait)")
 {
     GIVEN {
         ASSUME(B_LEAF_GUARD_PREVENTS_REST >= GEN_5);
@@ -143,4 +151,4 @@ SINGLE_BATTLE_TEST("INNATE: Leaf Guard prevents Rest during sun")
     }
 }
 
-TO_DO_BATTLE_TEST("INNATE: Leaf Guard doesn't prevent Rest if Cloud Nine/Air Lock is on the field");
+TO_DO_BATTLE_TEST("Leaf Guard doesn't prevent Rest if Cloud Nine/Air Lock is on the field (Trait)");

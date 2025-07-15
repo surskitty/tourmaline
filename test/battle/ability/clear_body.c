@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke prevent intimidate")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent intimidate")
 {
     s16 turnOneHit;
     s16 turnTwoHit;
@@ -15,8 +15,8 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke preven
         PLAYER(SPECIES_EKANS) { Ability(ABILITY_INTIMIDATE); };
         OPPONENT(species) { Ability(ability); };
     } WHEN {
-        TURN { MOVE(opponent, MOVE_TACKLE); }
-        TURN { SWITCH(player, 1); MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(opponent, MOVE_SCRATCH); }
+        TURN { SWITCH(player, 1); MOVE(opponent, MOVE_SCRATCH); }
 
     } SCENE {
         HP_BAR(player, captureDamage: &turnOneHit);
@@ -37,7 +37,7 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke preven
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke prevent stat stage reduction from moves")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent stat stage reduction from moves")
 {
     u16 move = MOVE_NONE;
     u32 j, species = SPECIES_NONE, ability = ABILITY_NONE;
@@ -84,7 +84,7 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke preven
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke prevent Sticky Web effect on switchin")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent Sticky Web effect on switchin")
 {
     u32 species, ability;
     PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; }
@@ -112,7 +112,7 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke preven
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't prevent stat stage reduction from moves used by the user")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent stat stage reduction from moves used by the user")
 {
     u32 species, ability;
     PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; }
@@ -135,7 +135,7 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Mold Breaker, Teravolt, and Turboblaze ignore Clear Body and White Smoke, but not Full Metal Body")
+SINGLE_BATTLE_TEST("Mold Breaker, Teravolt, and Turboblaze ignore Clear Body and White Smoke, but not Full Metal Body")
 {
     u32 j, k, species = SPECIES_NONE, ability = ABILITY_NONE;
     u16 breakerAbility = ABILITY_NONE;
@@ -195,7 +195,7 @@ SINGLE_BATTLE_TEST("ABILITY: Mold Breaker, Teravolt, and Turboblaze ignore Clear
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't prevent Speed reduction from Iron Ball")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Speed reduction from Iron Ball")
 {
     u32 j, species = SPECIES_NONE, ability = ABILITY_NONE;
     u16 heldItem = ITEM_NONE;
@@ -237,7 +237,7 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't prevent Speed reduction from paralysis")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Speed reduction from paralysis")
 {
     u32 species, ability;
 
@@ -273,7 +273,7 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't prevent Attack reduction from burn", s16 damage)
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Attack reduction from burn", s16 damage)
 {
     bool32 burned = FALSE;
     u32 species, ability;
@@ -284,11 +284,11 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't 
     PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_WHITE_SMOKE; burned = FALSE; }
     PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_WHITE_SMOKE; burned = TRUE; }
     GIVEN {
-        ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_SCRATCH) == DAMAGE_CATEGORY_PHYSICAL);
         PLAYER(SPECIES_WOBBUFFET)
         OPPONENT(species) { Ability(ability); if (burned) Status1(STATUS1_BURN); }
     } WHEN {
-        TURN { MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(opponent, MOVE_SCRATCH); }
     } SCENE {
         NOT ABILITY_POPUP(opponent, ability);
         HP_BAR(player, captureDamage: &results[i].damage);
@@ -297,7 +297,7 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't prevent receiving negative stat changes from Baton Pass")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent receiving negative stat changes from Baton Pass")
 {
     u32 species, ability;
 
@@ -327,7 +327,7 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't prevent Topsy-Turvy")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Topsy-Turvy")
 {
     u32 species, ability;
 
@@ -368,7 +368,7 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't prevent Spectral Thief from resetting positive stat changes")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Spectral Thief from resetting positive stat changes")
 {
     u32 species, ability;
 
@@ -413,7 +413,7 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke don't 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke protect from Protect's secondary effects")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke protect from Protect's secondary effects")
 {
     u32 move = MOVE_NONE;
     u32 species = SPECIES_NONE;
@@ -437,11 +437,11 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke protec
         PLAYER(species) { Ability(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(opponent, move); MOVE(player, MOVE_TACKLE); }
+        TURN { MOVE(opponent, move); MOVE(player, MOVE_SCRATCH); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, move, opponent);
         NONE_OF {
-            ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
             if (move == MOVE_KINGS_SHIELD) {
                 MESSAGE("Wobbuffet's Attack fell!");
             } else if (move == MOVE_SILK_TRAP) {
@@ -453,7 +453,7 @@ SINGLE_BATTLE_TEST("ABILITY: Clear Body, Full Metal Body, and White Smoke protec
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke prevent intimidate")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent intimidate (Trait)")
 {
     s16 turnOneHit;
     s16 turnTwoHit;
@@ -467,8 +467,8 @@ SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke prevent
         PLAYER(SPECIES_EKANS) { Ability(ABILITY_UNNERVE); Innates(ABILITY_INTIMIDATE); };
         OPPONENT(species) { Ability(ability); Innates(innate); };
     } WHEN {
-        TURN { MOVE(opponent, MOVE_TACKLE); }
-        TURN { SWITCH(player, 1); MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(opponent, MOVE_SCRATCH); }
+        TURN { SWITCH(player, 1); MOVE(opponent, MOVE_SCRATCH); }
 
     } SCENE {
         HP_BAR(player, captureDamage: &turnOneHit);
@@ -489,7 +489,7 @@ SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke prevent
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke prevent stat stage reduction from moves")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent stat stage reduction from moves (Trait)")
 {
     u16 move = MOVE_NONE;
     u32 j, species = SPECIES_NONE, ability = ABILITY_NONE, innate = ABILITY_NONE;
@@ -536,7 +536,7 @@ SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke prevent
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke prevent Sticky Web effect on switchin")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent Sticky Web effect on switchin (Trait)")
 {
     u32 species, ability, innate;
     PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_LIGHT_METAL; innate = ABILITY_CLEAR_BODY; }
@@ -564,7 +564,7 @@ SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke prevent
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke don't prevent stat stage reduction from moves used by the user")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent stat stage reduction from moves used by the user (Trait)")
 {
     u32 species, ability, innate;
     PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_LIGHT_METAL; innate = ABILITY_CLEAR_BODY; }
@@ -587,7 +587,7 @@ SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke don't p
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Mold Breaker, Teravolt, and Turboblaze ignore Clear Body and White Smoke, but not Full Metal Body")
+SINGLE_BATTLE_TEST("Mold Breaker, Teravolt, and Turboblaze ignore Clear Body and White Smoke, but not Full Metal Body (Trait)")
 {
     u32 j, k, species = SPECIES_NONE, ability = ABILITY_NONE, innate = ABILITY_NONE;
     u16 breakerAbility = ABILITY_NONE;
@@ -647,7 +647,7 @@ SINGLE_BATTLE_TEST("INNATE: Mold Breaker, Teravolt, and Turboblaze ignore Clear 
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke don't prevent Speed reduction from Iron Ball")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Speed reduction from Iron Ball (Trait)")
 {
     u32 j, species = SPECIES_NONE, ability = ABILITY_NONE, innate = ABILITY_NONE;
     u16 heldItem = ITEM_NONE;
@@ -689,7 +689,7 @@ SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke don't p
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke don't prevent Speed reduction from paralysis")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Speed reduction from paralysis (Trait)")
 {
     u32 species, ability, innate;
 
@@ -725,7 +725,7 @@ SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke don't p
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke don't prevent Attack reduction from burn", s16 damage)
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Attack reduction from burn (Trait)", s16 damage)
 {
     bool32 burned = FALSE;
     u32 species, ability, innate;
@@ -736,11 +736,11 @@ SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke don't p
     PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_SHELL_ARMOR; innate = ABILITY_WHITE_SMOKE; burned = FALSE; }
     PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_SHELL_ARMOR; innate = ABILITY_WHITE_SMOKE; burned = TRUE; }
     GIVEN {
-        ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_SCRATCH) == DAMAGE_CATEGORY_PHYSICAL);
         PLAYER(SPECIES_WOBBUFFET)
         OPPONENT(species) { Ability(ability); Innates(innate); if (burned) Status1(STATUS1_BURN); }
     } WHEN {
-        TURN { MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(opponent, MOVE_SCRATCH); }
     } SCENE {
         NOT ABILITY_POPUP(opponent, innate);
         HP_BAR(player, captureDamage: &results[i].damage);
@@ -749,7 +749,7 @@ SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke don't p
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke don't prevent receiving negative stat changes from Baton Pass")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent receiving negative stat changes from Baton Pass (Trait)")
 {
     u32 species, ability, innate;
 
@@ -779,7 +779,7 @@ SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke don't p
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke don't prevent Topsy-Turvy")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Topsy-Turvy (Trait)")
 {
     u32 species, ability, innate;
 
@@ -820,7 +820,7 @@ SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke don't p
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke don't prevent Spectral Thief from resetting positive stat changes")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Spectral Thief from resetting positive stat changes (Trait)")
 {
     u32 species, ability, innate;
 
@@ -865,7 +865,7 @@ SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke don't p
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke protect from Protect's secondary effects")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke protect from Protect's secondary effects (Trait)")
 {
     u32 move = MOVE_NONE;
     u32 species = SPECIES_NONE;
@@ -890,11 +890,11 @@ SINGLE_BATTLE_TEST("INNATE: Clear Body, Full Metal Body, and White Smoke protect
         PLAYER(species) { Ability(ability); Innates(innate); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(opponent, move); MOVE(player, MOVE_TACKLE); }
+        TURN { MOVE(opponent, move); MOVE(player, MOVE_SCRATCH); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, move, opponent);
         NONE_OF {
-            ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
             if (move == MOVE_KINGS_SHIELD) {
                 MESSAGE("Wobbuffet's Attack fell!");
             } else if (move == MOVE_SILK_TRAP) {

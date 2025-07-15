@@ -1,7 +1,6 @@
 mapscripts SlateportCity_SternsShipyard_1F_MapScripts {}
 
 raw `
-.set LOCALID_DOCK, 1
 SlateportCity_SternsShipyard_1F_EventScript_Dock::
     lockall
     speakername SlateportCity_SternsShipyard_1F_Text_Dock

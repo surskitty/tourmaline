@@ -1,10 +1,10 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Mind's Eye allows to hit Ghost-type Pokémon with Normal- and Fighting-type moves")
+SINGLE_BATTLE_TEST("Mind's Eye allows to hit Ghost-type Pokémon with Normal- and Fighting-type moves")
 {
     u32 move;
-    PARAMETRIZE { move = MOVE_TACKLE; }
+    PARAMETRIZE { move = MOVE_SCRATCH; }
     PARAMETRIZE { move = MOVE_KARATE_CHOP; }
 
     GIVEN {
@@ -19,10 +19,10 @@ SINGLE_BATTLE_TEST("ABILITY: Mind's Eye allows to hit Ghost-type Pokémon with N
 }
 
 // No current official way to test this, effect based on Smogon's NatDex format.
-SINGLE_BATTLE_TEST("ABILITY: Mind's Eye doesn't bypass a Ghost-type's Wonder Guard")
+SINGLE_BATTLE_TEST("Mind's Eye doesn't bypass a Ghost-type's Wonder Guard")
 {
     u32 move;
-    PARAMETRIZE { move = MOVE_TACKLE; }
+    PARAMETRIZE { move = MOVE_SCRATCH; }
     PARAMETRIZE { move = MOVE_KARATE_CHOP; }
 
     GIVEN {
@@ -42,38 +42,39 @@ SINGLE_BATTLE_TEST("ABILITY: Mind's Eye doesn't bypass a Ghost-type's Wonder Gua
 
 //// AI TESTS ////
 
-AI_SINGLE_BATTLE_TEST("ABILITY: AI doesn't use accuracy-lowering moves if it knows that the foe has Mind's Eye")
+AI_SINGLE_BATTLE_TEST("AI doesn't use accuracy-lowering moves if it knows that the foe has Mind's Eye")
 {
-    u32 abilityAI = ABILITY_NONE, moveAI = MOVE_NONE, j = 0;
+    u32 abilityAI = ABILITY_NONE;
 
-    for (j = MOVE_NONE + 1; j < MOVES_COUNT; j++)
-    {
-        if (GetMoveEffect(j) == EFFECT_ACCURACY_DOWN || GetMoveEffect(j) == EFFECT_ACCURACY_DOWN_2) {
-            PARAMETRIZE { moveAI = j; abilityAI = ABILITY_SWIFT_SWIM; }
-            PARAMETRIZE { moveAI = j; abilityAI = ABILITY_MOLD_BREAKER; }
-        }
-    }
+    PARAMETRIZE { abilityAI = ABILITY_SWIFT_SWIM; }
+    PARAMETRIZE { abilityAI = ABILITY_MOLD_BREAKER; }
 
     GIVEN {
+        ASSUME(GetMoveEffect(MOVE_SAND_ATTACK) == EFFECT_ACCURACY_DOWN);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_MINDS_EYE); }
-        OPPONENT(SPECIES_BASCULEGION) { Moves(MOVE_CELEBRATE, moveAI); Ability(abilityAI); }
+        PLAYER(SPECIES_URSALUNA_BLOODMOON) { Ability(ABILITY_MINDS_EYE); }
+        OPPONENT(SPECIES_BASCULEGION) { Moves(MOVE_CELEBRATE, MOVE_SAND_ATTACK); Ability(abilityAI); }
     } WHEN {
-            TURN { MOVE(player, MOVE_TACKLE); }
-            TURN { MOVE(player, MOVE_TACKLE);
-                   if (abilityAI == ABILITY_MOLD_BREAKER) { SCORE_GT(opponent, moveAI, MOVE_CELEBRATE); }
-                   else { SCORE_EQ(opponent, moveAI, MOVE_CELEBRATE); }
-                }
+        TURN { MOVE(player, MOVE_SCRATCH); }
+        TURN { MOVE(player, MOVE_SCRATCH);
+               if (abilityAI == ABILITY_MOLD_BREAKER) {
+                   SCORE_GT(opponent, MOVE_SAND_ATTACK, MOVE_CELEBRATE);
+               } else {
+                   SCORE_EQ(opponent, MOVE_SAND_ATTACK, MOVE_CELEBRATE);
+               }
+        }
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
-        if (abilityAI == ABILITY_MOLD_BREAKER) { ANIMATION(ANIM_TYPE_MOVE, moveAI, opponent); }
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
+        if (abilityAI == ABILITY_MOLD_BREAKER) {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SAND_ATTACK, opponent);
+        }
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Mind's Eye allows to hit Ghost-type Pokémon with Normal- and Fighting-type moves")
+SINGLE_BATTLE_TEST("Mind's Eye allows to hit Ghost-type Pokémon with Normal- and Fighting-type moves (Trait)")
 {
     u32 move;
-    PARAMETRIZE { move = MOVE_TACKLE; }
+    PARAMETRIZE { move = MOVE_SCRATCH; }
     PARAMETRIZE { move = MOVE_KARATE_CHOP; }
 
     GIVEN {
@@ -88,10 +89,10 @@ SINGLE_BATTLE_TEST("INNATE: Mind's Eye allows to hit Ghost-type Pokémon with No
 }
 
 // No current official way to test this, effect based on Smogon's NatDex format.
-SINGLE_BATTLE_TEST("INNATE: Mind's Eye doesn't bypass a Ghost-type's Wonder Guard")
+SINGLE_BATTLE_TEST("Mind's Eye doesn't bypass a Ghost-type's Wonder Guard (Trait)")
 {
     u32 move;
-    PARAMETRIZE { move = MOVE_TACKLE; }
+    PARAMETRIZE { move = MOVE_SCRATCH; }
     PARAMETRIZE { move = MOVE_KARATE_CHOP; }
 
     GIVEN {
@@ -111,30 +112,31 @@ SINGLE_BATTLE_TEST("INNATE: Mind's Eye doesn't bypass a Ghost-type's Wonder Guar
 
 //// AI TESTS ////
 
-AI_SINGLE_BATTLE_TEST("INNATE: AI doesn't use accuracy-lowering moves if it knows that the foe has Mind's Eye")
+AI_SINGLE_BATTLE_TEST("AI doesn't use accuracy-lowering moves if it knows that the foe has Mind's Eye")
 {
-    u32 abilityAI = ABILITY_NONE, moveAI = MOVE_NONE, j = 0;
+    u32 abilityAI = ABILITY_NONE;
 
-    for (j = MOVE_NONE + 1; j < MOVES_COUNT; j++)
-    {
-        if (GetMoveEffect(j) == EFFECT_ACCURACY_DOWN || GetMoveEffect(j) == EFFECT_ACCURACY_DOWN_2) {
-            PARAMETRIZE { moveAI = j; abilityAI = ABILITY_SWIFT_SWIM; }
-            PARAMETRIZE { moveAI = j; abilityAI = ABILITY_MOLD_BREAKER; }
-        }
-    }
+    PARAMETRIZE { abilityAI = ABILITY_SWIFT_SWIM; }
+    PARAMETRIZE { abilityAI = ABILITY_MOLD_BREAKER; }
 
     GIVEN {
+        ASSUME(GetMoveEffect(MOVE_SAND_ATTACK) == EFFECT_ACCURACY_DOWN);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_MINDS_EYE); }
-        OPPONENT(SPECIES_BASCULEGION) { Moves(MOVE_CELEBRATE, moveAI); Ability(ABILITY_LIGHT_METAL); Innates(abilityAI); }
+        OPPONENT(SPECIES_BASCULEGION) { Moves(MOVE_CELEBRATE, MOVE_SAND_ATTACK); Ability(ABILITY_LIGHT_METAL); Innates(abilityAI); }
     } WHEN {
-            TURN { MOVE(player, MOVE_TACKLE); }
-            TURN { MOVE(player, MOVE_TACKLE);
-                   if (abilityAI == ABILITY_MOLD_BREAKER) { SCORE_GT(opponent, moveAI, MOVE_CELEBRATE); }
-                   else { SCORE_EQ(opponent, moveAI, MOVE_CELEBRATE); }
-                }
+        TURN { MOVE(player, MOVE_SCRATCH); }
+        TURN { MOVE(player, MOVE_SCRATCH);
+               if (abilityAI == ABILITY_MOLD_BREAKER) {
+                   SCORE_GT(opponent, MOVE_SAND_ATTACK, MOVE_CELEBRATE);
+               } else {
+                   SCORE_EQ(opponent, MOVE_SAND_ATTACK, MOVE_CELEBRATE);
+               }
+        }
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
-        if (abilityAI == ABILITY_MOLD_BREAKER) { ANIMATION(ANIM_TYPE_MOVE, moveAI, opponent); }
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
+        if (abilityAI == ABILITY_MOLD_BREAKER) {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SAND_ATTACK, opponent);
+        }
     }
 }

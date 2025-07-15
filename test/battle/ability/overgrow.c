@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Overgrow boosts Grass-type moves in a pinch", s16 damage)
+SINGLE_BATTLE_TEST("Overgrow boosts Grass-type moves in a pinch", s16 damage)
 {
     u16 hp;
     PARAMETRIZE { hp = 99; }
@@ -19,7 +19,7 @@ SINGLE_BATTLE_TEST("ABILITY: Overgrow boosts Grass-type moves in a pinch", s16 d
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Overgrow boosts Grass-type moves in a pinch", s16 damage)
+SINGLE_BATTLE_TEST("Overgrow boosts Grass-type moves in a pinch (Trait)", s16 damage)
 {
     u16 hp;
     PARAMETRIZE { hp = 99; }

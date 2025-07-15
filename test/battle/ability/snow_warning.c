@@ -2,9 +2,9 @@
 #include "test/battle.h"
 
 #if B_SNOW_WARNING < GEN_9
-SINGLE_BATTLE_TEST("ABILITY: Snow Warning summons hail")
+SINGLE_BATTLE_TEST("Snow Warning summons hail")
 #elif B_SNOW_WARNING >= GEN_9
-SINGLE_BATTLE_TEST("ABILITY: Snow Warning summons snow")
+SINGLE_BATTLE_TEST("Snow Warning summons snow")
 #endif
 {
     GIVEN {
@@ -24,9 +24,9 @@ SINGLE_BATTLE_TEST("ABILITY: Snow Warning summons snow")
 }
 
 #if B_SNOW_WARNING < GEN_9
-SINGLE_BATTLE_TEST("INNATE: Snow Warning summons hail")
+SINGLE_BATTLE_TEST("Snow Warning summons hail (Trait)")
 #elif B_SNOW_WARNING >= GEN_9
-SINGLE_BATTLE_TEST("INNATE: Snow Warning summons snow")
+SINGLE_BATTLE_TEST("Snow Warning summons snow (Trait)")
 #endif
 {
     GIVEN {

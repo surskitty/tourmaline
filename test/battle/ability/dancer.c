@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Dancer can copy a dance move immediately after it was used and allow the user of Dancer to still use its move")
+SINGLE_BATTLE_TEST("Dancer can copy a dance move immediately after it was used and allow the user of Dancer to still use its move")
 {
     GIVEN {
         ASSUME(IsDanceMove(MOVE_QUIVER_DANCE));
@@ -19,7 +19,7 @@ SINGLE_BATTLE_TEST("ABILITY: Dancer can copy a dance move immediately after it w
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Dancer can copy Teeter Dance")
+SINGLE_BATTLE_TEST("Dancer can copy Teeter Dance")
 {
     GIVEN {
         ASSUME(IsDanceMove(MOVE_TEETER_DANCE));
@@ -34,7 +34,7 @@ SINGLE_BATTLE_TEST("ABILITY: Dancer can copy Teeter Dance")
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Dancer can copy Teeter Dance and confuse both opposing targets")
+DOUBLE_BATTLE_TEST("Dancer can copy Teeter Dance and confuse both opposing targets")
 {
     GIVEN {
         ASSUME(IsDanceMove(MOVE_TEETER_DANCE));
@@ -54,7 +54,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Dancer can copy Teeter Dance and confuse both oppos
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Dancer triggers from slowest to fastest")
+DOUBLE_BATTLE_TEST("Dancer triggers from slowest to fastest")
 {
     GIVEN {
         ASSUME(IsDanceMove(MOVE_DRAGON_DANCE));
@@ -79,7 +79,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Dancer triggers from slowest to fastest")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Dancer doesn't trigger if the original user flinches")
+SINGLE_BATTLE_TEST("Dancer doesn't trigger if the original user flinches")
 {
     GIVEN {
         ASSUME(MoveHasAdditionalEffectWithChance(MOVE_FAKE_OUT, MOVE_EFFECT_FLINCH, 100));
@@ -98,7 +98,7 @@ SINGLE_BATTLE_TEST("ABILITY: Dancer doesn't trigger if the original user flinche
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Dancer still triggers if another dancer flinches")
+DOUBLE_BATTLE_TEST("Dancer still triggers if another dancer flinches")
 {
     GIVEN {
         ASSUME(MoveHasAdditionalEffectWithChance(MOVE_FAKE_OUT, MOVE_EFFECT_FLINCH, 100));
@@ -127,7 +127,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Dancer still triggers if another dancer flinches")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Dancer-called attacks have their type updated")
+SINGLE_BATTLE_TEST("Dancer-called attacks have their type updated")
 {
     GIVEN {
         ASSUME(IsDanceMove(MOVE_REVELATION_DANCE));
@@ -146,7 +146,7 @@ SINGLE_BATTLE_TEST("ABILITY: Dancer-called attacks have their type updated")
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Dancer doesn't trigger on a snatched move")
+DOUBLE_BATTLE_TEST("Dancer doesn't trigger on a snatched move")
 {
     GIVEN {
         ASSUME(IsDanceMove(MOVE_DRAGON_DANCE));
@@ -170,7 +170,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Dancer doesn't trigger on a snatched move")
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Dancer triggers on Instructed dance moves")
+DOUBLE_BATTLE_TEST("Dancer triggers on Instructed dance moves")
 {
     GIVEN {
         ASSUME(IsDanceMove(MOVE_DRAGON_DANCE));
@@ -197,20 +197,20 @@ DOUBLE_BATTLE_TEST("ABILITY: Dancer triggers on Instructed dance moves")
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Dancer-called move doesn't update move to be Instructed")
+DOUBLE_BATTLE_TEST("Dancer-called move doesn't update move to be Instructed")
 {
     GIVEN {
         ASSUME(IsDanceMove(MOVE_DRAGON_DANCE));
-        ASSUME(!IsMoveInstructBanned(MOVE_TACKLE));
+        ASSUME(!IsMoveInstructBanned(MOVE_SCRATCH));
         ASSUME(GetMoveEffect(MOVE_INSTRUCT) == EFFECT_INSTRUCT);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_ORICORIO);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(opponentLeft, MOVE_TACKLE, target: playerLeft); MOVE(playerRight, MOVE_DRAGON_DANCE); MOVE(opponentRight, MOVE_INSTRUCT, target: opponentLeft); }
+        TURN { MOVE(opponentLeft, MOVE_SCRATCH, target: playerLeft); MOVE(playerRight, MOVE_DRAGON_DANCE); MOVE(opponentRight, MOVE_INSTRUCT, target: opponentLeft); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentLeft);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponentLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_DANCE, playerRight);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
         ABILITY_POPUP(opponentLeft, ABILITY_DANCER);
@@ -221,11 +221,11 @@ DOUBLE_BATTLE_TEST("ABILITY: Dancer-called move doesn't update move to be Instru
             ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_DANCE, opponentLeft);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
         }
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentLeft);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponentLeft);
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Dancer doesn't call a move that didn't execute due to Powder")
+DOUBLE_BATTLE_TEST("Dancer doesn't call a move that didn't execute due to Powder")
 {
     GIVEN {
         ASSUME(IsDanceMove(MOVE_FIERY_DANCE));
@@ -248,7 +248,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Dancer doesn't call a move that didn't execute due 
 }
 
 
-DOUBLE_BATTLE_TEST("ABILITY: Dancer still activates after Red Card")
+DOUBLE_BATTLE_TEST("Dancer still activates after Red Card")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) ;
@@ -274,7 +274,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Dancer still activates after Red Card")
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Dancer still activate after Red Card even if blocked by Suction Cups")
+DOUBLE_BATTLE_TEST("Dancer still activate after Red Card even if blocked by Suction Cups")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SUCTION_CUPS); }
@@ -301,7 +301,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Dancer still activate after Red Card even if blocke
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Dancer correctly restores move targets")
+DOUBLE_BATTLE_TEST("Dancer correctly restores move targets")
 {
     GIVEN {
         ASSUME(IsDanceMove(MOVE_REVELATION_DANCE));
@@ -335,7 +335,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Dancer correctly restores move targets")
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Dancer can copy a dance move immediately after it was used and allow the user of Dancer to still use its move")
+SINGLE_BATTLE_TEST("Dancer can copy a dance move immediately after it was used and allow the user of Dancer to still use its move (Trait)")
 {
     GIVEN {
         ASSUME(IsDanceMove(MOVE_QUIVER_DANCE));
@@ -353,7 +353,7 @@ SINGLE_BATTLE_TEST("INNATE: Dancer can copy a dance move immediately after it wa
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Dancer can copy Teeter Dance")
+SINGLE_BATTLE_TEST("Dancer can copy Teeter Dance (Trait)")
 {
     GIVEN {
         ASSUME(IsDanceMove(MOVE_TEETER_DANCE));
@@ -368,7 +368,7 @@ SINGLE_BATTLE_TEST("INNATE: Dancer can copy Teeter Dance")
     }
 }
 
-DOUBLE_BATTLE_TEST("INNATE: Dancer can copy Teeter Dance and confuse both opposing targets")
+DOUBLE_BATTLE_TEST("Dancer can copy Teeter Dance and confuse both opposing targets (Trait)")
 {
     GIVEN {
         ASSUME(IsDanceMove(MOVE_TEETER_DANCE));
@@ -388,7 +388,7 @@ DOUBLE_BATTLE_TEST("INNATE: Dancer can copy Teeter Dance and confuse both opposi
     }
 }
 
-DOUBLE_BATTLE_TEST("INNATE: Dancer triggers from slowest to fastest")
+DOUBLE_BATTLE_TEST("Dancer triggers from slowest to fastest (Trait)")
 {
     GIVEN {
         ASSUME(IsDanceMove(MOVE_DRAGON_DANCE));
@@ -413,7 +413,7 @@ DOUBLE_BATTLE_TEST("INNATE: Dancer triggers from slowest to fastest")
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Dancer doesn't trigger if the original user flinches")
+SINGLE_BATTLE_TEST("Dancer doesn't trigger if the original user flinches (Trait)")
 {
     GIVEN {
         ASSUME(MoveHasAdditionalEffectWithChance(MOVE_FAKE_OUT, MOVE_EFFECT_FLINCH, 100));
@@ -432,7 +432,7 @@ SINGLE_BATTLE_TEST("INNATE: Dancer doesn't trigger if the original user flinches
     }
 }
 
-DOUBLE_BATTLE_TEST("INNATE: Dancer still triggers if another dancer flinches")
+DOUBLE_BATTLE_TEST("Dancer still triggers if another dancer flinches (Trait)")
 {
     GIVEN {
         ASSUME(MoveHasAdditionalEffectWithChance(MOVE_FAKE_OUT, MOVE_EFFECT_FLINCH, 100));
@@ -461,13 +461,13 @@ DOUBLE_BATTLE_TEST("INNATE: Dancer still triggers if another dancer flinches")
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Dancer-called attacks have their type updated")
+SINGLE_BATTLE_TEST("Dancer-called attacks have their type updated (Trait)")
 {
     GIVEN {
         ASSUME(IsDanceMove(MOVE_REVELATION_DANCE));
         ASSUME(GetMoveEffect(MOVE_REVELATION_DANCE) == EFFECT_REVELATION_DANCE);
         PLAYER(SPECIES_TANGROWTH);
-        OPPONENT(SPECIES_ORICORIO_BAILE);
+        OPPONENT(SPECIES_ORICORIO_BAILE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DANCER); }
     } WHEN {
         TURN { MOVE(player, MOVE_REVELATION_DANCE); }
     } SCENE {
@@ -480,7 +480,7 @@ SINGLE_BATTLE_TEST("INNATE: Dancer-called attacks have their type updated")
     }
 }
 
-DOUBLE_BATTLE_TEST("INNATE: Dancer doesn't trigger on a snatched move")
+DOUBLE_BATTLE_TEST("Dancer doesn't trigger on a snatched move (Trait)")
 {
     GIVEN {
         ASSUME(IsDanceMove(MOVE_DRAGON_DANCE));
@@ -504,7 +504,7 @@ DOUBLE_BATTLE_TEST("INNATE: Dancer doesn't trigger on a snatched move")
     }
 }
 
-DOUBLE_BATTLE_TEST("INNATE: Dancer triggers on Instructed dance moves")
+DOUBLE_BATTLE_TEST("Dancer triggers on Instructed dance moves (Trait)")
 {
     GIVEN {
         ASSUME(IsDanceMove(MOVE_DRAGON_DANCE));
@@ -512,7 +512,7 @@ DOUBLE_BATTLE_TEST("INNATE: Dancer triggers on Instructed dance moves")
         ASSUME(GetMoveEffect(MOVE_INSTRUCT) == EFFECT_INSTRUCT);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_ORICORIO);
+        OPPONENT(SPECIES_ORICORIO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DANCER); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(playerRight, MOVE_DRAGON_DANCE); MOVE(playerLeft, MOVE_INSTRUCT, target: playerRight); }
@@ -531,20 +531,20 @@ DOUBLE_BATTLE_TEST("INNATE: Dancer triggers on Instructed dance moves")
     }
 }
 
-DOUBLE_BATTLE_TEST("INNATE: Dancer-called move doesn't update move to be Instructed")
+DOUBLE_BATTLE_TEST("Dancer-called move doesn't update move to be Instructed (Trait)")
 {
     GIVEN {
         ASSUME(IsDanceMove(MOVE_DRAGON_DANCE));
-        ASSUME(!IsMoveInstructBanned(MOVE_TACKLE));
+        ASSUME(!IsMoveInstructBanned(MOVE_SCRATCH));
         ASSUME(GetMoveEffect(MOVE_INSTRUCT) == EFFECT_INSTRUCT);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_ORICORIO);
+        OPPONENT(SPECIES_ORICORIO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DANCER); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(opponentLeft, MOVE_TACKLE, target: playerLeft); MOVE(playerRight, MOVE_DRAGON_DANCE); MOVE(opponentRight, MOVE_INSTRUCT, target: opponentLeft); }
+        TURN { MOVE(opponentLeft, MOVE_SCRATCH, target: playerLeft); MOVE(playerRight, MOVE_DRAGON_DANCE); MOVE(opponentRight, MOVE_INSTRUCT, target: opponentLeft); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentLeft);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponentLeft);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_DANCE, playerRight);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
         ABILITY_POPUP(opponentLeft, ABILITY_DANCER);
@@ -555,17 +555,17 @@ DOUBLE_BATTLE_TEST("INNATE: Dancer-called move doesn't update move to be Instruc
             ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_DANCE, opponentLeft);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
         }
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponentLeft);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponentLeft);
     }
 }
 
-DOUBLE_BATTLE_TEST("INNATE: Dancer doesn't call a move that didn't execute due to Powder")
+DOUBLE_BATTLE_TEST("Dancer doesn't call a move that didn't execute due to Powder (Trait)")
 {
     GIVEN {
         ASSUME(IsDanceMove(MOVE_FIERY_DANCE));
         ASSUME(GetMoveType(MOVE_FIERY_DANCE) == TYPE_FIRE);
         PLAYER(SPECIES_VOLCARONA);
-        PLAYER(SPECIES_ORICORIO);
+        PLAYER(SPECIES_ORICORIO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DANCER); }
         OPPONENT(SPECIES_WYNAUT);
         OPPONENT(SPECIES_VIVILLON);
     } WHEN {
@@ -582,7 +582,7 @@ DOUBLE_BATTLE_TEST("INNATE: Dancer doesn't call a move that didn't execute due t
 }
 
 
-DOUBLE_BATTLE_TEST("INNATE: Dancer still activates after Red Card")
+DOUBLE_BATTLE_TEST("Dancer still activates after Red Card (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) ;
@@ -608,7 +608,7 @@ DOUBLE_BATTLE_TEST("INNATE: Dancer still activates after Red Card")
     }
 }
 
-DOUBLE_BATTLE_TEST("INNATE: Dancer still activate after Red Card even if blocked by Suction Cups")
+DOUBLE_BATTLE_TEST("Dancer still activate after Red Card even if blocked by Suction Cups (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_SUCTION_CUPS); }
@@ -635,14 +635,14 @@ DOUBLE_BATTLE_TEST("INNATE: Dancer still activate after Red Card even if blocked
     }
 }
 
-DOUBLE_BATTLE_TEST("INNATE: Dancer correctly restores move targets")
+DOUBLE_BATTLE_TEST("Dancer correctly restores move targets (Trait)")
 {
     GIVEN {
         ASSUME(IsDanceMove(MOVE_REVELATION_DANCE));
-        PLAYER(SPECIES_ORICORIO) { Speed(10); }
-        PLAYER(SPECIES_ORICORIO) { Speed(3); }
-        OPPONENT(SPECIES_ORICORIO) { Speed(1); }
-        OPPONENT(SPECIES_ORICORIO) { Speed(5); }
+        PLAYER(SPECIES_ORICORIO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DANCER); Speed(10); }
+        PLAYER(SPECIES_ORICORIO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DANCER); Speed(3); }
+        OPPONENT(SPECIES_ORICORIO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DANCER); Speed(1); }
+        OPPONENT(SPECIES_ORICORIO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DANCER); Speed(5); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_REVELATION_DANCE, target: opponentLeft);
                MOVE(opponentRight, MOVE_TACKLE, target: playerRight);

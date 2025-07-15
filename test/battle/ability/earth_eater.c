@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Earth Eater heals 25% when hit by ground type moves")
+SINGLE_BATTLE_TEST("Earth Eater heals 25% when hit by ground type moves")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_MUD_SLAP) == TYPE_GROUND);
@@ -16,7 +16,7 @@ SINGLE_BATTLE_TEST("ABILITY: Earth Eater heals 25% when hit by ground type moves
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Earth Eater does not activate if protected")
+SINGLE_BATTLE_TEST("Earth Eater does not activate if protected")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_MUD_SLAP) == TYPE_GROUND);
@@ -32,7 +32,7 @@ SINGLE_BATTLE_TEST("ABILITY: Earth Eater does not activate if protected")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Earth Eater activates on status moves")
+SINGLE_BATTLE_TEST("Earth Eater activates on status moves")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_SAND_ATTACK) == TYPE_GROUND);
@@ -48,7 +48,7 @@ SINGLE_BATTLE_TEST("ABILITY: Earth Eater activates on status moves")
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Earth Eater heals 25% when hit by ground type moves")
+SINGLE_BATTLE_TEST("Earth Eater heals 25% when hit by ground type moves (Trait)")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_MUD_SLAP) == TYPE_GROUND);
@@ -63,7 +63,7 @@ SINGLE_BATTLE_TEST("INNATE: Earth Eater heals 25% when hit by ground type moves"
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Earth Eater does not activate if protected")
+SINGLE_BATTLE_TEST("Earth Eater does not activate if protected (Trait)")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_MUD_SLAP) == TYPE_GROUND);
@@ -79,7 +79,7 @@ SINGLE_BATTLE_TEST("INNATE: Earth Eater does not activate if protected")
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Earth Eater activates on status moves")
+SINGLE_BATTLE_TEST("Earth Eater activates on status moves (Trait)")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_SAND_ATTACK) == TYPE_GROUND);

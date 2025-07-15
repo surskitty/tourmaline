@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Supersweet Syrup lowers evasion once per battle by one stage")
+SINGLE_BATTLE_TEST("Supersweet Syrup lowers evasion once per battle by one stage")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -26,7 +26,7 @@ SINGLE_BATTLE_TEST("ABILITY: Supersweet Syrup lowers evasion once per battle by 
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Supersweet Syrup lowers evasion of both opposing mon's in battle")
+DOUBLE_BATTLE_TEST("Supersweet Syrup lowers evasion of both opposing mon's in battle")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -46,7 +46,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Supersweet Syrup lowers evasion of both opposing mo
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Supersweet Syrup can not further lower opponents evasion if it is at minimum stages")
+SINGLE_BATTLE_TEST("Supersweet Syrup can not further lower opponents evasion if it is at minimum stages")
 {
     GIVEN {
         PLAYER(SPECIES_ODDISH);
@@ -72,7 +72,7 @@ SINGLE_BATTLE_TEST("ABILITY: Supersweet Syrup can not further lower opponents ev
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Supersweet Syrup lowers evasion once per battle by one stage")
+SINGLE_BATTLE_TEST("Supersweet Syrup lowers evasion once per battle by one stage (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -97,7 +97,7 @@ SINGLE_BATTLE_TEST("INNATE: Supersweet Syrup lowers evasion once per battle by o
     }
 }
 
-DOUBLE_BATTLE_TEST("INNATE: Supersweet Syrup lowers evasion of both opposing mon's in battle")
+DOUBLE_BATTLE_TEST("Supersweet Syrup lowers evasion of both opposing mon's in battle (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -117,7 +117,7 @@ DOUBLE_BATTLE_TEST("INNATE: Supersweet Syrup lowers evasion of both opposing mon
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Supersweet Syrup can not further lower opponents evasion if it is at minimum stages")
+SINGLE_BATTLE_TEST("Supersweet Syrup can not further lower opponents evasion if it is at minimum stages (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_ODDISH);

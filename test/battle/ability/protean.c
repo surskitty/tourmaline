@@ -6,7 +6,7 @@ ASSUMPTIONS
     ASSUME(B_PROTEAN_LIBERO == GEN_9);
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Protean changes the type of the user only once per switch in")
+SINGLE_BATTLE_TEST("Protean changes the type of the user only once per switch in")
 {
     GIVEN {
         PLAYER(SPECIES_REGIROCK);
@@ -14,7 +14,7 @@ SINGLE_BATTLE_TEST("ABILITY: Protean changes the type of the user only once per 
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_WATER_GUN); }
-        TURN { MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(opponent, MOVE_SCRATCH); }
         TURN { SWITCH(opponent, 1); }
         TURN { SWITCH(opponent, 0); }
         TURN { MOVE(opponent, MOVE_WATER_GUN); }
@@ -26,14 +26,14 @@ SINGLE_BATTLE_TEST("ABILITY: Protean changes the type of the user only once per 
             ABILITY_POPUP(opponent, ABILITY_PROTEAN);
             MESSAGE("The opposing Kecleon transformed into the Normal type!");
         }
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponent);
         ABILITY_POPUP(opponent, ABILITY_PROTEAN);
         MESSAGE("The opposing Kecleon transformed into the Water type!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_GUN, opponent);
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Protean changes the type of the user only once per switch in")
+SINGLE_BATTLE_TEST("Protean changes the type of the user only once per switch in (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_REGIROCK);
@@ -41,7 +41,7 @@ SINGLE_BATTLE_TEST("INNATE: Protean changes the type of the user only once per s
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_WATER_GUN); }
-        TURN { MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(opponent, MOVE_SCRATCH); }
         TURN { SWITCH(opponent, 1); }
         TURN { SWITCH(opponent, 0); }
         TURN { MOVE(opponent, MOVE_WATER_GUN); }
@@ -53,7 +53,7 @@ SINGLE_BATTLE_TEST("INNATE: Protean changes the type of the user only once per s
             ABILITY_POPUP(opponent, ABILITY_PROTEAN);
             MESSAGE("The opposing Kecleon transformed into the Normal type!");
         }
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponent);
         ABILITY_POPUP(opponent, ABILITY_PROTEAN);
         MESSAGE("The opposing Kecleon transformed into the Water type!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_GUN, opponent);

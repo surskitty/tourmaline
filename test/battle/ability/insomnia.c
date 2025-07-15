@@ -1,10 +1,11 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Insomnia prevents sleep")
+SINGLE_BATTLE_TEST("Insomnia prevents sleep")
 {
     GIVEN {
-        ASSUME(GetMoveEffect(MOVE_SPORE) == EFFECT_SLEEP);
+        ASSUME(GetMoveEffect(MOVE_SPORE) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_SPORE) == MOVE_EFFECT_SLEEP);
         PLAYER(SPECIES_DROWZEE) { Ability(ABILITY_INSOMNIA); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -19,7 +20,7 @@ SINGLE_BATTLE_TEST("ABILITY: Insomnia prevents sleep")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Insomnia prevents yawn")
+SINGLE_BATTLE_TEST("Insomnia prevents yawn")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_YAWN) == EFFECT_YAWN);
@@ -39,7 +40,7 @@ SINGLE_BATTLE_TEST("ABILITY: Insomnia prevents yawn")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Insomnia prevents rest")
+SINGLE_BATTLE_TEST("Insomnia prevents rest")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_REST) == EFFECT_REST);
@@ -58,10 +59,11 @@ SINGLE_BATTLE_TEST("ABILITY: Insomnia prevents rest")
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Insomnia prevents sleep")
+SINGLE_BATTLE_TEST("Insomnia prevents sleep (Trait)")
 {
     GIVEN {
-        ASSUME(GetMoveEffect(MOVE_SPORE) == EFFECT_SLEEP);
+        ASSUME(GetMoveEffect(MOVE_SPORE) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_SPORE) == MOVE_EFFECT_SLEEP);
         PLAYER(SPECIES_DROWZEE) { Ability(ABILITY_INSOMNIA); Innates(ABILITY_INSOMNIA); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -76,7 +78,7 @@ SINGLE_BATTLE_TEST("INNATE: Insomnia prevents sleep")
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Insomnia prevents yawn")
+SINGLE_BATTLE_TEST("Insomnia prevents yawn (Trait)")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_YAWN) == EFFECT_YAWN);
@@ -96,7 +98,7 @@ SINGLE_BATTLE_TEST("INNATE: Insomnia prevents yawn")
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Insomnia prevents rest")
+SINGLE_BATTLE_TEST("Insomnia prevents rest (Trait)")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_REST) == EFFECT_REST);

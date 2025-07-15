@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-DOUBLE_BATTLE_TEST("ABILITY: Grim Neigh raises Sp. Attack by one stage after directly causing a Pokemon to faint")
+DOUBLE_BATTLE_TEST("Grim Neigh raises Sp. Attack by one stage after directly causing a Pokemon to faint")
 {
     u32 species = 0, ability = 0, abilityPopUp = 0;
     PARAMETRIZE { species = SPECIES_SPECTRIER;            ability = ABILITY_GRIM_NEIGH;          abilityPopUp = ABILITY_GRIM_NEIGH; }
@@ -16,28 +16,22 @@ DOUBLE_BATTLE_TEST("ABILITY: Grim Neigh raises Sp. Attack by one stage after dir
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_DISCHARGE); SEND_OUT(opponentLeft, 2);  }
     } SCENE {
-        int i;
-
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DISCHARGE, playerLeft);
-        for (i = 0; i < 3; i++) {
-            ONE_OF {
-                MESSAGE("Snorunt fainted!");
-                MESSAGE("The opposing Glalie fainted!");
-                MESSAGE("The opposing Abra fainted!");
-            }
-            ABILITY_POPUP(playerLeft, abilityPopUp);
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-            if (species == SPECIES_SPECTRIER)
-                MESSAGE("Spectrier's Grim Neigh raised its Sp. Atk!");
-            else
-                MESSAGE("Calyrex's Grim Neigh raised its Sp. Atk!");
-        }
+        MESSAGE("The opposing Glalie fainted!");
+        MESSAGE("Snorunt fainted!");
+        MESSAGE("The opposing Abra fainted!");
+        ABILITY_POPUP(playerLeft, abilityPopUp);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
+        if (species == SPECIES_SPECTRIER)
+            MESSAGE("Spectrier's Sp. Atk drastically rose!");
+        else
+            MESSAGE("Calyrex's Sp. Atk drastically rose!");
     } THEN {
         EXPECT_EQ(playerLeft->statStages[STAT_SPATK], DEFAULT_STAT_STAGE + 3);
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Grim Neigh does not trigger if Pokemon faint to indirect damage or damage from other Pokemon")
+DOUBLE_BATTLE_TEST("Grim Neigh does not trigger if Pokemon faint to indirect damage or damage from other Pokemon")
 {
     u32 species = 0, ability = 0, abilityPopUp = 0;
     PARAMETRIZE { species = SPECIES_SPECTRIER;            ability = ABILITY_GRIM_NEIGH;          abilityPopUp = ABILITY_GRIM_NEIGH; }
@@ -73,7 +67,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Grim Neigh does not trigger if Pokemon faint to ind
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Grim Neigh does not increase damage done by the same move that causes another Pokemon to faint")
+DOUBLE_BATTLE_TEST("Grim Neigh does not increase damage done by the same move that causes another Pokemon to faint")
 {
     s16 damage[2];
     u32 species = 0, ability = 0, abilityPopUp = 0;
@@ -98,16 +92,16 @@ DOUBLE_BATTLE_TEST("ABILITY: Grim Neigh does not increase damage done by the sam
         ABILITY_POPUP(playerLeft, abilityPopUp);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
         if (species == SPECIES_SPECTRIER)
-            MESSAGE("Spectrier's Grim Neigh raised its Sp. Atk!");
+            MESSAGE("Spectrier's Sp. Atk rose!");
         else
-            MESSAGE("Calyrex's Grim Neigh raised its Sp. Atk!");
+            MESSAGE("Calyrex's Sp. Atk rose!");
     } THEN {
         EXPECT_EQ(playerLeft->statStages[STAT_SPATK], DEFAULT_STAT_STAGE + 1);
         EXPECT_EQ(damage[0], damage[1]);
     }
 }
 
-DOUBLE_BATTLE_TEST("INNATE: Grim Neigh raises Sp. Attack by one stage after directly causing a Pokemon to faint")
+DOUBLE_BATTLE_TEST("Grim Neigh raises Sp. Attack by one stage after directly causing a Pokemon to faint (Trait)")
 {
     u32 species = 0, ability = 0, abilityPopUp = 0;
     PARAMETRIZE { species = SPECIES_SPECTRIER;      ability = ABILITY_GRIM_NEIGH;          abilityPopUp = ABILITY_GRIM_NEIGH; }
@@ -122,28 +116,22 @@ DOUBLE_BATTLE_TEST("INNATE: Grim Neigh raises Sp. Attack by one stage after dire
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_DISCHARGE); SEND_OUT(opponentLeft, 2);  }
     } SCENE {
-        int i;
-
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DISCHARGE, playerLeft);
-        for (i = 0; i < 3; i++) {
-            ONE_OF {
-                MESSAGE("Snorunt fainted!");
-                MESSAGE("The opposing Glalie fainted!");
-                MESSAGE("The opposing Abra fainted!");
-            }
-            ABILITY_POPUP(playerLeft, abilityPopUp);
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
-            if (species == SPECIES_SPECTRIER)
-                MESSAGE("Spectrier's Grim Neigh raised its Sp. Atk!");
-            else
-                MESSAGE("Calyrex's Grim Neigh raised its Sp. Atk!");
-        }
+        MESSAGE("The opposing Glalie fainted!");
+        MESSAGE("Snorunt fainted!");
+        MESSAGE("The opposing Abra fainted!");
+        ABILITY_POPUP(playerLeft, abilityPopUp);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
+        if (species == SPECIES_SPECTRIER)
+            MESSAGE("Spectrier's Sp. Atk drastically rose!");
+        else
+            MESSAGE("Calyrex's Sp. Atk drastically rose!");
     } THEN {
         EXPECT_EQ(playerLeft->statStages[STAT_SPATK], DEFAULT_STAT_STAGE + 3);
     }
 }
 
-DOUBLE_BATTLE_TEST("INNATE: Grim Neigh does not trigger if Pokemon faint to indirect damage or damage from other Pokemon")
+DOUBLE_BATTLE_TEST("Grim Neigh does not trigger if Pokemon faint to indirect damage or damage from other Pokemon (Trait)")
 {
     u32 species = 0, ability = 0, abilityPopUp = 0;
     PARAMETRIZE { species = SPECIES_SPECTRIER;            ability = ABILITY_GRIM_NEIGH;          abilityPopUp = ABILITY_GRIM_NEIGH; }
@@ -179,7 +167,7 @@ DOUBLE_BATTLE_TEST("INNATE: Grim Neigh does not trigger if Pokemon faint to indi
     }
 }
 
-DOUBLE_BATTLE_TEST("INNATE: Grim Neigh does not increase damage done by the same move that causes another Pokemon to faint")
+DOUBLE_BATTLE_TEST("Grim Neigh does not increase damage done by the same move that causes another Pokemon to faint (Trait)")
 {
     s16 damage[2];
     u32 species = 0, ability = 0, abilityPopUp = 0;
@@ -204,9 +192,9 @@ DOUBLE_BATTLE_TEST("INNATE: Grim Neigh does not increase damage done by the same
         ABILITY_POPUP(playerLeft, abilityPopUp);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerLeft);
         if (species == SPECIES_SPECTRIER)
-            MESSAGE("Spectrier's Grim Neigh raised its Sp. Atk!");
+            MESSAGE("Spectrier's Sp. Atk rose!");
         else
-            MESSAGE("Calyrex's Grim Neigh raised its Sp. Atk!");
+            MESSAGE("Calyrex's Sp. Atk rose!");
     } THEN {
         EXPECT_EQ(playerLeft->statStages[STAT_SPATK], DEFAULT_STAT_STAGE + 1);
         EXPECT_EQ(damage[0], damage[1]);

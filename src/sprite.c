@@ -26,6 +26,9 @@
 
 #define SPRITE_TILE_IS_ALLOCATED(n) ((sSpriteTileAllocBitmap[(n) / 8] >> ((n) % 8)) & 1)
 
+#if T_SHOULD_RUN_MOVE_ANIM
+EWRAM_DATA bool32 gLoadFail = FALSE;
+#endif // T_SHOULD_RUN_MOVE_ANIM
 
 struct SpriteCopyRequest
 {
@@ -112,8 +115,8 @@ typedef void (*AffineAnimCmdFunc)(u8 matrixNum, struct Sprite *);
 #define AFFINE_ANIM_END 0x7FFF
 
 // forward declarations
-const union AnimCmd * const gDummySpriteAnimTable[];
-const union AffineAnimCmd * const gDummySpriteAffineAnimTable[];
+const union AnimCmd *const gDummySpriteAnimTable[];
+const union AffineAnimCmd *const gDummySpriteAffineAnimTable[];
 const struct SpriteTemplate gDummySpriteTemplate;
 
 static const u8 sCenterToCornerVecTable[3][4][2] =
@@ -154,11 +157,11 @@ const struct OamData gDummyOamData = DUMMY_OAM_DATA;
 
 static const union AnimCmd sDummyAnim = { ANIM_END };
 
-const union AnimCmd * const gDummySpriteAnimTable[] = { &sDummyAnim };
+const union AnimCmd *const gDummySpriteAnimTable[] = { &sDummyAnim };
 
 static const union AffineAnimCmd sDummyAffineAnim = { AFFINE_ANIM_END };
 
-const union AffineAnimCmd * const gDummySpriteAffineAnimTable[] = { &sDummyAffineAnim };
+const union AffineAnimCmd *const gDummySpriteAffineAnimTable[] = { &sDummyAffineAnim };
 
 const struct SpriteTemplate gDummySpriteTemplate =
 {
@@ -1449,6 +1452,10 @@ static u16 LoadSpriteSheetWithOffset(const struct SpriteSheet *sheet, u32 offset
 
     if (tileStart < 0)
     {
+#if T_SHOULD_RUN_MOVE_ANIM
+        gLoadFail = TRUE;
+#endif // T_SHOULD_RUN_MOVE_ANIM
+        DebugPrintf("Tile: %u", sheet->tag);
         return 0;
     }
     else
@@ -1586,6 +1593,14 @@ u32 LoadSpritePalette(const struct SpritePalette *palette)
         DoLoadSpritePalette(palette->data, PLTT_ID(index));
         return index;
     }
+}
+
+u32 LoadSpritePaletteWithTag(const u16 *pal, u16 tag)
+{
+    struct SpritePalette spritePal;
+    spritePal.data = pal;
+    spritePal.tag = tag;
+    return LoadSpritePalette(&spritePal);
 }
 
 void LoadSpritePalettes(const struct SpritePalette *palettes)

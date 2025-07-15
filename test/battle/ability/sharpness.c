@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Sharpness increases the power of slicing moves", s16 damage)
+SINGLE_BATTLE_TEST("Sharpness increases the power of slicing moves", s16 damage)
 {
     u32 move;
     u16 ability;
@@ -25,7 +25,7 @@ SINGLE_BATTLE_TEST("ABILITY: Sharpness increases the power of slicing moves", s1
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Sharpness increases the power of slicing moves", s16 damage)
+SINGLE_BATTLE_TEST("Sharpness increases the power of slicing moves (Trait)", s16 damage)
 {
     u32 move;
     u16 ability;

@@ -12,21 +12,21 @@ SINGLE_BATTLE_TEST("Mirror Herb copies all of foe's positive stat changes in a t
     PARAMETRIZE { item = ITEM_NONE; }
     PARAMETRIZE { item = ITEM_MIRROR_HERB; }
     GIVEN {
-        ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_SCRATCH) == DAMAGE_CATEGORY_PHYSICAL);
         PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(5); Item(item); }
     } WHEN {
         TURN { MOVE(player, MOVE_DRAGON_DANCE); }
-        TURN { MOVE(player, MOVE_TACKLE); MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(player, MOVE_SCRATCH); MOVE(opponent, MOVE_SCRATCH); }
     } SCENE {
         if (item == ITEM_NONE) {
-            ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
-            ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponent);
             HP_BAR(player, captureDamage: &results[i].damage);
         } else {
-            ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponent);
             HP_BAR(player, captureDamage: &results[i].damage);
-            ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
         }
     } FINALLY {
         EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.5), results[1].damage);
@@ -57,9 +57,9 @@ DOUBLE_BATTLE_TEST("Mirror Herb does not trigger for Ally's Soul Heart's stat ra
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(playerRight, MOVE_TACKLE, target:opponentLeft); }
+        TURN { MOVE(playerRight, MOVE_SCRATCH, target:opponentLeft); }
     } SCENE {
-        MESSAGE("Wynaut used Tackle!");
+        MESSAGE("Wynaut used Scratch!");
         MESSAGE("The opposing Wobbuffet fainted!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
         NONE_OF {
@@ -89,7 +89,7 @@ SINGLE_BATTLE_TEST("Mirror Herb copies the boost gained by an ability")
     }
 }
 
-DOUBLE_BATTLE_TEST("INNATE: Mirror Herb does not trigger for Ally's Soul Heart's stat raise")
+DOUBLE_BATTLE_TEST("Mirror Herb does not trigger for Ally's Soul Heart's stat raise (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_MIRROR_HERB); }
@@ -97,9 +97,9 @@ DOUBLE_BATTLE_TEST("INNATE: Mirror Herb does not trigger for Ally's Soul Heart's
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(playerRight, MOVE_TACKLE, target:opponentLeft); }
+        TURN { MOVE(playerRight, MOVE_SCRATCH, target:opponentLeft); }
     } SCENE {
-        MESSAGE("Wynaut used Tackle!");
+        MESSAGE("Wynaut used Scratch!");
         MESSAGE("The opposing Wobbuffet fainted!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
         NONE_OF {
@@ -114,7 +114,7 @@ DOUBLE_BATTLE_TEST("INNATE: Mirror Herb does not trigger for Ally's Soul Heart's
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Mirror Herb copies the boost gained by an ability")
+SINGLE_BATTLE_TEST("Mirror Herb copies the boost gained by an ability (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_ZACIAN) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_INTREPID_SWORD); }

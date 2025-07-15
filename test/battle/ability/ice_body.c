@@ -6,7 +6,7 @@ ASSUMPTIONS {
     ASSUME(GetMoveEffect(MOVE_SNOWSCAPE) == EFFECT_SNOWSCAPE);
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Ice Body prevents damage from hail")
+SINGLE_BATTLE_TEST("Ice Body prevents damage from hail")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_HAIL; }
@@ -21,7 +21,7 @@ SINGLE_BATTLE_TEST("ABILITY: Ice Body prevents damage from hail")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Ice Body recovers 1/16th of Max HP in hail.")
+SINGLE_BATTLE_TEST("Ice Body recovers 1/16th of Max HP in hail.")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_HAIL; }
@@ -38,7 +38,7 @@ SINGLE_BATTLE_TEST("ABILITY: Ice Body recovers 1/16th of Max HP in hail.")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Ice Body doesn't recover HP if Cloud Nine/Air Lock is on the field")
+SINGLE_BATTLE_TEST("Ice Body doesn't recover HP if Cloud Nine/Air Lock is on the field")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_HAIL; }
@@ -53,13 +53,13 @@ SINGLE_BATTLE_TEST("ABILITY: Ice Body doesn't recover HP if Cloud Nine/Air Lock 
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Ice Body prevents damage from hail")
+SINGLE_BATTLE_TEST("Ice Body prevents damage from hail (Trait)")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_HAIL; }
     PARAMETRIZE { move = MOVE_SNOWSCAPE; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Innates(ABILITY_ICE_BODY); }
+        PLAYER(SPECIES_WOBBUFFET){ Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_ICE_BODY); }
         OPPONENT(SPECIES_GLALIE) { Ability(ABILITY_INNER_FOCUS); Innates(ABILITY_ICE_BODY); }
     } WHEN {
         TURN { MOVE(player, move); MOVE(opponent, MOVE_SKILL_SWAP); }
@@ -68,7 +68,7 @@ SINGLE_BATTLE_TEST("INNATE: Ice Body prevents damage from hail")
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Ice Body recovers 1/16th of Max HP in hail.")
+SINGLE_BATTLE_TEST("Ice Body recovers 1/16th of Max HP in hail. (Trait)")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_HAIL; }
@@ -85,7 +85,7 @@ SINGLE_BATTLE_TEST("INNATE: Ice Body recovers 1/16th of Max HP in hail.")
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Ice Body doesn't recover HP if Cloud Nine/Air Lock is on the field")
+SINGLE_BATTLE_TEST("Ice Body doesn't recover HP if Cloud Nine/Air Lock is on the field (Trait)")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_HAIL; }

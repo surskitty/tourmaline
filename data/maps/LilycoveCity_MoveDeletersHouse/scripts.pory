@@ -1,9 +1,6 @@
 mapscripts LilycoveCity_MoveDeletersHouse_MapScripts {}
 
 raw `
-.set LOCALID_MOVE_DELETER, 1
-
-
 LilycoveCity_MoveDeletersHouse_EventScript_MoveDeleter::
     lockall
     applymovement LOCALID_MOVE_DELETER, Common_Movement_FacePlayer

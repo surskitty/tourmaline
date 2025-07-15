@@ -7,7 +7,7 @@ ASSUMPTIONS
     ASSUME(GetMovePriority(MOVE_QUICK_ATTACK) > 0);
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Dazzling, Queenly Majesty and Armor Tail protect the user from priority moves")
+DOUBLE_BATTLE_TEST("Dazzling, Queenly Majesty and Armor Tail protect the user from priority moves")
 {
     u32 species, ability;
 
@@ -29,7 +29,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Dazzling, Queenly Majesty and Armor Tail protect th
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Dazzling, Queenly Majesty and Armor Tail protect users partner from priority moves")
+DOUBLE_BATTLE_TEST("Dazzling, Queenly Majesty and Armor Tail protect users partner from priority moves")
 {
     u32 species, ability;
 
@@ -51,7 +51,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Dazzling, Queenly Majesty and Armor Tail protect us
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Dazzling, Queenly Majesty and Armor Tail don't protect the user from negative priority")
+DOUBLE_BATTLE_TEST("Dazzling, Queenly Majesty and Armor Tail don't protect the user from negative priority")
 {
     u32 species, ability;
 
@@ -72,69 +72,27 @@ DOUBLE_BATTLE_TEST("ABILITY: Dazzling, Queenly Majesty and Armor Tail don't prot
     }
 }
 
-
-DOUBLE_BATTLE_TEST("INNATE: Dazzling, Queenly Majesty and Armor Tail protect the user from priority moves")
+SINGLE_BATTLE_TEST("Dazzling, Queenly Majesty and Armor Tail protect from all multi hit hits with one activation")
 {
-    u32 species, ability, innate;
+    u32 species, ability;
 
-    PARAMETRIZE { species = SPECIES_BRUXISH; ability = ABILITY_SHED_SKIN; innate = ABILITY_DAZZLING; }
-    PARAMETRIZE { species = SPECIES_FARIGIRAF; ability = ABILITY_CUD_CHEW; innate = ABILITY_ARMOR_TAIL; }
-    PARAMETRIZE { species = SPECIES_TSAREENA; ability = ABILITY_LEAF_GUARD; innate = ABILITY_QUEENLY_MAJESTY; }
+    PARAMETRIZE { species = SPECIES_BRUXISH; ability = ABILITY_DAZZLING; }
+    PARAMETRIZE { species = SPECIES_FARIGIRAF; ability = ABILITY_ARMOR_TAIL; }
+    PARAMETRIZE { species = SPECIES_TSAREENA; ability = ABILITY_QUEENLY_MAJESTY; }
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(species) { Ability(ability); Innates(innate); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(species) { Ability(ability); }
     } WHEN {
-        TURN { MOVE(playerLeft, MOVE_QUICK_ATTACK, target: opponentLeft); }
+        TURN { MOVE(player, MOVE_WATER_SHURIKEN); }
     } SCENE {
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_QUICK_ATTACK, opponentRight);
-        ABILITY_POPUP(opponentLeft, innate);
-        MESSAGE("Wobbuffet cannot use Quick Attack!");
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_SHURIKEN, opponent);
+        ABILITY_POPUP(opponent, ability);
+        NONE_OF {
+            ABILITY_POPUP(opponent, ability);
+            ABILITY_POPUP(opponent, ability);
+            ABILITY_POPUP(opponent, ability);
+            ABILITY_POPUP(opponent, ability);
+        }
     }
 }
-
-DOUBLE_BATTLE_TEST("INNATE: Dazzling, Queenly Majesty and Armor Tail protect users partner from priority moves")
-{
-    u32 species, ability, innate;
-
-    PARAMETRIZE { species = SPECIES_BRUXISH; ability = ABILITY_SHED_SKIN; innate = ABILITY_DAZZLING; }
-    PARAMETRIZE { species = SPECIES_FARIGIRAF; ability = ABILITY_CUD_CHEW; innate = ABILITY_ARMOR_TAIL; }
-    PARAMETRIZE { species = SPECIES_TSAREENA; ability = ABILITY_LEAF_GUARD; innate = ABILITY_QUEENLY_MAJESTY; }
-
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(species) { Ability(ability); Innates(innate); }
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(playerLeft, MOVE_QUICK_ATTACK, target: opponentRight); }
-    } SCENE {
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_QUICK_ATTACK, opponentRight);
-        ABILITY_POPUP(opponentLeft, innate);
-        MESSAGE("Wobbuffet cannot use Quick Attack!");
-    }
-}
-
-DOUBLE_BATTLE_TEST("INNATE: Dazzling, Queenly Majesty and Armor Tail don't protect the user from negative priority")
-{
-    u32 species, ability, innate;
-
-    PARAMETRIZE { species = SPECIES_BRUXISH; ability = ABILITY_SHED_SKIN; innate = ABILITY_DAZZLING; }
-    PARAMETRIZE { species = SPECIES_FARIGIRAF; ability = ABILITY_CUD_CHEW; innate = ABILITY_ARMOR_TAIL; }
-    PARAMETRIZE { species = SPECIES_TSAREENA; ability = ABILITY_LEAF_GUARD; innate = ABILITY_QUEENLY_MAJESTY; }
-
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(species) { Ability(ability); Innates(innate); }
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(playerLeft, MOVE_AVALANCHE, target: opponentLeft); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_AVALANCHE, playerLeft);
-        NOT ABILITY_POPUP(opponentLeft, innate);
-    }
-}
-

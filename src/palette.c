@@ -42,13 +42,6 @@ static const u8 sRoundedDownGrayscaleMap[] = {
     31, 31
 };
 
-void LoadCompressedPalette(const u32 *src, u32 offset, u32 size)
-{
-    void *buffer = malloc_and_decompress(src, NULL);
-    LoadPalette(buffer, offset, size);
-    Free(buffer);
-}
-
 void LoadPalette(const void *src, u32 offset, u32 size)
 {
     CpuCopy16(src, &gPlttBufferUnfaded[offset], size);
@@ -835,7 +828,7 @@ void BlendPalettes(u32 selectedPalettes, u8 coeff, u32 color)
     BlendPalettesFine(selectedPalettes, gPlttBufferUnfaded, gPlttBufferFaded, coeff, color);
 }
 
-#define DEFAULT_LIGHT_COLOR 0x3f9f
+#define DEFAULT_LIGHT_COLOR RGB2GBA(248, 224, 120)
 
 // Like BlendPalette, but ignores blendColor if the transparency high bit is set
 // Optimization help by lucktyphlosion

@@ -16,7 +16,6 @@ mapscripts SkyPillar_Top_MapScripts {
 }
 
 raw `
-.set LOCALID_RAYQUAZA_SLEEPING, 1
 SkyPillar_Top_EventScript_TryRemoveRayquaza::
     specialvar VAR_RESULT, GetBattleOutcome
     goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn

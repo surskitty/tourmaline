@@ -2,10 +2,11 @@
 #include "test/battle.h"
 
 
-SINGLE_BATTLE_TEST("ABILITY: Magic Bounce bounces back status moves")
+SINGLE_BATTLE_TEST("Magic Bounce bounces back status moves")
 {
     GIVEN {
-        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
+        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_TOXIC) == MOVE_EFFECT_TOXIC);
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_MAGIC_BOUNCE); }
     } WHEN {
@@ -19,11 +20,12 @@ SINGLE_BATTLE_TEST("ABILITY: Magic Bounce bounces back status moves")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Magic Bounce bounces back powder moves")
+SINGLE_BATTLE_TEST("Magic Bounce bounces back powder moves")
 {
     GIVEN {
         ASSUME(IsPowderMove(MOVE_STUN_SPORE));
-        ASSUME(GetMoveEffect(MOVE_STUN_SPORE) == EFFECT_PARALYZE);
+        ASSUME(GetMoveEffect(MOVE_STUN_SPORE) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_STUN_SPORE) == MOVE_EFFECT_PARALYSIS);
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_MAGIC_BOUNCE); }
     } WHEN {
@@ -37,7 +39,7 @@ SINGLE_BATTLE_TEST("ABILITY: Magic Bounce bounces back powder moves")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Magic Bounce cannot bounce back powder moves against Grass Types")
+SINGLE_BATTLE_TEST("Magic Bounce cannot bounce back powder moves against Grass Types")
 {
     GIVEN {
         ASSUME(IsPowderMove(MOVE_STUN_SPORE));
@@ -56,7 +58,7 @@ SINGLE_BATTLE_TEST("ABILITY: Magic Bounce cannot bounce back powder moves agains
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Magic Bounce bounces back moves hitting both foes at two foes")
+DOUBLE_BATTLE_TEST("Magic Bounce bounces back moves hitting both foes at two foes")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_LEER) == EFFECT_DEFENSE_DOWN);
@@ -82,7 +84,7 @@ DOUBLE_BATTLE_TEST("ABILITY: Magic Bounce bounces back moves hitting both foes a
     }
 }
 
-DOUBLE_BATTLE_TEST("ABILITY: Magic Bounce bounces back moves hitting foes field")
+DOUBLE_BATTLE_TEST("Magic Bounce bounces back moves hitting foes field")
 {
     u32 battlerOne, battlerTwo, abilityBattlerOne, abilityBattlerTwo;
 
@@ -115,10 +117,11 @@ DOUBLE_BATTLE_TEST("ABILITY: Magic Bounce bounces back moves hitting foes field"
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Magic Bounce bounced back status moves can not be bounced back by Magic Bounce")
+SINGLE_BATTLE_TEST("Magic Bounce bounced back status moves can not be bounced back by Magic Bounce")
 {
     GIVEN {
-        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
+        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_TOXIC) == MOVE_EFFECT_TOXIC);
         PLAYER(SPECIES_ESPEON) { Ability(ABILITY_MAGIC_BOUNCE); }
         OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_MAGIC_BOUNCE); }
     } WHEN {
@@ -133,11 +136,11 @@ SINGLE_BATTLE_TEST("ABILITY: Magic Bounce bounced back status moves can not be b
     }
 }
 
-
-SINGLE_BATTLE_TEST("INNATE: Magic Bounce bounces back status moves")
+SINGLE_BATTLE_TEST("Magic Bounce bounces back status moves (Trait)")
 {
     GIVEN {
-        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
+        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_TOXIC) == MOVE_EFFECT_TOXIC);
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_SYNCHRONIZE); Innates(ABILITY_MAGIC_BOUNCE); }
     } WHEN {
@@ -151,11 +154,12 @@ SINGLE_BATTLE_TEST("INNATE: Magic Bounce bounces back status moves")
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Magic Bounce bounces back powder moves")
+SINGLE_BATTLE_TEST("Magic Bounce bounces back powder moves (Trait)")
 {
     GIVEN {
         ASSUME(IsPowderMove(MOVE_STUN_SPORE));
-        ASSUME(GetMoveEffect(MOVE_STUN_SPORE) == EFFECT_PARALYZE);
+        ASSUME(GetMoveEffect(MOVE_STUN_SPORE) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_STUN_SPORE) == MOVE_EFFECT_PARALYSIS);
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_SYNCHRONIZE); Innates(ABILITY_MAGIC_BOUNCE); }
     } WHEN {
@@ -169,7 +173,7 @@ SINGLE_BATTLE_TEST("INNATE: Magic Bounce bounces back powder moves")
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Magic Bounce cannot bounce back powder moves against Grass Types")
+SINGLE_BATTLE_TEST("Magic Bounce cannot bounce back powder moves against Grass Types (Trait)")
 {
     GIVEN {
         ASSUME(IsPowderMove(MOVE_STUN_SPORE));
@@ -188,7 +192,7 @@ SINGLE_BATTLE_TEST("INNATE: Magic Bounce cannot bounce back powder moves against
     }
 }
 
-DOUBLE_BATTLE_TEST("INNATE: Magic Bounce bounces back moves hitting both foes at two foes")
+DOUBLE_BATTLE_TEST("Magic Bounce bounces back moves hitting both foes at two foes (Trait)")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_LEER) == EFFECT_DEFENSE_DOWN);
@@ -214,7 +218,7 @@ DOUBLE_BATTLE_TEST("INNATE: Magic Bounce bounces back moves hitting both foes at
     }
 }
 
-DOUBLE_BATTLE_TEST("INNATE: Magic Bounce bounces back moves hitting foes field")
+DOUBLE_BATTLE_TEST("Magic Bounce bounces back moves hitting foes field (Trait)")
 {
     u32 battlerOne, battlerTwo, abilityBattlerOne, abilityBattlerTwo;
 
@@ -247,10 +251,11 @@ DOUBLE_BATTLE_TEST("INNATE: Magic Bounce bounces back moves hitting foes field")
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Magic Bounce bounced back status moves can not be bounced back by Magic Bounce")
+SINGLE_BATTLE_TEST("Magic Bounce bounced back status moves can not be bounced back by Magic Bounce (Trait)")
 {
     GIVEN {
-        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_TOXIC);
+        ASSUME(GetMoveEffect(MOVE_TOXIC) == EFFECT_NON_VOLATILE_STATUS);
+        ASSUME(GetMoveNonVolatileStatus(MOVE_TOXIC) == MOVE_EFFECT_TOXIC);
         PLAYER(SPECIES_ESPEON) { Ability(ABILITY_SYNCHRONIZE); Innates(ABILITY_MAGIC_BOUNCE); }
         OPPONENT(SPECIES_ESPEON) { Ability(ABILITY_SYNCHRONIZE); Innates(ABILITY_MAGIC_BOUNCE); }
     } WHEN {

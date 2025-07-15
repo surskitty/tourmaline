@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Sticky Hold prevents item theft")
+SINGLE_BATTLE_TEST("Sticky Hold prevents item theft")
 {
     GIVEN {
         ASSUME(MoveHasAdditionalEffect(MOVE_THIEF, MOVE_EFFECT_STEAL_ITEM));
@@ -16,7 +16,7 @@ SINGLE_BATTLE_TEST("ABILITY: Sticky Hold prevents item theft")
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Sticky Hold prevents item theft")
+SINGLE_BATTLE_TEST("Sticky Hold prevents item theft (Trait)")
 {
     GIVEN {
         ASSUME(MoveHasAdditionalEffect(MOVE_THIEF, MOVE_EFFECT_STEAL_ITEM));
@@ -30,4 +30,3 @@ SINGLE_BATTLE_TEST("INNATE: Sticky Hold prevents item theft")
         MESSAGE("The opposing Gastrodon's Sticky Hold made Thief ineffective!");
     }
 }
-

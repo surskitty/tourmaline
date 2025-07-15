@@ -9,7 +9,7 @@ static const u16 terrainData[][2] =
     { MOVE_MISTY_TERRAIN,    TYPE_FAIRY, },
 };
 
-SINGLE_BATTLE_TEST("ABILITY: Mimicry changes the battler's type based on Terrain")
+SINGLE_BATTLE_TEST("Mimicry changes the battler's type based on Terrain")
 {
     u32 j;
     u32 terrainMove = MOVE_NONE;
@@ -38,7 +38,7 @@ SINGLE_BATTLE_TEST("ABILITY: Mimicry changes the battler's type based on Terrain
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Mimicry restores the battler's types when terrain is removed by Steel Roller and Ice Spinner")
+SINGLE_BATTLE_TEST("Mimicry restores the battler's types when terrain is removed by Steel Roller and Ice Spinner")
 {
     u32 j;
     u32 terrainMove = MOVE_NONE;
@@ -71,7 +71,7 @@ SINGLE_BATTLE_TEST("ABILITY: Mimicry restores the battler's types when terrain i
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Mimicry changes the battler's type based on Terrain")
+SINGLE_BATTLE_TEST("Mimicry changes the battler's type based on Terrain (Trait)")
 {
     u32 j;
     u32 terrainMove = MOVE_NONE;
@@ -100,7 +100,7 @@ SINGLE_BATTLE_TEST("INNATE: Mimicry changes the battler's type based on Terrain"
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Mimicry restores the battler's types when terrain is removed by Steel Roller and Ice Spinner")
+SINGLE_BATTLE_TEST("Mimicry restores the battler's types when terrain is removed by Steel Roller and Ice Spinner (Trait)")
 {
     u32 j;
     u32 terrainMove = MOVE_NONE;

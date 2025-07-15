@@ -46223,3 +46223,4 @@ static const u16 sPecharuntTeachableLearnset[] = {
 };
 #endif //P_FAMILY_PECHARUNT
 
+

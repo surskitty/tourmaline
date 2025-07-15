@@ -18,11 +18,11 @@ mapscripts Route103_MapScripts {
 
 script Route103_EventScript_SetupRivalStarterGfx {
     if (var(VAR_STARTER_MON) == 0) {
-        setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_SPECIES(TORCHIC))
+        copyvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_SPECIES(TORCHIC))
     } elif (var(VAR_STARTER_MON) == 1) {
-        setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_SPECIES(MUDKIP))
+        copyvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_SPECIES(MUDKIP))
     } else {
-        setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_SPECIES(TREECKO))
+        copyvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_SPECIES(TREECKO))
     }
 }
 

@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Water Absorb heals 25% when hit by water type moves")
+SINGLE_BATTLE_TEST("Water Absorb heals 25% when hit by water type moves")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_BUBBLE) == TYPE_WATER);
@@ -16,7 +16,7 @@ SINGLE_BATTLE_TEST("ABILITY: Water Absorb heals 25% when hit by water type moves
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Water Absorb does not activate if protected")
+SINGLE_BATTLE_TEST("Water Absorb does not activate if protected")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_BUBBLE) == TYPE_WATER);
@@ -29,7 +29,7 @@ SINGLE_BATTLE_TEST("ABILITY: Water Absorb does not activate if protected")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Water Absorb activates on status moves")
+SINGLE_BATTLE_TEST("Water Absorb activates on status moves")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_SOAK) == TYPE_WATER);
@@ -45,7 +45,7 @@ SINGLE_BATTLE_TEST("ABILITY: Water Absorb activates on status moves")
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Water Absorb is only triggered once on multi strike moves")
+SINGLE_BATTLE_TEST("Water Absorb is only triggered once on multi strike moves")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_WATER_SHURIKEN) == TYPE_WATER);
@@ -61,7 +61,7 @@ SINGLE_BATTLE_TEST("ABILITY: Water Absorb is only triggered once on multi strike
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Water Absorb prevents Absorb Bulb and Luminous Moss from activating")
+SINGLE_BATTLE_TEST("Water Absorb prevents Absorb Bulb and Luminous Moss from activating")
 {
     u32 item;
     PARAMETRIZE { item = ITEM_ABSORB_BULB; }
@@ -84,7 +84,7 @@ SINGLE_BATTLE_TEST("ABILITY: Water Absorb prevents Absorb Bulb and Luminous Moss
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Water Absorb heals 25% when hit by water type moves")
+SINGLE_BATTLE_TEST("Water Absorb heals 25% when hit by water type moves (Trait)")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_BUBBLE) == TYPE_WATER);
@@ -99,7 +99,7 @@ SINGLE_BATTLE_TEST("INNATE: Water Absorb heals 25% when hit by water type moves"
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Water Absorb does not activate if protected")
+SINGLE_BATTLE_TEST("Water Absorb does not activate if protected (Trait)")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_BUBBLE) == TYPE_WATER);
@@ -112,7 +112,7 @@ SINGLE_BATTLE_TEST("INNATE: Water Absorb does not activate if protected")
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Water Absorb activates on status moves")
+SINGLE_BATTLE_TEST("Water Absorb activates on status moves (Trait)")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_SOAK) == TYPE_WATER);
@@ -128,7 +128,7 @@ SINGLE_BATTLE_TEST("INNATE: Water Absorb activates on status moves")
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Water Absorb is only triggered once on multi strike moves")
+SINGLE_BATTLE_TEST("Water Absorb is only triggered once on multi strike moves (Trait)")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_WATER_SHURIKEN) == TYPE_WATER);
@@ -144,7 +144,7 @@ SINGLE_BATTLE_TEST("INNATE: Water Absorb is only triggered once on multi strike 
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Water Absorb prevents Absorb Bulb and Luminous Moss from activating")
+SINGLE_BATTLE_TEST("Water Absorb prevents Absorb Bulb and Luminous Moss from activating (Trait)")
 {
     u32 item;
     PARAMETRIZE { item = ITEM_ABSORB_BULB; }

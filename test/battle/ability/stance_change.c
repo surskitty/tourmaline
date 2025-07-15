@@ -2,10 +2,10 @@
 #include "test/battle.h"
 
 
-SINGLE_BATTLE_TEST("ABILITY: Stance Change changes Aegislash from Shield to Blade when using a damaging move")
+SINGLE_BATTLE_TEST("Stance Change changes Aegislash from Shield to Blade when using a damaging move")
 {
     u16 move;
-    PARAMETRIZE { move = MOVE_TACKLE; }
+    PARAMETRIZE { move = MOVE_SCRATCH; }
     PARAMETRIZE { move = MOVE_SWIFT; }
     PARAMETRIZE { move = MOVE_GROWL; }
     GIVEN {
@@ -32,7 +32,7 @@ SINGLE_BATTLE_TEST("ABILITY: Stance Change changes Aegislash from Shield to Blad
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Stance Change changes Aegislash from Blade to Shield when using King's Shield")
+SINGLE_BATTLE_TEST("Stance Change changes Aegislash from Blade to Shield when using King's Shield")
 {
     u16 move;
     PARAMETRIZE { move = MOVE_PROTECT; }
@@ -61,7 +61,7 @@ SINGLE_BATTLE_TEST("ABILITY: Stance Change changes Aegislash from Blade to Shiel
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Stance Change doesn't change Aegislash to Shield if King's Shield is called by a different move - Sleep Talk")
+SINGLE_BATTLE_TEST("Stance Change doesn't change Aegislash to Shield if King's Shield is called by a different move - Sleep Talk")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SLEEP_TALK) == EFFECT_SLEEP_TALK);
@@ -80,15 +80,14 @@ SINGLE_BATTLE_TEST("ABILITY: Stance Change doesn't change Aegislash to Shield if
     }
 }
 
-
-SINGLE_BATTLE_TEST("INNATE: Stance Change changes Aegislash from Shield to Blade when using a damaging move")
+SINGLE_BATTLE_TEST("Stance Change changes Aegislash from Shield to Blade when using a damaging move (Trait)")
 {
     u16 move;
-    PARAMETRIZE { move = MOVE_TACKLE; }
+    PARAMETRIZE { move = MOVE_SCRATCH; }
     PARAMETRIZE { move = MOVE_SWIFT; }
     PARAMETRIZE { move = MOVE_GROWL; }
     GIVEN {
-        PLAYER(SPECIES_AEGISLASH_SHIELD);
+        PLAYER(SPECIES_AEGISLASH_SHIELD) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STANCE_CHANGE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, move); }
@@ -111,13 +110,13 @@ SINGLE_BATTLE_TEST("INNATE: Stance Change changes Aegislash from Shield to Blade
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Stance Change changes Aegislash from Blade to Shield when using King's Shield")
+SINGLE_BATTLE_TEST("Stance Change changes Aegislash from Blade to Shield when using King's Shield (Trait)")
 {
     u16 move;
     PARAMETRIZE { move = MOVE_PROTECT; }
     PARAMETRIZE { move = MOVE_KINGS_SHIELD; }
     GIVEN {
-        PLAYER(SPECIES_AEGISLASH_BLADE);
+        PLAYER(SPECIES_AEGISLASH_BLADE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STANCE_CHANGE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, move); }
@@ -140,11 +139,11 @@ SINGLE_BATTLE_TEST("INNATE: Stance Change changes Aegislash from Blade to Shield
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Stance Change doesn't change Aegislash to Shield if King's Shield is called by a different move - Sleep Talk")
+SINGLE_BATTLE_TEST("Stance Change doesn't change Aegislash to Shield if King's Shield is called by a different move - Sleep Talk (Trait)")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SLEEP_TALK) == EFFECT_SLEEP_TALK);
-        PLAYER(SPECIES_AEGISLASH_BLADE) { Moves(MOVE_KINGS_SHIELD, MOVE_SLEEP_TALK); Status1(STATUS1_SLEEP_TURN(3)); }
+        PLAYER(SPECIES_AEGISLASH_BLADE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STANCE_CHANGE); Moves(MOVE_KINGS_SHIELD, MOVE_SLEEP_TALK); Status1(STATUS1_SLEEP_TURN(3)); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_SLEEP_TALK); }
@@ -158,3 +157,4 @@ SINGLE_BATTLE_TEST("INNATE: Stance Change doesn't change Aegislash to Shield if 
         EXPECT_EQ(player->species, SPECIES_AEGISLASH_BLADE);
     }
 }
+

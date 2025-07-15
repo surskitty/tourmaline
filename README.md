@@ -49,3 +49,4 @@ My intention is for each Pok&eacute;mon species to have at least one thing it's 
 
 Shout out to all of the [contributors at RHH](https://github.com/rh-hideout/pokeemerald-expansion/wiki/Credits) for their long and often thankless work of making rom hacking resources for fancy fanmade Pokemon games &hearts;
 
+

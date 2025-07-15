@@ -7,7 +7,7 @@ ASSUMPTIONS
     ASSUME(GetMoveEffect(MOVE_ROLE_PLAY) == EFFECT_ROLE_PLAY);
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Beads of Ruin reduces Sp. Def if opposing mon's ability doesn't match")
+SINGLE_BATTLE_TEST("Beads of Ruin reduces Sp. Def if opposing mon's ability doesn't match")
 {
     s16 damage[2];
 
@@ -30,7 +30,7 @@ SINGLE_BATTLE_TEST("ABILITY: Beads of Ruin reduces Sp. Def if opposing mon's abi
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Beads of Ruin's message displays correctly after all battlers fainted - Player")
+SINGLE_BATTLE_TEST("Beads of Ruin's message displays correctly after all battlers fainted - Player")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_EXPLOSION) == EFFECT_EXPLOSION);
@@ -40,7 +40,7 @@ SINGLE_BATTLE_TEST("ABILITY: Beads of Ruin's message displays correctly after al
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_EXPLOSION); SEND_OUT(player, 1); SEND_OUT(opponent, 1); }
-        TURN { MOVE(player, MOVE_TACKLE); MOVE(opponent, MOVE_RUINATION); }
+        TURN { MOVE(player, MOVE_SCRATCH); MOVE(opponent, MOVE_RUINATION); }
     } SCENE {
         HP_BAR(opponent, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, opponent);
@@ -52,7 +52,7 @@ SINGLE_BATTLE_TEST("ABILITY: Beads of Ruin's message displays correctly after al
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Beads of Ruin's message displays correctly after all battlers fainted - Opponent")
+SINGLE_BATTLE_TEST("Beads of Ruin's message displays correctly after all battlers fainted - Opponent")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_EXPLOSION) == EFFECT_EXPLOSION);
@@ -62,7 +62,7 @@ SINGLE_BATTLE_TEST("ABILITY: Beads of Ruin's message displays correctly after al
         OPPONENT(SPECIES_CHI_YU);
     } WHEN {
         TURN { MOVE(player, MOVE_EXPLOSION); SEND_OUT(player, 1); SEND_OUT(opponent, 1); }
-        TURN { MOVE(player, MOVE_RUINATION); MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(player, MOVE_RUINATION); MOVE(opponent, MOVE_SCRATCH); }
     } SCENE {
         HP_BAR(player, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, player);
@@ -74,22 +74,24 @@ SINGLE_BATTLE_TEST("ABILITY: Beads of Ruin's message displays correctly after al
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Beads of Ruin reduces Sp. Def if opposing mon's ability doesn't match")
+TO_DO_BATTLE_TEST("Beads of Ruin reduce Defense if Wonder Room is active");
+
+SINGLE_BATTLE_TEST("Beads of Ruin reduces Sp. Def if opposing mon's ability doesn't match (Trait)")
 {
     s16 damage[2];
 
     GIVEN {
-        PLAYER(SPECIES_CHI_YU) { Ability(ABILITY_BEADS_OF_RUIN); Innates(ABILITY_BEADS_OF_RUIN); }
+        PLAYER(SPECIES_CHI_YU) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_BEADS_OF_RUIN); }
         OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_BEADS_OF_RUIN); }
     } WHEN {
         TURN { MOVE(player, MOVE_WATER_GUN); MOVE(opponent, MOVE_ROLE_PLAY); }
-        TURN { MOVE(player, MOVE_WATER_GUN); }
+        TURN { MOVE(player, MOVE_WATER_GUN); SWITCH(opponent, 1); }
     } SCENE {
         ABILITY_POPUP(player, ABILITY_BEADS_OF_RUIN);
         MESSAGE("Chi-Yu's Beads of Ruin weakened the Sp. Def of all surrounding Pokémon!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_GUN, player);
         HP_BAR(opponent, captureDamage: &damage[0]);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROLE_PLAY, opponent);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_GUN, player);
         HP_BAR(opponent, captureDamage: &damage[1]);
     } THEN {
@@ -97,17 +99,17 @@ SINGLE_BATTLE_TEST("INNATE: Beads of Ruin reduces Sp. Def if opposing mon's abil
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Beads of Ruin's message displays correctly after all battlers fainted - Player")
+SINGLE_BATTLE_TEST("Beads of Ruin's message displays correctly after all battlers fainted - Player (Trait)")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_EXPLOSION) == EFFECT_EXPLOSION);
         PLAYER(SPECIES_WOBBUFFET) { HP(1);}
-        PLAYER(SPECIES_CHI_YU);
+        PLAYER(SPECIES_CHI_YU) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_BEADS_OF_RUIN); }
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_EXPLOSION); SEND_OUT(player, 1); SEND_OUT(opponent, 1); }
-        TURN { MOVE(player, MOVE_TACKLE); MOVE(opponent, MOVE_RUINATION); }
+        TURN { MOVE(player, MOVE_SCRATCH); MOVE(opponent, MOVE_RUINATION); }
     } SCENE {
         HP_BAR(opponent, hp: 0);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, opponent);
@@ -119,14 +121,14 @@ SINGLE_BATTLE_TEST("INNATE: Beads of Ruin's message displays correctly after all
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Beads of Ruin's message displays correctly after all battlers fainted - Opponent")
+SINGLE_BATTLE_TEST("Beads of Ruin's message displays correctly after all battlers fainted - Opponent (Trait)")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_EXPLOSION) == EFFECT_EXPLOSION);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { HP(1);}
-        OPPONENT(SPECIES_CHI_YU);
+        OPPONENT(SPECIES_CHI_YU) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_BEADS_OF_RUIN); }
     } WHEN {
         TURN { MOVE(player, MOVE_EXPLOSION); SEND_OUT(player, 1); SEND_OUT(opponent, 1); }
         TURN { MOVE(player, MOVE_RUINATION); MOVE(opponent, MOVE_TACKLE); }
@@ -140,3 +142,5 @@ SINGLE_BATTLE_TEST("INNATE: Beads of Ruin's message displays correctly after all
         MESSAGE("The opposing Chi-Yu's Beads of Ruin weakened the Sp. Def of all surrounding Pokémon!");
     }
 }
+
+TO_DO_BATTLE_TEST("Beads of Ruin reduce Defense if Wonder Room is active (Trait)");

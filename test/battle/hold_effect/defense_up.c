@@ -12,7 +12,7 @@ SINGLE_BATTLE_TEST("Ganlon Berry raises the holder's Defense by one stage when H
 {
     u32 move;
 
-    PARAMETRIZE { move = MOVE_TACKLE; }
+    PARAMETRIZE { move = MOVE_SCRATCH; }
     PARAMETRIZE { move = MOVE_DRAGON_RAGE; }
 
     GIVEN {
@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("Ganlon Berry raises the holder's Defense by one stage when H
         TURN { MOVE(opponent, move); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, move, opponent);
-        if (move == MOVE_TACKLE) {
+        if (move == MOVE_SCRATCH) {
             NONE_OF {
                 ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
                 MESSAGE("Using Ganlon Berry, the Defense of Wobbuffet rose!");
@@ -69,7 +69,7 @@ SINGLE_BATTLE_TEST("Ganlon Berry raises Defense by one stage when HP drops to 1/
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Ganlon Berry raises Defense by one stage when HP drops to 1/2 or below if holder has Gluttony")
+SINGLE_BATTLE_TEST("Ganlon Berry raises Defense by one stage when HP drops to 1/2 or below if holder has Gluttony (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_BELLSPROUT) { MaxHP(80); HP(80); Ability(ABILITY_CHLOROPHYLL); Innates(ABILITY_GLUTTONY); Item(ITEM_GANLON_BERRY); }
@@ -85,7 +85,7 @@ SINGLE_BATTLE_TEST("INNATE: Ganlon Berry raises Defense by one stage when HP dro
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Ganlon Berry raises Defense by one stage when HP drops to 1/4 or below if holder has Ripen")
+SINGLE_BATTLE_TEST("Ganlon Berry raises Defense by one stage when HP drops to 1/4 or below if holder has Ripen (Trait)")
 {
     GIVEN {
         PLAYER(SPECIES_APPLIN) { MaxHP(160); HP(80); Ability(ABILITY_BULLETPROOF); Innates(ABILITY_RIPEN); Item(ITEM_GANLON_BERRY); }

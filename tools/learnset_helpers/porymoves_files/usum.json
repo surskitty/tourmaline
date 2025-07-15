@@ -6872,7 +6872,7 @@
       "MOVE_REVENGE",
       "MOVE_REVERSAL",
       "MOVE_SLEEP_TALK",
-      "MOVE_SMELLING_SALT"
+      "MOVE_SMELLING_SALTS"
     ],
     "TutorMoves": [
       "MOVE_COVET",
@@ -7044,7 +7044,7 @@
       "MOVE_REVENGE",
       "MOVE_REVERSAL",
       "MOVE_SLEEP_TALK",
-      "MOVE_SMELLING_SALT"
+      "MOVE_SMELLING_SALTS"
     ],
     "TutorMoves": [
       "MOVE_COVET",
@@ -8157,7 +8157,7 @@
       "MOVE_POWER_TRICK",
       "MOVE_QUICK_GUARD",
       "MOVE_ROLLING_KICK",
-      "MOVE_SMELLING_SALT",
+      "MOVE_SMELLING_SALTS",
       "MOVE_THUNDER_PUNCH",
       "MOVE_TICKLE"
     ],
@@ -8303,7 +8303,7 @@
       "MOVE_POWER_TRICK",
       "MOVE_QUICK_GUARD",
       "MOVE_ROLLING_KICK",
-      "MOVE_SMELLING_SALT",
+      "MOVE_SMELLING_SALTS",
       "MOVE_THUNDER_PUNCH",
       "MOVE_TICKLE"
     ],
@@ -8465,7 +8465,7 @@
       "MOVE_POWER_TRICK",
       "MOVE_QUICK_GUARD",
       "MOVE_ROLLING_KICK",
-      "MOVE_SMELLING_SALT",
+      "MOVE_SMELLING_SALTS",
       "MOVE_THUNDER_PUNCH",
       "MOVE_TICKLE"
     ],
@@ -13926,7 +13926,7 @@
       "MOVE_MAGNITUDE",
       "MOVE_MUDDY_WATER",
       "MOVE_SLEEP_TALK",
-      "MOVE_SMELLING_SALT",
+      "MOVE_SMELLING_SALTS",
       "MOVE_SNORE",
       "MOVE_THRASH",
       "MOVE_ZEN_HEADBUTT"
@@ -27308,7 +27308,7 @@
       "MOVE_METRONOME",
       "MOVE_MIMIC",
       "MOVE_PRESENT",
-      "MOVE_SMELLING_SALT",
+      "MOVE_SMELLING_SALTS",
       "MOVE_SNORE",
       "MOVE_THUNDER_FANG"
     ],
@@ -27462,7 +27462,7 @@
       "MOVE_METRONOME",
       "MOVE_MIMIC",
       "MOVE_PRESENT",
-      "MOVE_SMELLING_SALT",
+      "MOVE_SMELLING_SALTS",
       "MOVE_SNORE",
       "MOVE_THUNDER_FANG"
     ],
@@ -33388,7 +33388,7 @@
       "MOVE_LOW_KICK",
       "MOVE_NIGHT_SLASH",
       "MOVE_REVERSAL",
-      "MOVE_SMELLING_SALT"
+      "MOVE_SMELLING_SALTS"
     ],
     "TutorMoves": [
       "MOVE_BOUNCE",
@@ -33526,7 +33526,7 @@
       "MOVE_LOW_KICK",
       "MOVE_NIGHT_SLASH",
       "MOVE_REVERSAL",
-      "MOVE_SMELLING_SALT"
+      "MOVE_SMELLING_SALTS"
     ],
     "TutorMoves": [
       "MOVE_BOUNCE",
@@ -33694,7 +33694,7 @@
       "MOVE_LOW_KICK",
       "MOVE_NIGHT_SLASH",
       "MOVE_REVERSAL",
-      "MOVE_SMELLING_SALT"
+      "MOVE_SMELLING_SALTS"
     ],
     "TutorMoves": [
       "MOVE_BLAST_BURN",
@@ -38046,7 +38046,7 @@
       "MOVE_EXTRASENSORY",
       "MOVE_FAKE_TEARS",
       "MOVE_HAMMER_ARM",
-      "MOVE_SMELLING_SALT",
+      "MOVE_SMELLING_SALTS",
       "MOVE_SMOKESCREEN",
       "MOVE_SNORE",
       "MOVE_TAKE_DOWN",
@@ -38186,7 +38186,7 @@
       "MOVE_EXTRASENSORY",
       "MOVE_FAKE_TEARS",
       "MOVE_HAMMER_ARM",
-      "MOVE_SMELLING_SALT",
+      "MOVE_SMELLING_SALTS",
       "MOVE_SMOKESCREEN",
       "MOVE_SNORE",
       "MOVE_TAKE_DOWN",
@@ -38362,7 +38362,7 @@
       "MOVE_EXTRASENSORY",
       "MOVE_FAKE_TEARS",
       "MOVE_HAMMER_ARM",
-      "MOVE_SMELLING_SALT",
+      "MOVE_SMELLING_SALTS",
       "MOVE_SMOKESCREEN",
       "MOVE_SNORE",
       "MOVE_TAKE_DOWN",
@@ -38429,7 +38429,7 @@
       },
       {
         "Level": 28,
-        "Move": "MOVE_SMELLING_SALT"
+        "Move": "MOVE_SMELLING_SALTS"
       },
       {
         "Level": 31,
@@ -38573,7 +38573,7 @@
       },
       {
         "Level": 30,
-        "Move": "MOVE_SMELLING_SALT"
+        "Move": "MOVE_SMELLING_SALTS"
       },
       {
         "Level": 34,
@@ -39583,7 +39583,7 @@
       "MOVE_IRON_HEAD",
       "MOVE_REVERSAL",
       "MOVE_SCREECH",
-      "MOVE_SMELLING_SALT",
+      "MOVE_SMELLING_SALTS",
       "MOVE_STEALTH_ROCK",
       "MOVE_STOMP",
       "MOVE_SUPERPOWER"
@@ -39725,7 +39725,7 @@
       "MOVE_IRON_HEAD",
       "MOVE_REVERSAL",
       "MOVE_SCREECH",
-      "MOVE_SMELLING_SALT",
+      "MOVE_SMELLING_SALTS",
       "MOVE_STEALTH_ROCK",
       "MOVE_STOMP",
       "MOVE_SUPERPOWER"
@@ -39891,7 +39891,7 @@
       "MOVE_IRON_HEAD",
       "MOVE_REVERSAL",
       "MOVE_SCREECH",
-      "MOVE_SMELLING_SALT",
+      "MOVE_SMELLING_SALTS",
       "MOVE_STEALTH_ROCK",
       "MOVE_STOMP",
       "MOVE_SUPERPOWER"
@@ -42785,7 +42785,7 @@
       "MOVE_PSYCHO_SHIFT",
       "MOVE_RAPID_SPIN",
       "MOVE_ROLE_PLAY",
-      "MOVE_SMELLING_SALT",
+      "MOVE_SMELLING_SALTS",
       "MOVE_SPOTLIGHT",
       "MOVE_TRICK",
       "MOVE_WATER_PULSE",
@@ -43360,7 +43360,7 @@
       "MOVE_POWER_UP_PUNCH",
       "MOVE_ROTOTILLER",
       "MOVE_SEED_BOMB",
-      "MOVE_SMELLING_SALT",
+      "MOVE_SMELLING_SALTS",
       "MOVE_SWITCHEROO",
       "MOVE_TEETER_DANCE",
       "MOVE_WORRY_SEED"
@@ -43524,7 +43524,7 @@
       "MOVE_POWER_UP_PUNCH",
       "MOVE_ROTOTILLER",
       "MOVE_SEED_BOMB",
-      "MOVE_SMELLING_SALT",
+      "MOVE_SMELLING_SALTS",
       "MOVE_SWITCHEROO",
       "MOVE_TEETER_DANCE",
       "MOVE_WORRY_SEED"
@@ -58764,7 +58764,7 @@
       "MOVE_ME_FIRST",
       "MOVE_MEDITATE",
       "MOVE_QUICK_GUARD",
-      "MOVE_SMELLING_SALT",
+      "MOVE_SMELLING_SALTS",
       "MOVE_VACUUM_WAVE",
       "MOVE_WAKE_UP_SLAP"
     ],
@@ -58921,7 +58921,7 @@
       "MOVE_ME_FIRST",
       "MOVE_MEDITATE",
       "MOVE_QUICK_GUARD",
-      "MOVE_SMELLING_SALT",
+      "MOVE_SMELLING_SALTS",
       "MOVE_VACUUM_WAVE",
       "MOVE_WAKE_UP_SLAP"
     ],
@@ -60123,7 +60123,7 @@
       "MOVE_MAGNITUDE",
       "MOVE_MUDDY_WATER",
       "MOVE_SLEEP_TALK",
-      "MOVE_SMELLING_SALT",
+      "MOVE_SMELLING_SALTS",
       "MOVE_SNORE",
       "MOVE_THRASH",
       "MOVE_ZEN_HEADBUTT"
@@ -69462,7 +69462,7 @@
       "MOVE_MACH_PUNCH",
       "MOVE_POWER_UP_PUNCH",
       "MOVE_REVERSAL",
-      "MOVE_SMELLING_SALT",
+      "MOVE_SMELLING_SALTS",
       "MOVE_WIDE_GUARD"
     ],
     "TutorMoves": [
@@ -69599,7 +69599,7 @@
       "MOVE_MACH_PUNCH",
       "MOVE_POWER_UP_PUNCH",
       "MOVE_REVERSAL",
-      "MOVE_SMELLING_SALT",
+      "MOVE_SMELLING_SALTS",
       "MOVE_WIDE_GUARD"
     ],
     "TutorMoves": [
@@ -69740,7 +69740,7 @@
       "MOVE_MACH_PUNCH",
       "MOVE_POWER_UP_PUNCH",
       "MOVE_REVERSAL",
-      "MOVE_SMELLING_SALT",
+      "MOVE_SMELLING_SALTS",
       "MOVE_WIDE_GUARD"
     ],
     "TutorMoves": [
@@ -80788,7 +80788,7 @@
       "MOVE_KNOCK_OFF",
       "MOVE_LOW_KICK",
       "MOVE_ME_FIRST",
-      "MOVE_SMELLING_SALT",
+      "MOVE_SMELLING_SALTS",
       "MOVE_VITAL_THROW"
     ],
     "TutorMoves": [
@@ -80942,7 +80942,7 @@
       "MOVE_KNOCK_OFF",
       "MOVE_LOW_KICK",
       "MOVE_ME_FIRST",
-      "MOVE_SMELLING_SALT",
+      "MOVE_SMELLING_SALTS",
       "MOVE_VITAL_THROW"
     ],
     "TutorMoves": [

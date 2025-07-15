@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("ABILITY: Gale Wings only grants priority at full HP (Gen 7+)")
+SINGLE_BATTLE_TEST("Gale Wings only grants priority at full HP (Gen 7+)")
 {
     u32 hp, config;
     PARAMETRIZE { hp = 100; config = GEN_7; }
@@ -27,7 +27,7 @@ SINGLE_BATTLE_TEST("ABILITY: Gale Wings only grants priority at full HP (Gen 7+)
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Gale Wings only grants priority to Flying-type moves")
+SINGLE_BATTLE_TEST("Gale Wings only grants priority to Flying-type moves")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_AERIAL_ACE; }
@@ -51,7 +51,7 @@ SINGLE_BATTLE_TEST("ABILITY: Gale Wings only grants priority to Flying-type move
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Gale Wings doesn't increase priority of Flying-type Natural Gift, Judgment, Hidden Power, or Tera Blast")
+SINGLE_BATTLE_TEST("Gale Wings doesn't increase priority of Flying-type Natural Gift, Judgment, Hidden Power, or Tera Blast")
 {
     u32 move;
     u16 heldItem;
@@ -88,7 +88,7 @@ SINGLE_BATTLE_TEST("ABILITY: Gale Wings doesn't increase priority of Flying-type
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Gale Wings only grants priority at full HP (Gen 7+)")
+SINGLE_BATTLE_TEST("Gale Wings only grants priority at full HP (Gen 7+) (Trait)")
 {
     u32 hp, config;
     PARAMETRIZE { hp = 100; config = GEN_7; }
@@ -114,7 +114,7 @@ SINGLE_BATTLE_TEST("INNATE: Gale Wings only grants priority at full HP (Gen 7+)"
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Gale Wings only grants priority to Flying-type moves")
+SINGLE_BATTLE_TEST("Gale Wings only grants priority to Flying-type moves (Trait)")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_AERIAL_ACE; }
@@ -138,7 +138,7 @@ SINGLE_BATTLE_TEST("INNATE: Gale Wings only grants priority to Flying-type moves
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Gale Wings doesn't increase priority of Flying-type Natural Gift, Judgment, Hidden Power, or Tera Blast")
+SINGLE_BATTLE_TEST("Gale Wings doesn't increase priority of Flying-type Natural Gift, Judgment, Hidden Power, or Tera Blast (Trait)")
 {
     u32 move;
     u16 heldItem;

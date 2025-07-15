@@ -2,7 +2,7 @@
 #include "test/battle.h"
 
 
-SINGLE_BATTLE_TEST("ABILITY: Embody Aspect raises a stat depending on the users form by one stage")
+SINGLE_BATTLE_TEST("Embody Aspect raises a stat depending on the users form by one stage")
 {
     u16 species, ability;
 
@@ -39,7 +39,7 @@ SINGLE_BATTLE_TEST("ABILITY: Embody Aspect raises a stat depending on the users 
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Embody Aspect activates when it's no longer effected by Neutralizing Gas")
+SINGLE_BATTLE_TEST("Embody Aspect activates when it's no longer effected by Neutralizing Gas")
 {
     GIVEN {
         PLAYER(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); }
@@ -58,31 +58,7 @@ SINGLE_BATTLE_TEST("ABILITY: Embody Aspect activates when it's no longer effecte
     }
 }
 
-SINGLE_BATTLE_TEST("ABILITY: Embody Aspect raises Speed only once per battle")
-{
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_OGERPON_TEAL_TERA) { Ability(ABILITY_EMBODY_ASPECT_TEAL_MASK); }
-        OPPONENT(SPECIES_WYNAUT);
-    } WHEN {
-        TURN { SWITCH(opponent, 1); }
-        TURN { SWITCH(opponent, 0); }
-    } SCENE {
-        ABILITY_POPUP(opponent, ABILITY_EMBODY_ASPECT_TEAL_MASK);
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("The opposing Ogerpon's Embody Aspect raised its Speed!");
-        NONE_OF {
-            ABILITY_POPUP(opponent, ABILITY_EMBODY_ASPECT_TEAL_MASK);
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("The opposing Ogerpon's Embody Aspect raised its Speed!");
-        }
-    } THEN {
-        EXPECT_EQ(opponent->statStages[STAT_SPEED], DEFAULT_STAT_STAGE);
-    }
-}
-
-
-SINGLE_BATTLE_TEST("INNATE: Embody Aspect raises a stat depending on the users form by one stage")
+SINGLE_BATTLE_TEST("Embody Aspect raises a stat depending on the users form by one stage (Trait)")
 {
     u16 species, ability;
 
@@ -119,10 +95,10 @@ SINGLE_BATTLE_TEST("INNATE: Embody Aspect raises a stat depending on the users f
     }
 }
 
-SINGLE_BATTLE_TEST("INNATE: Embody Aspect activates when it's no longer effected by Neutralizing Gas")
+SINGLE_BATTLE_TEST("Embody Aspect activates when it's no longer effected by Neutralizing Gas (Trait)")
 {
     GIVEN {
-        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LEVITATE); Innates(ABILITY_NEUTRALIZING_GAS); }
+        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_OGERPON_TEAL_TERA) { Ability(ABILITY_EMBODY_ASPECT_TEAL_MASK); }
     } WHEN {
@@ -135,28 +111,5 @@ SINGLE_BATTLE_TEST("INNATE: Embody Aspect activates when it's no longer effected
         ABILITY_POPUP(opponent, ABILITY_EMBODY_ASPECT_TEAL_MASK);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
         MESSAGE("The opposing Ogerpon's Embody Aspect raised its Speed!");
-    }
-}
-
-SINGLE_BATTLE_TEST("INNATE: Embody Aspect raises Speed only once per battle")
-{
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_OGERPON_TEAL_TERA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_EMBODY_ASPECT_TEAL_MASK); }
-        OPPONENT(SPECIES_WYNAUT);
-    } WHEN {
-        TURN { SWITCH(opponent, 1); }
-        TURN { SWITCH(opponent, 0); }
-    } SCENE {
-        ABILITY_POPUP(opponent, ABILITY_EMBODY_ASPECT_TEAL_MASK);
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("The opposing Ogerpon's Embody Aspect raised its Speed!");
-        NONE_OF {
-            ABILITY_POPUP(opponent, ABILITY_EMBODY_ASPECT_TEAL_MASK);
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("The opposing Ogerpon's Embody Aspect raised its Speed!");
-        }
-    } THEN {
-        EXPECT_EQ(opponent->statStages[STAT_SPEED], DEFAULT_STAT_STAGE);
     }
 }

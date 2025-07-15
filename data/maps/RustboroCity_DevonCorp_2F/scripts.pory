@@ -5,8 +5,6 @@ mapscripts RustboroCity_DevonCorp_2F_MapScripts {
 }
 
 raw `
-.set LOCALID_FOSSIL_SCIENTIST, 5
-
 RustboroCity_DevonCorp_2F_EventScript_SetFossilReady::
     setvar VAR_FOSSIL_RESURRECTION_STATE, 2
     return

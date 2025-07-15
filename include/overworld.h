@@ -88,7 +88,7 @@ void SetWarpDestination(s8 mapGroup, s8 mapNum, s8 warpId, s8 x, s8 y);
 void SetWarpDestinationToMapWarp(s8 mapGroup, s8 mapNum, s8 warpId);
 void SetDynamicWarp(s32 unused, s8 mapGroup, s8 mapNum, s8 warpId);
 void SetDynamicWarpWithCoords(s32 unused, s8 mapGroup, s8 mapNum, s8 warpId, s8 x, s8 y);
-void SetWarpDestinationToDynamicWarp(u8 unused);
+void SetWarpDestinationToDynamicWarp(u8 unusedWarpId);
 void SetWarpDestinationToHealLocation(u8 healLocationId);
 void SetWarpDestinationToLastHealLocation(void);
 void SetLastHealLocationWarp(u8 healLocationId);
@@ -111,7 +111,7 @@ void SetDefaultFlashLevel(void);
 void SetFlashLevel(s32 flashLevel);
 u8 GetFlashLevel(void);
 void SetCurrentMapLayout(u16 mapLayoutId);
-void SetObjectEventLoadFlag(u8 var);
+void SetObjectEventLoadFlag(u8 flag);
 u16 GetLocationMusic(struct WarpData *warp);
 u16 GetCurrLocationDefaultMusic(void);
 u16 GetWarpDestinationMusic(void);
@@ -171,8 +171,6 @@ bool32 Overworld_RecvKeysFromLinkIsRunning(void);
 bool32 Overworld_SendKeysToLinkIsRunning(void);
 bool32 IsSendingKeysOverCable(void);
 void ClearLinkPlayerObjectEvents(void);
-u8 GetLastUsedWarpMapSectionId(void);
-u8 GetDestinationWarpMapSectionId(void);
 bool16 SetTimeOfDay(u16 hours);
 
 // Item Description Headers
