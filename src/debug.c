@@ -4408,6 +4408,7 @@ static void DebugAction_Sound_MUS_SelectId(u8 taskId)
     X(MUS_CASINO_PLUS_7) \
     X(MUS_CASINO_PLUS_8) \
     X(MUS_CASINO_PLUS_9) \
+    X(MUS_CASINO_PLUS_GACHA) \
     X(PH_TRAP_BLEND) \
     X(PH_TRAP_HELD) \
     X(PH_TRAP_SOLO) \

@@ -1875,7 +1875,7 @@ static void GetRacerSpeeds(u8 racerSpecies, u8 racer)
 
     sDerby->racerSpeedStart[racer] = sSpeed * (1 + (sDerby->racerCondition[racer] / 10.0f));
     sDerby->racerSpeedRace[racer] = rSpeed * (1 + (sDerby->racerCondition[racer] / 10.0f));
-    condition = sDerby->racerCondition[racer] + 1;
+    condition = sDerby->racerCondition[racer];
     sDerby->racerSpeedPay[racer] = GetDerbySpeciesSpeedPay(racerSpecies, condition);
 }
 
