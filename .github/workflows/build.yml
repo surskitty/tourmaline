@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - master
+      - Trait-System
       - upcoming
   pull_request:
 

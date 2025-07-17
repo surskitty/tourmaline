@@ -14055,7 +14055,6 @@ static void Cmd_healpartystatus(void)
     CMD_ARGS();
 
     u32 i = 0;
-    u32 j = 0;
     u32 zero = 0;
     u32 toHeal = 0;
     u32 partner = GetBattlerAtPosition(BATTLE_PARTNER(GetBattlerPosition(gBattlerAttacker)));
@@ -14133,6 +14132,7 @@ static void Cmd_healpartystatus(void)
                 if (gTestRunnerEnabled)
                 {
                     u32 side = GetBattlerSide(gBattlerAttacker);
+                    u32 j = 0;
 
                     for (j = 0; j < MAX_MON_TRAITS; j++)
                     {

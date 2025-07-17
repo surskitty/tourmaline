@@ -176,7 +176,7 @@ static bool32 ShouldSwitchIfHasBadOdds(u32 battler)
     //Variable initialization
     u8 opposingPosition, atkType1, atkType2, defType1, defType2;
     s32 i, damageDealt = 0, maxDamageDealt = 0, damageTaken = 0, maxDamageTaken = 0;
-    u32 aiMove, playerMove, aiBestMove = MOVE_NONE, opposingBattler, weather = AI_GetWeather(); //gAiLogicData->abilities[battler]
+    u32 aiMove, playerMove, aiBestMove = MOVE_NONE, opposingBattler; //gAiLogicData->abilities[battler]
     bool32 getsOneShot = FALSE, hasStatusMove = FALSE, hasSuperEffectiveMove = FALSE;
     u16 typeEffectiveness = UQ_4_12(1.0); //baseline typing damage
     enum BattleMoveEffects aiMoveEffect;
@@ -688,9 +688,6 @@ static bool32 ShouldSwitchIfBadlyStatused(u32 battler)
                 switchMon = FALSE;
 
             // Check if Active Pokemon evasion boosted and might be able to dodge until awake
-            u16 AIBattlerTraits[MAX_MON_TRAITS];
-            AI_STORE_BATTLER_TRAITS(opposingBattler);
-
             if (gBattleMons[battler].statStages[STAT_EVASION] > (DEFAULT_STAT_STAGE + 3)
                 && !AI_BATTLER_HAS_TRAIT(opposingBattler, ABILITY_UNAWARE)
                 && !AI_BATTLER_HAS_TRAIT(opposingBattler, ABILITY_KEEN_EYE)
