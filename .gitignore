@@ -1,4 +1,3 @@
-tools/poryscript
 convert_inc.sh
 *.exe
 *.o
