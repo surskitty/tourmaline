@@ -43,8 +43,6 @@ static void Task_EnterCaveTransition1(u8 taskId);
 static void Task_EnterCaveTransition2(u8 taskId);
 static void Task_EnterCaveTransition3(u8 taskId);
 static void Task_EnterCaveTransition4(u8 taskId);
-static void RunMapPreviewScreen(u8 mapsecId);
-static void Task_MapPreviewScreen_0(u8 taskId);
 
 static const struct FlashStruct sTransitionTypes[] =
 {
@@ -354,83 +352,5 @@ static void Task_EnterCaveTransition4(u8 taskId)
     {
         LoadPalette(sCaveTransitionPalette_Black, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
         SetMainCallback2(gMain.savedCallback);
-    }
-}
-
-static void RunMapPreviewScreen(u8 mapSecId)
-{
-    u8 taskId = CreateTask(Task_MapPreviewScreen_0, 0);
-    gTasks[taskId].data[3] = mapSecId;
-}
-
-static void Task_MapPreviewScreen_0(u8 taskId)
-{
-    s16 *data = gTasks[taskId].data;
-    switch (data[0])
-    {
-    case 0:
-        SetWordTaskArg(taskId, 5, (uintptr_t)gMain.vblankCallback);
-        SetVBlankCallback(NULL);
-        MapPreview_InitBgs();
-        MapPreview_LoadGfx(data[3]);
-        BlendPalettes(PALETTES_ALL, 0x10, RGB_BLACK);
-        data[0]++;
-        break;
-    case 1:
-        if (!MapPreview_IsGfxLoadFinished())
-        {
-            data[4] = MapPreview_CreateMapNameWindow(data[3]);
-            CopyWindowToVram(data[4], COPYWIN_FULL);
-            data[0]++;
-        }
-        break;
-    case 2:
-        if (!IsDma3ManagerBusyWithBgCopy())
-        {
-            BeginNormalPaletteFade(PALETTES_ALL, -1, 16, 0, RGB_BLACK);
-            SetVBlankCallback((IntrCallback)GetWordTaskArg(taskId, 5));
-            data[0]++;
-        }
-        break;
-    case 3:
-        if (!UpdatePaletteFade())
-        {
-            data[2] = MapPreview_GetDuration(data[3]);
-            data[0]++;
-        }
-        break;
-    case 4:
-        data[1]++;
-        if (data[1] > data[2] || JOY_HELD(B_BUTTON))
-        {
-            if (MapHasPreviewScreen_HandleQLState2(gMapHeader.regionMapSectionId, MPS_TYPE_BASIC) == TRUE)
-            {
-                BeginNormalPaletteFade(PALETTES_ALL, MPS_BASIC_FADE_SPEED, 0, 16, RGB_BLACK);
-            }
-            else {
-                BeginNormalPaletteFade(PALETTES_ALL, -2, 0, 16, RGB_WHITE);
-            }
-            data[0]++;
-        }
-        break;
-    case 5:
-        if (!UpdatePaletteFade())
-        {
-            int i;
-            for (i = 0; i < 16; i++)
-            {
-                data[i] = 0;
-            }
-            MapPreview_Unload(data[4]);
-            if (MapHasPreviewScreen_HandleQLState2(gMapHeader.regionMapSectionId, MPS_TYPE_BASIC) == TRUE)
-            {
-                SetMainCallback2(gMain.savedCallback);
-            }
-            else
-            {
-                gTasks[taskId].func = Task_EnterCaveTransition2;
-            }
-        }
-        break;
     }
 }
