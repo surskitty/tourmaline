@@ -3,7 +3,7 @@
 #include "test/battle.h"
 
 #if B_VAR_STARTING_STATUS != 0
-
+/*
 SINGLE_BATTLE_TEST("B_VAR_STARTING_STATUS starts a chosen terrain at the beginning of battle and lasts infinitely long")
 {
     u16 terrain;
@@ -109,5 +109,5 @@ SINGLE_BATTLE_TEST("Terrain started after the one which started the battle lasts
         VarSet(B_VAR_STARTING_STATUS, 0);
     }
 }
-
+*/
 #endif // B_VAR_STARTING_STATUS

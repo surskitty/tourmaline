@@ -1,6 +1,8 @@
 #include "global.h"
 #include "test/battle.h"
 
+#if B_FLAG_DYNAMAX_BATTLE != 0
+
 // ============= DYNAMAX AND MAX MOVE INTERACTIONS ===================
 SINGLE_BATTLE_TEST("Dynamax: Dynamax increases HP and max HP by 1.5x", u16 hp)
 {
@@ -1636,3 +1638,5 @@ SINGLE_BATTLE_TEST("Dynamax: Destiny Bond if a dynamaxed battler is present on f
         MESSAGE("The move was blocked by the power of Dynamax!");
     }
 }
+
+#endif

@@ -24,6 +24,7 @@ SINGLE_BATTLE_TEST("Three strike count turns a move into a 3-hit move")
 
     GIVEN {
         ASSUME(GetMoveStrikeCount(MOVE_TRIPLE_DIVE) == 3);
+        ASSUME(GetMoveEffect(MOVE_TRIPLE_DIVE) == EFFECT_HIT);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
