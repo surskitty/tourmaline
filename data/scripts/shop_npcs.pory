@@ -12,28 +12,33 @@ script Common_EventScript_MegaStoneClerk {
             waitmessage
             showmoneybox(0, 0)
             dynmultichoice(13, 4, FALSE, 4, FALSE, DYN_MULTICHOICE_CB_NONE, "Petalburg Area", "Dewford Area", "Mauville Area", "Somewhere Else")
-            message(format("Which Pokémon do you want a Stone for?"))
-            waitmessage
             switch (var(VAR_RESULT)) {
             case 0: goto(Common_EventScript_MegaStoneClerk_Petalburg)
             case 1: goto(Common_EventScript_MegaStoneClerk_Dewford)
             case 2: goto(Common_EventScript_MegaStoneClerk_Mauville)
             case 3: goto(Common_EventScript_MegaStoneClerk_Elsewhere)
             default:
-                break
+                goto(Common_EventScript_MegaStoneClerk_End)
             }
-            msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
         } else {
             msgbox(format("Welcome!\p… You don't have the money for any Mega Stones."), MSGBOX_DEFAULT)
         }
         msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
     } else {
-    msgbox(format("Welcome!\p… I don't see a Mega Bracelet on you.\pCome back when you have a Mega Bracelet."), MSGBOX_DEFAULT)
+        msgbox(format("Welcome!\p… I don't see a Mega Bracelet on you.\pCome back when you have a Mega Bracelet."), MSGBOX_DEFAULT)
     }
     release
 }
 
+script Common_EventScript_MegaStoneClerk_End {
+    hidemoneybox
+    msgbox(gText_PleaseComeAgain, MSGBOX_DEFAULT)
+    release
+}
+
 script Common_EventScript_MegaStoneClerk_Petalburg {
+    message(format("Which Pokémon do you want a Stone for?"))
+    waitmessage
     dynmultipush("Sceptile",    ITEM_SCEPTILITE)
     dynmultipush("Blaziken",    ITEM_BLAZIKENITE)
     dynmultipush("Swampert",    ITEM_SWAMPERTITE)
@@ -47,6 +52,8 @@ script Common_EventScript_MegaStoneClerk_Petalburg {
 }
 
 script Common_EventScript_MegaStoneClerk_Dewford {
+    message(format("Which Pokémon do you want a Stone for?"))
+    waitmessage
     dynmultipush("Aggron",      ITEM_AGGRONITE)
     dynmultipush("Alakazam",    ITEM_ALAKAZITE)
     dynmultipush("Gyarados",    ITEM_GYARADOSITE)
@@ -56,6 +63,8 @@ script Common_EventScript_MegaStoneClerk_Dewford {
 }
 
 script Common_EventScript_MegaStoneClerk_Mauville {
+    message(format("Which Pokémon do you want a Stone for?"))
+    waitmessage
     dynmultipush("Absol",       ITEM_ABSOLITE)
     dynmultipush("Altaria",     ITEM_ALTARIANITE)
     dynmultipush("Camerupt",    ITEM_CAMERUPTITE)
@@ -67,6 +76,8 @@ script Common_EventScript_MegaStoneClerk_Mauville {
 }
 
 script Common_EventScript_MegaStoneClerk_Elsewhere {
+    message(format("Which Pokémon do you want a Stone for?"))
+    waitmessage
     dynmultipush("Absol",           ITEM_ABSOLITE)
     dynmultipush("Ampharos",        ITEM_AMPHAROSITE)
     dynmultipush("Banette",         ITEM_BANETTITE)
