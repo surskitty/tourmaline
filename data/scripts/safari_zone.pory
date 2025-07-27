@@ -115,32 +115,29 @@ text Route121_SafariZoneEntrance_Text_WelcomeToSafariZone{
     "gates to Pokémon TRAINERS.\p"
     "You're encouraged to catch Pokémon\n"
     "for keeps!\p"
-    "Come in and enjoy the SAFARI ZONE!")
+    "Come in and enjoy the Safari Zone!")
 }
 
 text Route121_SafariZoneEntrance_Text_WelcomeFirstTime{ 
-    format("Welcome to the SAFARI ZONE!\n"
+    format("Welcome to the Safari Zone!\n"
     "Is it your first time here?")
 }
 
 text Route121_SafariZoneEntrance_Text_ComeInAndEnjoy{ 
-    format("Come in and enjoy the SAFARI ZONE!")
+    format("Come in and enjoy the Safari Zone!")
 }
 
 text Route121_SafariZoneEntrance_Text_FirstTimeInfo{ 
-    format("When you enter the SAFARI ZONE, you\n"
-    "start with 30 SAFARI BALLS for\l"
+    format("When you enter the Safari Zone, you\n"
+    "start with 30 Safari Balls for\l"
     "catching Pokémon.\p"
-    "The SAFARI Game is over when you run\n"
-    "out of SAFARI BALLS, or when you've\l"
-    "walked 500 steps.\p"
-    "Come in and enjoy the SAFARI ZONE!")
+    "Come in and enjoy the Safari Zone!")
 }
 
 text Route121_SafariZoneEntrance_Text_WouldYouLikeToPlay{ 
-    format("Welcome to the SAFARI ZONE!\p"
+    format("Welcome to the Safari Zone!\p"
     "All you can catch for just ¥500!\n"
-    "Would you like to play a SAFARI Game?")
+    "Would you like to play a Safari Game?")
 }
 
 text Route121_SafariZoneEntrance_Text_PlayAnotherTime{ 

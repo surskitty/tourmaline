@@ -5587,13 +5587,18 @@ static s32 AI_Roaming(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
 // Safari pokemon logic
 static s32 AI_Safari(u32 battlerAtk, u32 battlerDef, u32 move, s32 score)
 {
-    u32 safariFleeRate = gBattleStruct->safariEscapeFactor * 5; // Safari flee rate, from 0-20.
-
-    if ((Random() % 100) < safariFleeRate)
-        AI_Flee();
-    else
+    if (IsMonShiny(&gEnemyParty[gBattlerPartyIndexes[battlerAtk]]))
+    {
         AI_Watch();
-
+    }
+    else
+    {
+        u32 safariFleeRate = gBattleStruct->safariEscapeFactor * 2; // Safari flee rate, from 0-20.
+        if ((Random() % 100) < safariFleeRate)
+            AI_Flee();
+        else
+            AI_Watch();
+    }
     return score;
 }
 
