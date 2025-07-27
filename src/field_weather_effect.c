@@ -14,7 +14,6 @@
 #include "task.h"
 #include "trig.h"
 #include "gpu_regs.h"
-#include "map_preview_screen.h"
 #include "constants/expansion.h"
 #include "palette.h"
 

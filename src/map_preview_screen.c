@@ -13,14 +13,10 @@
 #include "event_data.h"
 #include "map_preview_screen.h"
 #include "constants/region_map_sections.h"
-#include "constants/rgb.h"
 
 static EWRAM_DATA bool8 sAllocedBg0TilemapBuffer = FALSE;
 
 static void Task_RunMapPreviewScreenForest(u8 taskId);
-static void Task_RunMapPreview_Script(u8 taskId);
-static void CB2_MapPreviewScript(void);
-static void VblankCB_MapPreviewScript(void);
 
 static const u8 sViridianForestMapPreviewPalette[] = INCBIN_U8("graphics/map_preview/viridian_forest/tiles.gbapal");
 static const u8 sViridianForestMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/viridian_forest/tiles.4bpp.lz");
@@ -86,175 +82,175 @@ static const u8 sAlteringCaveMapPreviewPalette[] = INCBIN_U8("graphics/map_previ
 static const u8 sAlteringCaveMapPreviewTiles[] = INCBIN_U8("graphics/map_preview/altering_cave/tiles.4bpp.lz");
 static const u8 sAlteringCaveMapPreviewTilemap[] = INCBIN_U8("graphics/map_preview/altering_cave/tilemap.bin.lz");
 
-// If you set flagId to MPS_FLAG_NULL, it will not set a flag when visiting the map for the first time
-// and the duration will default to MPS_DURATION_NO_FLAG.
+// If you set flagId to FLAG_NULL, it will not set a flag when visiting the map for the first time
+// and the duration will always default to DURATION_SHORT.
 static const struct MapPreviewScreen sMapPreviewScreenData[MPS_COUNT] = {
     [MPS_VIRIDIAN_FOREST] = {
         .mapsec = MAPSEC_VIRIDIAN_FOREST,
-        .type = MPS_TYPE_FADE_IN,
-        .flagId = MPS_FLAG_NULL,
+        .type = MPS_TYPE_NON_CAVE,
+        .flagId = FLAG_WORLD_MAP_VIRIDIAN_FOREST,
         .image = IMG_VIRIDIAN_FOREST
     },
     [MPS_MT_MOON] = {
         .mapsec = MAPSEC_MT_MOON,
         .type = MPS_TYPE_CAVE,
-        .flagId = MPS_FLAG_NULL,
+        .flagId = FLAG_WORLD_MAP_MT_MOON_1F,
         .image = IMG_MT_MOON
     },
     [MPS_DIGLETTS_CAVE] = {
         .mapsec = MAPSEC_DIGLETTS_CAVE,
         .type = MPS_TYPE_CAVE,
-        .flagId = MPS_FLAG_NULL,
+        .flagId = FLAG_WORLD_MAP_DIGLETTS_CAVE_B1F,
         .image = IMG_DIGLETTS_CAVE
     },
     [MPS_ROCK_TUNNEL] = {
         .mapsec = MAPSEC_ROCK_TUNNEL,
         .type = MPS_TYPE_CAVE,
-        .flagId = MPS_FLAG_NULL,
+        .flagId = FLAG_WORLD_MAP_ROCK_TUNNEL_1F,
         .image = IMG_ROCK_TUNNEL
     },
     [MPS_POKEMON_TOWER] = {
         .mapsec = MAPSEC_POKEMON_TOWER,
         .type = MPS_TYPE_CAVE,
-        .flagId = MPS_FLAG_NULL,
+        .flagId = FLAG_WORLD_MAP_POKEMON_TOWER_1F,
         .image = IMG_POKEMON_TOWER
     },
     [MPS_SAFARI_ZONE] = {
         .mapsec = MAPSEC_KANTO_SAFARI_ZONE,
-        .type = MPS_TYPE_FADE_IN,
-        .flagId = MPS_FLAG_NULL,
+        .type = MPS_TYPE_NON_CAVE,
+        .flagId = FLAG_WORLD_MAP_SAFARI_ZONE_CENTER,
         .image = IMG_SAFARI_ZONE
     },
     [MPS_SEAFOAM_ISLANDS] = {
         .mapsec = MAPSEC_SEAFOAM_ISLANDS,
         .type = MPS_TYPE_CAVE,
-        .flagId = MPS_FLAG_NULL,
+        .flagId = FLAG_WORLD_MAP_SEAFOAM_ISLANDS_1F,
         .image = IMG_SEAFOAM_ISLANDS
     },
     [MPS_POKEMON_MANSION] = {
         .mapsec = MAPSEC_POKEMON_MANSION,
-        .type = MPS_TYPE_FADE_IN,
-        .flagId = MPS_FLAG_NULL,
+        .type = MPS_TYPE_NON_CAVE,
+        .flagId = FLAG_WORLD_MAP_POKEMON_MANSION_1F,
         .image = IMG_POKEMON_MANSION
     },
     [MPS_ROCKET_HIDEOUT] = {
         .mapsec = MAPSEC_ROCKET_HIDEOUT,
-        .type = MPS_TYPE_FADE_IN,
-        .flagId = MPS_FLAG_NULL,
+        .type = MPS_TYPE_NON_CAVE,
+        .flagId = FLAG_WORLD_MAP_ROCKET_HIDEOUT_B1F,
         .image = IMG_ROCKET_HIDEOUT
     },
     [MPS_SILPH_CO] = {
         .mapsec = MAPSEC_SILPH_CO,
         .type = MPS_TYPE_CAVE,
-        .flagId = MPS_FLAG_NULL,
+        .flagId = FLAG_WORLD_MAP_SILPH_CO_1F,
         .image = IMG_SILPH_CO
     },
     [MPS_VICTORY_ROAD] = {
         .mapsec = MAPSEC_KANTO_VICTORY_ROAD,
         .type = MPS_TYPE_CAVE,
-        .flagId = MPS_FLAG_NULL,
+        .flagId = FLAG_WORLD_MAP_VICTORY_ROAD_1F,
         .image = IMG_VICTORY_ROAD
     },
     [MPS_CERULEAN_CAVE] = {
         .mapsec = MAPSEC_CERULEAN_CAVE,
         .type = MPS_TYPE_CAVE,
-        .flagId = MPS_FLAG_NULL,
+        .flagId = FLAG_WORLD_MAP_CERULEAN_CAVE_1F,
         .image = IMG_CERULEAN_CAVE
     },
     [MPS_POWER_PLANT] = {
         .mapsec = MAPSEC_POWER_PLANT,
-        .type = MPS_TYPE_FADE_IN,
-        .flagId = MPS_FLAG_NULL,
+        .type = MPS_TYPE_NON_CAVE,
+        .flagId = FLAG_WORLD_MAP_POWER_PLANT,
         .image = IMG_POWER_PLANT
     },
     [MPS_MT_EMBER] = {
         .mapsec = MAPSEC_MT_EMBER,
         .type = MPS_TYPE_CAVE,
-        .flagId = MPS_FLAG_NULL,
+        .flagId = FLAG_WORLD_MAP_MT_EMBER_EXTERIOR,
         .image = IMG_MT_EMBER
     },
     [MPS_ROCKET_WAREHOUSE] = {
         .mapsec = MAPSEC_ROCKET_WAREHOUSE,
-        .type = MPS_TYPE_FADE_IN,
-        .flagId = MPS_FLAG_NULL,
+        .type = MPS_TYPE_NON_CAVE,
+        .flagId = FLAG_WORLD_MAP_THREE_ISLAND_BERRY_FOREST,
         .image = IMG_ROCKET_WAREHOUSE
     },
     [MPS_MONEAN_CHAMBER] = {
         .mapsec = MAPSEC_MONEAN_CHAMBER,
         .type = MPS_TYPE_CAVE,
-        .flagId = MPS_FLAG_NULL,
+        .flagId = FLAG_WORLD_MAP_SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER,
         .image = IMG_MONEAN_CHAMBER
     },
     [MPS_DOTTED_HOLE] = {
         .mapsec = MAPSEC_DOTTED_HOLE,
         .type = MPS_TYPE_CAVE,
-        .flagId = MPS_FLAG_NULL,
+        .flagId = FLAG_WORLD_MAP_SIX_ISLAND_DOTTED_HOLE_1F,
         .image = IMG_DOTTED_HOLE
     },
     [MPS_BERRY_FOREST] = {
         .mapsec = MAPSEC_BERRY_FOREST,
-        .type = MPS_TYPE_FADE_IN,
-        .flagId = MPS_FLAG_NULL,
+        .type = MPS_TYPE_NON_CAVE,
+        .flagId = FLAG_WORLD_MAP_THREE_ISLAND_BERRY_FOREST,
         .image = IMG_BERRY_FOREST
     },
     [MPS_ICEFALL_CAVE] = {
         .mapsec = MAPSEC_ICEFALL_CAVE,
         .type = MPS_TYPE_CAVE,
-        .flagId = MPS_FLAG_NULL,
+        .flagId = FLAG_WORLD_MAP_FOUR_ISLAND_ICEFALL_CAVE_ENTRANCE,
         .image = IMG_ICEFALL_CAVE
     },
     [MPS_LOST_CAVE] = {
         .mapsec = MAPSEC_LOST_CAVE,
         .type = MPS_TYPE_CAVE,
-        .flagId = MPS_FLAG_NULL,
+        .flagId = FLAG_WORLD_MAP_FIVE_ISLAND_LOST_CAVE_ENTRANCE,
         .image = IMG_LOST_CAVE
     },
     [MPS_ALTERING_CAVE] = {
         .mapsec = MAPSEC_ALTERING_CAVE,
         .type = MPS_TYPE_CAVE,
-        .flagId = MPS_FLAG_NULL,
+        .flagId = FLAG_WORLD_MAP_SIX_ISLAND_ALTERING_CAVE,
         .image = IMG_ALTERING_CAVE
     },
     [MPS_PATTERN_BUSH] = {
         .mapsec = MAPSEC_PATTERN_BUSH,
-        .type = MPS_TYPE_FADE_IN,
-        .flagId = MPS_FLAG_NULL,
+        .type = MPS_TYPE_NON_CAVE,
+        .flagId = FLAG_WORLD_MAP_SIX_ISLAND_PATTERN_BUSH,
         .image = IMG_VIRIDIAN_FOREST
     },
     [MPS_LIPTOO_CHAMBER] = {
         .mapsec = MAPSEC_LIPTOO_CHAMBER,
         .type = MPS_TYPE_CAVE,
-        .flagId = MPS_FLAG_NULL,
+        .flagId = FLAG_WORLD_MAP_SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER,
         .image = IMG_MONEAN_CHAMBER
     },
     [MPS_WEEPTH_CHAMBER] = {
         .mapsec = MAPSEC_WEEPTH_CHAMBER,
         .type = MPS_TYPE_CAVE,
-        .flagId = MPS_FLAG_NULL,
+        .flagId = FLAG_WORLD_MAP_SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER,
         .image = IMG_MONEAN_CHAMBER
     },
     [MPS_TDILFORD_CHAMBER] = {
         .mapsec = MAPSEC_DILFORD_CHAMBER,
         .type = MPS_TYPE_CAVE,
-        .flagId = MPS_FLAG_NULL,
+        .flagId = FLAG_WORLD_MAP_SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER,
         .image = IMG_MONEAN_CHAMBER
     },
     [MPS_SCUFIB_CHAMBER] = {
         .mapsec = MAPSEC_SCUFIB_CHAMBER,
         .type = MPS_TYPE_CAVE,
-        .flagId = MPS_FLAG_NULL,
+        .flagId = FLAG_WORLD_MAP_SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER,
         .image = IMG_MONEAN_CHAMBER
     },
     [MPS_RIXY_CHAMBER] = {
         .mapsec = MAPSEC_RIXY_CHAMBER,
         .type = MPS_TYPE_CAVE,
-        .flagId = MPS_FLAG_NULL,
+        .flagId = FLAG_WORLD_MAP_SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER,
         .image = IMG_MONEAN_CHAMBER
     },
     [MPS_VIAPOIS_CHAMBER] = {
         .mapsec = MAPSEC_VIAPOIS_CHAMBER,
         .type = MPS_TYPE_CAVE,
-        .flagId = MPS_FLAG_NULL,
+        .flagId = FLAG_WORLD_MAP_SEVEN_ISLAND_TANOBY_RUINS_MONEAN_CHAMBER,
         .image = IMG_MONEAN_CHAMBER
     }
 };
@@ -377,16 +373,6 @@ static const struct WindowTemplate sMapNameWindow = {
     .baseBlock = 0x1C2
 };
 
-static const struct WindowTemplate sMapNameWindowLarge = {
-    .bg = 0,
-    .tilemapLeft = 0,
-    .tilemapTop = 0,
-    .width = 22,
-    .height = 2,
-    .paletteNum = 14,
-    .baseBlock = 0x1C2
-};
-
 static const struct BgTemplate sMapPreviewBgTemplate[1] = {
     {
         .mapBaseIndex = 31
@@ -448,11 +434,7 @@ void MapPreview_LoadGfx(u8 mapsec)
     if (idx != MPS_COUNT)
     {
        ResetTempTileDataBuffers();
-       if (MapHasPreviewScreen_HandleQLState2(gMapHeader.regionMapSectionId, MPS_TYPE_FADE_IN) == TRUE)
-            LoadPalette(sMapPreviewImageData[sMapPreviewScreenData[idx].image].palptr, BG_PLTT_ID(13), 3 * PLTT_SIZE_4BPP);
-        else
-            LoadPalette(sMapPreviewImageData[sMapPreviewScreenData[idx].image].palptr, BG_PLTT_ID(0), 16 * PLTT_SIZE_4BPP);
-            
+       LoadPalette(sMapPreviewImageData[sMapPreviewScreenData[idx].image].palptr, BG_PLTT_ID(13), 3 * PLTT_SIZE_4BPP);
        DecompressAndCopyTileDataToVram(0, sMapPreviewImageData[sMapPreviewScreenData[idx].image].tilesptr, 0, 0, 0);
        if (GetBgTilemapBuffer(0) == NULL)
        {
@@ -516,22 +498,14 @@ u16 MapPreview_CreateMapNameWindow(u8 mapsec)
     u8 color[0];
     #endif
 
-    GetMapName(gStringVar4, mapsec, 0);
-    if (GetStringWidth(FONT_NORMAL, gStringVar4, 0) > 104)
-    {
-        windowId = AddWindow(&sMapNameWindowLarge);
-        xctr = 177 - GetStringWidth(FONT_NORMAL, gStringVar4, 0);
-    }
-    else
-    {
-        xctr = 104 - GetStringWidth(FONT_NORMAL, gStringVar4, 0);
-        windowId = AddWindow(&sMapNameWindow);
-    }
+    windowId = AddWindow(&sMapNameWindow);
     FillWindowPixelBuffer(windowId, PIXEL_FILL(1));
     PutWindowTilemap(windowId);
     color[0] = TEXT_COLOR_WHITE; // Access violation
     color[1] = TEXT_COLOR_RED; // Access violation
     color[2] = TEXT_COLOR_LIGHT_GRAY; // Access violation
+    GetMapName(gStringVar4, mapsec, 0);
+    xctr = 104 - GetStringWidth(FONT_NORMAL, gStringVar4, 0);
     AddTextPrinterParameterized4(windowId, FONT_NORMAL, xctr / 2, 2, 0, 0, color/* Access violation */, -1, gStringVar4);
     return windowId;
 }
@@ -540,11 +514,11 @@ bool32 ForestMapPreviewScreenIsRunning(void)
 {
     if (FuncIsActiveTask(Task_RunMapPreviewScreenForest) == TRUE)
     {
-        return TRUE;
+        return FALSE;
     }
     else
     {
-        return FALSE;
+        return TRUE;
     }
 }
 
@@ -656,104 +630,31 @@ u16 MapPreview_GetDuration(u8 mapsec)
 
     flagId = sMapPreviewScreenData[idx].flagId;
 
-    if (flagId == MPS_FLAG_NULL) {
-        if (MPS_DURATION_ALWAYS != 0) {
-            return MPS_DURATION_ALWAYS;
+    if (flagId == FLAG_NULL) {
+        if (DURATION_ALWAYS != 0) {
+            return DURATION_ALWAYS;
         }
         else
         {
-            return MPS_DURATION_NO_FLAG;
+            return DURATION_NO_FLAG;
         }
     }
-    else if (MPS_DURATION_ALWAYS != 0) {
+    else if (DURATION_ALWAYS != 0) {
         if (!FlagGet(flagId))
         {
             FlagSet(flagId);
         }
-        return MPS_DURATION_ALWAYS;
+        return DURATION_ALWAYS;
     }
     else {
         if (!FlagGet(flagId))
         {
             FlagSet(flagId);
-            return MPS_DURATION_LONG;
+            return DURATION_LONG;
         }
         else
         {
-            return MPS_DURATION_SHORT;
+            return DURATION_SHORT;
         }
     }
 }
-
-static void VblankCB_MapPreviewScript(void)
-{
-    TransferPlttBuffer();
-}
-
-#define taskStep        data[0]
-#define frameCounter    data[1]
-#define MPWindowId      data[2]
-
-void Script_MapPreview(void)
-{
-    SetVBlankCallback(NULL);
-    gMain.savedCallback = CB2_ReturnToFieldContinueScript;
-    MapPreview_LoadGfx(gMapHeader.regionMapSectionId);
-    BeginNormalPaletteFade(PALETTES_ALL, 0, 0x10, 0, RGB_BLACK);
-    SetVBlankCallback(VblankCB_MapPreviewScript);
-    SetMainCallback2(CB2_MapPreviewScript);
-    CreateTask(Task_RunMapPreview_Script, 0);
-}
-
-static void CB2_MapPreviewScript(void)
-{
-    RunTasks();
-    DoScheduledBgTilemapCopiesToVram();
-    UpdatePaletteFade();
-}
-
-static void Task_RunMapPreview_Script(u8 taskId)
-{
-    s16 * data;
-
-    data = gTasks[taskId].data;
-    switch (taskStep)
-    {
-    case 0:
-        if (!MapPreview_IsGfxLoadFinished() && !IsDma3ManagerBusyWithBgCopy())
-        {
-            MPWindowId = MapPreview_CreateMapNameWindow(gMapHeader.regionMapSectionId);
-            CopyWindowToVram(MPWindowId, COPYWIN_FULL);
-            taskStep++;
-        }
-        break;
-    case 1:
-        if (!IsDma3ManagerBusyWithBgCopy())
-        {
-            FadeInFromBlack();
-            taskStep++;
-        }
-        break;
-    case 2:
-        frameCounter++;
-        if (frameCounter > MPS_DURATION_SCRIPT || JOY_HELD(B_BUTTON))
-        {
-            BeginNormalPaletteFade(PALETTES_ALL, MPS_BASIC_FADE_SPEED, 0, 16, RGB_BLACK);
-            frameCounter = 0;
-            taskStep++;
-        }
-        break;
-    case 3:
-        if (!UpdatePaletteFade())
-        {
-            MapPreview_Unload(MPWindowId);
-            DestroyTask(taskId);
-            SetMainCallback2(gMain.savedCallback);
-        }
-        break;
-    }
-}
-
-#undef taskStep
-#undef frameCounter
-#undef MPWindowId

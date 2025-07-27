@@ -60,33 +60,23 @@ enum PreviewImageId
     IMG_COUNT
 };
 
-// Map Preview Configs
-#define MPS_DURATION_LONG       120 // This is the number of frames the map preview will last when the player enters the map for the first time.
+// These are the number of frames the map preview will be on screen. Increase or decrease them as you like.
+#define DURATION_LONG       120 // This is the number of frames the map preview will last when the player enters the map for the first time.
 
-#define MPS_DURATION_SHORT      40  // This is the number of frames the map preview will last if the player has visited the map before.
+#define DURATION_SHORT      40  // This is the number of frames the map preview will last if the player has visited the map before.
 
-#define MPS_DURATION_NO_FLAG    40  // This is the number of frames the map preview will last if the map's flagId is MPS_FLAG_NULL.
+#define DURATION_NO_FLAG    40  // This is the number of frames the map preview will last if the map's flagId is FLAG_NULL.
 
-#define MPS_DURATION_ALWAYS     0   // If this number is not 0, MPS_DURATION_ALWAYS will override all other duration values.
-                                    // For example, if you set MPS_DURATION_ALWAYS to 100, the map preview will always
-                                    // have a duration of 100 frames every time, regardless of the flag state.
-
-#define MPS_DURATION_SCRIPT     120 // This is the number of frames the map preview will last when it is called
-                                    // with the mappreview scripting macro.
-                                    // It is unaffected by MPS_DURATION_ALWAYS.
-
-#define MPS_BASIC_FADE_SPEED    1   // This sets the speed that the map preview fades out when MPS_TYPE_BASIC is used.
-                                    // Numbers less than 1 will have a shorter fade time (negative numbers can be used).
-                                    // Numbers greater than 1 will have a longer fade time.
+#define DURATION_ALWAYS     0   // If this number is not 0, DURATION_ALWAYS will override all other duration values.
+                                // For example, if you set DURATION_ALWAYS to 100, the map preview will always
+                                // have a duration of 100 frames every time, regardless of the flag state.
 
 
-// Constants
-#define MPS_TYPE_BASIC      0
-#define MPS_TYPE_FADE_IN    1
-#define MPS_TYPE_CAVE       2
-#define MPS_TYPE_ANY        3
+#define MPS_TYPE_CAVE       0
+#define MPS_TYPE_NON_CAVE   1
+#define MPS_TYPE_ANY        2
 
-#define MPS_FLAG_NULL       0
+#define FLAG_NULL           0
 
 struct MapPreviewScreen
 {

@@ -1,5 +1,4 @@
 #include "global.h"
-#include "constants/expansion.h"
 #include "constants/songs.h"
 #include "constants/weather.h"
 #include "constants/rgb.h"
@@ -9,7 +8,6 @@
 #include "field_weather.h"
 #include "fieldmap.h"
 #include "main.h"
-#include "map_preview_screen.h"
 #include "menu.h"
 #include "palette.h"
 #include "random.h"
@@ -171,7 +169,7 @@ static const u8 ALIGNED(2) sBasePaletteColorMapTypes[32] =
     COLOR_MAP_DARK_CONTRAST,
     COLOR_MAP_DARK_CONTRAST,
     COLOR_MAP_DARK_CONTRAST,
-    COLOR_MAP_NONE, // This was changed from COLOR_MAP_DARK_CONTRAST to make sure certain weather effects don't affect map preview colors.
+    COLOR_MAP_DARK_CONTRAST,
     COLOR_MAP_NONE,
     COLOR_MAP_NONE,
     // sprite palettes

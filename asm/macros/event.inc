@@ -2323,6 +2323,7 @@
 	callnative Script_ToggleFakeRtc, requests_effects=1
 	.endm
 
+	@ ============================ @
 	@ ITEM DESCRIPTION HEADER MACROS
 	@ Used with OW_SHOW_ITEM_DESCRIPTIONS config
 	.macro showitemdescription
@@ -2430,13 +2431,6 @@
 	.2byte \dest
 	.endm
 
-	@ Show a map preview for the current map with the WEATHER type.
-	.macro mappreview
-	fadescreen FADE_TO_BLACK
-	callnative Script_MapPreview
-	waitstate
-	.endm
-
 	@ Show the current map's name popup.
 	.macro mappopup
 	callnative Script_MapPopUp
@@ -2530,3 +2524,4 @@
 	compare \a, \b
 	cant_see_if 5
 	.endm
+
