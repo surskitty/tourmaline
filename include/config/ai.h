@@ -64,10 +64,27 @@
 #define PREDICT_SWITCH_CHANCE                                   50
 #define PREDICT_MOVE_CHANCE                                     100
 
-// AI PP Stall detection chance per roll
-#define PP_STALL_DISREGARD_MOVE_PERCENTAGE                      50
-// Score reduction if any roll for PP stall detection passes
-#define PP_STALL_SCORE_REDUCTION                                20
+// AI Terastalization chances
+#define AI_CONSERVE_TERA_CHANCE_PER_MON                         10 // Chance for AI with smart tera flag to decide not to tera before considering defensive benefit is this*(X-1), where X is the number of alive pokemon that could tera
+#define AI_TERA_PREDICT_CHANCE                                  40 // Chance for AI with smart tera flag to tera in the situation where tera would save it from a KO, but could be punished by a KO from a different move. 
+
+// AI_FLAG_PP_STALL_PREVENTION settings
+#define PP_STALL_DISREGARD_MOVE_PERCENTAGE                      50 // Detection chance per roll
+#define PP_STALL_SCORE_REDUCTION                                20 // Score reduction if any roll for PP stall detection passes
+
+// AI_FLAG_ASSUME_STAB settings
+#define ASSUME_STAB_SEES_ABILITY                                FALSE // Flag also gives omniscience for player's ability. Can use AI_FLAG_WEIGH_ABILITY_PREDICTION instead for smarter prediction without omniscience.
+
+// AI_FLAG_ASSUME_STATUS_MOVES settings
+#define ASSUME_STATUS_MOVES_HAS_TUNING                  TRUE // Flag has varying rates for different kinds of status move.
+                                                             // Setting to false also means it will not alert on Fake Out or Super Fang.
+#define ASSUME_STATUS_HIGH_ODDS                         90 // Chance for AI to see extremely likely moves for a pokemon to have, like Spore
+#define ASSUME_STATUS_MEDIUM_ODDS                       70 // Chance for AI to see moderately likely moves for a pokemon to have, like Protect
+#define ASSUME_STATUS_LOW_ODDS                          40 // Chance for AI to see niche moves a pokemon may have but probably won't, like Entrainment
+#define ASSUME_ALL_STATUS_ODDS                          25 // Chance for the AI to see any kind of status move.
+
+// AI_FLAG_SMART_SWITCHING settings
+#define SMART_SWITCHING_OMNISCIENT                              FALSE // AI will use omniscience for switching calcs, regardless of omniscience setting otherwise
 
 // AI's acceptable number of hits to KO the partner via friendly fire in a double battle.
 #define FRIENDLY_FIRE_RISKY_THRESHOLD           2
