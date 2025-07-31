@@ -523,6 +523,17 @@ void RecordMovesBasedOnStab(u32 battler)
     }
 }
 
+void RecordStatusMoves(u32 battler)
+{
+    u32 i;
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        u32 playerMove = gBattleMons[battler].moves[i];
+        if (ShouldRecordStatusMove(playerMove))
+            RecordKnownMove(battler, playerMove);
+    }
+}
+
 void SetBattlerAiData(u32 battler, struct AiLogicData *aiData)
 {
     u32 ability, holdEffect;
@@ -538,6 +549,8 @@ void SetBattlerAiData(u32 battler, struct AiLogicData *aiData)
 
     if (IsAiBattlerAssumingStab())
         RecordMovesBasedOnStab(battler);
+    if (IsAiBattlerAssumingStatusMoves())
+        RecordStatusMoves(battler);
 }
 
 static u32 Ai_SetMoveAccuracy(struct AiLogicData *aiData, u32 battlerAtk, u32 battlerDef, u32 move)
