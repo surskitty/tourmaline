@@ -32,8 +32,6 @@ raw `
 .set LOCALID_BALL_CYNDAQUIL, 4
 .set LOCALID_BALL_TOTODILE, 5
 .set LOCALID_BALL_CHIKORITA, 6
-.set LOCALID_UNCHOSEN_STARTER, 7
-
     @ State descriptions for VAR_DEX_UPGRADE_JOHTO_STARTER_STATE
     @ 1: Beat Elite Four, Dex upgrade ready
     @ 2: Received National Dex
@@ -864,11 +862,11 @@ script LittlerootTown_ProfessorBirchsLab_SetupStarterGfx {
         setflag(FLAG_TEMP_1F)
     } else {
         if (var(VAR_STARTER_MON) == 0) {
-            setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_SPECIES(MUDKIP))
+            copyvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_SPECIES(MUDKIP))
         } elif (var(VAR_STARTER_MON) == 1) {
-            setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_SPECIES(TREECKO))
+            copyvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_SPECIES(TREECKO))
         } else {
-            setvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_SPECIES(TORCHIC))
+            copyvar(VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_SPECIES(TORCHIC))
         }
     }
 }

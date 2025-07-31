@@ -263,13 +263,13 @@ SINGLE_BATTLE_TEST("Powder doesn't consume Berry from Fire type Natural Gift but
 DOUBLE_BATTLE_TEST("Powder damages a target using Shell Trap even if it wasn't hit by a Physical move")
 {
     u32 move;
-    PARAMETRIZE { move = MOVE_TACKLE; }
+    PARAMETRIZE { move = MOVE_SCRATCH; }
     PARAMETRIZE { move = MOVE_EMBER; }
     PARAMETRIZE { move = MOVE_TICKLE;}
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SHELL_TRAP) == EFFECT_SHELL_TRAP);
         ASSUME(GetMoveType(MOVE_SHELL_TRAP) == TYPE_FIRE);
-        ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
+        ASSUME(GetMoveCategory(MOVE_SCRATCH) == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(GetMoveCategory(MOVE_EMBER) == DAMAGE_CATEGORY_SPECIAL);
         ASSUME(GetMoveCategory(MOVE_TICKLE) == DAMAGE_CATEGORY_STATUS);
         ASSUME(GetMoveEffect(MOVE_TICKLE) == EFFECT_TICKLE);
@@ -291,5 +291,73 @@ DOUBLE_BATTLE_TEST("Powder damages a target using Shell Trap even if it wasn't h
             HP_BAR(opponentRight);
         }
         HP_BAR(playerLeft);
+    }
+}
+
+SINGLE_BATTLE_TEST("Powder doesn't damage target if it has Magic Guard (Trait)")
+{
+    GIVEN {
+        PLAYER(SPECIES_ALAKAZAM) { Ability(ABILITY_INNER_FOCUS); Innates(ABILITY_MAGIC_GUARD); }
+        OPPONENT(SPECIES_VIVILLON);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_POWDER); MOVE(player, MOVE_EMBER); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_POWDER, opponent);
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_EMBER, player);
+            HP_BAR(opponent);
+        }
+    } THEN {
+        EXPECT_EQ(player->maxHP, player->hp);
+    }
+}
+
+SINGLE_BATTLE_TEST("Powder doesn't damage target under heavy rain (Trait)")
+{
+    GIVEN {
+        ASSUME(B_POWDER_RAIN >= GEN_7);
+        PLAYER(SPECIES_KYOGRE_PRIMAL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PRIMORDIAL_SEA); }
+        OPPONENT(SPECIES_VIVILLON);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_POWDER); MOVE(player, MOVE_EMBER); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_POWDER, opponent);
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_EMBER, player);
+            HP_BAR(opponent);
+        }
+    } THEN {
+        EXPECT_EQ(player->maxHP, player->hp);
+    }
+}
+
+SINGLE_BATTLE_TEST("Powder fails if the target has Overcoat (Trait)")
+{
+    GIVEN {
+        PLAYER(SPECIES_FORRETRESS) { Ability(ABILITY_STURDY); Innates(ABILITY_OVERCOAT); }
+        OPPONENT(SPECIES_VIVILLON);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_POWDER); MOVE(player, MOVE_EMBER); }
+    } SCENE {
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_POWDER, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_EMBER, player);
+        HP_BAR(opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Powder prevents Protean from changing its user to Fire type (Trait)")
+{
+    GIVEN {
+        PLAYER(SPECIES_GRENINJA) { Ability(ABILITY_TORRENT); Innates(ABILITY_PROTEAN); }
+        OPPONENT(SPECIES_VIVILLON);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_POWDER); MOVE(player, MOVE_EMBER); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_POWDER, opponent);
+        NONE_OF {
+            ABILITY_POPUP(player, ABILITY_PROTEAN);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_EMBER, player);
+            HP_BAR(opponent);
+        }
     }
 }

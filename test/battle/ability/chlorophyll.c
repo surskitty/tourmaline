@@ -48,3 +48,51 @@ SINGLE_BATTLE_TEST("Chlorophyll doesn't double speed if they have an Utility Umb
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, player);
     }
 }
+
+SINGLE_BATTLE_TEST("Chlorophyll doubles speed if it's sunny (Trait)")
+{
+    GIVEN {
+        PLAYER(SPECIES_VENUSAUR) { Ability(ABILITY_OVERGROW); Innates(ABILITY_CHLOROPHYLL); Speed(100); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(199); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_SUNNY_DAY); }
+        TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, MOVE_CELEBRATE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SUNNY_DAY, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Chlorophyll doesn't double speed if Cloud Nine/Air Lock is on the field (Trait)")
+{
+    GIVEN {
+        PLAYER(SPECIES_VENUSAUR) { Ability(ABILITY_OVERGROW); Innates(ABILITY_CHLOROPHYLL); Speed(100); }
+        OPPONENT(SPECIES_GOLDUCK) { Speed(199); Ability(ABILITY_SWIFT_SWIM); Innates(ABILITY_CLOUD_NINE); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_SUNNY_DAY); }
+        TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_CELEBRATE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SUNNY_DAY, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, player);
+    }
+}
+
+SINGLE_BATTLE_TEST("Chlorophyll doesn't double speed if they have an Utility Umbrella (Trait)")
+{
+    GIVEN {
+        PLAYER(SPECIES_VENUSAUR) { Ability(ABILITY_OVERGROW); Innates(ABILITY_CHLOROPHYLL); Speed(100); Item(ITEM_UTILITY_UMBRELLA); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(199); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_SUNNY_DAY); }
+        TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_CELEBRATE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SUNNY_DAY, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, player);
+    }
+}

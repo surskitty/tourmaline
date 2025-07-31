@@ -14,13 +14,13 @@ SINGLE_BATTLE_TEST("Anger Shell activates only if the target had more than 50% o
     PARAMETRIZE { hp = 254; activates = TRUE; }
 
     GIVEN {
-        ASSUME(!IsBattleMoveStatus(MOVE_TACKLE));
+        ASSUME(!IsBattleMoveStatus(MOVE_SCRATCH));
         PLAYER(SPECIES_KLAWF) { Ability(ABILITY_ANGER_SHELL); MaxHP(maxHp); HP(hp); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(opponent, MOVE_SCRATCH); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponent);
         if (activates) {
             ABILITY_POPUP(player, ABILITY_ANGER_SHELL);
         } else {
@@ -41,13 +41,13 @@ SINGLE_BATTLE_TEST("Anger Shell lowers Def/Sp.Def by 1 and raises Atk/Sp.Atk/Spd
 {
     u16 maxHp = 500;
     GIVEN {
-        ASSUME(!IsBattleMoveStatus(MOVE_TACKLE));
+        ASSUME(!IsBattleMoveStatus(MOVE_SCRATCH));
         PLAYER(SPECIES_KLAWF) { Ability(ABILITY_ANGER_SHELL); MaxHP(maxHp); HP(maxHp / 2 + 1); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(opponent, MOVE_SCRATCH); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponent);
         ABILITY_POPUP(player, ABILITY_ANGER_SHELL);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Klawf's Defense fell!");
@@ -85,6 +85,73 @@ SINGLE_BATTLE_TEST("Anger Shell activates after all hits from a multi-hit move")
         }
         ANIMATION(ANIM_TYPE_MOVE, MOVE_DOUBLE_SLAP, opponent);
         ABILITY_POPUP(player, ABILITY_ANGER_SHELL);
+    } THEN {
+        EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE - 1);
+        EXPECT_EQ(player->statStages[STAT_SPDEF], DEFAULT_STAT_STAGE - 1);
+        EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 1);
+        EXPECT_EQ(player->statStages[STAT_SPATK], DEFAULT_STAT_STAGE + 1);
+        EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE + 1);
+    }
+}
+
+SINGLE_BATTLE_TEST("Anger Shell activates only if the target had more than 50% of its HP (Trait)")
+{
+    bool32 activates = FALSE;
+    u16 maxHp = 500, hp = 0;
+
+    PARAMETRIZE { hp = 250; activates = FALSE; }
+    PARAMETRIZE { hp = 249; activates = FALSE; }
+    PARAMETRIZE { hp = 100; activates = FALSE; }
+    PARAMETRIZE { hp = 50; activates = FALSE; }
+    PARAMETRIZE { hp = 251; activates = TRUE; }
+    PARAMETRIZE { hp = 254; activates = TRUE; }
+
+    GIVEN {
+        ASSUME(!IsBattleMoveStatus(MOVE_SCRATCH));
+        PLAYER(SPECIES_KLAWF) { Ability(ABILITY_SHELL_ARMOR); Innates(ABILITY_ANGER_SHELL); MaxHP(maxHp); HP(hp); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_SCRATCH); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponent);
+        if (activates) {
+            ABILITY_POPUP(player, ABILITY_ANGER_SHELL);
+        } else {
+            NOT ABILITY_POPUP(player, ABILITY_ANGER_SHELL);
+        }
+    } THEN {
+        if (activates) {
+            EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE - 1);
+            EXPECT_EQ(player->statStages[STAT_SPDEF], DEFAULT_STAT_STAGE - 1);
+            EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 1);
+            EXPECT_EQ(player->statStages[STAT_SPATK], DEFAULT_STAT_STAGE + 1);
+            EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE + 1);
+        }
+    }
+}
+
+SINGLE_BATTLE_TEST("Anger Shell lowers Def/Sp.Def by 1 and raises Atk/Sp.Atk/Spd by 1 (Trait)")
+{
+    u16 maxHp = 500;
+    GIVEN {
+        ASSUME(!IsBattleMoveStatus(MOVE_SCRATCH));
+        PLAYER(SPECIES_KLAWF) { Ability(ABILITY_SHELL_ARMOR); Innates(ABILITY_ANGER_SHELL); MaxHP(maxHp); HP(maxHp / 2 + 1); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_SCRATCH); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponent);
+        ABILITY_POPUP(player, ABILITY_ANGER_SHELL);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Klawf's Defense fell!");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Klawf's Sp. Def fell!");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Klawf's Attack rose!");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Klawf's Sp. Atk rose!");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Klawf's Speed rose!");
     } THEN {
         EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE - 1);
         EXPECT_EQ(player->statStages[STAT_SPDEF], DEFAULT_STAT_STAGE - 1);

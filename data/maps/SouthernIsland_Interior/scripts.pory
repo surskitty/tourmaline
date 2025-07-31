@@ -1,26 +1,19 @@
+mapscripts SouthernIsland_Interior_MapScripts {
+    MAP_SCRIPT_ON_RESUME {
+        call_if_set(FLAG_SYS_CTRL_OBJ_DELETE, SouthernIsland_Interior_EventScript_TryRemoveLati)
+    } MAP_SCRIPT_ON_TRANSITION {
+        call_if_eq(VAR_ROAMER_POKEMON, 0, SouthernIsland_Interior_EventScript_SetUpLatios)
+        call_if_ne(VAR_ROAMER_POKEMON, 0, SouthernIsland_Interior_EventScript_SetUpLatias)
+        call(SouthernIsland_Interior_EventScript_SetUpPlayerGfx)
+    }
+}
+
 raw `
-.set LOCALID_LATI, 2
-
-SouthernIsland_Interior_MapScripts::
-    map_script MAP_SCRIPT_ON_RESUME, SouthernIsland_Interior_OnResume
-    map_script MAP_SCRIPT_ON_TRANSITION, SouthernIsland_Interior_OnTransition
-    .byte 0
-
-SouthernIsland_Interior_OnResume:
-    call_if_set FLAG_SYS_CTRL_OBJ_DELETE, SouthernIsland_Interior_EventScript_TryRemoveLati
-    end
-
 SouthernIsland_Interior_EventScript_TryRemoveLati::
     specialvar VAR_RESULT, GetBattleOutcome
     goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn
-    removeobject LOCALID_LATI
+    removeobject LOCALID_SOUTHERN_ISLAND_LATI
     return
-
-SouthernIsland_Interior_OnTransition:
-    call_if_eq VAR_ROAMER_POKEMON, 0, SouthernIsland_Interior_EventScript_SetUpLatios
-    call_if_ne VAR_ROAMER_POKEMON, 0, SouthernIsland_Interior_EventScript_SetUpLatias
-    call SouthernIsland_Interior_EventScript_SetUpPlayerGfx
-    end
 
 SouthernIsland_Interior_EventScript_SetUpLatios::
     setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_LATIOS
@@ -67,14 +60,14 @@ SouthernIsland_Interior_EventScript_Lati::
     playmoncry VAR_TEMP_4, CRY_MODE_NORMAL
     delay 30
     waitmoncry
-    addobject LOCALID_LATI
+    addobject LOCALID_SOUTHERN_ISLAND_LATI
     delay 30
     applymovement OBJ_EVENT_ID_CAMERA, SouthernIsland_Interior_Movement_CameraPanDown
-    applymovement LOCALID_LATI, SouthernIsland_Interior_Movement_LatiApproach
+    applymovement LOCALID_SOUTHERN_ISLAND_LATI, SouthernIsland_Interior_Movement_LatiApproach
     waitmovement 0
     delay 50
     special RemoveCameraObject
-    setvar VAR_LAST_TALKED, LOCALID_LATI
+    setvar VAR_LAST_TALKED, LOCALID_SOUTHERN_ISLAND_LATI
     call_if_eq VAR_ROAMER_POKEMON, 0, SouthernIsland_Interior_EventScript_SetLatiosBattleVars
     call_if_ne VAR_ROAMER_POKEMON, 0, SouthernIsland_Interior_EventScript_SetLatiasBattleVars
     setflag FLAG_SYS_CTRL_OBJ_DELETE
@@ -112,38 +105,18 @@ SouthernIsland_Interior_EventScript_SetLatiosBattleVars::
 SouthernIsland_Interior_EventScript_SetLatiasBattleVars::
     seteventmon SPECIES_LATIAS, 50, ITEM_SOUL_DEW
     return
-
-SouthernIsland_Interior_Movement_CameraPanUp:
-    walk_up
-    walk_up
-    walk_up
-    step_end
-
-SouthernIsland_Interior_Movement_CameraPanDown:
-    delay_16
-    delay_16
-    delay_16
-    delay_16
-    delay_16
-    delay_16
-    delay_16
-    walk_down
-    walk_down
-    walk_down
-    walk_in_place_faster_up
-    step_end
-
-SouthernIsland_Interior_Movement_LatiApproach:
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    delay_16
-    delay_16
-    walk_down
-    walk_down
-    walk_down
-    walk_down
-    step_end
 `
+
+movement SouthernIsland_Interior_Movement_CameraPanUp { walk_up * 3 }
+
+movement SouthernIsland_Interior_Movement_CameraPanDown {
+    delay_16 * 7
+    walk_down * 3
+    walk_in_place_faster_up
+}
+
+movement SouthernIsland_Interior_Movement_LatiApproach {
+    walk_down * 5
+    delay_16 * 2
+    walk_down * 4
+}

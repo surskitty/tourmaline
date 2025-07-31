@@ -47,4 +47,3 @@ jobs:
       - name: Automatically pass for allcontributors
         run: echo "CI automatically passes for allcontributors" && exit 0
 
-

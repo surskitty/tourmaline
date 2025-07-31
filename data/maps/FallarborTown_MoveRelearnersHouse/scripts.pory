@@ -1,8 +1,6 @@
 mapscripts FallarborTown_MoveRelearnersHouse_MapScripts {}
 
 raw `
-.set LOCALID_MOVE_RELEARNER, 1
-
 FallarborTown_MoveRelearnersHouse_EventScript_MoveRelearner::
     lockall
     applymovement LOCALID_MOVE_RELEARNER, Common_Movement_FacePlayer

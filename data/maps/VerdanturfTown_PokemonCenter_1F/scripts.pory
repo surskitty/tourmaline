@@ -8,10 +8,8 @@ mapscripts VerdanturfTown_PokemonCenter_1F_MapScripts {
 
 
 raw `
-.set LOCALID_NURSE, 1
-
 VerdanturfTown_PokemonCenter_1F_EventScript_Nurse::
-    setvar VAR_0x800B, LOCALID_NURSE
+    setvar VAR_0x800B, LOCALID_VERDANTURF_NURSE
     call Common_EventScript_PkmnCenterNurse
     waitmessage
     waitbuttonpress

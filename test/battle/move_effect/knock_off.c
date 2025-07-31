@@ -90,11 +90,46 @@ SINGLE_BATTLE_TEST("Knock Off does not remove items through Substitute")
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_LEFTOVERS); };
     } WHEN {
-        TURN { MOVE(opponent, MOVE_SUBSTITUTE);
-               MOVE(player, MOVE_KNOCK_OFF); }
+        TURN { MOVE(opponent, MOVE_SUBSTITUTE); MOVE(player, MOVE_KNOCK_OFF); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_KNOCK_OFF, player);
         NOT { ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ITEM_KNOCKOFF); }
+    } THEN {
+        EXPECT(opponent->item == ITEM_LEFTOVERS);
+    }
+}
+
+SINGLE_BATTLE_TEST("Knock Off does not remove items through Protect")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_LEFTOVERS); };
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_PROTECT); MOVE(player, MOVE_KNOCK_OFF); }
+    } SCENE {
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_KNOCK_OFF, player);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ITEM_KNOCKOFF);
+        }
+    } THEN {
+        EXPECT(opponent->item == ITEM_LEFTOVERS);
+    }
+}
+
+SINGLE_BATTLE_TEST("Knock Off does not remove items if target is immune")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_ELECTRIFY) == EFFECT_ELECTRIFY);
+        ASSUME(gSpeciesInfo[SPECIES_DONPHAN].types[0] == TYPE_GROUND || gSpeciesInfo[SPECIES_DONPHAN].types[1] == TYPE_GROUND);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_DONPHAN) { Item(ITEM_LEFTOVERS); };
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_ELECTRIFY); MOVE(player, MOVE_KNOCK_OFF); }
+    } SCENE {
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_KNOCK_OFF, player);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ITEM_KNOCKOFF);
+        }
     } THEN {
         EXPECT(opponent->item == ITEM_LEFTOVERS);
     }
@@ -323,5 +358,27 @@ SINGLE_BATTLE_TEST("Knock Off doesn't knock off begin-battle form-change hold it
         TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_KNOCK_OFF); }
     } SCENE {
         NOT MESSAGE("Wobbuffet knocked off the opposing Zamazenta's Rusted Shield!");
+    }
+}
+
+// Knock Off triggers Unburden regardless of whether the item is fully removed (Gen 5+) or not.
+SINGLE_BATTLE_TEST("Knock Off triggers Unburden (Trait)")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Speed(60); }
+        OPPONENT(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_UNBURDEN); Item(ITEM_LEFTOVERS); Speed(50); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_KNOCK_OFF); }
+        TURN { MOVE(player, MOVE_CELEBRATE); }
+    } SCENE {
+        // turn 1
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_KNOCK_OFF, player);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_ITEM_KNOCKOFF);
+        MESSAGE("Wobbuffet knocked off the opposing Wobbuffet's Leftovers!");
+        // turn 2
+        MESSAGE("The opposing Wobbuffet used Celebrate!");
+        MESSAGE("Wobbuffet used Celebrate!");
+    } THEN {
+        EXPECT(opponent->item == ITEM_NONE);
     }
 }

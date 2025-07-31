@@ -17,9 +17,10 @@ mapscripts Route117_MapScripts {
 }
 
 raw `
-.set LOCALID_DAYCARE_MAN, 3
 .set LOCALID_DAYCARE_MON_0, 25
 .set LOCALID_DAYCARE_MON_1, 26
+
+
 
 Route117_EventScript_ShowDaycareMon1:
     @ set pokemon movement type based on compatibility

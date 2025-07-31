@@ -120,13 +120,13 @@ DOUBLE_BATTLE_TEST("Primal reversion's order is determined by Speed - player fas
 SINGLE_BATTLE_TEST("Primal reversion happens after a mon is sent out after a mon is fainted")
 {
     GIVEN {
-        ASSUME(!IsBattleMoveStatus(MOVE_TACKLE));
+        ASSUME(!IsBattleMoveStatus(MOVE_SCRATCH));
         PLAYER(SPECIES_WOBBUFFET) {HP(1); }
         PLAYER(SPECIES_GROUDON) { Item(ITEM_RED_ORB); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(opponent, MOVE_TACKLE); SEND_OUT(player, 1); }
-        TURN { MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(opponent, MOVE_SCRATCH); SEND_OUT(player, 1); }
+        TURN { MOVE(opponent, MOVE_SCRATCH); }
     } SCENE {
         MESSAGE("Wobbuffet fainted!");
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_PRIMAL_REVERSION, player);
@@ -156,14 +156,14 @@ SINGLE_BATTLE_TEST("Primal reversion happens after a mon is switched in")
 SINGLE_BATTLE_TEST("Primal reversion happens after a switch-in caused by Eject Button")
 {
     GIVEN {
-        ASSUME(!IsBattleMoveStatus(MOVE_TACKLE));
+        ASSUME(!IsBattleMoveStatus(MOVE_SCRATCH));
         ASSUME(gItemsInfo[ITEM_EJECT_BUTTON].holdEffect == HOLD_EFFECT_EJECT_BUTTON);
         PLAYER(SPECIES_WOBBUFFET) {Item(ITEM_EJECT_BUTTON); }
         PLAYER(SPECIES_GROUDON) { Item(ITEM_RED_ORB); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(opponent, MOVE_TACKLE); SEND_OUT(player, 1); }
-        TURN { MOVE(opponent, MOVE_TACKLE); }
+        TURN { MOVE(opponent, MOVE_SCRATCH); SEND_OUT(player, 1); }
+        TURN { MOVE(opponent, MOVE_SCRATCH); }
     } SCENE {
         MESSAGE("Wobbuffet is switched out with the Eject Button!");
         SEND_IN_MESSAGE("Groudon");
@@ -177,13 +177,13 @@ SINGLE_BATTLE_TEST("Primal reversion happens after a switch-in caused by Eject B
 SINGLE_BATTLE_TEST("Primal reversion happens after a switch-in caused by Red Card")
 {
     GIVEN {
-        ASSUME(!IsBattleMoveStatus(MOVE_TACKLE));
+        ASSUME(!IsBattleMoveStatus(MOVE_SCRATCH));
         ASSUME(gItemsInfo[ITEM_RED_CARD].holdEffect == HOLD_EFFECT_RED_CARD);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_GROUDON) { Item(ITEM_RED_ORB); }
         OPPONENT(SPECIES_WOBBUFFET) {Item(ITEM_RED_CARD); }
     } WHEN {
-        TURN { MOVE(player, MOVE_TACKLE); }
+        TURN { MOVE(player, MOVE_SCRATCH); }
     } SCENE {
         MESSAGE("The opposing Wobbuffet held up its Red Card against Wobbuffet!");
         MESSAGE("Groudon was dragged out!");
@@ -298,6 +298,52 @@ DOUBLE_BATTLE_TEST("Primal reversion and other switch-in effects trigger for all
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_CATERPIE) { HP(1); }
         PLAYER(SPECIES_SCRAFTY) { Ability(ABILITY_INTIMIDATE); }
+        PLAYER(SPECIES_RESHIRAM);
+        OPPONENT(SPECIES_CATERPIE) { HP(1); }
+        OPPONENT(SPECIES_CATERPIE) { HP(1); }
+        OPPONENT(SPECIES_KYOGRE) { Item(ITEM_BLUE_ORB); }
+        OPPONENT(SPECIES_GROUDON) { Item(ITEM_RED_ORB); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_STICKY_WEB);
+               MOVE(opponentLeft, MOVE_SPIKES);
+               MOVE(playerRight, MOVE_TOXIC_SPIKES); }
+        TURN { MOVE(playerLeft, MOVE_EXPLOSION);
+               SEND_OUT(opponentRight, 3);
+               SEND_OUT(opponentLeft, 2);
+               SEND_OUT(playerRight, 3);
+               SEND_OUT(playerLeft, 2); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, playerLeft);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPIKES, opponentLeft);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TOXIC_SPIKES, playerRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, playerLeft);
+        ABILITY_POPUP(playerLeft, ABILITY_INTIMIDATE);
+        ABILITY_POPUP(playerRight, ABILITY_TURBOBLAZE);
+        ABILITY_POPUP(opponentLeft, ABILITY_PRIMORDIAL_SEA);
+        ABILITY_POPUP(opponentRight, ABILITY_DESOLATE_LAND);
+    } THEN {
+        EXPECT_NE(playerLeft->hp, playerLeft->maxHP);
+        EXPECT_NE(playerRight->hp, playerRight->maxHP);
+        EXPECT_EQ(opponentLeft->status1, STATUS1_POISON);
+        EXPECT_EQ(opponentRight->status1, STATUS1_POISON);
+        EXPECT_EQ(opponentLeft->statStages[STAT_ATK], DEFAULT_STAT_STAGE - 1);
+        EXPECT_EQ(opponentRight->statStages[STAT_ATK], DEFAULT_STAT_STAGE - 1);
+        EXPECT_EQ(opponentLeft->statStages[STAT_SPEED], DEFAULT_STAT_STAGE - 1);
+        EXPECT_EQ(opponentRight->statStages[STAT_SPEED], DEFAULT_STAT_STAGE - 1);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Primal reversion and other switch-in effects trigger for all battlers if multiple fainted the previous turn (Trait)")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_EXPLOSION) == EFFECT_EXPLOSION);
+        ASSUME(GetMoveTarget(MOVE_EXPLOSION) == MOVE_TARGET_FOES_AND_ALLY);
+        ASSUME(GetMoveEffect(MOVE_STICKY_WEB) == EFFECT_STICKY_WEB);
+        ASSUME(GetMoveEffect(MOVE_SPIKES) == EFFECT_SPIKES);
+        ASSUME(GetMoveEffect(MOVE_TOXIC_SPIKES) == EFFECT_TOXIC_SPIKES);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_CATERPIE) { HP(1); }
+        PLAYER(SPECIES_SCRAFTY) { Ability(ABILITY_SHED_SKIN); Innates(ABILITY_INTIMIDATE); }
         PLAYER(SPECIES_RESHIRAM);
         OPPONENT(SPECIES_CATERPIE) { HP(1); }
         OPPONENT(SPECIES_CATERPIE) { HP(1); }

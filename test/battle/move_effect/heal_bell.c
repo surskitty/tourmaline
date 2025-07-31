@@ -3,7 +3,35 @@
 
 ASSUMPTIONS
 {
-    ASSUME(GetMoveEffect(MOVE_HEAL_BELL) == EFFECT_HEAL_BELL);
+    ASSUME(gMovesInfo[MOVE_HEAL_BELL].effect == EFFECT_HEAL_BELL);
+    ASSUME(gMovesInfo[MOVE_AROMATHERAPY].effect == EFFECT_HEAL_BELL);
+    ASSUME(MoveHasAdditionalEffect(MOVE_SPARKLY_SWIRL, MOVE_EFFECT_AROMATHERAPY));
+}
+
+DOUBLE_BATTLE_TEST("Sparkly Swirl cures the entire party")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_POISON); }
+        PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_POISON); }
+        PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_POISON); }
+        PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_POISON); }
+        PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_POISON); }
+        PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_POISON); }
+        OPPONENT(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_SPARKLY_SWIRL, target: opponentLeft); }
+        TURN { SWITCH(playerLeft, 2); SWITCH(playerRight, 3); }
+    } SCENE {
+        int i;
+
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SPARKLY_SWIRL, playerLeft);
+        STATUS_ICON(playerLeft, none: TRUE);
+        STATUS_ICON(playerRight, none: TRUE);
+        NOT MESSAGE("Wobbuffet was hurt by its poisoning!");
+        for (i = 0; i < PARTY_SIZE; i++)
+            EXPECT_EQ(GetMonData(&gPlayerParty[i], MON_DATA_STATUS), STATUS1_NONE);
+    }
 }
 
 DOUBLE_BATTLE_TEST("Heal Bell/Aromatherapy cures the entire party of the user from primary status effects")
@@ -52,7 +80,7 @@ DOUBLE_BATTLE_TEST("Heal Bell/Aromatherapy cures the entire party of the user fr
         case STATUS1_FROSTBITE:    STATUS_ICON(playerLeft, frostbite: FALSE); STATUS_ICON(playerRight, frostbite: FALSE); break;
         }
         for (j = 0; j < PARTY_SIZE; j++)
-            EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_STATUS), STATUS1_NONE);
+            EXPECT_EQ(GetMonData(&gPlayerParty[j], MON_DATA_STATUS), STATUS1_NONE);
     }
 }
 
@@ -112,7 +140,6 @@ SINGLE_BATTLE_TEST("Heal Bell cures inactive Soundproof Pokemon (Gen5+)")
     }
 }
 
-
 SINGLE_BATTLE_TEST("Heal Bell cures a Soundproof user (Gen5, Gen8+)")
 {
     u32 config;
@@ -124,6 +151,58 @@ SINGLE_BATTLE_TEST("Heal Bell cures a Soundproof user (Gen5, Gen8+)")
         ASSUME(IsSoundMove(MOVE_HEAL_BELL));
         WITH_CONFIG(GEN_CONFIG_HEAL_BELL_SOUNDPROOF, config);
         PLAYER(SPECIES_EXPLOUD) { Ability(ABILITY_SOUNDPROOF); Status1(STATUS1_POISON); }
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(player, MOVE_HEAL_BELL, target: player); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HEAL_BELL, player);
+        if (config == GEN_5 || config >= GEN_8) {
+            NOT MESSAGE("Exploud was hurt by its poisoning!");
+        } else {
+            MESSAGE("Exploud was hurt by its poisoning!");
+        }
+    }
+}
+
+SINGLE_BATTLE_TEST("Heal Bell cures inactive Soundproof Pokemon (Gen5+) (Trait)")
+{
+    u32 config, ability;
+
+    PARAMETRIZE { config = GEN_4, ability = ABILITY_SCRAPPY; }
+    PARAMETRIZE { config = GEN_4, ability = ABILITY_SOUNDPROOF; }
+    PARAMETRIZE { config = GEN_5, ability = ABILITY_SOUNDPROOF; }
+
+    GIVEN {
+        ASSUME(IsSoundMove(MOVE_HEAL_BELL));
+        WITH_CONFIG(GEN_CONFIG_HEAL_BELL_SOUNDPROOF, config);
+        PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_POISON); }
+        PLAYER(SPECIES_EXPLOUD) { Ability(ABILITY_SCRAPPY); Innates(ability); Status1(STATUS1_POISON); }
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(player, MOVE_HEAL_BELL, target: player); }
+        TURN { SWITCH(player, 1); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HEAL_BELL, player);
+        SEND_IN_MESSAGE("Exploud");
+        if (ability == ABILITY_SCRAPPY || config >= GEN_5) {
+            NOT MESSAGE("Exploud was hurt by its poisoning!");
+        } else {
+            MESSAGE("Exploud was hurt by its poisoning!");
+        }
+    }
+}
+
+SINGLE_BATTLE_TEST("Heal Bell cures a Soundproof user (Gen5, Gen8+) (Trait)")
+{
+    u32 config;
+    PARAMETRIZE { config = GEN_4; }
+    PARAMETRIZE { config = GEN_5; }
+    PARAMETRIZE { config = GEN_6; }
+    PARAMETRIZE { config = GEN_8; }
+    GIVEN {
+        ASSUME(IsSoundMove(MOVE_HEAL_BELL));
+        WITH_CONFIG(GEN_CONFIG_HEAL_BELL_SOUNDPROOF, config);
+        PLAYER(SPECIES_EXPLOUD) { Ability(ABILITY_SCRAPPY); Innates(ABILITY_SOUNDPROOF); Status1(STATUS1_POISON); }
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
         TURN { MOVE(player, MOVE_HEAL_BELL, target: player); }

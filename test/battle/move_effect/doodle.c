@@ -115,3 +115,5 @@ DOUBLE_BATTLE_TEST("Doodle fails if ally's ability can't be suppressed")
         MESSAGE("But it failed!");
     }
 }
+
+//Doodle affects Abilites and not Innates

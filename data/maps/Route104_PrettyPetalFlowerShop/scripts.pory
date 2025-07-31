@@ -1,5 +1,3 @@
-const LOCALID_OWNER = 1
-
 mapscripts Route104_PrettyPetalFlowerShop_MapScripts {
     MAP_SCRIPT_ON_TRANSITION {
         setflag(FLAG_LANDMARK_FLOWER_SHOP)
@@ -10,7 +8,7 @@ mapscripts Route104_PrettyPetalFlowerShop_MapScripts {
 }
 
 script Route104_PrettyPetalFlowerShop_EventScript_MoveShopOwner {
-    setobjectxyperm(LOCALID_OWNER, 4, 6)
+    setobjectxyperm(LOCALID_FLOWER_SHOP_OWNER, 4, 6)
 }
 
 mart Route104_PrettyPetalFlowerShop_Pokemart_Plants {

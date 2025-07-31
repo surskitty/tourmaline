@@ -7,11 +7,6 @@ mapscripts LavaridgeTown_Gym_B1F_MapScripts {
 
 
 raw `
-.equ LOCALID_JACE, 1
-.equ LOCALID_KEEGAN, 2
-.equ LOCALID_JEFF, 3
-.equ LOCALID_ELI, 4
-
 @ Unclear where/if these temp vars are getting checked
 LavaridgeTown_Gym_B1F_EventScript_SetTrainerTempVars::
     setvar VAR_TEMP_7, 0

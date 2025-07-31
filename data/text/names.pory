@@ -7,6 +7,8 @@ text CommonName_Text_Wally { "Wally" }
 text CommonName_Text_Interviewer { "Interviewer" }
 text CommonName_Text_Referee { "Referee" }
 text CommonName_Text_Wanda { "Wanda" }
+text CommonName_Text_WallysUncle { "Uncle" }
+text CommonName_Text_Wattson { "Wattson" }
 
 text CommonName_Text_ProfBirch { "Prof. Birch" }
 text CommonName_Text_ProfCozmo { "Prof. Cozmo" }

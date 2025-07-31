@@ -127,6 +127,6 @@ Route121_SafariZoneEntrance_Movement_EnterSafariZone:
 
 script Route121_SafariZoneEntrance_EventScript_TrainerTipSign {
     msgbox(format("Safari Zone Trainer Tip!\p"
-        "Throw {POKEBLOCK}s at wild Pokémon to make\n"
+        "Throw {POKEBLOCK}S at wild Pokémon to make\n"
         "them less likely to flee."), MSGBOX_SIGN)
 }

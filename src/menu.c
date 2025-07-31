@@ -520,9 +520,10 @@ int GetDialogFramePlateWidth()
 void FillDialogFramePlate()
 {
     int i;
-    for (i = 0; i < DLW_WIN_PLATE_SIZE; i++) {
-        CopyToWindowPixelBuffer(1, &gMessageBox_Gfx[8*5], TILE_SIZE_4BPP, i);
-        CopyToWindowPixelBuffer(1, &gMessageBox_Gfx[8*12], TILE_SIZE_4BPP, i+DLW_WIN_PLATE_SIZE);
+    for (i = 0; i < DLW_WIN_PLATE_SIZE; i++) 
+    {
+        CopyToWindowPixelBuffer(1, &gMessageBox_Gfx[DLW_WIN_PLATE_SIZE * DLW_TOP_BLOCK_FILL], TILE_SIZE_4BPP, i);
+        CopyToWindowPixelBuffer(1, &gMessageBox_Gfx[DLW_WIN_PLATE_SIZE * DLW_BOT_BLOCK_FILL], TILE_SIZE_4BPP, i+DLW_WIN_PLATE_SIZE);
     }
 }
 

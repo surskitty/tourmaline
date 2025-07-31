@@ -6,11 +6,6 @@ mapscripts LavaridgeTown_Gym_1F_MapScripts {
 }
 
 raw `
-.set LOCALID_COLE, 2
-.set LOCALID_GERALD, 3
-.set LOCALID_AXLE, 4
-.set LOCALID_DANIELLE, 5
-
 @ Unclear where/if these temp vars are getting checked
 LavaridgeTown_Gym_1F_EventScript_SetTrainerTempVars::
     setvar VAR_TEMP_B, 0

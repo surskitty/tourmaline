@@ -12,7 +12,7 @@ SINGLE_BATTLE_TEST("Salac Berry raises the holder's Speed by one stage when HP d
 {
     u32 move;
 
-    PARAMETRIZE { move = MOVE_TACKLE; }
+    PARAMETRIZE { move = MOVE_SCRATCH; }
     PARAMETRIZE { move = MOVE_DRAGON_RAGE; }
 
     GIVEN {
@@ -22,7 +22,7 @@ SINGLE_BATTLE_TEST("Salac Berry raises the holder's Speed by one stage when HP d
         TURN { MOVE(opponent, move); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, move, opponent);
-        if (move == MOVE_TACKLE) {
+        if (move == MOVE_SCRATCH) {
             NONE_OF {
                 ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
                 MESSAGE("Using Salac Berry, the Speed of Wobbuffet rose!");
@@ -85,5 +85,37 @@ DOUBLE_BATTLE_TEST("Salac Berry does not miss timing miss timing")
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponentLeft);
         MESSAGE("Using Salac Berry, the Speed of the opposing Wynaut rose!");
         MESSAGE("The opposing Wobbuffet was hurt by the sea of fire!");
+    }
+}
+
+SINGLE_BATTLE_TEST("Salac Berry raises Speed by one stage when HP drops to 1/2 or below if holder has Gluttony (Trait)")
+{
+    GIVEN {
+        PLAYER(SPECIES_BELLSPROUT) { MaxHP(80); HP(80); Ability(ABILITY_CHLOROPHYLL); Innates(ABILITY_GLUTTONY); Item(ITEM_SALAC_BERRY); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_DRAGON_RAGE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_RAGE, opponent);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
+        MESSAGE("Using Salac Berry, the Speed of Bellsprout rose!");
+    } THEN {
+        EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE + 1);
+    }
+}
+
+SINGLE_BATTLE_TEST("Salac Berry raises Speed by one stage when HP drops to 1/4 or below if holder has Ripen (Trait)")
+{
+    GIVEN {
+        PLAYER(SPECIES_APPLIN) { MaxHP(160); HP(80); Ability(ABILITY_BULLETPROOF); Innates(ABILITY_RIPEN); Item(ITEM_SALAC_BERRY); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_DRAGON_RAGE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_RAGE, opponent);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
+        MESSAGE("Using Salac Berry, the Speed of Applin sharply rose!");
+    } THEN {
+        EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE + 2);
     }
 }

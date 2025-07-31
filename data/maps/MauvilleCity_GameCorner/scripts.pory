@@ -784,3 +784,4 @@ text MauvilleCity_GameCorner_Text_CantPlayWithNoCoinCase {
     format("You can't play if you don't have a Coin Case.")
 }
 
+

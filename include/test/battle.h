@@ -114,12 +114,12 @@
  * not paralyzed without specifying the exact outputs which led to that.
  *
  * As a final example, to test that Meditate works you might:
- * 1. Put a Wobbuffet that knows Meditate and Tackle in your party.
+ * 1. Put a Wobbuffet that knows Meditate and Scratch in your party.
  * 2. Battle a wild Wobbuffet.
- * 3. Use Tackle and note the amount the HP bar reduced.
+ * 3. Use Scratch and note the amount the HP bar reduced.
  * 4. Battle a wild Wobbuffet.
  * 5. Use Meditate and that the stat change animation and message play.
- * 6. Use Tackle and check that the HP bar reduced by more than in 3.
+ * 6. Use Scratch and check that the HP bar reduced by more than in 3.
  *
  * This can be translated to an automated test as follows:
  *
@@ -129,19 +129,19 @@
  *        PARAMETRIZE { raiseAttack = FALSE; }
  *        PARAMETRIZE { raiseAttack = TRUE; }
  *        GIVEN {
- *            ASSUME(GetMoveCategory(MOVE_TACKLE) == DAMAGE_CATEGORY_PHYSICAL);
+ *            ASSUME(GetMoveCategory(MOVE_SCRATCH) == DAMAGE_CATEGORY_PHYSICAL);
  *            PLAYER(SPECIES_WOBBUFFET);
  *            OPPONENT(SPECIES_WOBBUFFET);
  *        } WHEN {
  *            if (raiseAttack) TURN { MOVE(player, MOVE_MEDITATE); } // 5.
- *            TURN { MOVE(player, MOVE_TACKLE); } // 3 & 6.
+ *            TURN { MOVE(player, MOVE_SCRATCH); } // 3 & 6.
  *        } SCENE {
  *            if (raiseAttack) {
  *                ANIMATION(ANIM_TYPE_MOVE, MOVE_MEDITATE, player);
  *                ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player); // 5.
  *                MESSAGE("Wobbuffet's attack rose!"); // 5.
  *            }
- *            ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
+ *            ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
  *            HP_BAR(opponent, captureDamage: &results[i].damage); // 3 & 6.
  *        } FINALLY {
  *            EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.5), results[1].damage); // 6.
@@ -344,7 +344,7 @@
  * battles to choose the target (when necessary), and allowed: FALSE is
  * used to reject an illegal move e.g. a Disabled one. WITH_RNG allows
  * the move to specify an explicit outcome for an RNG tag.
- *     MOVE(playerLeft, MOVE_TACKLE, target: opponentRight);
+ *     MOVE(playerLeft, MOVE_SCRATCH, target: opponentRight);
  * If the battler does not have an explicit Moves specified the moveset
  * will be populated based on the MOVEs it uses.
  *
@@ -372,7 +372,7 @@
  * ID must be specified, and party index and move slot if applicable, e.g:
  *      USE_ITEM(player, ITEM_X_ATTACK);
  *      USE_ITEM(player, ITEM_POTION, partyIndex: 0);
- *      USE_ITEM(player, ITEM_LEPPA_BERRY, partyIndex: 0, move: MOVE_TACKLE);
+ *      USE_ITEM(player, ITEM_LEPPA_BERRY, partyIndex: 0, move: MOVE_SCRATCH);
  *
  * SCENE
  * Contains an abridged description of the UI during the THEN. The order
@@ -389,7 +389,7 @@
  * ANIMATION(type, animId, [battler], [target:])
  * Causes the test to fail if the animation does not play. A common use
  * of this command is to check if a move was successful, e.g.:
- *     ANIMATION(ANIM_TYPE_MOVE, MOVE_TACKLE, player);
+ *     ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
  * target can only be specified for ANIM_TYPE_MOVE.
  *
  * EXPERIENCE_BAR(battler, [exp: | captureGainedExp:])
@@ -681,6 +681,7 @@ struct BattleTestData
     u8 gender;
     u8 nature;
     u16 forcedAbilities[NUM_BATTLE_SIDES][PARTY_SIZE];
+    u16 forcedInnates[NUM_BATTLE_SIDES][PARTY_SIZE][MAX_MON_INNATES];
     u8 chosenGimmick[NUM_BATTLE_SIDES][PARTY_SIZE];
 
     u8 currentMonIndexes[MAX_BATTLERS_COUNT];
@@ -734,7 +735,7 @@ struct BattleTestRunnerState
     bool8 runThen:1;
     bool8 runFinally:1;
     bool8 runningFinally:1;
-    bool8 tearDownBattle:1;
+    bool8 hasTornDownBattle:1;
     struct BattleTestData data;
     u8 *results;
     u8 checkProgressParameter;
@@ -841,6 +842,7 @@ struct moveWithPP {
 #define Gender(gender) Gender_(__LINE__, gender)
 #define Nature(nature) Nature_(__LINE__, nature)
 #define Ability(ability) Ability_(__LINE__, ability)
+#define Innates(innate1, ... ) do { u32 innates_[MAX_MON_INNATES] = {innate1, __VA_ARGS__}; Innates_(__LINE__, innates_); } while(0)
 #define Level(level) Level_(__LINE__, level)
 #define MaxHP(maxHP) MaxHP_(__LINE__, maxHP)
 #define HP(hp) HP_(__LINE__, hp)
@@ -873,11 +875,12 @@ void OpenPokemon(u32 sourceLine, u32 side, u32 species);
 void ClosePokemon(u32 sourceLine);
 
 void RNGSeed_(u32 sourceLine, rng_value_t seed);
-void AIFlags_(u32 sourceLine, u32 flags);
+void AIFlags_(u32 sourceLine, u64 flags);
 void AILogScores(u32 sourceLine);
 void Gender_(u32 sourceLine, u32 gender);
 void Nature_(u32 sourceLine, u32 nature);
 void Ability_(u32 sourceLine, u32 ability);
+void Innates_(u32 sourceLine, u32 innates[MAX_MON_INNATES]);
 void Level_(u32 sourceLine, u32 level);
 void MaxHP_(u32 sourceLine, u32 maxHP);
 void HP_(u32 sourceLine, u32 hp);
