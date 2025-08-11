@@ -6545,7 +6545,7 @@ Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Basic Trainer
+AI: Bad Trainer
 
 Bugsy (Blipbug) (M)
 Level: 5
@@ -6670,7 +6670,7 @@ Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Basic Trainer
+AI: Bad Trainer
 
 Lotad
 Level: 5
@@ -6687,7 +6687,7 @@ Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Basic Trainer
+AI: Bad Trainer
 
 Nacli
 Level: 10
@@ -6705,7 +6705,7 @@ Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Basic Trainer
+AI: Bad Trainer
 
 Geodude Alola
 Level: 8
@@ -6722,7 +6722,7 @@ Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Basic Trainer
+AI: Bad Trainer
 
 Stufful
 Level: 9
@@ -12238,7 +12238,7 @@ Pic: Bug Catcher
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Basic Trainer
+AI: Bad Trainer
 
 Wurmple
 Level: 6
@@ -12255,7 +12255,7 @@ Pic: Bug Catcher
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Basic Trainer
+AI: Bad Trainer
 
 Surskit
 Level: 6
@@ -12276,7 +12276,7 @@ Pic: Bug Catcher
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Basic Trainer
+AI: Bad Trainer
 
 Wurmple
 Level: 8
@@ -12327,7 +12327,6 @@ AI: Basic Trainer
 
 Ninjask
 Level: 25
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JAMES_1 ===
 Name: James
@@ -12336,7 +12335,7 @@ Pic: Bug Catcher
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Basic Trainer
+AI: Bad Trainer
 
 Wurmy (Wurmple) (M)
 Level: 6
@@ -12360,7 +12359,7 @@ Pic: Bug Catcher
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Basic Trainer
+AI: Bad Trainer
 
 Dusty (Dustox) (M)
 Level: 27
@@ -12390,7 +12389,7 @@ Pic: Bug Catcher
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Basic Trainer
+AI: Bad Trainer
 
 Dusty (Dustox) (M)
 Level: 30
@@ -12420,7 +12419,7 @@ Pic: Bug Catcher
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Basic Trainer
+AI: Bad Trainer
 
 Looker (Masquerain) (F)
 Level: 34
@@ -14032,7 +14031,7 @@ Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Basic Trainer
+AI: Bad Trainer
 
 Zigzagoon
 Level: 14
@@ -14650,7 +14649,7 @@ Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Basic Trainer
+AI: Bad Trainer
 
 Shroomish
 Level: 8
