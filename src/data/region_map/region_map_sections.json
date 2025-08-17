@@ -531,7 +531,6 @@
     {
       "id": "MAPSEC_AQUA_HIDEOUT_OLD",
       "name": "{AQUA} Hideout",
-      "name_clone": true,
       "x": 19,
       "y": 3,
       "width": 1,
@@ -715,7 +714,6 @@
     },
     {
       "id": "MAPSEC_DYNAMIC",
-      "name": "",
       "x": 0,
       "y": 0,
       "width": 1,
@@ -812,7 +810,6 @@
     {
       "id": "MAPSEC_ROUTE_4_POKECENTER",
       "name": "Route 4",
-      "name_clone": true,
       "x": 0,
       "y": 0,
       "width": 1,
@@ -821,7 +818,6 @@
     {
       "id": "MAPSEC_ROUTE_10_POKECENTER",
       "name": "Route 10",
-      "name_clone": true,
       "x": 0,
       "y": 0,
       "width": 1,
@@ -1062,7 +1058,6 @@
     {
       "id": "MAPSEC_UNDERGROUND_PATH_2",
       "name": "Underground Path",
-      "name_clone": true,
       "x": 0,
       "y": 0,
       "width": 1,
@@ -1079,7 +1074,6 @@
     {
       "id": "MAPSEC_KANTO_VICTORY_ROAD",
       "name": "Victory Road",
-      "name_clone": true,
       "x": 0,
       "y": 0,
       "width": 1,
@@ -1112,7 +1106,6 @@
     {
       "id": "MAPSEC_KANTO_SAFARI_ZONE",
       "name": "Safari Zone",
-      "name_clone": true,
       "x": 0,
       "y": 0,
       "width": 1,
@@ -1457,7 +1450,6 @@
     {
       "id": "MAPSEC_TRAINER_TOWER_2",
       "name": "Trainer Tower",
-      "name_clone": true,
       "x": 0,
       "y": 0,
       "width": 1,
