@@ -9600,7 +9600,7 @@ Pic: Sailor
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Basic Trainer
+AI: Bad Trainer
 
 Wingull
 Level: 12
@@ -9617,7 +9617,7 @@ Pic: Sailor
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Basic Trainer
+AI: Bad Trainer
 
 Wingull
 Level: 13
@@ -9627,23 +9627,6 @@ Sandygast
 Level: 13
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-=== TRAINER_ERNEST_1 ===
-Name: Ernest
-Class: Sailor
-Pic: Sailor
-Gender: Male
-Music: Male
-Double Battle: Yes
-AI: Basic Trainer
-
-Wingull
-Level: 33
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Mienfoo
-Level: 33
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 === TRAINER_DWAYNE ===
 Name: Dwayne
 Class: Sailor
@@ -9651,7 +9634,7 @@ Pic: Sailor
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Basic Trainer
+AI: Bad Trainer
 
 Wingull
 Level: 11
@@ -9676,11 +9659,9 @@ AI: Basic Trainer
 
 Tentacruel
 Level: 44
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Mienfoo
 Level: 44
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_LEONARD ===
 Name: Leonard
@@ -9715,6 +9696,23 @@ Level: 25
 Wattrel
 Level: 25
 
+=== TRAINER_ERNEST_1 ===
+Name: Ernest
+Class: Sailor
+Pic: Sailor
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Basic Trainer
+
+Wingull
+Level: 33
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Mienfoo
+Level: 33
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
 === TRAINER_ERNEST_2 ===
 Name: Ernest
 Class: Sailor
@@ -9726,15 +9724,12 @@ AI: Basic Trainer
 
 Wingull
 Level: 36
-IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 
 Tentacool
 Level: 36
-IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 
 Mienfoo
 Level: 36
-IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 
 === TRAINER_ERNEST_3 ===
 Name: Ernest
@@ -9747,15 +9742,12 @@ AI: Basic Trainer
 
 Pelipper
 Level: 39
-IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 Tentacool
 Level: 39
-IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 Mienfoo
 Level: 39
-IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 
 === TRAINER_ERNEST_4 ===
 Name: Ernest
@@ -9768,15 +9760,12 @@ AI: Basic Trainer
 
 Pelipper
 Level: 42
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 Tentacool
 Level: 42
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 Mienfoo
 Level: 42
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 === TRAINER_ERNEST_5 ===
 Name: Ernest
@@ -9789,15 +9778,12 @@ AI: Basic Trainer
 
 Pelipper
 Level: 45
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 Mienfoo
 Level: 45
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 Tentacruel
 Level: 45
-IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
 === TRAINER_ELI ===
 Name: Eli
@@ -9810,7 +9796,6 @@ AI: Basic Trainer
 
 Numel
 Level: 23
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_ANNIKA ===
 Name: Annika
@@ -9823,7 +9808,6 @@ AI: Basic Trainer
 
 Feebas @ Oran Berry
 Level: 39
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Flail
 - Water Pulse
 - Return
@@ -9831,7 +9815,6 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Feebas @ Oran Berry
 Level: 39
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Flail
 - Water Pulse
 - Return
@@ -9964,7 +9947,6 @@ AI: Basic Trainer
 
 Wailmer
 Level: 34
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_CONOR ===
 Name: Conor
@@ -9977,28 +9959,9 @@ AI: Basic Trainer
 
 Chinchou
 Level: 33
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Hariyama
 Level: 33
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-
-=== TRAINER_EDWIN_1 ===
-Name: Edwin
-Class: Collector
-Pic: Collector
-Gender: Male
-Music: Suspicious
-Double Battle: Yes
-AI: Basic Trainer
-
-Lombre
-Level: 14
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Nuzleaf
-Level: 14
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_HECTOR ===
 Name: Hector
@@ -10038,6 +10001,21 @@ Golbat
 Level: 40
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
+=== TRAINER_EDWIN_1 ===
+Name: Edwin
+Class: Collector
+Pic: Collector
+Gender: Male
+Music: Suspicious
+Double Battle: Yes
+AI: Bad Trainer
+
+Lombre
+Level: 14
+
+Nuzleaf
+Level: 14
+
 === TRAINER_EDWIN_2 ===
 Name: Edwin
 Class: Collector
@@ -10049,11 +10027,9 @@ AI: Basic Trainer
 
 Lombre
 Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Nuzleaf
 Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_EDWIN_3 ===
 Name: Edwin
@@ -10113,7 +10089,7 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Check Bad Move / HP Aware
+AI: Check Bad Move / HP Aware / Negate Unaware
 
 Ariel (Eevee) (F) @ Chople Berry
 Level: 5
@@ -10134,7 +10110,7 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Basic Trainer / Force Setup First Turn
+AI: Bad Trainer / Force Setup First Turn
 
 Ariel (Eevee) (F) @ Chople Berry
 Level: 15
@@ -10234,7 +10210,7 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: Yes    
-AI: Check Bad Move / HP Aware
+AI: Check Bad Move / HP Aware / Negate Unaware
 
 Ariel (Eevee) (F) @ Chople Berry
 Level: 5
@@ -10255,7 +10231,7 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Basic Trainer / Force Setup First Turn
+AI: Bad Trainer / Force Setup First Turn
 
 Ariel (Eevee) (F) @ Chople Berry
 Level: 15
@@ -10266,7 +10242,6 @@ Level: 15
 
 Seedot (F)
 Level: 13
-Ability: Early Bird
 
 Sparky (Torchic) (M)
 Level: 15
@@ -10290,7 +10265,6 @@ Ability: Storm Drain
 
 Nuzleaf (F)
 Level: 18
-Ability: Early Bird
 
 Sparky (Combusken) (M)
 Level: 20
@@ -10314,7 +10288,6 @@ Ability: Storm Drain
 
 Nuzleaf (F)
 Level: 29
-Ability: Early Bird
 
 Sparky (Combusken) (M)
 Level: 31
@@ -10338,7 +10311,6 @@ Ability: Wind Power
 
 Shiftry (F)
 Level: 32
-Ability: Wind Rider
 
 Caspian (Gastrodon West) (M)
 Level: 30
@@ -10358,7 +10330,7 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: Yes    
-AI: Check Bad Move / HP Aware
+AI: Check Bad Move / HP Aware / Negate Unaware
 
 Ariel (Eevee) (F) @ Chople Berry
 Level: 5
@@ -10379,7 +10351,7 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: Yes
-AI: Basic Trainer / Force Setup First Turn
+AI: Bad Trainer / Force Setup First Turn
 
 Ariel (Eevee) (F) @ Chople Berry
 Level: 15
@@ -10476,7 +10448,7 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: Yes    
-AI: Check Bad Move / HP Aware
+AI: Check Bad Move / HP Aware / Negate Unaware
 
 Bebe (Eevee) (F)  @ Chople Berry
 Level: 5
@@ -10497,7 +10469,7 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: Yes
-AI: Basic Trainer / Force Setup First Turn
+AI: Bad Trainer / Force Setup First Turn
 
 Bebe (Eevee) (F) @ Chople Berry
 Level: 15
@@ -10592,7 +10564,7 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: Yes    
-AI: Check Bad Move / HP Aware
+AI: Check Bad Move / HP Aware / Negate Unaware
 
 Bebe (Eevee) (F) @ Chople Berry
 Level: 5
@@ -10613,7 +10585,7 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: Yes
-AI: Basic Trainer / Force Setup First Turn
+AI: Bad Trainer / Force Setup First Turn
 
 Bebe (Eevee) (F) @ Chople Berry
 Level: 15
@@ -10712,7 +10684,7 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: Yes
-AI: Check Bad Move / HP Aware
+AI: Check Bad Move / HP Aware / Negate Unaware
 
 Bebe (Eevee) (F) @ Chople Berry
 Level: 5
@@ -10733,7 +10705,7 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: Yes
-AI: Basic Trainer / Force Setup First Turn
+AI: Bad Trainer / Force Setup First Turn
 
 Bebe (Eevee) (F) @ Chople Berry
 Level: 15
@@ -10822,39 +10794,6 @@ Ability: Magic Bounce
 Kippers (Swampert) (M) @ Swampertite
 Level: 34
 
-=== TRAINER_ISAAC_1 ===
-Name: Isaac
-Class: Pkmn Breeder
-Pic: Pokemon Breeder M
-Gender: Male
-Music: Male
-Double Battle: Yes
-AI: Basic Trainer
-
-Whismur
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Zigzagoon
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Aron
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Poochyena
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Taillow
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Makuhita
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
 === TRAINER_DAVIS ===
 Name: Davis
 Class: Bug Catcher
@@ -10893,6 +10832,39 @@ Level: 43
 - Reflect
 - Light Screen
 - Shadow Ball
+
+=== TRAINER_ISAAC_1 ===
+Name: Isaac
+Class: Pkmn Breeder
+Pic: Pokemon Breeder M
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Basic Trainer
+
+Whismur
+Level: 11
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Zigzagoon
+Level: 11
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Aron
+Level: 11
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Poochyena
+Level: 11
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Taillow
+Level: 11
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Makuhita
+Level: 11
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ISAAC_2 ===
 Name: Isaac
@@ -11026,6 +10998,37 @@ Hariyama
 Level: 31
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
+=== TRAINER_HALLE ===
+Name: Halle
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Cool
+Items: Full Restore
+Double Battle: Yes
+AI: Basic Trainer
+
+Sableye
+Level: 43
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Absol
+Level: 43
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== TRAINER_GARRISON ===
+Name: Garrison
+Class: Ruin Maniac
+Pic: Ruin Maniac
+Gender: Male
+Music: Hiker
+Double Battle: Yes
+AI: Basic Trainer
+
+Sandslash
+Level: 26
+IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
 === TRAINER_LYDIA_1 ===
 Name: Lydia
 Class: Pkmn Breeder
@@ -11057,37 +11060,6 @@ IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Goldeen
 Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_HALLE ===
-Name: Halle
-Class: Cooltrainer
-Pic: Cooltrainer F
-Gender: Female
-Music: Cool
-Items: Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Sableye
-Level: 43
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Absol
-Level: 43
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-=== TRAINER_GARRISON ===
-Name: Garrison
-Class: Ruin Maniac
-Pic: Ruin Maniac
-Gender: Male
-Music: Hiker
-Double Battle: Yes
-AI: Basic Trainer
-
-Sandslash
-Level: 26
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_LYDIA_2 ===
@@ -11222,20 +11194,6 @@ Seaking
 Level: 31
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 
-=== TRAINER_JACKSON_1 ===
-Name: Jackson
-Class: Pkmn Ranger
-Pic: Pokemon Ranger M
-Gender: Male
-Music: Cool
-Items: Full Restore
-Double Battle: Yes
-AI: Basic Trainer
-
-Breloom
-Level: 27
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
-
 === TRAINER_LORENZO ===
 Name: Lorenzo
 Class: Pkmn Ranger
@@ -11270,6 +11228,20 @@ AI: Basic Trainer
 
 Cacturne
 Level: 39
+IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+
+=== TRAINER_JACKSON_1 ===
+Name: Jackson
+Class: Pkmn Ranger
+Pic: Pokemon Ranger M
+Gender: Male
+Music: Cool
+Items: Full Restore
+Double Battle: Yes
+AI: Basic Trainer
+
+Breloom
+Level: 27
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 === TRAINER_JACKSON_2 ===
