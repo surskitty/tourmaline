@@ -10601,7 +10601,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_DRAGON),
 #if !TESTING
         .abilities = { ABILITY_RIVALRY, ABILITY_UNNERVE, ABILITY_MOLD_BREAKER },
-        .innates = { ABILITY_SHARPNESS },
+        .innates = { ABILITY_MOLD_BREAKER, ABILITY_SHARPNESS, ABILITY_UNNERVE },
 #else
         .abilities = { ABILITY_RIVALRY, ABILITY_MOLD_BREAKER, ABILITY_UNNERVE },
 #endif

@@ -3255,7 +3255,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_DRAGON),
+#if !TESTING
+        .abilities = { ABILITY_CORROSION, ABILITY_NONE, ABILITY_CUTE_CHARM },
+        .innates = { ABILITY_CORROSION, ABILITY_OBLIVIOUS },
+#else
         .abilities = { ABILITY_CORROSION, ABILITY_NONE, ABILITY_OBLIVIOUS },
+#endif
         .bodyColor = BODY_COLOR_BLACK,
         .speciesName = _("Salandit"),
         .cryId = CRY_SALANDIT,
@@ -3326,7 +3331,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_DRAGON),
+#if !TESTING
+        .abilities = { ABILITY_CORROSION, ABILITY_NONE, ABILITY_MERCILESS },
+        .innates = { ABILITY_CORROSION, ABILITY_CUTE_CHARM, ABILITY_OBLIVIOUS },
+#else
         .abilities = { ABILITY_CORROSION, ABILITY_NONE, ABILITY_OBLIVIOUS },
+#endif
         .bodyColor = BODY_COLOR_BLACK,
         .speciesName = _("Salazzle"),
         .cryId = CRY_SALAZZLE,
@@ -3387,7 +3397,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_DRAGON),
-        .abilities = { ABILITY_CORROSION, ABILITY_NONE, ABILITY_NONE },
+#if !TESTING
+        .abilities = { ABILITY_CORROSION, ABILITY_NONE, ABILITY_MERCILESS },
+        .innates = { ABILITY_CORROSION, ABILITY_CUTE_CHARM, ABILITY_OBLIVIOUS },
+#else
+        .abilities = { ABILITY_CORROSION, ABILITY_NONE, ABILITY_OBLIVIOUS },
+#endif
         .bodyColor = BODY_COLOR_BLACK,
         .speciesName = _("Salazzle"),
         .cryId = CRY_SALAZZLE,
@@ -3451,7 +3466,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+#if !TESTING
         .abilities = { ABILITY_FLUFFY, ABILITY_KLUTZ, ABILITY_CUTE_CHARM },
+        .innates = { ABILITY_FLUFFY, ABILITY_PICKUP },
+#else
+        .abilities = { ABILITY_FLUFFY, ABILITY_KLUTZ, ABILITY_CUTE_CHARM },
+#endif
         .bodyColor = BODY_COLOR_PINK,
         .speciesName = _("Stufful"),
         .cryId = CRY_STUFFUL,
@@ -3520,7 +3540,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-        .abilities = { ABILITY_FLUFFY, ABILITY_KLUTZ, ABILITY_UNNERVE },
+#if !TESTING
+        .abilities = { ABILITY_FLUFFY, ABILITY_KLUTZ, ABILITY_STAMINA },
+        .innates = { ABILITY_FLUFFY, ABILITY_PICKUP, ABILITY_UNNERVE },
+#else
+        .abilities = { ABILITY_FLUFFY, ABILITY_KLUTZ, ABILITY_CUTE_CHARM },
+#endif
         .bodyColor = BODY_COLOR_PINK,
         .speciesName = _("Bewear"),
         .cryId = CRY_BEWEAR,
@@ -4134,7 +4159,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
+#if !TESTING
+        .abilities = { ABILITY_WANDERING_SPIRIT, ABILITY_WANDERING_SPIRIT, ABILITY_CURSED_BODY },
+        .innates = { ABILITY_SAND_VEIL, ABILITY_WATER_COMPACTION },
+#else
         .abilities = { ABILITY_WATER_COMPACTION, ABILITY_NONE, ABILITY_SAND_VEIL },
+#endif
         .bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Sandygast"),
         .cryId = CRY_SANDYGAST,
@@ -4200,7 +4230,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
+#if !TESTING
+        .abilities = { ABILITY_WANDERING_SPIRIT, ABILITY_WANDERING_SPIRIT, ABILITY_CURSED_BODY },
+        .innates = { ABILITY_SAND_VEIL, ABILITY_WATER_COMPACTION },
+#else
         .abilities = { ABILITY_WATER_COMPACTION, ABILITY_NONE, ABILITY_SAND_VEIL },
+#endif
         .bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Palossand"),
         .cryId = CRY_PALOSSAND,
@@ -4265,7 +4300,12 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1),
+#if !TESTING
+        .abilities = { ABILITY_HYDRATION, ABILITY_HYDRATION, ABILITY_WONDER_SKIN },
+        .innates = { ABILITY_INNARDS_OUT, ABILITY_UNAWARE },
+#else
         .abilities = { ABILITY_INNARDS_OUT, ABILITY_NONE, ABILITY_UNAWARE },
+#endif
         .bodyColor = BODY_COLOR_BLACK,
         .speciesName = _("Pyukumuku"),
         .cryId = CRY_PYUKUMUKU,
@@ -4483,6 +4523,7 @@ const struct SpeciesInfo gSpeciesInfoGen7[] =
         .growthRate = GROWTH_MEDIUM_SLOW,                                   \
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),                     \
         .abilities = { ABILITY_SHIELDS_DOWN, ABILITY_NONE, ABILITY_NONE },  \
+        .innates = { ABILITY_WIND_RIDER },                                  \
         .bodyColor = color,                                                 \
         .noFlip = TRUE,                                                     \
         .speciesName = _("Minior"),                                         \

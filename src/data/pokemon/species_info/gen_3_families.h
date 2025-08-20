@@ -21,11 +21,11 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_DRAGON),
-#if TESTING
-        .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_UNBURDEN },
-#else
+#if !TESTING
         .abilities = { ABILITY_UNBURDEN, ABILITY_NONE, ABILITY_SHARPNESS },
         .innates = { ABILITY_OVERGROW, ABILITY_LIMBER },
+#else
+        .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_UNBURDEN },
 #endif
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Treecko"),
@@ -97,11 +97,11 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_DRAGON),
-#if TESTING
-        .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_UNBURDEN },
-#else
+#if !TESTING
         .abilities = { ABILITY_UNBURDEN, ABILITY_NONE, ABILITY_SHARPNESS },
         .innates = { ABILITY_OVERGROW, ABILITY_LIMBER },
+#else
+        .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_UNBURDEN },
 #endif
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Grovyle"),
@@ -178,11 +178,11 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_DRAGON),
-#if TESTING
-        .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_UNBURDEN },
-#else
+#if !TESTING
         .abilities = { ABILITY_UNBURDEN, ABILITY_NONE, ABILITY_SHARPNESS },
         .innates = { ABILITY_OVERGROW, ABILITY_LIMBER },
+#else
+        .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_UNBURDEN },
 #endif
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Sceptile"),
@@ -253,11 +253,11 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_DRAGON),
-#if TESTING
-        .abilities = { ABILITY_LIGHTNING_ROD, ABILITY_LIGHTNING_ROD, ABILITY_LIGHTNING_ROD },
-#else
+#if !TESTING
         .abilities = { ABILITY_UNBURDEN, ABILITY_NONE, ABILITY_SHARPNESS },
         .innates = { ABILITY_OVERGROW, ABILITY_LIMBER, ABILITY_LIGHTNING_ROD },
+#else
+        .abilities = { ABILITY_LIGHTNING_ROD, ABILITY_LIGHTNING_ROD, ABILITY_LIGHTNING_ROD },
 #endif
         .bodyColor = BODY_COLOR_GREEN,
         .speciesName = _("Sceptile"),
@@ -1169,11 +1169,11 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-#if TESTING
-        .abilities = { ABILITY_PICKUP, ABILITY_GLUTTONY, ABILITY_QUICK_FEET },
-#else
-        .abilities = { ABILITY_QUICK_FEET, ABILITY_NONE, ABILITY_NONE },
+#if !TESTING
         .innates = { ABILITY_PICKUP, ABILITY_GLUTTONY },
+        .abilities = { ABILITY_QUICK_FEET, ABILITY_NONE, ABILITY_NONE },
+#else
+        .abilities = { ABILITY_PICKUP, ABILITY_GLUTTONY, ABILITY_QUICK_FEET },
 #endif
         .bodyColor = BODY_COLOR_BROWN,
         .speciesName = _("Zigzagoon"),
@@ -4833,11 +4833,11 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .friendship = 35,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_HUMAN_LIKE),
-#if TESTING
-        .abilities = { ABILITY_KEEN_EYE, ABILITY_STALL, ABILITY_PRANKSTER },
-#else
+#if !TESTING
         .abilities = { ABILITY_STALL, ABILITY_PRANKSTER, ABILITY_NONE },
         .innates = { ABILITY_KEEN_EYE, ABILITY_ANALYTIC },
+#else
+        .abilities = { ABILITY_KEEN_EYE, ABILITY_STALL, ABILITY_PRANKSTER },
 #endif
         .bodyColor = BODY_COLOR_PURPLE,
         .speciesName = _("Sableye"),
@@ -6132,11 +6132,11 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_ERRATIC,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG, EGG_GROUP_HUMAN_LIKE),
-#if TESTING
-        .abilities = { ABILITY_ILLUMINATE, ABILITY_SWARM, ABILITY_PRANKSTER },
-#else
+#if !TESTING
         .abilities = { ABILITY_SWARM, ABILITY_NONE, ABILITY_NONE },
         .innates = { ABILITY_ILLUMINATE, ABILITY_PRANKSTER },
+#else
+        .abilities = { ABILITY_ILLUMINATE, ABILITY_SWARM, ABILITY_PRANKSTER },
 #endif
         .bodyColor = BODY_COLOR_GRAY,
         .speciesName = _("Volbeat"),
@@ -7637,11 +7637,11 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE),
-#if TESTING
-        .abilities = { ABILITY_OWN_TEMPO, ABILITY_TANGLED_FEET, ABILITY_CONTRARY },
-#else
+#if !TESTING
         .abilities = { ABILITY_OWN_TEMPO, ABILITY_FLUFFY, ABILITY_CONTRARY },
         .innates = { ABILITY_TANGLED_FEET, ABILITY_SIMPLE },
+#else
+        .abilities = { ABILITY_OWN_TEMPO, ABILITY_TANGLED_FEET, ABILITY_CONTRARY },
 #endif
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = TRUE,
@@ -8958,11 +8958,11 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_FLUCTUATING,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_WATER_3),
-#if TESTING
-        .abilities = { ABILITY_HYPER_CUTTER, ABILITY_SHELL_ARMOR, ABILITY_ADAPTABILITY },
-#else
+#if !TESTING
         .abilities = { ABILITY_HYPER_CUTTER, ABILITY_SHELL_ARMOR, ABILITY_NONE },
         .innates = { ABILITY_ADAPTABILITY },
+#else
+        .abilities = { ABILITY_HYPER_CUTTER, ABILITY_SHELL_ARMOR, ABILITY_ADAPTABILITY },
 #endif
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Crawdaunt"),
@@ -9451,11 +9451,11 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_ERRATIC,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_3),
-#if TESTING
-        .abilities = { ABILITY_BATTLE_ARMOR, ABILITY_NONE, ABILITY_SWIFT_SWIM },
-#else
+#if !TESTING
         .abilities = { ABILITY_HYPER_CUTTER, ABILITY_NONE, ABILITY_TOUGH_CLAWS },
         .innates = { ABILITY_BATTLE_ARMOR, ABILITY_SWIFT_SWIM },
+#else
+        .abilities = { ABILITY_BATTLE_ARMOR, ABILITY_NONE, ABILITY_SWIFT_SWIM },
 #endif
         .bodyColor = BODY_COLOR_GRAY,
         .speciesName = _("Armaldo"),
@@ -10842,11 +10842,11 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .friendship = 35,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-#if TESTING
-        .abilities = { ABILITY_PRESSURE, ABILITY_SUPER_LUCK, ABILITY_JUSTIFIED },
-#else
+#if !TESTING
         .abilities = { ABILITY_PRESSURE, ABILITY_SUPER_LUCK, ABILITY_NONE },
         .innates = { ABILITY_JUSTIFIED },
+#else
+        .abilities = { ABILITY_PRESSURE, ABILITY_SUPER_LUCK, ABILITY_JUSTIFIED },
 #endif
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = TRUE,
@@ -10922,11 +10922,11 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .friendship = 35,
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
-#if TESTING
-        .abilities = { ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE },
-#else
+#if !TESTING
         .abilities = { ABILITY_PRESSURE, ABILITY_SUPER_LUCK, ABILITY_NONE },
         .innates = { ABILITY_JUSTIFIED, ABILITY_MAGIC_BOUNCE },
+#else
+        .abilities = { ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE, ABILITY_MAGIC_BOUNCE },
 #endif
         .bodyColor = BODY_COLOR_WHITE,
         .noFlip = TRUE,
@@ -12117,11 +12117,11 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .friendship = 35,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_DRAGON),
-#if TESTING
-        .abilities = { ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_MOXIE },
-#else
+#if !TESTING
         .abilities = { ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_MOXIE },
         .innates = { ABILITY_RECKLESS },
+#else
+        .abilities = { ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_MOXIE },
 #endif
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Salamence"),
@@ -12196,11 +12196,11 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .friendship = 35,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_DRAGON),
-#if TESTING
-        .abilities = { ABILITY_AERILATE, ABILITY_AERILATE, ABILITY_AERILATE },
-#else
+#if !TESTING
         .abilities = { ABILITY_INTIMIDATE, ABILITY_NONE, ABILITY_MOXIE },
         .innates = { ABILITY_AERILATE },
+#else
+        .abilities = { ABILITY_AERILATE, ABILITY_AERILATE, ABILITY_AERILATE },
 #endif
         .bodyColor = BODY_COLOR_BLUE,
         .speciesName = _("Salamence"),
