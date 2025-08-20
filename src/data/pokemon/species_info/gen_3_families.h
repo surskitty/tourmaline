@@ -3876,7 +3876,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
 #if !TESTING
         .abilities = { ABILITY_COMPOUND_EYES, ABILITY_NONE, ABILITY_RUN_AWAY },
-        .innates = { },
+        .innates = { ABILITY_COMPOUND_EYES, ABILITY_EARTH_EATER },
 #else
         .abilities = { ABILITY_COMPOUND_EYES, ABILITY_NONE, ABILITY_RUN_AWAY },
 #endif
@@ -3957,7 +3957,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
 #if !TESTING
         .abilities = { ABILITY_SPEED_BOOST, ABILITY_NONE, ABILITY_INFILTRATOR },
-        .innates = { ABILITY_SPEED_BOOST },
+        .innates = { ABILITY_SPEED_BOOST, ABILITY_INFILTRATOR, ABILITY_WIND_RIDER },
 #else
         .abilities = { ABILITY_SPEED_BOOST, ABILITY_NONE, ABILITY_INFILTRATOR },
 #endif
@@ -4045,7 +4045,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
 #if !TESTING
         .abilities = { ABILITY_WONDER_GUARD, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_WONDER_GUARD },
+        .innates = { ABILITY_WONDER_GUARD, ABILITY_INFILTRATOR, ABILITY_PERISH_BODY },
 #else
         .abilities = { ABILITY_WONDER_GUARD, ABILITY_NONE, ABILITY_NONE },
 #endif
@@ -12603,7 +12603,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
 #if !TESTING
         .abilities = { ABILITY_CLEAR_BODY, ABILITY_NONE, ABILITY_STURDY },
-        .innates = { },
+        .innates = { ABILITY_CLEAR_BODY, ABILITY_STURDY, ABILITY_SOLID_ROCK },
 #else
         .abilities = { ABILITY_CLEAR_BODY, ABILITY_NONE, ABILITY_STURDY },
 #endif
@@ -12688,7 +12688,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
 #if !TESTING
         .abilities = { ABILITY_CLEAR_BODY, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_ICE_BODY },
+        .innates = { ABILITY_CLEAR_BODY, ABILITY_ICE_BODY, ABILITY_ICE_SCALES },
 #else
         .abilities = { ABILITY_CLEAR_BODY, ABILITY_NONE, ABILITY_ICE_BODY },
 #endif
@@ -12773,7 +12773,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
 #if !TESTING
         .abilities = { ABILITY_CLEAR_BODY, ABILITY_NONE, ABILITY_LIGHT_METAL },
-        .innates = { },
+        .innates = { ABILITY_CLEAR_BODY, ABILITY_STEELY_SPIRIT },
 #else
         .abilities = { ABILITY_CLEAR_BODY, ABILITY_NONE, ABILITY_LIGHT_METAL },
 #endif
@@ -12857,7 +12857,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
 #if !TESTING
         .abilities = { ABILITY_LEVITATE, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_LEVITATE },
+        .innates = { ABILITY_LEVITATE, ABILITY_FOREWARN },
 #else
         .abilities = { ABILITY_LEVITATE, ABILITY_NONE, ABILITY_NONE },
 #endif
@@ -12937,7 +12937,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
 #if !TESTING
         .abilities = { ABILITY_LEVITATE, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_LEVITATE },
+        .innates = { ABILITY_LEVITATE, ABILITY_FOREWARN },
 #else
         .abilities = { ABILITY_LEVITATE, ABILITY_NONE, ABILITY_NONE },
 #endif
@@ -13026,7 +13026,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
 #if !TESTING
         .abilities = { ABILITY_LEVITATE, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_LEVITATE },
+        .innates = { ABILITY_LEVITATE, ABILITY_FRISK },
 #else
         .abilities = { ABILITY_LEVITATE, ABILITY_NONE, ABILITY_NONE },
 #endif
@@ -13106,7 +13106,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
 #if !TESTING
         .abilities = { ABILITY_LEVITATE, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_LEVITATE },
+        .innates = { ABILITY_LEVITATE, ABILITY_FRISK },
 #else
         .abilities = { ABILITY_LEVITATE, ABILITY_NONE, ABILITY_NONE },
 #endif
@@ -13697,7 +13697,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
 #if !TESTING
         .abilities = { ABILITY_SERENE_GRACE, ABILITY_NONE, ABILITY_NONE },
-        .innates = { },
+        .innates = { ABILITY_SERENE_GRACE, ABILITY_GOOD_AS_GOLD },
 #else
         .abilities = { ABILITY_SERENE_GRACE, ABILITY_NONE, ABILITY_NONE },
 #endif
@@ -13792,7 +13792,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
 #if !TESTING
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_NONE },
-        .innates = { },
+        .innates = { ABILITY_DOWNLOAD },
 #else
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_NONE },
 #endif
@@ -13868,7 +13868,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
 #if !TESTING
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_NONE },
-        .innates = { },
+        .innates = { ABILITY_DOWNLOAD },
 #else
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_NONE },
 #endif
@@ -13943,7 +13943,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
 #if !TESTING
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_NONE },
-        .innates = { },
+        .innates = { ABILITY_DOWNLOAD },
 #else
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_NONE },
 #endif
@@ -14018,7 +14018,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
 #if !TESTING
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_NONE },
-        .innates = { },
+        .innates = { ABILITY_DOWNLOAD },
 #else
         .abilities = { ABILITY_PRESSURE, ABILITY_NONE, ABILITY_NONE },
 #endif

@@ -6839,7 +6839,12 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .friendship = 0,
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_NO_EGGS_DISCOVERED),
+#if !TESTING
         .abilities = { ABILITY_SLOW_START, ABILITY_NONE, ABILITY_NONE },
+        .innates = { ABILITY_REGENERATOR },
+#else
+        .abilities = { ABILITY_SLOW_START, ABILITY_NONE, ABILITY_NONE },
+#endif
         .bodyColor = BODY_COLOR_WHITE,
         .speciesName = _("Regigigas"),
         .cryId = CRY_REGIGIGAS,

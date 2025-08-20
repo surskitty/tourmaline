@@ -13273,8 +13273,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS),
 #if !TESTING
-        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_HARVEST },
-        .innates = { },
+        .abilities = { ABILITY_RECEIVER, ABILITY_NONE, ABILITY_CHLOROPHYLL },
+        .innates = { ABILITY_HARVEST, ABILITY_SKILL_LINK },
 #else
         .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_HARVEST },
 #endif
@@ -13363,8 +13363,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS),
 #if !TESTING
-        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_HARVEST },
-        .innates = { },
+        .abilities = { ABILITY_RECEIVER, ABILITY_NONE, ABILITY_CHLOROPHYLL },
+        .innates = { ABILITY_HARVEST, ABILITY_SKILL_LINK },
 #else
         .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_HARVEST },
 #endif
@@ -13435,8 +13435,8 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS),
 #if !TESTING
-        .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_HARVEST },
-        .innates = { },
+        .abilities = { ABILITY_STALWART, ABILITY_NONE, ABILITY_CHLOROPHYLL },
+        .innates = { ABILITY_HARVEST, ABILITY_SKILL_LINK, ABILITY_GRASSY_SURGE },
 #else
         .abilities = { ABILITY_CHLOROPHYLL, ABILITY_NONE, ABILITY_HARVEST },
 #endif

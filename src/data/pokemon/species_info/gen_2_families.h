@@ -5474,8 +5474,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
 #if !TESTING
-        .abilities = { ABILITY_SWARM, ABILITY_GUTS, ABILITY_MOXIE },
-        .innates = { },
+        .abilities = { ABILITY_SWARM, ABILITY_SWARM, ABILITY_SWARM },
+        .innates = { ABILITY_GUTS, ABILITY_MOXIE },
 #else
         .abilities = { ABILITY_SWARM, ABILITY_GUTS, ABILITY_MOXIE },
 #endif
@@ -5564,8 +5564,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
 #if !TESTING
-        .abilities = { ABILITY_SWARM, ABILITY_GUTS, ABILITY_MOXIE },
-        .innates = { ABILITY_SKILL_LINK },
+        .abilities = { ABILITY_SWARM, ABILITY_SWARM, ABILITY_SWARM },
+        .innates = { ABILITY_GUTS, ABILITY_MOXIE, ABILITY_SKILL_LINK },
 #else
         .abilities = { ABILITY_SKILL_LINK, ABILITY_SKILL_LINK, ABILITY_SKILL_LINK },
 #endif
