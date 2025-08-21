@@ -4624,6 +4624,10 @@ Mugshot: Purple
 Party Size: 6
 Pool Rules: Basic
 
+Zoroark
+Level: 48
+Tags: Lead
+
 Shiftry @ Tanga Berry
 Level: 48
 Nature: Adamant
@@ -4699,6 +4703,10 @@ Mugshot: Green
 Party Size: 6
 Pool Rules: Basic
 
+Zoroark Hisui
+Level: 48
+Tags: Lead
+
 Dusclops @ Eviolite
 Level: 48
 Tags: Lead
@@ -4747,6 +4755,7 @@ Level: 51
 
 Rotom
 Level: 50
+Ability: Electromorphosis
 
 Banette @ Banettite
 Level: 50
@@ -4787,6 +4796,15 @@ Tags: Lead
 - Weather Ball
 - Blizzard
 - Dazzling Gleam
+
+Rotom Frost @ Icy Rock
+Level: 50
+Ability: Snow Warning
+Tags: Lead
+
+Rotom Frost
+Level: 50
+Ability: Thermal Exchange
 
 Cetitan
 Level: 52
@@ -4951,6 +4969,7 @@ Pool Rules: Basic
 
 Quartz (Gigalith) @ Smooth Rock
 Level: 50
+Ability: Sand Stream
 Tags: Lead
 
 Magnetite (Golem Alola) (F) @ Shuca Berry
@@ -5163,6 +5182,7 @@ Level: 50
 
 Rotom
 Level: 50
+Ability: Battery
 
 Kilowattrel
 Level: 50
@@ -5316,7 +5336,31 @@ Music: Male
 Items: Hyper Potion / Hyper Potion
 Double Battle: Yes
 Mugshot: Pink
-AI: Smart Trainer / Double Ace Pokemon
+AI: Smart Trainer / Ace Pokemon
+
+Grafaiai @ Jaboca Berry
+Ability: Pickpocket
+Level: 27
+- Doodle
+- Facade
+- Acid Spray
+- Parting Shot
+
+Delcatty
+Level: 27
+Ability: Normalize
+- Copycat
+- Fake Out
+- Sucker Punch
+- Attract
+
+Linoone @ Toxic Orb
+Level: 27
+Ability: Quick Feet
+- Simple Beam
+- Switcheroo
+- Facade
+- Helping Hand
 
 Spinda
 Level: 27
@@ -5325,21 +5369,6 @@ Ability: Own Tempo
 - Psybeam
 - Facade
 - Skill Swap
-
-Vigoroth @ Persim Berry
-Level: 27
-- Slash
-- Facade
-- Encore
-- Feint Attack
-
-Linoone @ Toxic Orb
-Level: 29
-Ability: Quick Feet
-- Simple Beam
-- Switcheroo
-- Facade
-- Helping Hand
 
 Slaking
 Level: 31
@@ -5370,40 +5399,112 @@ Mugshot: Pink
 Party Size: 6
 Pool Rules: Basic
 
-Spinda
+Audino
 Level: 50
 
-Vigoroth
+Bewear
+Level: 50
+Ability: Stamina
+
+Castform
 Level: 50
 
-Linoone @ Toxic Orb
+Delcatty
 Level: 50
-
-Obstagoon
-Level: 50
-
-Lopunny
-Level: 50
-
-Slaking
-Level: 50
-
-Wyrdeer
-Level: 50
-
-Farigiraf
-Level: 50
+Ability: Normalize
+- Assist
+- Copycat
+- Fake Out
+- Sucker Punch
 
 Dudunsparce
 Level: 50
 
-Smeargle
+Exploud
+Level: 50
+Ability: Punk Rock
+
+Farigiraf
 Level: 50
 
 Grafaiai
 Level: 50
 
-Audino
+Kecleon
+Level: 50
+Ability: Color Change
+
+Kecleon
+Level: 50
+Ability: Mimicry
+
+Kecleon
+Level: 50
+Ability: Protean
+
+Linoone @ Toxic Orb
+Level: 50
+
+Lopunny
+Level: 50
+
+Obstagoon
+Level: 50
+Ability: Defiant
+
+Obstagoon @ Flame Orb
+Level: 50
+Ability: Guts
+
+Pidgeot
+Level: 50
+
+Slaking
+Level: 50
+
+Smeargle
+Level: 50
+Ability: Moody
+
+Smeargle
+Level: 50
+Ability: Technician
+
+Spinda
+Level: 50
+Ability: Contrary
+
+Spinda
+Level: 50
+Ability: Fluffy
+
+Stoutland
+Level: 50
+Ability: Guard Dog
+
+Stoutland
+Level: 50
+Ability: Intimidate
+
+Swellow
+Level: 50
+
+Ursaluna
+Level: 50
+
+Wigglytuff
+Level: 50
+Ability: Cute Charm
+
+Wyrdeer
+Level: 50
+Ability: Intimidate
+
+Zangoose
+Level: 50
+Ability: Guts
+
+Zoroark Hisui
 Level: 50
 
 Audino @ Audinite
@@ -5411,6 +5512,10 @@ Level: 50
 Tags: Ace
 
 Lopunny @ Lopunnite
+Level: 50
+Tags: Ace
+
+Pidgeot @ Pidgeotite
 Level: 50
 Tags: Ace
 
@@ -5464,30 +5569,83 @@ Mugshot: Blue
 Party Size: 6
 Pool Rules: Basic
 
-Tropius
-Level: 50
-
-Swellow
-Level: 50
-
-Crobat
-Level: 50
-
-Chatot
-Level: 50
-
-Pelipper
-Level: 50
-
-Skarmory
-Level: 50
-
 Altaria
 Level: 50
 - Hyper Voice
 - Cotton Guard
 - Dragon Pulse
 - Flamethrower
+
+Chatot
+Level: 50
+
+Crobat
+Level: 50
+
+Gyarados
+Level: 50
+Ability: Intimidate
+
+Gyarados
+Level: 50
+Ability: Moxie
+
+Masquerain
+Level: 50
+
+Minior
+Level: 50
+Shiny: Yes
+
+Ninjask
+Level: 50
+
+Pelipper
+Level: 50
+
+Pidgeot
+Level: 50
+
+Rotom Fan
+Level: 50
+
+Salamence
+Level: 50
+Ability: Intimidate
+
+Salamence
+Level: 50
+Ability: Moxie
+
+Skarmory
+Level: 50
+Ability: Sturdy
+
+Swellow
+Level: 50
+
+Tropius
+Level: 50
+
+Wattrel
+Level: 50
+
+Xatu
+Level: 50
+
+Salamence @ Salamencite
+Level: 50
+Ability: Moxie
+Tags: Ace
+
+Salamence @ Salamencite
+Level: 50
+Ability: Intimidate
+Tags: Ace
+
+Pinsir @ Pinsirite
+Level: 50
+Tags: Ace
 
 Pidgeot @ Pidgeotite
 Level: 50
