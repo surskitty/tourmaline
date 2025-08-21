@@ -363,6 +363,7 @@ static const u16 sOddishEggMoveLearnset[] = {
     MOVE_NATURE_POWER,
     MOVE_AFTER_YOU,
     MOVE_STRENGTH_SAP,
+    MOVE_LUCKY_CHANT,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_ODDISH
@@ -1657,6 +1658,7 @@ static const u16 sNatuEggMoveLearnset[] = {
     MOVE_SKILL_SWAP,
     MOVE_SIMPLE_BEAM,
     MOVE_ALLY_SWITCH,
+    MOVE_LUCKY_CHANT,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_NATU
@@ -2142,6 +2144,7 @@ static const u16 sCorsolaEggMoveLearnset[] = {
     MOVE_HEAD_SMASH,
     MOVE_CAMOUFLAGE,
     MOVE_LIQUIDATION,
+    MOVE_LUCKY_CHANT,
     MOVE_UNAVAILABLE,
 };
 #if P_GALARIAN_FORMS
@@ -2359,6 +2362,7 @@ static const u16 sTreeckoEggMoveLearnset[] = {
     MOVE_BULLET_SEED,
     MOVE_NATURAL_GIFT,
     MOVE_GRASSY_TERRAIN,
+    MOVE_PURSUIT,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_TREECKO
@@ -2534,6 +2538,7 @@ static const u16 sRaltsEggMoveLearnset[] = {
     MOVE_SKILL_SWAP,
     MOVE_MISTY_TERRAIN,
     MOVE_ALLY_SWITCH,
+    MOVE_LUCKY_CHANT,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_RALTS
@@ -3386,6 +3391,7 @@ static const u16 sLuvdiscEggMoveLearnset[] = {
     MOVE_HEAL_PULSE,
     MOVE_BRINE,
     MOVE_ENTRAINMENT,
+    MOVE_LUCKY_CHANT,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_LUVDISC
@@ -4653,6 +4659,7 @@ static const u16 sJoltikEggMoveLearnset[] = {
     MOVE_FEINT_ATTACK,
     MOVE_CAMOUFLAGE,
     MOVE_LUNGE,
+    MOVE_TOXIC_THREAD,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_JOLTIK
