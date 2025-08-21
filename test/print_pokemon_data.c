@@ -153,11 +153,14 @@ TEST("Print all pokemon")
         if (currSpecies->baseHP == 0)
             continue;
 
-        //  Detect if species is in local dex.
+        //  Detect if species is in local dex and skip it if so.
         if (NationalToHoennOrder(currSpecies->natDexNum) == 0)
             continue;
 
         if (currSpecies->isTotem)
+            continue;
+
+        if (currSpecies->isGigantamax)
             continue;
 
         //  Print forms
