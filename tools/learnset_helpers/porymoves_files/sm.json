@@ -42910,6 +42910,7 @@
     ],
     "PreEvoMoves": [],
     "TMMoves": [
+      "MOVE_CHILLING_WATER",
       "MOVE_TOXIC",
       "MOVE_HAIL",
       "MOVE_HIDDEN_POWER",
@@ -43027,6 +43028,7 @@
     ],
     "PreEvoMoves": [],
     "TMMoves": [
+      "MOVE_CHILLING_WATER",
       "MOVE_ROAR",
       "MOVE_TOXIC",
       "MOVE_HAIL",
@@ -43155,6 +43157,7 @@
       "MOVE_SWAGGER"
     ],
     "TMMoves": [
+      "MOVE_CHILLING_WATER",
       "MOVE_ROAR",
       "MOVE_TOXIC",
       "MOVE_HAIL",
