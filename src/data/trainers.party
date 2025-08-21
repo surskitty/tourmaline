@@ -5115,22 +5115,25 @@ Level: 50
 Sumo (Hariyama) (F) @ Sitrus Berry
 Level: 50
 
+Annihilape
+Level: 50
+
 Blaziken
 Level: 50
 
-Medicham
-Level: 50
-
-Hitmonlee
+Heracross
 Level: 50
 
 Hitmonchan
 Level: 50
 
+Hitmonlee
+Level: 50
+
 Hitmontop
 Level: 50
 
-Annihilape
+Medicham
 Level: 50
 
 Medicham @ Medichamite 
@@ -5142,6 +5145,10 @@ Level: 50
 Tags: Ace
 
 Lopunny @ Lopunnite
+Level: 50
+Tags: Ace
+
+Heracross @ Heracronite
 Level: 50
 Tags: Ace
 
@@ -5367,31 +5374,28 @@ Level: 50
 Ability: Drought
 Tags: Lead
 
-Dachsbun
-Level: 50
-
-Shiinotic
-Level: 50
-
-Magcargo
-Level: 50
-
-Camerupt
+Armarouge
 Level: 50
 
 Blaziken
 Level: 50
 
-Flareon
+Camerupt
 Level: 50
 
 Ceruledge
 Level: 50
 
-Armarouge
+Dachsbun
 Level: 50
 
-Sylveon
+Flareon
+Level: 50
+
+Houndoom
+Level: 50
+
+Magcargo
 Level: 50
 
 Rotom Heat
@@ -5400,7 +5404,10 @@ Level: 50
 Salazzle
 Level: 50
 
-Houndoom
+Shiinotic
+Level: 50
+
+Sylveon
 Level: 50
 
 Houndoom @ Houndoominite
@@ -5520,11 +5527,6 @@ Level: 50
 
 Kecleon
 Level: 50
-Ability: Color Change
-
-Kecleon
-Level: 50
-Ability: Mimicry
 
 Kecleon
 Level: 50
@@ -5753,7 +5755,7 @@ Items: Hyper Potion / Hyper Potion / Hyper Potion / Hyper Potion
 Double Battle: Yes
 AI: Smart Trainer / Double Ace Pokemon
 
-Xatu
+Fermi (Xatu)
 Level: 41
 Ability: Magic Bounce
 - Tailwind
@@ -5761,7 +5763,7 @@ Ability: Magic Bounce
 - Baton Pass
 - Calm Mind
 
-Farigiraf @ Wiki Berry
+Gemini (Farigiraf) @ Wiki Berry
 Level: 41
 Ability: Cud Chew
 - Twin Beam
@@ -5769,7 +5771,7 @@ Ability: Cud Chew
 - Baton Pass
 - Calm Mind
 
-Lunatone @ Power Herb
+Apollo (Lunatone) @ Power Herb
 Level: 42
 Nature: Timid
 - Moonblast
@@ -5777,7 +5779,7 @@ Nature: Timid
 - Meteor Beam
 - Calm Mind
 
-Solrock @ Sitrus Berry
+Parker (Solrock) @ Sitrus Berry
 Level: 42
 Nature: Jolly
 - Zen Headbutt
@@ -5785,7 +5787,7 @@ Nature: Jolly
 - Stone Edge
 - Explosion
 
-Alakazam @ Alakazite
+Magellan (Alakazam) @ Alakazite
 Level: 41
 Ability: Magic Guard
 - Recover
@@ -5793,7 +5795,7 @@ Ability: Magic Guard
 - Expanding Force
 - Focus Blast
 
-Orbeetle @ Orbeetite
+Spirit (Orbeetle) @ Orbeetite
 Level: 41
 Ability: Swarm
 - Giga Drain
@@ -5813,40 +5815,100 @@ AI: Smart Trainer / Double Ace Pokemon
 Party Size: 6
 Pool Rules: Doubles
 
-Xatu
-Level: 41
-Ability: Magic Bounce
-- Tailwind
-- Wish
-- Baton Pass
-- Calm Mind
+Magellan (Alakazam)
+Level: 50
+Ability: Magic Guard
+- Recover
+- Protect
+- Expanding Force
+- Focus Blast
 
-Farigiraf @ Wiki Berry
-Level: 41
+Akatsuki (Armarouge)
+Level: 50
+
+Kaguya (Chimecho)
+Ability: Hospitality
+
+Atlas (Claydol)
+Level: 50
+
+Hayabusa (Espeon)
+Level: 50
+Ability: Adaptability
+
+Hitomi (Exeggutor)
+Level: 50
+Ability: Receiver
+
+Juno (Exeggutor Alola)
+Level: 50
+Ability: Stalwart
+
+Gemini (Farigiraf) @ Wiki Berry
+Level: 50
 Ability: Cud Chew
 - Twin Beam
 - Wish
 - Baton Pass
 - Calm Mind
 
-Lunatone @ Power Herb
-Level: 42
+Pioneer (Gardevoir)
+Level: 50
+
+Voyager (Gallade)
+Level: 50
+
+Euclid (Gothitelle)
+Level: 50
+Ability: Shadow Tag
+
+JUICE (Grumpig)
+Level: 50
+
+Philae (Jirachi)
+Level: 50
+
+Apollo (Lunatone) @ Power Herb
+Level: 50
 Nature: Timid
 - Moonblast
 - Protect
 - Meteor Beam
 - Calm Mind
 
-Solrock @ Sitrus Berry
-Level: 42
+Galileo (Medicham)
+Level: 50
+
+Cassini (Metagross)
+Level: 50
+
+Rosetta (Raichu Alola)
+Level: 50
+
+Parker (Solrock) @ Sitrus Berry
+Level: 50
 Nature: Jolly
 - Zen Headbutt
 - Earthquake
 - Stone Edge
 - Explosion
 
-Alakazam @ Alakazite
-Level: 41
+Psyche (Starmie)
+Level: 50
+
+Vega (Wyrdeer)
+Level: 50
+
+Fermi (Xatu)
+Level: 50
+Ability: Magic Bounce
+- Tailwind
+- Wish
+- Baton Pass
+- Calm Mind
+
+Magellan (Alakazam) @ Alakazite
+Level: 50
 Ability: Magic Guard
 Tags: Ace
 - Recover
@@ -5854,8 +5916,19 @@ Tags: Ace
 - Expanding Force
 - Focus Blast
 
-Orbeetle @ Orbeetite
-Level: 41
+Voyager (Gallade) @ Galladite
+Level: 50
+Tags: Ace
+
+Pioneer (Gardevoir) @ Gardevoirite
+Level: 50
+Tags: Ace
+
+Galileo (Medicham) @ Medichamite
+Level: 50
+
+Spirit (Orbeetle) @ Orbeetite
+Level: 50
 Ability: Swarm
 Tags: Ace
 - Giga Drain

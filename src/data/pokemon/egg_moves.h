@@ -1620,6 +1620,7 @@ static const u16 sChinchouEggMoveLearnset[] = {
     MOVE_BRINE,
     MOVE_WATER_PULSE,
     MOVE_SOAK,
+    MOVE_ION_DELUGE,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_CHINCHOU

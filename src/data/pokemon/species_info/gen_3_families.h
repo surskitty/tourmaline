@@ -7561,8 +7561,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
 #if !TESTING
-        .abilities = { ABILITY_THICK_FAT, ABILITY_GLUTTONY, ABILITY_NONE },
-        .innates = { ABILITY_OWN_TEMPO },
+        .abilities = { ABILITY_GLUTTONY, ABILITY_GLUTTONY, ABILITY_GLUTTONY },
+        .innates = { ABILITY_OWN_TEMPO, ABILITY_THICK_FAT },
 #else
         .abilities = { ABILITY_THICK_FAT, ABILITY_OWN_TEMPO, ABILITY_GLUTTONY },
 #endif

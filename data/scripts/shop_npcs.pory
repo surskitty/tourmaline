@@ -82,6 +82,7 @@ script Common_EventScript_MegaStoneClerk_Elsewhere {
     dynmultipush("Ampharos",        ITEM_AMPHAROSITE)
     dynmultipush("Banette",         ITEM_BANETTITE)
     dynmultipush("Glalitite",       ITEM_GLALITITE)
+    dynmultipush("Heracross",       ITEM_HERACRONITE)
     dynmultipush("Houndoom",        ITEM_HOUNDOOMINITE)
     dynmultipush("Metagross",       ITEM_METAGROSSITE)
     dynmultipush("Pinsir",          ITEM_PINSIRITE)
