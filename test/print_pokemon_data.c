@@ -7,7 +7,7 @@
 #include "test/test.h"
 #include "constants/abilities.h"
 
-TEST("Print all pokemon")
+TEST("JSON Print all pokemon")
 {
     u32 endVal = NUM_SPECIES;
     for (u32 i = 1; i < endVal; i++)
@@ -18,10 +18,9 @@ TEST("Print all pokemon")
         if (currSpecies->baseHP == 0)
             continue;
 
-        //  Detect if species has data
+        //  Detect if species is in local dex.
         if (NationalToHoennOrder(currSpecies->natDexNum) == 0)
             continue;
-
 
         //  Start printing species data
         DebugPrintf("{");
@@ -41,7 +40,7 @@ TEST("Print all pokemon")
         DebugPrintf("        \"defense\": %u,", currSpecies->baseDefense);
         DebugPrintf("        \"spAttack\": %u,", currSpecies->baseSpAttack);
         DebugPrintf("        \"spDefense\": %u,", currSpecies->baseSpDefense);
-        DebugPrintf("        \"speed\": %u,", currSpecies->baseHP);
+        DebugPrintf("        \"speed\": %u,", currSpecies->baseSpeed);
         DebugPrintf("    },");
 
         //  Print abilities
@@ -143,3 +142,100 @@ TEST("Print all pokemon")
     }
 }
 
+TEST("Print all pokemon")
+{
+    u32 endVal = NUM_SPECIES;
+    for (u32 i = 1; i < endVal; i++)
+    {
+        const struct SpeciesInfo *currSpecies = &gSpeciesInfo[i];
+
+        //  Detect if species has data
+        if (currSpecies->baseHP == 0)
+            continue;
+
+        //  Detect if species is in local dex.
+        if (NationalToHoennOrder(currSpecies->natDexNum) == 0)
+            continue;
+
+        if (currSpecies->isTotem)
+            continue;
+
+        //  Print forms
+        if (currSpecies->isMegaEvolution)
+        {
+            if (currSpecies->types[0] != currSpecies->types[1])
+                DebugPrintf("#%03u %S Mega -- %S/%S", NationalToHoennOrder(currSpecies->natDexNum), currSpecies->speciesName, gTypesInfo[currSpecies->types[0]].name, gTypesInfo[currSpecies->types[1]].name);
+            else
+                DebugPrintf("#%03u %S Mega -- %S", NationalToHoennOrder(currSpecies->natDexNum), currSpecies->speciesName, gTypesInfo[currSpecies->types[0]].name);
+        }
+        else if (currSpecies->isAlolanForm)
+        {
+            if (currSpecies->types[0] != currSpecies->types[1])
+                DebugPrintf("#%03u %S Alola -- %S/%S", NationalToHoennOrder(currSpecies->natDexNum), currSpecies->speciesName, gTypesInfo[currSpecies->types[0]].name, gTypesInfo[currSpecies->types[1]].name);
+            else
+                DebugPrintf("#%03u %S Alola -- %S", NationalToHoennOrder(currSpecies->natDexNum), currSpecies->speciesName, gTypesInfo[currSpecies->types[0]].name);
+        }
+        else if (currSpecies->isGalarianForm)
+        {
+            if (currSpecies->types[0] != currSpecies->types[1])
+                DebugPrintf("#%03u %S Galar -- %S/%S", NationalToHoennOrder(currSpecies->natDexNum), currSpecies->speciesName, gTypesInfo[currSpecies->types[0]].name, gTypesInfo[currSpecies->types[1]].name);
+            else
+                DebugPrintf("#%03u %S Galar -- %S", NationalToHoennOrder(currSpecies->natDexNum), currSpecies->speciesName, gTypesInfo[currSpecies->types[0]].name);
+        }
+        else if (currSpecies->isHisuianForm)
+        {
+            if (currSpecies->types[0] != currSpecies->types[1])
+                DebugPrintf("#%03u %S Hisui -- %S/%S", NationalToHoennOrder(currSpecies->natDexNum), currSpecies->speciesName, gTypesInfo[currSpecies->types[0]].name, gTypesInfo[currSpecies->types[1]].name);
+            else
+                DebugPrintf("#%03u %S Hisui -- %S", NationalToHoennOrder(currSpecies->natDexNum), currSpecies->speciesName, gTypesInfo[currSpecies->types[0]].name);
+        }
+        else if (currSpecies->isPaldeanForm)
+        {
+            if (currSpecies->types[0] != currSpecies->types[1])
+                DebugPrintf("#%03u %S Paldea -- %S/%S", NationalToHoennOrder(currSpecies->natDexNum), currSpecies->speciesName, gTypesInfo[currSpecies->types[0]].name, gTypesInfo[currSpecies->types[1]].name);
+            else
+                DebugPrintf("#%03u %S Paldea -- %S", NationalToHoennOrder(currSpecies->natDexNum), currSpecies->speciesName, gTypesInfo[currSpecies->types[0]].name);
+        }
+        else
+        {
+            if (currSpecies->types[0] != currSpecies->types[1])
+                DebugPrintf("#%03u %S -- %S/%S", NationalToHoennOrder(currSpecies->natDexNum), currSpecies->speciesName, gTypesInfo[currSpecies->types[0]].name, gTypesInfo[currSpecies->types[1]].name);
+            else
+                DebugPrintf("#%03u %S -- %S", NationalToHoennOrder(currSpecies->natDexNum), currSpecies->speciesName, gTypesInfo[currSpecies->types[0]].name);
+        }
+
+        //  Print stats
+        DebugPrintf("    HP: %u / Atk: %u / Def: %u / SpAtk: %u / SpDef: %u / Speed: %u", currSpecies->baseHP, currSpecies->baseAttack, currSpecies->baseDefense, currSpecies->baseSpAttack, currSpecies->baseSpDefense, currSpecies->baseSpeed);
+
+        //  Print abilities
+        if (currSpecies->abilities[0] != currSpecies->abilities[1] && currSpecies->abilities[1] != ABILITY_NONE)
+        {
+            if (currSpecies->abilities[2] != ABILITY_NONE && currSpecies->abilities[0] != currSpecies->abilities[2])
+                DebugPrintf("    Abilities: %S, %S -- %S", gAbilitiesInfo[currSpecies->abilities[0]].name, gAbilitiesInfo[currSpecies->abilities[1]].name, gAbilitiesInfo[currSpecies->abilities[2]].name);
+            else
+                DebugPrintf("    Abilities: %S, %S", gAbilitiesInfo[currSpecies->abilities[0]].name, gAbilitiesInfo[currSpecies->abilities[1]].name);
+        }
+        else
+        {
+            if (currSpecies->abilities[2] != ABILITY_NONE && currSpecies->abilities[0] != currSpecies->abilities[2])
+                DebugPrintf("    Abilities: %S -- %S", gAbilitiesInfo[currSpecies->abilities[0]].name, gAbilitiesInfo[currSpecies->abilities[2]].name);
+            else
+                DebugPrintf("    Abilities: %S", gAbilitiesInfo[currSpecies->abilities[0]].name);
+        }
+
+        //  Print traits
+        if (currSpecies->innates[0] != currSpecies->innates[1] && currSpecies->innates[1] != ABILITY_NONE)
+        {
+            if (currSpecies->innates[2] != ABILITY_NONE && currSpecies->innates[0] != currSpecies->innates[2])
+                DebugPrintf("    Innates: %S, %S, %S", gAbilitiesInfo[currSpecies->innates[0]].name, gAbilitiesInfo[currSpecies->innates[1]].name, gAbilitiesInfo[currSpecies->innates[2]].name);
+            else
+                DebugPrintf("    Innates: %S, %S", gAbilitiesInfo[currSpecies->innates[0]].name, gAbilitiesInfo[currSpecies->innates[1]].name);
+        }
+        else
+        {
+            DebugPrintf("    Innates: %S", gAbilitiesInfo[currSpecies->innates[0]].name);
+        }
+
+        DebugPrintf(" ");
+    }
+}
