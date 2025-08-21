@@ -4972,27 +4972,76 @@ Level: 50
 Ability: Sand Stream
 Tags: Lead
 
+Regolith (Lunatone)
+Level: 50
+Ability: Misty Surge
+Tags: Lead
+
+Plasma (Solrock)
+Level: 50
+Ability: Drought
+Tags: Lead
+
+Siderite (Aggron)
+Level: 50
+Ability: Sturdy
+
+Limestone (Armaldo)
+Level: 50
+Ability: Tough Claws
+
+Dolomite (Barbaracle)
+Level: 50
+Ability: Tough Claws
+
+Coral (Corsola)
+Level: 50
+Ability: Regenerator
+
+Coral (Corsola Galar) @ Eviolite
+Level: 50
+Ability: Cursed Body
+
+Feldspar (Cradily)
+Level: 50
+
+Sandstone (Crustle)
+Level: 50
+Ability: Sturdy
+
+Arenite (Drednaw)
+Level: 50
+
+Salt (Garganacl) (M)
+Level: 50
+
+Quartz (Gigalith)
+Level: 50
+Ability: Sturdy
+
 Magnetite (Golem Alola) (F) @ Shuca Berry
+Level: 50
+
+Obsidian (Magcargo)
+Level: 50
+
+Asteroid (Minior)
+Level: 50
+Shiny: Yes
+
+Basalt (Probopass) (M)
+Level: 50
+
+Andesite (Relicanth)
 Level: 50
 
 Pumice (Shuckle) (F)
 Level: 50
 Ability: Contrary
 
-Salt (Garganacl) (M)
-Level: 50
-
-Feldspar (Cradily)
-Level: 50
-
-Limestone (Armaldo)
-Level: 50
-
-Basalt (Probopass) (M)
-Level: 50
-
 Siderite (Aggron) @ Aggronite
 Level: 50
+Ability: Sturdy
 Tags: Ace
 
 Arenite (Drednaw) @ Drednite
@@ -5165,36 +5214,74 @@ Level: 50
 Ability: Electric Surge
 Tags: Lead
 
-Raichu Alola
+Ampharos
 Level: 50
+Ability: Fluffy
+
+Electrode Hisui
+Level: 50
+Ability: Soundproof
 
 Galvantula
 Level: 50
+Ability: Swarm
 
-Electrode Hisui
+Galvantula
+Level: 50
+Ability: Lightning Rod
+
+Galvantula
+Level: 50
+Ability: Volt Absorb
+
+Golem Alola
+Level: 50
+Ability: Sturdy
+
+Golem Alola
+Level: 50
+Ability: Galvanize
+
+Jolteon
+Level: 50
+Ability: Adaptability
+
+Kilowattrel
+Level: 50
+Ability: Wind Power
+
+Kilowattrel
+Level: 50
+Ability: Competitive
+
+Lanturn
 Level: 50
 
 Magnezone
 Level: 50
 
-Golem Alola
+Manectric
+Level: 50
+Ability: Minus
+
+Minun
+Level: 50
+Ability: Friend Guard
+
+Plusle
+Level: 50
+Ability: Costar
+
+Raichu Alola
 Level: 50
 
 Rotom
 Level: 50
 Ability: Battery
 
-Kilowattrel
+Rotom Frost
 Level: 50
-
-Lanturn
-Level: 50
-
-Jolteon
-Level: 50
-
-Manectric
-Level: 50
+Ability: Thermal Exchange
 
 Manectric @ Manectite
 Level: 50
@@ -5203,6 +5290,7 @@ Tags: Ace
 Ampharos @ Ampharosite
 Level: 50
 Tags: Ace
+Ability: Fluffy
 
 === TRAINER_FLANNERY_1 ===
 Name: Flannery
