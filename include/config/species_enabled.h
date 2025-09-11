@@ -123,7 +123,7 @@
 #define P_FAMILY_LAPRAS                  FALSE
 #define P_FAMILY_DITTO                   P_GEN_1_POKEMON //
 #define P_FAMILY_EEVEE                   P_GEN_1_POKEMON //
-#define P_FAMILY_PORYGON                 FALSE
+#define P_FAMILY_PORYGON                 TRUE
 #define P_FAMILY_OMANYTE                 FALSE
 #define P_FAMILY_KABUTO                  FALSE
 #define P_FAMILY_AERODACTYL              FALSE
@@ -473,7 +473,7 @@
 #define P_FAMILY_CELESTEELA              P_UNIMPLEMENTED
 #define P_FAMILY_KARTANA                 P_UNIMPLEMENTED
 #define P_FAMILY_GUZZLORD                P_UNIMPLEMENTED
-#define P_FAMILY_NECROZMA                FALSE
+#define P_FAMILY_NECROZMA                TRUE
 #define P_FAMILY_MAGEARNA                FALSE
 #define P_FAMILY_MARSHADOW               FALSE
 #define P_FAMILY_POIPOLE                 P_UNIMPLEMENTED

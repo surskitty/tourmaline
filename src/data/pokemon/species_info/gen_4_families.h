@@ -4034,8 +4034,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .growthRate = GROWTH_MEDIUM_SLOW,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
 #if !TESTING
-        .abilities = { ABILITY_KEEN_EYE, ABILITY_BIG_PECKS, ABILITY_NONE },
-        .innates = { ABILITY_TANGLED_FEET },
+        .abilities = { ABILITY_KEEN_EYE, ABILITY_BIG_PECKS, ABILITY_PUNK_ROCK },
+        .innates = { ABILITY_SUPER_LUCK, ABILITY_TANGLED_FEET },
 #else
         .abilities = { ABILITY_KEEN_EYE, ABILITY_TANGLED_FEET, ABILITY_BIG_PECKS },
 #endif

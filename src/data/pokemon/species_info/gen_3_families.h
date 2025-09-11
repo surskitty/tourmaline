@@ -2508,7 +2508,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
 #if !TESTING
         .abilities = { ABILITY_GUTS, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_SCRAPPY, ABILITY_WIMP_OUT },
+        .innates = { ABILITY_FLARE_BOOST, ABILITY_SCRAPPY, ABILITY_WIMP_OUT },
 #else
         .abilities = { ABILITY_GUTS, ABILITY_NONE, ABILITY_SCRAPPY },
 #endif
@@ -2594,7 +2594,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
 #if !TESTING
         .abilities = { ABILITY_GUTS, ABILITY_NONE, ABILITY_NONE },
-        .innates = { ABILITY_SCRAPPY },
+        .innates = { ABILITY_FLARE_BOOST, ABILITY_SCRAPPY, ABILITY_STALWART },
 #else
         .abilities = { ABILITY_GUTS, ABILITY_NONE, ABILITY_SCRAPPY },
 #endif
