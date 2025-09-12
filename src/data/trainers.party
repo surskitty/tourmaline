@@ -4622,7 +4622,7 @@ Double Battle: Yes
 AI: Smart Trainer / Force Setup First Turn / Double Ace Pokemon
 Mugshot: Purple
 Party Size: 6
-Pool Rules: Basic
+Pool Rules: Weather Doubles
 
 Zoroark
 Level: 48
@@ -4701,19 +4701,10 @@ Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Green
 Party Size: 6
-Pool Rules: Basic
+Pool Rules: Weather Doubles
 
-Zoroark Hisui
-Level: 48
-Tags: Lead
-
-Dusclops @ Eviolite
-Level: 48
-Tags: Lead
-- Shadow Punch
-- Confuse Ray
-- Curse
-- Protect
+Annihilape
+Level: 50
 
 Banette
 Level: 50
@@ -4722,40 +4713,6 @@ Ability: Cursed Body
 - Grudge
 - Will O Wisp
 - Feint Attack
-
-Sableye
-Level: 50
-Ability: Prankster
-- Shadow Ball
-- Double Team
-- Night Shade
-- Feint Attack
-
-Froslass
-Level: 50
-
-Annihilape
-Level: 50
-
-Dhelmise
-Level: 50
-
-Jellicent (F)
-Level: 50
-
-Trevenant
-Level: 50
-
-Dusknoir
-Level: 51
-- Shadow Ball
-- Ice Beam
-- Rock Slide
-- Earthquake
-
-Rotom
-Level: 50
-Ability: Electromorphosis
 
 Banette @ Banettite
 Level: 50
@@ -4766,6 +4723,42 @@ Tags: Ace
 - Will O Wisp
 - Feint Attack
 
+Dhelmise
+Level: 50
+
+Dusclops @ Eviolite
+Level: 48
+Tags: Lead
+- Shadow Punch
+- Confuse Ray
+- Curse
+- Protect
+
+Dusknoir
+Level: 51
+- Shadow Ball
+- Ice Beam
+- Rock Slide
+- Earthquake
+
+Froslass
+Level: 50
+
+Jellicent (F)
+Level: 50
+
+Rotom
+Level: 50
+Ability: Electromorphosis
+
+Sableye
+Level: 50
+Ability: Prankster
+- Shadow Ball
+- Double Team
+- Night Shade
+- Feint Attack
+
 Sableye @ Sablenite
 Level: 50
 Ability: Prankster
@@ -4774,6 +4767,20 @@ Tags: Ace
 - Double Team
 - Night Shade
 - Feint Attack
+
+Trevenant @ Grassium Z
+Level: 50
+Tags: Ace
+- Forest's Curse
+
+Trevenant @ Ghostium Z
+Level: 50
+Tags: Ace
+- Destiny Bond
+
+Zoroark Hisui
+Level: 48
+Tags: Lead
 
 === TRAINER_GLACIA ===
 Name: Glacia
@@ -4786,12 +4793,12 @@ Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Pink
 Party Size: 6
-Pool Rules: Basic
+Pool Rules: Weather Doubles
 
 Ninetales Alola @ Icy Rock
 Level: 50
 Ability: Snow Warning
-Tags: Lead
+Tags: Lead / Weather Setter
 - Aurora Veil
 - Weather Ball
 - Blizzard
@@ -4800,7 +4807,7 @@ Tags: Lead
 Rotom Frost @ Icy Rock
 Level: 50
 Ability: Snow Warning
-Tags: Lead
+Tags: Lead / Weather Setter
 
 Rotom Frost
 Level: 50
@@ -4854,7 +4861,7 @@ Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Blue
 Party Size: 6
-Pool Rules: Basic
+Pool Rules: Weather Doubles
 
 Salamence
 Level: 54
@@ -4965,12 +4972,12 @@ Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Yellow
 Party Size: 6
-Pool Rules: Basic
+Pool Rules: Weather Doubles
 
 Quartz (Gigalith) @ Smooth Rock
 Level: 50
 Ability: Sand Stream
-Tags: Lead
+Tags: Lead / Weather Setter
 
 Regolith (Lunatone)
 Level: 50
@@ -4980,11 +4987,16 @@ Tags: Lead
 Plasma (Solrock)
 Level: 50
 Ability: Drought
-Tags: Lead
+Tags: Lead / Weather Setter
 
 Siderite (Aggron)
 Level: 50
 Ability: Sturdy
+
+Siderite (Aggron) @ Aggronite
+Level: 50
+Ability: Sturdy
+Tags: Ace
 
 Limestone (Armaldo)
 Level: 50
@@ -5012,6 +5024,15 @@ Ability: Sturdy
 Arenite (Drednaw)
 Level: 50
 
+Arenite (Drednaw) @ Drednite
+Level: 50
+Tags: Ace
+
+Arenite (Drednaw) @ Normalium Z
+Level: 50
+Tags: Ace
+- Shell Smash
+
 Salt (Garganacl) (M)
 Level: 50
 
@@ -5038,15 +5059,6 @@ Level: 50
 Pumice (Shuckle) (F)
 Level: 50
 Ability: Contrary
-
-Siderite (Aggron) @ Aggronite
-Level: 50
-Ability: Sturdy
-Tags: Ace
-
-Arenite (Drednaw) @ Drednite
-Level: 50
-Tags: Ace
 
 === TRAINER_BRAWLY_1 ===
 Name: Brawly
@@ -5100,7 +5112,7 @@ Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Blue
 Party Size: 6
-Pool Rules: Basic
+Pool Rules: Weather Doubles
 
 Mienshao
 Level: 50
@@ -5214,12 +5226,12 @@ Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Green
 Party Size: 6
-Pool Rules: Basic
+Pool Rules: Weather Doubles
 
 Pincurchin @ Terrain Extender
 Level: 50
 Ability: Electric Surge
-Tags: Lead
+Tags: Lead / Weather Setter
 
 Ampharos
 Level: 50
@@ -5325,8 +5337,12 @@ Level: 29
 - Baton Pass
 - Helping Hand
 
-Charcadet
+Charcadet @ Normalium Z
 Level: 27
+- Celebrate
+- Flame Charge
+- Will o Wisp
+- Clear Smog
 
 Shiinotic
 Level: 27
@@ -5362,17 +5378,17 @@ Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Purple
 Party Size: 6
-Pool Rules: Basic
+Pool Rules: Weather Doubles
 
 Torkoal @ Heat Rock
 Level: 50
 Ability: Drought
-Tags: Lead
+Tags: Lead / Weather Setter
 
 Ninetales @ Heat Rock
 Level: 50
 Ability: Drought
-Tags: Lead
+Tags: Lead / Weather Setter
 
 Armarouge
 Level: 50
@@ -5492,10 +5508,14 @@ Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Pink
 Party Size: 6
-Pool Rules: Basic
+Pool Rules: Weather Doubles
 
 Audino
 Level: 50
+
+Audino @ Audinite
+Level: 50
+Tags: Ace
 
 Bewear
 Level: 50
@@ -5511,6 +5531,21 @@ Ability: Normalize
 - Copycat
 - Fake Out
 - Sucker Punch
+
+Delcatty @ Normalium Z
+Level: 50
+Ability: Normalize
+Tags: Ace
+- Assist
+- Copycat
+- Fake Out
+- Sucker Punch
+
+Ditto
+Level: 50
+Ability: Imposter
+EVs: 252 HP
+- Transform
 
 Dudunsparce
 Level: 50
@@ -5538,6 +5573,10 @@ Level: 50
 Lopunny
 Level: 50
 
+Lopunny @ Lopunnite
+Level: 50
+Tags: Ace
+
 Obstagoon
 Level: 50
 Ability: Defiant
@@ -5549,6 +5588,69 @@ Ability: Guts
 Pidgeot
 Level: 50
 
+Pidgeot @ Pidgeotite
+Level: 50
+Tags: Ace
+
+Porygon2 @ Eviolite
+Level: 50
+Nature: Relaxed
+EVs: 252 HP / 124 Def / 132 SpD
+- Recover
+- Icy Wind
+- Tri Attack
+- Speed Swap
+
+Porygon Z @ Normalium Z
+Level: 50
+Nature: Timid
+EVs: 4 Def / 252 SpA / 252 Spe
+Tags: Ace
+- Shadow Ball
+- Ice Beam
+- Recover
+- Conversion
+
+Porygon Z @ Normalium Z
+Level: 50
+Nature: Timid
+EVs: 4 Def / 252 SpA / 252 Spe
+Tags: Ace
+- Shadow Ball
+- Thunderbolt
+- Recover
+- Conversion
+
+Porygon Z @ Normalium Z
+Level: 50
+Nature: Timid
+EVs: 4 Def / 252 SpA / 252 Spe
+Tags: Ace
+- Ice Beam
+- Thunderbolt
+- Recover
+- Conversion
+
+Porygon Z @ Normalium Z
+Level: 50
+Nature: Timid
+EVs: 4 Def / 252 SpA / 252 Spe
+Tags: Ace
+- Thunderbolt
+- Ice Beam
+- Recover
+- Conversion
+
+Porygon Z @ Normalium Z
+Level: 50
+Nature: Timid
+EVs: 4 Def / 252 SpA / 252 Spe
+Tags: Ace
+- Hyper Beam
+- Nasty Plot
+- Ice Beam
+- Thunderbolt
+
 Slaking
 Level: 50
 
@@ -5559,6 +5661,12 @@ Ability: Moody
 Smeargle
 Level: 50
 Ability: Technician
+
+Smeargle @ Normalium Z
+Level: 50
+Ability: Moody
+Tags: Ace
+- Sketch
 
 Spinda
 Level: 50
@@ -5578,6 +5686,7 @@ Ability: Intimidate
 
 Swellow
 Level: 50
+- Boomburst
 
 Ursaluna
 Level: 50
@@ -5596,18 +5705,6 @@ Ability: Guts
 
 Zoroark Hisui
 Level: 50
-
-Audino @ Audinite
-Level: 50
-Tags: Ace
-
-Lopunny @ Lopunnite
-Level: 50
-Tags: Ace
-
-Pidgeot @ Pidgeotite
-Level: 50
-Tags: Ace
 
 === TRAINER_WINONA_1 ===
 Name: Winona
@@ -5657,7 +5754,7 @@ Double Battle: Yes
 AI: Smart Trainer / Risky
 Mugshot: Blue
 Party Size: 6
-Pool Rules: Basic
+Pool Rules: Weather Doubles
 
 Altaria
 Level: 50
@@ -5666,8 +5763,23 @@ Level: 50
 - Dragon Pulse
 - Flamethrower
 
-Chatot
+Chatot @ Flyinium Z
 Level: 50
+Ability: Punk Rock
+Tags: Lead
+- Air Cutter
+- Boomburst
+- Chatter
+- Tailwind
+
+Chatot @ Throat Spray
+Level: 50
+Ability: Punk Rock
+Tags: Lead
+- Air Cutter
+- Boomburst
+- Chatter
+- Tailwind
 
 Crobat
 Level: 50
@@ -5696,6 +5808,14 @@ Level: 50
 Pidgeot
 Level: 50
 
+Pidgeot @ Pidgeotite
+Level: 50
+Tags: Ace
+- Hurricane
+- Air Slash
+- Roost
+- Ominous Wind
+
 Rotom Fan
 Level: 50
 
@@ -5707,22 +5827,6 @@ Salamence
 Level: 50
 Ability: Moxie
 
-Skarmory
-Level: 50
-Ability: Sturdy
-
-Swellow
-Level: 50
-
-Tropius
-Level: 50
-
-Wattrel
-Level: 50
-
-Xatu
-Level: 50
-
 Salamence @ Salamencite
 Level: 50
 Ability: Moxie
@@ -5733,17 +5837,35 @@ Level: 50
 Ability: Intimidate
 Tags: Ace
 
+Skarmory
+Level: 50
+Ability: Sturdy
+
+Swellow @ Flame Orb
+Level: 50
+- Boomburst
+- Facade
+- Heat Wave
+- Roost
+
+Swellow @ Flyinium Z
+Level: 50
+Tags: Ace
+- Mirror Move
+- Boomburst
+
+Tropius
+Level: 50
+
+Wattrel
+Level: 50
+
+Xatu
+Level: 50
+
 Pinsir @ Pinsirite
 Level: 50
 Tags: Ace
-
-Pidgeot @ Pidgeotite
-Level: 50
-Tags: Ace
-- Hurricane
-- Air Slash
-- Roost
-- Ominous Wind
 
 === TRAINER_TATE_AND_LIZA_1 ===
 Name: Tate&Liza
@@ -5827,6 +5949,7 @@ Akatsuki (Armarouge)
 Level: 50
 
 Kaguya (Chimecho)
+Level: 50
 Ability: Hospitality
 
 Atlas (Claydol)
@@ -6000,11 +6123,12 @@ Items: Full Restore / Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer
 Party Size: 6
-Pool Rules: Basic
+Pool Rules: Weather Doubles
 
 Pelipper @ Wacan Berry
 Level: 42
 Ability: Drizzle
+Tags: Lead / Weather Setter
 - Hurricane
 - Tailwind
 - Wide Guard
@@ -7225,6 +7349,8 @@ Items: Full Restore / Full Restore / Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Yellow
+Party Size: 6
+Pool Rules: Weather Doubles
 
 Gyarados @ Gyaradosite
 Level: 56
@@ -7233,6 +7359,10 @@ Ability: Moxie
 - Lash Out
 - Temper Flare
 - Waterfall
+
+Pyukumuku @ Poisonium Z
+Level: 56
+- Purify
 
 Wailord
 Ability: Pressure
@@ -15243,7 +15373,7 @@ Items: Full Restore / Full Restore / Full Restore / Full Restore
 Double Battle: Yes
 AI: Smart Trainer
 Party Size: 6
-Pool Rules: Basic
+Pool Rules: Weather Doubles
 
 Skarmory
 Level: 77
