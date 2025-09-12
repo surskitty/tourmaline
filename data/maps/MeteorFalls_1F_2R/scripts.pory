@@ -67,9 +67,8 @@ MeteorFalls_1F_2R_EventScript_RematchJay::
 `
 
 text MeteorFalls_1F_2R_Text_NicolasIntro {
-    format("This is where we DRAGON users do our\n"
-    "training.\p"
-    "The CHAMPION even visits.\n"
+    format("This is where we Dragon users do our training.\p"
+    "The Champion even visits.\n"
     "Now do you see how special it is here?")
 }
 
@@ -80,8 +79,7 @@ text MeteorFalls_1F_2R_Text_NicolasDefeat {
 
 text MeteorFalls_1F_2R_Text_NicolasPostBattle {
     format("The road ahead remains long and harsh.\p"
-    "When will my Pokémon and I become\n"
-    "the best?")
+    "When will my Pokémon and I become the best?")
 }
 
 text MeteorFalls_1F_2R_Text_NicolasRegister {
@@ -90,10 +88,8 @@ text MeteorFalls_1F_2R_Text_NicolasRegister {
 }
 
 text MeteorFalls_1F_2R_Text_NicolasRematchIntro {
-    format("Since we met, we have trained hard\n"
-    "with our sights on number one.\p"
-    "Help us see how much stronger we've\n"
-    "become!")
+    format("Since we met, we have trained hard with our sights on number one.\p"
+    "Help us see how much stronger we've become!")
 }
 
 text MeteorFalls_1F_2R_Text_NicolasRematchDefeat {
@@ -102,8 +98,7 @@ text MeteorFalls_1F_2R_Text_NicolasRematchDefeat {
 }
 
 text MeteorFalls_1F_2R_Text_NicolasPostRematch {
-    format("You've obviously kept up your\n"
-    "Pokémon training.\p"
+    format("You've obviously kept up your Pokémon training.\p"
     "So long as you remain strong, I, too,\n"
     "can become stronger!")
 }
@@ -127,13 +122,13 @@ text MeteorFalls_1F_2R_Text_JohnPostBattle {
 }
 
 text MeteorFalls_1F_2R_Text_JohnNotEnoughMons {
-    format("JOHN: Well, well, what a young TRAINER!\p"
+    format("JOHN: Well, well, what a young Trainer!\p"
     "Will you battle with us? If so, you'll\n"
     "have to return with more Pokémon.")
 }
 
 text MeteorFalls_1F_2R_Text_JohnRegister {
-    format("JOHN: Young TRAINER, if the chance\n"
+    format("JOHN: Young Trainer, if the chance\n"
     "arises, will you battle with us again?")
 }
 

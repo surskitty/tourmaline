@@ -492,8 +492,8 @@
               { "min_level": 13, "max_level": 15, "species": "SPECIES_ROSELIA" },
               { "min_level": 13, "max_level": 15, "species": "SPECIES_TYMPOLE" },
               { "min_level": 13, "max_level": 15, "species": "SPECIES_LEDYBA" },
-              { "min_level": 13, "max_level": 15, "species": "SPECIES_BUDEW" },
-              { "min_level": 13, "max_level": 15, "species": "SPECIES_SEEDOT" }
+              { "min_level": 13, "max_level": 15, "species": "SPECIES_DITTO" },
+              { "min_level": 13, "max_level": 15, "species": "SPECIES_DITTO" }
             ]
           },
           "water_mons": {
@@ -1303,14 +1303,14 @@
             "mons": [
               { "min_level": 24, "max_level": 26, "species": "SPECIES_VOLTORB_HISUI" },
               { "min_level": 24, "max_level": 26, "species": "SPECIES_MAGNEMITE" },
-              { "min_level": 24, "max_level": 26, "species": "SPECIES_MAGNEMITE" },
-              { "min_level": 24, "max_level": 26, "species": "SPECIES_VOLTORB_HISUI" },
-              { "min_level": 24, "max_level": 26, "species": "SPECIES_PIKACHU" },
               { "min_level": 24, "max_level": 26, "species": "SPECIES_JOLTIK" },
               { "min_level": 24, "max_level": 26, "species": "SPECIES_PIKACHU" },
+              { "min_level": 24, "max_level": 26, "species": "SPECIES_VOLTORB_HISUI" },
+              { "min_level": 24, "max_level": 26, "species": "SPECIES_PIKACHU" },
               { "min_level": 26, "max_level": 30, "species": "SPECIES_GALVANTULA" },
-              { "min_level": 26, "max_level": 30, "species": "SPECIES_ROTOM" },
               { "min_level": 26, "max_level": 30, "species": "SPECIES_RAICHU_ALOLA" },
+              { "min_level": 24, "max_level": 26, "species": "SPECIES_PORYGON" },
+              { "min_level": 26, "max_level": 30, "species": "SPECIES_ROTOM" },
               { "min_level": 26, "max_level": 30, "species": "SPECIES_ELECTRODE_HISUI" },
               { "min_level": 26, "max_level": 30, "species": "SPECIES_MAGNETON" }
             ]
