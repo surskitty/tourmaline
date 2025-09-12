@@ -5,45 +5,48 @@ mapscripts MtChimney_MapScripts {
     }
 }
 
-raw `
-.set LOCALID_ARCHIE, 1
-.set LOCALID_MAXIE, 2
-.set LOCALID_TABITHA, 3
-.set LOCALID_MAGMA_GRUNT_2, 22
-.set LOCALID_MAGMA_GRUNT_1, 29
-
-MtChimney_EventScript_Archie::
+script MtChimney_EventScript_Archie {
     lock
     faceplayer
-    speakername CommonName_Text_Archie
-    call_if_unset FLAG_EVIL_LEADER_PLEASE_STOP, MtChimney_EventScript_ArchieGoStopTeamMagma
-    call_if_set FLAG_EVIL_LEADER_PLEASE_STOP, MtChimney_EventScript_ArchieBusyFighting
+    speakername(CommonName_Text_Archie)
+    call_if_unset(FLAG_EVIL_LEADER_PLEASE_STOP, MtChimney_EventScript_ArchieGoStopTeamMagma)
+    call_if_set(FLAG_EVIL_LEADER_PLEASE_STOP, MtChimney_EventScript_ArchieBusyFighting)
     closemessage
-    applymovement LOCALID_ARCHIE, Common_Movement_FaceOriginalDirection
-    waitmovement 0
-    setflag FLAG_EVIL_LEADER_PLEASE_STOP
+    applymovement(LOCALID_MT_CHIMNEY_ARCHIE, Common_Movement_FaceOriginalDirection)
+    waitmovement(0)
+    setflag(FLAG_EVIL_LEADER_PLEASE_STOP)
     release
-    end
+}
 
-MtChimney_EventScript_ArchieGoStopTeamMagma::
-    msgbox MtChimney_Text_ArchieGoStopTeamMagma, MSGBOX_DEFAULT
+script MtChimney_EventScript_ArchieGoStopTeamMagma {
+    msgbox(format("Grr, {PLAYER}!\n"
+        "I should've guessed you'd show up!\p"
+        "See for yourself what the fanatics of Team Magma are up to!\p"
+        "They're trying to inject the stolen Meteorite's power into the volcano!\p"
+        "Doing something like that will cause the volcano's eruption!"), MSGBOX_DEFAULT)
     return
+}
 
-MtChimney_EventScript_ArchieBusyFighting::
-    msgbox MtChimney_Text_ArchieIHaveMyHandsFull, MSGBOX_DEFAULT
+script MtChimney_EventScript_ArchieBusyFighting {
+    msgbox(format("Grrr…\p"
+        "I want to stop that Maxie,\n"
+        "but I can't!\p"
+        "Not when I have my hands full battling three opponents at once!"), MSGBOX_DEFAULT)
     return
+}
 
+raw `
 MtChimney_EventScript_Maxie::
     lockall
     playbgm MUS_ENCOUNTER_MAGMA, FALSE
     speakername CommonName_Text_Maxie
     msgbox MtChimney_Text_MeteoriteWillActivateVolcano, MSGBOX_DEFAULT
-    applymovement LOCALID_MAXIE, Common_Movement_FacePlayer
+    applymovement LOCALID_MT_CHIMNEY_MAXIE, Common_Movement_FacePlayer
     waitmovement 0
     playse SE_PIN
-    applymovement LOCALID_MAXIE, Common_Movement_ExclamationMark
+    applymovement LOCALID_MT_CHIMNEY_MAXIE, Common_Movement_ExclamationMark
     waitmovement 0
-    applymovement LOCALID_MAXIE, Common_Movement_Delay48
+    applymovement LOCALID_MT_CHIMNEY_MAXIE, Common_Movement_Delay48
     waitmovement 0
     msgbox MtChimney_Text_MaxieIntro, MSGBOX_DEFAULT
     trainerbattle_no_intro TRAINER_MAXIE_MT_CHIMNEY, MtChimney_Text_MaxieDefeat
@@ -51,14 +54,14 @@ MtChimney_EventScript_Maxie::
     closemessage
     delay 30
     fadescreenswapbuffers FADE_TO_BLACK
-    removeobject LOCALID_MAXIE
-    removeobject LOCALID_MAGMA_GRUNT_1
-    removeobject LOCALID_TABITHA
-    removeobject LOCALID_MAGMA_GRUNT_2
+    removeobject LOCALID_MT_CHIMNEY_MAXIE
+    removeobject LOCALID_MT_CHIMNEY_MAGMA_GRUNT_1
+    removeobject LOCALID_MT_CHIMNEY_TABITHA
+    removeobject LOCALID_MT_CHIMNEY_MAGMA_GRUNT_2
     setflag FLAG_HIDE_MT_CHIMNEY_TEAM_MAGMA
     fadescreenswapbuffers FADE_FROM_BLACK
-    setobjectxyperm LOCALID_ARCHIE, 10, 12
-    addobject LOCALID_ARCHIE
+    setobjectxyperm LOCALID_MT_CHIMNEY_ARCHIE, 10, 12
+    addobject LOCALID_MT_CHIMNEY_ARCHIE
     call_if_eq VAR_FACING, DIR_EAST, MtChimney_EventScript_ArchieApproachPlayerEast
     call_if_eq VAR_FACING, DIR_NORTH, MtChimney_EventScript_ArchieApproachPlayerNorth
     applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterLeft
@@ -68,7 +71,7 @@ MtChimney_EventScript_Maxie::
     closemessage
     call_if_eq VAR_FACING, DIR_EAST, MtChimney_EventScript_ArchieExitEast
     call_if_eq VAR_FACING, DIR_NORTH, MtChimney_EventScript_ArchieExitNorth
-    removeobject LOCALID_ARCHIE
+    removeobject LOCALID_MT_CHIMNEY_ARCHIE
     setflag FLAG_HIDE_MT_CHIMNEY_TEAM_AQUA
     setflag FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY
     clearflag FLAG_HIDE_FALLARBOR_HOUSE_PROF_COZMO
@@ -78,22 +81,22 @@ MtChimney_EventScript_Maxie::
     end
 
 MtChimney_EventScript_ArchieApproachPlayerEast::
-    applymovement LOCALID_ARCHIE, MtChimney_Movement_ArchieApproachPlayerEast
+    applymovement LOCALID_MT_CHIMNEY_ARCHIE, MtChimney_Movement_ArchieApproachPlayerEast
     waitmovement 0
     return
 
 MtChimney_EventScript_ArchieApproachPlayerNorth::
-    applymovement LOCALID_ARCHIE, MtChimney_Movement_ArchieApproachPlayerNorth
+    applymovement LOCALID_MT_CHIMNEY_ARCHIE, MtChimney_Movement_ArchieApproachPlayerNorth
     waitmovement 0
     return
 
 MtChimney_EventScript_ArchieExitEast::
-    applymovement LOCALID_ARCHIE, MtChimney_Movement_ArchieExitEast
+    applymovement LOCALID_MT_CHIMNEY_ARCHIE, MtChimney_Movement_ArchieExitEast
     waitmovement 0
     return
 
 MtChimney_EventScript_ArchieExitNorth::
-    applymovement LOCALID_ARCHIE, MtChimney_Movement_ArchieExitNorth
+    applymovement LOCALID_MT_CHIMNEY_ARCHIE, MtChimney_Movement_ArchieExitNorth
     waitmovement 0
     return
 
@@ -202,38 +205,6 @@ MtChimney_EventScript_Grunt2::
     msgbox MtChimney_Text_Grunt2PostBattle, MSGBOX_AUTOCLOSE
     end
 
-MtChimney_EventScript_BusyMagmaGrunt1::
-    msgbox MtChimney_Text_TeamAquaAlwaysMessingWithPlans, MSGBOX_SIGN
-    end
-
-MtChimney_EventScript_BusyMagmaGrunt2::
-    msgbox MtChimney_Text_MeteoritesPackAmazingPower, MSGBOX_SIGN
-    end
-
-MtChimney_EventScript_BusyMagmaGrunt3::
-    msgbox MtChimney_Text_YouBetterNotMessWithUs, MSGBOX_SIGN
-    end
-
-MtChimney_EventScript_BusyMagmaGrunt4::
-    msgbox MtChimney_Text_AquasNameSimilar, MSGBOX_SIGN
-    end
-
-MtChimney_EventScript_BusyMagmaGrunt5::
-    msgbox MtChimney_Text_DouseThemInFire, MSGBOX_SIGN
-    end
-
-MtChimney_EventScript_BusyMagmaGrunt6::
-    msgbox MtChimney_Text_KeepMakingMoreLand, MSGBOX_SIGN
-    end
-
-MtChimney_EventScript_MagmaPoochyena::
-    msgbox MtChimney_Text_Bufoh, MSGBOX_SIGN
-    end
-
-MtChimney_EventScript_AquaPoochyena::
-    msgbox MtChimney_Text_Bushaa, MSGBOX_SIGN
-    end
-
 MtChimney_EventScript_MeteoriteMachine::
     lockall
     goto_if_unset FLAG_DEFEATED_EVIL_TEAM_MT_CHIMNEY, MtChimney_EventScript_MachineOn
@@ -245,25 +216,6 @@ MtChimney_EventScript_MeteoriteMachine::
     goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
     setflag FLAG_RECEIVED_METEORITE
     releaseall
-    end
-
-MtChimney_EventScript_LeaveMeteoriteAlone::
-    msgbox MtChimney_Text_PlayerLeftMeteorite, MSGBOX_DEFAULT
-    releaseall
-    end
-
-MtChimney_EventScript_MachineOff::
-    msgbox MtChimney_Text_MachineMakesNoResponse, MSGBOX_DEFAULT
-    releaseall
-    end
-
-MtChimney_EventScript_MachineOn::
-    msgbox MtChimney_Text_MetoriteFittedOnMachine, MSGBOX_DEFAULT
-    releaseall
-    end
-
-MtChimney_EventScript_RouteSign::
-    msgbox MtChimney_Text_RouteSign, MSGBOX_SIGN
     end
 
 MtChimney_EventScript_Shelby::
@@ -345,18 +297,14 @@ text MtChimney_Text_MaxieIntro {
     "It must be you he meant.\p"
     "Humph! So you're thinking of interfering with us, Team Magma?\p"
     "Now you listen.\n"
-    "Long ago, living things used the\l"
-    "land to live and grow.\p"
+    "Long ago, life moved onto the land and found freedom.\p"
     "That is why land is all important!\n"
     "It is the cradle of all!\p"
     "That is why Team Magma is dedicated to the expansion of the land mass.\p"
-    "It is for further advancement of\n"
-    "humankind and Pokémon!\p"
-    "And for that, we need the power of\n"
-    "what sleeps within this mountain…\p"
-    "Oh! There was no need for you to\n"
-    "learn that much.\p"
-    "But, no matter!\n"
+    "It is for further advancement of humankind and Pokémon!\p"
+    "And for that, we need the power of what sleeps within this mountain…\p"
+    "Oh! There was no need for you to learn that much.\p"
+    "But no matter!\n"
     "I'll teach you the consequences of\l"
     "meddling in our grand design!")
 }
@@ -422,58 +370,41 @@ text MtChimney_Text_Grunt1PostBattle {
     format("A kid like you, you ought to be splashing about in the waves!")
 }
 
-text MtChimney_Text_TeamAquaAlwaysMessingWithPlans {
-    format("That annoying Team Aqua…\n"
-    "They always mess with our plans!")
+script MtChimney_EventScript_BusyMagmaGrunt1 {
+    msgbox(format("That annoying Team Aqua…\n"
+    "They always mess with our plans!"), MSGBOX_SIGN)
 }
 
-text MtChimney_Text_MeteoritesPackAmazingPower {
-    format("Meteorites pack amazing power!")
+script MtChimney_EventScript_BusyMagmaGrunt2 {
+    msgbox(format("Meteorites pack amazing power!"), MSGBOX_SIGN)
 }
 
-text MtChimney_Text_YouBetterNotMessWithUs {
-    format("You'd better not mess with us!\p"
-    "We're trying to awaken that thing\n"
-    "for the benefit of everyone!")
+script MtChimney_EventScript_BusyMagmaGrunt3 {
+    msgbox(format("You'd better not mess with us!\p"
+    "We're trying to awaken that thing for the benefit of everyone!"), MSGBOX_SIGN)
 }
 
-text MtChimney_Text_AquasNameSimilar {
-    format("We're Team Magma!\p"
+script MtChimney_EventScript_BusyMagmaGrunt4 {
+    msgbox(format("We're Team Magma!\p"
     "They're Team Aqua!\p"
-    "It totally annoys me that they'd\n"
-    "use a name like ours!")
+    "It totally annoys me that they'd use a name like ours!"), MSGBOX_SIGN)
 }
 
-text MtChimney_Text_DouseThemInFire {
-    format("Yeah!\n"
-    "Douse them in fire!")
+script MtChimney_EventScript_BusyMagmaGrunt5 {
+    msgbox(format("Yeah!\n"
+    "Douse them in fire!"), MSGBOX_SIGN)
 }
 
-text MtChimney_Text_KeepMakingMoreLand {
-    format("We're going to keep making more land!")
+script MtChimney_EventScript_BusyMagmaGrunt6 {
+    msgbox(format("We're going to keep making more land!"), MSGBOX_SIGN)
 }
 
-text MtChimney_Text_Bufoh {
-    format("Bufoh!")
+script MtChimney_EventScript_MagmaPoochyena {
+    msgbox(format("Bufoh!"), MSGBOX_SIGN)
 }
 
-text MtChimney_Text_ArchieGoStopTeamMagma {
-    format("Grr, {PLAYER}!\n"
-    "I should've guessed you'd show up!\p"
-    "See for yourself what the fanatics\n"
-    "of Team Magma are up to!\p"
-    "They're trying to inject the stolen\n"
-    "Meteorite's power into the volcano!\p"
-    "Doing something like that will cause\n"
-    "the volcano's eruption!")
-}
-
-text MtChimney_Text_ArchieIHaveMyHandsFull {
-    format("Grrr…\p"
-    "I want to stop that Maxie,\n"
-    "but I can't!\p"
-    "Not when I have my hands full battling\n"
-    "three opponents at once!")
+script MtChimney_EventScript_AquaPoochyena {
+    msgbox(format("Bushaa!"), MSGBOX_SIGN)
 }
 
 text MtChimney_Text_ArchieThankYou {
@@ -493,19 +424,13 @@ text MtChimney_Text_MagmaOutnumbersUs {
 }
 
 text MtChimney_Text_LessHabitatForWaterPokemon {
-    format("If they expand the land, there'll be\n"
-    "less habitats for Water Pokémon!")
+    format("If they expand the land, there'll be less habitats for Water Pokémon!")
 }
 
 text MtChimney_Text_MagmasNameSimilar {
     format("We're Team Aqua!\p"
     "They're Team Magma!\p"
-    "It burns me up that they'd use such\n"
-    "a confusing name!")
-}
-
-text MtChimney_Text_Bushaa {
-    format("Bushaa!")
+    "It burns me up that they'd use such a confusing name!")
 }
 
 text MtChimney_Text_LavaCookiesJust200 {
@@ -518,19 +443,32 @@ text MtChimney_Text_ThankYouDear {
 }
 
 text MtChimney_Text_YouveNotGotTheMoney {
-    format("Oh, dear. You can't buy a thing if\n"
-    "you've not got the money.")
+    format("Oh, dear. You can't buy a thing if you've not got the money.")
 }
 
 text MtChimney_Text_OhFineThen {
     format("Oh, fine then.")
 }
 
-text MtChimney_Text_MetoriteFittedOnMachine {
-    format("A Meteorite is fitted on a mysterious\n"
-    "machine…\p"
-    "The machine seems to be storing\n"
-    "energy in the Meteorite.")
+script MtChimney_EventScript_LeaveMeteoriteAlone {
+    msgbox(format("{PLAYER} left the Meteorite where it was."), MSGBOX_DEFAULT)
+    releaseall
+}
+
+script MtChimney_EventScript_MachineOff {
+    msgbox(format("This mysterious machine…\n"
+    "It makes no response whatsoever."), MSGBOX_DEFAULT)
+    releaseall
+}
+
+script MtChimney_EventScript_MachineOn {
+    msgbox(format("A Meteorite is fitted on a mysterious machine…\p"
+        "The machine seems to be storing energy in the Meteorite."), MSGBOX_DEFAULT)
+    releaseall
+}
+
+script MtChimney_EventScript_RouteSign {
+    msgbox(format("{DOWN_ARROW} Jagged Pass\nLavaridge Town ahead"), MSGBOX_SIGN)
 }
 
 text MtChimney_Text_RemoveTheMeteorite {
@@ -539,23 +477,7 @@ text MtChimney_Text_RemoveTheMeteorite {
 }
 
 text MtChimney_Text_PlayerRemovedMeteorite {
-    format("{PLAYER} removed the Meteorite from\n"
-    "the mysterious machine.")
-}
-
-text MtChimney_Text_PlayerLeftMeteorite {
-    format("{PLAYER} left the Meteorite where\n"
-    "it was.")
-}
-
-text MtChimney_Text_MachineMakesNoResponse {
-    format("This mysterious machine…\n"
-    "It makes no response whatsoever.")
-}
-
-text MtChimney_Text_RouteSign {
-    format("{DOWN_ARROW} Jagged Pass\n"
-    "Lavaridge Town ahead")
+    format("{PLAYER} removed the Meteorite from the mysterious machine.")
 }
 
 text MtChimney_Text_ShelbyIntro {
