@@ -156,6 +156,8 @@ static const u16 sEkansEggMoveLearnset[] = {
 static const u16 sPichuEggMoveLearnset[] = {
     MOVE_REVERSAL,
     MOVE_BIDE,
+    MOVE_CELEBRATE,
+    MOVE_HOLD_HANDS,
     MOVE_PRESENT,
     MOVE_ENCORE,
     MOVE_DOUBLE_SLAP,
@@ -273,6 +275,7 @@ static const u16 sCleffaEggMoveLearnset[] = {
 #if P_FAMILY_VULPIX
 static const u16 sVulpixEggMoveLearnset[] = {
     MOVE_FEINT_ATTACK,
+    MOVE_CELEBRATE,
     MOVE_HYPNOSIS,
     MOVE_FLAIL,
     MOVE_SPITE,
@@ -291,6 +294,7 @@ static const u16 sVulpixEggMoveLearnset[] = {
 #if P_ALOLAN_FORMS
 static const u16 sVulpixAlolaEggMoveLearnset[] = {
     MOVE_AGILITY,
+    MOVE_CELEBRATE,
     MOVE_CHARM,
     MOVE_DISABLE,
     MOVE_ENCORE,
@@ -947,6 +951,7 @@ static const u16 sExeggcuteEggMoveLearnset[] = {
     MOVE_MOONLIGHT,
     MOVE_ANCIENT_POWER,
     MOVE_INGRAIN,
+    MOVE_CELEBRATE,
     MOVE_CURSE,
     MOVE_NATURE_POWER,
     MOVE_LUCKY_CHANT,
@@ -1323,6 +1328,12 @@ static const u16 sTaurosPaldeaAquaEggMoveLearnset[] = {
 #endif //P_PALDEAN_FORMS
 #endif //P_FAMILY_TAUROS
 
+static const u16 sMagikarpEggMoveLearnset[] = {
+    MOVE_CELEBRATE,
+    MOVE_HAPPY_HOUR,
+    MOVE_UNAVAILABLE,
+};
+
 #if P_FAMILY_LAPRAS
 static const u16 sLaprasEggMoveLearnset[] = {
     MOVE_FORESIGHT,
@@ -1349,6 +1360,7 @@ static const u16 sEeveeEggMoveLearnset[] = {
     MOVE_FLAIL,
     MOVE_ENDURE,
     MOVE_CURSE,
+    MOVE_CELEBRATE,
     MOVE_TICKLE,
     MOVE_WISH,
     MOVE_YAWN,
@@ -4487,6 +4499,7 @@ static const u16 sZoruaEggMoveLearnset[] = {
     MOVE_EXTRASENSORY,
     MOVE_COUNTER,
     MOVE_COPYCAT,
+    MOVE_HAPPY_HOUR,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_ZORUA
@@ -4502,6 +4515,7 @@ static const u16 sMinccinoEggMoveLearnset[] = {
     MOVE_SLEEP_TALK,
     MOVE_ENDURE,
     MOVE_FLAIL,
+    MOVE_HAPPY_HOUR,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_MINCCINO
@@ -6057,6 +6071,7 @@ static const u16 sCharcadetEggMoveLearnset[] = {
     MOVE_DESTINY_BOND,
     MOVE_DISABLE,
     MOVE_SPITE,
+    MOVE_CELEBRATE,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_CHARCADET
@@ -6301,6 +6316,7 @@ static const u16 sDondozoEggMoveLearnset[] = {
 #if P_FAMILY_TATSUGIRI
 static const u16 sTatsugiriEggMoveLearnset[] = {
     MOVE_BATON_PASS,
+    MOVE_CELEBRATE,
     MOVE_COUNTER,
     MOVE_RAPID_SPIN,
     MOVE_UNAVAILABLE,

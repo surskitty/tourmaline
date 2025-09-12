@@ -17644,6 +17644,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .tmIlliterate = TRUE,
         .levelUpLearnset = sMagikarpLevelUpLearnset,
         .teachableLearnset = sMagikarpTeachableLearnset,
+        .eggMoveLearnset = sMagikarpEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_GYARADOS}),
     },
 
@@ -18850,11 +18851,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
-    #if P_UPDATED_ABILITIES >= GEN_4
+#if !TESTING
+        .abilities = { ABILITY_TRACE, ABILITY_TRACE, ABILITY_TRACE },
+        .innates = { ABILITY_ANALYTIC, ABILITY_DOWNLOAD },
+#else
         .abilities = { ABILITY_TRACE, ABILITY_DOWNLOAD, ABILITY_ANALYTIC },
-    #else
-        .abilities = { ABILITY_TRACE, ABILITY_NONE, ABILITY_ANALYTIC },
-    #endif
+#endif
         .bodyColor = BODY_COLOR_PINK,
         .speciesName = _("Porygon"),
         .cryId = CRY_PORYGON,
@@ -18924,11 +18926,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
-    #if P_UPDATED_ABILITIES >= GEN_4
+#if !TESTING
+        .abilities = { ABILITY_TRACE, ABILITY_TRACE, ABILITY_TRACE },
+        .innates = { ABILITY_ANALYTIC, ABILITY_DOWNLOAD },
+#else
         .abilities = { ABILITY_TRACE, ABILITY_DOWNLOAD, ABILITY_ANALYTIC },
-    #else
-        .abilities = { ABILITY_TRACE, ABILITY_NONE, ABILITY_ANALYTIC },
-    #endif
+#endif
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Porygon2"),
         .cryId = CRY_PORYGON2,
@@ -19006,7 +19009,12 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .friendship = STANDARD_FRIENDSHIP,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
-        .abilities = { ABILITY_ADAPTABILITY, ABILITY_DOWNLOAD, ABILITY_ANALYTIC },
+#if !TESTING
+        .abilities = { ABILITY_TRACE, ABILITY_TRACE, ABILITY_TRACE },
+        .innates = { ABILITY_ADAPTABILITY, ABILITY_ANALYTIC, ABILITY_DOWNLOAD },
+#else
+        .abilities = { ABILITY_TRACE, ABILITY_DOWNLOAD, ABILITY_ANALYTIC },
+#endif
         .bodyColor = BODY_COLOR_RED,
         .speciesName = _("Porygon-Z"),
         .cryId = CRY_PORYGON_Z,
