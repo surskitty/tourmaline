@@ -247,6 +247,17 @@ movement Movement_PokemonAppears {
 
 script Common_EventScript_DefeatedStaticPokemon {
     msgbox(format("The miffed Pokémon healed itself with a Berry and took out your reward."), MSGBOX_DEFAULT)
+    checkitem(ITEM_Z_POWER_RING)
+    if (var(VAR_RESULT) == TRUE)
+    {
+        callnative(TryGiveZCrystal)
+        if (var(VAR_RESULT))
+        {
+            msgbox(format("You found a Z-Crystal!"), MSGBOX_DEFAULT)
+            playfanfare(MUS_OBTAIN_TMHM)
+            waitfanfare
+        }
+    }
     switch (var(VAR_POKEDEX_COMPLETION)) {
     case 0:
         giveitem(ITEM_EXP_CANDY_XS)

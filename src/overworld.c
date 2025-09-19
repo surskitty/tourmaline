@@ -2,6 +2,7 @@
 #include "overworld.h"
 #include "battle_pyramid.h"
 #include "battle_setup.h"
+#include "battle_z_move.h"
 #include "berry.h"
 #include "bg.h"
 #include "cable_club.h"
@@ -3789,6 +3790,26 @@ void GetSymbolEncounterSpecies(void) {
 
     VarSet(VAR_0x8004, species);
 }
+
+void TryGiveZCrystal(void)
+{
+    u32 species = SanitizeSpeciesId(VarGet(VAR_0x8004));
+    u32 item = ITEM_NONE;
+    if (species != SPECIES_NONE && CheckBagHasItem(ITEM_Z_POWER_RING, 1))
+    {
+        const struct SpeciesInfo *currSpecies = &gSpeciesInfo[species];
+        item = GetZCrystalByType(currSpecies->types[0]);
+        if (CheckBagHasItem(item, 1))
+            item = GetZCrystalByType(currSpecies->types[1]);
+
+        if (!CheckBagHasItem(item, 1))
+        {
+            VarSet(VAR_RESULT, AddBagItem(item, 1));
+        }
+    }
+}
+
+
 
 // returns old sHoursOverride
 u16 SetTimeOfDay(u16 hours)

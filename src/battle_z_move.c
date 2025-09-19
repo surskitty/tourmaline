@@ -570,3 +570,47 @@ u32 GetZMovePower(u32 move)
     else                   return 100;
 }
 
+u32 GetZCrystalByType(u32 type)
+{
+    switch (type)
+    {
+    case TYPE_NORMAL:
+        return ITEM_NORMALIUM_Z;
+    case TYPE_FIGHTING:
+        return ITEM_FIGHTINIUM_Z;
+    case TYPE_FLYING:
+        return ITEM_FLYINIUM_Z;
+    case TYPE_POISON:
+        return ITEM_POISONIUM_Z;
+    case TYPE_GROUND:
+        return ITEM_GROUNDIUM_Z;
+    case TYPE_ROCK:
+        return ITEM_ROCKIUM_Z;
+    case TYPE_BUG:
+        return ITEM_BUGINIUM_Z;
+    case TYPE_GHOST:
+        return ITEM_GHOSTIUM_Z;
+    case TYPE_STEEL:
+        return ITEM_STEELIUM_Z;
+    case TYPE_FIRE:
+        return ITEM_FIRIUM_Z;
+    case TYPE_WATER:
+        return ITEM_WATERIUM_Z;
+    case TYPE_GRASS:
+        return ITEM_GRASSIUM_Z;
+    case TYPE_ELECTRIC:
+        return ITEM_ELECTRIUM_Z;
+    case TYPE_PSYCHIC:
+        return ITEM_PSYCHIUM_Z;
+    case TYPE_ICE:
+        return ITEM_ICIUM_Z;
+    case TYPE_DRAGON:
+        return ITEM_DRAGONIUM_Z;
+    case TYPE_DARK:
+        return ITEM_DARKINIUM_Z;
+    case TYPE_FAIRY:
+        return ITEM_FAIRIUM_Z;
+    default:
+        return ITEM_NONE;
+    }
+}

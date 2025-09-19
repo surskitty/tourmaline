@@ -25,5 +25,6 @@ bool32 MoveSelectionDisplayZMove(u16 zmove, u32 battler);
 void SetZEffect(void);
 void AssignUsableZMoves(u32 battler, u16 *moves);
 u32 GetZMovePower(u32 move);
+u32 GetZCrystalByType(u32 type);
 
 #endif // GUARD_BATTLE_Z_MOVE_H
