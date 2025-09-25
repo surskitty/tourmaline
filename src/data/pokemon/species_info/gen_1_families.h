@@ -6876,6 +6876,78 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .teachableLearnset = sDugtrioAlolaTeachableLearnset,
         .formSpeciesIdTable = sDugtrioFormSpeciesIdTable,
     },
+
+    [SPECIES_DUGTRIO_ALOLA_MEGA] =
+    {
+        .baseHP        = 35,
+        .baseAttack    = DUGTRIO_ATTACK + 20,
+        .baseDefense   = 60 + 40,
+        .baseSpeed     = 110,
+        .baseSpAttack  = 50,
+        .baseSpDefense = 70 + 40,
+        .types = MON_TYPES(TYPE_GROUND, TYPE_STEEL),
+        .catchRate = 50,
+        .expYield = DUGTRIO_EXP_YIELD,
+        .evYield_Speed = 2,
+        .itemRare = ITEM_SOFT_SAND,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+#if !TESTING
+        .abilities = { ABILITY_SAND_VEIL, ABILITY_SAND_FORCE, ABILITY_NONE },
+        .innates = { ABILITY_TANGLING_HAIR },
+#else
+        .abilities = { ABILITY_SAND_VEIL, ABILITY_TANGLING_HAIR, ABILITY_SAND_FORCE },
+#endif
+        .bodyColor = BODY_COLOR_BROWN,
+        .noFlip = TRUE,
+        .speciesName = _("Dugtrio"),
+        .cryId = CRY_DUGTRIO,
+        .natDexNum = NATIONAL_DEX_DUGTRIO,
+        .categoryName = _("Mole"),
+        .height = 7,
+        .weight = 666,
+        .description = COMPOUND_STRING(
+            "Their beautiful, metallic whiskers create\n"
+            "a sort of protective helmet on\n"
+            "heir heads, and they also function\n"
+            "as highly precise sensors."),
+        .pokemonScale = 406,
+        .pokemonOffset = 18,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_DugtrioAlola,
+        .frontPicSize = MON_COORDS_SIZE(48, 48),
+        .frontPicYOffset = 11,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_DugtrioAlola,
+        .backPicSize = MON_COORDS_SIZE(64, 32),
+        .backPicYOffset = 17,
+        //.backAnimId = BACK_ANIM_NONE,
+        .palette = gMonPalette_DugtrioAlola,
+        .shinyPalette = gMonShinyPalette_DugtrioAlola,
+        .iconSprite = gMonIcon_DugtrioAlola,
+        .iconPalIndex = 2,
+        NO_SHADOW
+        FOOTPRINT(Dugtrio)
+        OVERWORLD(
+            sPicTable_DugtrioAlola,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_DugtrioAlola,
+            gShinyOverworldPalette_DugtrioAlola
+        )
+        .isAlolanForm = TRUE,
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sDugtrioAlolaLevelUpLearnset,
+        .teachableLearnset = sDugtrioAlolaTeachableLearnset,
+        .formSpeciesIdTable = sDugtrioFormSpeciesIdTable,
+    },
 #endif //P_ALOLAN_FORMS
 #endif //P_FAMILY_DIGLETT
 

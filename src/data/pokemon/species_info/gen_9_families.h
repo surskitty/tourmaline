@@ -4017,7 +4017,7 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_3),
 #if !TESTING
         .abilities = { ABILITY_RATTLED, ABILITY_EMERGENCY_EXIT, ABILITY_ANGER_POINT },
-        .innates = { ABILITY_SAND_FORCE, ABILITY_GOOEY, ABILITY_SAP_SIPPER },
+        .innates = { ABILITY_SAND_FORCE, ABILITY_GOOEY },
 #else
         .abilities = { ABILITY_GOOEY, ABILITY_RATTLED, ABILITY_SAND_VEIL },
 #endif
@@ -4061,6 +4061,75 @@ const struct SpeciesInfo gSpeciesInfoGen9[] =
             gOverworldPalette_Wugtrio,
             gShinyOverworldPalette_Wugtrio
         )
+        .levelUpLearnset = sWugtrioLevelUpLearnset,
+        .teachableLearnset = sWugtrioTeachableLearnset,
+    },
+
+
+    [SPECIES_WUGTRIO_MEGA] =
+    {
+        .baseHP        = 35,
+        .baseAttack    = 100 + 20,
+        .baseDefense   = 50 + 40,
+        .baseSpeed     = 120,
+        .baseSpAttack  = 50,
+        .baseSpDefense = 70 + 40,
+        .types = MON_TYPES(TYPE_WATER, TYPE_GROUND),
+        .catchRate = 50,
+        .expYield = 149,
+        .evYield_Speed = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_3),
+#if !TESTING
+        .abilities = { ABILITY_RATTLED, ABILITY_EMERGENCY_EXIT, ABILITY_ANGER_POINT },
+        .innates = { ABILITY_SAND_FORCE, ABILITY_GOOEY, ABILITY_SAP_SIPPER },
+#else
+        .abilities = { ABILITY_GOOEY, ABILITY_RATTLED, ABILITY_SAND_VEIL },
+#endif
+        .bodyColor = BODY_COLOR_RED,
+        .speciesName = _("Wugtrio"),
+        .cryId = CRY_WUGTRIO,
+        .natDexNum = NATIONAL_DEX_WUGTRIO,
+        .categoryName = _("Garden Eel"),
+        .height = 12,
+        .weight = 54,
+        .description = COMPOUND_STRING(
+            "A variety of fish Pokémon, Wugtrio\n"
+            "was once considered to be a\n"
+            "regional form of Dugtrio."),
+        .pokemonScale = 356,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_WugtrioMega,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 2,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_WugtrioMega,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 11,
+        //.backAnimId = BACK_ANIM_NONE,
+        .palette = gMonPalette_Wugtrio,
+        .shinyPalette = gMonShinyPalette_Wugtrio,
+        .iconSprite = gMonIcon_Wugtrio,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        NO_SHADOW
+        FOOTPRINT(Wugtrio)
+        OVERWORLD(
+            sPicTable_Wugtrio,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_SLITHER,
+            sAnimTable_Following,
+            gOverworldPalette_Wugtrio,
+            gShinyOverworldPalette_Wugtrio
+        )
+        .isMegaEvolution = TRUE,
         .levelUpLearnset = sWugtrioLevelUpLearnset,
         .teachableLearnset = sWugtrioTeachableLearnset,
     },

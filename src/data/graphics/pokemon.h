@@ -25575,6 +25575,10 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #if P_FOOTPRINTS
     const u8 gMonFootprint_Wugtrio[] = INCBIN_U8("graphics/pokemon/wugtrio/footprint.1bpp");
 #endif //P_FOOTPRINTS
+
+    const u32 gMonFrontPic_WugtrioMega[] = INCBIN_U32("graphics/pokemon/wugtrio/mega/front.4bpp.lz");
+    const u32 gMonBackPic_WugtrioMega[] = INCBIN_U32("graphics/pokemon/wugtrio/mega/back.4bpp.lz");
+
 #if OW_POKEMON_OBJECT_EVENTS
     const u32 gObjectEventPic_Wugtrio[] = INCBIN_COMP("graphics/pokemon/wugtrio/overworld.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
