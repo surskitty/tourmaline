@@ -1070,17 +1070,20 @@ PetalburgCity_Gym_EventScript_RightGymStatue::
     goto_if_set FLAG_BADGE05_GET, PetalburgCity_Gym_EventScript_GymStatueCertified
     goto PetalburgCity_Gym_EventScript_GymStatue
     end
-
-PetalburgCity_Gym_EventScript_GymStatueCertified::
-    msgbox PetalburgCity_Gym_Text_GymStatueCertified, MSGBOX_DEFAULT
-    releaseall
-    end
-
-PetalburgCity_Gym_EventScript_GymStatue::
-    msgbox PetalburgCity_Gym_Text_GymStatue, MSGBOX_DEFAULT
-    releaseall
-    end
 `
+
+script PetalburgCity_Gym_EventScript_GymStatueCertified {
+    msgbox("Petalburg City Pokémon Gym\p"
+           "Norman's Certified Trainers:\n"
+           "{PLAYER}$", MSGBOX_DEFAULT)
+    releaseall
+}
+
+script PetalburgCity_Gym_EventScript_GymStatue {
+    msgbox("Petalburg City Pokémon Gym", MSGBOX_DEFAULT)
+    releaseall
+}
+
 
 text PetalburgCity_Gym_Text_NormanGoToRustboro {
     "Hm? Aren't you going to the\n"
@@ -1257,10 +1260,10 @@ text PetalburgCity_Gym_Text_BerkeDefeat {
 text PetalburgCity_Gym_Text_BerkePostBattle {
     "Your father really is strong.\n"
     "He's a Trainer worth my respect.\p"
-    "And, I sense the same glow coming\n"
+    "I sense the same glow coming\n"
     "from you as your father.\p"
     "I hope that you'll stage a terrific\n"
-    "battle with your father!$"
+    "battle with him!$"
 }
 
 text PetalburgCity_Gym_Text_BerkePostBadge {
@@ -1391,16 +1394,6 @@ text PetalburgCity_Gym_Text_EnterGymLeadersRoom {
     "“See for yourself what Pokémon await\n"
     "you!” the sign says.\p"
     "Do you want to go through?$"
-}
-
-text PetalburgCity_Gym_Text_GymStatue {
-    "Petalburg City Pokémon Gym$"
-}
-
-text PetalburgCity_Gym_Text_GymStatueCertified {
-    "Petalburg City Pokémon Gym\p"
-    "Norman's Certified Trainers:\n"
-    "{PLAYER}$"
 }
 
 text PetalburgCity_Gym_Text_NormanPreRematch {
