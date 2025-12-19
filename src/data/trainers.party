@@ -1279,6 +1279,12 @@ Level: 26
 - Agility
 - Wing Attack
 
+Swellow
+Level: 26
+- Quick Attack
+- Agility
+- Wing Attack
+
 === TRAINER_PARKER ===
 Name: Parker
 Class: Cooltrainer
@@ -1295,21 +1301,34 @@ Level: 26
 - Dizzy Punch
 - Focus Punch
 
+Chatot @ Throat Spray
+Level: 26
+- Hyper Voice
+- Air Cutter
+- Taunt
+
 === TRAINER_GEORGE ===
 Name: George
 Class: Cooltrainer
 Pic: Cooltrainer M
 Gender: Male
 Music: Cool
-Items: Hyper Potion
+Items: Revive
 Double Battle: Yes
 AI: Basic Trainer
 
-Slakoth @ Sitrus Berry
+Vigoroth @ Sitrus Berry
 Level: 26
 - Slack Off
 - Counter
 - Shadow Ball
+
+Audino @ Sitrus Berry
+Level: 26
+- Life Dew
+- Yawn
+- Attract
+- Secret Power
 
 === TRAINER_BERKE ===
 Name: Berke
@@ -1667,15 +1686,23 @@ Class: Cooltrainer
 Pic: Cooltrainer F
 Gender: Female
 Music: Cool
-Items: Hyper Potion
+Items: X Defense / Hyper Potion
 Double Battle: Yes
 AI: Basic Trainer
 
 Wigglytuff
 Level: 26
-- Defense Curl
-- Double Edge
-- Shadow Ball
+- Body Press
+- Stored Power
+- Hyper Voice
+- Wish
+
+Bewear
+Ability: Stamina
+Level: 26
+- Body Press
+- Low Sweep
+- Strength
 
 === TRAINER_JODY ===
 Name: Jody
@@ -1704,7 +1731,6 @@ AI: Basic Trainer / Force Setup First Turn
 
 Mawile
 Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Baton Pass
 - Feint Attack
 - Fake Tears
@@ -1712,7 +1738,6 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Roselia
 Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Mega Drain
 - Magical Leaf
 - Grass Whistle
@@ -1720,7 +1745,6 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Pelipper
 Level: 29
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Fly
 - Water Gun
 - Mist
@@ -1738,11 +1762,9 @@ AI: Basic Trainer / Force Setup First Turn
 
 Lairon
 Level: 45
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-Manectric
+Manectric @ Manectite
 Level: 45
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_BROOKE_1 ===
 Name: Brooke
@@ -1790,9 +1812,8 @@ Items: Full Restore
 Double Battle: Yes
 AI: Basic Trainer
 
-Roselia
+Roserade
 Level: 45
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_SHANNON ===
 Name: Shannon
@@ -1854,15 +1875,12 @@ AI: Basic Trainer
 
 Sandslash
 Level: 42
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Ninetales Alola
 Level: 42
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Tropius
 Level: 42
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_BROOKE_2 ===
 Name: Brooke
@@ -4929,6 +4947,7 @@ Double Battle: Yes
 AI: Smart Trainer / Conservative
 Mugshot: Yellow
 Party Size: 4
+Pool Rules: Weather Doubles
 
 Pumice (Shuckle) (F)
 Level: 12
@@ -5717,26 +5736,26 @@ Double Battle: Yes
 AI: Smart Trainer / Risky
 Mugshot: Blue
 
-Swablu
+Mosquito (Swablu)
 Level: 29
 
 Tropius
 Level: 29
 
-Pelipper
+Martin (Pelipper)
 Level: 30
 
-Skarmory
+Antonov (Skarmory)
 Level: 31
 
-Altaria
+Zeppelin (Altaria)
 Level: 33
 - Hyper Voice
 - Cotton Guard
 - Dragon Pulse
 - Flamethrower
 
-Pidgeot @ Pidgeotite
+Concorde (Pidgeot) @ Pidgeotite
 Level: 36
 - Hurricane
 - Air Slash
@@ -5756,14 +5775,14 @@ Mugshot: Blue
 Party Size: 6
 Pool Rules: Weather Doubles
 
-Altaria
+Zeppelin (Altaria)
 Level: 50
 - Hyper Voice
 - Cotton Guard
 - Dragon Pulse
 - Flamethrower
 
-Chatot @ Flyinium Z
+Tupolev (Chatot) @ Flyinium Z
 Level: 50
 Ability: Punk Rock
 Tags: Lead
@@ -5772,7 +5791,7 @@ Tags: Lead
 - Chatter
 - Tailwind
 
-Chatot @ Throat Spray
+Tupolev (Chatot) @ Throat Spray
 Level: 50
 Ability: Punk Rock
 Tags: Lead
@@ -5781,34 +5800,34 @@ Tags: Lead
 - Chatter
 - Tailwind
 
-Crobat
+Have Blue (Crobat)
 Level: 50
 
-Gyarados
+Electra (Gyarados)
 Level: 50
 Ability: Intimidate
 
-Gyarados
+Electra (Gyarados)
 Level: 50
 Ability: Moxie
 
-Masquerain
+Sopwith Baby (Masquerain)
 Level: 50
 
-Minior
+Pathfinder (Minior)
 Level: 50
 Shiny: Yes
 
-Ninjask
+Hornet (Ninjask)
 Level: 50
 
-Pelipper
+Martin (Pelipper)
 Level: 50
 
-Pidgeot
+Concorde (Pidgeot)
 Level: 50
 
-Pidgeot @ Pidgeotite
+Concorde (Pidgeot) @ Pidgeotite
 Level: 50
 Tags: Ace
 - Hurricane
@@ -5816,54 +5835,54 @@ Tags: Ace
 - Roost
 - Ominous Wind
 
-Rotom Fan
+Ecureuil (Rotom Fan)
 Level: 50
 
-Salamence
+Fokker (Salamence)
 Level: 50
 Ability: Intimidate
 
-Salamence
+Fokker (Salamence)
 Level: 50
 Ability: Moxie
 
-Salamence @ Salamencite
+Fokker (Salamence) @ Salamencite
 Level: 50
 Ability: Moxie
 Tags: Ace
 
-Salamence @ Salamencite
+Fokker (Salamence) @ Salamencite
 Level: 50
 Ability: Intimidate
 Tags: Ace
 
-Skarmory
+Antonov (Skarmory)
 Level: 50
 Ability: Sturdy
 
-Swellow @ Flame Orb
+Skyhawk (Swellow) @ Flame Orb
 Level: 50
 - Boomburst
 - Facade
 - Heat Wave
 - Roost
 
-Swellow @ Flyinium Z
+Skyhawk (Swellow) @ Flyinium Z
 Level: 50
 Tags: Ace
 - Mirror Move
 - Boomburst
 
-Tropius
+Nimbus (Tropius)
 Level: 50
 
-Wattrel
+Buran (Wattrel)
 Level: 50
 
-Xatu
+HYFLEX (Xatu)
 Level: 50
 
-Pinsir @ Pinsirite
+Woodstock (Pinsir) @ Pinsirite
 Level: 50
 Tags: Ace
 
@@ -6069,7 +6088,7 @@ Items: Hyper Potion / Hyper Potion
 Double Battle: Yes
 AI: Smart Trainer / Double Ace Pokemon
 
-Pelipper @ Wacan Berry
+Christina (Pelipper) (F) @ Wacan Berry
 Level: 42
 Ability: Drizzle
 - Hurricane
@@ -6077,35 +6096,33 @@ Ability: Drizzle
 - Wide Guard
 - Weather Ball
 
-Whiscash
+Albert (Wugtrio) (M)
 Level: 41
-- Rain Dance
-- Water Pulse
-- Amnesia
-- Earthquake
+- Triple Dive
 
-Crawdaunt
+
+Conch (Crawdaunt)
 Level: 43
 - Water Pulse
 - Crabhammer
 - Taunt
 - Leer
 
-Kingdra @ Chesto Berry
+Ashley (Kingdra) @ Chesto Berry
 Level: 46
 - Water Pulse
 - Double Team
 - Ice Beam
 - Rest
 
-Tatsugiri Stretchy
+Daith (Tatsugiri Stretchy)
 Level: 46
 - Dragon Pulse
 - Water Pulse
 - Helping Hand
 - Protect
 
-Dondozo @ Chesto Berry
+Rook (Dondozo) @ Chesto Berry
 Level: 46
 Ability: Oblivious
 - Rest
