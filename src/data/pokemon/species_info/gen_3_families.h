@@ -2839,8 +2839,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = RALTS_FAMILY_EGG_GROUPS,
 #if !TESTING
-        .abilities = { ABILITY_SYNCHRONIZE, ABILITY_TRACE, ABILITY_NONE },
-        .innates = { ABILITY_TELEPATHY },
+        .abilities = { ABILITY_TRACE, ABILITY_TRACE, ABILITY_TRACE },
+        .innates = { ABILITY_SYNCHRONIZE, ABILITY_TELEPATHY },
 #else
         .abilities = { ABILITY_SYNCHRONIZE, ABILITY_TRACE, ABILITY_TELEPATHY },
 #endif
@@ -2913,8 +2913,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = RALTS_FAMILY_EGG_GROUPS,
 #if !TESTING
-        .abilities = { ABILITY_SYNCHRONIZE, ABILITY_TRACE, ABILITY_NONE },
-        .innates = { ABILITY_TELEPATHY },
+        .abilities = { ABILITY_TRACE, ABILITY_TRACE, ABILITY_TRACE },
+        .innates = { ABILITY_SYNCHRONIZE, ABILITY_TELEPATHY },
 #else
         .abilities = { ABILITY_SYNCHRONIZE, ABILITY_TRACE, ABILITY_TELEPATHY },
 #endif
@@ -2993,8 +2993,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = RALTS_FAMILY_EGG_GROUPS,
 #if !TESTING
-        .abilities = { ABILITY_SYNCHRONIZE, ABILITY_TRACE, ABILITY_NONE },
-        .innates = { ABILITY_TELEPATHY },
+        .abilities = { ABILITY_TRACE, ABILITY_TRACE, ABILITY_TRACE },
+        .innates = { ABILITY_SYNCHRONIZE, ABILITY_TELEPATHY },
 #else
         .abilities = { ABILITY_SYNCHRONIZE, ABILITY_TRACE, ABILITY_TELEPATHY },
 #endif
@@ -3068,8 +3068,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = RALTS_FAMILY_EGG_GROUPS,
 #if !TESTING
-        .abilities = { ABILITY_SYNCHRONIZE, ABILITY_TRACE, ABILITY_NONE },
-        .innates = { ABILITY_TELEPATHY, ABILITY_PIXILATE },
+        .abilities = { ABILITY_TRACE, ABILITY_TRACE, ABILITY_TRACE },
+        .innates = { ABILITY_PIXILATE, ABILITY_SYNCHRONIZE, ABILITY_TELEPATHY },
 #else
         .abilities = { ABILITY_PIXILATE, ABILITY_PIXILATE, ABILITY_PIXILATE },
 #endif
@@ -3153,8 +3153,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = RALTS_FAMILY_EGG_GROUPS,
 #if !TESTING
-        .abilities = { ABILITY_STEADFAST, ABILITY_JUSTIFIED, ABILITY_NONE },
-        .innates = { ABILITY_TELEPATHY, ABILITY_SHARPNESS },
+        .abilities = { ABILITY_STEADFAST, ABILITY_STEADFAST, ABILITY_STEADFAST },
+        .innates = { ABILITY_SHARPNESS, ABILITY_JUSTIFIED, ABILITY_TELEPATHY },
 #else
         .abilities = { ABILITY_STEADFAST, ABILITY_SHARPNESS, ABILITY_JUSTIFIED },
 #endif
@@ -3227,8 +3227,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_SLOW,
         .eggGroups = RALTS_FAMILY_EGG_GROUPS,
 #if !TESTING
-        .abilities = { ABILITY_JUSTIFIED, ABILITY_JUSTIFIED, ABILITY_JUSTIFIED },
-        .innates = { ABILITY_TELEPATHY, ABILITY_SHARPNESS, ABILITY_INNER_FOCUS },
+        .abilities = { ABILITY_STEADFAST, ABILITY_STEADFAST, ABILITY_STEADFAST },
+        .innates = { ABILITY_SHARPNESS, ABILITY_JUSTIFIED, ABILITY_TELEPATHY },
 #else
         .abilities = { ABILITY_INNER_FOCUS, ABILITY_INNER_FOCUS, ABILITY_INNER_FOCUS },
 #endif
@@ -5971,8 +5971,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY),
 #if !TESTING
-        .abilities = { ABILITY_PLUS, ABILITY_LIGHTNING_ROD, ABILITY_COSTAR },
-        .innates = { ABILITY_PLUS },
+        .abilities = { ABILITY_PLUS, ABILITY_PLUS, ABILITY_PLUS },
+        .innates = { ABILITY_COSTAR, ABILITY_PLUS },
 #else
         .abilities = { ABILITY_PLUS, ABILITY_NONE, ABILITY_LIGHTNING_ROD },
 #endif
@@ -6049,8 +6049,8 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY),
 #if !TESTING
-        .abilities = { ABILITY_MINUS, ABILITY_VOLT_ABSORB, ABILITY_FRIEND_GUARD },
-        .innates = { ABILITY_MINUS },
+        .abilities = { ABILITY_MINUS, ABILITY_MINUS, ABILITY_MINUS },
+        .innates = { ABILITY_FRIEND_GUARD, ABILITY_MINUS, ABILITY_VOLT_ABSORB },
 #else
         .abilities = { ABILITY_MINUS, ABILITY_NONE, ABILITY_VOLT_ABSORB },
 #endif

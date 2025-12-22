@@ -4952,6 +4952,7 @@ Pool Rules: Weather Doubles
 Pumice (Shuckle) (F)
 Level: 12
 Ability: Contrary
+Tags: Lead
 Nature: Timid
 - Infestation
 - Rock Tomb
@@ -4967,7 +4968,6 @@ Ability: Sturdy
 
 Salt (Nacli) (M) @ Oran Berry 
 Level: 12
-Ability: Clear Body
 - Rock Tomb
 - Mud Shot
 - Smack Down
@@ -4993,7 +4993,7 @@ Mugshot: Yellow
 Party Size: 6
 Pool Rules: Weather Doubles
 
-Quartz (Gigalith) @ Smooth Rock
+Quartz (Gigalith) (F) @ Smooth Rock
 Level: 50
 Ability: Sand Stream
 Tags: Lead / Weather Setter
@@ -5055,7 +5055,7 @@ Tags: Ace
 Salt (Garganacl) (M)
 Level: 50
 
-Quartz (Gigalith)
+Quartz (Gigalith) (F)
 Level: 50
 Ability: Sturdy
 
@@ -5089,6 +5089,8 @@ Items: Super Potion / Super Potion
 Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Blue
+Party Size: 4
+Pool Rules: Doubles
 
 Muay Thai (Stufful) (F)
 Level: 16
@@ -5193,21 +5195,32 @@ Items: Super Potion / Super Potion
 Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Green
+Party Size: 5
+Pool Rules: Weather Doubles
 
 Pincurchin @ Terrain Extender
 Level: 20
 Ability: Electric Surge
+Tags: Lead / Weather Setter
 - Chilling Water
 - Spark
 - Curse
 - Electric Terrain
+
+Minun @ Electric Seed
+Level: 24
+Tags: Lead
+- Copycat
+- Encore
+- Helping Hand
+- Nuzzle
 
 Joltik
 Level: 20
 Ability: Compound Eyes
 - Electroweb
 - Struggle Bug
-- Thunder Wave
+- Lunge
 - Helping Hand
 
 Voltorb Hisui
@@ -5233,6 +5246,14 @@ Ability: Static
 - Thunder Wave
 - Shock Wave
 - Howl
+
+Plusle @ Sitrus Berry
+Level: 24
+Tags: Ace
+- Nuzzle
+- Play Nice
+- Quick Attack
+- Switcheroo
 
 === TRAINER_WATTSON_2 ===
 Name: Wattson
@@ -5304,11 +5325,9 @@ Ability: Minus
 
 Minun
 Level: 50
-Ability: Friend Guard
 
 Plusle
 Level: 50
-Ability: Costar
 
 Raichu Alola
 Level: 50
@@ -5340,10 +5359,13 @@ Items: Hyper Potion / Hyper Potion
 Double Battle: Yes
 AI: Smart Trainer
 Mugshot: Purple
+Party Size: 6
+Pool Rules: Weather Doubles
 
 Torkoal @ Heat Rock
 Level: 29
 Ability: Drought
+Tags: Lead / Weather Setter
 - Clear Smog
 - Lava Plume
 - Sunny Day
