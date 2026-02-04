@@ -5371,7 +5371,7 @@ Tags: Lead / Weather Setter
 - Sunny Day
 - Attract
 
-Dachsbun @ Misty Seed
+Kefir (Dachsbun) @ Misty Seed
 Level: 29
 - Work Up
 - Play Rough
@@ -5385,7 +5385,7 @@ Level: 27
 - Will o Wisp
 - Clear Smog
 
-Shiinotic
+Kombucha (Shiinotic)
 Level: 27
 Ability: Effect Spore
 - Draining Kiss
@@ -5443,7 +5443,7 @@ Level: 50
 Ceruledge
 Level: 50
 
-Dachsbun
+Kefir (Dachsbun)
 Level: 50
 
 Flareon
@@ -5461,7 +5461,7 @@ Level: 50
 Salazzle
 Level: 50
 
-Shiinotic
+Kombucha (Shiinotic)
 Level: 50
 
 Sylveon
@@ -5489,6 +5489,8 @@ Items: Hyper Potion / Hyper Potion
 Double Battle: Yes
 Mugshot: Pink
 AI: Smart Trainer / Ace Pokemon
+Party Size: 6
+Pool Rules: Weather Doubles
 
 Grafaiai @ Jaboca Berry
 Ability: Pickpocket
@@ -5757,6 +5759,8 @@ Items: Hyper Potion / Hyper Potion
 Double Battle: Yes
 AI: Smart Trainer / Risky
 Mugshot: Blue
+Party Size: 6
+Pool Rules: Weather Doubles
 
 Mosquito (Swablu)
 Level: 29
@@ -5917,6 +5921,8 @@ Music: Female
 Items: Hyper Potion / Hyper Potion / Hyper Potion / Hyper Potion
 Double Battle: Yes
 AI: Smart Trainer / Double Ace Pokemon
+Party Size: 6
+Pool Rules: Weather Doubles
 
 Fermi (Xatu)
 Level: 41
@@ -6108,11 +6114,14 @@ Gender: Male
 Music: Male
 Items: Hyper Potion / Hyper Potion
 Double Battle: Yes
-AI: Smart Trainer / Double Ace Pokemon
+AI: Smart Trainer
+Party Size: 6
+Pool Rules: Weather Doubles
 
 Christina (Pelipper) (F) @ Wacan Berry
 Level: 42
 Ability: Drizzle
+Tags: Lead / Weather Setter
 - Hurricane
 - Tailwind
 - Wide Guard
@@ -6120,8 +6129,30 @@ Ability: Drizzle
 
 Albert (Wugtrio) (M)
 Level: 41
+Ability: Emergency Exit
+Nature: Adamant
 - Triple Dive
+- Bulldoze
+- Throat Chop
+- Aqua Jet
 
+Albert (Wugtrio) (M)
+Level: 41
+Ability: Rattled
+Nature: Adamant
+- Triple Dive
+- Bulldoze
+- Throat Chop
+- Aqua Jet
+
+Albert (Wugtrio) (M)
+Level: 41
+Ability: Anger Point
+Nature: Adamant
+- Triple Dive
+- Bulldoze
+- Throat Chop
+- Aqua Jet
 
 Conch (Crawdaunt)
 Level: 43
@@ -6139,18 +6170,20 @@ Level: 46
 
 Daith (Tatsugiri Stretchy)
 Level: 46
-- Dragon Pulse
-- Water Pulse
+Nature: Timid
+Ability: Commander
+- Draco Meteor
+- Muddy Water
 - Helping Hand
 - Protect
 
-Rook (Dondozo) @ Chesto Berry
+Rook (Dondozo) @ Leftovers
 Level: 46
-Ability: Oblivious
-- Rest
+Ability: Unaware
 - Order Up
+- Rest
 - Wave Crash
-- Body Press
+- Earthquake
 
 === TRAINER_JUAN_2 ===
 Name: Juan
