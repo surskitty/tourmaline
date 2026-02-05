@@ -46,7 +46,7 @@ SINGLE_BATTLE_TEST("Trace copies opponents ability on switch-in even if opponent
 
 DOUBLE_BATTLE_TEST("Trace copies opponents ability randomly")
 {
-    u16 ability1, ability2;
+    enum Ability ability1, ability2;
 
     PARAMETRIZE { ability1 = ABILITY_SPEED_BOOST; ability2 = ABILITY_BLAZE;}
     PARAMETRIZE { ability1 = ABILITY_BLAZE; ability2 = ABILITY_SPEED_BOOST; }
@@ -111,5 +111,3 @@ DOUBLE_BATTLE_TEST("Trace respects the turn order")
         ABILITY_POPUP(opponentLeft, ABILITY_SAND_STREAM);
     }
 }
-
-// Trace only works on Abilities and should only be an Ability, so it doesn't need Innate tests.

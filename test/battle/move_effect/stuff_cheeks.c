@@ -104,11 +104,25 @@ SINGLE_BATTLE_TEST("Stuff Cheeks fails if the user's berry is removed before the
     }
 }
 
-SINGLE_BATTLE_TEST("Stuff Cheeks can be used even if Unnerve is present (Trait)")
+AI_SINGLE_BATTLE_TEST("AI uses Stuff Cheeks")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_STUFF_CHEEKS) == EFFECT_STUFF_CHEEKS);
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_OMNISCIENT);
+        PLAYER(SPECIES_WOBBUFFET) { Moves(MOVE_CELEBRATE, MOVE_HEADBUTT); }
+        PLAYER(SPECIES_WOBBUFFET) { Moves(MOVE_CELEBRATE, MOVE_HEADBUTT); }
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_LIECHI_BERRY); Moves(MOVE_HEADBUTT, MOVE_STUFF_CHEEKS); }
+    } WHEN {
+        TURN { EXPECT_MOVE(opponent, MOVE_STUFF_CHEEKS); }
+    }
+}
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Stuff Cheeks can be used even if Unnerve is present (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_SKWOVET) { Item(ITEM_LIECHI_BERRY); }
-        OPPONENT(SPECIES_EKANS) { Ability(ABILITY_SHED_SKIN); Innates(ABILITY_UNNERVE); }
+        OPPONENT(SPECIES_EKANS) { Ability(ABILITY_INTIMIDATE); Innates(ABILITY_UNNERVE); }
     } WHEN {
         TURN { MOVE(player, MOVE_STUFF_CHEEKS); }
     } SCENE {
@@ -116,3 +130,4 @@ SINGLE_BATTLE_TEST("Stuff Cheeks can be used even if Unnerve is present (Trait)"
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STUFF_CHEEKS, player);
     }
 }
+#endif

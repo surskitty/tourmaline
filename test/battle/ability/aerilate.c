@@ -54,7 +54,7 @@ SINGLE_BATTLE_TEST("Aerilate boosts power of affected moves by 20% (Gen7+) or 30
     PARAMETRIZE { move = MOVE_SKILL_SWAP;  genConfig = GEN_6; }
 
     GIVEN {
-        WITH_CONFIG(GEN_CONFIG_ATE_MULTIPLIER, genConfig);
+        WITH_CONFIG(CONFIG_ATE_MULTIPLIER, genConfig);
         ASSUME(GetMoveType(MOVE_TACKLE) == TYPE_NORMAL);
         ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);
         PLAYER(SPECIES_WOBBUFFET);
@@ -82,7 +82,7 @@ SINGLE_BATTLE_TEST("Aerilate doesn't affect Weather Ball's type", s16 damage)
         ASSUME(GetMoveEffect(MOVE_WEATHER_BALL) == EFFECT_WEATHER_BALL);
         ASSUME(GetMoveType(MOVE_WEATHER_BALL) == TYPE_NORMAL);
         ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);
-        ASSUME(gSpeciesInfo[SPECIES_PINSIR].types[0] == TYPE_BUG);
+        ASSUME(GetSpeciesType(SPECIES_PINSIR, 0) == TYPE_BUG);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_PINSIR) { Ability(ABILITY_HYPER_CUTTER); Item(ITEM_PINSIRITE); }
     } WHEN {
@@ -111,7 +111,7 @@ SINGLE_BATTLE_TEST("Aerilate doesn't affect Natural Gift's type")
         ASSUME(GetMoveEffect(MOVE_NATURAL_GIFT) == EFFECT_NATURAL_GIFT);
         ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);
         ASSUME(gNaturalGiftTable[ITEM_TO_BERRY(ITEM_PERSIM_BERRY)].type == TYPE_GROUND);
-        ASSUME(gSpeciesInfo[SPECIES_SALAMENCE_MEGA].types[0] == TYPE_FLYING || gSpeciesInfo[SPECIES_SALAMENCE_MEGA].types[1] == TYPE_FLYING);
+        ASSUME(GetSpeciesType(SPECIES_SALAMENCE_MEGA, 0) == TYPE_FLYING || GetSpeciesType(SPECIES_SALAMENCE_MEGA, 1) == TYPE_FLYING);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_PERSIM_BERRY); }
         OPPONENT(SPECIES_SALAMENCE) { Item(ITEM_SALAMENCITE); }
     } WHEN {
@@ -140,7 +140,7 @@ SINGLE_BATTLE_TEST("Aerilate doesn't affect Judgment / Techno Blast / Multi-Atta
         ASSUME(gItemsInfo[ITEM_SHOCK_DRIVE].secondaryId == TYPE_ELECTRIC);
         ASSUME(gItemsInfo[ITEM_ELECTRIC_MEMORY].holdEffect == HOLD_EFFECT_MEMORY);
         ASSUME(gItemsInfo[ITEM_ELECTRIC_MEMORY].secondaryId == TYPE_ELECTRIC);
-        ASSUME(gSpeciesInfo[SPECIES_DIGLETT].types[0] == TYPE_GROUND);
+        ASSUME(GetSpeciesType(SPECIES_DIGLETT, 0) == TYPE_GROUND);
         PLAYER(SPECIES_WOBBUFFET) { Item(item); }
         OPPONENT(SPECIES_SALAMENCE) { Item(ITEM_SALAMENCITE); }
         OPPONENT(SPECIES_DIGLETT);
@@ -159,7 +159,7 @@ SINGLE_BATTLE_TEST("Aerilate doesn't affect Hidden Power's type")
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_HIDDEN_POWER) == EFFECT_HIDDEN_POWER);
         ASSUME(gTypesInfo[TYPE_ELECTRIC].isHiddenPowerType == TRUE);
-        ASSUME(gSpeciesInfo[SPECIES_DIGLETT].types[0] == TYPE_GROUND);
+        ASSUME(GetSpeciesType(SPECIES_DIGLETT, 0) == TYPE_GROUND);
         PLAYER(SPECIES_PINSIR) { Ability(ABILITY_AERILATE); HPIV(31); AttackIV(31); DefenseIV(31); SpAttackIV(30); SpDefenseIV(31); SpeedIV(31); } // HP Electric
         OPPONENT(SPECIES_DIGLETT);
     } WHEN {
@@ -180,57 +180,23 @@ TO_DO_BATTLE_TEST("Aerilate doesn't affect Terrain Pulse's type");
 TO_DO_BATTLE_TEST("Aerilate doesn't affect damaging Z-Move types");
 TO_DO_BATTLE_TEST("(DYNAMAX) Aerilate turns Max Strike into Max Airstream"); // All other -ate abilities do this, so interpolating this as no Aerilate mon is available in a Dynamax game
 
-SINGLE_BATTLE_TEST("Aerilate turns a Normal-type move into Flying-type move (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Aerilate boosts power of affected moves by 20% (Gen7+) or 30% (Gen1-6) (Traits)", s16 damage)
 {
-    GIVEN {
-        PLAYER(SPECIES_MEGANIUM);
-        OPPONENT(SPECIES_SALAMENCE) { Ability(ABILITY_MOXIE); Innates(ABILITY_AERILATE); }
-    } WHEN {
-        TURN { MOVE(opponent, MOVE_SCRATCH); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponent);
-        MESSAGE("It's super effective!");
-    }
-}
-
-SINGLE_BATTLE_TEST("Aerilate can not turn certain moves into Flying type moves (Trait)")
-{
-    u32 move;
-    PARAMETRIZE { move = MOVE_WEATHER_BALL; }
-    // PARAMETRIZE { move = MOVE_NATURAL_GIFT; } TODO: handle this case via Skill Swap
-    PARAMETRIZE { move = MOVE_JUDGMENT; }
-    PARAMETRIZE { move = MOVE_TECHNO_BLAST; }
-    PARAMETRIZE { move = MOVE_REVELATION_DANCE; }
-    PARAMETRIZE { move = MOVE_MULTI_ATTACK; }
-    PARAMETRIZE { move = MOVE_TERRAIN_PULSE; }
-    GIVEN {
-        PLAYER(SPECIES_MEGANIUM);
-        OPPONENT(SPECIES_SALAMENCE) { Ability(ABILITY_MOXIE); Innates(ABILITY_AERILATE); }
-    } WHEN {
-        TURN { MOVE(opponent, move); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, move, opponent);
-        NONE_OF {
-            MESSAGE("It's super effective!");
-        }
-    }
-}
-
-SINGLE_BATTLE_TEST("Aerilate boosts power of affected moves by 20% (Gen7+) or 30% (Gen1-6) (Trait)", s16 damage)
-{
-    u32 ability, genConfig;
-    PARAMETRIZE { ability = ABILITY_LIGHT_METAL;   genConfig = GEN_7; }
-    PARAMETRIZE { ability = ABILITY_LIGHT_METAL;   genConfig = GEN_6; }
-    PARAMETRIZE { ability = ABILITY_AERILATE;  genConfig = GEN_7; }
-    PARAMETRIZE { ability = ABILITY_AERILATE;  genConfig = GEN_6; }
+    u32 move, genConfig;
+    PARAMETRIZE { move = MOVE_CELEBRATE;   genConfig = GEN_7; }
+    PARAMETRIZE { move = MOVE_CELEBRATE;   genConfig = GEN_6; }
+    PARAMETRIZE { move = MOVE_SKILL_SWAP;  genConfig = GEN_7; }
+    PARAMETRIZE { move = MOVE_SKILL_SWAP;  genConfig = GEN_6; }
 
     GIVEN {
-        WITH_CONFIG(GEN_CONFIG_ATE_MULTIPLIER, genConfig);
+        WITH_CONFIG(CONFIG_ATE_MULTIPLIER, genConfig);
         ASSUME(GetMoveType(MOVE_TACKLE) == TYPE_NORMAL);
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ability); }
-        OPPONENT(SPECIES_WOBBUFFET);
+        ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_SALAMENCE) { Ability(ABILITY_INTIMIDATE); Innates(ABILITY_MOXIE); Item(ITEM_SALAMENCITE); }
     } WHEN {
-        TURN { MOVE(player, MOVE_TACKLE); }
+        TURN { MOVE(opponent, move, gimmick: GIMMICK_MEGA); MOVE(player, MOVE_TACKLE); }
     } SCENE {
         HP_BAR(opponent, captureDamage: &results[i].damage);
     } FINALLY {
@@ -241,24 +207,25 @@ SINGLE_BATTLE_TEST("Aerilate boosts power of affected moves by 20% (Gen7+) or 30
     }
 }
 
-SINGLE_BATTLE_TEST("Aerilate doesn't affect Weather Ball's type (Trait)", s16 damage)
+SINGLE_BATTLE_TEST("Aerilate doesn't affect Weather Ball's type (Traits)", s16 damage)
 {
-    u32 move1, ability;
-    PARAMETRIZE { move1 = MOVE_CELEBRATE; ability = ABILITY_LIGHT_METAL; }
-    PARAMETRIZE { move1 = MOVE_SUNNY_DAY; ability = ABILITY_LIGHT_METAL; }
-    PARAMETRIZE { move1 = MOVE_CELEBRATE; ability = ABILITY_AERILATE; }
-    PARAMETRIZE { move1 = MOVE_SUNNY_DAY; ability = ABILITY_AERILATE; }
+    u32 move1, move2;
+    PARAMETRIZE { move1 = MOVE_CELEBRATE; move2 = MOVE_CELEBRATE; }
+    PARAMETRIZE { move1 = MOVE_SUNNY_DAY; move2 = MOVE_CELEBRATE; }
+    PARAMETRIZE { move1 = MOVE_CELEBRATE; move2 = MOVE_SKILL_SWAP; }
+    PARAMETRIZE { move1 = MOVE_SUNNY_DAY; move2 = MOVE_SKILL_SWAP; }
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_WEATHER_BALL) == EFFECT_WEATHER_BALL);
         ASSUME(GetMoveType(MOVE_WEATHER_BALL) == TYPE_NORMAL);
-        ASSUME(gSpeciesInfo[SPECIES_PINSIR].types[0] == TYPE_BUG);
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ability); }
-        OPPONENT(SPECIES_PINSIR);
+        ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);
+        ASSUME(GetSpeciesType(SPECIES_PINSIR, 0) == TYPE_BUG);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_PINSIR) { Ability(ABILITY_MOXIE); Innates(ABILITY_HYPER_CUTTER); Item(ITEM_PINSIRITE); }
     } WHEN {
-        TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, move1); }
+        TURN { MOVE(opponent, move2, gimmick: GIMMICK_MEGA); MOVE(player, move1); }
         TURN { MOVE(player, MOVE_WEATHER_BALL); }
     } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, move2, opponent);
         ANIMATION(ANIM_TYPE_MOVE, move1, player);
         HP_BAR(opponent, captureDamage: &results[i].damage);
         if (move1 == MOVE_SUNNY_DAY)
@@ -271,60 +238,12 @@ SINGLE_BATTLE_TEST("Aerilate doesn't affect Weather Ball's type (Trait)", s16 da
     }
 }
 
-SINGLE_BATTLE_TEST("Aerilate doesn't affect Natural Gift's type (Trait)")
-{
-    u16 ability;
-    PARAMETRIZE { ability = ABILITY_LIGHT_METAL; }
-    PARAMETRIZE { ability = ABILITY_AERILATE; }
-    GIVEN {
-        ASSUME(GetMoveEffect(MOVE_NATURAL_GIFT) == EFFECT_NATURAL_GIFT);
-        ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);
-        ASSUME(gNaturalGiftTable[ITEM_TO_BERRY(ITEM_PERSIM_BERRY)].type == TYPE_GROUND);
-        ASSUME(gSpeciesInfo[SPECIES_SALAMENCE_MEGA].types[0] == TYPE_FLYING || gSpeciesInfo[SPECIES_SALAMENCE_MEGA].types[1] == TYPE_FLYING);
-        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_PERSIM_BERRY); Ability(ABILITY_SHADOW_TAG); Innates(ability); }
-        OPPONENT(SPECIES_SALAMENCE) { Item(ITEM_SALAMENCITE); }
-    } WHEN {
-        TURN { MOVE(player, MOVE_NATURAL_GIFT); }
-    } SCENE {
-        NOT { ANIMATION(ANIM_TYPE_MOVE, MOVE_NATURAL_GIFT, player); }
-        MESSAGE("It doesn't affect the opposing Salamence…");
-    }
-}
-
-SINGLE_BATTLE_TEST("Aerilate doesn't affect Judgment / Techno Blast / Multi-Attack's type (Trait)")
-{
-    u16 move, item;
-    PARAMETRIZE { move = MOVE_JUDGMENT; item = ITEM_ZAP_PLATE; }
-    PARAMETRIZE { move = MOVE_TECHNO_BLAST; item = ITEM_SHOCK_DRIVE; }
-    PARAMETRIZE { move = MOVE_MULTI_ATTACK; item = ITEM_ELECTRIC_MEMORY; }
-    GIVEN {
-        ASSUME(GetMoveEffect(MOVE_JUDGMENT) == EFFECT_CHANGE_TYPE_ON_ITEM);
-        ASSUME(GetMoveEffect(MOVE_TECHNO_BLAST) == EFFECT_CHANGE_TYPE_ON_ITEM);
-        ASSUME(GetMoveEffect(MOVE_MULTI_ATTACK) == EFFECT_CHANGE_TYPE_ON_ITEM);
-        ASSUME(GetMoveEffect(MOVE_SKILL_SWAP) == EFFECT_SKILL_SWAP);
-        ASSUME(gItemsInfo[ITEM_ZAP_PLATE].holdEffect == HOLD_EFFECT_PLATE);
-        ASSUME(gItemsInfo[ITEM_ZAP_PLATE].secondaryId == TYPE_ELECTRIC);
-        ASSUME(gItemsInfo[ITEM_SHOCK_DRIVE].holdEffect == HOLD_EFFECT_DRIVE);
-        ASSUME(gItemsInfo[ITEM_SHOCK_DRIVE].secondaryId == TYPE_ELECTRIC);
-        ASSUME(gItemsInfo[ITEM_ELECTRIC_MEMORY].holdEffect == HOLD_EFFECT_MEMORY);
-        ASSUME(gItemsInfo[ITEM_ELECTRIC_MEMORY].secondaryId == TYPE_ELECTRIC);
-        ASSUME(gSpeciesInfo[SPECIES_DIGLETT].types[0] == TYPE_GROUND);
-        PLAYER(SPECIES_WOBBUFFET) { Item(item); Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_AERILATE); }
-        OPPONENT(SPECIES_DIGLETT);
-    } WHEN {
-        TURN { MOVE(player, move); }
-    } SCENE {
-        NOT { ANIMATION(ANIM_TYPE_MOVE, move, player); }
-        MESSAGE("It doesn't affect the opposing Diglett…");
-    }
-}
-
-SINGLE_BATTLE_TEST("Aerilate doesn't affect Hidden Power's type (Trait)")
+SINGLE_BATTLE_TEST("Aerilate doesn't affect Hidden Power's type (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_HIDDEN_POWER) == EFFECT_HIDDEN_POWER);
         ASSUME(gTypesInfo[TYPE_ELECTRIC].isHiddenPowerType == TRUE);
-        ASSUME(gSpeciesInfo[SPECIES_DIGLETT].types[0] == TYPE_GROUND);
+        ASSUME(GetSpeciesType(SPECIES_DIGLETT, 0) == TYPE_GROUND);
         PLAYER(SPECIES_PINSIR) { Ability(ABILITY_HYPER_CUTTER); Innates(ABILITY_AERILATE); HPIV(31); AttackIV(31); DefenseIV(31); SpAttackIV(30); SpDefenseIV(31); SpeedIV(31); } // HP Electric
         OPPONENT(SPECIES_DIGLETT);
     } WHEN {
@@ -335,12 +254,13 @@ SINGLE_BATTLE_TEST("Aerilate doesn't affect Hidden Power's type (Trait)")
     }
 }
 
-TO_DO_BATTLE_TEST("Aerilate doesn't override Electrify (Gen7+) (Trait)"); // No mon with Aerilate exists in Gen8+, but probably behaves similar to Pixilate, which does.
-TO_DO_BATTLE_TEST("Aerilate doesn't override Ion Deluge (Gen7+) (Trait)"); // Ion Deluge doesn't exist in Gen 8+, but we probably could assume it behaves similar to under Electrify. TODO: Test by hacking SV.
-TO_DO_BATTLE_TEST("Aerilate overrides Electrify (Gen6) (Trait)")
-TO_DO_BATTLE_TEST("Aerilate overrides Ion Deluge (Gen6) (Trait)")
-TO_DO_BATTLE_TEST("Aerilate doesn't affect Tera Starstorm's type (Trait)");
-TO_DO_BATTLE_TEST("Aerilate doesn't affect Max Strike's type (Trait)");
-TO_DO_BATTLE_TEST("Aerilate doesn't affect Terrain Pulse's type (Trait)");
-TO_DO_BATTLE_TEST("Aerilate doesn't affect damaging Z-Move types (Trait)");
-TO_DO_BATTLE_TEST("(DYNAMAX) Aerilate turns Max Strike into Max Airstream (Trait)"); // All other -ate abilities do this, so interpolating this as no Aerilate mon is available in a Dynamax game
+TO_DO_BATTLE_TEST("Aerilate doesn't override Electrify (Gen7+) (Traits)"); // No mon with Aerilate exists in Gen8+, but probably behaves similar to Pixilate, which does.
+TO_DO_BATTLE_TEST("Aerilate doesn't override Ion Deluge (Gen7+) (Traits)"); // Ion Deluge doesn't exist in Gen 8+, but we probably could assume it behaves similar to under Electrify. TODO: Test by hacking SV.
+TO_DO_BATTLE_TEST("Aerilate overrides Electrify (Gen6) (Traits)")
+TO_DO_BATTLE_TEST("Aerilate overrides Ion Deluge (Gen6) (Traits)")
+TO_DO_BATTLE_TEST("Aerilate doesn't affect Tera Starstorm's type (Traits)");
+TO_DO_BATTLE_TEST("Aerilate doesn't affect Max Strike's type (Traits)");
+TO_DO_BATTLE_TEST("Aerilate doesn't affect Terrain Pulse's type (Traits)");
+TO_DO_BATTLE_TEST("Aerilate doesn't affect damaging Z-Move types (Traits)");
+TO_DO_BATTLE_TEST("(DYNAMAX) Aerilate turns Max Strike into Max Airstream (Traits)"); // All other -ate abilities do this, so interpolating this as no Aerilate mon is available in a Dynamax game
+#endif

@@ -10,9 +10,9 @@ SINGLE_BATTLE_TEST("Swarm boosts Bug-type moves in a pinch", s16 damage)
         ASSUME(GetMoveType(MOVE_BUG_BITE) == TYPE_BUG);
         ASSUME(GetMovePower(MOVE_BUG_BITE) == 60);
         ASSUME(GetMoveCategory(MOVE_BUG_BITE) == DAMAGE_CATEGORY_PHYSICAL);
-        ASSUME(gSpeciesInfo[SPECIES_LEDYBA].types[0] == TYPE_BUG);
-        ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[0] == TYPE_PSYCHIC);
-        ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[1] == TYPE_PSYCHIC);
+        ASSUME(GetSpeciesType(SPECIES_LEDYBA, 0) == TYPE_BUG);
+        ASSUME(GetSpeciesType(SPECIES_WOBBUFFET, 0) == TYPE_PSYCHIC);
+        ASSUME(GetSpeciesType(SPECIES_WOBBUFFET, 1) == TYPE_PSYCHIC);
         PLAYER(SPECIES_LEDYBA) { Ability(ABILITY_SWARM); MaxHP(99); HP(hp); Attack(45); }
         OPPONENT(SPECIES_WOBBUFFET) { Defense(121); }
     } WHEN {
@@ -28,7 +28,7 @@ SINGLE_BATTLE_TEST("Swarm boosts Bug-type moves in a pinch", s16 damage)
     }
 }
 
-SINGLE_BATTLE_TEST("Swarm boosts Bug-type moves in a pinch (Trait)", s16 damage)
+SINGLE_BATTLE_TEST("Swarm boosts Bug-type moves in a pinch", s16 damage)
 {
     u16 hp;
     PARAMETRIZE { hp = 99; }
@@ -37,10 +37,10 @@ SINGLE_BATTLE_TEST("Swarm boosts Bug-type moves in a pinch (Trait)", s16 damage)
         ASSUME(GetMoveType(MOVE_BUG_BITE) == TYPE_BUG);
         ASSUME(GetMovePower(MOVE_BUG_BITE) == 60);
         ASSUME(GetMoveCategory(MOVE_BUG_BITE) == DAMAGE_CATEGORY_PHYSICAL);
-        ASSUME(gSpeciesInfo[SPECIES_LEDYBA].types[0] == TYPE_BUG);
-        ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[0] == TYPE_PSYCHIC);
-        ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].types[1] == TYPE_PSYCHIC);
-        PLAYER(SPECIES_LEDYBA) { Ability(ABILITY_EARLY_BIRD); Innates(ABILITY_SWARM); MaxHP(99); HP(hp); Attack(45); }
+        ASSUME(GetSpeciesType(SPECIES_LEDYBA, 0) == TYPE_BUG);
+        ASSUME(GetSpeciesType(SPECIES_WOBBUFFET, 0) == TYPE_PSYCHIC);
+        ASSUME(GetSpeciesType(SPECIES_WOBBUFFET, 1) == TYPE_PSYCHIC);
+        PLAYER(SPECIES_LEDYBA) { Ability(ABILITY_RATTLED); Innates(ABILITY_SWARM); MaxHP(99); HP(hp); Attack(45); }
         OPPONENT(SPECIES_WOBBUFFET) { Defense(121); }
     } WHEN {
         TURN { MOVE(player, MOVE_BUG_BITE); }

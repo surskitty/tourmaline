@@ -221,14 +221,14 @@ const u8 gText_ReturnToVar1[] = _("Return to\n{STR_VAR_1}.");
 
 const u8 *const gPocketNamesStringsTable[] =
 {
-    [ITEMS_POCKET] =    COMPOUND_STRING("Items"),
-    [BALLS_POCKET] =    COMPOUND_STRING("Poké Balls"),
-    [TMHM_POCKET]  =    COMPOUND_STRING("TMs & HMs"),
-    [BERRIES_POCKET] =  COMPOUND_STRING("Berries"),
-    [KEYITEMS_POCKET] = COMPOUND_STRING("Key Items")
+    [POCKET_ITEMS] =        COMPOUND_STRING("Items"),
+    [POCKET_POKE_BALLS] =   COMPOUND_STRING("Poké BallS"),
+    [POCKET_TM_HM]  =       COMPOUND_STRING("TMs & HMs"),
+    [POCKET_BERRIES] =      COMPOUND_STRING("Berries"),
+    [POCKET_KEY_ITEMS] =    COMPOUND_STRING("Key Items")
 };
 
-const u8 gText_NumberItem_TMBerry[] = _("{NO}{STR_VAR_1}{CLEAR 0x07}{STR_VAR_2}");
+const u8 gText_NumberItem_TMBerry[] = _("{NO}{STR_VAR_1}{CLEAR 0x03}{STR_VAR_2}");
 const u8 gText_NumberItem_HM[] = _("{CLEAR_TO 0x11}{STR_VAR_1}{CLEAR 0x05}{STR_VAR_2}");
 
 const u8 gText_ShopBuy[] = _("Buy");
@@ -867,8 +867,8 @@ const u8 gText_ThankYou[] = _("THANK YOU");
 const u8 gText_ByeBye[] = _("BYE-BYE!");
 const u8 gText_PlayerScurriedToCenter[] = _("{PLAYER} scurried to a Pokémon Center,\nprotecting the exhausted and fainted\nPokémon from further harm…\p");
 const u8 gText_PlayerScurriedBackHome[] = _("{PLAYER} scurried back home, protecting\nthe exhausted and fainted Pokémon from\nfurther harm…\p");
-const u8 gText_PlayerRegroupCenter[] = _("{PLAYER} went running back to a Pokémon Center\nto regroup and reconsider their battle\lstrategy…\p");
-const u8 gText_PlayerRegroupHome[] = _("{PLAYER} went running back home to regroup\nand reconsider their battle strategy…\p");
+const u8 gText_PlayerRegroupCenter[] = _("{PLAYER} scurried to a Pokémon Center\nto regroup and reconsider their battle\lstrategy…\p");
+const u8 gText_PlayerRegroupHome[] = _("{PLAYER} scurried back home to regroup\nand reconsider their battle strategy…\p");
 const u8 gText_HatchedFromEgg[] = _("{STR_VAR_1} hatched from the EGG!");
 const u8 gText_NicknameHatchPrompt[] = _("Would you like to nickname the newly\nhatched {STR_VAR_1}?");
 ALIGNED(4) const u8 gText_ReadyPickBerry[] = _("Are you ready to BERRY-CRUSH?\nPlease pick a BERRY for use.\p");
@@ -1030,6 +1030,9 @@ ALIGNED(4) const u8 gText_FrontierFacilityRoomsCleared[] = _("Rooms cleared: {ST
 ALIGNED(4) const u8 gText_FrontierFacilityKOsStreak[] = _("KOs in a row: {STR_VAR_2}");
 ALIGNED(4) const u8 gText_FrontierFacilityFloorsCleared[] = _("Floors cleared: {STR_VAR_2}");
 ALIGNED(4) const u8 gText_123Dot[][3] = {_("1."), _("2."), _("3.")};
+const u8 gText_FrontierFacilityTotalCaughtSpeciesBanned[] = _(" and {STR_VAR_2} of the POKéMON species\nyou caught are inelegible");
+const u8 gText_FrontierFacilityIncluding[] = _(".\pThese include ");
+const u8 gText_FrontierFacilityAreInelegible[] = _(" are inelegible");
 
 const u8 gText_SavingDontTurnOff2[] = _("SAVING…\nDON'T TURN OFF THE POWER.");
 const u8 gText_BlenderMaxSpeedRecord[] = _("BERRY BLENDER\nMAXIMUM SPEED RECORD!");
@@ -1042,28 +1045,6 @@ const u8 gText_CommErrorEllipsis[] = _("Communication error…");
 const u8 gText_MoveCloserToLinkPartner[] = _("Move closer to your link partner(s).\nAvoid obstacles between partners.");
 const u8 gText_ABtnRegistrationCounter[] = _("A Button: Registration Counter");
 const u8 gText_ABtnTitleScreen[] = _("A Button: Title Screen");
-const u8 gText_Option[] = _("Option");
-const u8 gText_TextSpeed[] = _("Text Speed");
-const u8 gText_BattleScene[] = _("Battle Scene");
-const u8 gText_BattleStyle[] = _("Battle Style");
-const u8 gText_Sound[] = _("Sound");
-const u8 gText_Frame[] = _("Frame");
-const u8 gText_OptionMenuCancel[] = _("Cancel");
-const u8 gText_ButtonMode[] = _("Button Mode");
-const u8 gText_TextSpeedSlow[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Slow");
-const u8 gText_TextSpeedMid[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Mid");
-const u8 gText_TextSpeedFast[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Fast");
-const u8 gText_BattleSceneOn[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}On");
-const u8 gText_BattleSceneOff[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Off");
-const u8 gText_BattleStyleShift[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Shift");
-const u8 gText_BattleStyleSet[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Set");
-const u8 gText_SoundMono[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Mono");
-const u8 gText_SoundStereo[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Stereo");
-const u8 gText_FrameType[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}Type");
-const u8 gText_FrameTypeNumber[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}");
-const u8 gText_ButtonTypeNormal[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}NORMAL");
-const u8 gText_ButtonTypeLR[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}LR");
-const u8 gText_ButtonTypeLEqualsA[] = _("{COLOR GREEN}{SHADOW LIGHT_GREEN}L=A");
 const u8 gText_NumPlayerLink[] = _("{STR_VAR_1}P LINK");
 const u8 gText_BronzeCard[] = _("Bronze");
 const u8 gText_CopperCard[] = _("Copper");
@@ -1295,7 +1276,7 @@ const u8 gText_TrainerHill1F[] = _("1F");
 const u8 gText_TrainerHill2F[] = _("2F");
 const u8 gText_TrainerHill3F[] = _("3F");
 const u8 gText_TrainerHill4F[] = _("4F");
-const u8 gText_TeachWhichMoveToPkmn[] = _("Teach which move to\n{STR_VAR_1}?");
+const u8 gText_TeachWhichMoveToPkmn[] = _("Teach which {STR_VAR_3} to\n{STR_VAR_1}?");
 const u8 gText_MoveRelearnerTeachMoveConfirm[] = _("Teach {STR_VAR_2}?");
 const u8 gText_MoveRelearnerPkmnLearnedMove[] = _("{STR_VAR_1} learned\n{STR_VAR_2}!");
 const u8 gText_MoveRelearnerPkmnTryingToLearnMove[] = _("{STR_VAR_1} is trying to learn\n{STR_VAR_2}.\pBut {STR_VAR_1} can't learn more\nthan four moves.\pDelete an older move to make\nroom for {STR_VAR_2}?");
@@ -1358,9 +1339,14 @@ const u8 gText_PlantBerry[] = _("Plant Berry");
 const u8 gText_AM[] = _("AM");
 const u8 gText_PM[] = _("PM");
 const u8 gText_Relearn[] = _("{START_BUTTON} RELEARN"); // future note: don't decap this, because it mimics the summary screen BG graphics which will not get decapped
-const u8 gText_Rename[] = _("Rename");
+const u8 gText_Relearn_LevelUp[] = _("{START_BUTTON} RELEARN LEVEL");
+const u8 gText_Relearn_Egg[] = _("{START_BUTTON} RELEARN EGG");
+const u8 gText_Relearn_TM[] = _("{START_BUTTON} RELEARN TM");
+const u8 gText_Relearn_Tutor[] = _("{START_BUTTON} RELEARN TUTOR");
+const u8 gText_Rename[] = _("RENAME");
 const u8 gText_CannotSendMonToBoxHM[] = _("Cannot send that one to the box,\nbecause it knows a HM move.{PAUSE_UNTIL_PRESS}");
-
+const u8 gText_CannotSendMonToBoxActive[] = _("Cannot send an active battler\nto the box.{PAUSE_UNTIL_PRESS}");
+const u8 gText_CannotSendMonToBoxPartner[] = _("Cannot send one that doesn't\nbelong to you to the box.{PAUSE_UNTIL_PRESS}");
 
 //New Summary Screen Pages
 const u8 gText_PkmnTraits[] = _("Traits");

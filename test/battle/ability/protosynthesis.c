@@ -59,6 +59,7 @@ SINGLE_BATTLE_TEST("Protosynthesis ability pop up activates only once during the
     u16 turns;
 
     GIVEN {
+        WITH_CONFIG(CONFIG_ABILITY_WEATHER, GEN_6);
         PLAYER(SPECIES_WALKING_WAKE) { Ability(ABILITY_PROTOSYNTHESIS); }
         OPPONENT(SPECIES_NINETALES) { Ability(ABILITY_DROUGHT); };
     } WHEN {
@@ -184,7 +185,8 @@ SINGLE_BATTLE_TEST("Protosynthesis activates even if the Pokémon is holding an 
 
 SINGLE_BATTLE_TEST("Protosynthesis doesn't activate if Cloud Nine/Air Lock is on the field")
 {
-    u32 species, ability;
+    u32 species;
+    enum Ability ability;
     PARAMETRIZE { species = SPECIES_RAYQUAZA; ability = ABILITY_AIR_LOCK; }
     PARAMETRIZE { species = SPECIES_GOLDUCK; ability = ABILITY_CLOUD_NINE; }
 
@@ -200,7 +202,118 @@ SINGLE_BATTLE_TEST("Protosynthesis doesn't activate if Cloud Nine/Air Lock is on
     }
 }
 
-SINGLE_BATTLE_TEST("Protosynthesis boosts the highest stat (Trait)")
+SINGLE_BATTLE_TEST("Protosynthesis activates after weather was reset")
+{
+    GIVEN {
+        PLAYER(SPECIES_WALKING_WAKE) { Ability(ABILITY_PROTOSYNTHESIS); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SUNNY_DAY); }
+        TURN { MOVE(player, MOVE_RAIN_DANCE); }
+        TURN { MOVE(player, MOVE_SUNNY_DAY); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SUNNY_DAY, player);
+        ABILITY_POPUP(player, ABILITY_PROTOSYNTHESIS);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_RAIN_DANCE, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SUNNY_DAY, player);
+        ABILITY_POPUP(player, ABILITY_PROTOSYNTHESIS);
+    }
+}
+
+SINGLE_BATTLE_TEST("Protosynthesis accounts for Sticky Web when determining the boosted stat")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Speed(1); }
+        PLAYER(SPECIES_FLUTTER_MANE) { Ability(ABILITY_PROTOSYNTHESIS); Attack(50); Defense(50); SpAttack(150); SpDefense(140); Speed(180); }
+        OPPONENT(SPECIES_GALVANTULA) { Speed(60); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(1); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_STICKY_WEB); MOVE(player, MOVE_SUNNY_DAY); }
+        TURN { SWITCH(player, 1); MOVE(opponent, MOVE_SPLASH); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SUNNY_DAY, player);
+        ABILITY_POPUP(player, ABILITY_PROTOSYNTHESIS);
+        MESSAGE("The harsh sunlight activated Flutter Mane's Protosynthesis!");
+        MESSAGE("Flutter Mane's Sp. Atk was heightened!");
+    }
+}
+
+SINGLE_BATTLE_TEST("Protosynthesis keeps its initial boosted stat after Speed is lowered")
+{
+    s16 damage[2];
+
+    GIVEN {
+        PLAYER(SPECIES_FLUTTER_MANE) { Ability(ABILITY_PROTOSYNTHESIS); Attack(10); Defense(10); SpAttack(150); SpDefense(120); Speed(180); Moves(MOVE_ROUND); }
+        OPPONENT(SPECIES_NINETALES) { Ability(ABILITY_DROUGHT); Moves(MOVE_ICY_WIND, MOVE_CELEBRATE); Speed(100); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_ROUND); MOVE(opponent, MOVE_ICY_WIND); }
+        TURN { MOVE(player, MOVE_ROUND); MOVE(opponent, MOVE_CELEBRATE); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_DROUGHT);
+        ABILITY_POPUP(player, ABILITY_PROTOSYNTHESIS);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROUND, player);
+        HP_BAR(opponent, captureDamage: &damage[0]);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ICY_WIND, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROUND, player);
+        HP_BAR(opponent, captureDamage: &damage[1]);
+    } THEN {
+        EXPECT_EQ(damage[0], damage[1]);
+    }
+}
+
+SINGLE_BATTLE_TEST("Protosynthesis recalculates the boosted stat after Neutralizing Gas leaves the field")
+{
+    GIVEN {
+        PLAYER(SPECIES_FLUTTER_MANE) { Ability(ABILITY_PROTOSYNTHESIS); Attack(10); Defense(10); SpAttack(150); SpDefense(120); Speed(180); }
+        OPPONENT(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); Moves(MOVE_ICY_WIND); Speed(70); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(1); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SUNNY_DAY); MOVE(opponent, MOVE_ICY_WIND); }
+        TURN { SWITCH(opponent, 1); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_NEUTRALIZING_GAS);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SUNNY_DAY, player);
+        NOT ABILITY_POPUP(player, ABILITY_PROTOSYNTHESIS);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ICY_WIND, opponent);
+        MESSAGE("The effects of the neutralizing gas wore off!");
+        ABILITY_POPUP(player, ABILITY_PROTOSYNTHESIS);
+        MESSAGE("The harsh sunlight activated Flutter Mane's Protosynthesis!");
+        MESSAGE("Flutter Mane's Sp. Atk was heightened!");
+    }
+}
+
+SINGLE_BATTLE_TEST("Protosynthesis retains its boosted stat after Neutralizing Gas briefly suppresses it")
+{
+    s16 damage[2];
+
+    GIVEN {
+        PLAYER(SPECIES_FLUTTER_MANE) { Ability(ABILITY_PROTOSYNTHESIS); Attack(10); Defense(10); SpAttack(150); SpDefense(120); Speed(180); Moves(MOVE_SUNNY_DAY, MOVE_ROUND, MOVE_CELEBRATE); }
+        OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_CELEBRATE); Speed(1); }
+        OPPONENT(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); Moves(MOVE_CELEBRATE); Speed(70); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SUNNY_DAY); MOVE(opponent, MOVE_CELEBRATE); }
+        TURN { MOVE(player, MOVE_ROUND); MOVE(opponent, MOVE_CELEBRATE); }
+        TURN { MOVE(player, MOVE_CELEBRATE); SWITCH(opponent, 1); }
+        TURN { MOVE(player, MOVE_CELEBRATE); SWITCH(opponent, 0); }
+        TURN { MOVE(player, MOVE_ROUND); MOVE(opponent, MOVE_CELEBRATE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SUNNY_DAY, player);
+        ABILITY_POPUP(player, ABILITY_PROTOSYNTHESIS);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROUND, player);
+        HP_BAR(opponent, captureDamage: &damage[0]);
+        ABILITY_POPUP(opponent, ABILITY_NEUTRALIZING_GAS);
+        MESSAGE("Neutralizing gas filled the area!");
+        MESSAGE("The effects of the neutralizing gas wore off!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROUND, player);
+        HP_BAR(opponent, captureDamage: &damage[1]);
+    } THEN {
+        EXPECT_EQ(damage[0], damage[1]);
+    }
+}
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Protosynthesis boosts the highest stat (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WALKING_WAKE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PROTOSYNTHESIS); }
@@ -215,7 +328,7 @@ SINGLE_BATTLE_TEST("Protosynthesis boosts the highest stat (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Protosynthesis boosts either Attack or Special Attack, not both (Trait)")
+SINGLE_BATTLE_TEST("Protosynthesis boosts either Attack or Special Attack, not both (Traits)")
 {
     u16 species;
     u32 move;
@@ -247,11 +360,12 @@ SINGLE_BATTLE_TEST("Protosynthesis boosts either Attack or Special Attack, not b
     }
 }
 
-SINGLE_BATTLE_TEST("Protosynthesis ability pop up activates only once during the duration of sunny day (Trait)")
+SINGLE_BATTLE_TEST("Protosynthesis ability pop up activates only once during the duration of sunny day (Traits)")
 {
     u16 turns;
 
     GIVEN {
+        WITH_CONFIG(CONFIG_ABILITY_WEATHER, GEN_6);
         PLAYER(SPECIES_WALKING_WAKE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PROTOSYNTHESIS); }
         OPPONENT(SPECIES_NINETALES) { Ability(ABILITY_FLASH_FIRE); Innates(ABILITY_DROUGHT); };
     } WHEN {
@@ -277,7 +391,7 @@ SINGLE_BATTLE_TEST("Protosynthesis ability pop up activates only once during the
     }
 }
 
-SINGLE_BATTLE_TEST("Protosynthesis activates on switch-in (Trait)")
+SINGLE_BATTLE_TEST("Protosynthesis activates on switch-in (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -293,7 +407,7 @@ SINGLE_BATTLE_TEST("Protosynthesis activates on switch-in (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Protosynthesis prioritizes stats in the case of a tie in the following order: Atk, Def, Sp.Atk, Sp.Def, Speed (Trait)")
+SINGLE_BATTLE_TEST("Protosynthesis prioritizes stats in the case of a tie in the following order: Atk, Def, Sp.Atk, Sp.Def, Speed (Traits)")
 {
     u8 stats[] = {1, 1, 1, 1, 1};
 
@@ -326,7 +440,7 @@ SINGLE_BATTLE_TEST("Protosynthesis prioritizes stats in the case of a tie in the
     }
 }
 
-SINGLE_BATTLE_TEST("Protosynthesis activates in Sun before Booster Energy (Trait)")
+SINGLE_BATTLE_TEST("Protosynthesis activates in Sun before Booster Energy (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -342,7 +456,7 @@ SINGLE_BATTLE_TEST("Protosynthesis activates in Sun before Booster Energy (Trait
     }
 }
 
-SINGLE_BATTLE_TEST("Protosynthesis doesn't activate for a transformed battler (Trait)")
+SINGLE_BATTLE_TEST("Protosynthesis doesn't activate for a transformed battler (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -358,11 +472,10 @@ SINGLE_BATTLE_TEST("Protosynthesis doesn't activate for a transformed battler (T
     } THEN {
         EXPECT_EQ(player->item, ITEM_BOOSTER_ENERGY);
         EXPECT_EQ(opponent->item, ITEM_BOOSTER_ENERGY);
-        //EXPECT_EQ(opponent->ability, ABILITY_PROTOSYNTHESIS); //Is an Innate instead of an Ability
     }
 }
 
-SINGLE_BATTLE_TEST("Protosynthesis activates even if the Pokémon is holding an Utility Umbrella (Trait)")
+SINGLE_BATTLE_TEST("Protosynthesis activates even if the Pokémon is holding an Utility Umbrella (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_GREAT_TUSK) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PROTOSYNTHESIS); Item(ITEM_UTILITY_UMBRELLA); }
@@ -375,9 +488,10 @@ SINGLE_BATTLE_TEST("Protosynthesis activates even if the Pokémon is holding an 
     }
 }
 
-SINGLE_BATTLE_TEST("Protosynthesis doesn't activate if Cloud Nine/Air Lock is on the field (Trait)")
+SINGLE_BATTLE_TEST("Protosynthesis doesn't activate if Cloud Nine/Air Lock is on the field (Traits)")
 {
-    u32 species, ability;
+    u32 species;
+    enum Ability ability;
     PARAMETRIZE { species = SPECIES_RAYQUAZA; ability = ABILITY_AIR_LOCK; }
     PARAMETRIZE { species = SPECIES_GOLDUCK; ability = ABILITY_CLOUD_NINE; }
 
@@ -392,3 +506,64 @@ SINGLE_BATTLE_TEST("Protosynthesis doesn't activate if Cloud Nine/Air Lock is on
         NOT ABILITY_POPUP(player, ABILITY_PROTOSYNTHESIS);
     }
 }
+
+SINGLE_BATTLE_TEST("Protosynthesis activates after weather was reset (Traits)")
+{
+    GIVEN {
+        PLAYER(SPECIES_WALKING_WAKE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PROTOSYNTHESIS); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SUNNY_DAY); }
+        TURN { MOVE(player, MOVE_RAIN_DANCE); }
+        TURN { MOVE(player, MOVE_SUNNY_DAY); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SUNNY_DAY, player);
+        ABILITY_POPUP(player, ABILITY_PROTOSYNTHESIS);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_RAIN_DANCE, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SUNNY_DAY, player);
+        ABILITY_POPUP(player, ABILITY_PROTOSYNTHESIS);
+    }
+}
+
+SINGLE_BATTLE_TEST("Protosynthesis accounts for Sticky Web when determining the boosted stat (Traits)")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Speed(1); }
+        PLAYER(SPECIES_FLUTTER_MANE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PROTOSYNTHESIS); Attack(50); Defense(50); SpAttack(150); SpDefense(140); Speed(180); }
+        OPPONENT(SPECIES_GALVANTULA) { Speed(60); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(1); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_STICKY_WEB); MOVE(player, MOVE_SUNNY_DAY); }
+        TURN { SWITCH(player, 1); MOVE(opponent, MOVE_SPLASH); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SUNNY_DAY, player);
+        ABILITY_POPUP(player, ABILITY_PROTOSYNTHESIS);
+        MESSAGE("The harsh sunlight activated Flutter Mane's Protosynthesis!");
+        MESSAGE("Flutter Mane's Sp. Atk was heightened!");
+    }
+}
+
+SINGLE_BATTLE_TEST("Protosynthesis keeps its initial boosted stat after Speed is lowered (Traits)")
+{
+    s16 damage[2];
+
+    GIVEN {
+        PLAYER(SPECIES_FLUTTER_MANE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PROTOSYNTHESIS); Attack(10); Defense(10); SpAttack(150); SpDefense(120); Speed(180); Moves(MOVE_ROUND); }
+        OPPONENT(SPECIES_NINETALES) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DROUGHT); Moves(MOVE_ICY_WIND, MOVE_CELEBRATE); Speed(100); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_ROUND); MOVE(opponent, MOVE_ICY_WIND); }
+        TURN { MOVE(player, MOVE_ROUND); MOVE(opponent, MOVE_CELEBRATE); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_DROUGHT);
+        ABILITY_POPUP(player, ABILITY_PROTOSYNTHESIS);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROUND, player);
+        HP_BAR(opponent, captureDamage: &damage[0]);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ICY_WIND, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROUND, player);
+        HP_BAR(opponent, captureDamage: &damage[1]);
+    } THEN {
+        EXPECT_EQ(damage[0], damage[1]);
+    }
+}
+#endif

@@ -4,7 +4,7 @@
 SINGLE_BATTLE_TEST("Dragon's Maw increases Dragon-type move damage", s16 damage)
 {
     u32 move;
-    u16 ability;
+    enum Ability ability;
 
     PARAMETRIZE { move = MOVE_SCRATCH; ability = ABILITY_KLUTZ; }
     PARAMETRIZE { move = MOVE_SCRATCH; ability = ABILITY_DRAGONS_MAW; }
@@ -32,10 +32,11 @@ SINGLE_BATTLE_TEST("Dragon's Maw increases Dragon-type move damage", s16 damage)
     }
 }
 
-SINGLE_BATTLE_TEST("Dragon's Maw increases Dragon-type move damage (Trait)", s16 damage)
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Dragon's Maw increases Dragon-type move damage (Traits)", s16 damage)
 {
     u32 move;
-    u16 ability;
+    enum Ability ability;
 
     PARAMETRIZE { move = MOVE_SCRATCH; ability = ABILITY_KLUTZ; }
     PARAMETRIZE { move = MOVE_SCRATCH; ability = ABILITY_DRAGONS_MAW; }
@@ -50,7 +51,7 @@ SINGLE_BATTLE_TEST("Dragon's Maw increases Dragon-type move damage (Trait)", s16
         ASSUME(GetMoveType(MOVE_DRAGON_BREATH) == TYPE_DRAGON);
         ASSUME(GetMoveCategory(MOVE_DRAGON_CLAW) == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(GetMoveCategory(MOVE_DRAGON_BREATH) == DAMAGE_CATEGORY_SPECIAL);
-        PLAYER(SPECIES_REGIDRAGO) { Ability(ABILITY_KLUTZ); Innates(ability); }
+        PLAYER(SPECIES_REGIDRAGO) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, move); }
@@ -62,3 +63,4 @@ SINGLE_BATTLE_TEST("Dragon's Maw increases Dragon-type move damage (Trait)", s16
         EXPECT_MUL_EQ(results[4].damage, Q_4_12(1.5), results[5].damage); // Dragon Breath should be affected
     }
 }
+#endif

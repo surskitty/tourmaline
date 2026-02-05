@@ -148,7 +148,8 @@ SINGLE_BATTLE_TEST("Revelation Dance becomes Normal type if used by a Typeless P
     }
 }
 
-SINGLE_BATTLE_TEST("Revelation Dance becomes Normal type if used by a Typeless Pokemon due to Roost (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Revelation Dance becomes Normal type if used by a Typeless Pokemon due to Roost (Traits)")
 {
     u16 speciesOpponent;
 
@@ -184,3 +185,4 @@ SINGLE_BATTLE_TEST("Revelation Dance becomes Normal type if used by a Typeless P
         }
     }
 }
+#endif

@@ -205,6 +205,7 @@ SINGLE_BATTLE_TEST("Teatime triggers Lightning Rod if it has been affected by El
     PARAMETRIZE { move = MOVE_PLASMA_FISTS; item = ITEM_NONE; }
 
     GIVEN {
+        WITH_CONFIG(CONFIG_REDIRECT_ABILITY_IMMUNITY, GEN_5);
         PLAYER(SPECIES_PIKACHU) { Ability(ABILITY_LIGHTNING_ROD); Item(item); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_LIECHI_BERRY); }
     } WHEN {
@@ -270,11 +271,12 @@ SINGLE_BATTLE_TEST("Teatime triggers Motor Drive if it has been affected by Elec
     }
 }
 
-SINGLE_BATTLE_TEST("Teatime causes the user to consume its Berry, even in the pressence of Unnerve (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Teatime causes the user to consume its Berry, even in the pressence of Unnerve (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_LIECHI_BERRY); }
-        OPPONENT(SPECIES_EKANS) { Ability(ABILITY_SHED_SKIN); Innates(ABILITY_UNNERVE); }
+        OPPONENT(SPECIES_EKANS) { Ability(ABILITY_INTIMIDATE); Innates(ABILITY_UNNERVE); }
     } WHEN {
         TURN { MOVE(player, MOVE_TEATIME); }
     } SCENE {
@@ -284,7 +286,7 @@ SINGLE_BATTLE_TEST("Teatime causes the user to consume its Berry, even in the pr
     }
 }
 
-SINGLE_BATTLE_TEST("Teatime triggers Volt Absorb if it has been affected by Electrify or Plasma Fists, even when not holding a Berry (Trait)")
+SINGLE_BATTLE_TEST("Teatime triggers Volt Absorb if it has been affected by Electrify or Plasma Fists, even when not holding a Berry (Traits)")
 {
     u32 move;
     u32 item = ITEM_LIECHI_BERRY;
@@ -297,7 +299,7 @@ SINGLE_BATTLE_TEST("Teatime triggers Volt Absorb if it has been affected by Elec
     PARAMETRIZE { move = MOVE_PLASMA_FISTS; item = ITEM_NONE; }
 
     GIVEN {
-        PLAYER(SPECIES_JOLTEON) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_VOLT_ABSORB); Item(item); HP(55); MaxHP(100); }
+        PLAYER(SPECIES_JOLTEON) { Ability(ABILITY_STATIC); Innates(ABILITY_VOLT_ABSORB); Item(item); HP(55); MaxHP(100); }
         OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_LIECHI_BERRY); }
     } WHEN {
         TURN {
@@ -320,7 +322,7 @@ SINGLE_BATTLE_TEST("Teatime triggers Volt Absorb if it has been affected by Elec
     }
 }
 
-SINGLE_BATTLE_TEST("Teatime triggers Lightning Rod if it has been affected by Electrify or Plasma Fists, even when not holding a Berry (Trait)")
+SINGLE_BATTLE_TEST("Teatime triggers Lightning Rod if it has been affected by Electrify or Plasma Fists, even when not holding a Berry (Traits)")
 {
     u32 move;
     u32 item = ITEM_LIECHI_BERRY;
@@ -359,7 +361,7 @@ SINGLE_BATTLE_TEST("Teatime triggers Lightning Rod if it has been affected by El
     }
 }
 
-SINGLE_BATTLE_TEST("Teatime triggers Motor Drive if it has been affected by Electrify or Plasma Fists, even when not holding a Berry (Trait)")
+SINGLE_BATTLE_TEST("Teatime triggers Motor Drive if it has been affected by Electrify or Plasma Fists, even when not holding a Berry (Traits)")
 {
     u32 move;
     u32 item= ITEM_LIECHI_BERRY;
@@ -397,3 +399,4 @@ SINGLE_BATTLE_TEST("Teatime triggers Motor Drive if it has been affected by Elec
         MESSAGE("Using Liechi Berry, the Attack of the opposing Wobbuffet rose!");
     }
 }
+#endif

@@ -49,14 +49,15 @@ SINGLE_BATTLE_TEST("Regenerator heals 1/3 of max HP upon switching out but doesn
     }
 }
 
-SINGLE_BATTLE_TEST("Regenerator heals 1/3 of max HP upon switching out (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Regenerator heals 1/3 of max HP upon switching out (Traits)")
 {
     u32 currHP;
     PARAMETRIZE { currHP = 1; }
     PARAMETRIZE { currHP = 2; }
     PARAMETRIZE { currHP = 3; }
     GIVEN {
-        PLAYER(SPECIES_SLOWBRO) { Ability(ABILITY_OWN_TEMPO); Innates(ABILITY_REGENERATOR); HP(currHP); }
+        PLAYER(SPECIES_SLOWBRO) { Ability(ABILITY_OBLIVIOUS); Innates(ABILITY_REGENERATOR); HP(currHP); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -72,7 +73,7 @@ SINGLE_BATTLE_TEST("Regenerator heals 1/3 of max HP upon switching out (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Regenerator heals 1/3 of max HP upon switching out but doesn't surpass max HP (Trait)")
+SINGLE_BATTLE_TEST("Regenerator heals 1/3 of max HP upon switching out but doesn't surpass max HP (Traits)")
 {
     u32 currHP;
     PARAMETRIZE { currHP = 5; }
@@ -81,7 +82,7 @@ SINGLE_BATTLE_TEST("Regenerator heals 1/3 of max HP upon switching out but doesn
     PARAMETRIZE { currHP = 2; }
     PARAMETRIZE { currHP = 1; }
     GIVEN {
-        PLAYER(SPECIES_SLOWBRO) { Ability(ABILITY_OWN_TEMPO); Innates(ABILITY_REGENERATOR); HP(currHP); MaxHP(5); }
+        PLAYER(SPECIES_SLOWBRO) { Ability(ABILITY_OBLIVIOUS); Innates(ABILITY_REGENERATOR); HP(currHP); MaxHP(5); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -96,3 +97,4 @@ SINGLE_BATTLE_TEST("Regenerator heals 1/3 of max HP upon switching out but doesn
         EXPECT_LE(player->hp, player->maxHP);
     }
 }
+#endif

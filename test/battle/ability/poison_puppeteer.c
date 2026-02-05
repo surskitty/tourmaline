@@ -68,7 +68,8 @@ SINGLE_BATTLE_TEST("Poison Puppeteer does not trigger if poison is Toxic Spikes 
     }
 }
 
-SINGLE_BATTLE_TEST("Poison Puppeteer confuses target if it was poisoned by a damaging move (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Poison Puppeteer confuses target if it was poisoned by a damaging move (Traits)")
 {
     GIVEN {
         ASSUME(MoveHasAdditionalEffect(MOVE_POISON_STING, MOVE_EFFECT_POISON) == TRUE);
@@ -87,7 +88,7 @@ SINGLE_BATTLE_TEST("Poison Puppeteer confuses target if it was poisoned by a dam
     }
 }
 
-SINGLE_BATTLE_TEST("Poison Puppeteer confuses target if it was (badly) poisoned by a status move (Trait)")
+SINGLE_BATTLE_TEST("Poison Puppeteer confuses target if it was (badly) poisoned by a status move (Traits)")
 {
     u32 move;
 
@@ -113,7 +114,7 @@ SINGLE_BATTLE_TEST("Poison Puppeteer confuses target if it was (badly) poisoned 
     }
 }
 
-SINGLE_BATTLE_TEST("Poison Puppeteer does not trigger if poison is Toxic Spikes induced (Trait)")
+SINGLE_BATTLE_TEST("Poison Puppeteer does not trigger if poison is Toxic Spikes induced (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_TOXIC_SPIKES) == EFFECT_TOXIC_SPIKES);
@@ -134,3 +135,4 @@ SINGLE_BATTLE_TEST("Poison Puppeteer does not trigger if poison is Toxic Spikes 
         }
     }
 }
+#endif

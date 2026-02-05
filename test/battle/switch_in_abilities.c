@@ -127,7 +127,129 @@ DOUBLE_BATTLE_TEST("Switch-in abilities trigger in Speed Order after post-KO swi
     }
 }
 
-SINGLE_BATTLE_TEST("Switch-in abilities trigger in Speed Order at the battle's start - Single Battle (Trait)")
+MULTI_BATTLE_TEST("Switch-in abilities trigger in Speed Order after post-KO switch - multibattle")
+{
+    u32 spdPlayer1, spdPlayer2, spdOpponent1, spdOpponent2;
+
+    PARAMETRIZE { spdPlayer1 = 5; spdPlayer2 = 4; spdOpponent1 = 3; spdOpponent2 = 2; }
+    PARAMETRIZE { spdPlayer1 = 2; spdPlayer2 = 3; spdOpponent1 = 4; spdOpponent2 = 5; }
+    PARAMETRIZE { spdPlayer1 = 4; spdPlayer2 = 3; spdOpponent1 = 5; spdOpponent2 = 2; }
+
+    GIVEN {
+        MULTI_PLAYER(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
+        MULTI_PLAYER(SPECIES_TYRANITAR) { Speed(spdPlayer1); Ability(ABILITY_SAND_STREAM); }
+        MULTI_PARTNER(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
+        MULTI_PARTNER(SPECIES_GYARADOS) { Speed(spdPlayer2); Ability(ABILITY_INTIMIDATE); }
+        MULTI_OPPONENT_A(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
+        MULTI_OPPONENT_A(SPECIES_WEEZING_GALAR) { Speed(spdOpponent1); Ability(ABILITY_MISTY_SURGE); }
+        MULTI_OPPONENT_B(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
+        MULTI_OPPONENT_B(SPECIES_VULPIX_ALOLA) { Speed(spdOpponent2); Ability(ABILITY_SNOW_WARNING); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_EXPLOSION); SEND_OUT(playerLeft, 1); SEND_OUT(opponentLeft, 1); SEND_OUT(playerRight, 4); SEND_OUT(opponentRight, 4); }
+        TURN { ; }
+    } SCENE {
+        MESSAGE("Wobbuffet used Explosion!");
+        if (spdPlayer1 == 5) {
+            ABILITY_POPUP(playerLeft, ABILITY_SAND_STREAM);
+            ABILITY_POPUP(playerRight, ABILITY_INTIMIDATE);
+            ABILITY_POPUP(opponentLeft, ABILITY_MISTY_SURGE);
+            ABILITY_POPUP(opponentRight, ABILITY_SNOW_WARNING);
+        } else if (spdOpponent2 == 5) {
+            ABILITY_POPUP(opponentRight, ABILITY_SNOW_WARNING);
+            ABILITY_POPUP(opponentLeft, ABILITY_MISTY_SURGE);
+            ABILITY_POPUP(playerRight, ABILITY_INTIMIDATE);
+            ABILITY_POPUP(playerLeft, ABILITY_SAND_STREAM);
+        } else {
+            ABILITY_POPUP(opponentLeft, ABILITY_MISTY_SURGE);
+            ABILITY_POPUP(playerLeft, ABILITY_SAND_STREAM);
+            ABILITY_POPUP(playerRight, ABILITY_INTIMIDATE);
+            ABILITY_POPUP(opponentRight, ABILITY_SNOW_WARNING);
+        }
+    }
+}
+
+TWO_VS_ONE_BATTLE_TEST("Switch-in abilities trigger in Speed Order after post-KO switch - 2v1")
+{
+    u32 spdPlayer1, spdPlayer2, spdOpponent1, spdOpponent2;
+
+    PARAMETRIZE { spdPlayer1 = 5; spdPlayer2 = 4; spdOpponent1 = 3; spdOpponent2 = 2; }
+    PARAMETRIZE { spdPlayer1 = 2; spdPlayer2 = 3; spdOpponent1 = 4; spdOpponent2 = 5; }
+    PARAMETRIZE { spdPlayer1 = 4; spdPlayer2 = 3; spdOpponent1 = 5; spdOpponent2 = 2; }
+
+    GIVEN {
+        MULTI_PLAYER(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
+        MULTI_PLAYER(SPECIES_TYRANITAR) { Speed(spdPlayer1); Ability(ABILITY_SAND_STREAM); }
+        MULTI_PARTNER(SPECIES_WYNAUT) { HP(1); Speed(1); }
+        MULTI_PARTNER(SPECIES_GYARADOS) { Speed(spdPlayer2); Ability(ABILITY_INTIMIDATE); }
+        MULTI_OPPONENT_A(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
+        MULTI_OPPONENT_A(SPECIES_WYNAUT) { HP(1); Speed(1); }
+        MULTI_OPPONENT_A(SPECIES_WEEZING_GALAR) { Speed(spdOpponent1); Ability(ABILITY_MISTY_SURGE); }
+        MULTI_OPPONENT_A(SPECIES_VULPIX_ALOLA) { Speed(spdOpponent2); Ability(ABILITY_SNOW_WARNING); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_EXPLOSION); SEND_OUT(playerLeft, 1); SEND_OUT(opponentLeft, 2); SEND_OUT(playerRight, 4); SEND_OUT(opponentRight, 3); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Explosion!");
+        if (spdPlayer1 == 5) {
+            ABILITY_POPUP(playerLeft, ABILITY_SAND_STREAM);
+            ABILITY_POPUP(playerRight, ABILITY_INTIMIDATE);
+            ABILITY_POPUP(opponentLeft, ABILITY_MISTY_SURGE);
+            ABILITY_POPUP(opponentRight, ABILITY_SNOW_WARNING);
+        } else if (spdOpponent2 == 5) {
+            ABILITY_POPUP(opponentRight, ABILITY_SNOW_WARNING);
+            ABILITY_POPUP(opponentLeft, ABILITY_MISTY_SURGE);
+            ABILITY_POPUP(playerRight, ABILITY_INTIMIDATE);
+            ABILITY_POPUP(playerLeft, ABILITY_SAND_STREAM);
+        } else {
+            ABILITY_POPUP(opponentLeft, ABILITY_MISTY_SURGE);
+            ABILITY_POPUP(playerLeft, ABILITY_SAND_STREAM);
+            ABILITY_POPUP(playerRight, ABILITY_INTIMIDATE);
+            ABILITY_POPUP(opponentRight, ABILITY_SNOW_WARNING);
+        }
+    }
+}
+
+ONE_VS_TWO_BATTLE_TEST("Switch-in abilities trigger in Speed Order after post-KO switch - 1v2")
+{
+    u32 spdPlayer1, spdPlayer2, spdOpponent1, spdOpponent2;
+
+    PARAMETRIZE { spdPlayer1 = 5; spdPlayer2 = 4; spdOpponent1 = 3; spdOpponent2 = 2; }
+    PARAMETRIZE { spdPlayer1 = 2; spdPlayer2 = 3; spdOpponent1 = 4; spdOpponent2 = 5; }
+    PARAMETRIZE { spdPlayer1 = 4; spdPlayer2 = 3; spdOpponent1 = 5; spdOpponent2 = 2; }
+
+    GIVEN {
+        MULTI_PLAYER(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
+        MULTI_PLAYER(SPECIES_WYNAUT) { HP(1); Speed(1); }
+        MULTI_PLAYER(SPECIES_TYRANITAR) { Speed(spdPlayer1); Ability(ABILITY_SAND_STREAM); }
+        MULTI_PLAYER(SPECIES_GYARADOS) { Speed(spdPlayer2); Ability(ABILITY_INTIMIDATE); }
+        MULTI_OPPONENT_A(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
+        MULTI_OPPONENT_A(SPECIES_WEEZING_GALAR) { Speed(spdOpponent1); Ability(ABILITY_MISTY_SURGE); }
+        MULTI_OPPONENT_B(SPECIES_WYNAUT) { HP(1); Speed(1); }
+        MULTI_OPPONENT_B(SPECIES_VULPIX_ALOLA) { Speed(spdOpponent2); Ability(ABILITY_SNOW_WARNING); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_EXPLOSION); SEND_OUT(playerLeft, 2); SEND_OUT(opponentLeft, 1); SEND_OUT(playerRight, 3); SEND_OUT(opponentRight, 4); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Explosion!");
+        if (spdPlayer1 == 5) {
+            ABILITY_POPUP(playerLeft, ABILITY_SAND_STREAM);
+            ABILITY_POPUP(playerRight, ABILITY_INTIMIDATE);
+            ABILITY_POPUP(opponentLeft, ABILITY_MISTY_SURGE);
+            ABILITY_POPUP(opponentRight, ABILITY_SNOW_WARNING);
+        } else if (spdOpponent2 == 5) {
+            ABILITY_POPUP(opponentRight, ABILITY_SNOW_WARNING);
+            ABILITY_POPUP(opponentLeft, ABILITY_MISTY_SURGE);
+            ABILITY_POPUP(playerRight, ABILITY_INTIMIDATE);
+            ABILITY_POPUP(playerLeft, ABILITY_SAND_STREAM);
+        } else {
+            ABILITY_POPUP(opponentLeft, ABILITY_MISTY_SURGE);
+            ABILITY_POPUP(playerLeft, ABILITY_SAND_STREAM);
+            ABILITY_POPUP(playerRight, ABILITY_INTIMIDATE);
+            ABILITY_POPUP(opponentRight, ABILITY_SNOW_WARNING);
+        }
+    }
+}
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Switch-in abilities trigger in Speed Order at the battle's start - Single Battle (Traits)")
 {
     u32 spdPlayer, spdOpponent;
 
@@ -150,7 +272,7 @@ SINGLE_BATTLE_TEST("Switch-in abilities trigger in Speed Order at the battle's s
     }
 }
 
-DOUBLE_BATTLE_TEST("Switch-in abilities trigger in Speed Order at the battle's start - Double Battle (Trait)")
+DOUBLE_BATTLE_TEST("Switch-in abilities trigger in Speed Order at the battle's start - Double Battle (Traits)")
 {
     u32 spdPlayer1, spdPlayer2, spdOpponent1, spdOpponent2;
 
@@ -161,7 +283,7 @@ DOUBLE_BATTLE_TEST("Switch-in abilities trigger in Speed Order at the battle's s
     GIVEN {
         PLAYER(SPECIES_KYOGRE) { Speed(spdPlayer1); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DRIZZLE); }
         PLAYER(SPECIES_GYARADOS) { Speed(spdPlayer2); Ability(ABILITY_MOXIE); Innates(ABILITY_INTIMIDATE); }
-        OPPONENT(SPECIES_PORYGON2) { Speed(spdOpponent1); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DOWNLOAD); }
+        OPPONENT(SPECIES_PORYGON2) { Speed(spdOpponent1); Ability(ABILITY_TRACE); Innates(ABILITY_DOWNLOAD); }
         OPPONENT(SPECIES_PINSIR) { Speed(spdOpponent2); Ability(ABILITY_HYPER_CUTTER); Innates(ABILITY_MOLD_BREAKER); }
     } WHEN {
         TURN { ; }
@@ -185,7 +307,7 @@ DOUBLE_BATTLE_TEST("Switch-in abilities trigger in Speed Order at the battle's s
     }
 }
 
-SINGLE_BATTLE_TEST("Switch-in abilities trigger in Speed Order after post-KO switch - Single Battle (Trait)")
+SINGLE_BATTLE_TEST("Switch-in abilities trigger in Speed Order after post-KO switch - Single Battle (Traits)")
 {
     u32 spdPlayer, spdOpponent;
 
@@ -196,7 +318,7 @@ SINGLE_BATTLE_TEST("Switch-in abilities trigger in Speed Order after post-KO swi
         PLAYER(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
         PLAYER(SPECIES_EKANS) { Speed(spdPlayer); Ability(ABILITY_SHED_SKIN); Innates(ABILITY_INTIMIDATE); }
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
-        OPPONENT(SPECIES_PORYGON2) { Speed(spdOpponent); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DOWNLOAD); }
+        OPPONENT(SPECIES_PORYGON2) { Speed(spdOpponent); Ability(ABILITY_TRACE); Innates(ABILITY_DOWNLOAD); }
     } WHEN {
         TURN { MOVE(player, MOVE_EXPLOSION); SEND_OUT(player, 1); SEND_OUT(opponent, 1); }
         TURN { ; }
@@ -212,7 +334,7 @@ SINGLE_BATTLE_TEST("Switch-in abilities trigger in Speed Order after post-KO swi
     }
 }
 
-DOUBLE_BATTLE_TEST("Switch-in abilities trigger in Speed Order after post-KO switch - Double Battle (Trait)")
+DOUBLE_BATTLE_TEST("Switch-in abilities trigger in Speed Order after post-KO switch - Double Battle (Traits)")
 {
     u32 spdPlayer1, spdPlayer2, spdOpponent1, spdOpponent2;
 
@@ -252,3 +374,125 @@ DOUBLE_BATTLE_TEST("Switch-in abilities trigger in Speed Order after post-KO swi
         }
     }
 }
+
+MULTI_BATTLE_TEST("Switch-in abilities trigger in Speed Order after post-KO switch - multibattle (Traits)")
+{
+    u32 spdPlayer1, spdPlayer2, spdOpponent1, spdOpponent2;
+
+    PARAMETRIZE { spdPlayer1 = 5; spdPlayer2 = 4; spdOpponent1 = 3; spdOpponent2 = 2; }
+    PARAMETRIZE { spdPlayer1 = 2; spdPlayer2 = 3; spdOpponent1 = 4; spdOpponent2 = 5; }
+    PARAMETRIZE { spdPlayer1 = 4; spdPlayer2 = 3; spdOpponent1 = 5; spdOpponent2 = 2; }
+
+    GIVEN {
+        MULTI_PLAYER(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
+        MULTI_PLAYER(SPECIES_TYRANITAR) { Speed(spdPlayer1); Ability(ABILITY_UNNERVE); Innates(ABILITY_SAND_STREAM); }
+        MULTI_PARTNER(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
+        MULTI_PARTNER(SPECIES_GYARADOS) { Speed(spdPlayer2); Ability(ABILITY_INTIMIDATE); }
+        MULTI_OPPONENT_A(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
+        MULTI_OPPONENT_A(SPECIES_WEEZING_GALAR) { Speed(spdOpponent1); Ability(ABILITY_LEVITATE); Innates(ABILITY_MISTY_SURGE); }
+        MULTI_OPPONENT_B(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
+        MULTI_OPPONENT_B(SPECIES_VULPIX_ALOLA) { Speed(spdOpponent2); Ability(ABILITY_SNOW_WARNING); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_EXPLOSION); SEND_OUT(playerLeft, 1); SEND_OUT(opponentLeft, 1); SEND_OUT(playerRight, 4); SEND_OUT(opponentRight, 4); }
+        TURN { ; }
+    } SCENE {
+        MESSAGE("Wobbuffet used Explosion!");
+        if (spdPlayer1 == 5) {
+            ABILITY_POPUP(playerLeft, ABILITY_SAND_STREAM);
+            ABILITY_POPUP(playerRight, ABILITY_INTIMIDATE);
+            ABILITY_POPUP(opponentLeft, ABILITY_MISTY_SURGE);
+            ABILITY_POPUP(opponentRight, ABILITY_SNOW_WARNING);
+        } else if (spdOpponent2 == 5) {
+            ABILITY_POPUP(opponentRight, ABILITY_SNOW_WARNING);
+            ABILITY_POPUP(opponentLeft, ABILITY_MISTY_SURGE);
+            ABILITY_POPUP(playerRight, ABILITY_INTIMIDATE);
+            ABILITY_POPUP(playerLeft, ABILITY_SAND_STREAM);
+        } else {
+            ABILITY_POPUP(opponentLeft, ABILITY_MISTY_SURGE);
+            ABILITY_POPUP(playerLeft, ABILITY_SAND_STREAM);
+            ABILITY_POPUP(playerRight, ABILITY_INTIMIDATE);
+            ABILITY_POPUP(opponentRight, ABILITY_SNOW_WARNING);
+        }
+    }
+}
+
+TWO_VS_ONE_BATTLE_TEST("Switch-in abilities trigger in Speed Order after post-KO switch - 2v1 (Traits)")
+{
+    u32 spdPlayer1, spdPlayer2, spdOpponent1, spdOpponent2;
+
+    PARAMETRIZE { spdPlayer1 = 5; spdPlayer2 = 4; spdOpponent1 = 3; spdOpponent2 = 2; }
+    PARAMETRIZE { spdPlayer1 = 2; spdPlayer2 = 3; spdOpponent1 = 4; spdOpponent2 = 5; }
+    PARAMETRIZE { spdPlayer1 = 4; spdPlayer2 = 3; spdOpponent1 = 5; spdOpponent2 = 2; }
+
+    GIVEN {
+        MULTI_PLAYER(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
+        MULTI_PLAYER(SPECIES_TYRANITAR) { Speed(spdPlayer1); Ability(ABILITY_UNNERVE); Innates(ABILITY_SAND_STREAM); }
+        MULTI_PARTNER(SPECIES_WYNAUT) { HP(1); Speed(1); }
+        MULTI_PARTNER(SPECIES_GYARADOS) { Speed(spdPlayer2); Ability(ABILITY_STENCH); Innates(ABILITY_INTIMIDATE); }
+        MULTI_OPPONENT_A(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
+        MULTI_OPPONENT_A(SPECIES_WYNAUT) { HP(1); Speed(1); }
+        MULTI_OPPONENT_A(SPECIES_WEEZING_GALAR) { Speed(spdOpponent1); Ability(ABILITY_LEVITATE); Innates(ABILITY_MISTY_SURGE); }
+        MULTI_OPPONENT_A(SPECIES_VULPIX_ALOLA) { Speed(spdOpponent2); Ability(ABILITY_SNOW_CLOAK); Innates(ABILITY_SNOW_WARNING); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_EXPLOSION); SEND_OUT(playerLeft, 1); SEND_OUT(opponentLeft, 2); SEND_OUT(playerRight, 4); SEND_OUT(opponentRight, 3); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Explosion!");
+        if (spdPlayer1 == 5) {
+            ABILITY_POPUP(playerLeft, ABILITY_SAND_STREAM);
+            ABILITY_POPUP(playerRight, ABILITY_INTIMIDATE);
+            ABILITY_POPUP(opponentLeft, ABILITY_MISTY_SURGE);
+            ABILITY_POPUP(opponentRight, ABILITY_SNOW_WARNING);
+        } else if (spdOpponent2 == 5) {
+            ABILITY_POPUP(opponentRight, ABILITY_SNOW_WARNING);
+            ABILITY_POPUP(opponentLeft, ABILITY_MISTY_SURGE);
+            ABILITY_POPUP(playerRight, ABILITY_INTIMIDATE);
+            ABILITY_POPUP(playerLeft, ABILITY_SAND_STREAM);
+        } else {
+            ABILITY_POPUP(opponentLeft, ABILITY_MISTY_SURGE);
+            ABILITY_POPUP(playerLeft, ABILITY_SAND_STREAM);
+            ABILITY_POPUP(playerRight, ABILITY_INTIMIDATE);
+            ABILITY_POPUP(opponentRight, ABILITY_SNOW_WARNING);
+        }
+    }
+}
+
+ONE_VS_TWO_BATTLE_TEST("Switch-in abilities trigger in Speed Order after post-KO switch - 1v2 (Traits)")
+{
+    u32 spdPlayer1, spdPlayer2, spdOpponent1, spdOpponent2;
+
+    PARAMETRIZE { spdPlayer1 = 5; spdPlayer2 = 4; spdOpponent1 = 3; spdOpponent2 = 2; }
+    PARAMETRIZE { spdPlayer1 = 2; spdPlayer2 = 3; spdOpponent1 = 4; spdOpponent2 = 5; }
+    PARAMETRIZE { spdPlayer1 = 4; spdPlayer2 = 3; spdOpponent1 = 5; spdOpponent2 = 2; }
+
+    GIVEN {
+        MULTI_PLAYER(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
+        MULTI_PLAYER(SPECIES_WYNAUT) { HP(1); Speed(1); }
+        MULTI_PLAYER(SPECIES_TYRANITAR) { Speed(spdPlayer1); Ability(ABILITY_UNNERVE); Innates(ABILITY_SAND_STREAM); }
+        MULTI_PLAYER(SPECIES_GYARADOS) { Speed(spdPlayer2); Ability(ABILITY_MOXIE); Innates(ABILITY_INTIMIDATE); }
+        MULTI_OPPONENT_A(SPECIES_WOBBUFFET) { HP(1); Speed(1); }
+        MULTI_OPPONENT_A(SPECIES_WEEZING_GALAR) { Speed(spdOpponent1); Ability(ABILITY_LEVITATE); Innates(ABILITY_MISTY_SURGE); }
+        MULTI_OPPONENT_B(SPECIES_WYNAUT) { HP(1); Speed(1); }
+        MULTI_OPPONENT_B(SPECIES_VULPIX_ALOLA) { Speed(spdOpponent2); Ability(ABILITY_SNOW_WARNING); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_EXPLOSION); SEND_OUT(playerLeft, 2); SEND_OUT(opponentLeft, 1); SEND_OUT(playerRight, 3); SEND_OUT(opponentRight, 4); }
+    } SCENE {
+        MESSAGE("Wobbuffet used Explosion!");
+        if (spdPlayer1 == 5) {
+            ABILITY_POPUP(playerLeft, ABILITY_SAND_STREAM);
+            ABILITY_POPUP(playerRight, ABILITY_INTIMIDATE);
+            ABILITY_POPUP(opponentLeft, ABILITY_MISTY_SURGE);
+            ABILITY_POPUP(opponentRight, ABILITY_SNOW_WARNING);
+        } else if (spdOpponent2 == 5) {
+            ABILITY_POPUP(opponentRight, ABILITY_SNOW_WARNING);
+            ABILITY_POPUP(opponentLeft, ABILITY_MISTY_SURGE);
+            ABILITY_POPUP(playerRight, ABILITY_INTIMIDATE);
+            ABILITY_POPUP(playerLeft, ABILITY_SAND_STREAM);
+        } else {
+            ABILITY_POPUP(opponentLeft, ABILITY_MISTY_SURGE);
+            ABILITY_POPUP(playerLeft, ABILITY_SAND_STREAM);
+            ABILITY_POPUP(playerRight, ABILITY_INTIMIDATE);
+            ABILITY_POPUP(opponentRight, ABILITY_SNOW_WARNING);
+        }
+    }
+}
+#endif

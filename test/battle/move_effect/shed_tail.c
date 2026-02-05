@@ -57,7 +57,7 @@ SINGLE_BATTLE_TEST("Shed Tail's HP cost can trigger a berry before the user swit
     }
 }
 
-SINGLE_BATTLE_TEST("Shed Tail fails if there are no usable pokemon left")
+SINGLE_BATTLE_TEST("Shed Tail fails if there are no usable Pokémon left")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET)
@@ -110,8 +110,8 @@ SINGLE_BATTLE_TEST("Shed Tail creates a Substitute with 1/4 of user maximum heal
     PARAMETRIZE { hp = 164; }
 
     GIVEN {
-        ASSUME(GetMoveFixedDamage(MOVE_DRAGON_RAGE) == 40);
-        ASSUME(GetMoveEffect(MOVE_DRAGON_RAGE) == EFFECT_FIXED_DAMAGE_ARG);
+        ASSUME(GetMoveFixedHPDamage(MOVE_DRAGON_RAGE) == 40);
+        ASSUME(GetMoveEffect(MOVE_DRAGON_RAGE) == EFFECT_FIXED_HP_DAMAGE);
         PLAYER(SPECIES_BULBASAUR) { MaxHP(hp); }
         PLAYER(SPECIES_BULBASAUR);
         OPPONENT(SPECIES_CHARMANDER);
@@ -126,7 +126,8 @@ SINGLE_BATTLE_TEST("Shed Tail creates a Substitute with 1/4 of user maximum heal
     }
 }
 
-AI_SINGLE_BATTLE_TEST("AI will use Shed Tail to pivot to another mon while in damage stalemate with player rather than hard switching (Trait)")
+#if MAX_MON_TRAITS > 1
+AI_SINGLE_BATTLE_TEST("AI will use Shed Tail to pivot to another mon while in damage stalemate with player rather than hard switching (Traits)")
 {
     u32 aiFlags;
     PARAMETRIZE { aiFlags = 0; }
@@ -142,3 +143,4 @@ AI_SINGLE_BATTLE_TEST("AI will use Shed Tail to pivot to another mon while in da
         TURN { MOVE(player, MOVE_SCRATCH); EXPECT_MOVE(opponent, MOVE_SHED_TAIL); }
     }
 }
+#endif

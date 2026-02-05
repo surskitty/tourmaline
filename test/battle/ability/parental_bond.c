@@ -80,7 +80,7 @@ DOUBLE_BATTLE_TEST("Parental Bond does not convert multi-target moves into a two
     GIVEN {
         ASSUME(GetMoveStrikeCount(MOVE_EARTHQUAKE) < 2);
         ASSUME(GetMoveTarget(MOVE_EARTHQUAKE) == MOVE_TARGET_FOES_AND_ALLY);
-        ASSUME(gSpeciesInfo[SPECIES_PIDGEY].types[1] == TYPE_FLYING);
+        ASSUME(GetSpeciesType(SPECIES_PIDGEY, 1) == TYPE_FLYING);
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
         PLAYER(SPECIES_PIDGEY);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -105,10 +105,13 @@ DOUBLE_BATTLE_TEST("Parental Bond does not convert multi-target moves into a two
 
 SINGLE_BATTLE_TEST("Parental Bond-converted moves only hit once on Lightning Rod/Storm Drain mons")
 {
-    u16 move, species, ability, type;
+    u16 move, species;
+    enum Type type;
+    enum Ability ability;
     PARAMETRIZE { move = MOVE_THUNDERBOLT; ability = ABILITY_LIGHTNING_ROD; species = SPECIES_RAICHU; type = TYPE_ELECTRIC; }
-    PARAMETRIZE { move = MOVE_SURF; ability = ABILITY_STORM_DRAIN; species = SPECIES_LILEEP; type = TYPE_WATER; }
+    PARAMETRIZE { move = MOVE_SURF;        ability = ABILITY_STORM_DRAIN;   species = SPECIES_LILEEP; type = TYPE_WATER; }
     GIVEN {
+        WITH_CONFIG(CONFIG_REDIRECT_ABILITY_IMMUNITY, GEN_5);
         ASSUME(GetMoveStrikeCount(move) < 2);
         ASSUME(GetMoveType(move) == type);
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
@@ -139,7 +142,7 @@ SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they stil
     PASSES_RANDOMLY(passes, trials, RNG_HITS);
 
     GIVEN {
-        WITH_CONFIG(GEN_CONFIG_MULTI_HIT_CHANCE, genConfig);
+        WITH_CONFIG(CONFIG_MULTI_HIT_CHANCE, genConfig);
         ASSUME(GetMoveCategory(MOVE_COMET_PUNCH) != DAMAGE_CATEGORY_STATUS);
         ASSUME(GetMoveEffect(MOVE_COMET_PUNCH) == EFFECT_MULTI_HIT);
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
@@ -168,7 +171,7 @@ SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they stil
     PASSES_RANDOMLY(passes, trials, RNG_HITS);
 
     GIVEN {
-        WITH_CONFIG(GEN_CONFIG_MULTI_HIT_CHANCE, genConfig);
+        WITH_CONFIG(CONFIG_MULTI_HIT_CHANCE, genConfig);
         ASSUME(GetMoveCategory(MOVE_COMET_PUNCH) != DAMAGE_CATEGORY_STATUS);
         ASSUME(GetMoveEffect(MOVE_COMET_PUNCH) == EFFECT_MULTI_HIT);
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
@@ -198,7 +201,7 @@ SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they stil
     PASSES_RANDOMLY(passes, trials, RNG_HITS);
 
     GIVEN {
-        WITH_CONFIG(GEN_CONFIG_MULTI_HIT_CHANCE, genConfig);
+        WITH_CONFIG(CONFIG_MULTI_HIT_CHANCE, genConfig);
         ASSUME(GetMoveCategory(MOVE_COMET_PUNCH) != DAMAGE_CATEGORY_STATUS);
         ASSUME(GetMoveEffect(MOVE_COMET_PUNCH) == EFFECT_MULTI_HIT);
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
@@ -229,7 +232,7 @@ SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they stil
     PASSES_RANDOMLY(passes, trials, RNG_HITS);
 
     GIVEN {
-        WITH_CONFIG(GEN_CONFIG_MULTI_HIT_CHANCE, genConfig);
+        WITH_CONFIG(CONFIG_MULTI_HIT_CHANCE, genConfig);
         ASSUME(GetMoveCategory(MOVE_COMET_PUNCH) != DAMAGE_CATEGORY_STATUS);
         ASSUME(GetMoveEffect(MOVE_COMET_PUNCH) == EFFECT_MULTI_HIT);
         PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
@@ -291,10 +294,10 @@ SINGLE_BATTLE_TEST("Parental Bond Snore strikes twice while asleep")
         HP_BAR(opponent, captureDamage: &damage[1]);
         MESSAGE("The Pokémon was hit 2 time(s)!");
     } THEN {
-        if (B_PARENTAL_BOND_DMG == GEN_6)
-            EXPECT_MUL_EQ(damage[0], Q_4_12(0.5), damage[1]);
-        else
+        if (B_PARENTAL_BOND_DMG >= GEN_7)
             EXPECT_MUL_EQ(damage[0], Q_4_12(0.25), damage[1]);
+        else
+            EXPECT_MUL_EQ(damage[0], Q_4_12(0.5), damage[1]);
     }
 }
 
@@ -352,6 +355,22 @@ SINGLE_BATTLE_TEST("Parental Bond does not trigger on two turn attacks")
     }
 }
 
+SINGLE_BATTLE_TEST("Parental Bond does not trigger Scale Shot effect on Drain Punch")
+{
+    GIVEN {
+        PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_DRAIN_PUNCH, gimmick: GIMMICK_MEGA); MOVE(opponent, MOVE_CELEBRATE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAIN_PUNCH, player);
+        NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+    } THEN {
+        EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE);
+        EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE);
+    }
+}
+
 TO_DO_BATTLE_TEST("Parental Bond tests");
 
 // Temporary TODO: Convert Bulbapedia description into tests.
@@ -379,3 +398,322 @@ The second strike now deals 25% of its usual damage (unless it is a set-damage m
 Parental Bond does not affect Z-Moves or Max Moves.
 */
 // TONS OF TESTS NEEDED. FOR NOW, THIS SINGLE TEST IS MADE TO MAKE SURE AN ISSUE WAS FIXED.
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Parental Bond converts Scratch into a two-strike move (Traits)")
+{
+    GIVEN {
+        ASSUME(GetMoveCategory(MOVE_SCRATCH) != DAMAGE_CATEGORY_STATUS);
+        ASSUME(GetMoveStrikeCount(MOVE_SCRATCH) < 2);
+        ASSUME(GetMoveEffect(MOVE_SCRATCH) == EFFECT_HIT);
+        PLAYER(SPECIES_KANGASKHAN) { Ability(ABILITY_EARLY_BIRD); Innates(ABILITY_PARENTAL_BOND); Item(ITEM_KANGASKHANITE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SCRATCH); MOVE(opponent, MOVE_CELEBRATE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, player);
+        HP_BAR(opponent);
+        HP_BAR(opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Parental Bond does not convert a move with three or more strikes to a two-strike move (Traits)")
+{
+    GIVEN {
+        ASSUME(GetMoveCategory(MOVE_TRIPLE_KICK) != DAMAGE_CATEGORY_STATUS);
+        ASSUME(GetMoveStrikeCount(MOVE_TRIPLE_KICK) == 3);
+        PLAYER(SPECIES_KANGASKHAN) { Ability(ABILITY_EARLY_BIRD); Innates(ABILITY_PARENTAL_BOND); Item(ITEM_KANGASKHANITE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_TRIPLE_KICK); MOVE(opponent, MOVE_CELEBRATE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TRIPLE_KICK, player);
+        HP_BAR(opponent);
+        HP_BAR(opponent);
+        HP_BAR(opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Parental Bond converts multi-target moves into a two-strike move in Single Battles (Traits)")
+{
+    u16 move;
+    PARAMETRIZE { move = MOVE_EARTHQUAKE; }
+    PARAMETRIZE { move = MOVE_ICY_WIND; }
+
+    GIVEN {
+        ASSUME(GetMoveStrikeCount(MOVE_EARTHQUAKE) < 2);
+        ASSUME(GetMoveTarget(MOVE_EARTHQUAKE) == MOVE_TARGET_FOES_AND_ALLY);
+        ASSUME(GetMoveStrikeCount(MOVE_ICY_WIND) < 2);
+        ASSUME(GetMoveTarget(MOVE_ICY_WIND) == MOVE_TARGET_BOTH);
+        PLAYER(SPECIES_KANGASKHAN) { Ability(ABILITY_EARLY_BIRD); Innates(ABILITY_PARENTAL_BOND); Item(ITEM_KANGASKHANITE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, move); MOVE(opponent, MOVE_CELEBRATE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, move, player);
+        HP_BAR(opponent);
+        HP_BAR(opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Parental Bond does not convert multi-target moves into a two-strike move in Double Battles, even if it only damages one (Traits)")
+{
+    GIVEN {
+        ASSUME(GetMoveStrikeCount(MOVE_EARTHQUAKE) < 2);
+        ASSUME(GetMoveTarget(MOVE_EARTHQUAKE) == MOVE_TARGET_FOES_AND_ALLY);
+        ASSUME(GetSpeciesType(SPECIES_PIDGEY, 1) == TYPE_FLYING);
+        PLAYER(SPECIES_KANGASKHAN) { Ability(ABILITY_EARLY_BIRD); Innates(ABILITY_PARENTAL_BOND); Item(ITEM_KANGASKHANITE); }
+        PLAYER(SPECIES_PIDGEY);
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_PIDGEY);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_EARTHQUAKE); MOVE(playerRight, MOVE_CELEBRATE); MOVE(opponentLeft, MOVE_CELEBRATE); MOVE(opponentRight, MOVE_CELEBRATE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, playerLeft);
+        HP_BAR(opponentLeft);
+        MESSAGE("It doesn't affect Pidgey…");
+        MESSAGE("It doesn't affect the opposing Pidgey…");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, playerRight);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponentLeft);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponentRight);
+    }
+}
+
+SINGLE_BATTLE_TEST("Parental Bond-converted moves only hit once on Lightning Rod/Storm Drain mons (Traits)")
+{
+    u16 move, species;
+    enum Type type;
+    enum Ability ability;
+    PARAMETRIZE { move = MOVE_THUNDERBOLT; ability = ABILITY_LIGHTNING_ROD; species = SPECIES_RAICHU; type = TYPE_ELECTRIC; }
+    PARAMETRIZE { move = MOVE_SURF; ability = ABILITY_STORM_DRAIN; species = SPECIES_LILEEP; type = TYPE_WATER; }
+    GIVEN {
+        ASSUME(GetMoveStrikeCount(move) < 2);
+        ASSUME(GetMoveType(move) == type);
+        PLAYER(SPECIES_KANGASKHAN) { Ability(ABILITY_EARLY_BIRD); Innates(ABILITY_PARENTAL_BOND); Item(ITEM_KANGASKHANITE); }
+        OPPONENT(species) { Ability(ABILITY_EARLY_BIRD); Innates(ability); }
+    } WHEN {
+        TURN { MOVE(player, move); MOVE(opponent, MOVE_CELEBRATE); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ability);
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_MOVE, move, player);
+            HP_BAR(opponent);
+            ABILITY_POPUP(opponent, ability);
+        };
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they still hit twice 37.5/35% of the time (Traits)")
+{
+    u32 genConfig, passes, trials;
+    PARAMETRIZE { genConfig = GEN_4; passes = 3; trials = 8; }  // 37.5%
+    PARAMETRIZE { genConfig = GEN_5; passes = 7; trials = 20; } // 35%
+    PASSES_RANDOMLY(passes, trials, RNG_HITS);
+
+    GIVEN {
+        WITH_CONFIG(CONFIG_MULTI_HIT_CHANCE, genConfig);
+        ASSUME(GetMoveCategory(MOVE_COMET_PUNCH) != DAMAGE_CATEGORY_STATUS);
+        ASSUME(GetMoveEffect(MOVE_COMET_PUNCH) == EFFECT_MULTI_HIT);
+        PLAYER(SPECIES_KANGASKHAN) { Ability(ABILITY_EARLY_BIRD); Innates(ABILITY_PARENTAL_BOND); Item(ITEM_KANGASKHANITE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_COMET_PUNCH); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        MESSAGE("The Pokémon was hit 2 time(s)!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they still hit thrice 37.5/35% of the time (Traits)")
+{
+    u32 genConfig, passes, trials;
+    PARAMETRIZE { genConfig = GEN_4; passes = 3; trials = 8; }  // 37.5%
+    PARAMETRIZE { genConfig = GEN_5; passes = 7; trials = 20; } // 35%
+    PASSES_RANDOMLY(passes, trials, RNG_HITS);
+
+    GIVEN {
+        WITH_CONFIG(CONFIG_MULTI_HIT_CHANCE, genConfig);
+        ASSUME(GetMoveCategory(MOVE_COMET_PUNCH) != DAMAGE_CATEGORY_STATUS);
+        ASSUME(GetMoveEffect(MOVE_COMET_PUNCH) == EFFECT_MULTI_HIT);
+        PLAYER(SPECIES_KANGASKHAN) { Ability(ABILITY_EARLY_BIRD); Innates(ABILITY_PARENTAL_BOND); Item(ITEM_KANGASKHANITE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_COMET_PUNCH); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        MESSAGE("The Pokémon was hit 3 time(s)!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they still hit four times 12.5/15% of the time (Traits)")
+{
+    u32 genConfig, passes, trials;
+    PARAMETRIZE { genConfig = GEN_4; passes = 1; trials = 8; }  // 12.5%
+    PARAMETRIZE { genConfig = GEN_5; passes = 3; trials = 20; } // 15%
+    PASSES_RANDOMLY(passes, trials, RNG_HITS);
+
+    GIVEN {
+        WITH_CONFIG(CONFIG_MULTI_HIT_CHANCE, genConfig);
+        ASSUME(GetMoveCategory(MOVE_COMET_PUNCH) != DAMAGE_CATEGORY_STATUS);
+        ASSUME(GetMoveEffect(MOVE_COMET_PUNCH) == EFFECT_MULTI_HIT);
+        PLAYER(SPECIES_KANGASKHAN) { Item(ITEM_KANGASKHANITE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_COMET_PUNCH); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        MESSAGE("The Pokémon was hit 4 time(s)!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Parental Bond has no affect on multi hit moves and they still hit five times 12.5/15% of the time (Traits)")
+{
+    u32 genConfig, passes, trials;
+    PARAMETRIZE { genConfig = GEN_4; passes = 1; trials = 8; }  // 12.5%
+    PARAMETRIZE { genConfig = GEN_5; passes = 3; trials = 20; } // 15%
+    PASSES_RANDOMLY(passes, trials, RNG_HITS);
+
+    GIVEN {
+        WITH_CONFIG(CONFIG_MULTI_HIT_CHANCE, genConfig);
+        ASSUME(GetMoveCategory(MOVE_COMET_PUNCH) != DAMAGE_CATEGORY_STATUS);
+        ASSUME(GetMoveEffect(MOVE_COMET_PUNCH) == EFFECT_MULTI_HIT);
+        PLAYER(SPECIES_KANGASKHAN) { Ability(ABILITY_EARLY_BIRD); Innates(ABILITY_PARENTAL_BOND); Item(ITEM_KANGASKHANITE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_COMET_PUNCH); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_COMET_PUNCH, player);
+        MESSAGE("The Pokémon was hit 5 time(s)!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Parental Bond Smack Down effect triggers after 2nd hit (Traits)")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_SMACK_DOWN) == EFFECT_SMACK_DOWN);
+        ASSUME(GetMoveCategory(MOVE_SMACK_DOWN) != DAMAGE_CATEGORY_STATUS);
+        ASSUME(GetMoveStrikeCount(MOVE_SMACK_DOWN) < 2);
+        PLAYER(SPECIES_KANGASKHAN) { Ability(ABILITY_EARLY_BIRD); Innates(ABILITY_PARENTAL_BOND); Item(ITEM_KANGASKHANITE); }
+        OPPONENT(SPECIES_SKARMORY);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SMACK_DOWN); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SMACK_DOWN, player);
+        HP_BAR(opponent);
+        NOT MESSAGE("The opposing Skarmory fell straight down!");
+        HP_BAR(opponent);
+        MESSAGE("The opposing Skarmory fell straight down!");
+    }
+}
+
+SINGLE_BATTLE_TEST("Parental Bond Snore strikes twice while asleep (Traits)")
+{
+    s16 damage[2];
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_SNORE) == EFFECT_SNORE);
+        PLAYER(SPECIES_KANGASKHAN_MEGA) { Ability(ABILITY_EARLY_BIRD); Innates(ABILITY_PARENTAL_BOND); Status1(STATUS1_SLEEP); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_SNORE); }
+    } SCENE {
+        MESSAGE("Kangaskhan is fast asleep.");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SNORE, player);
+        HP_BAR(opponent, captureDamage: &damage[0]);
+        HP_BAR(opponent, captureDamage: &damage[1]);
+        MESSAGE("The Pokémon was hit 2 time(s)!");
+    } THEN {
+        if (B_PARENTAL_BOND_DMG >= GEN_7)
+            EXPECT_MUL_EQ(damage[0], Q_4_12(0.25), damage[1]);
+        else
+            EXPECT_MUL_EQ(damage[0], Q_4_12(0.5), damage[1]);
+    }
+}
+
+SINGLE_BATTLE_TEST("Parental Bond only triggers Dragon Tail's target switch out on the second hit (Traits)")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_DRAGON_TAIL) == EFFECT_HIT_SWITCH_TARGET);
+        PLAYER(SPECIES_KANGASKHAN) { Ability(ABILITY_EARLY_BIRD); Innates(ABILITY_PARENTAL_BOND); Item(ITEM_KANGASKHANITE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_CELEBRATE); MOVE(player, MOVE_DRAGON_TAIL); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_TAIL, player);
+        HP_BAR(opponent);
+        HP_BAR(opponent);
+        MESSAGE("The opposing Wynaut was dragged out!");
+    }
+}
+
+SINGLE_BATTLE_TEST("Parental Bond does not trigger on semi-invulnerable moves (Traits)")
+{
+    GIVEN {
+        ASSUME(GetMoveCategory(MOVE_FLY) != DAMAGE_CATEGORY_STATUS);
+        ASSUME(GetMoveStrikeCount(MOVE_FLY) < 2);
+        ASSUME(GetMoveEffect(MOVE_FLY) == EFFECT_SEMI_INVULNERABLE);
+        PLAYER(SPECIES_KANGASKHAN) { Ability(ABILITY_EARLY_BIRD); Innates(ABILITY_PARENTAL_BOND); Item(ITEM_KANGASKHANITE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_FLY); MOVE(opponent, MOVE_CELEBRATE); }
+        TURN { SKIP_TURN(player); }
+    } SCENE {
+        HP_BAR(opponent);
+        NOT HP_BAR(opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Parental Bond does not trigger on two turn attacks (Traits)")
+{
+    GIVEN {
+        ASSUME(GetMoveCategory(MOVE_RAZOR_WIND) != DAMAGE_CATEGORY_STATUS);
+        ASSUME(GetMoveStrikeCount(MOVE_RAZOR_WIND) < 2);
+        ASSUME(GetMoveEffect(MOVE_RAZOR_WIND) == EFFECT_TWO_TURNS_ATTACK);
+        PLAYER(SPECIES_KANGASKHAN) { Ability(ABILITY_EARLY_BIRD); Innates(ABILITY_PARENTAL_BOND); Item(ITEM_KANGASKHANITE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_RAZOR_WIND); MOVE(opponent, MOVE_CELEBRATE); }
+        TURN { SKIP_TURN(player); }
+    } SCENE {
+        HP_BAR(opponent);
+        NOT HP_BAR(opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Parental Bond does not trigger Scale Shot effect on Drain Punch (Traits)")
+{
+    GIVEN {
+        PLAYER(SPECIES_KANGASKHAN) { Ability(ABILITY_EARLY_BIRD); Innates(ABILITY_PARENTAL_BOND); Item(ITEM_KANGASKHANITE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_DRAIN_PUNCH); MOVE(opponent, MOVE_CELEBRATE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAIN_PUNCH, player);
+        NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+    } THEN {
+        EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE);
+        EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE);
+    }
+}
+
+TO_DO_BATTLE_TEST("Parental Bond tests (Traits)");
+#endif

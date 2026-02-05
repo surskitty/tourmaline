@@ -61,7 +61,7 @@ SINGLE_BATTLE_TEST("Volt Absorb is only triggered once on multi strike moves")
     }
 }
 
-DOUBLE_BATTLE_TEST("Volt Absorb does not stop Electric Typed Explosion from damaging other pokemon") // Fixed issue #1961
+DOUBLE_BATTLE_TEST("Volt Absorb does not stop Electric Typed Explosion from damaging other Pokémon") // Fixed issue #1961
 {
     s16 damage1, damage2;
     GIVEN {
@@ -106,11 +106,12 @@ SINGLE_BATTLE_TEST("Volt Absorb prevents Cell Battery from activating")
     }
 }
 
-SINGLE_BATTLE_TEST("Volt Absorb heals 25% when hit by electric type moves (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Volt Absorb heals 25% when hit by electric type moves (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_THUNDER_SHOCK) == TYPE_ELECTRIC);
-        PLAYER(SPECIES_JOLTEON) { Ability(ABILITY_VOLT_ABSORB); HP(1); MaxHP(100); }
+        PLAYER(SPECIES_JOLTEON) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_VOLT_ABSORB); HP(1); MaxHP(100); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_THUNDER_SHOCK); }
@@ -121,7 +122,7 @@ SINGLE_BATTLE_TEST("Volt Absorb heals 25% when hit by electric type moves (Trait
     }
 }
 
-SINGLE_BATTLE_TEST("Volt Absorb does not activate if protected (Trait)")
+SINGLE_BATTLE_TEST("Volt Absorb does not activate if protected")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_THUNDER_SHOCK) == TYPE_ELECTRIC);
@@ -134,7 +135,7 @@ SINGLE_BATTLE_TEST("Volt Absorb does not activate if protected (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Volt Absorb activates on status moves (Trait)")
+SINGLE_BATTLE_TEST("Volt Absorb activates on status moves (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_THUNDER_WAVE) == TYPE_ELECTRIC);
@@ -150,7 +151,7 @@ SINGLE_BATTLE_TEST("Volt Absorb activates on status moves (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Volt Absorb is only triggered once on multi strike moves (Trait)")
+SINGLE_BATTLE_TEST("Volt Absorb is only triggered once on multi strike moves (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_FURY_SWIPES) == TYPE_NORMAL);
@@ -166,7 +167,7 @@ SINGLE_BATTLE_TEST("Volt Absorb is only triggered once on multi strike moves (Tr
     }
 }
 
-DOUBLE_BATTLE_TEST("Volt Absorb does not stop Electric Typed Explosion from damaging other pokemon (Trait)") // Fixed issue #1961
+DOUBLE_BATTLE_TEST("Volt Absorb does not stop Electric Typed Explosion from damaging other Pokémon (Traits)") // Fixed issue #1961
 {
     s16 damage1, damage2;
     GIVEN {
@@ -190,7 +191,7 @@ DOUBLE_BATTLE_TEST("Volt Absorb does not stop Electric Typed Explosion from dama
     }
 }
 
-SINGLE_BATTLE_TEST("Volt Absorb prevents Cell Battery from activating (Trait)")
+SINGLE_BATTLE_TEST("Volt Absorb prevents Cell Battery from activating (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_THUNDER_SHOCK) == TYPE_ELECTRIC);
@@ -210,3 +211,4 @@ SINGLE_BATTLE_TEST("Volt Absorb prevents Cell Battery from activating (Trait)")
 
     }
 }
+#endif

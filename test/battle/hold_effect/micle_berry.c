@@ -4,8 +4,8 @@
 ASSUMPTIONS
 {
     ASSUME(gItemsInfo[ITEM_MICLE_BERRY].holdEffect == HOLD_EFFECT_MICLE_BERRY);
-    ASSUME(GetMoveEffect(MOVE_DRAGON_RAGE) == EFFECT_FIXED_DAMAGE_ARG);
-    ASSUME(GetMoveFixedDamage(MOVE_DRAGON_RAGE) == 40);
+    ASSUME(GetMoveEffect(MOVE_DRAGON_RAGE) == EFFECT_FIXED_HP_DAMAGE);
+    ASSUME(GetMoveFixedHPDamage(MOVE_DRAGON_RAGE) == 40);
 }
 
 SINGLE_BATTLE_TEST("Micle Berry raises the holder's accuracy by 1.2 when HP drops to 1/4 or below")
@@ -98,7 +98,8 @@ SINGLE_BATTLE_TEST("Micle Berry increases the accuracy of the next used move the
     }
 }
 
-SINGLE_BATTLE_TEST("Micle Berry raises the holder's accuracy by 1.2 when HP drops to 1/2 or below")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Micle Berry raises the holder's accuracy by 1.2 when HP drops to 1/2 or below (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_BELLSPROUT) { MaxHP(80); HP(80); Ability(ABILITY_CHLOROPHYLL); Innates(ABILITY_GLUTTONY); Item(ITEM_MICLE_BERRY); }
@@ -111,3 +112,4 @@ SINGLE_BATTLE_TEST("Micle Berry raises the holder's accuracy by 1.2 when HP drop
         MESSAGE("Bellsprout boosted the accuracy of its next move using Micle Berry!");
     }
 }
+#endif

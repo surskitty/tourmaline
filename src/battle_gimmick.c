@@ -91,12 +91,7 @@ bool32 ShouldTrainerBattlerUseGimmick(u32 battler, enum Gimmick gimmick)
 // Returns whether a trainer has used a gimmick during a battle.
 bool32 HasTrainerUsedGimmick(u32 battler, enum Gimmick gimmick)
 {
-    // Check whether partner battler has used gimmick or plans to during turn.
-    if (IsDoubleBattle()
-        && IsPartnerMonFromSameTrainer(battler)
-        && (gBattleStruct->gimmick.activated[BATTLE_PARTNER(battler)][gimmick]
-        || ((gBattleStruct->gimmick.toActivate & (1u << BATTLE_PARTNER(battler))
-        && gBattleStruct->gimmick.usableGimmick[BATTLE_PARTNER(battler)] == gimmick))))
+    if (IsDoubleBattle() && IsPartnerMonFromSameTrainer(battler))
     {
         // check if it's a trainer class that's two people
         switch (GetTrainerClassFromId(battler)) {
@@ -115,6 +110,8 @@ bool32 HasTrainerUsedGimmick(u32 battler, enum Gimmick gimmick)
     {
         return gBattleStruct->gimmick.activated[battler][gimmick];
     }
+
+    return gBattleStruct->gimmick.activated[battler][gimmick];
 }
 
 // Sets a gimmick as used by a trainer with checks for Multi Battles.
@@ -162,7 +159,7 @@ void CreateGimmickTriggerSprite(u32 battler)
 
     if (gBattleStruct->gimmick.triggerSpriteId == 0xFF)
     {
-        if (IsDoubleBattle())
+        if (GetBattlerCoordsIndex(battler) == BATTLE_COORDS_DOUBLES)
             gBattleStruct->gimmick.triggerSpriteId = CreateSprite(gimmick->triggerTemplate,
                                                                   gSprites[gHealthboxSpriteIds[battler]].x - DOUBLES_GIMMICK_TRIGGER_POS_X_SLIDE,
                                                                   gSprites[gHealthboxSpriteIds[battler]].y - DOUBLES_GIMMICK_TRIGGER_POS_Y_DIFF, 0);
@@ -186,6 +183,13 @@ bool32 IsGimmickTriggerSpriteActive(void)
         return TRUE;
     else
         return FALSE;
+}
+
+bool32 IsGimmickTriggerSpriteMatchingBattler(u32 battler)
+{
+    if (battler == gSprites[gBattleStruct->gimmick.triggerSpriteId].tBattler)
+        return TRUE;
+    return FALSE;
 }
 
 void HideGimmickTriggerSprite(void)
@@ -212,7 +216,7 @@ static void SpriteCb_GimmickTrigger(struct Sprite *sprite)
     s32 yDiff;
     s32 xHealthbox = gSprites[gHealthboxSpriteIds[sprite->tBattler]].x;
 
-    if (IsDoubleBattle())
+    if (GetBattlerCoordsIndex(sprite->tBattler) == BATTLE_COORDS_DOUBLES)
     {
         xSlide = DOUBLES_GIMMICK_TRIGGER_POS_X_SLIDE;
         xPriority = DOUBLES_GIMMICK_TRIGGER_POS_X_PRIORITY;

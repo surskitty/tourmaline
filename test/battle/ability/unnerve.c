@@ -5,7 +5,7 @@
 SINGLE_BATTLE_TEST("Unnerve prevents opposing Pokémon from eating their own berries")
 {
     u16 mon;
-    u16 ability;
+    enum Ability ability;
     PARAMETRIZE { mon = SPECIES_JOLTIK, ability = ABILITY_UNNERVE; }
     PARAMETRIZE { mon = SPECIES_CALYREX_ICE, ability = ABILITY_AS_ONE_ICE_RIDER; }
     GIVEN {
@@ -24,7 +24,7 @@ SINGLE_BATTLE_TEST("Unnerve prevents opposing Pokémon from eating their own ber
 SINGLE_BATTLE_TEST("Unnerve doesn't prevent opposing Pokémon from using Natural Gift")
 {
     u16 mon;
-    u16 ability;
+    enum Ability ability;
     PARAMETRIZE { mon = SPECIES_JOLTIK, ability = ABILITY_UNNERVE; }
     PARAMETRIZE { mon = SPECIES_CALYREX_ICE, ability = ABILITY_AS_ONE_ICE_RIDER; }
     GIVEN {
@@ -42,7 +42,7 @@ SINGLE_BATTLE_TEST("Unnerve doesn't prevent opposing Pokémon from using Natural
 SINGLE_BATTLE_TEST("Unnerve prints the correct string (player)")
 {
     u16 mon;
-    u16 ability;
+    enum Ability ability;
     PARAMETRIZE { mon = SPECIES_JOLTIK, ability = ABILITY_UNNERVE; }
     PARAMETRIZE { mon = SPECIES_CALYREX_ICE, ability = ABILITY_AS_ONE_ICE_RIDER; }
     GIVEN {
@@ -59,7 +59,7 @@ SINGLE_BATTLE_TEST("Unnerve prints the correct string (player)")
 SINGLE_BATTLE_TEST("Unnerve prints the correct string (opponent)")
 {
     u16 mon;
-    u16 ability;
+    enum Ability ability;
     PARAMETRIZE { mon = SPECIES_JOLTIK, ability = ABILITY_UNNERVE; }
     PARAMETRIZE { mon = SPECIES_CALYREX_ICE, ability = ABILITY_AS_ONE_ICE_RIDER; }
     GIVEN {
@@ -76,7 +76,7 @@ SINGLE_BATTLE_TEST("Unnerve prints the correct string (opponent)")
 SINGLE_BATTLE_TEST("Unnerve activates only once per switch-in")
 {
     u16 mon;
-    u16 ability;
+    enum Ability ability;
     PARAMETRIZE { mon = SPECIES_JOLTIK, ability = ABILITY_UNNERVE; }
     PARAMETRIZE { mon = SPECIES_CALYREX_ICE, ability = ABILITY_AS_ONE_ICE_RIDER; }
     GIVEN {
@@ -99,3 +99,127 @@ SINGLE_BATTLE_TEST("Unnerve activates only once per switch-in")
 
     }
 }
+
+DOUBLE_BATTLE_TEST("Unnerve stops applying on death but applies on revive")
+{
+    u16 mon;
+    u16 ability;
+    PARAMETRIZE { mon = SPECIES_JOLTIK, ability = ABILITY_UNNERVE;}
+    PARAMETRIZE { mon = SPECIES_CALYREX_ICE, ability = ABILITY_AS_ONE_ICE_RIDER; }
+    GIVEN {
+        ASSUME(gItemsInfo[ITEM_RAWST_BERRY].holdEffect == HOLD_EFFECT_CURE_BRN);
+        ASSUME(gItemsInfo[ITEM_REVIVE].battleUsage == EFFECT_ITEM_REVIVE);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(mon) { Ability(ability); HP(1); }
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_RAWST_BERRY); Status1(STATUS1_BURN); }
+        OPPONENT(SPECIES_WYNAUT) { Item(ITEM_RAWST_BERRY); }
+    } WHEN {
+        TURN { MOVE(opponentLeft, MOVE_SCRATCH, target: playerRight); }
+        TURN {  USE_ITEM(playerLeft, ITEM_REVIVE, partyIndex: 1); SKIP_TURN(playerRight); MOVE(opponentLeft, MOVE_WILL_O_WISP, target: opponentRight); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponentLeft);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponentLeft);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_BRN, opponentRight);
+        NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponentRight);
+    }
+
+}
+
+// Remember to add a PARAMETRIZE for As One in the following tests:
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Unnerve prevents opposing Pokémon from eating their own berries (Traits)")
+{
+    u16 mon;
+    enum Ability ability;
+    PARAMETRIZE { mon = SPECIES_JOLTIK, ability = ABILITY_UNNERVE; }
+    PARAMETRIZE { mon = SPECIES_CALYREX_ICE, ability = ABILITY_AS_ONE_ICE_RIDER; }
+    GIVEN {
+        ASSUME(gItemsInfo[ITEM_RAWST_BERRY].holdEffect == HOLD_EFFECT_CURE_BRN);
+        PLAYER(mon) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_RAWST_BERRY); Status1(STATUS1_BURN); }
+    } WHEN {
+        TURN { }
+    } SCENE {
+        ABILITY_POPUP(player, ability);
+        NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
+        HP_BAR(opponent);
+    }
+}
+
+SINGLE_BATTLE_TEST("Unnerve doesn't prevent opposing Pokémon from using Natural Gift (Traits)")
+{
+    u16 mon;
+    enum Ability ability;
+    PARAMETRIZE { mon = SPECIES_JOLTIK, ability = ABILITY_UNNERVE; }
+    PARAMETRIZE { mon = SPECIES_CALYREX_ICE, ability = ABILITY_AS_ONE_ICE_RIDER; }
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_NATURAL_GIFT) == EFFECT_NATURAL_GIFT);
+        PLAYER(mon) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_ORAN_BERRY); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_NATURAL_GIFT); }
+    } SCENE {
+        ABILITY_POPUP(player, ability);
+        HP_BAR(player);
+    }
+}
+
+SINGLE_BATTLE_TEST("Unnerve prints the correct string (player) (Traits)")
+{
+    u16 mon;
+    enum Ability ability;
+    PARAMETRIZE { mon = SPECIES_JOLTIK, ability = ABILITY_UNNERVE; }
+    PARAMETRIZE { mon = SPECIES_CALYREX_ICE, ability = ABILITY_AS_ONE_ICE_RIDER; }
+    GIVEN {
+        PLAYER(mon) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN {}
+    } SCENE {
+        ABILITY_POPUP(player, ability);
+        MESSAGE("The opposing team is too nervous to eat Berries!");
+    }
+}
+
+SINGLE_BATTLE_TEST("Unnerve prints the correct string (opponent) (Traits)")
+{
+    u16 mon;
+    enum Ability ability;
+    PARAMETRIZE { mon = SPECIES_JOLTIK, ability = ABILITY_UNNERVE; }
+    PARAMETRIZE { mon = SPECIES_CALYREX_ICE, ability = ABILITY_AS_ONE_ICE_RIDER; }
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(mon) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
+    } WHEN {
+        TURN {}
+    } SCENE {
+        ABILITY_POPUP(opponent, ability);
+        MESSAGE("Your team is too nervous to eat Berries!");
+    }
+}
+
+DOUBLE_BATTLE_TEST("Unnerve stops applying on death but applies on revive (Traits)")
+{
+    u16 mon;
+    u16 ability;
+    PARAMETRIZE { mon = SPECIES_JOLTIK, ability = ABILITY_UNNERVE;}
+    PARAMETRIZE { mon = SPECIES_CALYREX_ICE, ability = ABILITY_AS_ONE_ICE_RIDER; }
+    GIVEN {
+        ASSUME(gItemsInfo[ITEM_RAWST_BERRY].holdEffect == HOLD_EFFECT_CURE_BRN);
+        ASSUME(gItemsInfo[ITEM_REVIVE].battleUsage == EFFECT_ITEM_REVIVE);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(mon) { Ability(ABILITY_LIGHT_METAL); Innates(ability); HP(1); }
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_RAWST_BERRY); Status1(STATUS1_BURN); }
+        OPPONENT(SPECIES_WYNAUT) { Item(ITEM_RAWST_BERRY); }
+    } WHEN {
+        TURN { MOVE(opponentLeft, MOVE_SCRATCH, target: playerRight); }
+        TURN {  USE_ITEM(playerLeft, ITEM_REVIVE, partyIndex: 1); SKIP_TURN(playerRight); MOVE(opponentLeft, MOVE_WILL_O_WISP, target: opponentRight); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SCRATCH, opponentLeft);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponentLeft);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_BRN, opponentRight);
+        NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponentRight);
+    }
+
+}
+#endif

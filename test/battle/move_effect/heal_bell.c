@@ -3,8 +3,8 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gMovesInfo[MOVE_HEAL_BELL].effect == EFFECT_HEAL_BELL);
-    ASSUME(gMovesInfo[MOVE_AROMATHERAPY].effect == EFFECT_HEAL_BELL);
+    ASSUME(GetMoveEffect(MOVE_HEAL_BELL) == EFFECT_HEAL_BELL);
+    ASSUME(GetMoveEffect(MOVE_AROMATHERAPY) == EFFECT_HEAL_BELL);
     ASSUME(MoveHasAdditionalEffect(MOVE_SPARKLY_SWIRL, MOVE_EFFECT_AROMATHERAPY));
 }
 
@@ -86,7 +86,8 @@ DOUBLE_BATTLE_TEST("Heal Bell/Aromatherapy cures the entire party of the user fr
 
 DOUBLE_BATTLE_TEST("Heal Bell does not cure Soundproof partners (Gen 4, Gen 6+)")
 {
-    u32 ability, config;
+    enum Ability ability;
+    u32 config;
 
     PARAMETRIZE { ability = ABILITY_SCRAPPY;    config = GEN_4; }
     PARAMETRIZE { ability = ABILITY_SOUNDPROOF; config = GEN_4; }
@@ -95,7 +96,7 @@ DOUBLE_BATTLE_TEST("Heal Bell does not cure Soundproof partners (Gen 4, Gen 6+)"
 
     GIVEN {
         ASSUME(IsSoundMove(MOVE_HEAL_BELL));
-        WITH_CONFIG(GEN_CONFIG_HEAL_BELL_SOUNDPROOF, config);
+        WITH_CONFIG(CONFIG_HEAL_BELL_SOUNDPROOF, config);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_EXPLOUD) { Ability(ability); Status1(STATUS1_POISON); }
         OPPONENT(SPECIES_WYNAUT);
@@ -114,7 +115,8 @@ DOUBLE_BATTLE_TEST("Heal Bell does not cure Soundproof partners (Gen 4, Gen 6+)"
 
 SINGLE_BATTLE_TEST("Heal Bell cures inactive Soundproof Pokemon (Gen5+)")
 {
-    u32 config, ability;
+    u32 config;
+    enum Ability ability;
 
     PARAMETRIZE { config = GEN_4, ability = ABILITY_SCRAPPY; }
     PARAMETRIZE { config = GEN_4, ability = ABILITY_SOUNDPROOF; }
@@ -122,7 +124,7 @@ SINGLE_BATTLE_TEST("Heal Bell cures inactive Soundproof Pokemon (Gen5+)")
 
     GIVEN {
         ASSUME(IsSoundMove(MOVE_HEAL_BELL));
-        WITH_CONFIG(GEN_CONFIG_HEAL_BELL_SOUNDPROOF, config);
+        WITH_CONFIG(CONFIG_HEAL_BELL_SOUNDPROOF, config);
         PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_POISON); }
         PLAYER(SPECIES_EXPLOUD) { Ability(ability); Status1(STATUS1_POISON); }
         OPPONENT(SPECIES_WYNAUT);
@@ -140,6 +142,7 @@ SINGLE_BATTLE_TEST("Heal Bell cures inactive Soundproof Pokemon (Gen5+)")
     }
 }
 
+
 SINGLE_BATTLE_TEST("Heal Bell cures a Soundproof user (Gen5, Gen8+)")
 {
     u32 config;
@@ -149,7 +152,7 @@ SINGLE_BATTLE_TEST("Heal Bell cures a Soundproof user (Gen5, Gen8+)")
     PARAMETRIZE { config = GEN_8; }
     GIVEN {
         ASSUME(IsSoundMove(MOVE_HEAL_BELL));
-        WITH_CONFIG(GEN_CONFIG_HEAL_BELL_SOUNDPROOF, config);
+        WITH_CONFIG(CONFIG_HEAL_BELL_SOUNDPROOF, config);
         PLAYER(SPECIES_EXPLOUD) { Ability(ABILITY_SOUNDPROOF); Status1(STATUS1_POISON); }
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
@@ -164,9 +167,90 @@ SINGLE_BATTLE_TEST("Heal Bell cures a Soundproof user (Gen5, Gen8+)")
     }
 }
 
-SINGLE_BATTLE_TEST("Heal Bell cures inactive Soundproof Pokemon (Gen5+) (Trait)")
+DOUBLE_BATTLE_TEST("Aromatherapy cure Soundproof battlers regardless of config")
+{
+    u32 ability, config;
+
+    PARAMETRIZE { ability = ABILITY_SOUNDPROOF; config = GEN_4; }
+    PARAMETRIZE { ability = ABILITY_SOUNDPROOF; config = GEN_5; }
+    PARAMETRIZE { ability = ABILITY_SOUNDPROOF; config = GEN_6; }
+    PARAMETRIZE { ability = ABILITY_SOUNDPROOF; config = GEN_8; }
+
+    GIVEN {
+        ASSUME(!IsSoundMove(MOVE_AROMATHERAPY));
+        WITH_CONFIG(CONFIG_HEAL_BELL_SOUNDPROOF, config);
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ability); Status1(STATUS1_POISON); };
+        PLAYER(SPECIES_EXPLOUD) { Ability(ability); Status1(STATUS1_POISON); }
+        OPPONENT(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_AROMATHERAPY, target: playerLeft); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_AROMATHERAPY, playerLeft);
+        NONE_OF {
+            MESSAGE("Exploud was hurt by its poisoning!");
+            MESSAGE("Wobbuffet was hurt by its poisoning!");
+        }
+    }
+}
+
+SINGLE_BATTLE_TEST("Aromatherapy cures inactive Soundproof Pokemon regardless of config")
 {
     u32 config, ability;
+
+    PARAMETRIZE { config = GEN_4, ability = ABILITY_SOUNDPROOF; }
+    PARAMETRIZE { config = GEN_5, ability = ABILITY_SOUNDPROOF; }
+
+    GIVEN {
+        ASSUME(!IsSoundMove(MOVE_AROMATHERAPY));
+        WITH_CONFIG(CONFIG_HEAL_BELL_SOUNDPROOF, config);
+        PLAYER(SPECIES_WOBBUFFET) { }
+        PLAYER(SPECIES_EXPLOUD) { Ability(ability); Status1(STATUS1_POISON); }
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(player, MOVE_AROMATHERAPY, target: player); }
+        TURN { SWITCH(player, 1); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_AROMATHERAPY, player);
+        SEND_IN_MESSAGE("Exploud");
+        NOT MESSAGE("Exploud was hurt by its poisoning!");
+    }
+}
+
+#if MAX_MON_TRAITS > 1
+DOUBLE_BATTLE_TEST("Heal Bell does not cure Soundproof partners (Gen 4, Gen 6+) (Traits)")
+{
+    enum Ability ability;
+    u32 config;
+
+    PARAMETRIZE { ability = ABILITY_SCRAPPY;    config = GEN_4; }
+    PARAMETRIZE { ability = ABILITY_SOUNDPROOF; config = GEN_4; }
+    PARAMETRIZE { ability = ABILITY_SOUNDPROOF; config = GEN_5; }
+    PARAMETRIZE { ability = ABILITY_SOUNDPROOF; config = GEN_6; }
+
+    GIVEN {
+        ASSUME(IsSoundMove(MOVE_HEAL_BELL));
+        WITH_CONFIG(CONFIG_HEAL_BELL_SOUNDPROOF, config);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_EXPLOUD) { Ability(ABILITY_SCRAPPY); Innates(ability); Status1(STATUS1_POISON); }
+        OPPONENT(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_HEAL_BELL, target: playerLeft); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HEAL_BELL, playerLeft);
+        if (ability == ABILITY_SOUNDPROOF && config != GEN_5) {
+            MESSAGE("Exploud was hurt by its poisoning!");
+        } else {
+            NOT MESSAGE("Exploud was hurt by its poisoning!");
+        }
+    }
+}
+
+SINGLE_BATTLE_TEST("Heal Bell cures inactive Soundproof Pokemon (Gen5+) (Traits)")
+{
+    u32 config;
+    enum Ability ability;
 
     PARAMETRIZE { config = GEN_4, ability = ABILITY_SCRAPPY; }
     PARAMETRIZE { config = GEN_4, ability = ABILITY_SOUNDPROOF; }
@@ -174,7 +258,7 @@ SINGLE_BATTLE_TEST("Heal Bell cures inactive Soundproof Pokemon (Gen5+) (Trait)"
 
     GIVEN {
         ASSUME(IsSoundMove(MOVE_HEAL_BELL));
-        WITH_CONFIG(GEN_CONFIG_HEAL_BELL_SOUNDPROOF, config);
+        WITH_CONFIG(CONFIG_HEAL_BELL_SOUNDPROOF, config);
         PLAYER(SPECIES_WOBBUFFET) { Status1(STATUS1_POISON); }
         PLAYER(SPECIES_EXPLOUD) { Ability(ABILITY_SCRAPPY); Innates(ability); Status1(STATUS1_POISON); }
         OPPONENT(SPECIES_WYNAUT);
@@ -192,7 +276,8 @@ SINGLE_BATTLE_TEST("Heal Bell cures inactive Soundproof Pokemon (Gen5+) (Trait)"
     }
 }
 
-SINGLE_BATTLE_TEST("Heal Bell cures a Soundproof user (Gen5, Gen8+) (Trait)")
+
+SINGLE_BATTLE_TEST("Heal Bell cures a Soundproof user (Gen5, Gen8+) (Traits)")
 {
     u32 config;
     PARAMETRIZE { config = GEN_4; }
@@ -201,7 +286,7 @@ SINGLE_BATTLE_TEST("Heal Bell cures a Soundproof user (Gen5, Gen8+) (Trait)")
     PARAMETRIZE { config = GEN_8; }
     GIVEN {
         ASSUME(IsSoundMove(MOVE_HEAL_BELL));
-        WITH_CONFIG(GEN_CONFIG_HEAL_BELL_SOUNDPROOF, config);
+        WITH_CONFIG(CONFIG_HEAL_BELL_SOUNDPROOF, config);
         PLAYER(SPECIES_EXPLOUD) { Ability(ABILITY_SCRAPPY); Innates(ABILITY_SOUNDPROOF); Status1(STATUS1_POISON); }
         OPPONENT(SPECIES_WYNAUT);
     } WHEN {
@@ -215,3 +300,54 @@ SINGLE_BATTLE_TEST("Heal Bell cures a Soundproof user (Gen5, Gen8+) (Trait)")
         }
     }
 }
+
+DOUBLE_BATTLE_TEST("Aromatherapy cure Soundproof battlers regardless of config (Traits)")
+{
+    u32 ability, config;
+
+    PARAMETRIZE { ability = ABILITY_SOUNDPROOF; config = GEN_4; }
+    PARAMETRIZE { ability = ABILITY_SOUNDPROOF; config = GEN_5; }
+    PARAMETRIZE { ability = ABILITY_SOUNDPROOF; config = GEN_6; }
+    PARAMETRIZE { ability = ABILITY_SOUNDPROOF; config = GEN_8; }
+
+    GIVEN {
+        ASSUME(!IsSoundMove(MOVE_AROMATHERAPY));
+        WITH_CONFIG(CONFIG_HEAL_BELL_SOUNDPROOF, config);
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_TELEPATHY); Innates(ability); Status1(STATUS1_POISON); };
+        PLAYER(SPECIES_EXPLOUD) { Ability(ABILITY_SCRAPPY); Innates(ability); Status1(STATUS1_POISON); }
+        OPPONENT(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_AROMATHERAPY, target: playerLeft); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_AROMATHERAPY, playerLeft);
+        NONE_OF {
+            MESSAGE("Exploud was hurt by its poisoning!");
+            MESSAGE("Wobbuffet was hurt by its poisoning!");
+        }
+    }
+}
+
+SINGLE_BATTLE_TEST("Aromatherapy cures inactive Soundproof Pokemon regardless of config (Traits)")
+{
+    u32 config, ability;
+
+    PARAMETRIZE { config = GEN_4, ability = ABILITY_SOUNDPROOF; }
+    PARAMETRIZE { config = GEN_5, ability = ABILITY_SOUNDPROOF; }
+
+    GIVEN {
+        ASSUME(!IsSoundMove(MOVE_AROMATHERAPY));
+        WITH_CONFIG(CONFIG_HEAL_BELL_SOUNDPROOF, config);
+        PLAYER(SPECIES_WOBBUFFET) { }
+        PLAYER(SPECIES_EXPLOUD) { Ability(ABILITY_SCRAPPY); Innates(ability); Status1(STATUS1_POISON); }
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(player, MOVE_AROMATHERAPY, target: player); }
+        TURN { SWITCH(player, 1); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_AROMATHERAPY, player);
+        SEND_IN_MESSAGE("Exploud");
+        NOT MESSAGE("Exploud was hurt by its poisoning!");
+    }
+}
+#endif

@@ -4,7 +4,7 @@
 SINGLE_BATTLE_TEST("Steelworker increases Steel-type move damage", s16 damage)
 {
     u32 move;
-    u16 ability;
+    enum Ability ability;
 
     PARAMETRIZE { move = MOVE_SCRATCH; ability = ABILITY_KLUTZ; }
     PARAMETRIZE { move = MOVE_SCRATCH; ability = ABILITY_STEELWORKER; }
@@ -32,10 +32,11 @@ SINGLE_BATTLE_TEST("Steelworker increases Steel-type move damage", s16 damage)
     }
 }
 
-SINGLE_BATTLE_TEST("Steelworker increases Steel-type move damage (Trait)", s16 damage)
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Steelworker increases Steel-type move damage (Traits)", s16 damage)
 {
     u32 move;
-    u16 ability;
+    enum Ability ability;
 
     PARAMETRIZE { move = MOVE_SCRATCH; ability = ABILITY_KLUTZ; }
     PARAMETRIZE { move = MOVE_SCRATCH; ability = ABILITY_STEELWORKER; }
@@ -50,7 +51,7 @@ SINGLE_BATTLE_TEST("Steelworker increases Steel-type move damage (Trait)", s16 d
         ASSUME(GetMoveType(MOVE_FLASH_CANNON) == TYPE_STEEL);
         ASSUME(GetMoveCategory(MOVE_ANCHOR_SHOT) == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(GetMoveCategory(MOVE_FLASH_CANNON) == DAMAGE_CATEGORY_SPECIAL);
-        PLAYER(SPECIES_DHELMISE) { Ability(ABILITY_KLUTZ); Innates(ability); }
+        PLAYER(SPECIES_DHELMISE) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, move); }
@@ -62,3 +63,4 @@ SINGLE_BATTLE_TEST("Steelworker increases Steel-type move damage (Trait)", s16 d
         EXPECT_MUL_EQ(results[4].damage, Q_4_12(1.5), results[5].damage); // Flash Cannon should be affected
     }
 }
+#endif

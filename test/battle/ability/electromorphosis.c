@@ -55,7 +55,9 @@ SINGLE_BATTLE_TEST("Electromorphosis sets up Charge when hit by any move")
     }
 }
 
-SINGLE_BATTLE_TEST("Electromorphosis sets up Charge when hit by any move (Trait)")
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Electromorphosis sets up Charge when hit by any move (Traits)")
 {
     s16 dmgBefore, dmgAfter;
     u16 move;
@@ -71,8 +73,8 @@ SINGLE_BATTLE_TEST("Electromorphosis sets up Charge when hit by any move (Trait)
         ASSUME(!IsBattleMoveStatus(MOVE_THUNDER_SHOCK));
         ASSUME(GetMoveType(MOVE_THUNDER_SHOCK) == TYPE_ELECTRIC);
 
-        PLAYER(SPECIES_BELLIBOLT) { Ability(ABILITY_STATIC); Innates(ABILITY_ELECTROMORPHOSIS); Speed(10); }
-        OPPONENT(SPECIES_WOBBUFFET) {Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_LIMBER); Speed(5) ;} // Limber, so it doesn't get paralyzed.
+        PLAYER(SPECIES_BELLIBOLT) { Ability(ABILITY_DAMP); Innates(ABILITY_ELECTROMORPHOSIS); Speed(10); }
+        OPPONENT(SPECIES_WOBBUFFET) {Ability(ABILITY_LIMBER); Speed(5) ;} // Limber, so it doesn't get paralyzed.
     }
     WHEN {
         TURN { MOVE(player, MOVE_THUNDER_SHOCK), MOVE(opponent, move); }
@@ -108,3 +110,4 @@ SINGLE_BATTLE_TEST("Electromorphosis sets up Charge when hit by any move (Trait)
         EXPECT_MUL_EQ(dmgBefore, Q_4_12(2.0), dmgAfter);
     }
 }
+#endif

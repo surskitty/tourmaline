@@ -45,11 +45,12 @@ SINGLE_BATTLE_TEST("Magic Guard does not ignore speed stat changes caused by par
     }
 }
 
-SINGLE_BATTLE_TEST("Magic Guard prevents recoil damage to the user (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Magic Guard prevents recoil damage to the user (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveRecoil(MOVE_DOUBLE_EDGE) == 33);
-        PLAYER(SPECIES_CLEFABLE) { Ability(ABILITY_UNAWARE); Innates(ABILITY_MAGIC_GUARD); }
+        PLAYER(SPECIES_CLEFABLE) { Ability(ABILITY_CUTE_CHARM); Innates(ABILITY_MAGIC_GUARD); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_DOUBLE_EDGE); }
@@ -60,14 +61,14 @@ SINGLE_BATTLE_TEST("Magic Guard prevents recoil damage to the user (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Magic Guard ignores immobilization that can be caused by paralysis (Trait)")
+SINGLE_BATTLE_TEST("Magic Guard ignores immobilization that can be caused by paralysis (Traits)")
 {
     if (B_MAGIC_GUARD == GEN_4)
         PASSES_RANDOMLY(1, 1, RNG_PARALYSIS);
     else
         PASSES_RANDOMLY(75, 100, RNG_PARALYSIS);
     GIVEN {
-        PLAYER(SPECIES_CLEFABLE) { Ability(ABILITY_UNAWARE); Innates(ABILITY_MAGIC_GUARD); Status1(STATUS1_PARALYSIS);}
+        PLAYER(SPECIES_CLEFABLE) { Ability(ABILITY_CUTE_CHARM); Innates(ABILITY_MAGIC_GUARD); Status1(STATUS1_PARALYSIS);}
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE); }
@@ -76,10 +77,10 @@ SINGLE_BATTLE_TEST("Magic Guard ignores immobilization that can be caused by par
     }
 }
 
-SINGLE_BATTLE_TEST("Magic Guard does not ignore speed stat changes caused by paralysis (Trait)")
+SINGLE_BATTLE_TEST("Magic Guard does not ignore speed stat changes caused by paralysis (Traits)")
 {
     GIVEN {
-        PLAYER(SPECIES_CLEFABLE) { Speed(100); Ability(ABILITY_UNAWARE); Innates(ABILITY_MAGIC_GUARD); Status1(STATUS1_PARALYSIS);}
+        PLAYER(SPECIES_CLEFABLE) { Speed(100); Ability(ABILITY_CUTE_CHARM); Innates(ABILITY_MAGIC_GUARD); Status1(STATUS1_PARALYSIS);}
         OPPONENT(SPECIES_WOBBUFFET) { Speed(99); }
     } WHEN {
         TURN { }
@@ -88,3 +89,4 @@ SINGLE_BATTLE_TEST("Magic Guard does not ignore speed stat changes caused by par
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, player);
     }
 }
+#endif

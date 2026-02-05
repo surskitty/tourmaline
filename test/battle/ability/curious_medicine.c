@@ -3,7 +3,7 @@
 
 DOUBLE_BATTLE_TEST("Curious Medicine resets ally's stat stages upon entering battle")
 {
-    u32 ability;
+    enum Ability ability;
 
     PARAMETRIZE { ability = ABILITY_CURIOUS_MEDICINE; }
     PARAMETRIZE { ability = ABILITY_OWN_TEMPO; }
@@ -39,9 +39,10 @@ DOUBLE_BATTLE_TEST("Curious Medicine resets ally's stat stages upon entering bat
     }
 }
 
-DOUBLE_BATTLE_TEST("Curious Medicine resets ally's stat stages upon entering battle (Trait)")
+#if MAX_MON_TRAITS > 1
+DOUBLE_BATTLE_TEST("Curious Medicine resets ally's stat stages upon entering battle (Traits)")
 {
-    u32 ability;
+    enum Ability ability;
 
     PARAMETRIZE { ability = ABILITY_CURIOUS_MEDICINE; }
     PARAMETRIZE { ability = ABILITY_OWN_TEMPO; }
@@ -51,7 +52,7 @@ DOUBLE_BATTLE_TEST("Curious Medicine resets ally's stat stages upon entering bat
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_SCOLIPEDE);
         OPPONENT(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_SLOWKING_GALAR) { Ability(ABILITY_OWN_TEMPO); Innates(ability); }
+        OPPONENT(SPECIES_SLOWKING_GALAR) { Ability(ABILITY_REGENERATOR); Innates(ability); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_QUIVER_DANCE); MOVE(playerLeft, MOVE_CHARM, target: opponentLeft); }
         TURN { SWITCH(opponentRight, 2); MOVE(playerLeft, MOVE_CELEBRATE); }
@@ -76,3 +77,4 @@ DOUBLE_BATTLE_TEST("Curious Medicine resets ally's stat stages upon entering bat
         EXPECT_EQ(opponentLeft->statStages[STAT_EVASION], DEFAULT_STAT_STAGE);
     }
 }
+#endif

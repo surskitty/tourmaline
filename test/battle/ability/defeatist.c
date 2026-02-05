@@ -45,7 +45,9 @@ SINGLE_BATTLE_TEST("Defeatist halves Special Attack when HP <= 50%", s16 damage)
     }
 }
 
-SINGLE_BATTLE_TEST("Defeatist halves Attack when HP <= 50% (Trait)", s16 damage)
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Defeatist halves Attack when HP <= 50% (Traits)", s16 damage)
 {
     u32 hp;
     PARAMETRIZE { hp = 400; }
@@ -64,7 +66,7 @@ SINGLE_BATTLE_TEST("Defeatist halves Attack when HP <= 50% (Trait)", s16 damage)
     }
 }
 
-SINGLE_BATTLE_TEST("Defeatist halves Special Attack when HP <= 50% (Trait)", s16 damage)
+SINGLE_BATTLE_TEST("Defeatist halves Special Attack when HP <= 50% (Traits)", s16 damage)
 {
     u32 hp;
     PARAMETRIZE { hp = 400; }
@@ -82,3 +84,4 @@ SINGLE_BATTLE_TEST("Defeatist halves Special Attack when HP <= 50% (Trait)", s16
         EXPECT_MUL_EQ(results[0].damage, Q_4_12(0.5), results[1].damage);
     }
 }
+#endif

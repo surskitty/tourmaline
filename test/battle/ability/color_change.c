@@ -4,7 +4,7 @@
 SINGLE_BATTLE_TEST("Color Change changes the type of a Pokemon being hit by a move if the type of the move and the Pokemon are different")
 {
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_KECLEON].types[0] != TYPE_PSYCHIC && gSpeciesInfo[SPECIES_KECLEON].types[1] != TYPE_PSYCHIC);
+        ASSUME(GetSpeciesType(SPECIES_KECLEON, 0) != TYPE_PSYCHIC && GetSpeciesType(SPECIES_KECLEON, 1) != TYPE_PSYCHIC);
         ASSUME(GetMoveType(MOVE_PSYWAVE) == TYPE_PSYCHIC);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_COLOR_CHANGE); }
@@ -20,7 +20,7 @@ SINGLE_BATTLE_TEST("Color Change changes the type of a Pokemon being hit by a mo
 SINGLE_BATTLE_TEST("Color Change does not change the type when hit by a move that's the same type as itself")
 {
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_KECLEON].types[0] == TYPE_NORMAL || gSpeciesInfo[SPECIES_KECLEON].types[1] == TYPE_NORMAL);
+        ASSUME(GetSpeciesType(SPECIES_KECLEON, 0) == TYPE_NORMAL || GetSpeciesType(SPECIES_KECLEON, 1) == TYPE_NORMAL);
         ASSUME(GetMoveType(MOVE_SCRATCH) == TYPE_NORMAL);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_COLOR_CHANGE); }
@@ -154,10 +154,44 @@ SINGLE_BATTLE_TEST("Color Change changes the type to Normal when a Pokemon is hi
     }
 }
 
-SINGLE_BATTLE_TEST("Color Change changes the type of a Pokemon being hit by a move if the type of the move and the Pokemon are different (Trait)")
+SINGLE_BATTLE_TEST("Color Change does not change the type to Normal when a Pokemon is hit by Struggle")
 {
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_KECLEON].types[0] != TYPE_PSYCHIC && gSpeciesInfo[SPECIES_KECLEON].types[1] != TYPE_PSYCHIC);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_COLOR_CHANGE); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SOAK); }
+        TURN { MOVE(player, MOVE_STRUGGLE); }
+        TURN { }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SOAK, player);
+        MESSAGE("The opposing Kecleon transformed into the Water type!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_STRUGGLE, player);
+        NONE_OF {
+            ABILITY_POPUP(opponent, ABILITY_COLOR_CHANGE);
+            MESSAGE("The opposing Kecleon's Color Change made it the Normal type!");
+        }
+    }
+}
+
+SINGLE_BATTLE_TEST("Color Change does not activate if move is boosted by Sheer Force")
+{
+    GIVEN {
+        PLAYER(SPECIES_KECLEON) { Ability(ABILITY_COLOR_CHANGE); }
+        OPPONENT(SPECIES_NIDOKING) { Ability(ABILITY_SHEER_FORCE); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_EMBER); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_EMBER, opponent);
+        NOT ABILITY_POPUP(player, ABILITY_COLOR_CHANGE);
+    }
+}
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Color Change changes the type of a Pokemon being hit by a move if the type of the move and the Pokemon are different (Traits)")
+{
+    GIVEN {
+        ASSUME(GetSpeciesType(SPECIES_KECLEON, 0) != TYPE_PSYCHIC && GetSpeciesType(SPECIES_KECLEON, 1) != TYPE_PSYCHIC);
         ASSUME(GetMoveType(MOVE_PSYWAVE) == TYPE_PSYCHIC);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COLOR_CHANGE); }
@@ -170,10 +204,10 @@ SINGLE_BATTLE_TEST("Color Change changes the type of a Pokemon being hit by a mo
     }
 }
 
-SINGLE_BATTLE_TEST("Color Change does not change the type when hit by a move that's the same type as itself (Trait)")
+SINGLE_BATTLE_TEST("Color Change does not change the type when hit by a move that's the same type as itself (Traits)")
 {
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_KECLEON].types[0] == TYPE_NORMAL || gSpeciesInfo[SPECIES_KECLEON].types[1] == TYPE_NORMAL);
+        ASSUME(GetSpeciesType(SPECIES_KECLEON, 0) == TYPE_NORMAL || GetSpeciesType(SPECIES_KECLEON, 1) == TYPE_NORMAL);
         ASSUME(GetMoveType(MOVE_SCRATCH) == TYPE_NORMAL);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COLOR_CHANGE); }
@@ -188,11 +222,11 @@ SINGLE_BATTLE_TEST("Color Change does not change the type when hit by a move tha
     }
 }
 
-SINGLE_BATTLE_TEST("Color Change does not change the type of a dual-type Pokemon when hit by a move that shares its primary type (Trait)")
+SINGLE_BATTLE_TEST("Color Change does not change the type of a dual-type Pokemon when hit by a move that shares its primary type (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_KECLEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COLOR_CHANGE); }
-        OPPONENT(SPECIES_SLOWBRO) { Ability(ABILITY_OWN_TEMPO); Innates(ABILITY_COLOR_CHANGE); }
+        OPPONENT(SPECIES_SLOWBRO);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SKILL_SWAP); MOVE(player, MOVE_PSYCHO_CUT); }
     } SCENE {
@@ -205,11 +239,11 @@ SINGLE_BATTLE_TEST("Color Change does not change the type of a dual-type Pokemon
     }
 }
 
-SINGLE_BATTLE_TEST("Color Change does not change the type of a dual-type Pokemon when hit by a move that shares its secondary type (Trait)")
+SINGLE_BATTLE_TEST("Color Change does not change the type of a dual-type Pokemon when hit by a move that shares its secondary type (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_KECLEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COLOR_CHANGE); }
-        OPPONENT(SPECIES_SLOWBRO) { Ability(ABILITY_OWN_TEMPO); Innates(ABILITY_COLOR_CHANGE); }
+        OPPONENT(SPECIES_SLOWBRO);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SKILL_SWAP); MOVE(player, MOVE_PSYCHO_CUT); }
     } SCENE {
@@ -222,7 +256,7 @@ SINGLE_BATTLE_TEST("Color Change does not change the type of a dual-type Pokemon
     }
 }
 
-SINGLE_BATTLE_TEST("Color Change changes the user to Electric type if hit by a move while the opponent is under the effect of Electrify (Trait)")
+SINGLE_BATTLE_TEST("Color Change changes the user to Electric type if hit by a move while the opponent is under the effect of Electrify (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -236,7 +270,7 @@ SINGLE_BATTLE_TEST("Color Change changes the user to Electric type if hit by a m
     }
 }
 
-SINGLE_BATTLE_TEST("Color Change changes the type when a Pokemon is hit by Future Sight (Trait)")
+SINGLE_BATTLE_TEST("Color Change changes the type when a Pokemon is hit by Future Sight (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -253,7 +287,7 @@ SINGLE_BATTLE_TEST("Color Change changes the type when a Pokemon is hit by Futur
     }
 }
 
-SINGLE_BATTLE_TEST("Color Change changes the type when a Pokemon is hit by Doom Desire (Trait)")
+SINGLE_BATTLE_TEST("Color Change changes the type when a Pokemon is hit by Doom Desire (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -270,7 +304,7 @@ SINGLE_BATTLE_TEST("Color Change changes the type when a Pokemon is hit by Doom 
     }
 }
 
-SINGLE_BATTLE_TEST("Color Change changes the type to Electric when a Pokemon is hit by a forseen attack under the effect of Electrify (Trait)")
+SINGLE_BATTLE_TEST("Color Change changes the type to Electric when a Pokemon is hit by a forseen attack under the effect of Electrify (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -287,7 +321,7 @@ SINGLE_BATTLE_TEST("Color Change changes the type to Electric when a Pokemon is 
     }
 }
 
-SINGLE_BATTLE_TEST("Color Change changes the type to Normal when a Pokemon is hit by a forseen attack under the effect of Normalize (Trait)")
+SINGLE_BATTLE_TEST("Color Change changes the type to Normal when a Pokemon is hit by a forseen attack under the effect of Normalize (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_NORMALIZE); }
@@ -306,3 +340,37 @@ SINGLE_BATTLE_TEST("Color Change changes the type to Normal when a Pokemon is hi
         MESSAGE("The opposing Kecleon's Color Change made it the Normal type!");
     }
 }
+
+SINGLE_BATTLE_TEST("Color Change does not change the type to Normal when a Pokemon is hit by Struggle (Traits)")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_KECLEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COLOR_CHANGE); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SOAK); }
+        TURN { MOVE(player, MOVE_STRUGGLE); }
+        TURN { }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_SOAK, player);
+        MESSAGE("The opposing Kecleon transformed into the Water type!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_STRUGGLE, player);
+        NONE_OF {
+            ABILITY_POPUP(opponent, ABILITY_COLOR_CHANGE);
+            MESSAGE("The opposing Kecleon's Color Change made it the Normal type!");
+        }
+    }
+}
+
+SINGLE_BATTLE_TEST("Color Change does not activate if move is boosted by Sheer Force (Traits)")
+{
+    GIVEN {
+        PLAYER(SPECIES_KECLEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COLOR_CHANGE); }
+        OPPONENT(SPECIES_NIDOKING) { Ability(ABILITY_RIVALRY); Innates(ABILITY_SHEER_FORCE); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_EMBER); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_EMBER, opponent);
+        NOT ABILITY_POPUP(player, ABILITY_COLOR_CHANGE);
+    }
+}
+#endif

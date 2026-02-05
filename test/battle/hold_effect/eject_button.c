@@ -233,7 +233,26 @@ DOUBLE_BATTLE_TEST("Eject Button activation will not trigger an attack from the 
     }
 }
 
-SINGLE_BATTLE_TEST("Eject Button is not activated by a Sheer Force boosted move (Trait)")
+SINGLE_BATTLE_TEST("Eject Button activates after Wandring Spirit")
+{
+    GIVEN {
+        PLAYER(SPECIES_EKANS) { Ability(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_YAMASK_GALAR) { Item(ITEM_EJECT_BUTTON); Ability(ABILITY_WANDERING_SPIRIT); }
+    } WHEN {
+        TURN {
+            SWITCH(opponent, 1);
+            MOVE(player, MOVE_DRAGON_CLAW);
+            SEND_OUT(opponent, 0);
+        }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_CLAW, player);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
+    }
+}
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Eject Button is not activated by a Sheer Force boosted move (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_NIDOKING) { Ability(ABILITY_POISON_POINT); Innates(ABILITY_SHEER_FORCE); }
@@ -254,7 +273,7 @@ SINGLE_BATTLE_TEST("Eject Button is not activated by a Sheer Force boosted move 
     }
 }
 
-SINGLE_BATTLE_TEST("Eject Button is not blocked by trapping abilities or moves (Trait)")
+SINGLE_BATTLE_TEST("Eject Button is not blocked by trapping abilities or moves (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_DUGTRIO) { Ability(ABILITY_SAND_VEIL); Innates(ABILITY_ARENA_TRAP); }
@@ -273,7 +292,7 @@ SINGLE_BATTLE_TEST("Eject Button is not blocked by trapping abilities or moves (
     }
 }
 
-SINGLE_BATTLE_TEST("Eject Button is not triggered after given to player by Picketpocket (Trait)")
+SINGLE_BATTLE_TEST("Eject Button is not triggered after given to player by Picketpocket (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_REGIELEKI) { Item(ITEM_EJECT_BUTTON); }
@@ -293,11 +312,11 @@ SINGLE_BATTLE_TEST("Eject Button is not triggered after given to player by Picke
     }
 }
 
-SINGLE_BATTLE_TEST("Eject Button is activated before Emergency Exit (Trait)")
+SINGLE_BATTLE_TEST("Eject Button is activated before Emergency Exit (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_LATIAS);
-        OPPONENT(SPECIES_GOLISOPOD) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_EMERGENCY_EXIT); Item(ITEM_EJECT_BUTTON); }
+        OPPONENT(SPECIES_GOLISOPOD) { Ability(ABILITY_EMERGENCY_EXIT); Item(ITEM_EJECT_BUTTON); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {
@@ -311,10 +330,10 @@ SINGLE_BATTLE_TEST("Eject Button is activated before Emergency Exit (Trait)")
     }
 }
 
-DOUBLE_BATTLE_TEST("Eject Button activation will not trigger an attack from the incoming mon (Trait)")
+DOUBLE_BATTLE_TEST("Eject Button activation will not trigger an attack from the incoming mon (Traits)")
 {
     GIVEN {
-        PLAYER(SPECIES_TATSUGIRI) { Speed(10); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_COMMANDER); }
+        PLAYER(SPECIES_TATSUGIRI) { Speed(10); Ability(ABILITY_COMMANDER); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(100); Item(ITEM_EJECT_BUTTON); }
         PLAYER(SPECIES_DONDOZO) { Speed(20); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(50); Item(ITEM_EJECT_PACK); }
@@ -334,3 +353,22 @@ DOUBLE_BATTLE_TEST("Eject Button activation will not trigger an attack from the 
         }
     }
 }
+
+SINGLE_BATTLE_TEST("Eject Button activates after Wandring Spirit (Traits)")
+{
+    GIVEN {
+        PLAYER(SPECIES_EKANS) { Ability(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_YAMASK_GALAR) { Item(ITEM_EJECT_BUTTON); Ability(ABILITY_WANDERING_SPIRIT); }
+    } WHEN {
+        TURN {
+            SWITCH(opponent, 1);
+            MOVE(player, MOVE_DRAGON_CLAW);
+            SEND_OUT(opponent, 0);
+        }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DRAGON_CLAW, player);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
+    }
+}
+#endif

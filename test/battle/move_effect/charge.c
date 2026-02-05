@@ -75,7 +75,8 @@ SINGLE_BATTLE_TEST("Charge's effect is removed if the user fails using an Electr
 
 SINGLE_BATTLE_TEST("Charge's effect does not stack with Electromorphosis or Wind Power")
 {
-    u32 species, ability;
+    u32 species;
+    enum Ability ability;
     s16 damage[2];
 
     PARAMETRIZE { species = SPECIES_WATTREL; ability = ABILITY_WIND_POWER; }
@@ -130,7 +131,7 @@ SINGLE_BATTLE_TEST("Charge's effect is removed regardless if the next move is El
     }
 }
 
-SINGLE_BATTLE_TEST("Charge will not expire if it flinches twice in a row")
+SINGLE_BATTLE_TEST("Charge will expire if user flinches while using an electric move")
 {
     s16 damage[2];
     GIVEN {
@@ -150,9 +151,38 @@ SINGLE_BATTLE_TEST("Charge will not expire if it flinches twice in a row")
          ANIMATION(ANIM_TYPE_MOVE, MOVE_THUNDERBOLT, player);
          HP_BAR(opponent, captureDamage: &damage[1]);
     } THEN {
-        if (B_CHARGE < GEN_9)
-            EXPECT_EQ(damage[0], damage[1]);
-        else
-            EXPECT_MUL_EQ(damage[0], Q_4_12(2.0), damage[1]);
+        EXPECT_EQ(damage[0], damage[1]);
     }
 }
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Charge's effect does not stack with Electromorphosis or Wind Power (Traits)")
+{
+    u32 species;
+    enum Ability ability;
+    s16 damage[2];
+
+    PARAMETRIZE { species = SPECIES_WATTREL; ability = ABILITY_WIND_POWER; }
+    PARAMETRIZE { species = SPECIES_TADBULB; ability = ABILITY_ELECTROMORPHOSIS; }
+
+    GIVEN {
+        ASSUME(IsWindMove(MOVE_AIR_CUTTER));
+        PLAYER(species) { Ability(ABILITY_OWN_TEMPO); Innates(ability);  }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_THUNDERBOLT); }
+        TURN { MOVE(player, MOVE_CHARGE); MOVE(opponent, MOVE_AIR_CUTTER); }
+        TURN { MOVE(player, MOVE_THUNDERBOLT); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_THUNDERBOLT, player);
+        HP_BAR(opponent, captureDamage: &damage[0]);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_CHARGE, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_AIR_CUTTER, opponent);
+        ABILITY_POPUP(player, ability);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_THUNDERBOLT, player);
+        HP_BAR(opponent, captureDamage: &damage[1]);
+    } THEN {
+        EXPECT_MUL_EQ(damage[0], Q_4_12(2.0), damage[1]);
+    }
+}
+#endif

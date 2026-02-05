@@ -1132,6 +1132,10 @@
 // Vars
 #undef B_VAR_DIFFICULTY
 #define B_VAR_DIFFICULTY                TESTING_VAR_DIFFICULTY
+#undef B_VAR_STARTING_STATUS
+#define B_VAR_STARTING_STATUS           TESTING_VAR_STARTING_STATUS
+#undef B_VAR_STARTING_STATUS_TIMER
+#define B_VAR_STARTING_STATUS_TIMER     TESTING_VAR_STARTING_STATUS_TIMER
 
 // Flags
 #undef B_FLAG_SLEEP_CLAUSE
@@ -1139,7 +1143,13 @@
 #undef B_FLAG_INVERSE_BATTLE
 #define B_FLAG_INVERSE_BATTLE            TESTING_FLAG_INVERSE_BATTLE
 
+// Compression DebugPrintf switch
+#define T_COMPRESSION_SHOULD_PRINT FALSE
+
 //  Move animation testing
 #define T_SHOULD_RUN_MOVE_ANIM  FALSE       //  If TRUE, enables the move animation tests, these are very computationally heavy and takes a long time to run.
+
+// Innate testing
+#define T_SHOULD_TEST_DEFAULT_INNATES FALSE // If TRUE, tests will use a pokemon's default Innates whenever one is not specified in the test. Not recommended unless you've heavily adjusted tests to accomodate.
 
 #endif // GUARD_CONFIG_TEST_H

@@ -40,7 +40,7 @@ SINGLE_BATTLE_TEST("Insomnia prevents yawn")
     }
 }
 
-SINGLE_BATTLE_TEST("Insomnia prevents rest")
+SINGLE_BATTLE_TEST("Insomnia prevents Rest")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_REST) == EFFECT_REST);
@@ -59,7 +59,8 @@ SINGLE_BATTLE_TEST("Insomnia prevents rest")
     }
 }
 
-SINGLE_BATTLE_TEST("Insomnia prevents sleep (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Insomnia prevents sleep (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SPORE) == EFFECT_NON_VOLATILE_STATUS);
@@ -78,7 +79,7 @@ SINGLE_BATTLE_TEST("Insomnia prevents sleep (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Insomnia prevents yawn (Trait)")
+SINGLE_BATTLE_TEST("Insomnia prevents yawn (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_YAWN) == EFFECT_YAWN);
@@ -98,7 +99,7 @@ SINGLE_BATTLE_TEST("Insomnia prevents yawn (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Insomnia prevents rest (Trait)")
+SINGLE_BATTLE_TEST("Insomnia prevents Rest (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_REST) == EFFECT_REST);
@@ -116,3 +117,4 @@ SINGLE_BATTLE_TEST("Insomnia prevents rest (Trait)")
         }
     }
 }
+#endif

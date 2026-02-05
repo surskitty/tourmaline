@@ -19,7 +19,8 @@ SINGLE_BATTLE_TEST("Speed Boost gradually boosts Speed")
     }
 }
 
-SINGLE_BATTLE_TEST("Speed Boost gradually boosts Speed (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Speed Boost gradually boosts Speed (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_TORCHIC) { Ability(ABILITY_BLAZE); Innates(ABILITY_SPEED_BOOST); Speed(99); }
@@ -36,3 +37,4 @@ SINGLE_BATTLE_TEST("Speed Boost gradually boosts Speed (Trait)")
         MESSAGE("The opposing Wobbuffet used Celebrate!");
     }
 }
+#endif

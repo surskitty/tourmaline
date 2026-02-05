@@ -49,7 +49,7 @@ SINGLE_BATTLE_TEST("Stamina raises Defense by 1 when hit by a move")
 
 DOUBLE_BATTLE_TEST("Stamina activates correctly for every battler with the ability when hit by a multi target move")
 {
-    u16 abilityLeft, abilityRight;
+    enum Ability abilityLeft, abilityRight;
 
     PARAMETRIZE {abilityLeft = ABILITY_NONE, abilityRight = ABILITY_STAMINA; }
     PARAMETRIZE {abilityLeft = ABILITY_STAMINA, abilityRight = ABILITY_NONE; }
@@ -125,7 +125,8 @@ SINGLE_BATTLE_TEST("Stamina is not activated by users own Substitute")
     }
 }
 
-SINGLE_BATTLE_TEST("Stamina raises Defense by 1 when hit by a move (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Stamina raises Defense by 1 when hit by a move (Traits)")
 {
     s16 turnOneHit, turnTwoHit;
     u16 move;
@@ -138,7 +139,7 @@ SINGLE_BATTLE_TEST("Stamina raises Defense by 1 when hit by a move (Trait)")
         ASSUME(!IsBattleMoveStatus(MOVE_GUST));
         ASSUME(GetMoveCategory(MOVE_GUST) == DAMAGE_CATEGORY_SPECIAL);
         ASSUME(GetMoveCategory(MOVE_SCRATCH) == DAMAGE_CATEGORY_PHYSICAL);
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_STAMINA); }
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_STAMINA); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, move); }
@@ -157,9 +158,9 @@ SINGLE_BATTLE_TEST("Stamina raises Defense by 1 when hit by a move (Trait)")
     }
 }
 
-DOUBLE_BATTLE_TEST("Stamina activates correctly for every battler with the ability when hit by a multi target move (Trait)")
+DOUBLE_BATTLE_TEST("Stamina activates correctly for every battler with the ability when hit by a multi target move (Traits)")
 {
-    u16 abilityLeft, abilityRight;
+    enum Ability abilityLeft, abilityRight;
 
     PARAMETRIZE {abilityLeft = ABILITY_NONE, abilityRight = ABILITY_STAMINA; }
     PARAMETRIZE {abilityLeft = ABILITY_STAMINA, abilityRight = ABILITY_NONE; }
@@ -167,8 +168,8 @@ DOUBLE_BATTLE_TEST("Stamina activates correctly for every battler with the abili
 
     GIVEN {
         ASSUME(GetMoveTarget(MOVE_EARTHQUAKE) == MOVE_TARGET_FOES_AND_ALLY);
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(abilityLeft); Speed(10); }
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(abilityRight); Speed(5); }
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(abilityLeft); Speed(10); }
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_LIGHT_METAL); Innates(abilityRight); Speed(5); }
         OPPONENT(SPECIES_WOBBUFFET) {Speed(20); }
         OPPONENT(SPECIES_WOBBUFFET) {Speed(15); }
     } WHEN {
@@ -199,7 +200,7 @@ DOUBLE_BATTLE_TEST("Stamina activates correctly for every battler with the abili
     }
 }
 
-SINGLE_BATTLE_TEST("Stamina activates for every hit of a multi hit move (Trait)")
+SINGLE_BATTLE_TEST("Stamina activates for every hit of a multi hit move (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -216,7 +217,7 @@ SINGLE_BATTLE_TEST("Stamina activates for every hit of a multi hit move (Trait)"
     }
 }
 
-SINGLE_BATTLE_TEST("Stamina is not activated by users own Substitute (Trait)")
+SINGLE_BATTLE_TEST("Stamina is not activated by users own Substitute (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_MUDBRAY) { Ability(ABILITY_OWN_TEMPO); Innates(ABILITY_STAMINA); }
@@ -234,3 +235,4 @@ SINGLE_BATTLE_TEST("Stamina is not activated by users own Substitute (Trait)")
         EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE);
     }
 }
+#endif

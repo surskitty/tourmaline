@@ -56,10 +56,11 @@ SINGLE_BATTLE_TEST("Snow Cloak increases evasion during snow")
     }
 }
 
-SINGLE_BATTLE_TEST("Snow Cloak prevents damage from hail (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Snow Cloak prevents damage from hail (Traits)")
 {
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_SNOW_CLOAK); }
+        PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_GLACEON) { Ability(ABILITY_ICE_BODY); Innates(ABILITY_SNOW_CLOAK); }
     } WHEN {
         TURN { MOVE(player, MOVE_HAIL); MOVE(opponent, MOVE_SKILL_SWAP); }
@@ -68,7 +69,7 @@ SINGLE_BATTLE_TEST("Snow Cloak prevents damage from hail (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Snow Cloak increases evasion during hail (Trait)")
+SINGLE_BATTLE_TEST("Snow Cloak increases evasion during hail (Traits)")
 {
     PASSES_RANDOMLY(4, 5, RNG_ACCURACY);
     GIVEN {
@@ -83,12 +84,12 @@ SINGLE_BATTLE_TEST("Snow Cloak increases evasion during hail (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Snow Cloak doesn't increase evasion if Cloud Nine/Air Lock is on the field (Trait)")
+SINGLE_BATTLE_TEST("Snow Cloak doesn't increase evasion if Cloud Nine/Air Lock is on the field (Traits)")
 {
     PASSES_RANDOMLY(10, 10, RNG_ACCURACY);
     GIVEN {
         PLAYER(SPECIES_GLACEON) { Ability(ABILITY_ICE_BODY); Innates(ABILITY_SNOW_CLOAK); }
-        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_DAMP); Innates(ABILITY_CLOUD_NINE); }
+        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_SWIFT_SWIM); Innates(ABILITY_CLOUD_NINE); }
     } WHEN {
         TURN { MOVE(player, MOVE_HAIL); MOVE(opponent, MOVE_SCRATCH); }
     } SCENE {
@@ -96,7 +97,7 @@ SINGLE_BATTLE_TEST("Snow Cloak doesn't increase evasion if Cloud Nine/Air Lock i
     }
 }
 
-SINGLE_BATTLE_TEST("Snow Cloak increases evasion during snow (Trait)")
+SINGLE_BATTLE_TEST("Snow Cloak increases evasion during snow (Traits)")
 {
     PASSES_RANDOMLY(4, 5, RNG_ACCURACY);
     GIVEN {
@@ -110,3 +111,4 @@ SINGLE_BATTLE_TEST("Snow Cloak increases evasion during snow (Trait)")
         HP_BAR(player);
     }
 }
+#endif

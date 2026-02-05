@@ -48,7 +48,9 @@ SINGLE_BATTLE_TEST("Flame Body triggers 30% of the time")
     }
 }
 
-SINGLE_BATTLE_TEST("Flame Body inflicts burn on contact (Trait)")
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Flame Body inflicts burn on contact (Traits)")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_SCRATCH; }
@@ -77,7 +79,7 @@ SINGLE_BATTLE_TEST("Flame Body inflicts burn on contact (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Flame Body triggers 30% of the time (Trait)")
+SINGLE_BATTLE_TEST("Flame Body triggers 30% of the time (Traits)")
 {
     PASSES_RANDOMLY(3, 10, RNG_FLAME_BODY);
     GIVEN {
@@ -94,3 +96,4 @@ SINGLE_BATTLE_TEST("Flame Body triggers 30% of the time (Trait)")
         STATUS_ICON(player, burn: TRUE);
     }
 }
+#endif

@@ -37,16 +37,19 @@ SINGLE_BATTLE_TEST("Curse cuts the user's HP in half when used by Ghost-types")
     }
 }
 
-SINGLE_BATTLE_TEST("Curse applies to the user if used with Protean")
+SINGLE_BATTLE_TEST("Curse applies to the user if used with Protean/Libero")
 {
+    u32 ability, species;
+    PARAMETRIZE { ability = ABILITY_PROTEAN; species = SPECIES_KECLEON; }
+    PARAMETRIZE { ability = ABILITY_LIBERO;  species = SPECIES_RABOOT; }
     GIVEN {
-        PLAYER(SPECIES_KECLEON) { Ability(ABILITY_PROTEAN); }
+        PLAYER(species) { Ability(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_CURSE, target: player); }
     } SCENE {
         s32 playerMaxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP);
-        ABILITY_POPUP(player, ABILITY_PROTEAN);
+        ABILITY_POPUP(player, ability);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CURSE, player);
         HP_BAR(player, damage: playerMaxHP / 2);
         HP_BAR(player, damage: playerMaxHP / 4);
@@ -72,18 +75,23 @@ SINGLE_BATTLE_TEST("Curse applies to the opponent if user is afflicted by Trick-
 
 TO_DO_BATTLE_TEST("Baton Pass passes Cursed status");
 
-SINGLE_BATTLE_TEST("Curse applies to the user if used with Protean (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Curse applies to the user if used with Protean/Libero (Traits)")
 {
+    u32 ability, species;
+    PARAMETRIZE { ability = ABILITY_PROTEAN; species = SPECIES_KECLEON; }
+    PARAMETRIZE { ability = ABILITY_LIBERO;  species = SPECIES_RABOOT; }
     GIVEN {
-        PLAYER(SPECIES_KECLEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PROTEAN); }
+        PLAYER(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_CURSE, target: player); }
     } SCENE {
         s32 playerMaxHP = GetMonData(&PLAYER_PARTY[0], MON_DATA_MAX_HP);
-        ABILITY_POPUP(player, ABILITY_PROTEAN);
+        ABILITY_POPUP(player, ability);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CURSE, player);
         HP_BAR(player, damage: playerMaxHP / 2);
         HP_BAR(player, damage: playerMaxHP / 4);
     }
 }
+#endif

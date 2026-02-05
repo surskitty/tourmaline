@@ -8,7 +8,7 @@ ASSUMPTIONS
 
 SINGLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a single battle", s16 damage)
 {
-    u32 ability;
+    enum Ability ability;
     PARAMETRIZE { ability = ABILITY_CONTRARY; }
     PARAMETRIZE { ability = ABILITY_TANGLED_FEET; }
     GIVEN {
@@ -19,20 +19,23 @@ SINGLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a single battle",
     } SCENE {
         ABILITY_POPUP(player, ABILITY_INTIMIDATE);
         if (ability == ABILITY_CONTRARY) {
-            ABILITY_POPUP(opponent, ABILITY_CONTRARY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
             MESSAGE("The opposing Spinda's Attack rose!");
+        } else {
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+            MESSAGE("Mightyena's Intimidate cuts the opposing Spinda's Attack!");
         }
         HP_BAR(player, captureDamage: &results[i].damage);
-    }
-    FINALLY {
+    } THEN {
+        EXPECT_EQ(opponent->statStages[STAT_ATK], (ability == ABILITY_CONTRARY) ? DEFAULT_STAT_STAGE + 1 : DEFAULT_STAT_STAGE - 1);
+    } FINALLY {
         EXPECT_MUL_EQ(results[1].damage, Q_4_12(2.25), results[0].damage);
     }
 }
 
 DOUBLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a double battle", s16 damageLeft, s16 damageRight)
 {
-    u32 abilityLeft, abilityRight;
+    enum Ability abilityLeft, abilityRight;
 
     PARAMETRIZE { abilityLeft = ABILITY_CONTRARY; abilityRight = ABILITY_CONTRARY; }
     PARAMETRIZE { abilityLeft = ABILITY_TANGLED_FEET; abilityRight = ABILITY_TANGLED_FEET; }
@@ -49,7 +52,6 @@ DOUBLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a double battle",
     } SCENE {
         ABILITY_POPUP(playerLeft, ABILITY_INTIMIDATE);
         if (abilityLeft == ABILITY_CONTRARY) {
-            ABILITY_POPUP(opponentLeft, ABILITY_CONTRARY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
             MESSAGE("The opposing Spinda's Attack rose!");
         } else {
@@ -57,7 +59,6 @@ DOUBLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a double battle",
             MESSAGE("Mightyena's Intimidate cuts the opposing Spinda's Attack!");
         }
         if (abilityRight == ABILITY_CONTRARY) {
-            ABILITY_POPUP(opponentRight, ABILITY_CONTRARY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
             MESSAGE("The opposing Spinda's Attack rose!");
         } else {
@@ -69,8 +70,7 @@ DOUBLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a double battle",
     } THEN {
         EXPECT_EQ(opponentLeft->statStages[STAT_ATK],  (abilityLeft == ABILITY_CONTRARY)  ? DEFAULT_STAT_STAGE+1 : DEFAULT_STAT_STAGE-1);
         EXPECT_EQ(opponentRight->statStages[STAT_ATK], (abilityRight == ABILITY_CONTRARY) ? DEFAULT_STAT_STAGE+1 : DEFAULT_STAT_STAGE-1);
-    }
-    FINALLY {
+    } FINALLY {
         EXPECT_MUL_EQ(results[1].damageLeft, Q_4_12(2.25), results[0].damageLeft);
         EXPECT_MUL_EQ(results[1].damageRight, Q_4_12(2.25), results[0].damageRight);
     }
@@ -78,7 +78,7 @@ DOUBLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a double battle",
 
 SINGLE_BATTLE_TEST("Contrary raises stats after using a move which would normally lower them: Overheat", s16 damageBefore, s16 damageAfter)
 {
-    u32 ability;
+    enum Ability ability;
     PARAMETRIZE { ability = ABILITY_CONTRARY; }
     PARAMETRIZE { ability = ABILITY_TANGLED_FEET; }
     GIVEN {
@@ -122,7 +122,7 @@ SINGLE_BATTLE_TEST("Contrary raises stats after using a move which would normall
 
 SINGLE_BATTLE_TEST("Contrary lowers a stat after using a move which would normally raise it: Swords Dance", s16 damageBefore, s16 damageAfter)
 {
-    u32 ability;
+    enum Ability ability;
     PARAMETRIZE { ability = ABILITY_CONTRARY; }
     PARAMETRIZE { ability = ABILITY_TANGLED_FEET; }
     GIVEN {
@@ -159,7 +159,7 @@ SINGLE_BATTLE_TEST("Contrary lowers a stat after using a move which would normal
 
 SINGLE_BATTLE_TEST("Contrary raises a stat after using a move which would normally lower it: Growl", s16 damage)
 {
-    u32 ability;
+    enum Ability ability;
     PARAMETRIZE { ability = ABILITY_CONTRARY; }
     PARAMETRIZE { ability = ABILITY_TANGLED_FEET; }
     GIVEN {
@@ -190,7 +190,7 @@ SINGLE_BATTLE_TEST("Contrary raises a stat after using a move which would normal
 
 SINGLE_BATTLE_TEST("Contrary lowers a stat after using a move which would normally raise it: Belly Drum", s16 damageBefore, s16 damageAfter)
 {
-    u32 ability;
+    enum Ability ability;
     PARAMETRIZE { ability = ABILITY_CONTRARY; }
     PARAMETRIZE { ability = ABILITY_TANGLED_FEET; }
     GIVEN {
@@ -242,34 +242,66 @@ SINGLE_BATTLE_TEST("Sticky Web raises Speed by 1 for Contrary mon on switch-in")
     }
 }
 
-
-SINGLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a single battle (Trait)", s16 damage)
+AI_SINGLE_BATTLE_TEST("AI sees Contrary-effected moves correctly in MoveEffectInPlus instead of as a neutral effect")
 {
-    u32 ability;
+    GIVEN{
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_SMART_SWITCHING | AI_FLAG_SMART_MON_CHOICES | AI_FLAG_OMNISCIENT);
+        PLAYER(SPECIES_HERACROSS){
+            Level(44);
+            HP(1);
+            Speed(5);
+            Nature(NATURE_ADAMANT);
+            Item(ITEM_LOADED_DICE);
+            Moves(MOVE_PIN_MISSILE);
+        }
+        OPPONENT(SPECIES_SERPERIOR){
+            Level(44);
+            Speed(10);
+            Nature(NATURE_TIMID);
+            Ability(ABILITY_CONTRARY);
+            Moves(MOVE_DRAGON_PULSE, MOVE_SPIN_OUT, MOVE_HIDDEN_POWER, MOVE_GLARE);
+        }
+    } WHEN {
+        TURN{
+            MOVE(player, MOVE_PIN_MISSILE);
+            EXPECT_MOVE(opponent, MOVE_SPIN_OUT); // previously all 107, now sees speed can rise w/ Contrary
+        }
+    }
+}
+
+TO_DO_BATTLE_TEST("Contrary does not invert stat changes that have been Baton-passed")
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a single battle (Traits)", s16 damage)
+{
+    enum Ability ability;
     PARAMETRIZE { ability = ABILITY_CONTRARY; }
     PARAMETRIZE { ability = ABILITY_TANGLED_FEET; }
     GIVEN {
         PLAYER(SPECIES_MIGHTYENA) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_INTIMIDATE); }
-        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_TANGLED_FEET); Innates(ability); }
+        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SCRATCH); }
     } SCENE {
         ABILITY_POPUP(player, ABILITY_INTIMIDATE);
         if (ability == ABILITY_CONTRARY) {
-            ABILITY_POPUP(opponent, ABILITY_CONTRARY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
             MESSAGE("The opposing Spinda's Attack rose!");
+        } else {
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+            MESSAGE("Mightyena's Intimidate cuts the opposing Spinda's Attack!");
         }
         HP_BAR(player, captureDamage: &results[i].damage);
-    }
-    FINALLY {
+    } THEN {
+        EXPECT_EQ(opponent->statStages[STAT_ATK], (ability == ABILITY_CONTRARY) ? DEFAULT_STAT_STAGE + 1 : DEFAULT_STAT_STAGE - 1);
+    } FINALLY {
         EXPECT_MUL_EQ(results[1].damage, Q_4_12(2.25), results[0].damage);
     }
 }
 
-DOUBLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a double battle (Trait)", s16 damageLeft, s16 damageRight)
+DOUBLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a double battle (Traits)", s16 damageLeft, s16 damageRight)
 {
-    u32 abilityLeft, abilityRight;
+    enum Ability abilityLeft, abilityRight;
 
     PARAMETRIZE { abilityLeft = ABILITY_CONTRARY; abilityRight = ABILITY_CONTRARY; }
     PARAMETRIZE { abilityLeft = ABILITY_TANGLED_FEET; abilityRight = ABILITY_TANGLED_FEET; }
@@ -277,16 +309,15 @@ DOUBLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a double battle (
     PARAMETRIZE { abilityLeft = ABILITY_TANGLED_FEET; abilityRight = ABILITY_CONTRARY; }
 
     GIVEN {
-        PLAYER(SPECIES_MIGHTYENA) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_INTIMIDATE); }
+        PLAYER(SPECIES_MIGHTYENA) { Ability(ABILITY_MOXIE); Innates(ABILITY_INTIMIDATE); }
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_TANGLED_FEET); Innates(abilityLeft); }
-        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_TANGLED_FEET); Innates(abilityRight); }
+        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_LIGHT_METAL); Innates(abilityLeft); }
+        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_LIGHT_METAL); Innates(abilityRight); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_SCRATCH, target: playerLeft); MOVE(opponentRight, MOVE_SCRATCH, target: playerRight); }
     } SCENE {
         ABILITY_POPUP(playerLeft, ABILITY_INTIMIDATE);
         if (abilityLeft == ABILITY_CONTRARY) {
-            ABILITY_POPUP(opponentLeft, ABILITY_CONTRARY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentLeft);
             MESSAGE("The opposing Spinda's Attack rose!");
         } else {
@@ -294,7 +325,6 @@ DOUBLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a double battle (
             MESSAGE("Mightyena's Intimidate cuts the opposing Spinda's Attack!");
         }
         if (abilityRight == ABILITY_CONTRARY) {
-            ABILITY_POPUP(opponentRight, ABILITY_CONTRARY);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
             MESSAGE("The opposing Spinda's Attack rose!");
         } else {
@@ -306,23 +336,22 @@ DOUBLE_BATTLE_TEST("Contrary raises Attack when Intimidated in a double battle (
     } THEN {
         EXPECT_EQ(opponentLeft->statStages[STAT_ATK],  (abilityLeft == ABILITY_CONTRARY)  ? DEFAULT_STAT_STAGE+1 : DEFAULT_STAT_STAGE-1);
         EXPECT_EQ(opponentRight->statStages[STAT_ATK], (abilityRight == ABILITY_CONTRARY) ? DEFAULT_STAT_STAGE+1 : DEFAULT_STAT_STAGE-1);
-    }
-    FINALLY {
+    } FINALLY {
         EXPECT_MUL_EQ(results[1].damageLeft, Q_4_12(2.25), results[0].damageLeft);
         EXPECT_MUL_EQ(results[1].damageRight, Q_4_12(2.25), results[0].damageRight);
     }
 }
 
-SINGLE_BATTLE_TEST("Contrary raises stats after using a move which would normally lower them: Overheat (Trait)", s16 damageBefore, s16 damageAfter)
+SINGLE_BATTLE_TEST("Contrary raises stats after using a move which would normally lower them: Overheat (Traits)", s16 damageBefore, s16 damageAfter)
 {
-    u32 ability;
+    enum Ability ability;
     PARAMETRIZE { ability = ABILITY_CONTRARY; }
     PARAMETRIZE { ability = ABILITY_TANGLED_FEET; }
     GIVEN {
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_OVERHEAT, MOVE_EFFECT_SP_ATK_MINUS_2) == TRUE);
         ASSUME(GetMoveCategory(MOVE_OVERHEAT) == DAMAGE_CATEGORY_SPECIAL);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_TANGLED_FEET); Innates(ability); }
+        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_OWN_TEMPO); Innates(ability); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_OVERHEAT); }
         TURN { MOVE(opponent, MOVE_OVERHEAT); }
@@ -357,15 +386,15 @@ SINGLE_BATTLE_TEST("Contrary raises stats after using a move which would normall
     }
 }
 
-SINGLE_BATTLE_TEST("Contrary lowers a stat after using a move which would normally raise it: Swords Dance (Trait)", s16 damageBefore, s16 damageAfter)
+SINGLE_BATTLE_TEST("Contrary lowers a stat after using a move which would normally raise it: Swords Dance (Traits)", s16 damageBefore, s16 damageAfter)
 {
-    u32 ability;
+    enum Ability ability;
     PARAMETRIZE { ability = ABILITY_CONTRARY; }
     PARAMETRIZE { ability = ABILITY_TANGLED_FEET; }
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SWORDS_DANCE) == EFFECT_ATTACK_UP_2);
         PLAYER(SPECIES_WOBBUFFET) { Defense(102); }
-        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_TANGLED_FEET); Innates(ability); Attack(100); }
+        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_OWN_TEMPO); Innates(ability); Attack(100); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SCRATCH); }
         TURN { MOVE(opponent, MOVE_SWORDS_DANCE); }
@@ -394,15 +423,15 @@ SINGLE_BATTLE_TEST("Contrary lowers a stat after using a move which would normal
     }
 }
 
-SINGLE_BATTLE_TEST("Contrary raises a stat after using a move which would normally lower it: Growl (Trait)", s16 damage)
+SINGLE_BATTLE_TEST("Contrary raises a stat after using a move which would normally lower it: Growl (Traits)", s16 damage)
 {
-    u32 ability;
+    enum Ability ability;
     PARAMETRIZE { ability = ABILITY_CONTRARY; }
     PARAMETRIZE { ability = ABILITY_TANGLED_FEET; }
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_GROWL) == EFFECT_ATTACK_DOWN);
         PLAYER(SPECIES_WOBBUFFET) { Speed(3); }
-        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_TANGLED_FEET); Innates(ability); Speed(2); }
+        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_OWN_TEMPO); Innates(ability); Speed(2); }
     } WHEN {
         TURN { MOVE(player, MOVE_GROWL); MOVE(opponent, MOVE_SCRATCH); }
     } SCENE {
@@ -425,15 +454,15 @@ SINGLE_BATTLE_TEST("Contrary raises a stat after using a move which would normal
     }
 }
 
-SINGLE_BATTLE_TEST("Contrary lowers a stat after using a move which would normally raise it: Belly Drum (Trait)", s16 damageBefore, s16 damageAfter)
+SINGLE_BATTLE_TEST("Contrary lowers a stat after using a move which would normally raise it: Belly Drum (Traits)", s16 damageBefore, s16 damageAfter)
 {
-    u32 ability;
+    enum Ability ability;
     PARAMETRIZE { ability = ABILITY_CONTRARY; }
     PARAMETRIZE { ability = ABILITY_TANGLED_FEET; }
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_BELLY_DRUM) == EFFECT_BELLY_DRUM);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_TANGLED_FEET); Innates(ability); }
+        OPPONENT(SPECIES_SPINDA) { Ability(ABILITY_OWN_TEMPO); Innates(ability); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SCRATCH); }
         TURN { MOVE(opponent, MOVE_BELLY_DRUM); }
@@ -459,7 +488,7 @@ SINGLE_BATTLE_TEST("Contrary lowers a stat after using a move which would normal
     }
 }
 
-SINGLE_BATTLE_TEST("Sticky Web raises Speed by 1 for Contrary mon on switch-in (Trait)")
+SINGLE_BATTLE_TEST("Sticky Web raises Speed by 1 for Contrary mon on switch-in (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -479,93 +508,32 @@ SINGLE_BATTLE_TEST("Sticky Web raises Speed by 1 for Contrary mon on switch-in (
     }
 }
 
-SINGLE_BATTLE_TEST("Contrary causes Competitive or Defiant to sharply lower stats (Trait)", s16 damage)
+AI_SINGLE_BATTLE_TEST("AI sees Contrary-effected moves correctly in MoveEffectInPlus instead of as a neutral effect (Traits)")
 {
-    u32 attack;
-    u32 ability;
-    PARAMETRIZE { ability = ABILITY_OVERGROW; attack = MOVE_WATER_GUN;}
-    PARAMETRIZE { ability = ABILITY_COMPETITIVE; attack = MOVE_WATER_GUN;}
-    PARAMETRIZE { ability = ABILITY_OVERGROW; attack = MOVE_TACKLE;}
-    PARAMETRIZE { ability = ABILITY_DEFIANT; attack = MOVE_TACKLE;}
-    GIVEN {
-        ASSUME(GetMoveEffect(MOVE_LEER) == EFFECT_DEFENSE_DOWN);
-        PLAYER(SPECIES_SUNFLORA) { Speed(3); }
-        OPPONENT(SPECIES_SNIVY) { Ability(ABILITY_CONTRARY); Innates(ability); Speed(2); }
+    GIVEN{
+        AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_TRY_TO_FAINT | AI_FLAG_CHECK_VIABILITY | AI_FLAG_SMART_SWITCHING | AI_FLAG_SMART_MON_CHOICES | AI_FLAG_OMNISCIENT);
+        PLAYER(SPECIES_HERACROSS){
+            Level(44);
+            HP(1);
+            Speed(5);
+            Nature(NATURE_ADAMANT);
+            Item(ITEM_LOADED_DICE);
+            Moves(MOVE_PIN_MISSILE);
+        }
+        OPPONENT(SPECIES_SERPERIOR){
+            Level(44);
+            Speed(10);
+            Nature(NATURE_TIMID);
+            Ability(ABILITY_OVERGROW); Innates(ABILITY_CONTRARY);
+            Moves(MOVE_DRAGON_PULSE, MOVE_SPIN_OUT, MOVE_HIDDEN_POWER, MOVE_GLARE);
+        }
     } WHEN {
-        TURN { MOVE(player, MOVE_FLOWER_SHIELD); MOVE(opponent, attack); }
-    } SCENE {
-        MESSAGE("Sunflora used Flower Shield!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_FLOWER_SHIELD, player);
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Sunflora's Defense rose!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_FLOWER_SHIELD, player);
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("The opposing Snivy's Defense fell!");
-        ABILITY_POPUP(opponent, ABILITY_CONTRARY);
-
-        if (ability == ABILITY_COMPETITIVE) {
-            ABILITY_POPUP(opponent, ABILITY_COMPETITIVE);
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("The opposing Snivy's Sp. Atk harshly fell!");
-            ABILITY_POPUP(opponent, ABILITY_CONTRARY);
+        TURN{
+            MOVE(player, MOVE_PIN_MISSILE);
+            EXPECT_MOVE(opponent, MOVE_SPIN_OUT); // previously all 107, now sees speed can rise w/ Contrary
         }
-        else if (ability == ABILITY_DEFIANT){
-            ABILITY_POPUP(opponent, ABILITY_DEFIANT);
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("The opposing Snivy's Attack harshly fell!");
-            ABILITY_POPUP(opponent, ABILITY_CONTRARY);
-        }
-
-        HP_BAR(player, captureDamage: &results[i].damage);
-    }
-    FINALLY {
-        EXPECT_MUL_EQ(results[1].damage, Q_4_12(2), results[0].damage);
-        EXPECT_MUL_EQ(results[3].damage, Q_4_12(2), results[2].damage);
     }
 }
 
-SINGLE_BATTLE_TEST("Contrary causes Competitive and Defiant to sharply lower both stats (Trait)", s16 damage)
-{
-    u32 attack;
-    u32 ability1, ability2;
-    PARAMETRIZE { ability1 = ABILITY_OVERGROW; ability2 = ABILITY_OVERGROW; attack = MOVE_WATER_GUN;}
-    PARAMETRIZE { ability1 = ABILITY_DEFIANT; ability2 = ABILITY_COMPETITIVE; attack = MOVE_WATER_GUN;}
-    PARAMETRIZE { ability1 = ABILITY_OVERGROW; ability2 = ABILITY_OVERGROW; attack = MOVE_TACKLE;}
-    PARAMETRIZE { ability1 = ABILITY_DEFIANT; ability2 = ABILITY_COMPETITIVE; attack = MOVE_TACKLE;}
-
-    GIVEN {
-        ASSUME(GetMoveEffect(MOVE_LEER) == EFFECT_DEFENSE_DOWN);
-        PLAYER(SPECIES_SUNFLORA) { Speed(3); }
-        OPPONENT(SPECIES_SNIVY) { Ability(ABILITY_CONTRARY); Innates(ability1, ability2); Speed(2); }
-    } WHEN {
-        TURN { MOVE(player, MOVE_FLOWER_SHIELD); MOVE(opponent, attack); }
-    } SCENE {
-        MESSAGE("Sunflora used Flower Shield!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_FLOWER_SHIELD, player);
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Sunflora's Defense rose!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_FLOWER_SHIELD, player);
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("The opposing Snivy's Defense fell!");
-        ABILITY_POPUP(opponent, ABILITY_CONTRARY);
-
-        if (ability1 == ABILITY_COMPETITIVE) {
-            ABILITY_POPUP(opponent, ABILITY_COMPETITIVE);
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("The opposing Snivy's Sp. Atk harshly fell!");
-            ABILITY_POPUP(opponent, ABILITY_CONTRARY);
-        }
-        else if (ability2 == ABILITY_DEFIANT){
-            ABILITY_POPUP(opponent, ABILITY_DEFIANT);
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-            MESSAGE("The opposing Snivy's Attack harshly fell!");
-            ABILITY_POPUP(opponent, ABILITY_CONTRARY);
-        }
-
-        HP_BAR(player, captureDamage: &results[i].damage);
-    }
-    FINALLY {
-        EXPECT_MUL_EQ(results[1].damage, Q_4_12(2), results[0].damage);
-        EXPECT_MUL_EQ(results[3].damage, Q_4_12(2), results[2].damage);
-    }
-}
+TO_DO_BATTLE_TEST("Contrary does not invert stat changes that have been Baton-passed (Traits)")
+#endif

@@ -52,7 +52,8 @@ SINGLE_BATTLE_TEST("Photon Geyser ignores ignorable Abilities like Battle Armor"
     }
 }
 
-SINGLE_BATTLE_TEST("Photon Geyser ignores ignorable Abilities like Battle Armor (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Photon Geyser ignores ignorable Abilities like Battle Armor (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -65,3 +66,4 @@ SINGLE_BATTLE_TEST("Photon Geyser ignores ignorable Abilities like Battle Armor 
         MESSAGE("A critical hit!");
     }
 }
+#endif

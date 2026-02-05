@@ -155,7 +155,8 @@ SINGLE_BATTLE_TEST("Hyper Cutter doesn't prevent receiving negative Attack stage
     }
 }
 
-SINGLE_BATTLE_TEST("Hyper Cutter prevents intimidate (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Hyper Cutter prevents intimidate (Traits)")
 {
     s16 turnOneHit;
     s16 turnTwoHit;
@@ -180,7 +181,7 @@ SINGLE_BATTLE_TEST("Hyper Cutter prevents intimidate (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Hyper Cutter prevents Attack stage reduction from moves (Trait)")
+SINGLE_BATTLE_TEST("Hyper Cutter prevents Attack stage reduction from moves (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_GROWL) == EFFECT_ATTACK_DOWN);
@@ -194,7 +195,7 @@ SINGLE_BATTLE_TEST("Hyper Cutter prevents Attack stage reduction from moves (Tra
     }
 }
 
-SINGLE_BATTLE_TEST("Hyper Cutter doesn't prevent Attack reduction from burn (Trait)")
+SINGLE_BATTLE_TEST("Hyper Cutter doesn't prevent Attack reduction from burn (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_WILL_O_WISP) == EFFECT_NON_VOLATILE_STATUS);
@@ -211,11 +212,11 @@ SINGLE_BATTLE_TEST("Hyper Cutter doesn't prevent Attack reduction from burn (Tra
     }
 }
 
-SINGLE_BATTLE_TEST("Hyper Cutter is ignored by Mold Breaker (Trait)")
+SINGLE_BATTLE_TEST("Hyper Cutter is ignored by Mold Breaker (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_GROWL) == EFFECT_ATTACK_DOWN);
-        PLAYER(SPECIES_PINSIR) { Ability(ABILITY_HYPER_CUTTER); Innates(ABILITY_MOLD_BREAKER); }
+        PLAYER(SPECIES_PINSIR) { Ability(ABILITY_MOXIE); Innates(ABILITY_MOLD_BREAKER); }
         OPPONENT(SPECIES_KRABBY) { Ability(ABILITY_SHELL_ARMOR); Innates(ABILITY_HYPER_CUTTER); }
     } WHEN {
         TURN { MOVE(player, MOVE_GROWL); }
@@ -231,7 +232,7 @@ SINGLE_BATTLE_TEST("Hyper Cutter is ignored by Mold Breaker (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Hyper Cutter doesn't prevent Attack stage reduction from moves used by the user (Trait)")
+SINGLE_BATTLE_TEST("Hyper Cutter doesn't prevent Attack stage reduction from moves used by the user (Traits)")
 {
     GIVEN {
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_SUPERPOWER, MOVE_EFFECT_ATK_DEF_DOWN) == TRUE);
@@ -249,7 +250,7 @@ SINGLE_BATTLE_TEST("Hyper Cutter doesn't prevent Attack stage reduction from mov
     }
 }
 
-SINGLE_BATTLE_TEST("Hyper Cutter doesn't prevent Topsy-Turvy (Trait)")
+SINGLE_BATTLE_TEST("Hyper Cutter doesn't prevent Topsy-Turvy (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SWORDS_DANCE) == EFFECT_ATTACK_UP_2);
@@ -268,7 +269,7 @@ SINGLE_BATTLE_TEST("Hyper Cutter doesn't prevent Topsy-Turvy (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Hyper Cutter doesn't prevent Spectral Thief from resetting positive Attack stage changes (Trait)")
+SINGLE_BATTLE_TEST("Hyper Cutter doesn't prevent Spectral Thief from resetting positive Attack stage changes (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SWORDS_DANCE) == EFFECT_ATTACK_UP_2);
@@ -287,7 +288,7 @@ SINGLE_BATTLE_TEST("Hyper Cutter doesn't prevent Spectral Thief from resetting p
     }
 }
 
-SINGLE_BATTLE_TEST("Hyper Cutter doesn't prevent receiving negative Attack stage changes from Baton Pass (Trait)")
+SINGLE_BATTLE_TEST("Hyper Cutter doesn't prevent receiving negative Attack stage changes from Baton Pass (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_GROWL) == EFFECT_ATTACK_DOWN);
@@ -308,3 +309,4 @@ SINGLE_BATTLE_TEST("Hyper Cutter doesn't prevent receiving negative Attack stage
         EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE - 1);
     }
 }
+#endif

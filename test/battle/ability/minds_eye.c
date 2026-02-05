@@ -44,7 +44,7 @@ SINGLE_BATTLE_TEST("Mind's Eye doesn't bypass a Ghost-type's Wonder Guard")
 
 AI_SINGLE_BATTLE_TEST("AI doesn't use accuracy-lowering moves if it knows that the foe has Mind's Eye")
 {
-    u32 abilityAI = ABILITY_NONE;
+    enum Ability abilityAI = ABILITY_NONE;
 
     PARAMETRIZE { abilityAI = ABILITY_SWIFT_SWIM; }
     PARAMETRIZE { abilityAI = ABILITY_MOLD_BREAKER; }
@@ -60,7 +60,7 @@ AI_SINGLE_BATTLE_TEST("AI doesn't use accuracy-lowering moves if it knows that t
                if (abilityAI == ABILITY_MOLD_BREAKER) {
                    SCORE_GT(opponent, MOVE_SAND_ATTACK, MOVE_CELEBRATE);
                } else {
-                   SCORE_EQ(opponent, MOVE_SAND_ATTACK, MOVE_CELEBRATE);
+                   SCORE_LT_VAL(opponent, MOVE_SAND_ATTACK, AI_SCORE_DEFAULT);
                }
         }
     } SCENE {
@@ -71,7 +71,8 @@ AI_SINGLE_BATTLE_TEST("AI doesn't use accuracy-lowering moves if it knows that t
     }
 }
 
-SINGLE_BATTLE_TEST("Mind's Eye allows to hit Ghost-type Pokémon with Normal- and Fighting-type moves (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Mind's Eye allows to hit Ghost-type Pokémon with Normal- and Fighting-type moves (Traits)")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_SCRATCH; }
@@ -89,7 +90,7 @@ SINGLE_BATTLE_TEST("Mind's Eye allows to hit Ghost-type Pokémon with Normal- an
 }
 
 // No current official way to test this, effect based on Smogon's NatDex format.
-SINGLE_BATTLE_TEST("Mind's Eye doesn't bypass a Ghost-type's Wonder Guard (Trait)")
+SINGLE_BATTLE_TEST("Mind's Eye doesn't bypass a Ghost-type's Wonder Guard (Traits)")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_SCRATCH; }
@@ -97,7 +98,7 @@ SINGLE_BATTLE_TEST("Mind's Eye doesn't bypass a Ghost-type's Wonder Guard (Trait
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_SCRAPPY); };
-        OPPONENT(SPECIES_SHEDINJA) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_WONDER_GUARD); };
+        OPPONENT(SPECIES_SHEDINJA) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_WONDER_GUARD); };
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
@@ -112,9 +113,9 @@ SINGLE_BATTLE_TEST("Mind's Eye doesn't bypass a Ghost-type's Wonder Guard (Trait
 
 //// AI TESTS ////
 
-AI_SINGLE_BATTLE_TEST("AI doesn't use accuracy-lowering moves if it knows that the foe has Mind's Eye")
+AI_SINGLE_BATTLE_TEST("AI doesn't use accuracy-lowering moves if it knows that the foe has Mind's Eye (Traits)")
 {
-    u32 abilityAI = ABILITY_NONE;
+    enum Ability abilityAI = ABILITY_NONE;
 
     PARAMETRIZE { abilityAI = ABILITY_SWIFT_SWIM; }
     PARAMETRIZE { abilityAI = ABILITY_MOLD_BREAKER; }
@@ -122,15 +123,15 @@ AI_SINGLE_BATTLE_TEST("AI doesn't use accuracy-lowering moves if it knows that t
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SAND_ATTACK) == EFFECT_ACCURACY_DOWN);
         AI_FLAGS(AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT);
-        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_MINDS_EYE); }
-        OPPONENT(SPECIES_BASCULEGION) { Moves(MOVE_CELEBRATE, MOVE_SAND_ATTACK); Ability(ABILITY_LIGHT_METAL); Innates(abilityAI); }
+        PLAYER(SPECIES_URSALUNA_BLOODMOON) { Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_MINDS_EYE); }
+        OPPONENT(SPECIES_BASCULEGION) { Moves(MOVE_CELEBRATE, MOVE_SAND_ATTACK); Ability(abilityAI); }
     } WHEN {
         TURN { MOVE(player, MOVE_SCRATCH); }
         TURN { MOVE(player, MOVE_SCRATCH);
                if (abilityAI == ABILITY_MOLD_BREAKER) {
                    SCORE_GT(opponent, MOVE_SAND_ATTACK, MOVE_CELEBRATE);
                } else {
-                   SCORE_EQ(opponent, MOVE_SAND_ATTACK, MOVE_CELEBRATE);
+                   SCORE_LT_VAL(opponent, MOVE_SAND_ATTACK, AI_SCORE_DEFAULT);
                }
         }
     } SCENE {
@@ -140,3 +141,4 @@ AI_SINGLE_BATTLE_TEST("AI doesn't use accuracy-lowering moves if it knows that t
         }
     }
 }
+#endif

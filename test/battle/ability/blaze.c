@@ -19,7 +19,8 @@ SINGLE_BATTLE_TEST("Blaze boosts Fire-type moves in a pinch", s16 damage)
     }
 }
 
-SINGLE_BATTLE_TEST("Blaze boosts Fire-type moves in a pinch (Trait)", s16 damage)
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Blaze boosts Fire-type moves in a pinch (Traits)", s16 damage)
 {
     u16 hp;
     PARAMETRIZE { hp = 99; }
@@ -36,3 +37,4 @@ SINGLE_BATTLE_TEST("Blaze boosts Fire-type moves in a pinch (Trait)", s16 damage
         EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.5), results[1].damage);
     }
 }
+#endif

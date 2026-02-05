@@ -1,7 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
 
-
 ASSUMPTIONS
 {
     ASSUME(GetMovePriority(MOVE_QUICK_ATTACK) > 0);
@@ -9,7 +8,8 @@ ASSUMPTIONS
 
 DOUBLE_BATTLE_TEST("Dazzling, Queenly Majesty and Armor Tail protect the user from priority moves")
 {
-    u32 species, ability;
+    u32 species;
+    enum Ability ability;
 
     PARAMETRIZE { species = SPECIES_BRUXISH; ability = ABILITY_DAZZLING; }
     PARAMETRIZE { species = SPECIES_FARIGIRAF; ability = ABILITY_ARMOR_TAIL; }
@@ -31,7 +31,8 @@ DOUBLE_BATTLE_TEST("Dazzling, Queenly Majesty and Armor Tail protect the user fr
 
 DOUBLE_BATTLE_TEST("Dazzling, Queenly Majesty and Armor Tail protect users partner from priority moves")
 {
-    u32 species, ability;
+    u32 species;
+    enum Ability ability;
 
     PARAMETRIZE { species = SPECIES_BRUXISH; ability = ABILITY_DAZZLING; }
     PARAMETRIZE { species = SPECIES_FARIGIRAF; ability = ABILITY_ARMOR_TAIL; }
@@ -53,7 +54,8 @@ DOUBLE_BATTLE_TEST("Dazzling, Queenly Majesty and Armor Tail protect users partn
 
 DOUBLE_BATTLE_TEST("Dazzling, Queenly Majesty and Armor Tail don't protect the user from negative priority")
 {
-    u32 species, ability;
+    u32 species;
+    enum Ability ability;
 
     PARAMETRIZE { species = SPECIES_BRUXISH; ability = ABILITY_DAZZLING; }
     PARAMETRIZE { species = SPECIES_FARIGIRAF; ability = ABILITY_ARMOR_TAIL; }
@@ -74,7 +76,8 @@ DOUBLE_BATTLE_TEST("Dazzling, Queenly Majesty and Armor Tail don't protect the u
 
 SINGLE_BATTLE_TEST("Dazzling, Queenly Majesty and Armor Tail protect from all multi hit hits with one activation")
 {
-    u32 species, ability;
+    u32 species;
+    enum Ability ability;
 
     PARAMETRIZE { species = SPECIES_BRUXISH; ability = ABILITY_DAZZLING; }
     PARAMETRIZE { species = SPECIES_FARIGIRAF; ability = ABILITY_ARMOR_TAIL; }
@@ -96,3 +99,154 @@ SINGLE_BATTLE_TEST("Dazzling, Queenly Majesty and Armor Tail protect from all mu
         }
     }
 }
+
+SINGLE_BATTLE_TEST("Dazzling, Queenly Majesty and Armor Tail prevent Protean activation")
+{
+    u32 species, ability, ability2;
+
+    PARAMETRIZE { species = SPECIES_BRUXISH; ability = ABILITY_DAZZLING; ability2 = ABILITY_STRONG_JAW; }
+    PARAMETRIZE { species = SPECIES_FARIGIRAF; ability = ABILITY_ARMOR_TAIL; ability2 = ABILITY_CUD_CHEW; }
+    PARAMETRIZE { species = SPECIES_TSAREENA; ability = ABILITY_QUEENLY_MAJESTY; ability2 = ABILITY_LEAF_GUARD; }
+
+    GIVEN {
+        PLAYER(SPECIES_KECLEON) { Ability(ABILITY_COLOR_CHANGE); Innates(ABILITY_PROTEAN); }
+        OPPONENT(species) { Ability(ability2); Innates(ability); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_WATER_SHURIKEN); }
+    } SCENE {
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_SHURIKEN, player);
+            ABILITY_POPUP(player, ABILITY_PROTEAN);
+        }
+        ABILITY_POPUP(opponent, ability);
+    }
+}
+
+#if MAX_MON_TRAITS > 1
+DOUBLE_BATTLE_TEST("Dazzling, Queenly Majesty and Armor Tail protect the user from priority moves (Traits)")
+{
+    u32 species;
+    enum Ability ability, ability2;
+
+    PARAMETRIZE { species = SPECIES_BRUXISH; ability = ABILITY_DAZZLING; ability2 = ABILITY_STRONG_JAW; }
+    PARAMETRIZE { species = SPECIES_FARIGIRAF; ability = ABILITY_ARMOR_TAIL; ability2 = ABILITY_CUD_CHEW; }
+    PARAMETRIZE { species = SPECIES_TSAREENA; ability = ABILITY_QUEENLY_MAJESTY; ability2 = ABILITY_LEAF_GUARD; }
+
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(species) { Ability(ability2); Innates(ability); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_QUICK_ATTACK, target: opponentLeft); }
+    } SCENE {
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_QUICK_ATTACK, opponentRight);
+        ABILITY_POPUP(opponentLeft, ability);
+        MESSAGE("Wobbuffet cannot use Quick Attack!");
+    }
+}
+
+DOUBLE_BATTLE_TEST("Dazzling, Queenly Majesty and Armor Tail protect users partner from priority moves (Traits)")
+{
+    u32 species;
+    enum Ability ability, ability2;
+
+    PARAMETRIZE { species = SPECIES_BRUXISH; ability = ABILITY_DAZZLING; ability2 = ABILITY_STRONG_JAW; }
+    PARAMETRIZE { species = SPECIES_FARIGIRAF; ability = ABILITY_ARMOR_TAIL; ability2 = ABILITY_CUD_CHEW; }
+    PARAMETRIZE { species = SPECIES_TSAREENA; ability = ABILITY_QUEENLY_MAJESTY; ability2 = ABILITY_LEAF_GUARD; }
+
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(species) { Ability(ability2); Innates(ability); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_QUICK_ATTACK, target: opponentRight); }
+    } SCENE {
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_QUICK_ATTACK, opponentRight);
+        ABILITY_POPUP(opponentLeft, ability);
+        MESSAGE("Wobbuffet cannot use Quick Attack!");
+    }
+}
+
+DOUBLE_BATTLE_TEST("Dazzling, Queenly Majesty and Armor Tail don't protect the user from negative priority (Traits)")
+{
+    u32 species;
+    enum Ability ability, ability2;
+
+    PARAMETRIZE { species = SPECIES_BRUXISH; ability = ABILITY_DAZZLING; ability2 = ABILITY_STRONG_JAW; }
+    PARAMETRIZE { species = SPECIES_FARIGIRAF; ability = ABILITY_ARMOR_TAIL; ability2 = ABILITY_CUD_CHEW; }
+    PARAMETRIZE { species = SPECIES_TSAREENA; ability = ABILITY_QUEENLY_MAJESTY; ability2 = ABILITY_LEAF_GUARD; }
+
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(species) { Ability(ability2); Innates(ability); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_AVALANCHE, target: opponentLeft); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_AVALANCHE, playerLeft);
+        NOT ABILITY_POPUP(opponentLeft, ability);
+    }
+}
+
+SINGLE_BATTLE_TEST("Dazzling, Queenly Majesty and Armor Tail protect from all multi hit hits with one activation (Traits)")
+{
+    u32 species;
+    enum Ability ability, ability2;
+
+    PARAMETRIZE { species = SPECIES_BRUXISH; ability = ABILITY_DAZZLING; ability2 = ABILITY_STRONG_JAW; }
+    PARAMETRIZE { species = SPECIES_FARIGIRAF; ability = ABILITY_ARMOR_TAIL; ability2 = ABILITY_CUD_CHEW; }
+    PARAMETRIZE { species = SPECIES_TSAREENA; ability = ABILITY_QUEENLY_MAJESTY; ability2 = ABILITY_LEAF_GUARD; }
+
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(species) { Ability(ability2); Innates(ability); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_WATER_SHURIKEN); }
+    } SCENE {
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_SHURIKEN, opponent);
+        ABILITY_POPUP(opponent, ability);
+        NONE_OF {
+            ABILITY_POPUP(opponent, ability);
+            ABILITY_POPUP(opponent, ability);
+            ABILITY_POPUP(opponent, ability);
+            ABILITY_POPUP(opponent, ability);
+        }
+    }
+}
+
+SINGLE_BATTLE_TEST("Dazzling, Queenly Majesty and Armor Tail prevent Protean activation (Traits)")
+{
+    u32 species, ability, ability2;
+
+    PARAMETRIZE { species = SPECIES_BRUXISH; ability = ABILITY_DAZZLING; ability2 = ABILITY_STRONG_JAW; }
+    PARAMETRIZE { species = SPECIES_FARIGIRAF; ability = ABILITY_ARMOR_TAIL; ability2 = ABILITY_CUD_CHEW; }
+    PARAMETRIZE { species = SPECIES_TSAREENA; ability = ABILITY_QUEENLY_MAJESTY; ability2 = ABILITY_LEAF_GUARD; }
+
+    GIVEN {
+        PLAYER(SPECIES_KECLEON) { Ability(ABILITY_COLOR_CHANGE); Innates(ABILITY_PROTEAN); }
+        OPPONENT(species) { Ability(ability2); Innates(ability); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_WATER_SHURIKEN); }
+    } SCENE {
+        NONE_OF {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_SHURIKEN, player);
+            ABILITY_POPUP(player, ABILITY_PROTEAN);
+        }
+        ABILITY_POPUP(opponent, ability);
+    }
+}
+
+// Listed on Bulbapedia as "Moves that target all Pokémon (except Perish Song, Flower Shield, and Rototiller),"
+// Despite the fact that there's only 2 remaining moves from that list, being Haze and Teatime
+TO_DO_BATTLE_TEST("Dazzling, Queenly Majesty and Armor Tail do not block Haze")
+TO_DO_BATTLE_TEST("Dazzling, Queenly Majesty and Armor Tail do not block Teatime")
+
+TO_DO_BATTLE_TEST("Dazzling, Queenly Majesty and Armor Tail do not block a move's Z-Status effect") // Z-Baby-Doll eyes increases Def but doesn't reduce Atk
+TO_DO_BATTLE_TEST("Mold Breaker ignores Dazzling, Queenly Majesty and Armor Tail")
+TO_DO_BATTLE_TEST("Instruct-called moves keep their priority, which is considered for Dazzling, Queenly Majesty and Armor Tail")
+
+TO_DO_BATTLE_TEST(" Dazzling, Queenly Majesty and Armor Tail do not block high-priority moves called by other moves") // Metronome, Assist, Nature Power, etc.
+#endif

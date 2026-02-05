@@ -7,7 +7,7 @@
 SINGLE_BATTLE_TEST("Transistor increases Electric-type attack / special attack", s16 damage)
 {
     u32 move;
-    u16 ability;
+    enum Ability ability;
 
     PARAMETRIZE { move = MOVE_SCRATCH; ability = ABILITY_KLUTZ; }
     PARAMETRIZE { move = MOVE_SCRATCH; ability = ABILITY_TRANSISTOR; }
@@ -38,7 +38,7 @@ SINGLE_BATTLE_TEST("Transistor increases Electric-type attack / special attack",
 
 SINGLE_BATTLE_TEST("Transistor is blocked by neutralizing gas", s16 damage)
 {
-    u16 ability;
+    enum Ability ability;
     PARAMETRIZE { ability = ABILITY_NEUTRALIZING_GAS; }
     PARAMETRIZE { ability = ABILITY_LEVITATE; }
 
@@ -55,10 +55,11 @@ SINGLE_BATTLE_TEST("Transistor is blocked by neutralizing gas", s16 damage)
     }
 }
 
-SINGLE_BATTLE_TEST("Transistor increases Electric-type attack / special attack (Trait)", s16 damage)
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Transistor increases Electric-type attack / special attack (Traits)", s16 damage)
 {
     u32 move;
-    u16 ability;
+    enum Ability ability;
 
     PARAMETRIZE { move = MOVE_SCRATCH; ability = ABILITY_KLUTZ; }
     PARAMETRIZE { move = MOVE_SCRATCH; ability = ABILITY_TRANSISTOR; }
@@ -73,7 +74,7 @@ SINGLE_BATTLE_TEST("Transistor increases Electric-type attack / special attack (
         ASSUME(GetMoveType(MOVE_THUNDER_SHOCK) == TYPE_ELECTRIC);
         ASSUME(GetMoveCategory(MOVE_WILD_CHARGE) == DAMAGE_CATEGORY_PHYSICAL);
         ASSUME(GetMoveCategory(MOVE_THUNDER_SHOCK) == DAMAGE_CATEGORY_SPECIAL);
-        PLAYER(SPECIES_REGIELEKI) { Ability(ABILITY_KLUTZ); Innates(ability); }
+        PLAYER(SPECIES_REGIELEKI) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, move); }
@@ -86,22 +87,4 @@ SINGLE_BATTLE_TEST("Transistor increases Electric-type attack / special attack (
         EXPECT_LT(results[4].damage, results[5].damage);
     }
 }
-
-SINGLE_BATTLE_TEST("Transistor is blocked by neutralizing gas (Trait)", s16 damage)
-{
-    u16 ability;
-    PARAMETRIZE { ability = ABILITY_NEUTRALIZING_GAS; }
-    PARAMETRIZE { ability = ABILITY_LEVITATE; }
-
-    GIVEN {
-        ASSUME(GetMoveType(MOVE_THUNDER_SHOCK) == TYPE_ELECTRIC);
-        PLAYER(SPECIES_REGIELEKI) { Ability(ABILITY_TRANSISTOR); }
-        OPPONENT(SPECIES_KOFFING) { Ability(ABILITY_LEVITATE); Innates(ability); }
-    } WHEN {
-        TURN { MOVE(player, MOVE_THUNDER_SHOCK); }
-    } SCENE {
-        HP_BAR(opponent, captureDamage: &results[i].damage);
-    } FINALLY {
-        EXPECT_LT(results[0].damage, results[1].damage); // cannot test exact factor because ATK / SPATK introduces inaccuracies
-    }
-}
+#endif

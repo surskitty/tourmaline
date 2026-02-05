@@ -19,14 +19,16 @@
 #include "field_weather.h"
 #include "graphics.h"
 #include "international_string_util.h"
+#include "item.h"
 #include "item_icon.h"
 #include "link.h"
-#include "load_save.h"
 #include "list_menu.h"
+#include "load_save.h"
 #include "main.h"
-#include "mystery_gift.h"
 #include "match_call.h"
 #include "menu.h"
+#include "metatile_behavior.h"
+#include "mystery_gift.h"
 #include "overworld.h"
 #include "party_menu.h"
 #include "pokeblock.h"
@@ -59,7 +61,6 @@
 #include "constants/field_specials.h"
 #include "constants/items.h"
 #include "constants/heal_locations.h"
-#include "constants/map_types.h"
 #include "constants/mystery_gift.h"
 #include "constants/slot_machine.h"
 #include "constants/songs.h"
@@ -125,14 +126,14 @@ static void Task_MoveElevator(u8);
 static void MoveElevatorWindowLights(u16, bool8);
 static void Task_MoveElevatorWindowLights(u8);
 static void Task_ShowScrollableMultichoice(u8);
-static void FillFrontierExchangeCornerWindowAndItemIcon(u16, u16);
-static void ShowBattleFrontierTutorWindow(u8, u16);
+static void FillFrontierExchangeCornerWindowAndItemIcon(enum ScrollMulti, u16);
+static void ShowBattleFrontierTutorWindow(enum ScrollMulti, u16);
 static void InitScrollableMultichoice(void);
 static void ScrollableMultichoice_ProcessInput(u8);
 static void ScrollableMultichoice_UpdateScrollArrows(u8);
 static void ScrollableMultichoice_MoveCursor(s32, bool8, struct ListMenu *);
-static void HideFrontierExchangeCornerItemIcon(u16, u16);
-static void ShowBattleFrontierTutorMoveDescription(u8, u16);
+static void HideFrontierExchangeCornerItemIcon(enum ScrollMulti, u16);
+static void ShowBattleFrontierTutorMoveDescription(enum ScrollMulti, u16);
 static void CloseScrollableMultichoice(u8);
 static void ScrollableMultichoice_RemoveScrollArrows(u8);
 static void Task_ScrollableMultichoice_WaitReturnToList(u8);
@@ -317,10 +318,11 @@ bool32 CountSSTidalStep(u16 delta)
     return TRUE;
 }
 
-u8 GetSSTidalLocation(s8 *mapGroup, s8 *mapNum, s16 *x, s16 *y)
+enum SSTidalLocation GetSSTidalLocation(s8 *mapGroup, s8 *mapNum, s16 *x, s16 *y)
 {
     u16 *varCruiseStepCount = GetVarPointer(VAR_CRUISE_STEP_COUNT);
-    switch (*GetVarPointer(VAR_SS_TIDAL_STATE))
+
+    switch ((enum SSTidalState)(*GetVarPointer(VAR_SS_TIDAL_STATE)))
     {
     case SS_TIDAL_BOARD_SLATEPORT:
     case SS_TIDAL_LAND_SLATEPORT:
@@ -683,10 +685,10 @@ void MauvilleGymSetDefaultBarriers(void)
                 MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamH2_On);
                 break;
             case METATILE_MauvilleGym_GreenBeamH3_Off:
-                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamH3_On | MAPGRID_COLLISION_MASK);
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamH3_On | MAPGRID_IMPASSABLE);
                 break;
             case METATILE_MauvilleGym_GreenBeamH4_Off:
-                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamH4_On | MAPGRID_COLLISION_MASK);
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamH4_On | MAPGRID_IMPASSABLE);
                 break;
             case METATILE_MauvilleGym_RedBeamH1_On:
                 MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_RedBeamH1_Off);
@@ -707,37 +709,37 @@ void MauvilleGymSetDefaultBarriers(void)
                 MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_RedBeamH2_On);
                 break;
             case METATILE_MauvilleGym_RedBeamH3_Off:
-                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_RedBeamH3_On | MAPGRID_COLLISION_MASK);
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_RedBeamH3_On | MAPGRID_IMPASSABLE);
                 break;
             case METATILE_MauvilleGym_RedBeamH4_Off:
-                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_RedBeamH4_On | MAPGRID_COLLISION_MASK);
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_RedBeamH4_On | MAPGRID_IMPASSABLE);
                 break;
             case METATILE_MauvilleGym_GreenBeamV1_On:
-                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_PoleBottom_On | MAPGRID_COLLISION_MASK);
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_PoleBottom_On | MAPGRID_IMPASSABLE);
                 break;
             case METATILE_MauvilleGym_GreenBeamV2_On:
                 MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_FloorTile);
                 break;
             case METATILE_MauvilleGym_RedBeamV1_On:
-                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_PoleBottom_Off | MAPGRID_COLLISION_MASK);
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_PoleBottom_Off | MAPGRID_IMPASSABLE);
                 break;
             case METATILE_MauvilleGym_RedBeamV2_On:
                 MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_FloorTile);
                 break;
             case METATILE_MauvilleGym_PoleBottom_On:
-                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamV1_On | MAPGRID_COLLISION_MASK);
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamV1_On | MAPGRID_IMPASSABLE);
                 break;
             case METATILE_MauvilleGym_FloorTile:
                 if (MapGridGetMetatileIdAt(x, y - 1) == METATILE_MauvilleGym_GreenBeamV1_On)
-                    MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamV2_On | MAPGRID_COLLISION_MASK);
+                    MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_GreenBeamV2_On | MAPGRID_IMPASSABLE);
                 else
-                    MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_RedBeamV2_On | MAPGRID_COLLISION_MASK);
+                    MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_RedBeamV2_On | MAPGRID_IMPASSABLE);
                 break;
             case METATILE_MauvilleGym_PoleBottom_Off:
-                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_RedBeamV1_On | MAPGRID_COLLISION_MASK);
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_RedBeamV1_On | MAPGRID_IMPASSABLE);
                 break;
             case METATILE_MauvilleGym_PoleTop_Off:
-                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_PoleTop_On | MAPGRID_COLLISION_MASK);
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_PoleTop_On | MAPGRID_IMPASSABLE);
                 break;
             case METATILE_MauvilleGym_PoleTop_On:
                 MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_PoleTop_Off);
@@ -788,10 +790,10 @@ void MauvilleGymDeactivatePuzzle(void)
                 MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_RedBeamH4_Off);
                 break;
             case METATILE_MauvilleGym_GreenBeamV1_On:
-                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_PoleBottom_On | MAPGRID_COLLISION_MASK);
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_PoleBottom_On | MAPGRID_IMPASSABLE);
                 break;
             case METATILE_MauvilleGym_RedBeamV1_On:
-                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_PoleBottom_Off | MAPGRID_COLLISION_MASK);
+                MapGridSetMetatileIdAt(x, y, METATILE_MauvilleGym_PoleBottom_Off | MAPGRID_IMPASSABLE);
                 break;
             case METATILE_MauvilleGym_GreenBeamV2_On:
             case METATILE_MauvilleGym_RedBeamV2_On:
@@ -900,8 +902,8 @@ static void PetalburgGymSetDoorMetatiles(u8 roomNumber, u16 metatileId)
     }
     for (i = 0; i < nDoors; i++)
     {
-        MapGridSetMetatileIdAt(doorCoordsX[i] + MAP_OFFSET, doorCoordsY[i] + MAP_OFFSET, metatileId | MAPGRID_COLLISION_MASK);
-        MapGridSetMetatileIdAt(doorCoordsX[i] + MAP_OFFSET, doorCoordsY[i] + MAP_OFFSET + 1, (metatileId + METATILE_ROW_WIDTH) | MAPGRID_COLLISION_MASK);
+        MapGridSetMetatileIdAt(doorCoordsX[i] + MAP_OFFSET, doorCoordsY[i] + MAP_OFFSET, metatileId | MAPGRID_IMPASSABLE);
+        MapGridSetMetatileIdAt(doorCoordsX[i] + MAP_OFFSET, doorCoordsY[i] + MAP_OFFSET + 1, (metatileId + METATILE_ROW_WIDTH) | MAPGRID_IMPASSABLE);
     }
     DrawWholeMapView();
 }
@@ -987,7 +989,7 @@ void FieldShowRegionMap(void)
 
 static bool32 IsBuildingPCTile(u32 tileId)
 {
-    return gMapHeader.mapLayout->primaryTileset == &gTileset_Building && (tileId == METATILE_Building_PC_On || tileId == METATILE_Building_PC_Off);
+    return (MetatileBehavior_IsPC(UNPACK_BEHAVIOR(GetMetatileAttributesById(tileId))));
 }
 
 static bool32 IsPlayerHousePCTile(u32 tileId)
@@ -1101,7 +1103,7 @@ static void PCTurnOnEffect_SetMetatile(s16 isScreenOn, s8 dx, s8 dy)
         else if (gSpecialVar_0x8004 == PC_LOCATION_MAYS_HOUSE)
             metatileId = METATILE_BrendansMaysHouse_MayPC_On;
     }
-    MapGridSetMetatileIdAt(gSaveBlock1Ptr->pos.x + dx + MAP_OFFSET, gSaveBlock1Ptr->pos.y + dy + MAP_OFFSET, metatileId | MAPGRID_COLLISION_MASK);
+    MapGridSetMetatileIdAt(gSaveBlock1Ptr->pos.x + dx + MAP_OFFSET, gSaveBlock1Ptr->pos.y + dy + MAP_OFFSET, metatileId | MAPGRID_IMPASSABLE);
 }
 
 // For this special, gSpecialVar_0x8004 is expected to be some PC_LOCATION_* value.
@@ -1144,7 +1146,7 @@ static void PCTurnOffEffect(void)
     else if (gSpecialVar_0x8004 == PC_LOCATION_MAYS_HOUSE)
         metatileId = METATILE_BrendansMaysHouse_MayPC_Off;
 
-    MapGridSetMetatileIdAt(gSaveBlock1Ptr->pos.x + dx + MAP_OFFSET, gSaveBlock1Ptr->pos.y + dy + MAP_OFFSET, metatileId | MAPGRID_COLLISION_MASK);
+    MapGridSetMetatileIdAt(gSaveBlock1Ptr->pos.x + dx + MAP_OFFSET, gSaveBlock1Ptr->pos.y + dy + MAP_OFFSET, metatileId | MAPGRID_IMPASSABLE);
     DrawWholeMapView();
 }
 
@@ -1176,14 +1178,14 @@ static void LotteryCornerComputerEffect(struct Task *task)
         if (task->tIsScreenOn)
         {
             // Screen is on, set it off
-            MapGridSetMetatileIdAt(11 + MAP_OFFSET, 1 + MAP_OFFSET, METATILE_Shop_Laptop1_Normal | MAPGRID_COLLISION_MASK);
-            MapGridSetMetatileIdAt(11 + MAP_OFFSET, 2 + MAP_OFFSET, METATILE_Shop_Laptop2_Normal | MAPGRID_COLLISION_MASK);
+            MapGridSetMetatileIdAt(11 + MAP_OFFSET, 1 + MAP_OFFSET, METATILE_Shop_Laptop1_Normal | MAPGRID_IMPASSABLE);
+            MapGridSetMetatileIdAt(11 + MAP_OFFSET, 2 + MAP_OFFSET, METATILE_Shop_Laptop2_Normal | MAPGRID_IMPASSABLE);
         }
         else
         {
             // Screen is off, set it on
-            MapGridSetMetatileIdAt(11 + MAP_OFFSET, 1 + MAP_OFFSET, METATILE_Shop_Laptop1_Flash | MAPGRID_COLLISION_MASK);
-            MapGridSetMetatileIdAt(11 + MAP_OFFSET, 2 + MAP_OFFSET, METATILE_Shop_Laptop2_Flash | MAPGRID_COLLISION_MASK);
+            MapGridSetMetatileIdAt(11 + MAP_OFFSET, 1 + MAP_OFFSET, METATILE_Shop_Laptop1_Flash | MAPGRID_IMPASSABLE);
+            MapGridSetMetatileIdAt(11 + MAP_OFFSET, 2 + MAP_OFFSET, METATILE_Shop_Laptop2_Flash | MAPGRID_IMPASSABLE);
         }
         DrawWholeMapView();
 
@@ -1198,8 +1200,8 @@ static void LotteryCornerComputerEffect(struct Task *task)
 
 void EndLotteryCornerComputerEffect(void)
 {
-    MapGridSetMetatileIdAt(11 + MAP_OFFSET, 1 + MAP_OFFSET, METATILE_Shop_Laptop1_Normal | MAPGRID_COLLISION_MASK);
-    MapGridSetMetatileIdAt(11 + MAP_OFFSET, 2 + MAP_OFFSET, METATILE_Shop_Laptop2_Normal | MAPGRID_COLLISION_MASK);
+    MapGridSetMetatileIdAt(11 + MAP_OFFSET, 1 + MAP_OFFSET, METATILE_Shop_Laptop1_Normal | MAPGRID_IMPASSABLE);
+    MapGridSetMetatileIdAt(11 + MAP_OFFSET, 2 + MAP_OFFSET, METATILE_Shop_Laptop2_Normal | MAPGRID_IMPASSABLE);
     DrawWholeMapView();
 }
 
@@ -1276,7 +1278,7 @@ void IsGrassTypeInParty(void)
         if (GetMonData(pokemon, MON_DATA_SANITY_HAS_SPECIES) && !GetMonData(pokemon, MON_DATA_IS_EGG))
         {
             species = GetMonData(pokemon, MON_DATA_SPECIES);
-            if (gSpeciesInfo[species].types[0] == TYPE_GRASS || gSpeciesInfo[species].types[1] == TYPE_GRASS)
+            if (GetSpeciesType(species, 0) == TYPE_GRASS || GetSpeciesType(species, 1) == TYPE_GRASS)
             {
                 gSpecialVar_Result = TRUE;
                 return;
@@ -1675,7 +1677,7 @@ u16 GetMysteryGiftCardStat(void)
 
 bool8 BufferTMHMMoveName(void)
 {
-    if (gSpecialVar_0x8004 >= ITEM_TM01 && gSpecialVar_0x8004 <= ITEM_HM08)
+    if (gItemsInfo[gSpecialVar_0x8004].pocket == POCKET_TM_HM)
     {
         StringCopy(gStringVar2, GetMoveName(ItemIdToBattleMoveId(gSpecialVar_0x8004)));
         return TRUE;
@@ -1784,7 +1786,7 @@ static const u16 sElevatorWindowTiles_Descending[ELEVATOR_WINDOW_HEIGHT][ELEVATO
 
 void SetDeptStoreFloor(void)
 {
-    u8 deptStoreFloor;
+    enum DeptStoreFloorNumber deptStoreFloor;
     switch (gSaveBlock1Ptr->dynamicWarp.mapNum)
     {
     case MAP_NUM(MAP_LILYCOVE_CITY_DEPARTMENT_STORE_1F):
@@ -1979,7 +1981,7 @@ static void Task_MoveElevatorWindowLights(u8 taskId)
             for (y = 0; y < ELEVATOR_WINDOW_HEIGHT; y++)
             {
                 for (x = 0; x < ELEVATOR_WINDOW_WIDTH; x++)
-                    MapGridSetMetatileIdAt(x + MAP_OFFSET + 1, y + MAP_OFFSET, sElevatorWindowTiles_Ascending[y][tMoveCounter % ELEVATOR_LIGHT_STAGES] | MAPGRID_COLLISION_MASK);
+                    MapGridSetMetatileIdAt(x + MAP_OFFSET + 1, y + MAP_OFFSET, sElevatorWindowTiles_Ascending[y][tMoveCounter % ELEVATOR_LIGHT_STAGES] | MAPGRID_IMPASSABLE);
             }
         }
         else
@@ -1988,7 +1990,7 @@ static void Task_MoveElevatorWindowLights(u8 taskId)
             for (y = 0; y < ELEVATOR_WINDOW_HEIGHT; y++)
             {
                 for (x = 0; x < ELEVATOR_WINDOW_WIDTH; x++)
-                    MapGridSetMetatileIdAt(x + MAP_OFFSET + 1, y + MAP_OFFSET, sElevatorWindowTiles_Descending[y][tMoveCounter % ELEVATOR_LIGHT_STAGES] | MAPGRID_COLLISION_MASK);
+                    MapGridSetMetatileIdAt(x + MAP_OFFSET + 1, y + MAP_OFFSET, sElevatorWindowTiles_Descending[y][tMoveCounter % ELEVATOR_LIGHT_STAGES] | MAPGRID_IMPASSABLE);
             }
         }
         DrawWholeMapView();
@@ -2297,7 +2299,7 @@ void ShowScrollableMultichoice(void)
     struct Task *task = &gTasks[taskId];
     task->tScrollMultiId = gSpecialVar_0x8004;
 
-    switch (gSpecialVar_0x8004)
+    switch ((enum ScrollMulti)gSpecialVar_0x8004)
     {
     case SCROLL_MULTI_NONE:
         task->tMaxItemsOnScreen = 1;
@@ -2595,7 +2597,7 @@ static void Task_ShowScrollableMultichoice(u8 taskId)
     sScrollableMultichoice_ItemSpriteId = MAX_SPRITES;
     FillFrontierExchangeCornerWindowAndItemIcon(task->tScrollMultiId, 0);
     ShowBattleFrontierTutorWindow(task->tScrollMultiId, 0);
-    sScrollableMultichoice_ListMenuItem = AllocZeroed(task->tNumItems * 8);
+    sScrollableMultichoice_ListMenuItem = AllocZeroed(task->tNumItems * sizeof(struct ListMenuItem));
     sFrontierExchangeCorner_NeverRead = 0;
     InitScrollableMultichoice();
 
@@ -2992,7 +2994,7 @@ void CloseFrontierExchangeCornerItemIconWindow(void)
     RemoveWindow(sFrontierExchangeCorner_ItemIconWindowId);
 }
 
-static void FillFrontierExchangeCornerWindowAndItemIcon(u16 menu, u16 selection)
+static void FillFrontierExchangeCornerWindowAndItemIcon(enum ScrollMulti menu, u16 selection)
 {
     #include "data/battle_frontier/battle_frontier_exchange_corner.h"
 
@@ -3035,6 +3037,8 @@ static void FillFrontierExchangeCornerWindowAndItemIcon(u16 menu, u16 selection)
             AddTextPrinterParameterized2(0, FONT_NORMAL, sFrontierExchangeCorner_HoldItemsDescriptions[selection], 0, NULL, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
             ShowFrontierExchangeCornerItemIcon(sFrontierExchangeCorner_HoldItems[selection]);
             break;
+        default:
+            break;
         }
     }
 }
@@ -3053,7 +3057,7 @@ static void ShowFrontierExchangeCornerItemIcon(u16 item)
     }
 }
 
-static void HideFrontierExchangeCornerItemIcon(u16 menu, u16 unused)
+static void HideFrontierExchangeCornerItemIcon(enum ScrollMulti menu, u16 unused)
 {
     if (sScrollableMultichoice_ItemSpriteId != MAX_SPRITES)
     {
@@ -3066,6 +3070,8 @@ static void HideFrontierExchangeCornerItemIcon(u16 menu, u16 unused)
             // This makes sure deleting the icon will not clear palettes in use by object events
             FieldEffectFreeGraphicsResources(&gSprites[sScrollableMultichoice_ItemSpriteId]);
             break;
+        default:
+            break;
         }
         sScrollableMultichoice_ItemSpriteId = MAX_SPRITES;
     }
@@ -3076,7 +3082,7 @@ void BufferBattleFrontierTutorMoveName(void)
     StringCopy(gStringVar1, GetMoveName(gSpecialVar_0x8005));
 }
 
-static void ShowBattleFrontierTutorWindow(u8 menu, u16 selection)
+static void ShowBattleFrontierTutorWindow(enum ScrollMulti menu, u16 selection)
 {
     static const struct WindowTemplate sBattleFrontierTutor_WindowTemplate =
     {
@@ -3100,7 +3106,7 @@ static void ShowBattleFrontierTutorWindow(u8 menu, u16 selection)
     }
 }
 
-static void ShowBattleFrontierTutorMoveDescription(u8 menu, u16 selection)
+static void ShowBattleFrontierTutorMoveDescription(enum ScrollMulti menu, u16 selection)
 {
     static const u8 *const sBattleFrontier_TutorMoveDescriptions1[] =
     {
@@ -4310,8 +4316,8 @@ void GetObjectPosition(u16* xPointer, u16* yPointer, u32 localId, u32 useTemplat
 
     objectId = GetObjectEventIdByLocalId(localId);
     objEvent = &gObjectEvents[objectId];
-    *xPointer = objEvent->currentCoords.x - 7;
-    *yPointer = objEvent->currentCoords.y - 7;
+    *xPointer = objEvent->currentCoords.x - MAP_OFFSET;
+    *yPointer = objEvent->currentCoords.y - MAP_OFFSET;
 }
 
 bool32 CheckObjectAtXY(u32 x, u32 y)
@@ -4377,7 +4383,7 @@ void SetRoofBirds(void)
     u32 birdCount = 0;
     if (gMapHeader.events != NULL)
     {
-        if (InBattlePyramid())
+        if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE)
            objectEventCount = GetNumBattlePyramidObjectEvents();
         else if (InTrainerHill())
            objectEventCount = HILL_TRAINERS_PER_FLOOR;
@@ -4431,7 +4437,7 @@ void SetStationaryWilds(void)
     u32 wildCount = 0;
     if (gMapHeader.events != NULL)
     {
-        if (InBattlePyramid())
+        if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE)
            objectEventCount = GetNumBattlePyramidObjectEvents();
         else if (InTrainerHill())
            objectEventCount = HILL_TRAINERS_PER_FLOOR;
@@ -4476,6 +4482,7 @@ u32 GetSpeciesFromOverworldPokemon(void) {
 
 void EnterCode(void)
 {
+    StringCopy(gStringVar2, COMPOUND_STRING(""));
     DoNamingScreen(NAMING_SCREEN_CODE, gStringVar2, 0, 0, 0, CB2_ReturnToFieldContinueScript);
 }
 
@@ -4486,4 +4493,17 @@ void GetCodeFeedback(void)
         gSpecialVar_Result = 1;
     else
         gSpecialVar_Result = 0;
+}
+
+void SetHiddenNature(void)
+{
+    u32 hiddenNature = gSpecialVar_Result;
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_HIDDEN_NATURE, &hiddenNature);
+    CalculateMonStats(&gPlayerParty[gSpecialVar_0x8004]);
+}
+
+void SetAbility(void)
+{
+    u32 ability = gSpecialVar_Result;
+    SetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_ABILITY_NUM, &ability);
 }

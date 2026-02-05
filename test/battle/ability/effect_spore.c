@@ -89,7 +89,26 @@ SINGLE_BATTLE_TEST("Effect Spore causes sleep 11% of the time")
     }
 }
 
-SINGLE_BATTLE_TEST("Effect Spore only inflicts status on contact (Trait)")
+SINGLE_BATTLE_TEST("Effect Spore will check if it can inflict status onto attacker, not itself")
+{
+    PASSES_RANDOMLY(11, 100, RNG_EFFECT_SPORE);
+    GIVEN {
+        ASSUME(B_ABILITY_TRIGGER_CHANCE >= GEN_5);
+        ASSUME(MoveMakesContact(MOVE_SCRATCH));
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_BRELOOM) { Status1(STATUS1_BURN); Ability(ABILITY_EFFECT_SPORE); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SCRATCH); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_EFFECT_SPORE);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, player);
+        MESSAGE("The opposing Breloom's Effect Spore made Wobbuffet sleep!");
+        STATUS_ICON(player, sleep: TRUE);
+    }
+}
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Effect Spore only inflicts status on contact (Traits)")
 {
     u32 move;
 
@@ -99,7 +118,7 @@ SINGLE_BATTLE_TEST("Effect Spore only inflicts status on contact (Trait)")
         ASSUME(MoveMakesContact(MOVE_SCRATCH));
         ASSUME(!MoveMakesContact(MOVE_SWIFT));
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_POISON_HEAL); Innates(ABILITY_EFFECT_SPORE); }
+        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_TECHNICIAN); Innates(ABILITY_EFFECT_SPORE); }
     } WHEN {
         TURN { MOVE(player, move, WITH_RNG(RNG_EFFECT_SPORE, 1)); }
         TURN {}
@@ -120,14 +139,14 @@ SINGLE_BATTLE_TEST("Effect Spore only inflicts status on contact (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Effect Spore causes poison 9% of the time (Trait)")
+SINGLE_BATTLE_TEST("Effect Spore causes poison 9% of the time (Traits)")
 {
     PASSES_RANDOMLY(9, 100, RNG_EFFECT_SPORE);
     GIVEN {
         ASSUME(B_ABILITY_TRIGGER_CHANCE >= GEN_5);
         ASSUME(MoveMakesContact(MOVE_SCRATCH));
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_POISON_HEAL); Innates(ABILITY_EFFECT_SPORE); }
+        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_TECHNICIAN); Innates(ABILITY_EFFECT_SPORE); }
     } WHEN {
         TURN { MOVE(player, MOVE_SCRATCH); }
         TURN {}
@@ -139,14 +158,14 @@ SINGLE_BATTLE_TEST("Effect Spore causes poison 9% of the time (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Effect Spore causes paralysis 10% of the time (Trait)")
+SINGLE_BATTLE_TEST("Effect Spore causes paralysis 10% of the time (Traits)")
 {
     PASSES_RANDOMLY(10, 100, RNG_EFFECT_SPORE);
     GIVEN {
         ASSUME(B_ABILITY_TRIGGER_CHANCE >= GEN_5);
         ASSUME(MoveMakesContact(MOVE_SCRATCH));
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_POISON_HEAL); Innates(ABILITY_EFFECT_SPORE); }
+        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_TECHNICIAN); Innates(ABILITY_EFFECT_SPORE); }
     } WHEN {
         TURN { MOVE(player, MOVE_SCRATCH); }
         TURN {}
@@ -158,14 +177,14 @@ SINGLE_BATTLE_TEST("Effect Spore causes paralysis 10% of the time (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Effect Spore causes sleep 11% of the time (Trait)")
+SINGLE_BATTLE_TEST("Effect Spore causes sleep 11% of the time (Traits)")
 {
     PASSES_RANDOMLY(11, 100, RNG_EFFECT_SPORE);
     GIVEN {
         ASSUME(B_ABILITY_TRIGGER_CHANCE >= GEN_5);
         ASSUME(MoveMakesContact(MOVE_SCRATCH));
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_POISON_HEAL); Innates(ABILITY_EFFECT_SPORE); }
+        OPPONENT(SPECIES_BRELOOM) { Ability(ABILITY_TECHNICIAN); Innates(ABILITY_EFFECT_SPORE); }
     } WHEN {
         TURN { MOVE(player, MOVE_SCRATCH); }
         TURN {}
@@ -176,3 +195,22 @@ SINGLE_BATTLE_TEST("Effect Spore causes sleep 11% of the time (Trait)")
         STATUS_ICON(player, sleep: TRUE);
     }
 }
+
+SINGLE_BATTLE_TEST("Effect Spore will check if it can inflict status onto attacker, not itself (Traits)")
+{
+    PASSES_RANDOMLY(11, 100, RNG_EFFECT_SPORE);
+    GIVEN {
+        ASSUME(B_ABILITY_TRIGGER_CHANCE >= GEN_5);
+        ASSUME(MoveMakesContact(MOVE_SCRATCH));
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_BRELOOM) { Status1(STATUS1_BURN); Ability(ABILITY_TECHNICIAN); Innates(ABILITY_EFFECT_SPORE); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_SCRATCH); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_EFFECT_SPORE);
+        ANIMATION(ANIM_TYPE_STATUS, B_ANIM_STATUS_SLP, player);
+        MESSAGE("The opposing Breloom's Effect Spore made Wobbuffet sleep!");
+        STATUS_ICON(player, sleep: TRUE);
+    }
+}
+#endif

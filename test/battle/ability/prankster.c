@@ -3,26 +3,35 @@
 
 ASSUMPTIONS
 {
-    ASSUME(gSpeciesInfo[SPECIES_UMBREON].types[0] == TYPE_DARK);
+    ASSUME(GetSpeciesType(SPECIES_UMBREON, 0) == TYPE_DARK);
     ASSUME(GetMoveCategory(MOVE_CONFUSE_RAY) == DAMAGE_CATEGORY_STATUS);
 }
 
-SINGLE_BATTLE_TEST("Prankster-affected moves don't affect Dark-type Pokémon")
+SINGLE_BATTLE_TEST("Prankster-affected moves don't affect Dark-type Pokémon (Gen7+)")
 {
+    u32 gen;
+    PARAMETRIZE { gen = GEN_6; }
+    PARAMETRIZE { gen = GEN_7; }
     GIVEN {
+        WITH_CONFIG(CONFIG_PRANKSTER_DARK_TYPES, gen);
         PLAYER(SPECIES_UMBREON);
         OPPONENT(SPECIES_VOLBEAT) { Ability(ABILITY_PRANKSTER); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_CONFUSE_RAY); }
     } SCENE {
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, opponent);
-        MESSAGE("It doesn't affect Umbreon…");
+        if (gen == GEN_6) {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, opponent);
+        } else {
+            NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, opponent);
+            MESSAGE("It doesn't affect Umbreon…");
+        }
     }
 }
 
 SINGLE_BATTLE_TEST("Prankster-affected moves don't affect Dark-type Pokémon after they switch-in")
 {
     GIVEN {
+        WITH_CONFIG(CONFIG_PRANKSTER_DARK_TYPES, GEN_7);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_UMBREON);
         OPPONENT(SPECIES_VOLBEAT) { Ability(ABILITY_PRANKSTER); }
@@ -49,39 +58,62 @@ DOUBLE_BATTLE_TEST("Prankster-affected moves affect Ally Dark-type Pokémon")
     }
 }
 
-SINGLE_BATTLE_TEST("Prankster-affected moves called via Assist don't affect Dark-type Pokémon")
+SINGLE_BATTLE_TEST("Prankster-affected moves called via Assist don't affect Dark-type Pokémon (Gen 7+)")
 {
+    u32 gen;
+    PARAMETRIZE { gen = GEN_6; }
+    PARAMETRIZE { gen = GEN_7; }
     GIVEN {
+        WITH_CONFIG(CONFIG_PRANKSTER_DARK_TYPES, gen);
         PLAYER(SPECIES_UMBREON);
         OPPONENT(SPECIES_VOLBEAT) { Ability(ABILITY_PRANKSTER); }
         OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_CONFUSE_RAY); };
     } WHEN {
         TURN { MOVE(opponent, MOVE_ASSIST); }
     } SCENE {
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, opponent);
-        MESSAGE("It doesn't affect Umbreon…");
+        if (gen == GEN_6) {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, opponent);
+        } else {
+            NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, opponent);
+            MESSAGE("It doesn't affect Umbreon…");
+        }
     }
 }
 
 // Tested on Showdown, even though Bulbapedia says otherwise.
 DOUBLE_BATTLE_TEST("Prankster-affected moves called via Instruct do not affect Dark-type Pokémon")
 {
+    u32 gen;
+    PARAMETRIZE { gen = GEN_6; }
+    PARAMETRIZE { gen = GEN_7; }
     GIVEN {
+        WITH_CONFIG(CONFIG_PRANKSTER_DARK_TYPES, gen);
         PLAYER(SPECIES_VOLBEAT) { Speed(20); Ability(ABILITY_PRANKSTER); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(10);}
-        OPPONENT(SPECIES_UMBREON) { Speed(1); }
+        OPPONENT(SPECIES_UMBREON) { Speed(15); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(1); }
+        OPPONENT(SPECIES_UMBREON) { Speed(1); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_CONFUSE_RAY, target: opponentLeft);
+               MOVE(opponentLeft, MOVE_U_TURN, target: playerRight, WITH_RNG(RNG_CONFUSION, FALSE));
+               SEND_OUT(opponentLeft, 2);
                MOVE(playerRight, MOVE_INSTRUCT, target: playerLeft);
         }
     } SCENE {
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, playerLeft);
-        MESSAGE("It doesn't affect the opposing Umbreon…");
+        if (gen == GEN_6) {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, playerLeft);
+        } else {
+            NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, playerLeft);
+            MESSAGE("It doesn't affect the opposing Umbreon…");
+        }
         MESSAGE("Wobbuffet used Instruct!");
         MESSAGE("Volbeat used Confuse Ray!");
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, playerLeft);
-        MESSAGE("It doesn't affect the opposing Umbreon…");
+        if (gen == GEN_6) {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, playerLeft);
+        } else {
+            NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, playerLeft);
+            MESSAGE("It doesn't affect the opposing Umbreon…");
+        }
     }
 }
 
@@ -165,12 +197,13 @@ SINGLE_BATTLE_TEST("Prankster-affected moves can still be bounced back by Dark-t
 
 SINGLE_BATTLE_TEST("Prankster-affected moves which are reflected by Magic Coat can affect Dark-type Pokémon, unless the Pokémon that bounced the move also has Prankster")
 {
-    u16 sableyeAbility;
+    enum Ability sableyeAbility;
 
     PARAMETRIZE { sableyeAbility = ABILITY_PRANKSTER; }
     PARAMETRIZE { sableyeAbility = ABILITY_KEEN_EYE; }
 
     GIVEN {
+        WITH_CONFIG(CONFIG_PRANKSTER_DARK_TYPES, GEN_7);
         PLAYER(SPECIES_SABLEYE) { Ability(sableyeAbility); }
         OPPONENT(SPECIES_MURKROW) { Ability(ABILITY_PRANKSTER); }
     } WHEN {
@@ -221,22 +254,32 @@ TO_DO_BATTLE_TEST("Prankster-affected moves called via Nature Power don't affect
 TO_DO_BATTLE_TEST("Prankster increases the priority of status Z-Moves by 1");
 TO_DO_BATTLE_TEST("Prankster increases the priority of Extreme Evoboost by 1");
 
-SINGLE_BATTLE_TEST("Prankster-affected moves don't affect Dark-type Pokémon (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Prankster-affected moves don't affect Dark-type Pokémon (Gen7+) (Traits)")
 {
+    u32 gen;
+    PARAMETRIZE { gen = GEN_6; }
+    PARAMETRIZE { gen = GEN_7; }
     GIVEN {
+        WITH_CONFIG(CONFIG_PRANKSTER_DARK_TYPES, gen);
         PLAYER(SPECIES_UMBREON);
         OPPONENT(SPECIES_VOLBEAT) { Ability(ABILITY_ILLUMINATE); Innates(ABILITY_PRANKSTER); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_CONFUSE_RAY); }
     } SCENE {
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, opponent);
-        MESSAGE("It doesn't affect Umbreon…");
+        if (gen == GEN_6) {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, opponent);
+        } else {
+            NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, opponent);
+            MESSAGE("It doesn't affect Umbreon…");
+        }
     }
 }
 
-SINGLE_BATTLE_TEST("Prankster-affected moves don't affect Dark-type Pokémon after they switch-in (Trait)")
+SINGLE_BATTLE_TEST("Prankster-affected moves don't affect Dark-type Pokémon after they switch-in (Traits)")
 {
     GIVEN {
+        WITH_CONFIG(CONFIG_PRANKSTER_DARK_TYPES, GEN_7);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_UMBREON);
         OPPONENT(SPECIES_VOLBEAT) { Ability(ABILITY_ILLUMINATE); Innates(ABILITY_PRANKSTER); }
@@ -248,7 +291,7 @@ SINGLE_BATTLE_TEST("Prankster-affected moves don't affect Dark-type Pokémon aft
     }
 }
 
-DOUBLE_BATTLE_TEST("Prankster-affected moves affect Ally Dark-type Pokémon (Trait)")
+DOUBLE_BATTLE_TEST("Prankster-affected moves affect Ally Dark-type Pokémon (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_VOLBEAT) { Ability(ABILITY_ILLUMINATE); Innates(ABILITY_PRANKSTER); }
@@ -263,43 +306,66 @@ DOUBLE_BATTLE_TEST("Prankster-affected moves affect Ally Dark-type Pokémon (Tra
     }
 }
 
-SINGLE_BATTLE_TEST("Prankster-affected moves called via Assist don't affect Dark-type Pokémon (Trait)")
+SINGLE_BATTLE_TEST("Prankster-affected moves called via Assist don't affect Dark-type Pokémon (Gen 7+) (Traits)")
 {
+    u32 gen;
+    PARAMETRIZE { gen = GEN_6; }
+    PARAMETRIZE { gen = GEN_7; }
     GIVEN {
+        WITH_CONFIG(CONFIG_PRANKSTER_DARK_TYPES, gen);
         PLAYER(SPECIES_UMBREON);
         OPPONENT(SPECIES_VOLBEAT) { Ability(ABILITY_ILLUMINATE); Innates(ABILITY_PRANKSTER); }
         OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_CONFUSE_RAY); };
     } WHEN {
         TURN { MOVE(opponent, MOVE_ASSIST); }
     } SCENE {
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, opponent);
-        MESSAGE("It doesn't affect Umbreon…");
+        if (gen == GEN_6) {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, opponent);
+        } else {
+            NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, opponent);
+            MESSAGE("It doesn't affect Umbreon…");
+        }
     }
 }
 
 // Tested on Showdown, even though Bulbapedia says otherwise.
-DOUBLE_BATTLE_TEST("Prankster-affected moves called via Instruct do not affect Dark-type Pokémon (Trait)")
+DOUBLE_BATTLE_TEST("Prankster-affected moves called via Instruct do not affect Dark-type Pokémon (Traits)")
 {
+    u32 gen;
+    PARAMETRIZE { gen = GEN_6; }
+    PARAMETRIZE { gen = GEN_7; }
     GIVEN {
+        WITH_CONFIG(CONFIG_PRANKSTER_DARK_TYPES, gen);
         PLAYER(SPECIES_VOLBEAT) { Speed(20); Ability(ABILITY_ILLUMINATE); Innates(ABILITY_PRANKSTER); }
         PLAYER(SPECIES_WOBBUFFET) { Speed(10);}
-        OPPONENT(SPECIES_UMBREON) { Speed(1); }
+        OPPONENT(SPECIES_UMBREON) { Speed(15); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(1); }
+        OPPONENT(SPECIES_UMBREON) { Speed(1); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_CONFUSE_RAY, target: opponentLeft);
+               MOVE(opponentLeft, MOVE_U_TURN, target: playerRight, WITH_RNG(RNG_CONFUSION, FALSE));
+               SEND_OUT(opponentLeft, 2);
                MOVE(playerRight, MOVE_INSTRUCT, target: playerLeft);
         }
     } SCENE {
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, playerLeft);
-        MESSAGE("It doesn't affect the opposing Umbreon…");
+        if (gen == GEN_6) {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, playerLeft);
+        } else {
+            NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, playerLeft);
+            MESSAGE("It doesn't affect the opposing Umbreon…");
+        }
         MESSAGE("Wobbuffet used Instruct!");
         MESSAGE("Volbeat used Confuse Ray!");
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, playerLeft);
-        MESSAGE("It doesn't affect the opposing Umbreon…");
+        if (gen == GEN_6) {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, playerLeft);
+        } else {
+            NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_CONFUSE_RAY, playerLeft);
+            MESSAGE("It doesn't affect the opposing Umbreon…");
+        }
     }
 }
 
-SINGLE_BATTLE_TEST("Prankster increases the priority of moves by 1 (Trait)")
+SINGLE_BATTLE_TEST("Prankster increases the priority of moves by 1 (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Speed(10); }
@@ -312,7 +378,7 @@ SINGLE_BATTLE_TEST("Prankster increases the priority of moves by 1 (Trait)")
     }
 }
 
-DOUBLE_BATTLE_TEST("Moves called via Prankster-affected After you affect Dark-type Pokémon (Trait)")
+DOUBLE_BATTLE_TEST("Moves called via Prankster-affected After you affect Dark-type Pokémon (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_VOLBEAT) { Speed(1); Ability(ABILITY_ILLUMINATE); Innates(ABILITY_PRANKSTER); }
@@ -332,7 +398,7 @@ DOUBLE_BATTLE_TEST("Moves called via Prankster-affected After you affect Dark-ty
     }
 }
 
-SINGLE_BATTLE_TEST("Prankster is blocked by Quick Guard in Gen5+ (Trait)")
+SINGLE_BATTLE_TEST("Prankster is blocked by Quick Guard in Gen5+ (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -346,11 +412,11 @@ SINGLE_BATTLE_TEST("Prankster is blocked by Quick Guard in Gen5+ (Trait)")
     }
 }
 
-DOUBLE_BATTLE_TEST("Prankster-affected moves that target all Pokémon are successful regardless of the presence of Dark-type Pokémon (Trait)")
+DOUBLE_BATTLE_TEST("Prankster-affected moves that target all Pokémon are successful regardless of the presence of Dark-type Pokémon (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveTarget(MOVE_CAPTIVATE) == MOVE_TARGET_BOTH);
-        PLAYER(SPECIES_ILLUMISE) { Ability(ABILITY_TINTED_LENS); Innates(ABILITY_PRANKSTER); }
+        PLAYER(SPECIES_ILLUMISE) { Ability(ABILITY_ILLUMINATE); Innates(ABILITY_PRANKSTER); }
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_UMBREON);
         OPPONENT(SPECIES_WOBBUFFET);
@@ -361,7 +427,7 @@ DOUBLE_BATTLE_TEST("Prankster-affected moves that target all Pokémon are succes
     }
 }
 
-SINGLE_BATTLE_TEST("Prankster-affected moves can still be bounced back by Dark-types using Magic Coat (Trait)")
+SINGLE_BATTLE_TEST("Prankster-affected moves can still be bounced back by Dark-types using Magic Coat (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_UMBREON);
@@ -377,16 +443,17 @@ SINGLE_BATTLE_TEST("Prankster-affected moves can still be bounced back by Dark-t
     }
 }
 
-SINGLE_BATTLE_TEST("Prankster-affected moves which are reflected by Magic Coat can affect Dark-type Pokémon, unless the Pokémon that bounced the move also has Prankster (Trait)")
+SINGLE_BATTLE_TEST("Prankster-affected moves which are reflected by Magic Coat can affect Dark-type Pokémon, unless the Pokémon that bounced the move also has Prankster (Traits)")
 {
-    u16 sableyeAbility;
+    enum Ability sableyeAbility;
 
     PARAMETRIZE { sableyeAbility = ABILITY_PRANKSTER; }
     PARAMETRIZE { sableyeAbility = ABILITY_KEEN_EYE; }
 
     GIVEN {
-        PLAYER(SPECIES_SABLEYE) { Ability(ABILITY_KEEN_EYE); Innates(sableyeAbility); }
-        OPPONENT(SPECIES_MURKROW) { Ability(ABILITY_INSOMNIA); Innates(ABILITY_PRANKSTER); }
+        WITH_CONFIG(CONFIG_PRANKSTER_DARK_TYPES, GEN_7);
+        PLAYER(SPECIES_SABLEYE) { Ability(ABILITY_ILLUMINATE); Innates(sableyeAbility); }
+        OPPONENT(SPECIES_MURKROW) { Ability(ABILITY_KEEN_EYE); Innates(ABILITY_PRANKSTER); }
     } WHEN {
         TURN { MOVE(player, MOVE_MAGIC_COAT); MOVE(opponent, MOVE_CONFUSE_RAY); }
     } SCENE {
@@ -404,7 +471,7 @@ SINGLE_BATTLE_TEST("Prankster-affected moves which are reflected by Magic Coat c
     }
 }
 
-SINGLE_BATTLE_TEST("Prankster-affected moves can still be bounced back by a Dark-type with Magic Bounce (Trait)")
+SINGLE_BATTLE_TEST("Prankster-affected moves can still be bounced back by a Dark-type with Magic Bounce (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_ABSOL) { Item(ITEM_ABSOLITE); }
@@ -417,11 +484,11 @@ SINGLE_BATTLE_TEST("Prankster-affected moves can still be bounced back by a Dark
     }
 }
 
-SINGLE_BATTLE_TEST("Prankster-affected moves that are bounced back by Magic Bounce can affect Dark-type Pokémon (Trait)")
+SINGLE_BATTLE_TEST("Prankster-affected moves that are bounced back by Magic Bounce can affect Dark-type Pokémon (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_ABSOL) { Item(ITEM_ABSOLITE); }
-        OPPONENT(SPECIES_MURKROW) { Ability(ABILITY_INSOMNIA); Innates(ABILITY_PRANKSTER); }
+        OPPONENT(SPECIES_MURKROW) { Ability(ABILITY_KEEN_EYE); Innates(ABILITY_PRANKSTER); }
     } WHEN {
         TURN { MOVE(player, MOVE_CELEBRATE, gimmick: GIMMICK_MEGA); MOVE(opponent, MOVE_CONFUSE_RAY); }
     } SCENE {
@@ -431,6 +498,7 @@ SINGLE_BATTLE_TEST("Prankster-affected moves that are bounced back by Magic Boun
     }
 }
 
-TO_DO_BATTLE_TEST("Prankster-affected moves called via Nature Power don't affect Dark-type Pokémon (Trait)");
-TO_DO_BATTLE_TEST("Prankster increases the priority of status Z-Moves by 1 (Trait)");
-TO_DO_BATTLE_TEST("Prankster increases the priority of Extreme Evoboost by 1 (Trait)");
+TO_DO_BATTLE_TEST("Prankster-affected moves called via Nature Power don't affect Dark-type Pokémon (Traits)");
+TO_DO_BATTLE_TEST("Prankster increases the priority of status Z-Moves by 1 (Traits)");
+TO_DO_BATTLE_TEST("Prankster increases the priority of Extreme Evoboost by 1 (Traits)");
+#endif

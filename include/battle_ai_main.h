@@ -23,6 +23,11 @@ enum StatChange
     STAT_CHANGE_SPEED_2,
     STAT_CHANGE_SPATK_2,
     STAT_CHANGE_SPDEF_2,
+    STAT_CHANGE_ATK_3,
+    STAT_CHANGE_DEF_3,
+    STAT_CHANGE_SPEED_3,
+    STAT_CHANGE_SPATK_3,
+    STAT_CHANGE_SPDEF_3,
     STAT_CHANGE_ACC,
     STAT_CHANGE_EVASION
 };
@@ -38,7 +43,18 @@ enum AIScore
     WEAK_EFFECT = 1,
     DECENT_EFFECT = 2,
     GOOD_EFFECT = 3,
-    BEST_EFFECT = 4
+    BEST_EFFECT = 4,
+    PERFECT_EFFECT = 10,
+    BAD_EFFECT = -1,
+    AWFUL_EFFECT = -3,
+    WORST_EFFECT = -10
+};
+
+enum MoveComparisonResult
+{
+    MOVE_NEUTRAL_COMPARISON,
+    MOVE_WON_COMPARISON,
+    MOVE_LOST_COMPARISON,
 };
 
 // AI_TryToFaint
@@ -110,7 +126,7 @@ enum AIScore
 
 #define AI_STORE_BATTLER_TRAITS(battlerID) \
 ({for (int traitLoop = 0; traitLoop < MAX_MON_TRAITS; traitLoop++)\
-{if(traitLoop == 0){AIBattlerTraits[traitLoop] = gAiLogicData->abilities[battlerID];}else{AIBattlerTraits[traitLoop] = GetBattlerTrait(battlerID, traitLoop);}}})
+{if(traitLoop == 0){AIBattlerTraits[traitLoop] = gAiLogicData->abilities[battlerID];}else{AIBattlerTraits[traitLoop] = GetBattlerTrait(battlerID, traitLoop, FALSE);}}})
 
 static inline u32 AISearchTraits(u16 *AIBattlerTraits, u32 abilityToCheck)
 {
@@ -132,13 +148,5 @@ void Ai_UpdateSwitchInData(u32 battler);
 void Ai_UpdateFaintData(u32 battler);
 void SetAiLogicDataForTurn(struct AiLogicData *aiData);
 void ResetDynamicAiFunc(void);
-
-bool8 BattlerHasInnate(u8 battlerId, u16 ability);
-u8 BattlerHasTrait(u8 battlerId, u16 ability); //Returns the trait slot number of the given ability. Starts at 1 for the primary Ability and returns 0 if the ability is not found. 
-u8 BattlerHasTraitPlain(u8 battlerId, u16 ability); //BattlerHasTrait for functions already under GetBattlerAbility to avoid infinite loops.
-void PushTraitStack(u8 battlerId, u16 ability); //Pushes an ability to the trait stack
-u8 PullTraitStackBattler(void); //Pulls a battler from the trait stack
-u16 PullTraitStackAbility(void); //Pulls a battler from the trait stack
-void PopTraitStack(void); //Pops an ability from the trait stack and clears the slot
 
 #endif // GUARD_BATTLE_AI_MAIN_H

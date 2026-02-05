@@ -9,7 +9,7 @@ SINGLE_BATTLE_TEST("Gale Wings only grants priority at full HP (Gen 7+)")
     PARAMETRIZE { hp = 100; config = GEN_6; }
     PARAMETRIZE { hp = 99;  config = GEN_6; }
     GIVEN {
-        WITH_CONFIG(GEN_CONFIG_GALE_WINGS, config);
+        WITH_CONFIG(CONFIG_GALE_WINGS, config);
         ASSUME(GetMoveType(MOVE_AERIAL_ACE) == TYPE_FLYING);
         PLAYER(SPECIES_TALONFLAME) { Ability(ABILITY_GALE_WINGS); HP(hp); MaxHP(100); Speed(1);}
         OPPONENT(SPECIES_WOBBUFFET) { Speed(100);};
@@ -88,7 +88,9 @@ SINGLE_BATTLE_TEST("Gale Wings doesn't increase priority of Flying-type Natural 
     }
 }
 
-SINGLE_BATTLE_TEST("Gale Wings only grants priority at full HP (Gen 7+) (Trait)")
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Gale Wings only grants priority at full HP (Gen 7+) (Traits)")
 {
     u32 hp, config;
     PARAMETRIZE { hp = 100; config = GEN_7; }
@@ -96,7 +98,7 @@ SINGLE_BATTLE_TEST("Gale Wings only grants priority at full HP (Gen 7+) (Trait)"
     PARAMETRIZE { hp = 100; config = GEN_6; }
     PARAMETRIZE { hp = 99;  config = GEN_6; }
     GIVEN {
-        WITH_CONFIG(GEN_CONFIG_GALE_WINGS, config);
+        WITH_CONFIG(CONFIG_GALE_WINGS, config);
         ASSUME(GetMoveType(MOVE_AERIAL_ACE) == TYPE_FLYING);
         PLAYER(SPECIES_TALONFLAME) { Ability(ABILITY_FLAME_BODY); Innates(ABILITY_GALE_WINGS); HP(hp); MaxHP(100); Speed(1);}
         OPPONENT(SPECIES_WOBBUFFET) { Speed(100);};
@@ -114,7 +116,7 @@ SINGLE_BATTLE_TEST("Gale Wings only grants priority at full HP (Gen 7+) (Trait)"
     }
 }
 
-SINGLE_BATTLE_TEST("Gale Wings only grants priority to Flying-type moves (Trait)")
+SINGLE_BATTLE_TEST("Gale Wings only grants priority to Flying-type moves (Traits)")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_AERIAL_ACE; }
@@ -138,7 +140,7 @@ SINGLE_BATTLE_TEST("Gale Wings only grants priority to Flying-type moves (Trait)
     }
 }
 
-SINGLE_BATTLE_TEST("Gale Wings doesn't increase priority of Flying-type Natural Gift, Judgment, Hidden Power, or Tera Blast (Trait)")
+SINGLE_BATTLE_TEST("Gale Wings doesn't increase priority of Flying-type Natural Gift, Judgment, Hidden Power, or Tera Blast (Traits)")
 {
     u32 move;
     u16 heldItem;
@@ -174,3 +176,4 @@ SINGLE_BATTLE_TEST("Gale Wings doesn't increase priority of Flying-type Natural 
         }
     }
 }
+#endif

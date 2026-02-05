@@ -72,11 +72,12 @@ DOUBLE_BATTLE_TEST("Psychic Noise heal block effect is blocked by partners Aroma
     }
 }
 
-SINGLE_BATTLE_TEST("Psychic Noise is blocked by Soundproof (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Psychic Noise is blocked by Soundproof (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_VOLTORB) { HP(1); Ability(ABILITY_STATIC); Innates(ABILITY_SOUNDPROOF); }
+        OPPONENT(SPECIES_VOLTORB) { HP(1); Ability(ABILITY_AFTERMATH); Innates(ABILITY_SOUNDPROOF); }
     } WHEN {
         TURN { MOVE(player, MOVE_PSYCHIC_NOISE); MOVE(opponent, MOVE_RECOVER); }
     } SCENE {
@@ -86,7 +87,7 @@ SINGLE_BATTLE_TEST("Psychic Noise is blocked by Soundproof (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Psychic Noise heal block effect is blocked by Aroma Veil (Trait)")
+SINGLE_BATTLE_TEST("Psychic Noise heal block effect is blocked by Aroma Veil (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -101,7 +102,7 @@ SINGLE_BATTLE_TEST("Psychic Noise heal block effect is blocked by Aroma Veil (Tr
     }
 }
 
-DOUBLE_BATTLE_TEST("Psychic Noise heal block effect is blocked by partners Aroma Veil in doubles (Trait)")
+DOUBLE_BATTLE_TEST("Psychic Noise heal block effect is blocked by partners Aroma Veil in doubles (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -117,3 +118,4 @@ DOUBLE_BATTLE_TEST("Psychic Noise heal block effect is blocked by partners Aroma
         ANIMATION(ANIM_TYPE_MOVE, MOVE_RECOVER, opponentLeft);
     }
 }
+#endif

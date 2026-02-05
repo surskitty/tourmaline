@@ -134,7 +134,8 @@ SINGLE_BATTLE_TEST("Supreme Overlord's message displays correctly after all batt
     }
 }
 
-DOUBLE_BATTLE_TEST("Supreme Overlord boosts Attack by an additive 10% per fainted mon on its side upon switch in (Trait)", s16 damage)
+#if MAX_MON_TRAITS > 1
+DOUBLE_BATTLE_TEST("Supreme Overlord boosts Attack by an additive 10% per fainted mon on its side upon switch in (Traits)", s16 damage)
 {
     bool32 switchMon = 0;
     PARAMETRIZE { switchMon = FALSE; }
@@ -165,7 +166,7 @@ DOUBLE_BATTLE_TEST("Supreme Overlord boosts Attack by an additive 10% per fainte
     }
 }
 
-DOUBLE_BATTLE_TEST("Supreme Overlord's boost caps at a 1.5x multipler (Trait)", s16 damage)
+DOUBLE_BATTLE_TEST("Supreme Overlord's boost caps at a 1.5x multipler (Traits)", s16 damage)
 {
     u32 faintCount = 0;
     PARAMETRIZE { faintCount = 5; }
@@ -197,7 +198,7 @@ DOUBLE_BATTLE_TEST("Supreme Overlord's boost caps at a 1.5x multipler (Trait)", 
     }
 }
 
-SINGLE_BATTLE_TEST("Supreme Overlord does not boost attack if party members are already fainted at the start of the battle (Trait)", s16 damage)
+SINGLE_BATTLE_TEST("Supreme Overlord does not boost attack if party members are already fainted at the start of the battle (Traits)", s16 damage)
 {
     u32 fainted = 0;
 
@@ -225,7 +226,7 @@ SINGLE_BATTLE_TEST("Supreme Overlord does not boost attack if party members are 
     }
 }
 
-SINGLE_BATTLE_TEST("Supreme Overlord's message displays correctly after all battlers fainted - Player (Trait)")
+SINGLE_BATTLE_TEST("Supreme Overlord's message displays correctly after all battlers fainted - Player (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_EXPLOSION) == EFFECT_EXPLOSION);
@@ -246,7 +247,7 @@ SINGLE_BATTLE_TEST("Supreme Overlord's message displays correctly after all batt
     }
 }
 
-SINGLE_BATTLE_TEST("Supreme Overlord's message displays correctly after all battlers fainted - Opponent (Trait)")
+SINGLE_BATTLE_TEST("Supreme Overlord's message displays correctly after all battlers fainted - Opponent (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_EXPLOSION) == EFFECT_EXPLOSION);
@@ -266,3 +267,4 @@ SINGLE_BATTLE_TEST("Supreme Overlord's message displays correctly after all batt
         MESSAGE("The opposing Kingambit gained strength from the fallen!");
     }
 }
+#endif

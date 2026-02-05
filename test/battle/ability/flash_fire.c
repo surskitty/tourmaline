@@ -9,9 +9,9 @@ SINGLE_BATTLE_TEST("Flash Fire boosts fire type moves by 50% but no subsequent i
         PLAYER(SPECIES_HEATRAN) { Ability(ABILITY_FLASH_FIRE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(player, MOVE_EMBER); MOVE(opponent, MOVE_EMBER); }
-        TURN { MOVE(player, MOVE_EMBER); MOVE(opponent, MOVE_EMBER); }
-        TURN { MOVE(player, MOVE_EMBER); }
+        TURN { MOVE(player, MOVE_EMBER, secondaryEffect: FALSE); MOVE(opponent, MOVE_EMBER); }
+        TURN { MOVE(player, MOVE_EMBER, secondaryEffect: FALSE); MOVE(opponent, MOVE_EMBER); }
+        TURN { MOVE(player, MOVE_EMBER, secondaryEffect: FALSE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EMBER, player);
         HP_BAR(opponent, captureDamage: &damage[0]);
@@ -27,7 +27,8 @@ SINGLE_BATTLE_TEST("Flash Fire boosts fire type moves by 50% but no subsequent i
     }
 }
 
-SINGLE_BATTLE_TEST("Flash Fire boosts fire type moves by 50% but no subsequent increase is applied (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Flash Fire boosts fire type moves by 50% but no subsequent increase is applied (Traits)")
 {
     s16 damage[3];
 
@@ -35,9 +36,9 @@ SINGLE_BATTLE_TEST("Flash Fire boosts fire type moves by 50% but no subsequent i
         PLAYER(SPECIES_HEATRAN) { Ability(ABILITY_FLAME_BODY); Innates(ABILITY_FLASH_FIRE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(player, MOVE_EMBER); MOVE(opponent, MOVE_EMBER); }
-        TURN { MOVE(player, MOVE_EMBER); MOVE(opponent, MOVE_EMBER); }
-        TURN { MOVE(player, MOVE_EMBER); }
+        TURN { MOVE(player, MOVE_EMBER, secondaryEffect: FALSE); MOVE(opponent, MOVE_EMBER); }
+        TURN { MOVE(player, MOVE_EMBER, secondaryEffect: FALSE); MOVE(opponent, MOVE_EMBER); }
+        TURN { MOVE(player, MOVE_EMBER, secondaryEffect: FALSE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_EMBER, player);
         HP_BAR(opponent, captureDamage: &damage[0]);
@@ -52,3 +53,4 @@ SINGLE_BATTLE_TEST("Flash Fire boosts fire type moves by 50% but no subsequent i
         EXPECT_EQ(damage[1], damage[2]);
     }
 }
+#endif

@@ -56,11 +56,21 @@ SINGLE_BATTLE_TEST("Supersweet Syrup can not further lower opponents evasion if 
         TURN { MOVE(opponent, MOVE_SWEET_SCENT); }
         TURN { MOVE(opponent, MOVE_SWEET_SCENT); }
         TURN { MOVE(opponent, MOVE_SWEET_SCENT); }
+        if (GetMoveEffect(MOVE_SWEET_SCENT) == EFFECT_EVASION_DOWN) {
+            TURN { MOVE(opponent, MOVE_SWEET_SCENT); }
+            TURN { MOVE(opponent, MOVE_SWEET_SCENT); }
+            TURN { MOVE(opponent, MOVE_SWEET_SCENT); }
+        }
         TURN { SWITCH(opponent, 1); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SWEET_SCENT, opponent);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SWEET_SCENT, opponent);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SWEET_SCENT, opponent);
+        if (GetMoveEffect(MOVE_SWEET_SCENT) == EFFECT_EVASION_DOWN) {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SWEET_SCENT, opponent);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SWEET_SCENT, opponent);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SWEET_SCENT, opponent);
+        }
         ABILITY_POPUP(opponent, ABILITY_SUPERSWEET_SYRUP);
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
@@ -72,7 +82,8 @@ SINGLE_BATTLE_TEST("Supersweet Syrup can not further lower opponents evasion if 
     }
 }
 
-SINGLE_BATTLE_TEST("Supersweet Syrup lowers evasion once per battle by one stage (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Supersweet Syrup lowers evasion once per battle by one stage (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -97,7 +108,7 @@ SINGLE_BATTLE_TEST("Supersweet Syrup lowers evasion once per battle by one stage
     }
 }
 
-DOUBLE_BATTLE_TEST("Supersweet Syrup lowers evasion of both opposing mon's in battle (Trait)")
+DOUBLE_BATTLE_TEST("Supersweet Syrup lowers evasion of both opposing mon's in battle (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -117,21 +128,31 @@ DOUBLE_BATTLE_TEST("Supersweet Syrup lowers evasion of both opposing mon's in ba
     }
 }
 
-SINGLE_BATTLE_TEST("Supersweet Syrup can not further lower opponents evasion if it is at minimum stages (Trait)")
+SINGLE_BATTLE_TEST("Supersweet Syrup can not further lower opponents evasion if it is at minimum stages (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_ODDISH);
         OPPONENT(SPECIES_ODDISH);
-        OPPONENT(SPECIES_HYDRAPPLE) { Ability(ABILITY_GLUTTONY); Innates(ABILITY_SUPERSWEET_SYRUP); }
+        OPPONENT(SPECIES_HYDRAPPLE) { Ability(ABILITY_REGENERATOR); Innates(ABILITY_SUPERSWEET_SYRUP); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SWEET_SCENT); }
         TURN { MOVE(opponent, MOVE_SWEET_SCENT); }
         TURN { MOVE(opponent, MOVE_SWEET_SCENT); }
+        if (GetMoveEffect(MOVE_SWEET_SCENT) == EFFECT_EVASION_DOWN) {
+            TURN { MOVE(opponent, MOVE_SWEET_SCENT); }
+            TURN { MOVE(opponent, MOVE_SWEET_SCENT); }
+            TURN { MOVE(opponent, MOVE_SWEET_SCENT); }
+        }
         TURN { SWITCH(opponent, 1); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SWEET_SCENT, opponent);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SWEET_SCENT, opponent);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SWEET_SCENT, opponent);
+        if (GetMoveEffect(MOVE_SWEET_SCENT) == EFFECT_EVASION_DOWN) {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SWEET_SCENT, opponent);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SWEET_SCENT, opponent);
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_SWEET_SCENT, opponent);
+        }
         ABILITY_POPUP(opponent, ABILITY_SUPERSWEET_SYRUP);
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
@@ -142,3 +163,4 @@ SINGLE_BATTLE_TEST("Supersweet Syrup can not further lower opponents evasion if 
         EXPECT_EQ(player->statStages[STAT_EVASION], MIN_STAT_STAGE);
     }
 }
+#endif

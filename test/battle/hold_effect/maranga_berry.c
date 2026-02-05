@@ -90,7 +90,24 @@ DOUBLE_BATTLE_TEST("Maranga Berry doesn't trigger if partner was hit")
     }
 }
 
-SINGLE_BATTLE_TEST("Maranga Berry raises the holder's Sp. Def by two stages with Ripen when hit by a special move (Trait)")
+SINGLE_BATTLE_TEST("Maranga Berry doesn't trigger if the move was boosted by Sheer Force")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_MARANGA_BERRY); }
+        OPPONENT(SPECIES_NIDOKING) { Ability(ABILITY_SHEER_FORCE); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_FIRE_PUNCH); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FIRE_PUNCH, opponent);
+        HP_BAR(player);
+        NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
+    } THEN {
+        EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE);
+    }
+}
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Maranga Berry raises the holder's Sp. Def by two stages with Ripen when hit by a special move (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveCategory(MOVE_SWIFT) == DAMAGE_CATEGORY_SPECIAL);
@@ -107,3 +124,20 @@ SINGLE_BATTLE_TEST("Maranga Berry raises the holder's Sp. Def by two stages with
         EXPECT_EQ(opponent->statStages[STAT_SPDEF], DEFAULT_STAT_STAGE + 2);
     }
 }
+
+SINGLE_BATTLE_TEST("Maranga Berry doesn't trigger if the move was boosted by Sheer Force (Traits)")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_MARANGA_BERRY); }
+        OPPONENT(SPECIES_NIDOKING) { Ability(ABILITY_POISON_POINT); Innates(ABILITY_SHEER_FORCE); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_FIRE_PUNCH); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_FIRE_PUNCH, opponent);
+        HP_BAR(player);
+        NOT ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, player);
+    } THEN {
+        EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE);
+    }
+}
+#endif

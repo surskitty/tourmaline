@@ -81,12 +81,13 @@ DOUBLE_BATTLE_TEST("Stench doesn't trigger if partner uses a move")
 
 // TODO: Test against interaction with multi hits
 
-SINGLE_BATTLE_TEST("Stench has a 10% chance to flinch (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Stench has a 10% chance to flinch (Traits)")
 {
     PASSES_RANDOMLY(1, 10, RNG_STENCH);
     GIVEN {
         ASSUME(GetMovePower(MOVE_SCRATCH) > 0);
-        PLAYER(SPECIES_GRIMER) { Ability(ABILITY_LIQUID_OOZE); Innates(ABILITY_STENCH); }
+        PLAYER(SPECIES_GRIMER) { Ability(ABILITY_STICKY_HOLD); Innates(ABILITY_STENCH); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_SCRATCH); MOVE(opponent, MOVE_CELEBRATE); }
@@ -95,14 +96,14 @@ SINGLE_BATTLE_TEST("Stench has a 10% chance to flinch (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Stench does not stack with King's Rock (Trait)")
+SINGLE_BATTLE_TEST("Stench does not stack with King's Rock (Traits)")
 {
     PASSES_RANDOMLY(1, 10, RNG_STENCH);
     GIVEN {
         ASSUME(gItemsInfo[ITEM_KINGS_ROCK].holdEffect == HOLD_EFFECT_FLINCH);
         ASSUME(GetMovePower(MOVE_SCRATCH) > 0);
 
-        PLAYER(SPECIES_GRIMER) { Ability(ABILITY_LIQUID_OOZE); Innates(ABILITY_STENCH); Item(ITEM_KINGS_ROCK); }
+        PLAYER(SPECIES_GRIMER) { Ability(ABILITY_STICKY_HOLD); Innates(ABILITY_STENCH); Item(ITEM_KINGS_ROCK); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_SCRATCH); MOVE(opponent, MOVE_CELEBRATE); }
@@ -111,14 +112,14 @@ SINGLE_BATTLE_TEST("Stench does not stack with King's Rock (Trait)")
     }
 }
 
-DOUBLE_BATTLE_TEST("Stench only triggers if target takes damage (Trait)")
+DOUBLE_BATTLE_TEST("Stench only triggers if target takes damage (Traits)")
 {
     GIVEN {
         ASSUME(GetMovePower(MOVE_SCRATCH) > 0);
         ASSUME(MoveHasAdditionalEffectWithChance(MOVE_FAKE_OUT, MOVE_EFFECT_FLINCH, 100));
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_GRIMER) { Ability(ABILITY_LIQUID_OOZE); Innates(ABILITY_STENCH); }
+        OPPONENT(SPECIES_GRIMER) { Ability(ABILITY_STICKY_HOLD); Innates(ABILITY_STENCH); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {
@@ -135,14 +136,14 @@ DOUBLE_BATTLE_TEST("Stench only triggers if target takes damage (Trait)")
     }
 }
 
-DOUBLE_BATTLE_TEST("Stench doesn't trigger if partner uses a move (Trait)")
+DOUBLE_BATTLE_TEST("Stench doesn't trigger if partner uses a move (Traits)")
 {
     GIVEN {
         ASSUME(GetMovePower(MOVE_SCRATCH) > 0);
         ASSUME(MoveHasAdditionalEffectWithChance(MOVE_FAKE_OUT, MOVE_EFFECT_FLINCH, 100));
         PLAYER(SPECIES_WOBBUFFET) { Speed(20); }
         PLAYER(SPECIES_WYNAUT) { Speed(10); }
-        OPPONENT(SPECIES_GRIMER) { Speed(100); Ability(ABILITY_LIQUID_OOZE); Innates(ABILITY_STENCH); }
+        OPPONENT(SPECIES_GRIMER) { Speed(100); Ability(ABILITY_STICKY_HOLD); Innates(ABILITY_STENCH); }
         OPPONENT(SPECIES_WOBBUFFET) {Speed(50); }
     } WHEN {
         TURN {
@@ -159,4 +160,5 @@ DOUBLE_BATTLE_TEST("Stench doesn't trigger if partner uses a move (Trait)")
     }
 }
 
-// TODO: Test against interaction with multi hits (Trait)
+// TODO: Test against interaction with multi hits
+#endif

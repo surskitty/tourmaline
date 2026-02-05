@@ -14,10 +14,11 @@ SINGLE_BATTLE_TEST("Grassy Surge creates Grassy Terrain when entering the battle
     }
 }
 
-SINGLE_BATTLE_TEST("Grassy Surge creates Grassy Terrain when entering the battle (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Grassy Surge creates Grassy Terrain when entering the battle (Traits)")
 {
     GIVEN {
-        PLAYER(SPECIES_TAPU_BULU) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_GRASSY_SURGE); }
+        PLAYER(SPECIES_TAPU_BULU) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_GRASSY_SURGE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {}
@@ -26,4 +27,4 @@ SINGLE_BATTLE_TEST("Grassy Surge creates Grassy Terrain when entering the battle
         MESSAGE("Grass grew to cover the battlefield!");
     }
 }
-
+#endif

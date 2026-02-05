@@ -21,7 +21,9 @@ SINGLE_BATTLE_TEST("Steam Engine raises speed when hit by a Fire or Water move")
         EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE + 6);
     }
 }
-SINGLE_BATTLE_TEST("Steam Engine raises speed when hit by a Fire or Water move (Trait)")
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Steam Engine raises speed when hit by a Fire or Water move (Traits)")
 {
     u16 move;
 
@@ -41,3 +43,5 @@ SINGLE_BATTLE_TEST("Steam Engine raises speed when hit by a Fire or Water move (
         EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE + 6);
     }
 }
+
+#endif

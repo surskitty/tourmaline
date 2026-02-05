@@ -83,7 +83,7 @@ DOUBLE_BATTLE_TEST("Spread Moves: A spread move attack will activate both resist
     }
 }
 
-DOUBLE_BATTLE_TEST("Spread Moves: If a spread move attack will activate a resist berries on one pokemon, only the damage for that mon will be reduced")
+DOUBLE_BATTLE_TEST("Spread Moves: If a spread move attack will activate a resist berries on one Pokémon, only the damage for that mon will be reduced")
 {
     s16 opponentLeftDmg[2];
     s16 opponentRightDmg[2];
@@ -172,6 +172,7 @@ DOUBLE_BATTLE_TEST("Spread Moves: A spread move attack will be weakened by stron
 DOUBLE_BATTLE_TEST("Spread Moves: AOE move vs Disguise, Volt Absorb (right) and Lightning Rod (left)")
 {
     GIVEN {
+        WITH_CONFIG(CONFIG_REDIRECT_ABILITY_IMMUNITY, GEN_5);
         ASSUME(GetMoveTarget(MOVE_DISCHARGE) == MOVE_TARGET_FOES_AND_ALLY);
         ASSUME(GetMoveType(MOVE_DISCHARGE) == TYPE_ELECTRIC);
         PLAYER(SPECIES_WOBBUFFET);
@@ -191,6 +192,7 @@ DOUBLE_BATTLE_TEST("Spread Moves: AOE move vs Disguise, Volt Absorb (right) and 
 DOUBLE_BATTLE_TEST("Spread Moves: AOE move vs Disguise, Volt Absorb (left) and Lightning Rod (right)")
 {
     GIVEN {
+        WITH_CONFIG(CONFIG_REDIRECT_ABILITY_IMMUNITY, GEN_5);
         ASSUME(GetMoveTarget(MOVE_DISCHARGE) == MOVE_TARGET_FOES_AND_ALLY);
         ASSUME(GetMoveType(MOVE_DISCHARGE) == TYPE_ELECTRIC);
         PLAYER(SPECIES_WOBBUFFET);
@@ -434,7 +436,55 @@ DOUBLE_BATTLE_TEST("Spread Moves: Unless move hits every target user will not in
     }
 }
 
-DOUBLE_BATTLE_TEST("Spread Moves: A spread move attack will be weakened by strong winds on both targets (Trait)")
+DOUBLE_BATTLE_TEST("Spread Moves: Focus Sash activates correctly")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_WYNAUT) { HP(2); MaxHP(2); Item(ITEM_FOCUS_SASH); }
+        OPPONENT(SPECIES_WOBBUFFET) { HP(2); MaxHP(2); Item(ITEM_FOCUS_SASH); }
+        OPPONENT(SPECIES_WYNAUT) { HP(2); MaxHP(2); Item(ITEM_FOCUS_SASH); }
+    } WHEN {
+        TURN { MOVE(playerRight, MOVE_HYPER_VOICE); MOVE(playerLeft, MOVE_EXPLOSION); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPER_VOICE, playerRight);
+        MESSAGE("The opposing Wynaut hung on using its Focus Sash!");
+        MESSAGE("The opposing Wobbuffet hung on using its Focus Sash!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_EXPLOSION, playerLeft);
+        MESSAGE("The opposing Wobbuffet fainted!");
+        MESSAGE("Wynaut hung on using its Focus Sash!");
+        MESSAGE("The opposing Wynaut fainted!");
+    }
+}
+
+#if MAX_MON_TRAITS > 1
+DOUBLE_BATTLE_TEST("Spread Moves: Ability and Item effects activate correctly after a multi target move (Traits)")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_LUM_BERRY); }
+        PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_COVERT_CLOAK); }
+        OPPONENT(SPECIES_GOLISOPOD) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_EMERGENCY_EXIT); MaxHP(260); HP(131); };
+        OPPONENT(SPECIES_WOBBUFFET) { Item(ITEM_EJECT_BUTTON); }
+        OPPONENT(SPECIES_WYNAUT);
+        OPPONENT(SPECIES_PIKACHU);
+    } WHEN {
+        TURN {
+            MOVE(opponentRight, MOVE_HEAT_WAVE);
+            MOVE(playerLeft, MOVE_HYPER_VOICE);
+            SEND_OUT(opponentRight, 3);
+        }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_HYPER_VOICE, playerLeft);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponentRight);
+        MESSAGE("The opposing Wobbuffet is switched out with the Eject Button!");
+        MESSAGE("2 sent out Pikachu!");
+        NONE_OF {
+            ABILITY_POPUP(opponentLeft, ABILITY_EMERGENCY_EXIT);
+            MESSAGE("2 sent out Wynaut!");
+        }
+    }
+}
+
+DOUBLE_BATTLE_TEST("Spread Moves: A spread move attack will be weakened by strong winds on both targets (Traits)")
 {
     s16 opponentLeftDmg[2];
     s16 opponentRightDmg[2];
@@ -462,7 +512,7 @@ DOUBLE_BATTLE_TEST("Spread Moves: A spread move attack will be weakened by stron
     }
 }
 
-DOUBLE_BATTLE_TEST("Spread Moves: A spread move attack will be weakened by strong winds on one of the targets (Trait)")
+DOUBLE_BATTLE_TEST("Spread Moves: A spread move attack will be weakened by strong winds on one of the targets (Traits)")
 {
     s16 opponentLeftDmg[2];
     s16 opponentRightDmg[2];
@@ -490,7 +540,7 @@ DOUBLE_BATTLE_TEST("Spread Moves: A spread move attack will be weakened by stron
     }
 }
 
-DOUBLE_BATTLE_TEST("Spread Moves: AOE move vs Disguise, Volt Absorb (right) and Lightning Rod (left) (Trait)")
+DOUBLE_BATTLE_TEST("Spread Moves: AOE move vs Disguise, Volt Absorb (right) and Lightning Rod (left) (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveTarget(MOVE_DISCHARGE) == MOVE_TARGET_FOES_AND_ALLY);
@@ -509,7 +559,7 @@ DOUBLE_BATTLE_TEST("Spread Moves: AOE move vs Disguise, Volt Absorb (right) and 
     }
 }
 
-DOUBLE_BATTLE_TEST("Spread Moves: AOE move vs Disguise, Volt Absorb (left) and Lightning Rod (reft) (Trait)")
+DOUBLE_BATTLE_TEST("Spread Moves: AOE move vs Disguise, Volt Absorb (left) and Lightning Rod (right) (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveTarget(MOVE_DISCHARGE) == MOVE_TARGET_FOES_AND_ALLY);
@@ -527,3 +577,43 @@ DOUBLE_BATTLE_TEST("Spread Moves: AOE move vs Disguise, Volt Absorb (left) and L
         ABILITY_POPUP(playerRight, ABILITY_DISGUISE);
     }
 }
+
+DOUBLE_BATTLE_TEST("Spread Moves: AOE move vs Eiscue and Mimikyu (Based on vanilla games) (Traits)")
+{
+    GIVEN {
+        ASSUME(GetMoveTarget(MOVE_EARTHQUAKE) == MOVE_TARGET_FOES_AND_ALLY);
+        ASSUME(GetMoveCategory(MOVE_EARTHQUAKE) == DAMAGE_CATEGORY_PHYSICAL);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_EISCUE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ICE_FACE); }
+        OPPONENT(SPECIES_MIMIKYU) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DISGUISE); }
+        OPPONENT(SPECIES_EISCUE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ICE_FACE); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_EARTHQUAKE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_EARTHQUAKE, playerLeft);
+        ABILITY_POPUP(opponentLeft, ABILITY_DISGUISE);
+        ABILITY_POPUP(playerRight, ABILITY_ICE_FACE);
+        ABILITY_POPUP(opponentRight, ABILITY_ICE_FACE);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Spread Moves: Spread move vs Eiscue and Mimikyu with 1 Eject Button (Traits)")
+{
+    GIVEN {
+        ASSUME(GetMoveTarget(MOVE_RAZOR_LEAF) == MOVE_TARGET_BOTH);
+        ASSUME(GetMoveCategory(MOVE_RAZOR_LEAF) == DAMAGE_CATEGORY_PHYSICAL);
+        PLAYER(SPECIES_WOBBUFFET) { Speed(40); }
+        PLAYER(SPECIES_WYNAUT) { Speed(30); }
+        OPPONENT(SPECIES_MIMIKYU) { Speed(20); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DISGUISE); Item(ITEM_EJECT_BUTTON); }
+        OPPONENT(SPECIES_EISCUE) { Speed(10); Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ICE_FACE); }
+        OPPONENT(SPECIES_WOBBUFFET) { Speed(100); }
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_RAZOR_LEAF); SEND_OUT(opponentLeft, 2); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_RAZOR_LEAF, playerLeft);
+        ABILITY_POPUP(opponentLeft, ABILITY_DISGUISE);
+        ABILITY_POPUP(opponentRight, ABILITY_ICE_FACE);
+        MESSAGE("The opposing Mimikyu is switched out with the Eject Button!");
+    }
+}
+#endif

@@ -3,7 +3,8 @@
 
 SINGLE_BATTLE_TEST("Mummy/Lingering Aroma replace the attacker's ability on contact")
 {
-    u32 move, ability, species;
+    u32 move, species;
+    enum Ability ability;
 
     PARAMETRIZE { move = MOVE_AQUA_JET; ability = ABILITY_MUMMY; species = SPECIES_YAMASK; }
     PARAMETRIZE { move = MOVE_WATER_GUN; ability = ABILITY_MUMMY; species = SPECIES_YAMASK;}
@@ -37,7 +38,7 @@ SINGLE_BATTLE_TEST("Mummy/Lingering Aroma replace the attacker's ability on cont
 
 SINGLE_BATTLE_TEST("Mummy and Lingering Aroma don't replace each other")
 {
-    u32 ability1, species1, ability2, species2;
+    enum Ability ability1, species1, ability2, species2;
 
     PARAMETRIZE { ability1 = ability2 = ABILITY_MUMMY; species1 = species2 = SPECIES_YAMASK; }
     PARAMETRIZE { ability1 = ABILITY_MUMMY; species1 = SPECIES_YAMASK; ability2 = ABILITY_LINGERING_AROMA; species2 = SPECIES_OINKOLOGNE; }
@@ -66,7 +67,8 @@ SINGLE_BATTLE_TEST("Mummy and Lingering Aroma don't replace each other")
 
 SINGLE_BATTLE_TEST("Mummy doesn't replace abilities that can't be suppressed")
 {
-    u32 species, ability;
+    u32 species;
+    enum Ability ability;
 
     PARAMETRIZE { species = SPECIES_ARCEUS; ability = ABILITY_MULTITYPE; }
     PARAMETRIZE { species = SPECIES_AEGISLASH; ability = ABILITY_STANCE_CHANGE; }
@@ -95,9 +97,13 @@ SINGLE_BATTLE_TEST("Mummy doesn't replace abilities that can't be suppressed")
             ABILITY_POPUP(opponent, ABILITY_MUMMY);
         }
     }
-}SINGLE_BATTLE_TEST("Mummy/Lingering Aroma replace the attacker's ability on contact")
+}
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Mummy/Lingering Aroma replace the attacker's ability on contact (Traits)")
 {
-    u32 move, ability, species;
+    u32 move, species;
+    enum Ability ability;
 
     PARAMETRIZE { move = MOVE_AQUA_JET; ability = ABILITY_MUMMY; species = SPECIES_YAMASK; }
     PARAMETRIZE { move = MOVE_WATER_GUN; ability = ABILITY_MUMMY; species = SPECIES_YAMASK;}
@@ -107,7 +113,7 @@ SINGLE_BATTLE_TEST("Mummy doesn't replace abilities that can't be suppressed")
         ASSUME(MoveMakesContact(MOVE_AQUA_JET));
         ASSUME(!MoveMakesContact(MOVE_WATER_GUN));
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(species) { Ability(ability); }
+        OPPONENT(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
@@ -129,39 +135,57 @@ SINGLE_BATTLE_TEST("Mummy doesn't replace abilities that can't be suppressed")
     }
 }
 
-//Lingering Aroma and Mummy only affect Abilities
-// SINGLE_BATTLE_TEST("Mummy and Lingering Aroma don't replace each other (Trait)")
-// {
-//     u32 ability1, species1, ability2, species2;
-
-//     PARAMETRIZE { ability1 = ability2 = ABILITY_MUMMY; species1 = species2 = SPECIES_YAMASK; }
-//     PARAMETRIZE { ability1 = ABILITY_MUMMY; species1 = SPECIES_YAMASK; ability2 = ABILITY_LINGERING_AROMA; species2 = SPECIES_OINKOLOGNE; }
-//     PARAMETRIZE { ability1 = ability2 = ABILITY_LINGERING_AROMA; species1 = species2 = SPECIES_OINKOLOGNE; }
-//     GIVEN {
-//         ASSUME(MoveMakesContact(MOVE_AQUA_JET));
-//         PLAYER(species1) { Ability(ABILITY_LIGHT_METAL); Innates(ability1); Speed(2); }
-//         OPPONENT(species2) { Ability(ABILITY_LIGHT_METAL); Innates(ability2); Speed(1); }
-//     } WHEN {
-//         TURN { MOVE(player, MOVE_AQUA_JET); MOVE(opponent, MOVE_AQUA_JET); }
-//     } SCENE {
-//         ANIMATION(ANIM_TYPE_MOVE, MOVE_AQUA_JET, player);
-//         ANIMATION(ANIM_TYPE_MOVE, MOVE_AQUA_JET, opponent);
-//         NONE_OF {
-//             ABILITY_POPUP(player, ability1);
-//             ABILITY_POPUP(player, ability2);
-//             ABILITY_POPUP(opponent, ability1);
-//             ABILITY_POPUP(opponent, ability2);
-//             MESSAGE("Yamask acquired Mummy!");
-//             MESSAGE("Yamask acquired Lingering Aroma!");
-//             MESSAGE("Oinkologne acquired Mummy!");
-//             MESSAGE("Oinkologne acquired Lingering Aroma!");
-//         }
-//     }
-// }
-
-SINGLE_BATTLE_TEST("Mummy doesn't replace abilities that can't be suppressed (Trait)")
+SINGLE_BATTLE_TEST("Mummy and Lingering Aroma don't replace each other (Traits)")
 {
-    u32 species, ability;
+    enum Ability ability1, species1, ability2, species2, innate1, innate2;
+
+    // Mummy only
+    PARAMETRIZE { ability1 = ABILITY_MUMMY; innate1 = ABILITY_LIGHT_METAL; ability2 = ABILITY_MUMMY; innate2 = ABILITY_LIGHT_METAL; species1 = species2 = SPECIES_YAMASK; }
+    PARAMETRIZE { ability1 = ABILITY_MUMMY; innate1 = ABILITY_LIGHT_METAL; ability2 = ABILITY_LIGHT_METAL; innate2 = ABILITY_MUMMY; species1 = species2 = SPECIES_YAMASK; }
+    PARAMETRIZE { ability1 = ABILITY_LIGHT_METAL; innate1 = ABILITY_MUMMY; ability2 = ABILITY_MUMMY; innate2 = ABILITY_LIGHT_METAL; species1 = species2 = SPECIES_YAMASK; }
+    PARAMETRIZE { ability1 = ABILITY_LIGHT_METAL; innate1 = ABILITY_MUMMY; ability2 = ABILITY_LIGHT_METAL; innate2 = ABILITY_MUMMY; species1 = species2 = SPECIES_YAMASK; }
+    // Lingering Aroma to Mummy
+    PARAMETRIZE { ability1 = ABILITY_MUMMY; innate1 = ABILITY_LIGHT_METAL; ability2 = ABILITY_LINGERING_AROMA; innate2 = ABILITY_LIGHT_METAL; species1 = SPECIES_YAMASK; species2 = SPECIES_OINKOLOGNE; }
+    PARAMETRIZE { ability1 = ABILITY_MUMMY; innate1 = ABILITY_LIGHT_METAL; ability2 = ABILITY_LIGHT_METAL; innate2 = ABILITY_LINGERING_AROMA; species1 = SPECIES_YAMASK; species2 = SPECIES_OINKOLOGNE; }
+    PARAMETRIZE { ability1 = ABILITY_LIGHT_METAL; innate1 = ABILITY_MUMMY; ability2 = ABILITY_LINGERING_AROMA; innate2 = ABILITY_LIGHT_METAL; species1 = SPECIES_YAMASK; species2 = SPECIES_OINKOLOGNE; }
+    PARAMETRIZE { ability1 = ABILITY_LIGHT_METAL; innate1 = ABILITY_MUMMY; ability2 = ABILITY_LIGHT_METAL; innate2 = ABILITY_LINGERING_AROMA; species1 = SPECIES_YAMASK; species2 = SPECIES_OINKOLOGNE; }
+    // Lingering Aroma only
+    PARAMETRIZE { ability1 = ABILITY_LINGERING_AROMA; innate1 = ABILITY_LIGHT_METAL; ability2 = ABILITY_LINGERING_AROMA; innate2 = ABILITY_LIGHT_METAL; species1 = species2 = SPECIES_OINKOLOGNE; }
+    PARAMETRIZE { ability1 = ABILITY_LINGERING_AROMA; innate1 = ABILITY_LIGHT_METAL; ability2 = ABILITY_LIGHT_METAL; innate2 = ABILITY_LINGERING_AROMA; species1 = species2 = SPECIES_OINKOLOGNE; }
+    PARAMETRIZE { ability1 = ABILITY_LIGHT_METAL; innate1 = ABILITY_LINGERING_AROMA; ability2 = ABILITY_LINGERING_AROMA; innate2 = ABILITY_LIGHT_METAL; species1 = species2 = SPECIES_OINKOLOGNE; }
+    PARAMETRIZE { ability1 = ABILITY_LIGHT_METAL; innate1 = ABILITY_LINGERING_AROMA; ability2 = ABILITY_LIGHT_METAL; innate2 = ABILITY_LINGERING_AROMA; species1 = species2 = SPECIES_OINKOLOGNE; }
+    // Mummy to Lingering Aroma
+    PARAMETRIZE { ability1 = ABILITY_MUMMY; innate1 = ABILITY_LINGERING_AROMA; ability2 = ABILITY_MUMMY; innate2 = ABILITY_LIGHT_METAL; species1 = SPECIES_OINKOLOGNE; species2 = SPECIES_YAMASK; }
+    PARAMETRIZE { ability1 = ABILITY_MUMMY; innate1 = ABILITY_LINGERING_AROMA; ability2 = ABILITY_LIGHT_METAL; innate2 = ABILITY_MUMMY; species1 = SPECIES_OINKOLOGNE; species2 = SPECIES_YAMASK; }
+    PARAMETRIZE { ability1 = ABILITY_LINGERING_AROMA; innate1 = ABILITY_MUMMY; ability2 = ABILITY_MUMMY; innate2 = ABILITY_LIGHT_METAL; species1 = SPECIES_OINKOLOGNE; species2 = SPECIES_YAMASK; }
+    PARAMETRIZE { ability1 = ABILITY_LINGERING_AROMA; innate1 = ABILITY_MUMMY; ability2 = ABILITY_LIGHT_METAL; innate2 = ABILITY_MUMMY; species1 = SPECIES_OINKOLOGNE; species2 = SPECIES_YAMASK; }
+
+    GIVEN {
+        ASSUME(MoveMakesContact(MOVE_AQUA_JET));
+        PLAYER(species1) { Ability(ability1); Innates(innate1); Speed(2); }
+        OPPONENT(species2) { Ability(ability2); Innates(innate2); Speed(1); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_AQUA_JET); MOVE(opponent, MOVE_AQUA_JET); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_AQUA_JET, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_AQUA_JET, opponent);
+        NONE_OF {
+            ABILITY_POPUP(player, ability1);
+            ABILITY_POPUP(player, ability2);
+            ABILITY_POPUP(opponent, ability1);
+            ABILITY_POPUP(opponent, ability2);
+            MESSAGE("Yamask acquired Mummy!");
+            MESSAGE("Yamask acquired Lingering Aroma!");
+            MESSAGE("Oinkologne acquired Mummy!");
+            MESSAGE("Oinkologne acquired Lingering Aroma!");
+        }
+    }
+}
+
+SINGLE_BATTLE_TEST("Mummy doesn't replace abilities that can't be suppressed (Traits)")
+{
+    u32 species;
+    enum Ability ability;
 
     PARAMETRIZE { species = SPECIES_ARCEUS; ability = ABILITY_MULTITYPE; }
     PARAMETRIZE { species = SPECIES_AEGISLASH; ability = ABILITY_STANCE_CHANGE; }
@@ -187,7 +211,9 @@ SINGLE_BATTLE_TEST("Mummy doesn't replace abilities that can't be suppressed (Tr
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_AQUA_JET, opponent);
         NONE_OF {
+            ABILITY_POPUP(player, ABILITY_MUMMY);
             ABILITY_POPUP(opponent, ABILITY_MUMMY);
         }
     }
 }
+#endif

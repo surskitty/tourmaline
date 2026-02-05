@@ -53,14 +53,16 @@ SINGLE_BATTLE_TEST("Ice Body doesn't recover HP if Cloud Nine/Air Lock is on the
     }
 }
 
-SINGLE_BATTLE_TEST("Ice Body prevents damage from hail (Trait)")
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Ice Body prevents damage from hail (Traits)")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_HAIL; }
     PARAMETRIZE { move = MOVE_SNOWSCAPE; }
     GIVEN {
-        PLAYER(SPECIES_WOBBUFFET){ Ability(ABILITY_SHADOW_TAG); Innates(ABILITY_ICE_BODY); }
-        OPPONENT(SPECIES_GLALIE) { Ability(ABILITY_INNER_FOCUS); Innates(ABILITY_ICE_BODY); }
+        PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_MOODY); Innates(ABILITY_ICE_BODY); }
+        OPPONENT(SPECIES_GLALIE) { Ability(ABILITY_MOODY); Innates(ABILITY_ICE_BODY); }
     } WHEN {
         TURN { MOVE(player, move); MOVE(opponent, MOVE_SKILL_SWAP); }
     } SCENE {
@@ -68,7 +70,7 @@ SINGLE_BATTLE_TEST("Ice Body prevents damage from hail (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Ice Body recovers 1/16th of Max HP in hail. (Trait)")
+SINGLE_BATTLE_TEST("Ice Body recovers 1/16th of Max HP in hail. (Traits)")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_HAIL; }
@@ -85,17 +87,18 @@ SINGLE_BATTLE_TEST("Ice Body recovers 1/16th of Max HP in hail. (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Ice Body doesn't recover HP if Cloud Nine/Air Lock is on the field (Trait)")
+SINGLE_BATTLE_TEST("Ice Body doesn't recover HP if Cloud Nine/Air Lock is on the field (Traits)")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_HAIL; }
     PARAMETRIZE { move = MOVE_SNOWSCAPE; }
     GIVEN {
-        PLAYER(SPECIES_GLALIE) { Ability(ABILITY_INNER_FOCUS); Innates(ABILITY_ICE_BODY); HP(1); MaxHP(100); }
-        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_DAMP); Innates(ABILITY_CLOUD_NINE); }
+        PLAYER(SPECIES_GLALIE) { Ability(ABILITY_MOODY); Innates(ABILITY_ICE_BODY); HP(1); MaxHP(100); }
+        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_SWIFT_SWIM); Innates(ABILITY_CLOUD_NINE); }
     } WHEN {
         TURN { MOVE(opponent, move); }
     } SCENE {
         NOT ABILITY_POPUP(player, ABILITY_ICE_BODY);
     }
 }
+#endif

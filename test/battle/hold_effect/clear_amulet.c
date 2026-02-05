@@ -120,7 +120,7 @@ SINGLE_BATTLE_TEST("Clear Amulet protects from Protect's secondary effects")
     }
 }
 
-SINGLE_BATTLE_TEST("Clear Amulet prevents Intimidate (Trait)")
+SINGLE_BATTLE_TEST("Clear Amulet prevents Intimidate")
 {
     s16 turnOneHit;
     s16 turnTwoHit;

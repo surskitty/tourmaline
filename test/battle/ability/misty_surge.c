@@ -14,10 +14,11 @@ SINGLE_BATTLE_TEST("Misty Surge creates Misty Terrain when entering the battle")
     }
 }
 
-SINGLE_BATTLE_TEST("Misty Surge creates Misty Terrain when entering the battle (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Misty Surge creates Misty Terrain when entering the battle (Traits)")
 {
     GIVEN {
-        PLAYER(SPECIES_TAPU_FINI) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_MISTY_SURGE); }
+        PLAYER(SPECIES_TAPU_FINI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MISTY_SURGE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {}
@@ -26,3 +27,4 @@ SINGLE_BATTLE_TEST("Misty Surge creates Misty Terrain when entering the battle (
         MESSAGE("Mist swirled around the battlefield!");
     }
 }
+#endif

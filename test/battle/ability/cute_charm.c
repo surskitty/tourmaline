@@ -46,7 +46,11 @@ SINGLE_BATTLE_TEST("Cute Charm cannot infatuate same gender")
     }
 }
 
-SINGLE_BATTLE_TEST("Cute Charm triggers 30% of the time")
+TO_DO_BATTLE_TEST("Cute Charm cannot infatuate if either Pokémon are Gender-unknown")
+
+TO_DO_BATTLE_TEST("Cute Charm triggers 1/3 of the time (Gen 3)")
+
+SINGLE_BATTLE_TEST("Cute Charm triggers 30% of the time (Gen 4+)")
 {
     PASSES_RANDOMLY(3, 10, RNG_CUTE_CHARM);
     GIVEN {
@@ -65,7 +69,9 @@ SINGLE_BATTLE_TEST("Cute Charm triggers 30% of the time")
     }
 }
 
-SINGLE_BATTLE_TEST("Cute Charm inflicts infatuation on contact (Trait)")
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Cute Charm inflicts infatuation on contact (Traits)")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_SCRATCH; }
@@ -95,7 +101,7 @@ SINGLE_BATTLE_TEST("Cute Charm inflicts infatuation on contact (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Cute Charm cannot infatuate same gender (Trait)")
+SINGLE_BATTLE_TEST("Cute Charm cannot infatuate same gender (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Gender(MON_MALE); }
@@ -110,7 +116,11 @@ SINGLE_BATTLE_TEST("Cute Charm cannot infatuate same gender (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Cute Charm triggers 30% of the time (Trait)")
+TO_DO_BATTLE_TEST("Cute Charm cannot infatuate if either Pokémon are Gender-unknown (Traits)")
+
+TO_DO_BATTLE_TEST("Cute Charm triggers 1/3 of the time (Gen 3) (Traits)")
+
+SINGLE_BATTLE_TEST("Cute Charm triggers 30% of the time (Gen 4+) (Traits)")
 {
     PASSES_RANDOMLY(3, 10, RNG_CUTE_CHARM);
     GIVEN {
@@ -128,3 +138,4 @@ SINGLE_BATTLE_TEST("Cute Charm triggers 30% of the time (Trait)")
         MESSAGE("Wobbuffet is in love with the opposing Clefairy!");
     }
 }
+#endif

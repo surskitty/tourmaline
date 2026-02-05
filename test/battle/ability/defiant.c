@@ -3,7 +3,7 @@
 
 DOUBLE_BATTLE_TEST("Defiant sharply raises player's Attack after Intimidate")
 {
-    u32 abilityLeft, abilityRight;
+    enum Ability abilityLeft, abilityRight;
 
     PARAMETRIZE { abilityLeft = ABILITY_VITAL_SPIRIT; abilityRight = ABILITY_VITAL_SPIRIT; }
     PARAMETRIZE { abilityLeft = ABILITY_VITAL_SPIRIT; abilityRight = ABILITY_DEFIANT; }
@@ -51,7 +51,7 @@ DOUBLE_BATTLE_TEST("Defiant sharply raises player's Attack after Intimidate")
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
             MESSAGE("Primeape's Attack sharply rose!");
         }
-    } FINALLY {
+    } THEN {
         // -2 from Intimidates and +4 from Defiants gets +2 total
         EXPECT_EQ(playerLeft->statStages[STAT_ATK], (abilityLeft == ABILITY_DEFIANT) ? DEFAULT_STAT_STAGE + 2 : DEFAULT_STAT_STAGE - 2);
         EXPECT_EQ(playerRight->statStages[STAT_ATK], (abilityRight == ABILITY_DEFIANT) ? DEFAULT_STAT_STAGE + 2 : DEFAULT_STAT_STAGE - 2);
@@ -61,7 +61,7 @@ DOUBLE_BATTLE_TEST("Defiant sharply raises player's Attack after Intimidate")
 // Same as above, but for opponent.
 DOUBLE_BATTLE_TEST("Defiant sharply raises opponent's Attack after Intimidate")
 {
-    u32 abilityLeft, abilityRight;
+    enum Ability abilityLeft, abilityRight;
 
     PARAMETRIZE { abilityLeft = ABILITY_VITAL_SPIRIT; abilityRight = ABILITY_VITAL_SPIRIT; }
     PARAMETRIZE { abilityLeft = ABILITY_VITAL_SPIRIT; abilityRight = ABILITY_DEFIANT; }
@@ -109,7 +109,7 @@ DOUBLE_BATTLE_TEST("Defiant sharply raises opponent's Attack after Intimidate")
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
             MESSAGE("The opposing Primeape's Attack sharply rose!");
         }
-    } FINALLY {
+    } THEN {
         // -2 from Intimidates and +4 from Defiants gets +2 total
         EXPECT_EQ(opponentLeft->statStages[STAT_ATK], (abilityLeft == ABILITY_DEFIANT) ? DEFAULT_STAT_STAGE + 2 : DEFAULT_STAT_STAGE - 2);
         EXPECT_EQ(opponentRight->statStages[STAT_ATK], (abilityRight == ABILITY_DEFIANT) ? DEFAULT_STAT_STAGE + 2 : DEFAULT_STAT_STAGE - 2);
@@ -139,42 +139,19 @@ SINGLE_BATTLE_TEST("Defiant activates after Sticky Web lowers Speed")
     }
 }
 
-SINGLE_BATTLE_TEST("Defiant doesn't activate after Sticky Web lowers Speed if Court Changed")
+SINGLE_BATTLE_TEST("Defiant doesn't activate after Sticky Web lowers Speed if Court Changed (Gen8)")
 {
     GIVEN {
+        WITH_CONFIG(CONFIG_DEFIANT_STICKY_WEB, GEN_8);
+        ASSUME(GetMoveEffect(MOVE_GROWL) == EFFECT_ATTACK_DOWN);
+        ASSUME(GetMoveEffect(MOVE_STICKY_WEB) == EFFECT_STICKY_WEB);
+        ASSUME(GetMoveEffect(MOVE_COURT_CHANGE) == EFFECT_COURT_CHANGE);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_MANKEY) { Ability(ABILITY_DEFIANT); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_STICKY_WEB); MOVE(opponent, MOVE_COURT_CHANGE); }
-        TURN { SWITCH(player, 1); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, player);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_COURT_CHANGE, opponent);
-        // Switch-in - Sticky Web activates
-        SEND_IN_MESSAGE("Mankey");
-        MESSAGE("Mankey was caught in a sticky web!");
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Mankey's Speed fell!");
-        // Defiant doesn't activate
-        NONE_OF {
-            ABILITY_POPUP(player, ABILITY_DEFIANT);
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-            MESSAGE("Mankey's Attack sharply rose!");
-        }
-    }
-}
-
-SINGLE_BATTLE_TEST("Defiant correctly activates after Sticky Web lowers Speed if Court Changed")
-{
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_DEFIANT); }
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(player, MOVE_STICKY_WEB); MOVE(opponent, MOVE_COURT_CHANGE); }
-        TURN { SWITCH(player, 1); }
-        TURN { MOVE(opponent, MOVE_GROWL);}
+        TURN { SWITCH(player, 1); MOVE(opponent, MOVE_GROWL);}
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COURT_CHANGE, opponent);
@@ -199,7 +176,41 @@ SINGLE_BATTLE_TEST("Defiant correctly activates after Sticky Web lowers Speed if
     }
 }
 
-DOUBLE_BATTLE_TEST("Defiant is activated by Cotton Down for non-ally pokemon")
+SINGLE_BATTLE_TEST("Defiant activates after Sticky Web lowers Speed if Court Changed (Gen9)")
+{
+    GIVEN {
+        WITH_CONFIG(CONFIG_DEFIANT_STICKY_WEB, GEN_9);
+        ASSUME(GetMoveEffect(MOVE_GROWL) == EFFECT_ATTACK_DOWN);
+        ASSUME(GetMoveEffect(MOVE_STICKY_WEB) == EFFECT_STICKY_WEB);
+        ASSUME(GetMoveEffect(MOVE_COURT_CHANGE) == EFFECT_COURT_CHANGE);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_DEFIANT); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_STICKY_WEB); MOVE(opponent, MOVE_COURT_CHANGE); }
+        TURN { SWITCH(player, 1); MOVE(opponent, MOVE_GROWL);}
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COURT_CHANGE, opponent);
+        // Switch-in - Sticky Web activates
+        SEND_IN_MESSAGE("Mankey");
+        MESSAGE("Mankey was caught in a sticky web!");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Mankey's Speed fell!");
+        ABILITY_POPUP(player, ABILITY_DEFIANT);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Mankey's Attack sharply rose!");
+        // Defiant triggers correctly after Sticky Web
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_GROWL, opponent);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Mankey's Attack fell!");
+        ABILITY_POPUP(player, ABILITY_DEFIANT);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Mankey's Attack sharply rose!");
+    }
+}
+
+DOUBLE_BATTLE_TEST("Defiant is activated by Cotton Down for non-ally Pokémon")
 {
     GIVEN {
         PLAYER(SPECIES_MANKEY) { Ability(ABILITY_DEFIANT); }
@@ -285,12 +296,11 @@ SINGLE_BATTLE_TEST("Defiant activates for each stat that is lowered")
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TICKLE, opponent);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-
         MESSAGE("Mankey's Attack fell!");
         ABILITY_POPUP(player, ABILITY_DEFIANT);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Mankey's Attack sharply rose!");
-
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Mankey's Defense fell!");
         ABILITY_POPUP(player, ABILITY_DEFIANT);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
@@ -301,7 +311,7 @@ SINGLE_BATTLE_TEST("Defiant activates for each stat that is lowered")
     }
 }
 
-SINGLE_BATTLE_TEST("Defiant doesn't activate if the pokemon lowers it's own stats")
+SINGLE_BATTLE_TEST("Defiant doesn't activate if the Pokémon lowers it's own stats")
 {
     u32 move;
 
@@ -336,9 +346,43 @@ SINGLE_BATTLE_TEST("Defiant doesn't activate if the pokemon lowers it's own stat
     }
 }
 
-DOUBLE_BATTLE_TEST("Defiant sharply raises player's Attack after Intimidate (Trait)")
+SINGLE_BATTLE_TEST("Defiant doesn't display ability popup when already at Maximum Attack")
 {
-    u32 abilityLeft, abilityRight;
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_TICKLE) == EFFECT_TICKLE);
+        ASSUME(GetMoveEffect(MOVE_BELLY_DRUM) == EFFECT_BELLY_DRUM);
+        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_DEFIANT); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_BELLY_DRUM); MOVE(opponent, MOVE_TICKLE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_BELLY_DRUM, player);
+        // Maxed Attack
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TICKLE, opponent);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Mankey's Attack fell!");
+        ABILITY_POPUP(player, ABILITY_DEFIANT);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Mankey's Attack rose!");
+        // Maxed Attack
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Mankey's Defense fell!");
+        NONE_OF {
+            ABILITY_POPUP(player, ABILITY_DEFIANT);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+            MESSAGE("Mankey's Attack sharply rose!");
+        }
+        MESSAGE("Mankey's Attack won't go any higher!");
+
+    } THEN {
+        EXPECT_EQ(player->statStages[STAT_ATK], MAX_STAT_STAGE);
+    }
+}
+
+#if MAX_MON_TRAITS > 1
+DOUBLE_BATTLE_TEST("Defiant sharply raises player's Attack after Intimidate (Traits)")
+{
+    enum Ability abilityLeft, abilityRight;
 
     PARAMETRIZE { abilityLeft = ABILITY_VITAL_SPIRIT; abilityRight = ABILITY_VITAL_SPIRIT; }
     PARAMETRIZE { abilityLeft = ABILITY_VITAL_SPIRIT; abilityRight = ABILITY_DEFIANT; }
@@ -346,10 +390,10 @@ DOUBLE_BATTLE_TEST("Defiant sharply raises player's Attack after Intimidate (Tra
     PARAMETRIZE { abilityLeft = ABILITY_DEFIANT; abilityRight = ABILITY_DEFIANT; }
 
     GIVEN {
-        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_VITAL_SPIRIT); Innates(abilityLeft); }
-        PLAYER(SPECIES_PRIMEAPE) { Ability(ABILITY_VITAL_SPIRIT); Innates(abilityRight); }
+        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_ANGER_POINT); Innates(abilityLeft); }
+        PLAYER(SPECIES_PRIMEAPE) { Ability(ABILITY_ANGER_POINT); Innates(abilityRight); }
         OPPONENT(SPECIES_GYARADOS) { Ability(ABILITY_MOXIE); Innates(ABILITY_INTIMIDATE); }
-        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_SHED_SKIN); Innates(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_ARBOK) { Ability(ABILITY_UNNERVE); Innates(ABILITY_INTIMIDATE); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_SCRATCH, target:opponentLeft); MOVE(playerRight, MOVE_SCRATCH, target:opponentRight); }
     } SCENE {
@@ -386,7 +430,7 @@ DOUBLE_BATTLE_TEST("Defiant sharply raises player's Attack after Intimidate (Tra
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, playerRight);
             MESSAGE("Primeape's Attack sharply rose!");
         }
-    } FINALLY {
+    } THEN {
         // -2 from Intimidates and +4 from Defiants gets +2 total
         EXPECT_EQ(playerLeft->statStages[STAT_ATK], (abilityLeft == ABILITY_DEFIANT) ? DEFAULT_STAT_STAGE + 2 : DEFAULT_STAT_STAGE - 2);
         EXPECT_EQ(playerRight->statStages[STAT_ATK], (abilityRight == ABILITY_DEFIANT) ? DEFAULT_STAT_STAGE + 2 : DEFAULT_STAT_STAGE - 2);
@@ -394,9 +438,9 @@ DOUBLE_BATTLE_TEST("Defiant sharply raises player's Attack after Intimidate (Tra
 }
 
 // Same as above, but for opponent.
-DOUBLE_BATTLE_TEST("Defiant sharply raises opponent's Attack after Intimidate (Trait)")
+DOUBLE_BATTLE_TEST("Defiant sharply raises opponent's Attack after Intimidate (Traits)")
 {
-    u32 abilityLeft, abilityRight;
+    enum Ability abilityLeft, abilityRight;
 
     PARAMETRIZE { abilityLeft = ABILITY_VITAL_SPIRIT; abilityRight = ABILITY_VITAL_SPIRIT; }
     PARAMETRIZE { abilityLeft = ABILITY_VITAL_SPIRIT; abilityRight = ABILITY_DEFIANT; }
@@ -404,10 +448,10 @@ DOUBLE_BATTLE_TEST("Defiant sharply raises opponent's Attack after Intimidate (T
     PARAMETRIZE { abilityLeft = ABILITY_DEFIANT; abilityRight = ABILITY_DEFIANT; }
 
     GIVEN {
-        OPPONENT(SPECIES_MANKEY) { Ability(ABILITY_VITAL_SPIRIT); Innates(abilityLeft); }
-        OPPONENT(SPECIES_PRIMEAPE) { Ability(ABILITY_VITAL_SPIRIT); Innates(abilityRight); }
+        OPPONENT(SPECIES_MANKEY) { Ability(ABILITY_ANGER_POINT); Innates(abilityLeft); }
+        OPPONENT(SPECIES_PRIMEAPE) { Ability(ABILITY_ANGER_POINT); Innates(abilityRight); }
         PLAYER(SPECIES_GYARADOS) { Ability(ABILITY_MOXIE); Innates(ABILITY_INTIMIDATE); }
-        PLAYER(SPECIES_ARBOK) { Ability(ABILITY_SHED_SKIN); Innates(ABILITY_INTIMIDATE); }
+        PLAYER(SPECIES_ARBOK) { Ability(ABILITY_UNNERVE); Innates(ABILITY_INTIMIDATE); }
     } WHEN {
         TURN { MOVE(opponentLeft, MOVE_SCRATCH, target:playerLeft); MOVE(opponentRight, MOVE_SCRATCH, target:playerRight); }
     } SCENE {
@@ -444,18 +488,18 @@ DOUBLE_BATTLE_TEST("Defiant sharply raises opponent's Attack after Intimidate (T
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponentRight);
             MESSAGE("The opposing Primeape's Attack sharply rose!");
         }
-    } FINALLY {
+    } THEN {
         // -2 from Intimidates and +4 from Defiants gets +2 total
         EXPECT_EQ(opponentLeft->statStages[STAT_ATK], (abilityLeft == ABILITY_DEFIANT) ? DEFAULT_STAT_STAGE + 2 : DEFAULT_STAT_STAGE - 2);
         EXPECT_EQ(opponentRight->statStages[STAT_ATK], (abilityRight == ABILITY_DEFIANT) ? DEFAULT_STAT_STAGE + 2 : DEFAULT_STAT_STAGE - 2);
     }
 }
 
-SINGLE_BATTLE_TEST("Defiant activates after Sticky Web lowers Speed (Trait)")
+SINGLE_BATTLE_TEST("Defiant activates after Sticky Web lowers Speed (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_DEFIANT); }
+        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_ANGER_POINT); Innates(ABILITY_DEFIANT); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_STICKY_WEB); }
@@ -474,42 +518,19 @@ SINGLE_BATTLE_TEST("Defiant activates after Sticky Web lowers Speed (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Defiant doesn't activate after Sticky Web lowers Speed if Court Changed (Trait)")
+SINGLE_BATTLE_TEST("Defiant doesn't activate after Sticky Web lowers Speed if Court Changed (Gen8) (Traits)")
 {
     GIVEN {
+        WITH_CONFIG(CONFIG_DEFIANT_STICKY_WEB, GEN_8);
+        ASSUME(GetMoveEffect(MOVE_GROWL) == EFFECT_ATTACK_DOWN);
+        ASSUME(GetMoveEffect(MOVE_STICKY_WEB) == EFFECT_STICKY_WEB);
+        ASSUME(GetMoveEffect(MOVE_COURT_CHANGE) == EFFECT_COURT_CHANGE);
         PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_DEFIANT); }
+        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_ANGER_POINT); Innates(ABILITY_DEFIANT); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_STICKY_WEB); MOVE(opponent, MOVE_COURT_CHANGE); }
-        TURN { SWITCH(player, 1); }
-    } SCENE {
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, player);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_COURT_CHANGE, opponent);
-        // Switch-in - Sticky Web activates
-        SEND_IN_MESSAGE("Mankey");
-        MESSAGE("Mankey was caught in a sticky web!");
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-        MESSAGE("Mankey's Speed fell!");
-        // Defiant doesn't activate
-        NONE_OF {
-            ABILITY_POPUP(player, ABILITY_DEFIANT);
-            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-            MESSAGE("Mankey's Attack sharply rose!");
-        }
-    }
-}
-
-SINGLE_BATTLE_TEST("Defiant correctly activates after Sticky Web lowers Speed if Court Changed (Trait)")
-{
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_DEFIANT); }
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(player, MOVE_STICKY_WEB); MOVE(opponent, MOVE_COURT_CHANGE); }
-        TURN { SWITCH(player, 1); }
-        TURN { MOVE(opponent, MOVE_GROWL);}
+        TURN { SWITCH(player, 1); MOVE(opponent, MOVE_GROWL);}
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, player);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_COURT_CHANGE, opponent);
@@ -534,13 +555,47 @@ SINGLE_BATTLE_TEST("Defiant correctly activates after Sticky Web lowers Speed if
     }
 }
 
-DOUBLE_BATTLE_TEST("Defiant is activated by Cotton Down for non-ally pokemon (Trait)")
+SINGLE_BATTLE_TEST("Defiant activates after Sticky Web lowers Speed if Court Changed (Gen9) (Traits)")
 {
     GIVEN {
-        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_DEFIANT); }
-        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_DEFIANT); }
+        WITH_CONFIG(CONFIG_DEFIANT_STICKY_WEB, GEN_9);
+        ASSUME(GetMoveEffect(MOVE_GROWL) == EFFECT_ATTACK_DOWN);
+        ASSUME(GetMoveEffect(MOVE_STICKY_WEB) == EFFECT_STICKY_WEB);
+        ASSUME(GetMoveEffect(MOVE_COURT_CHANGE) == EFFECT_COURT_CHANGE);
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_ANGER_POINT); Innates(ABILITY_DEFIANT); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_STICKY_WEB); MOVE(opponent, MOVE_COURT_CHANGE); }
+        TURN { SWITCH(player, 1); MOVE(opponent, MOVE_GROWL);}
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_STICKY_WEB, player);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_COURT_CHANGE, opponent);
+        // Switch-in - Sticky Web activates
+        SEND_IN_MESSAGE("Mankey");
+        MESSAGE("Mankey was caught in a sticky web!");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Mankey's Speed fell!");
+        ABILITY_POPUP(player, ABILITY_DEFIANT);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Mankey's Attack sharply rose!");
+        // Defiant triggers correctly after Sticky Web
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_GROWL, opponent);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Mankey's Attack fell!");
+        ABILITY_POPUP(player, ABILITY_DEFIANT);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Mankey's Attack sharply rose!");
+    }
+}
+
+DOUBLE_BATTLE_TEST("Defiant is activated by Cotton Down for non-ally Pokémon (Traits)")
+{
+    GIVEN {
+        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_ANGER_POINT); Innates(ABILITY_DEFIANT); }
+        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_ANGER_POINT); Innates(ABILITY_DEFIANT); }
         OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_REGENERATOR); Innates(ABILITY_COTTON_DOWN); }
-        OPPONENT(SPECIES_MANKEY) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_DEFIANT); }
+        OPPONENT(SPECIES_MANKEY) { Ability(ABILITY_ANGER_POINT); Innates(ABILITY_DEFIANT); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_SCRATCH, target: opponentLeft); }
     } SCENE {
@@ -570,7 +625,7 @@ DOUBLE_BATTLE_TEST("Defiant is activated by Cotton Down for non-ally pokemon (Tr
     }
 }
 
-SINGLE_BATTLE_TEST("Defiant activates before White Herb (Trait)")
+SINGLE_BATTLE_TEST("Defiant activates before White Herb (Traits)")
 {
     u32 move;
 
@@ -578,7 +633,7 @@ SINGLE_BATTLE_TEST("Defiant activates before White Herb (Trait)")
     PARAMETRIZE { move = MOVE_GROWL; }
 
     GIVEN {
-        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_DEFIANT); Item(ITEM_WHITE_HERB); }
+        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_ANGER_POINT); Innates(ABILITY_DEFIANT); Item(ITEM_WHITE_HERB); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, move); }
@@ -609,23 +664,22 @@ SINGLE_BATTLE_TEST("Defiant activates before White Herb (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Defiant activates for each stat that is lowered (Trait)")
+SINGLE_BATTLE_TEST("Defiant activates for each stat that is lowered (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_TICKLE) == EFFECT_TICKLE);
-        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_DEFIANT); }
+        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_ANGER_POINT); Innates(ABILITY_DEFIANT); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_TICKLE); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TICKLE, opponent);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
-
         MESSAGE("Mankey's Attack fell!");
         ABILITY_POPUP(player, ABILITY_DEFIANT);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Mankey's Attack sharply rose!");
-
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
         MESSAGE("Mankey's Defense fell!");
         ABILITY_POPUP(player, ABILITY_DEFIANT);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
@@ -636,7 +690,7 @@ SINGLE_BATTLE_TEST("Defiant activates for each stat that is lowered (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Defiant doesn't activate if the pokemon lowers it's own stats (Trait)")
+SINGLE_BATTLE_TEST("Defiant doesn't activate if the Pokémon lowers it's own stats (Traits)")
 {
     u32 move;
 
@@ -650,7 +704,7 @@ SINGLE_BATTLE_TEST("Defiant doesn't activate if the pokemon lowers it's own stat
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_CLOSE_COMBAT, MOVE_EFFECT_DEF_SPDEF_DOWN));
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_MAKE_IT_RAIN, MOVE_EFFECT_SP_ATK_MINUS_1));
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_SPIN_OUT, MOVE_EFFECT_SPD_MINUS_2));
-        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_VITAL_SPIRIT); Innates(ABILITY_DEFIANT); }
+        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_ANGER_POINT); Innates(ABILITY_DEFIANT); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, move); }
@@ -670,3 +724,37 @@ SINGLE_BATTLE_TEST("Defiant doesn't activate if the pokemon lowers it's own stat
             EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE);
     }
 }
+
+SINGLE_BATTLE_TEST("Defiant doesn't display ability popup when already at Maximum Attack (Traits)")
+{
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_TICKLE) == EFFECT_TICKLE);
+        ASSUME(GetMoveEffect(MOVE_BELLY_DRUM) == EFFECT_BELLY_DRUM);
+        PLAYER(SPECIES_MANKEY) { Ability(ABILITY_ANGER_POINT); Innates(ABILITY_DEFIANT); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_BELLY_DRUM); MOVE(opponent, MOVE_TICKLE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_BELLY_DRUM, player);
+        // Maxed Attack
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_TICKLE, opponent);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Mankey's Attack fell!");
+        ABILITY_POPUP(player, ABILITY_DEFIANT);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Mankey's Attack rose!");
+        // Maxed Attack
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+        MESSAGE("Mankey's Defense fell!");
+        NONE_OF {
+            ABILITY_POPUP(player, ABILITY_DEFIANT);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, player);
+            MESSAGE("Mankey's Attack sharply rose!");
+        }
+        MESSAGE("Mankey's Attack won't go any higher!");
+
+    } THEN {
+        EXPECT_EQ(player->statStages[STAT_ATK], MAX_STAT_STAGE);
+    }
+}
+#endif

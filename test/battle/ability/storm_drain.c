@@ -1,16 +1,20 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("Storm Drain absorbs Water-type moves and increases the Sp. Attack [Gen5+]")
+SINGLE_BATTLE_TEST("Storm Drain absorbs Water-type moves and increases the Sp. Attack (Gen5+)")
 {
+    u32 config;
+    PARAMETRIZE { config = GEN_4; }
+    PARAMETRIZE { config = GEN_5; }
     GIVEN {
+        WITH_CONFIG(CONFIG_REDIRECT_ABILITY_IMMUNITY, config);
         ASSUME(GetMoveType(MOVE_WATER_GUN) == TYPE_WATER);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_GASTRODON_EAST) { Ability(ABILITY_STORM_DRAIN); }
     } WHEN {
         TURN { MOVE(player, MOVE_WATER_GUN); MOVE(opponent, MOVE_CELEBRATE); }
     } SCENE {
-        if (B_REDIRECT_ABILITY_IMMUNITY >= GEN_5) {
+        if (config >= GEN_5) {
             NONE_OF {
                 ANIMATION(ANIM_TYPE_MOVE, MOVE_WATER_GUN, player);
                 HP_BAR(opponent);
@@ -33,7 +37,11 @@ SINGLE_BATTLE_TEST("Storm Drain absorbs Water-type moves and increases the Sp. A
 
 DOUBLE_BATTLE_TEST("Storm Drain forces single-target Water-type moves to target the Pokémon with this Ability.")
 {
+    u32 config;
+    PARAMETRIZE { config = GEN_4; }
+    PARAMETRIZE { config = GEN_5; }
     GIVEN {
+        WITH_CONFIG(CONFIG_REDIRECT_ABILITY_IMMUNITY, config);
         ASSUME(GetMoveType(MOVE_WATER_GUN) == TYPE_WATER);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
@@ -47,7 +55,7 @@ DOUBLE_BATTLE_TEST("Storm Drain forces single-target Water-type moves to target 
             MOVE(opponentRight, MOVE_CELEBRATE);
         }
     } SCENE {
-        if (B_REDIRECT_ABILITY_IMMUNITY >= GEN_5) {
+        if (config >= GEN_5) {
             NONE_OF {
                 HP_BAR(opponentLeft);
                 HP_BAR(opponentRight);
@@ -72,12 +80,13 @@ DOUBLE_BATTLE_TEST("Storm Drain forces single-target Water-type moves to target 
     }
 }
 
-SINGLE_BATTLE_TEST("Storm Drain absorbs Water-type moves and increases the Sp. Attack [Gen5+] (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Storm Drain absorbs Water-type moves and increases the Sp. Attack [Gen5+] (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_WATER_GUN) == TYPE_WATER);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_GASTRODON_EAST) { Ability(ABILITY_STICKY_HOLD); Innates(ABILITY_STORM_DRAIN); }
+        OPPONENT(SPECIES_GASTRODON_EAST) { Ability(ABILITY_SAND_FORCE); Innates(ABILITY_STORM_DRAIN); }
     } WHEN {
         TURN { MOVE(player, MOVE_WATER_GUN); MOVE(opponent, MOVE_CELEBRATE); }
     } SCENE {
@@ -102,13 +111,13 @@ SINGLE_BATTLE_TEST("Storm Drain absorbs Water-type moves and increases the Sp. A
     }
 }
 
-DOUBLE_BATTLE_TEST("Storm Drain forces single-target Water-type moves to target the Pokémon with this Ability. (Trait)")
+DOUBLE_BATTLE_TEST("Storm Drain forces single-target Water-type moves to target the Pokémon with this Ability. (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_WATER_GUN) == TYPE_WATER);
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_GASTRODON_EAST) { Ability(ABILITY_STICKY_HOLD); Innates(ABILITY_STORM_DRAIN); }
+        OPPONENT(SPECIES_GASTRODON_EAST) { Ability(ABILITY_SAND_FORCE); Innates(ABILITY_STORM_DRAIN); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {
@@ -142,3 +151,4 @@ DOUBLE_BATTLE_TEST("Storm Drain forces single-target Water-type moves to target 
         ANIMATION(ANIM_TYPE_MOVE, MOVE_CELEBRATE, opponentRight);
     }
 }
+#endif

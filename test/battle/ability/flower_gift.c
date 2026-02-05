@@ -65,7 +65,8 @@ SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back to normal when its abili
 
 SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back to normal under Cloud Nine/Air Lock")
 {
-    u32 species = 0, ability = 0;
+    u32 species = 0;
+    enum Ability ability = 0;
     PARAMETRIZE { species = SPECIES_PSYDUCK;  ability = ABILITY_CLOUD_NINE; }
     PARAMETRIZE { species = SPECIES_RAYQUAZA; ability = ABILITY_AIR_LOCK; }
     GIVEN {
@@ -199,9 +200,29 @@ SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back when it uses a move that
     }
 }
 
+DOUBLE_BATTLE_TEST("Flower Gift reverts Cherrim back after Teraform Zero clears weather")
+{
+    GIVEN {
+        PLAYER(SPECIES_TERAPAGOS_TERASTAL);
+        PLAYER(SPECIES_CHERRIM) { Ability(ABILITY_FLOWER_GIFT); }
+        OPPONENT(SPECIES_GROUDON) { Ability(ABILITY_DROUGHT); }
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_CELEBRATE, gimmick: GIMMICK_TERA); }
+    } SCENE {
+        ABILITY_POPUP(opponentLeft, ABILITY_DROUGHT);
+        ABILITY_POPUP(playerRight, ABILITY_FLOWER_GIFT);
+        ABILITY_POPUP(playerLeft, ABILITY_TERAFORM_ZERO);
+        ABILITY_POPUP(playerRight, ABILITY_FLOWER_GIFT);
+    } THEN {
+        EXPECT_EQ(playerRight->species, SPECIES_CHERRIM);
+    }
+}
+
 TO_DO_BATTLE_TEST("Flower Gift does not transform Cherrim back to normal when suppressed if Cherrim is Dynamaxed");
 
-SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim in harsh sunlight (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim in harsh sunlight (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_CHERRIM_OVERCAST) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FLOWER_GIFT); }
@@ -217,9 +238,9 @@ SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim in harsh sunlight (Trait)")
     }
 }
 
-TO_DO_BATTLE_TEST("Flower Gift doesn't transform Cherrim if Cloud Nine/Air Lock is on the field (Trait)");
+TO_DO_BATTLE_TEST("Flower Gift doesn't transform Cherrim if Cloud Nine/Air Lock is on the field (Traits)");
 
-SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back to normal when weather changes (Trait)")
+SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back to normal when weather changes (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_CHERRIM_OVERCAST) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FLOWER_GIFT); }
@@ -241,38 +262,16 @@ SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back to normal when weather c
     }
 }
 
-//Not Needed since suppresion is Ability only
-// SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back to normal when its ability is suppressed (Trait)")
-// {
-//     GIVEN {
-//         ASSUME(B_WEATHER_FORMS >= GEN_5);
-//         PLAYER(SPECIES_CHERRIM_OVERCAST) { Ability(ABILITY_FLOWER_GIFT); Innates(ABILITY_FLOWER_GIFT); }
-//         OPPONENT(SPECIES_WOBBUFFET);
-//     } WHEN {
-//         TURN { MOVE(opponent, MOVE_SUNNY_DAY); }
-//         TURN { MOVE(opponent, MOVE_GASTRO_ACID); }
-//     } SCENE {
-//         // transforms in sun
-//         ABILITY_POPUP(player, ABILITY_FLOWER_GIFT);
-//         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FORM_CHANGE, player);
-//         MESSAGE("Cherrim transformed!");
-//         // back to normal
-//         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FORM_CHANGE, player);
-//         MESSAGE("Cherrim transformed!");
-//     } THEN {
-//         EXPECT_EQ(player->species, SPECIES_CHERRIM_OVERCAST);
-//     }
-// }
-
-SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back to normal under Cloud Nine/Air Lock (Trait)")
+SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back to normal under Cloud Nine/Air Lock (Traits)")
 {
-    u32 species = 0, ability = 0, innate = 0;
+    u32 species = 0;
+    enum Ability ability = 0;
     PARAMETRIZE { species = SPECIES_PSYDUCK;  ability = ABILITY_CLOUD_NINE; }
     PARAMETRIZE { species = SPECIES_RAYQUAZA; ability = ABILITY_AIR_LOCK; }
     GIVEN {
-        PLAYER(SPECIES_CHERRIM_OVERCAST) { Ability(ABILITY_FLOWER_GIFT); }
+        PLAYER(SPECIES_CHERRIM_OVERCAST) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FLOWER_GIFT); }
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(species) { Ability(ability); Innates(innate); }
+        OPPONENT(species) { Ability(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_SUNNY_DAY); }
         TURN { SWITCH(opponent, 1); }
@@ -282,7 +281,7 @@ SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back to normal under Cloud Ni
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FORM_CHANGE, player);
         MESSAGE("Cherrim transformed!");
         // back to normal
-        ABILITY_POPUP(opponent, innate);
+        ABILITY_POPUP(opponent, ability);
         ABILITY_POPUP(player, ABILITY_FLOWER_GIFT);
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FORM_CHANGE, player);
         MESSAGE("Cherrim transformed!");
@@ -291,7 +290,7 @@ SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back to normal under Cloud Ni
     }
 }
 
-DOUBLE_BATTLE_TEST("Flower Gift increases the attack of Cherrim and its allies by 1.5x (Trait)", s16 damageL, s16 damageR)
+DOUBLE_BATTLE_TEST("Flower Gift increases the attack of Cherrim and its allies by 1.5x (Traits)", s16 damageL, s16 damageR)
 {
     bool32 sunny;
     PARAMETRIZE { sunny = FALSE; }
@@ -326,7 +325,7 @@ DOUBLE_BATTLE_TEST("Flower Gift increases the attack of Cherrim and its allies b
     }
 }
 
-DOUBLE_BATTLE_TEST("Flower Gift increases the Sp. Def of Cherrim and its allies by 1.5x (Trait)", s16 damageL, s16 damageR)
+DOUBLE_BATTLE_TEST("Flower Gift increases the Sp. Def of Cherrim and its allies by 1.5x (Traits)", s16 damageL, s16 damageR)
 {
     bool32 sunny;
     PARAMETRIZE { sunny = FALSE; }
@@ -358,7 +357,7 @@ DOUBLE_BATTLE_TEST("Flower Gift increases the Sp. Def of Cherrim and its allies 
     }
 }
 
-SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back when it switches out (Trait)")
+SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back when it switches out (Traits)")
 {
     GIVEN {
         ASSUME(B_WEATHER_FORMS >= GEN_5);
@@ -379,7 +378,7 @@ SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back when it switches out (Tr
     }
 }
 
-SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back when it uses a move that forces it to switch out (Trait)")
+SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back when it uses a move that forces it to switch out (Traits)")
 {
     GIVEN {
         ASSUME(B_WEATHER_FORMS >= GEN_5);
@@ -400,4 +399,24 @@ SINGLE_BATTLE_TEST("Flower Gift transforms Cherrim back when it uses a move that
     }
 }
 
-TO_DO_BATTLE_TEST("Flower Gift does not transform Cherrim back to normal when suppressed if Cherrim is Dynamaxed (Trait)");
+DOUBLE_BATTLE_TEST("Flower Gift reverts Cherrim back after Teraform Zero clears weather (Traits)")
+{
+    GIVEN {
+        PLAYER(SPECIES_TERAPAGOS_TERASTAL);
+        PLAYER(SPECIES_CHERRIM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FLOWER_GIFT); }
+        OPPONENT(SPECIES_GROUDON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DROUGHT); }
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_CELEBRATE, gimmick: GIMMICK_TERA); }
+    } SCENE {
+        ABILITY_POPUP(opponentLeft, ABILITY_DROUGHT);
+        ABILITY_POPUP(playerRight, ABILITY_FLOWER_GIFT);
+        ABILITY_POPUP(playerLeft, ABILITY_TERAFORM_ZERO);
+        ABILITY_POPUP(playerRight, ABILITY_FLOWER_GIFT);
+    } THEN {
+        EXPECT_EQ(playerRight->species, SPECIES_CHERRIM);
+    }
+}
+
+TO_DO_BATTLE_TEST("Flower Gift does not transform Cherrim back to normal when suppressed if Cherrim is Dynamaxed (Traits)");
+#endif

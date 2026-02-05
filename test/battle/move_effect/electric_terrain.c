@@ -71,7 +71,8 @@ SINGLE_BATTLE_TEST("Electric Terrain lasts for 5 turns")
     }
 }
 
-SINGLE_BATTLE_TEST("Electric Terrain protects grounded battlers from falling asleep (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Electric Terrain protects grounded battlers from falling asleep (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -88,3 +89,4 @@ SINGLE_BATTLE_TEST("Electric Terrain protects grounded battlers from falling asl
         STATUS_ICON(opponent, sleep: TRUE);
     }
 }
+#endif

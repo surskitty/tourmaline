@@ -28,7 +28,8 @@ SINGLE_BATTLE_TEST("Hydration doesn't cure status conditions if Cloud Nine/Air L
     }
 }
 
-SINGLE_BATTLE_TEST("Hydration cures non-volatile Status conditions if it is raining (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Hydration cures non-volatile Status conditions if it is raining (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_VAPOREON) { Ability(ABILITY_WATER_ABSORB); Innates(ABILITY_HYDRATION); Status1(STATUS1_BURN); }
@@ -42,11 +43,11 @@ SINGLE_BATTLE_TEST("Hydration cures non-volatile Status conditions if it is rain
     }
 }
 
-SINGLE_BATTLE_TEST("Hydration doesn't cure status conditions if Cloud Nine/Air Lock is on the field (Trait)")
+SINGLE_BATTLE_TEST("Hydration doesn't cure status conditions if Cloud Nine/Air Lock is on the field (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_VAPOREON) { Ability(ABILITY_WATER_ABSORB); Innates(ABILITY_HYDRATION); Status1(STATUS1_BURN); }
-        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_DAMP); Innates(ABILITY_CLOUD_NINE); }
+        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_SWIFT_SWIM); Innates(ABILITY_CLOUD_NINE); }
     } WHEN {
         TURN { MOVE(player, MOVE_RAIN_DANCE); }
     } SCENE {
@@ -54,3 +55,4 @@ SINGLE_BATTLE_TEST("Hydration doesn't cure status conditions if Cloud Nine/Air L
         MESSAGE("Vaporeon was hurt by its burn!");
     }
 }
+#endif

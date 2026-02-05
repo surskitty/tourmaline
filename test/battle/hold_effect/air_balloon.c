@@ -102,17 +102,14 @@ SINGLE_BATTLE_TEST("Air Balloon pops before it can be stolen with Magician")
     }
 }
 
-SINGLE_BATTLE_TEST("Air Balloon pops before it can be stolen with Thief or Covet")
+SINGLE_BATTLE_TEST("Air Balloon pops before it can be stolen by Thief")
 {
-    u32 move;
-    PARAMETRIZE { move = MOVE_THIEF; }
-    PARAMETRIZE { move = MOVE_COVET; }
     GIVEN {
-        ASSUME(MoveHasAdditionalEffect(move, MOVE_EFFECT_STEAL_ITEM) == TRUE);
+        ASSUME(GetMoveEffect(MOVE_THIEF) == EFFECT_STEAL_ITEM);
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_AIR_BALLOON); };
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(opponent, move); }
+        TURN { MOVE(opponent, MOVE_THIEF); }
     } SCENE {
         MESSAGE("Wobbuffet floats in the air with its Air Balloon!");
         MESSAGE("Wobbuffet's Air Balloon popped!");
@@ -120,7 +117,8 @@ SINGLE_BATTLE_TEST("Air Balloon pops before it can be stolen with Thief or Covet
     }
 }
 
-SINGLE_BATTLE_TEST("Air Balloon pops before it can be stolen with Magician (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Air Balloon pops before it can be stolen with Magician (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_AIR_BALLOON); };
@@ -133,3 +131,4 @@ SINGLE_BATTLE_TEST("Air Balloon pops before it can be stolen with Magician (Trai
         NOT ABILITY_POPUP(opponent, ABILITY_MAGICIAN);
     }
 }
+#endif

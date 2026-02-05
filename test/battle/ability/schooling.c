@@ -8,7 +8,7 @@ SINGLE_BATTLE_TEST("Schooling switches Level 20+ Wishiwashi's form when HP is 25
     PARAMETRIZE { level = 20; }
 
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_WISHIWASHI_SOLO].baseHP == gSpeciesInfo[SPECIES_WISHIWASHI_SCHOOL].baseHP);
+        ASSUME(GetSpeciesBaseHP(SPECIES_WISHIWASHI_SOLO) == GetSpeciesBaseHP(SPECIES_WISHIWASHI_SCHOOL));
         PLAYER(SPECIES_WISHIWASHI_SOLO)
         {
             Level(level);
@@ -47,7 +47,7 @@ SINGLE_BATTLE_TEST("Schooling switches Level 20+ Wishiwashi's form when HP is ov
     PARAMETRIZE { level = 20; overQuarterHP = TRUE; }
 
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_WISHIWASHI_SOLO].baseHP == gSpeciesInfo[SPECIES_WISHIWASHI_SCHOOL].baseHP);
+        ASSUME(GetSpeciesBaseHP(SPECIES_WISHIWASHI_SOLO) == GetSpeciesBaseHP(SPECIES_WISHIWASHI_SCHOOL));
         PLAYER(SPECIES_WISHIWASHI_SOLO)
         {
             Level(level);
@@ -80,7 +80,7 @@ SINGLE_BATTLE_TEST("Schooling switches Level 20+ Wishiwashi's form when HP is he
     PARAMETRIZE { level = 20; }
 
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_WISHIWASHI_SOLO].baseHP == gSpeciesInfo[SPECIES_WISHIWASHI_SCHOOL].baseHP);
+        ASSUME(GetSpeciesBaseHP(SPECIES_WISHIWASHI_SOLO) == GetSpeciesBaseHP(SPECIES_WISHIWASHI_SCHOOL));
         PLAYER(SPECIES_WISHIWASHI_SOLO)
         {
             Level(level);
@@ -107,14 +107,15 @@ SINGLE_BATTLE_TEST("Schooling switches Level 20+ Wishiwashi's form when HP is he
     }
 }
 
-SINGLE_BATTLE_TEST("Schooling switches Level 20+ Wishiwashi's form when HP is 25-percent or less at the end of the turn (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Schooling switches Level 20+ Wishiwashi's form when HP is 25-percent or less at the end of the turn (Traits)")
 {
     u16 level;
     PARAMETRIZE { level = 19; }
     PARAMETRIZE { level = 20; }
 
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_WISHIWASHI_SOLO].baseHP == gSpeciesInfo[SPECIES_WISHIWASHI_SCHOOL].baseHP);
+        ASSUME(GetSpeciesBaseHP(SPECIES_WISHIWASHI_SOLO) == GetSpeciesBaseHP(SPECIES_WISHIWASHI_SCHOOL));
         PLAYER(SPECIES_WISHIWASHI_SOLO)
         {
             Level(level);
@@ -143,7 +144,7 @@ SINGLE_BATTLE_TEST("Schooling switches Level 20+ Wishiwashi's form when HP is 25
     }
 }
 
-SINGLE_BATTLE_TEST("Schooling switches Level 20+ Wishiwashi's form when HP is over 25-percent before the first turn (Trait)")
+SINGLE_BATTLE_TEST("Schooling switches Level 20+ Wishiwashi's form when HP is over 25-percent before the first turn (Traits)")
 {
     u16 level;
     bool32 overQuarterHP;
@@ -153,7 +154,7 @@ SINGLE_BATTLE_TEST("Schooling switches Level 20+ Wishiwashi's form when HP is ov
     PARAMETRIZE { level = 20; overQuarterHP = TRUE; }
 
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_WISHIWASHI_SOLO].baseHP == gSpeciesInfo[SPECIES_WISHIWASHI_SCHOOL].baseHP);
+        ASSUME(GetSpeciesBaseHP(SPECIES_WISHIWASHI_SOLO) == GetSpeciesBaseHP(SPECIES_WISHIWASHI_SCHOOL));
         PLAYER(SPECIES_WISHIWASHI_SOLO)
         {
             Level(level);
@@ -179,14 +180,14 @@ SINGLE_BATTLE_TEST("Schooling switches Level 20+ Wishiwashi's form when HP is ov
     }
 }
 
-SINGLE_BATTLE_TEST("Schooling switches Level 20+ Wishiwashi's form when HP is healed above 25-percent (Trait)")
+SINGLE_BATTLE_TEST("Schooling switches Level 20+ Wishiwashi's form when HP is healed above 25-percent (Traits)")
 {
     u16 level;
     PARAMETRIZE { level = 19; }
     PARAMETRIZE { level = 20; }
 
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_WISHIWASHI_SOLO].baseHP == gSpeciesInfo[SPECIES_WISHIWASHI_SCHOOL].baseHP);
+        ASSUME(GetSpeciesBaseHP(SPECIES_WISHIWASHI_SOLO) == GetSpeciesBaseHP(SPECIES_WISHIWASHI_SCHOOL));
         PLAYER(SPECIES_WISHIWASHI_SOLO)
         {
             Level(level);
@@ -212,3 +213,4 @@ SINGLE_BATTLE_TEST("Schooling switches Level 20+ Wishiwashi's form when HP is he
             EXPECT_EQ(player->species, SPECIES_WISHIWASHI_SOLO);
     }
 }
+#endif

@@ -144,7 +144,9 @@ DOUBLE_BATTLE_TEST("Multi-target moves hit correct battlers after Seed Sower is 
 #undef ABILITY_PARAM
 #undef MOVE_HIT
 
-SINGLE_BATTLE_TEST("Seed Sower sets up Grassy Terrain when hit by an attack (Trait)")
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Seed Sower sets up Grassy Terrain when hit by an attack (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_ARBOLIVA) { Ability(ABILITY_HARVEST); Innates(ABILITY_SEED_SOWER); }
@@ -168,7 +170,7 @@ SINGLE_BATTLE_TEST("Seed Sower sets up Grassy Terrain when hit by an attack (Tra
     }                                                   \
 }
 
-DOUBLE_BATTLE_TEST("Multi-target moves hit correct battlers after Seed Sower is triggered (Trait)") // #2796
+DOUBLE_BATTLE_TEST("Multi-target moves hit correct battlers after Seed Sower is triggered (Traits)") // #2796
 {
     u32 j, k, l;
     u16 usedMove = MOVE_NONE;
@@ -286,3 +288,4 @@ DOUBLE_BATTLE_TEST("Multi-target moves hit correct battlers after Seed Sower is 
 
 #undef ABILITY_PARAM
 #undef MOVE_HIT
+#endif

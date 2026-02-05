@@ -52,10 +52,30 @@ SINGLE_BATTLE_TEST("Rattled boosts speed by 1 when hit by Bug, Dark or Ghost typ
     }
 }
 
-SINGLE_BATTLE_TEST("Rattled boosts speed by 1 when affected by Intimidate")
+SINGLE_BATTLE_TEST("Rattled does not boost speed by 1 when affected by Intimidate (Gen5-7)")
 {
     GIVEN {
-        ASSUME(B_UPDATED_INTIMIDATE >= GEN_8);
+        WITH_CONFIG(CONFIG_UPDATED_INTIMIDATE, GEN_7);
+        PLAYER(SPECIES_GYARADOS) {Ability(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_SUDOWOODO) {Ability(ABILITY_RATTLED); }
+    } WHEN {
+        TURN {}
+    } SCENE {
+        ABILITY_POPUP(player, ABILITY_INTIMIDATE);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+        MESSAGE("Gyarados's Intimidate cuts the opposing Sudowoodo's Attack!");
+        NONE_OF {
+            ABILITY_POPUP(opponent, ABILITY_RATTLED);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+            MESSAGE("The opposing Sudowoodo's Speed rose!");
+        }
+    }
+}
+
+SINGLE_BATTLE_TEST("Rattled boosts speed by 1 when affected by Intimidate (Gen8+)")
+{
+    GIVEN {
+        WITH_CONFIG(CONFIG_UPDATED_INTIMIDATE, GEN_8);
         PLAYER(SPECIES_GYARADOS) {Ability(ABILITY_INTIMIDATE); }
         OPPONENT(SPECIES_SUDOWOODO) {Ability(ABILITY_RATTLED); }
     } WHEN {
@@ -92,7 +112,8 @@ SINGLE_BATTLE_TEST("Rattled triggers correctly when hit by U-Turn") // Specific 
     }
 }
 
-SINGLE_BATTLE_TEST("Rattled boosts speed by 1 when hit by Bug, Dark or Ghost type move (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Rattled boosts speed by 1 when hit by Bug, Dark or Ghost type move (Traits)")
 {
     u16 move;
     PARAMETRIZE { move = MOVE_FURY_CUTTER; }
@@ -101,7 +122,7 @@ SINGLE_BATTLE_TEST("Rattled boosts speed by 1 when hit by Bug, Dark or Ghost typ
     PARAMETRIZE { move = MOVE_SCRATCH; }
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) {Speed(42) ;}
-        OPPONENT(SPECIES_SUDOWOODO) {Speed(40); Ability(ABILITY_STURDY); Innates(ABILITY_RATTLED);}
+        OPPONENT(SPECIES_SUDOWOODO) {Speed(40); Ability(ABILITY_STURDY); Innates(ABILITY_RATTLED); }
     } WHEN {
         TURN { MOVE(player, move); }
         TURN { MOVE(player, move); }
@@ -131,12 +152,32 @@ SINGLE_BATTLE_TEST("Rattled boosts speed by 1 when hit by Bug, Dark or Ghost typ
     }
 }
 
-SINGLE_BATTLE_TEST("Rattled boosts speed by 1 when affected by Intimidate (Trait)")
+SINGLE_BATTLE_TEST("Rattled does not boost speed by 1 when affected by Intimidate (Gen5-7) (Traits)")
 {
     GIVEN {
-        ASSUME(B_UPDATED_INTIMIDATE >= GEN_8);
-        PLAYER(SPECIES_GYARADOS) {Ability(ABILITY_MOXIE); Innates(ABILITY_INTIMIDATE); }
-        OPPONENT(SPECIES_SUDOWOODO) {Ability(ABILITY_STURDY); Innates(ABILITY_RATTLED); }
+        WITH_CONFIG(CONFIG_UPDATED_INTIMIDATE, GEN_7);
+        PLAYER(SPECIES_GYARADOS) { Ability(ABILITY_MOXIE); Innates(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_SUDOWOODO) { Ability(ABILITY_STURDY); Innates(ABILITY_RATTLED); }
+    } WHEN {
+        TURN {}
+    } SCENE {
+        ABILITY_POPUP(player, ABILITY_INTIMIDATE);
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+        MESSAGE("Gyarados's Intimidate cuts the opposing Sudowoodo's Attack!");
+        NONE_OF {
+            ABILITY_POPUP(opponent, ABILITY_RATTLED);
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
+            MESSAGE("The opposing Sudowoodo's Speed rose!");
+        }
+    }
+}
+
+SINGLE_BATTLE_TEST("Rattled boosts speed by 1 when affected by Intimidate (Gen8+) (Traits)")
+{
+    GIVEN {
+        WITH_CONFIG(CONFIG_UPDATED_INTIMIDATE, GEN_8);
+        PLAYER(SPECIES_GYARADOS) { Ability(ABILITY_MOXIE); Innates(ABILITY_INTIMIDATE); }
+        OPPONENT(SPECIES_SUDOWOODO) { Ability(ABILITY_STURDY); Innates(ABILITY_RATTLED); }
     } WHEN {
         TURN {}
     } SCENE {
@@ -149,7 +190,7 @@ SINGLE_BATTLE_TEST("Rattled boosts speed by 1 when affected by Intimidate (Trait
     }
 }
 
-SINGLE_BATTLE_TEST("Rattled triggers correctly when hit by U-Turn (Trait)") // Specific test here, because of #3124
+SINGLE_BATTLE_TEST("Rattled triggers correctly when hit by U-Turn (Traits)") // Specific test here, because of #3124
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_U_TURN) == EFFECT_HIT_ESCAPE);
@@ -170,3 +211,4 @@ SINGLE_BATTLE_TEST("Rattled triggers correctly when hit by U-Turn (Trait)") // S
         SEND_IN_MESSAGE("Wynaut");
     }
 }
+#endif

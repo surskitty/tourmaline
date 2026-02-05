@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-SINGLE_BATTLE_TEST("Damp prevents explosion-like moves from enemies")
+SINGLE_BATTLE_TEST("Damp prevents Explosion-like moves from enemies")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_EXPLOSION; }
@@ -19,7 +19,7 @@ SINGLE_BATTLE_TEST("Damp prevents explosion-like moves from enemies")
     }
 }
 
-DOUBLE_BATTLE_TEST("Damp prevents explosion-like moves from enemies in a double battle")
+DOUBLE_BATTLE_TEST("Damp prevents Explosion-like moves from enemies in a double battle")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_EXPLOSION; }
@@ -39,7 +39,7 @@ DOUBLE_BATTLE_TEST("Damp prevents explosion-like moves from enemies in a double 
     }
 }
 
-SINGLE_BATTLE_TEST("Damp prevents explosion-like moves from self")
+SINGLE_BATTLE_TEST("Damp prevents Explosion-like moves from self")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_EXPLOSION; }
@@ -72,7 +72,11 @@ SINGLE_BATTLE_TEST("Damp prevents damage from Aftermath")
         NONE_OF { HP_BAR(player); }
     }
 }
-SINGLE_BATTLE_TEST("Damp prevents explosion-like moves from enemies (Trait)")
+
+//TO_DO_BATTLE_TEST("Damp affects non-adjacent Pokémon (triples)")
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Damp prevents explosion-like moves from enemies (Traits)")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_EXPLOSION; }
@@ -90,7 +94,7 @@ SINGLE_BATTLE_TEST("Damp prevents explosion-like moves from enemies (Trait)")
     }
 }
 
-DOUBLE_BATTLE_TEST("Damp prevents explosion-like moves from enemies in a double battle (Trait)")
+DOUBLE_BATTLE_TEST("Damp prevents explosion-like moves from enemies in a double battle (Traits)")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_EXPLOSION; }
@@ -110,7 +114,7 @@ DOUBLE_BATTLE_TEST("Damp prevents explosion-like moves from enemies in a double 
     }
 }
 
-SINGLE_BATTLE_TEST("Damp prevents explosion-like moves from self (Trait)")
+SINGLE_BATTLE_TEST("Damp prevents explosion-like moves from self (Traits)")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_EXPLOSION; }
@@ -128,7 +132,7 @@ SINGLE_BATTLE_TEST("Damp prevents explosion-like moves from self (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Damp prevents damage from Aftermath (Trait)")
+SINGLE_BATTLE_TEST("Damp prevents damage from Aftermath (Traits)")
 {
     GIVEN {
         ASSUME(MoveMakesContact(MOVE_SCRATCH));
@@ -143,3 +147,4 @@ SINGLE_BATTLE_TEST("Damp prevents damage from Aftermath (Trait)")
         NONE_OF { HP_BAR(player); }
     }
 }
+#endif

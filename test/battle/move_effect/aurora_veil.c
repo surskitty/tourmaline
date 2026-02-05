@@ -25,9 +25,70 @@ SINGLE_BATTLE_TEST("Aurora Veil can only be used in Hail and Snow")
     }
 }
 
+SINGLE_BATTLE_TEST("Aurora Veil will prevent Protean activation if it fails due to no Snow/Hail")
+{
+    GIVEN {
+        PLAYER(SPECIES_KECLEON) { Ability(ABILITY_PROTEAN); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_AURORA_VEIL); }
+    } SCENE {
+        MESSAGE("But it failed!");
+        NOT ABILITY_POPUP(player, ABILITY_PROTEAN);
+    }
+}
+
+SINGLE_BATTLE_TEST("Aurora Veil wont prevent Protean activation when it fails due to being set up already")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_KECLEON) { Ability(ABILITY_PROTEAN); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_SNOWSCAPE); MOVE(player, MOVE_AURORA_VEIL); }
+        TURN { SWITCH(player, 1); }
+        TURN { MOVE(player, MOVE_AURORA_VEIL); }
+    } SCENE {
+        ABILITY_POPUP(player, ABILITY_PROTEAN);
+        MESSAGE("But it failed!");
+    }
+}
+
 TO_DO_BATTLE_TEST("Aurora Veil reduces damage done to the user by half in singles")
 TO_DO_BATTLE_TEST("Aurora Veil reduces damage done to the user by roughly a third in doubles")
 TO_DO_BATTLE_TEST("Aurora Veil's damage reduction is ignored by Critical Hits")
 TO_DO_BATTLE_TEST("Aurora Veil's damage reduction doesn't stack with Reflect or Light Screen")
 TO_DO_BATTLE_TEST("Aurora Veil doesn't reduce confusion damage")
 TO_DO_BATTLE_TEST("Aurora Veil doesn't reduce damage done by moves that do direct damage") // Bide, Counter, Endeavor, Final Gambit, Metal Burst, Mirror Coat, Psywave, Seismic Toss, Sonic Boom, Super Fang
+
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Aurora Veil will prevent Protean activation if it fails due to no Snow/Hail (Traits)")
+{
+    GIVEN {
+        PLAYER(SPECIES_KECLEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PROTEAN); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_AURORA_VEIL); }
+    } SCENE {
+        MESSAGE("But it failed!");
+        NOT ABILITY_POPUP(player, ABILITY_PROTEAN);
+    }
+}
+
+SINGLE_BATTLE_TEST("Aurora Veil wont prevent Protean activation when it fails due to being set up already (Traits)")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        PLAYER(SPECIES_KECLEON) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PROTEAN); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_SNOWSCAPE); MOVE(player, MOVE_AURORA_VEIL); }
+        TURN { SWITCH(player, 1); }
+        TURN { MOVE(player, MOVE_AURORA_VEIL); }
+    } SCENE {
+        ABILITY_POPUP(player, ABILITY_PROTEAN);
+        MESSAGE("But it failed!");
+    }
+}
+#endif

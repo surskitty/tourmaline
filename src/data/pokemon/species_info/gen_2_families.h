@@ -196,12 +196,13 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Meganium,
         .iconSprite = gMonIcon_Meganium,
         .iconPalIndex = 1,
-#if P_GENDER_DIFFERENCES
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
         .frontPicFemale = gMonFrontPic_MeganiumF,
         .frontPicSizeFemale = MON_COORDS_SIZE(48, 64),
         .backPicFemale = gMonBackPic_MeganiumF,
         .backPicSizeFemale = MON_COORDS_SIZE(56, 64),
-#endif //P_GENDER_DIFFERENCES
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(0, 13, SHADOW_SIZE_M)
         FOOTPRINT(Meganium)
         OVERWORLD(
@@ -222,7 +223,71 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         )
         .levelUpLearnset = sMeganiumLevelUpLearnset,
         .teachableLearnset = sMeganiumTeachableLearnset,
+        .formSpeciesIdTable = sMeganiumFormSpeciesIdTable,
+        .formChangeTable = sMeganiumFormChangeTable,
     },
+
+#if P_GEN_9_MEGA_EVOLUTIONS
+    [SPECIES_MEGANIUM_MEGA] =
+    {
+        .baseHP        = 80,
+        .baseAttack    = 92,
+        .baseDefense   = 115,
+        .baseSpeed     = 80,
+        .baseSpAttack  = 143,
+        .baseSpDefense = 115,
+        .types = MON_TYPES(TYPE_GRASS, TYPE_FAIRY),
+        .catchRate = 45,
+    #if P_UPDATED_EXP_YIELDS >= GEN_8
+        .expYield = 263,
+    #elif P_UPDATED_EXP_YIELDS >= GEN_5
+        .expYield = 236,
+    #else
+        .expYield = 208,
+    #endif
+        .evYield_Defense = 1,
+        .evYield_SpDefense = 2,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_GRASS),
+        .abilities = { ABILITY_OVERGROW, ABILITY_NONE, ABILITY_LEAF_GUARD },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("Meganium"),
+        .cryId = CRY_MEGANIUM, // CRY_MEGANIUM_MEGA,
+        .natDexNum = NATIONAL_DEX_MEGANIUM,
+        .categoryName = _("Herb"),
+        .height = 24,
+        .weight = 2010,
+        .description = COMPOUND_STRING(
+            "This Pokémon can fire a tremendously\n"
+            "powerful Solar Beam from its four\n"
+            "flowers. Another name for this is\n"
+            "Mega Sol Cannon."),
+        //.frontPic = gMonFrontPic_CircledQuestionMark,
+        //.frontPicSize = MON_COORDS_SIZE(40, 40),
+        //.frontPicYOffset = 12,
+        //.frontAnimFrames = sAnims_TwoFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        //.backPic = gMonBackPic_CircledQuestionMark,
+        //.backPicSize = MON_COORDS_SIZE(40, 40),
+        //.backPicYOffset = 12,
+        //.backAnimId = BACK_ANIM_NONE,
+        //.palette = gMonPalette_CircledQuestionMark,
+        //.shinyPalette = gMonShinyPalette_CircledQuestionMark,
+        //.iconSprite = gMonIcon_QuestionMark,
+        //.iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        FOOTPRINT(Meganium)
+        //SHADOW(-1, 0, SHADOW_SIZE_M)
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sMeganiumLevelUpLearnset,
+        .teachableLearnset = sMeganiumTeachableLearnset,
+        .formSpeciesIdTable = sMeganiumFormSpeciesIdTable,
+        .formChangeTable = sMeganiumFormChangeTable,
+    },
+#endif //P_GEN_9_MEGA_EVOLUTIONS
 #endif //P_FAMILY_CHIKORITA
 
 #if P_FAMILY_CYNDAQUIL
@@ -359,8 +424,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         )
         .levelUpLearnset = sQuilavaLevelUpLearnset,
         .teachableLearnset = sQuilavaTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_TYPHLOSION},
-                                {EVO_NONE, 0, SPECIES_TYPHLOSION_HISUI}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_TYPHLOSION, CONDITIONS({IF_NOT_REGION, REGION_HISUI})},
+                                {EVO_LEVEL, 36, SPECIES_TYPHLOSION_HISUI, CONDITIONS({IF_REGION, REGION_HISUI})}),
     },
 
 #if P_UPDATED_EXP_YIELDS >= GEN_8
@@ -718,7 +783,71 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         )
         .levelUpLearnset = sFeraligatrLevelUpLearnset,
         .teachableLearnset = sFeraligatrTeachableLearnset,
+        .formSpeciesIdTable = sFeraligatrFormSpeciesIdTable,
+        .formChangeTable = sFeraligatrFormChangeTable,
     },
+
+#if P_GEN_9_MEGA_EVOLUTIONS
+    [SPECIES_FERALIGATR_MEGA] =
+    {
+        .baseHP        = 85,
+        .baseAttack    = 160,
+        .baseDefense   = 125,
+        .baseSpeed     = 78,
+        .baseSpAttack  = 89,
+        .baseSpDefense = 93,
+        .types = MON_TYPES(TYPE_WATER, TYPE_DRAGON),
+        .catchRate = 45,
+    #if P_UPDATED_EXP_YIELDS >= GEN_8
+        .expYield = 265,
+    #elif P_UPDATED_EXP_YIELDS >= GEN_5
+        .expYield = 239,
+    #else
+        .expYield = 210,
+    #endif
+        .evYield_Attack = 2,
+        .evYield_Defense = 1,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_WATER_1),
+        .abilities = { ABILITY_TORRENT, ABILITY_NONE, ABILITY_SHEER_FORCE },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("Feraligatr"),
+        .cryId = CRY_FERALIGATR, // CRY_FERALIGATR_MEGA,
+        .natDexNum = NATIONAL_DEX_FERALIGATR,
+        .categoryName = _("Double Jaw"),
+        .height = 23,
+        .weight = 1088,
+        .description = COMPOUND_STRING(
+            "With its arms and hoodlike fin, this\n"
+            "Pokémon forms a gigantic set of jaws\n"
+            "with a bite 10 times as powerful\n"
+            "as Mega Feraligatr's actual jaws."),
+        //.frontPic = gMonFrontPic_CircledQuestionMark,
+        //.frontPicSize = MON_COORDS_SIZE(40, 40),
+        //.frontPicYOffset = 12,
+        //.frontAnimFrames = sAnims_TwoFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        //.backPic = gMonBackPic_CircledQuestionMark,
+        //.backPicSize = MON_COORDS_SIZE(40, 40),
+        //.backPicYOffset = 12,
+        //.backAnimId = BACK_ANIM_NONE,
+        //.palette = gMonPalette_CircledQuestionMark,
+        //.shinyPalette = gMonShinyPalette_CircledQuestionMark,
+        //.iconSprite = gMonIcon_QuestionMark,
+        //.iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        FOOTPRINT(Feraligatr)
+        //SHADOW(-1, 0, SHADOW_SIZE_M)
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sFeraligatrLevelUpLearnset,
+        .teachableLearnset = sFeraligatrTeachableLearnset,
+        .formSpeciesIdTable = sFeraligatrFormSpeciesIdTable,
+        .formChangeTable = sFeraligatrFormChangeTable,
+    },
+#endif //P_GEN_9_MEGA_EVOLUTIONS
 #endif //P_FAMILY_TOTODILE
 
 #if P_FAMILY_SENTRET
@@ -1085,12 +1214,13 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Ledyba,
         .iconSprite = gMonIcon_Ledyba,
         .iconPalIndex = 0,
-#if P_GENDER_DIFFERENCES
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
         .frontPicFemale = gMonFrontPic_LedybaF,
         .frontPicSizeFemale = MON_COORDS_SIZE(48, 48),
         .backPicFemale = gMonBackPic_LedybaF,
         .backPicSizeFemale = MON_COORDS_SIZE(56, 48),
-#endif //P_GENDER_DIFFERENCES
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(2, 4, SHADOW_SIZE_M)
         FOOTPRINT(Ledyba)
         OVERWORLD(
@@ -1173,12 +1303,13 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Ledian,
         .iconSprite = gMonIcon_Ledian,
         .iconPalIndex = 0,
-#if P_GENDER_DIFFERENCES
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
         .frontPicFemale = gMonFrontPic_LedianF,
         .frontPicSizeFemale = MON_COORDS_SIZE(48, 56),
         .backPicFemale = gMonBackPic_LedianF,
         .backPicSizeFemale = MON_COORDS_SIZE(64, 64),
-#endif //P_GENDER_DIFFERENCES
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(0, 15, SHADOW_SIZE_S)
         FOOTPRINT(Ledian)
         OVERWORLD(
@@ -1657,7 +1788,9 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         )
         .levelUpLearnset = sTogeticLevelUpLearnset,
         .teachableLearnset = sTogeticTeachableLearnset,
+    #if P_GEN_4_CROSS_EVOS
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_SHINY_STONE, SPECIES_TOGEKISS}),
+    #endif
     },
 
 #if P_GEN_4_CROSS_EVOS
@@ -2611,12 +2744,13 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Sudowoodo,
         .iconSprite = gMonIcon_Sudowoodo,
         .iconPalIndex = 1,
-#if P_GENDER_DIFFERENCES
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
         .frontPicFemale = gMonFrontPic_SudowoodoF,
         .frontPicSizeFemale = MON_COORDS_SIZE(48, 56),
         .backPicFemale = gMonBackPic_SudowoodoF,
         .backPicSizeFemale = MON_COORDS_SIZE(48, 56),
-#endif //P_GENDER_DIFFERENCES
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(-2, 7, SHADOW_SIZE_S)
         FOOTPRINT(Sudowoodo)
         OVERWORLD(
@@ -2935,12 +3069,13 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Aipom,
         .iconSprite = gMonIcon_Aipom,
         .iconPalIndex = 2,
-#if P_GENDER_DIFFERENCES
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
         .frontPicFemale = gMonFrontPic_AipomF,
         .frontPicSizeFemale = MON_COORDS_SIZE(32, 64),
         .backPicFemale = gMonBackPic_AipomF,
         .backPicSizeFemale = MON_COORDS_SIZE(64, 64),
-#endif //P_GENDER_DIFFERENCES
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(-1, 12, SHADOW_SIZE_S)
         FOOTPRINT(Aipom)
         OVERWORLD(
@@ -2962,7 +3097,9 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sAipomLevelUpLearnset,
         .teachableLearnset = sAipomTeachableLearnset,
         .eggMoveLearnset = sAipomEggMoveLearnset,
+    #if P_GEN_4_CROSS_EVOS
         .evolutions = EVOLUTION({EVO_LEVEL, 0, SPECIES_AMBIPOM, CONDITIONS({IF_KNOWS_MOVE, MOVE_DOUBLE_HIT})}),
+    #endif
     },
 
 #if P_GEN_4_CROSS_EVOS
@@ -3022,12 +3159,13 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Ambipom,
         .iconSprite = gMonIcon_Ambipom,
         .iconPalIndex = 2,
-#if P_GENDER_DIFFERENCES
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
         .frontPicFemale = gMonFrontPic_AmbipomF,
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 64),
         .backPicFemale = gMonBackPic_AmbipomF,
         .backPicSizeFemale = MON_COORDS_SIZE(64, 64),
-#endif //P_GENDER_DIFFERENCES
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(-1, 13, SHADOW_SIZE_S)
         FOOTPRINT(Ambipom)
         OVERWORLD(
@@ -3293,7 +3431,9 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sYanmaLevelUpLearnset,
         .teachableLearnset = sYanmaTeachableLearnset,
         .eggMoveLearnset = sYanmaEggMoveLearnset,
+    #if P_GEN_4_CROSS_EVOS
         .evolutions = EVOLUTION({EVO_LEVEL, 0, SPECIES_YANMEGA, CONDITIONS({IF_KNOWS_MOVE, MOVE_ANCIENT_POWER})}),
+    #endif
     },
 
 #if P_GEN_4_CROSS_EVOS
@@ -3452,12 +3592,13 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Wooper,
         .iconSprite = gMonIcon_Wooper,
         .iconPalIndex = 0,
-#if P_GENDER_DIFFERENCES
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
         .frontPicFemale = gMonFrontPic_WooperF,
         .frontPicSizeFemale = MON_COORDS_SIZE(40, 32),
         .backPicFemale = gMonBackPic_WooperF,
         .backPicSizeFemale = MON_COORDS_SIZE(64, 40),
-#endif //P_GENDER_DIFFERENCES
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+        .pokemonJumpType = PKMN_JUMP_TYPE_SLOW,
         SHADOW(1, -2, SHADOW_SIZE_S)
         FOOTPRINT(Wooper)
         OVERWORLD(
@@ -3538,12 +3679,13 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Quagsire,
         .iconSprite = gMonIcon_Quagsire,
         .iconPalIndex = 0,
-#if P_GENDER_DIFFERENCES
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
         .frontPicFemale = gMonFrontPic_QuagsireF,
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 56),
         .backPicFemale = gMonBackPic_QuagsireF,
         .backPicSizeFemale = MON_COORDS_SIZE(64, 56),
-#endif //P_GENDER_DIFFERENCES
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(0, 8, SHADOW_SIZE_M)
         FOOTPRINT(Quagsire)
         OVERWORLD(
@@ -3764,12 +3906,13 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Murkrow,
         .iconSprite = gMonIcon_Murkrow,
         .iconPalIndex = 2,
-#if P_GENDER_DIFFERENCES
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
         .frontPicFemale = gMonFrontPic_MurkrowF,
         .frontPicSizeFemale = MON_COORDS_SIZE(48, 40),
         .backPicFemale = gMonBackPic_MurkrowF,
         .backPicSizeFemale = MON_COORDS_SIZE(40, 56),
-#endif //P_GENDER_DIFFERENCES
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(-2, 8, SHADOW_SIZE_S)
         FOOTPRINT(Murkrow)
         OVERWORLD(
@@ -3791,7 +3934,9 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sMurkrowLevelUpLearnset,
         .teachableLearnset = sMurkrowTeachableLearnset,
         .eggMoveLearnset = sMurkrowEggMoveLearnset,
+    #if P_GEN_4_CROSS_EVOS
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_DUSK_STONE, SPECIES_HONCHKROW}),
+    #endif
     },
 
 #if P_GEN_4_CROSS_EVOS
@@ -3949,7 +4094,9 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sMisdreavusLevelUpLearnset,
         .teachableLearnset = sMisdreavusTeachableLearnset,
         .eggMoveLearnset = sMisdreavusEggMoveLearnset,
+    #if P_GEN_4_CROSS_EVOS
         .evolutions = EVOLUTION({EVO_ITEM, ITEM_DUSK_STONE, SPECIES_MISMAGIUS}),
+    #endif
     },
 
 #if P_GEN_4_CROSS_EVOS
@@ -4266,7 +4413,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Wobbuffet,
         .iconSprite = gMonIcon_Wobbuffet,
         .iconPalIndex = 0,
-#if P_GENDER_DIFFERENCES
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
         .frontPicFemale = gMonFrontPic_WobbuffetF,
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 56),
         .backPicFemale = gMonBackPic_WobbuffetF,
@@ -4275,7 +4422,8 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .iconSpriteFemale = gMonIcon_WobbuffetF,
         .iconPalIndexFemale = 0,
     #endif
-#endif //P_GENDER_DIFFERENCES
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(-3, 8, SHADOW_SIZE_M)
         FOOTPRINT(Wobbuffet)
         OVERWORLD(
@@ -4357,12 +4505,13 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Girafarig,
         .iconSprite = gMonIcon_Girafarig,
         .iconPalIndex = 1,
-#if P_GENDER_DIFFERENCES
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
         .frontPicFemale = gMonFrontPic_GirafarigF,
         .frontPicSizeFemale = MON_COORDS_SIZE(56, 64),
         .backPicFemale = gMonBackPic_GirafarigF,
         .backPicSizeFemale = MON_COORDS_SIZE(64, 64),
-#endif //P_GENDER_DIFFERENCES
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(2, 13, SHADOW_SIZE_M)
         FOOTPRINT(Girafarig)
         OVERWORLD(
@@ -4384,7 +4533,9 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sGirafarigLevelUpLearnset,
         .teachableLearnset = sGirafarigTeachableLearnset,
         .eggMoveLearnset = sGirafarigEggMoveLearnset,
+    #if P_GEN_9_CROSS_EVOS
         .evolutions = EVOLUTION({EVO_LEVEL, 0, SPECIES_FARIGIRAF, CONDITIONS({IF_KNOWS_MOVE, MOVE_TWIN_BEAM})}),
+    #endif
     },
 
 #if P_GEN_9_CROSS_EVOS
@@ -4688,8 +4839,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sDunsparceLevelUpLearnset,
         .teachableLearnset = sDunsparceTeachableLearnset,
         .eggMoveLearnset = sDunsparceEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 0, SPECIES_DUDUNSPARCE_TWO_SEGMENT, CONDITIONS({IF_KNOWS_MOVE, MOVE_HYPER_DRILL}, {IF_PID_MODULO_100_LT, 100})},
-                                {EVO_LEVEL, 0, SPECIES_DUDUNSPARCE_THREE_SEGMENT, CONDITIONS({IF_KNOWS_MOVE, MOVE_HYPER_DRILL}, {IF_PID_MODULO_100_LT, 1})}),
+    #if P_GEN_9_CROSS_EVOS
+        .evolutions = EVOLUTION({EVO_LEVEL, 0, SPECIES_DUDUNSPARCE_TWO_SEGMENT, CONDITIONS({IF_KNOWS_MOVE, MOVE_HYPER_DRILL}, {IF_PID_MODULO_100_GT, 0})},
+                                {EVO_LEVEL, 0, SPECIES_DUDUNSPARCE_THREE_SEGMENT, CONDITIONS({IF_KNOWS_MOVE, MOVE_HYPER_DRILL}, {IF_PID_MODULO_100_EQ, 0})}),
+    #endif
     },
 
 #if P_GEN_9_CROSS_EVOS
@@ -4888,12 +5041,13 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Gligar,
         .iconSprite = gMonIcon_Gligar,
         .iconPalIndex = P_GBA_STYLE_SPECIES_ICONS ? 2 : 0,
-#if P_GENDER_DIFFERENCES
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
         .frontPicFemale = gMonFrontPic_GligarF,
         .frontPicSizeFemale = MON_COORDS_SIZE(56, 56),
         .backPicFemale = gMonBackPic_GligarF,
         .backPicSizeFemale = MON_COORDS_SIZE(64, 64),
-#endif //P_GENDER_DIFFERENCES
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(0, 15, SHADOW_SIZE_S)
         FOOTPRINT(Gligar)
         OVERWORLD(
@@ -4915,8 +5069,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sGligarLevelUpLearnset,
         .teachableLearnset = sGligarTeachableLearnset,
         .eggMoveLearnset = sGligarEggMoveLearnset,
+    #if P_GEN_4_CROSS_EVOS
         .evolutions = EVOLUTION({EVO_LEVEL, 0, SPECIES_GLISCOR, CONDITIONS({IF_TIME, TIME_NIGHT}, {IF_HOLD_ITEM, ITEM_RAZOR_FANG})},
                                 {EVO_ITEM, ITEM_RAZOR_FANG, SPECIES_GLISCOR, CONDITIONS({IF_TIME, TIME_NIGHT})}),
+    #endif
     },
 
 #if P_GEN_4_CROSS_EVOS
@@ -5514,12 +5670,13 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Heracross,
         .iconSprite = gMonIcon_Heracross,
         .iconPalIndex = P_GBA_STYLE_SPECIES_ICONS ? 2 : 0,
-#if P_GENDER_DIFFERENCES
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
         .frontPicFemale = gMonFrontPic_HeracrossF,
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 64),
         .backPicFemale = gMonBackPic_HeracrossF,
         .backPicSizeFemale = MON_COORDS_SIZE(48, 64),
-#endif //P_GENDER_DIFFERENCES
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(-1, 10, SHADOW_SIZE_M)
         FOOTPRINT(Heracross)
         OVERWORLD(
@@ -5687,12 +5844,13 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Sneasel,
         .iconSprite = gMonIcon_Sneasel,
         .iconPalIndex = 0,
-#if P_GENDER_DIFFERENCES
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
         .frontPicFemale = gMonFrontPic_SneaselF,
         .frontPicSizeFemale = MON_COORDS_SIZE(56, 48),
         .backPicFemale = gMonBackPic_SneaselF,
         .backPicSizeFemale = MON_COORDS_SIZE(64, 64),
-#endif //P_GENDER_DIFFERENCES
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(-1, 5, SHADOW_SIZE_S)
         FOOTPRINT(Sneasel)
         OVERWORLD(
@@ -5715,8 +5873,10 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .teachableLearnset = sSneaselTeachableLearnset,
         .eggMoveLearnset = sSneaselEggMoveLearnset,
         .formSpeciesIdTable = sSneaselFormSpeciesIdTable,
+    #if P_GEN_4_CROSS_EVOS
         .evolutions = EVOLUTION({EVO_LEVEL, 0, SPECIES_WEAVILE, CONDITIONS({IF_TIME, TIME_NIGHT}, {IF_HOLD_ITEM, ITEM_RAZOR_CLAW})},
                                 {EVO_ITEM, ITEM_RAZOR_CLAW, SPECIES_WEAVILE, CONDITIONS({IF_TIME, TIME_NIGHT})}),
+    #endif
     },
 
 #if P_GEN_4_CROSS_EVOS
@@ -6092,12 +6252,13 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Ursaring,
         .iconSprite = gMonIcon_Ursaring,
         .iconPalIndex = 2,
-#if P_GENDER_DIFFERENCES
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
         .frontPicFemale = gMonFrontPic_UrsaringF,
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 64),
         .backPicFemale = gMonBackPic_UrsaringF,
         .backPicSizeFemale = MON_COORDS_SIZE(56, 64),
-#endif //P_GENDER_DIFFERENCES
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(1, 14, SHADOW_SIZE_L)
         FOOTPRINT(Ursaring)
         OVERWORLD(
@@ -6118,8 +6279,7 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         )
         .levelUpLearnset = sUrsaringLevelUpLearnset,
         .teachableLearnset = sUrsaringTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_ITEM, ITEM_MOON_STONE, SPECIES_URSALUNA},
-                                {EVO_NONE, 0, SPECIES_URSALUNA_BLOODMOON}),
+        .evolutions = EVOLUTION({EVO_ITEM, ITEM_MOON_STONE, SPECIES_URSALUNA}),
     },
 
 #if P_GEN_8_CROSS_EVOS
@@ -6541,12 +6701,13 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Piloswine,
         .iconSprite = gMonIcon_Piloswine,
         .iconPalIndex = 2,
-#if P_GENDER_DIFFERENCES
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
         .frontPicFemale = gMonFrontPic_PiloswineF,
         .frontPicSizeFemale = MON_COORDS_SIZE(48, 56),
         .backPicFemale = gMonBackPic_PiloswineF,
         .backPicSizeFemale = MON_COORDS_SIZE(64, 48),
-#endif //P_GENDER_DIFFERENCES
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(-1, 3, SHADOW_SIZE_M)
         FOOTPRINT(Piloswine)
         OVERWORLD(
@@ -6567,7 +6728,9 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         )
         .levelUpLearnset = sPiloswineLevelUpLearnset,
         .teachableLearnset = sPiloswineTeachableLearnset,
+    #if P_GEN_4_CROSS_EVOS
         .evolutions = EVOLUTION({EVO_LEVEL, 0, SPECIES_MAMOSWINE, CONDITIONS({IF_KNOWS_MOVE, MOVE_ANCIENT_POWER})}),
+    #endif
     },
 
 #if P_GEN_4_CROSS_EVOS
@@ -7023,12 +7186,13 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Octillery,
         .iconSprite = gMonIcon_Octillery,
         .iconPalIndex = 0,
-#if P_GENDER_DIFFERENCES
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
         .frontPicFemale = gMonFrontPic_OctilleryF,
         .frontPicSizeFemale = MON_COORDS_SIZE(56, 48),
         .backPicFemale = gMonBackPic_OctilleryF,
         .backPicSizeFemale = MON_COORDS_SIZE(64, 56),
-#endif //P_GENDER_DIFFERENCES
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(1, 4, SHADOW_SIZE_M)
         FOOTPRINT(Octillery)
         OVERWORLD(
@@ -7354,7 +7518,65 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sSkarmoryLevelUpLearnset,
         .teachableLearnset = sSkarmoryTeachableLearnset,
         .eggMoveLearnset = sSkarmoryEggMoveLearnset,
+        .formSpeciesIdTable = sSkarmoryFormSpeciesIdTable,
+        .formChangeTable = sSkarmoryFormChangeTable,
     },
+
+#if P_GEN_9_MEGA_EVOLUTIONS
+    [SPECIES_SKARMORY_MEGA] =
+    {
+        .baseHP        = 65,
+        .baseAttack    = 140,
+        .baseDefense   = 110,
+        .baseSpeed     = 110,
+        .baseSpAttack  = 40,
+        .baseSpDefense = 100,
+        .types = MON_TYPES(TYPE_STEEL, TYPE_FLYING),
+        .catchRate = 25,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 163 : 168,
+        .evYield_Defense = 2,
+        .itemRare = ITEM_METAL_COAT,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FLYING),
+        .abilities = { ABILITY_KEEN_EYE, ABILITY_STURDY, ABILITY_WEAK_ARMOR },
+        .bodyColor = BODY_COLOR_GRAY,
+        .speciesName = _("Skarmory"),
+        .cryId = CRY_SKARMORY, // CRY_SKARMORY_MEGA,
+        .natDexNum = NATIONAL_DEX_SKARMORY,
+        .categoryName = _("Armor Bird"),
+        .height = 17,
+        .weight = 404,
+        .description = COMPOUND_STRING(
+            "Due to the effects of Mega Evolution,\n"
+            "its pincers have taken a more\n"
+            "diabolical form, ripping anything\n"
+            "they pierce to shreds."),
+        //.frontPic = gMonFrontPic_CircledQuestionMark,
+        //.frontPicSize = MON_COORDS_SIZE(40, 40),
+        //.frontPicYOffset = 12,
+        //.frontAnimFrames = sAnims_TwoFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        //.backPic = gMonBackPic_CircledQuestionMark,
+        //.backPicSize = MON_COORDS_SIZE(40, 40),
+        //.backPicYOffset = 12,
+        //.backAnimId = BACK_ANIM_NONE,
+        //.palette = gMonPalette_CircledQuestionMark,
+        //.shinyPalette = gMonShinyPalette_CircledQuestionMark,
+        //.iconSprite = gMonIcon_QuestionMark,
+        //.iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        FOOTPRINT(Skarmory)
+        //SHADOW(-1, 0, SHADOW_SIZE_M)
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sSkarmoryLevelUpLearnset,
+        .teachableLearnset = sSkarmoryTeachableLearnset,
+        .formSpeciesIdTable = sSkarmoryFormSpeciesIdTable,
+        .formChangeTable = sSkarmoryFormChangeTable,
+    },
+#endif //P_GEN_9_MEGA_EVOLUTIONS
 #endif //P_FAMILY_SKARMORY
 
 #if P_FAMILY_HOUNDOUR
@@ -7485,12 +7707,13 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Houndoom,
         .iconSprite = gMonIcon_Houndoom,
         .iconPalIndex = 0,
-#if P_GENDER_DIFFERENCES
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
         .frontPicFemale = gMonFrontPic_HoundoomF,
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 64),
         .backPicFemale = gMonBackPic_HoundoomF,
         .backPicSizeFemale = MON_COORDS_SIZE(64, 56),
-#endif //P_GENDER_DIFFERENCES
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(-5, 13, SHADOW_SIZE_L)
         FOOTPRINT(Houndoom)
         OVERWORLD(
@@ -7728,12 +7951,13 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .shinyPalette = gMonShinyPalette_Donphan,
         .iconSprite = gMonIcon_Donphan,
         .iconPalIndex = 0,
-#if P_GENDER_DIFFERENCES
+#if P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
         .frontPicFemale = gMonFrontPic_DonphanF,
         .frontPicSizeFemale = MON_COORDS_SIZE(64, 48),
         .backPicFemale = gMonBackPic_DonphanF,
         .backPicSizeFemale = MON_COORDS_SIZE(64, 48),
-#endif //P_GENDER_DIFFERENCES
+#endif //P_GENDER_DIFFERENCES && !P_GBA_STYLE_SPECIES_GFX
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(7, 2, SHADOW_SIZE_L)
         FOOTPRINT(Donphan)
         OVERWORLD(
@@ -7827,7 +8051,9 @@ const struct SpeciesInfo gSpeciesInfoGen2[] =
         .levelUpLearnset = sStantlerLevelUpLearnset,
         .teachableLearnset = sStantlerTeachableLearnset,
         .eggMoveLearnset = sStantlerEggMoveLearnset,
+    #if P_GEN_8_CROSS_EVOS
         .evolutions = EVOLUTION({EVO_LEVEL, 0, SPECIES_WYRDEER, CONDITIONS({IF_USED_MOVE_X_TIMES, MOVE_PSYSHIELD_BASH, 20})}),
+    #endif
     },
 
 #if P_GEN_8_CROSS_EVOS

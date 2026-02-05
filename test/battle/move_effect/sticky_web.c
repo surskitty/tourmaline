@@ -300,7 +300,8 @@ DOUBLE_BATTLE_TEST("Sticky Web setter has their speed lowered with Mirror Armor 
     }
 }
 
-SINGLE_BATTLE_TEST("Sticky Web raises Speed by 1 for a Pokemon with Contrary (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Sticky Web raises Speed by 1 for a Pokemon with Contrary (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -323,7 +324,7 @@ SINGLE_BATTLE_TEST("Sticky Web raises Speed by 1 for a Pokemon with Contrary (Tr
 #define BATTLER_OPPONENT (opponentSetUpper == 0 ? opponentLeft : opponentRight)
 #define BATTLER_PLAYER (playerSetUpper == 0 ? playerLeft : playerRight)
 
-DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - the battler which set up Sticky Web has its Speed lowered instead (Trait)")
+DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - the battler which set up Sticky Web has its Speed lowered instead (Traits)")
 {
     u8 playerSetUpper, opponentSetUpper; // 0 left, 1 right
 
@@ -369,7 +370,7 @@ DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - the 
 #undef BATTLER_OPPONENT
 #undef BATTLER_PLAYER
 
-DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - no one has their Speed lowered if the set upper switched (Trait)")
+DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - no one has their Speed lowered if the set upper switched (Traits)")
 {
     u16 speedPlayer, speedOpponent;
 
@@ -413,7 +414,7 @@ DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - no o
     }
 }
 
-DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - no one has their Speed lowered if the set upper fainted (Trait)")
+DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - no one has their Speed lowered if the set upper fainted (Traits)")
 {
     bool8 hasReplacement;
 
@@ -464,7 +465,7 @@ DOUBLE_BATTLE_TEST("Sticky Web has correct interactions with Mirror Armor - no o
     }
 }
 
-DOUBLE_BATTLE_TEST("Sticky Web setter has their speed lowered with Mirror Armor even after Ally Switch (Trait)")
+DOUBLE_BATTLE_TEST("Sticky Web setter has their speed lowered with Mirror Armor even after Ally Switch (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_SQUIRTLE);
@@ -491,3 +492,4 @@ DOUBLE_BATTLE_TEST("Sticky Web setter has their speed lowered with Mirror Armor 
         MESSAGE("The opposing Caterpie's Speed fell!");
     }
 }
+#endif

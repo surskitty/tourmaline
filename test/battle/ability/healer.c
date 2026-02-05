@@ -48,7 +48,8 @@ DOUBLE_BATTLE_TEST("Healer cures status condition before burn or poison damage i
 // Triple battles
 TO_DO_BATTLE_TEST("Healer has a 30% chance of curing each of its ally's status conditions independently");
 
-DOUBLE_BATTLE_TEST("Healer cures adjacent ally's status condition 30% of the time (Trait)")
+#if MAX_MON_TRAITS > 1
+DOUBLE_BATTLE_TEST("Healer cures adjacent ally's status condition 30% of the time (Traits)")
 {
     u16 status;
     PARAMETRIZE { status = STATUS1_SLEEP; }
@@ -63,7 +64,7 @@ DOUBLE_BATTLE_TEST("Healer cures adjacent ally's status condition 30% of the tim
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { Status1(status); }
-        OPPONENT(SPECIES_CHANSEY) { Ability(ABILITY_NATURAL_CURE); Innates(ABILITY_HEALER); }
+        OPPONENT(SPECIES_CHANSEY) { Ability(ABILITY_SERENE_GRACE); Innates(ABILITY_HEALER); }
     } WHEN {
         TURN { }
     } SCENE {
@@ -71,7 +72,7 @@ DOUBLE_BATTLE_TEST("Healer cures adjacent ally's status condition 30% of the tim
     }
 }
 
-DOUBLE_BATTLE_TEST("Healer cures status condition before burn or poison damage is dealt (Trait)")
+DOUBLE_BATTLE_TEST("Healer cures status condition before burn or poison damage is dealt (Traits)")
 {
     u16 status;
     PARAMETRIZE { status = STATUS1_POISON; }
@@ -83,7 +84,7 @@ DOUBLE_BATTLE_TEST("Healer cures status condition before burn or poison damage i
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); Status1(status); }
-        OPPONENT(SPECIES_CHANSEY) { Ability(ABILITY_NATURAL_CURE); Innates(ABILITY_HEALER); }
+        OPPONENT(SPECIES_CHANSEY) { Ability(ABILITY_SERENE_GRACE); Innates(ABILITY_HEALER); }
     } WHEN {
         TURN {}
     } SCENE {
@@ -93,4 +94,5 @@ DOUBLE_BATTLE_TEST("Healer cures status condition before burn or poison damage i
 }
 
 // Triple battles
-TO_DO_BATTLE_TEST("Healer has a 30% chance of curing each of its ally's status conditions independently (Trait)");
+TO_DO_BATTLE_TEST("Healer has a 30% chance of curing each of its ally's status conditions independently (Traits)");
+#endif

@@ -20,6 +20,8 @@ SINGLE_BATTLE_TEST("Roar switches the target with a random non-fainted replaceme
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_ROAR, player);
         MESSAGE("The opposing Bulbasaur was dragged out!");
+    } THEN {
+        EXPECT_EQ(gLastUsedMove, MOVE_ROAR);
     }
 }
 
@@ -104,11 +106,12 @@ SINGLE_BATTLE_TEST("Roar fails to switch out target with Suction Cups")
     }
 }
 
-SINGLE_BATTLE_TEST("Roar fails against target with Guard Dog (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Roar fails against target with Guard Dog (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_OKIDOGI) { Ability(ABILITY_TOXIC_CHAIN); Innates(ABILITY_GUARD_DOG); }
+        OPPONENT(SPECIES_OKIDOGI) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_GUARD_DOG); }
         OPPONENT(SPECIES_CHARMANDER);
     } WHEN {
         TURN { MOVE(player, MOVE_ROAR); }
@@ -122,11 +125,11 @@ SINGLE_BATTLE_TEST("Roar fails against target with Guard Dog (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Roar fails to switch out target with Suction Cups (Trait)")
+SINGLE_BATTLE_TEST("Roar fails to switch out target with Suction Cups (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_OCTILLERY) { Ability(ABILITY_MOODY); Innates(ABILITY_SUCTION_CUPS); }
+        OPPONENT(SPECIES_OCTILLERY) { Ability(ABILITY_SNIPER); Innates(ABILITY_SUCTION_CUPS); }
         OPPONENT(SPECIES_CHARMANDER);
     } WHEN {
         TURN { MOVE(player, MOVE_ROAR); }
@@ -138,3 +141,4 @@ SINGLE_BATTLE_TEST("Roar fails to switch out target with Suction Cups (Trait)")
         NOT MESSAGE("The opposing Charmander was dragged out!");
     }
 }
+#endif

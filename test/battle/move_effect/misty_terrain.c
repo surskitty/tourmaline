@@ -88,7 +88,21 @@ SINGLE_BATTLE_TEST("Misty Terrain lasts for 5 turns")
     }
 }
 
-SINGLE_BATTLE_TEST("Misty Terrain protects grounded battlers from non-volatile status conditions (Trait)")
+SINGLE_BATTLE_TEST("Misty Terrain will fail if there is one already on the field")
+{
+    GIVEN {
+        PLAYER(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        TURN { MOVE(player, MOVE_MISTY_TERRAIN); MOVE(opponent, MOVE_MISTY_TERRAIN); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_MISTY_TERRAIN, player);
+        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_MISTY_TERRAIN, opponent);
+    }
+}
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Misty Terrain protects grounded battlers from non-volatile status conditions (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -105,3 +119,4 @@ SINGLE_BATTLE_TEST("Misty Terrain protects grounded battlers from non-volatile s
         STATUS_ICON(opponent, badPoison: TRUE);
     }
 }
+#endif

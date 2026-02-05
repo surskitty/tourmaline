@@ -49,11 +49,12 @@ SINGLE_BATTLE_TEST("Alluring Voice confuse effect is removed if it is Sheer Forc
     }
 }
 
-SINGLE_BATTLE_TEST("Alluring Voice confuse effect is removed if it is Sheer Force boosted (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Alluring Voice confuse effect is removed if it is Sheer Force boosted (Traits)")
 {
     GIVEN {
         ASSUME(MoveHasAdditionalEffect(MOVE_ALLURING_VOICE, MOVE_EFFECT_CONFUSION));
-        PLAYER(SPECIES_NIDOKING) { Ability(ABILITY_POISON_POINT); Innates(ABILITY_SHEER_FORCE); }
+        PLAYER(SPECIES_NIDOKING) { Ability(ABILITY_RIVALRY); Innates(ABILITY_SHEER_FORCE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SWORDS_DANCE); MOVE(player, MOVE_ALLURING_VOICE); }
@@ -67,3 +68,4 @@ SINGLE_BATTLE_TEST("Alluring Voice confuse effect is removed if it is Sheer Forc
         }
     }
 }
+#endif

@@ -44,35 +44,8 @@ SINGLE_BATTLE_TEST("Sand Veil doesn't increase evasion if Cloud Nine/Air Lock is
     }
 }
 
-SINGLE_BATTLE_TEST("Sand Veil prevents damage from sandstorm (Trait)")
-{
-    GIVEN {
-        PLAYER(SPECIES_CACNEA) { Ability(ABILITY_SAND_RUSH); Innates(ABILITY_SAND_VEIL); }
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(opponent, MOVE_SANDSTORM); }
-        TURN {}
-    } SCENE {
-        NONE_OF { HP_BAR(player); }
-    }
-}
-
-SINGLE_BATTLE_TEST("Sand Veil increases evasion during sandstorm (Trait)")
-{
-    PASSES_RANDOMLY(4, 5, RNG_ACCURACY);
-    GIVEN {
-        ASSUME(GetMoveAccuracy(MOVE_POUND) == 100);
-        PLAYER(SPECIES_SANDSHREW) { Ability(ABILITY_SAND_RUSH); Innates(ABILITY_SAND_VEIL); }
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(opponent, MOVE_SANDSTORM); }
-        TURN { MOVE(opponent, MOVE_POUND); }
-    } SCENE {
-        HP_BAR(player);
-    }
-}
-
-SINGLE_BATTLE_TEST("Sand Veil prevents damage from sandstorm (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Sand Veil prevents damage from sandstorm (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_CACNEA) { Ability(ABILITY_WATER_ABSORB); Innates(ABILITY_SAND_VEIL); }
@@ -85,7 +58,7 @@ SINGLE_BATTLE_TEST("Sand Veil prevents damage from sandstorm (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Sand Veil increases evasion during sandstorm (Trait)")
+SINGLE_BATTLE_TEST("Sand Veil increases evasion during sandstorm (Traits)")
 {
     PASSES_RANDOMLY(4, 5, RNG_ACCURACY);
     GIVEN {
@@ -100,7 +73,7 @@ SINGLE_BATTLE_TEST("Sand Veil increases evasion during sandstorm (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Sand Veil doesn't increase evasion if Cloud Nine/Air Lock is on the field (Trait)")
+SINGLE_BATTLE_TEST("Sand Veil doesn't increase evasion if Cloud Nine/Air Lock is on the field (Traits)")
 {
     PASSES_RANDOMLY(5, 5, RNG_ACCURACY);
     GIVEN {
@@ -114,31 +87,4 @@ SINGLE_BATTLE_TEST("Sand Veil doesn't increase evasion if Cloud Nine/Air Lock is
         HP_BAR(player);
     }
 }
-
-SINGLE_BATTLE_TEST("Sand Veil prevents damage from sandstorm (Trait)")
-{
-    GIVEN {
-        PLAYER(SPECIES_CACNEA) { Ability(ABILITY_WATER_ABSORB); Innates(ABILITY_SAND_VEIL); }
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(opponent, MOVE_SANDSTORM); }
-        TURN {}
-    } SCENE {
-        NONE_OF { HP_BAR(player); }
-    }
-}
-
-SINGLE_BATTLE_TEST("Sand Veil increases evasion during sandstorm (Trait)")
-{
-    PASSES_RANDOMLY(4, 5, RNG_ACCURACY);
-    GIVEN {
-        ASSUME(GetMoveAccuracy(MOVE_POUND) == 100);
-        PLAYER(SPECIES_SANDSHREW) { Ability(ABILITY_SAND_RUSH); Innates(ABILITY_SAND_VEIL); }
-        OPPONENT(SPECIES_WOBBUFFET);
-    } WHEN {
-        TURN { MOVE(opponent, MOVE_SANDSTORM); }
-        TURN { MOVE(opponent, MOVE_POUND); }
-    } SCENE {
-        HP_BAR(player);
-    }
-}
+#endif

@@ -14,7 +14,8 @@ SINGLE_BATTLE_TEST("Merciless causes a move to result in a critical hit if the t
     }
 }
 
-SINGLE_BATTLE_TEST("Merciless causes a move to result in a critical hit if the target is poisoned (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Merciless causes a move to result in a critical hit if the target is poisoned (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_MAREANIE) { Ability(ABILITY_LIMBER); Innates(ABILITY_MERCILESS); }
@@ -26,3 +27,4 @@ SINGLE_BATTLE_TEST("Merciless causes a move to result in a critical hit if the t
         MESSAGE("A critical hit!");
     }
 }
+#endif

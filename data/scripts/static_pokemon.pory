@@ -35,7 +35,7 @@ script Common_PokemonScript_WildNosepass {
     default:
         playmoncry(VAR_0x8004, CRY_MODE_WEAK)
         bufferspeciesname(STR_VAR_1, VAR_0x8004)
-        setvar(B_VAR_STARTING_STATUS, STARTING_STATUS_STARTLED_OPPONENT)
+        setvar(B_VAR_STARTING_STATUS, STARTING_STATUS_SLEEPING_OPPONENT)
         msgbox(format("You ambushed the wild {STR_VAR_1}!"), MSGBOX_DEFAULT)
     }
     waitmoncry

@@ -170,7 +170,7 @@ SINGLE_BATTLE_TEST("Red Card does not activate if stolen by a move")
     bool32 activate;
     PARAMETRIZE { item = ITEM_NONE; activate = FALSE; }
     PARAMETRIZE { item = ITEM_POTION; activate = TRUE; }
-    ASSUME(MoveHasAdditionalEffect(MOVE_THIEF, MOVE_EFFECT_STEAL_ITEM) == TRUE);
+    ASSUME(GetMoveEffect(MOVE_THIEF) == EFFECT_STEAL_ITEM);
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_RED_CARD); }
@@ -455,7 +455,7 @@ SINGLE_BATTLE_TEST("Red Card does not cause the dragged out mon to lose hp due t
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_HELD_ITEM_EFFECT, opponent);
         MESSAGE("The opposing Wobbuffet held up its Red Card against Wobbuffet!");
         MESSAGE("Wynaut was dragged out!");
-        NOT MESSAGE("Wynaut was hurt by its Life Orb!");
+        NOT HP_BAR(player);
     }
 }
 
@@ -539,7 +539,8 @@ SINGLE_BATTLE_TEST("Red Card activates before Eject Pack")
     }
 }
 
-SINGLE_BATTLE_TEST("Red Card does not activate if stolen by Magician (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Red Card does not activate if stolen by Magician (Traits)")
 {
     u32 item;
     bool32 activate;
@@ -568,12 +569,12 @@ SINGLE_BATTLE_TEST("Red Card does not activate if stolen by Magician (Trait)")
     }
 }
 
-DOUBLE_BATTLE_TEST("Red Card activates but fails if the attacker has Suction Cups (Trait)")
+DOUBLE_BATTLE_TEST("Red Card activates but fails if the attacker has Suction Cups (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_RED_CARD); }
         PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_OCTILLERY) { Ability(ABILITY_MOODY); Innates(ABILITY_SUCTION_CUPS); }
+        OPPONENT(SPECIES_OCTILLERY) { Ability(ABILITY_SNIPER); Innates(ABILITY_SUCTION_CUPS); }
         OPPONENT(SPECIES_WYNAUT);
         OPPONENT(SPECIES_UNOWN);
     } WHEN {
@@ -597,7 +598,7 @@ DOUBLE_BATTLE_TEST("Red Card activates but fails if the attacker has Suction Cup
     }
 }
 
-DOUBLE_BATTLE_TEST("Red Card activates but fails if the attacker has Guard Dog (Trait)")
+DOUBLE_BATTLE_TEST("Red Card activates but fails if the attacker has Guard Dog (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_RED_CARD); }
@@ -625,7 +626,7 @@ DOUBLE_BATTLE_TEST("Red Card activates but fails if the attacker has Guard Dog (
     }
 }
 
-SINGLE_BATTLE_TEST("Red Card does not activate if attacker's Sheer Force applied (Trait)")
+SINGLE_BATTLE_TEST("Red Card does not activate if attacker's Sheer Force applied (Traits)")
 {
     u32 move;
     bool32 activate;
@@ -652,7 +653,7 @@ SINGLE_BATTLE_TEST("Red Card does not activate if attacker's Sheer Force applied
     }
 }
 
-SINGLE_BATTLE_TEST("Red Card prevents Emergency Exit activation when triggered (Trait)")
+SINGLE_BATTLE_TEST("Red Card prevents Emergency Exit activation when triggered (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -668,3 +669,4 @@ SINGLE_BATTLE_TEST("Red Card prevents Emergency Exit activation when triggered (
         NOT ABILITY_POPUP(opponent, ABILITY_EMERGENCY_EXIT);
     }
 }
+#endif

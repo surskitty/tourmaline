@@ -252,8 +252,8 @@ SINGLE_BATTLE_TEST("Shell Bell restores 1/8 HP at move end, one strike")
     hpGainActual = min(maxHp - hp, hpGainFromDamage);
 
     GIVEN {
-        ASSUME(GetMoveEffect(MOVE_DRAGON_RAGE) == EFFECT_FIXED_DAMAGE_ARG);
-        ASSUME(GetMoveFixedDamage(MOVE_DRAGON_RAGE) == 40);
+        ASSUME(GetMoveEffect(MOVE_DRAGON_RAGE) == EFFECT_FIXED_HP_DAMAGE);
+        ASSUME(GetMoveFixedHPDamage(MOVE_DRAGON_RAGE) == 40);
         PLAYER(SPECIES_WOBBUFFET) { MaxHP(maxHp); HP(hp); Item(ITEM_SHELL_BELL); }
         OPPONENT(SPECIES_WOBBUFFET) { MaxHP(maxHp); HP(opponentHp); }
     } WHEN {
@@ -292,7 +292,8 @@ SINGLE_BATTLE_TEST("Shell Bell recovers only 1 damage if the move only did 1 dam
 TO_DO_BATTLE_TEST("If a Pokémon steals a Shell Bell with Thief or Covet, it will recover HP for the use of that move that stole the Shell Bell")
 TO_DO_BATTLE_TEST("If a Pokémon steals a Shell Bell with Magician, it will recover HP for the use of that move that stole the Shell Bell")
 
-SINGLE_BATTLE_TEST("Shell Bell activates after Rough Skin (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Shell Bell activates after Rough Skin (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_SHELL_BELL); }
@@ -307,3 +308,7 @@ SINGLE_BATTLE_TEST("Shell Bell activates after Rough Skin (Trait)")
         HP_BAR(player);
     }
 }
+
+TO_DO_BATTLE_TEST("If a Pokémon steals a Shell Bell with Thief or Covet, it will recover HP for the use of that move that stole the Shell Bell (Traits)")
+TO_DO_BATTLE_TEST("If a Pokémon steals a Shell Bell with Magician, it will recover HP for the use of that move that stole the Shell Bell (Traits)")
+#endif

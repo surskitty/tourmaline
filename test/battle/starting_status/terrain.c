@@ -3,7 +3,7 @@
 #include "test/battle.h"
 
 #if B_VAR_STARTING_STATUS != 0
-/*
+
 SINGLE_BATTLE_TEST("B_VAR_STARTING_STATUS starts a chosen terrain at the beginning of battle and lasts infinitely long")
 {
     u16 terrain;
@@ -29,19 +29,20 @@ SINGLE_BATTLE_TEST("B_VAR_STARTING_STATUS starts a chosen terrain at the beginni
         TURN { ; }
         TURN { ; }
     } SCENE {
-        switch (terrain) {
-            case STARTING_STATUS_GRASSY_TERRAIN:
-                MESSAGE("Grass grew to cover the battlefield!");
-                break;
-            case STARTING_STATUS_PSYCHIC_TERRAIN:
-                MESSAGE("The battlefield got weird!");
-                break;
-            case STARTING_STATUS_MISTY_TERRAIN:
-                MESSAGE("Mist swirled around the battlefield!");
-                break;
-            case STARTING_STATUS_ELECTRIC_TERRAIN:
-                MESSAGE("An electric current is running across the battlefield!");
-                break;
+        switch (terrain)
+        {
+        case STARTING_STATUS_GRASSY_TERRAIN:
+            MESSAGE("The battlefield is covered with grass!");
+            break;
+        case STARTING_STATUS_PSYCHIC_TERRAIN:
+            MESSAGE("The battlefield seems weird!");
+            break;
+        case STARTING_STATUS_MISTY_TERRAIN:
+            MESSAGE("Mist swirls around the battlefield!");
+            break;
+        case STARTING_STATUS_ELECTRIC_TERRAIN:
+            MESSAGE("An electric current is running across the battlefield!");
+            break;
         }
         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_RESTORE_BG);
         NONE_OF {
@@ -109,5 +110,61 @@ SINGLE_BATTLE_TEST("Terrain started after the one which started the battle lasts
         VarSet(B_VAR_STARTING_STATUS, 0);
     }
 }
-*/
+
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Terrain started after the one which started the battle lasts only 5 turns (Traits)")
+{
+    bool32 viaMove;
+
+    PARAMETRIZE { viaMove = TRUE; }
+    PARAMETRIZE { viaMove = FALSE; }
+
+    VarSet(B_VAR_STARTING_STATUS, STARTING_STATUS_ELECTRIC_TERRAIN);
+    VarSet(B_VAR_STARTING_STATUS_TIMER, 0);
+
+    GIVEN {
+        PLAYER(SPECIES_TAPU_BULU) { Ability(ABILITY_LIGHT_METAL); Innates(viaMove == TRUE ? ABILITY_TELEPATHY : ABILITY_GRASSY_SURGE); }
+        OPPONENT(SPECIES_WOBBUFFET);
+    } WHEN {
+        // More than 5 turns
+        TURN { MOVE(player, viaMove == TRUE ? MOVE_GRASSY_TERRAIN : MOVE_CELEBRATE); }
+        TURN { ; }
+        TURN { ; }
+        TURN { ; }
+        TURN { ; }
+        TURN { ; }
+        TURN { ; }
+    } SCENE {
+        // Electric Terrain at battle's start
+        MESSAGE("An electric current is running across the battlefield!");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_RESTORE_BG);
+        // Player uses Grassy Terrain
+        if (viaMove) {
+            MESSAGE("Tapu Bulu used Grassy Terrain!");
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_GRASSY_TERRAIN, player);
+            MESSAGE("Grass grew to cover the battlefield!");
+        } else {
+            ABILITY_POPUP(player, ABILITY_GRASSY_SURGE);
+            MESSAGE("Grass grew to cover the battlefield!");
+            ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_RESTORE_BG);
+        }
+
+        // 5 turns
+        MESSAGE("Tapu Bulu used Celebrate!");
+        MESSAGE("The opposing Wobbuffet used Celebrate!");
+
+        MESSAGE("Tapu Bulu used Celebrate!");
+        MESSAGE("The opposing Wobbuffet used Celebrate!");
+
+        MESSAGE("Tapu Bulu used Celebrate!");
+        MESSAGE("The opposing Wobbuffet used Celebrate!");
+
+        MESSAGE("The grass disappeared from the battlefield.");
+        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_RESTORE_BG);
+    } THEN {
+        VarSet(B_VAR_STARTING_STATUS, 0);
+    }
+}
 #endif // B_VAR_STARTING_STATUS
+#endif

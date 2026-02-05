@@ -20,7 +20,8 @@ SINGLE_BATTLE_TEST("Shed Skin triggers 33% of the time")
     }
 }
 
-SINGLE_BATTLE_TEST("Shed Skin triggers 33% of the time (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Shed Skin triggers 33% of the time (Traits)")
 {
     if (B_ABILITY_TRIGGER_CHANCE == GEN_4)
         PASSES_RANDOMLY(30, 100, RNG_SHED_SKIN);
@@ -29,7 +30,7 @@ SINGLE_BATTLE_TEST("Shed Skin triggers 33% of the time (Trait)")
     GIVEN {
         ASSUME(MoveMakesContact(MOVE_SCRATCH));
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_ARBOK) { Status1(STATUS1_POISON); Ability(ABILITY_SHED_SKIN); Innates(ABILITY_SHED_SKIN); }
+        OPPONENT(SPECIES_ARBOK) { Status1(STATUS1_POISON); Ability(ABILITY_UNNERVE); Innates(ABILITY_SHED_SKIN); }
     } WHEN {
         TURN;
     } SCENE {
@@ -38,3 +39,4 @@ SINGLE_BATTLE_TEST("Shed Skin triggers 33% of the time (Trait)")
         STATUS_ICON(opponent, poison: FALSE);
     }
 }
+#endif

@@ -97,11 +97,12 @@ DOUBLE_BATTLE_TEST("Cotton Down correctly gets blocked by stat reduction prevent
     }
 }
 
-SINGLE_BATTLE_TEST("Cotton Down drops speed by one of opposing battler if hit by a damaging move (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Cotton Down drops speed by one of opposing battler if hit by a damaging move (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_REGENERATOR); Innates(ABILITY_COTTON_DOWN); }
+        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_EFFECT_SPORE); Innates(ABILITY_COTTON_DOWN); }
     } WHEN {
         TURN { MOVE(player, MOVE_SCRATCH); }
     } SCENE {
@@ -114,11 +115,11 @@ SINGLE_BATTLE_TEST("Cotton Down drops speed by one of opposing battler if hit by
     }
 }
 
-SINGLE_BATTLE_TEST("Cotton Down drops speed by one for each multi hit (Trait)")
+SINGLE_BATTLE_TEST("Cotton Down drops speed by one for each multi hit (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_REGENERATOR); Innates(ABILITY_COTTON_DOWN); }
+        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_EFFECT_SPORE); Innates(ABILITY_COTTON_DOWN); }
     } WHEN {
         TURN { MOVE(player, MOVE_DOUBLE_KICK); }
     } SCENE {
@@ -134,12 +135,12 @@ SINGLE_BATTLE_TEST("Cotton Down drops speed by one for each multi hit (Trait)")
     }
 }
 
-DOUBLE_BATTLE_TEST("Cotton Down drops speed by one of all other battlers on the field (Trait)")
+DOUBLE_BATTLE_TEST("Cotton Down drops speed by one of all other battlers on the field (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_WYNAUT);
-        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_REGENERATOR); Innates(ABILITY_COTTON_DOWN); }
+        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_EFFECT_SPORE); Innates(ABILITY_COTTON_DOWN); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_SCRATCH, target: opponentLeft); }
@@ -159,13 +160,13 @@ DOUBLE_BATTLE_TEST("Cotton Down drops speed by one of all other battlers on the 
     }
 }
 
-DOUBLE_BATTLE_TEST("Cotton Down correctly gets blocked by stat reduction preventing abilities (Trait)")
+DOUBLE_BATTLE_TEST("Cotton Down correctly gets blocked by stat reduction preventing abilities (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_METAGROSS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_CLEAR_BODY); }
         PLAYER(SPECIES_WYNAUT) { Item(ITEM_CLEAR_AMULET); }
-        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_REGENERATOR); Innates(ABILITY_COTTON_DOWN); }
-        OPPONENT(SPECIES_CORVIKNIGHT) { Ability(ABILITY_PRESSURE); Innates(ABILITY_MIRROR_ARMOR); }
+        OPPONENT(SPECIES_ELDEGOSS) { Ability(ABILITY_EFFECT_SPORE); Innates(ABILITY_COTTON_DOWN); }
+        OPPONENT(SPECIES_CORVIKNIGHT) { Ability(ABILITY_UNNERVE); Innates(ABILITY_MIRROR_ARMOR); }
     } WHEN {
         TURN { MOVE(playerLeft, MOVE_SCRATCH, target: opponentLeft); }
     } SCENE {
@@ -192,3 +193,4 @@ DOUBLE_BATTLE_TEST("Cotton Down correctly gets blocked by stat reduction prevent
         EXPECT_EQ(opponentRight->statStages[STAT_SPEED], DEFAULT_STAT_STAGE);
     }
 }
+#endif

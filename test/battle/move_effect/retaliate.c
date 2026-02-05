@@ -21,7 +21,7 @@ SINGLE_BATTLE_TEST("Retaliate doubles in base power the turn after an ally faint
         HP_BAR(opponent, captureDamage: &damage[0]);
         HP_BAR(opponent, captureDamage: &damage[1]);
     } THEN {
-        EXPECT_MUL_EQ(damage[1], Q_4_12(2), damage[0]);
+        EXPECT_MUL_EQ(damage[1], Q_4_12(2.0), damage[0]);
     }
 }
 
@@ -40,7 +40,7 @@ SINGLE_BATTLE_TEST("Retaliate doubles in base power the turn after an ally faint
         HP_BAR(player, captureDamage: &damage[0]);
         HP_BAR(player, captureDamage: &damage[1]);
     } THEN {
-        EXPECT_MUL_EQ(damage[1], Q_4_12(2), damage[0]);
+        EXPECT_MUL_EQ(damage[1], Q_4_12(2.0), damage[0]);
     }
 }
 
@@ -92,7 +92,7 @@ DOUBLE_BATTLE_TEST("Retaliate works with passive damage")
         HP_BAR(opponentRight, captureDamage: &damage[0]);
         HP_BAR(opponentRight, captureDamage: &damage[1]);
     } THEN {
-        EXPECT_MUL_EQ(damage[1], Q_4_12(2), damage[0]);
+        EXPECT_MUL_EQ(damage[1], Q_4_12(2.0), damage[0]);
     }
 }
 
@@ -115,7 +115,7 @@ SINGLE_BATTLE_TEST("Retaliate works with Perish Song")
         HP_BAR(opponent, captureDamage: &damage[0]);
         HP_BAR(opponent, captureDamage: &damage[1]);
     } THEN {
-        EXPECT_MUL_EQ(damage[1], Q_4_12(2), damage[0]);
+        EXPECT_MUL_EQ(damage[1], Q_4_12(2.0), damage[0]);
     }
 }
 
@@ -135,11 +135,12 @@ SINGLE_BATTLE_TEST("Retaliate works with self-inflicted fainting")
         HP_BAR(opponent, captureDamage: &damage[0]);
         HP_BAR(opponent, captureDamage: &damage[1]);
     } THEN {
-        EXPECT_MUL_EQ(damage[1], Q_4_12(2), damage[0]);
+        EXPECT_MUL_EQ(damage[1], Q_4_12(2.0), damage[0]);
     }
 }
 
-DOUBLE_BATTLE_TEST("Retaliate works with passive damage (Trait)")
+#if MAX_MON_TRAITS > 1
+DOUBLE_BATTLE_TEST("Retaliate works with passive damage (Traits)")
 {
     s16 damage[2];
     u32 move;
@@ -175,8 +176,8 @@ DOUBLE_BATTLE_TEST("Retaliate works with passive damage (Trait)")
         PLAYER(SPECIES_WYNAUT) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_SHADOW_TAG); HP(18); }
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_SHADOW_TAG); }
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_CLEFABLE) { Ability(ABILITY_UNAWARE); Innates(ABILITY_MAGIC_GUARD); Level(1); }
-        OPPONENT(SPECIES_CLEFABLE) { Ability(ABILITY_UNAWARE); Innates(ABILITY_MAGIC_GUARD); }
+        OPPONENT(SPECIES_CLEFABLE) { Ability(ABILITY_FRIEND_GUARD); Innates(ABILITY_MAGIC_GUARD); Level(1); }
+        OPPONENT(SPECIES_CLEFABLE) { Ability(ABILITY_FRIEND_GUARD); Innates(ABILITY_MAGIC_GUARD); }
     } WHEN {
         TURN { MOVE(opponentRight, move2, target: moveTarget); MOVE(opponentLeft, move, target: moveTarget); MOVE(playerLeft, MOVE_CELEBRATE); SEND_OUT(playerLeft, 2); }
         TURN { MOVE(opponentRight, MOVE_CELEBRATE, target: moveTarget); MOVE(playerLeft, MOVE_RETALIATE, target: opponentRight); }
@@ -191,7 +192,7 @@ DOUBLE_BATTLE_TEST("Retaliate works with passive damage (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Retaliate works with Perish Song (Trait)")
+SINGLE_BATTLE_TEST("Retaliate works with Perish Song (Traits)")
 {
     s16 damage[2];
     GIVEN {
@@ -213,3 +214,4 @@ SINGLE_BATTLE_TEST("Retaliate works with Perish Song (Trait)")
         EXPECT_MUL_EQ(damage[1], Q_4_12(2), damage[0]);
     }
 }
+#endif

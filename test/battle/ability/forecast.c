@@ -157,7 +157,8 @@ DOUBLE_BATTLE_TEST("Forecast transforms all Castforms present in weather")
 
 SINGLE_BATTLE_TEST("Forecast transforms Castform in weather from an ability")
 {
-    u32 species, ability;
+    u32 species;
+    enum Ability ability;
     PARAMETRIZE { species = SPECIES_KYOGRE; ability = ABILITY_DRIZZLE; }
     PARAMETRIZE { species = SPECIES_GROUDON; ability = ABILITY_DROUGHT; }
     PARAMETRIZE { species = SPECIES_ABOMASNOW; ability = ABILITY_SNOW_WARNING; }
@@ -183,13 +184,16 @@ SINGLE_BATTLE_TEST("Forecast transforms Castform in weather from an ability")
         case ABILITY_SNOW_WARNING:
             EXPECT_EQ(player->species, SPECIES_CASTFORM_SNOWY);
             break;
+        default:
+            break;
         }
     }
 }
 
 SINGLE_BATTLE_TEST("Forecast transforms Castform in primal weather")
 {
-    u32 species, item, ability;
+    u32 species, item;
+    enum Ability ability;
     PARAMETRIZE { species = SPECIES_KYOGRE; ability = ABILITY_PRIMORDIAL_SEA; item = ITEM_BLUE_ORB; }
     PARAMETRIZE { species = SPECIES_GROUDON; ability = ABILITY_DESOLATE_LAND; item = ITEM_RED_ORB; }
     GIVEN {
@@ -211,6 +215,8 @@ SINGLE_BATTLE_TEST("Forecast transforms Castform in primal weather")
             break;
         case ABILITY_PRIMORDIAL_SEA:
             EXPECT_EQ(player->species, SPECIES_CASTFORM_RAINY);
+            break;
+        default:
             break;
         }
     }
@@ -266,7 +272,8 @@ SINGLE_BATTLE_TEST("Forecast transforms Castform back to normal when Sandstorm i
 
 SINGLE_BATTLE_TEST("Forecast transforms Castform back to normal under Cloud Nine/Air Lock")
 {
-    u32 species = 0, ability = 0;
+    u32 species = 0;
+    enum Ability ability = 0;
     PARAMETRIZE { species = SPECIES_PSYDUCK;  ability = ABILITY_CLOUD_NINE; }
     PARAMETRIZE { species = SPECIES_RAYQUAZA; ability = ABILITY_AIR_LOCK; }
     GIVEN {
@@ -400,7 +407,8 @@ SINGLE_BATTLE_TEST("Forecast transforms Castform back when it uses a move that f
 
 SINGLE_BATTLE_TEST("Forecast transforms Castform when Cloud Nine ability user leaves the field")
 {
-    u32 species = 0, ability = 0;
+    u32 species = 0;
+    enum Ability ability = 0;
     PARAMETRIZE { species = SPECIES_PSYDUCK;  ability = ABILITY_CLOUD_NINE; }
     PARAMETRIZE { species = SPECIES_RAYQUAZA; ability = ABILITY_AIR_LOCK; }
 
@@ -419,7 +427,28 @@ SINGLE_BATTLE_TEST("Forecast transforms Castform when Cloud Nine ability user le
         MESSAGE("Castform transformed!");
     }
 }
-SINGLE_BATTLE_TEST("Forecast transforms Castform in weather from an opponent's move")
+
+DOUBLE_BATTLE_TEST("Forecast reverts Castform back after Teraform Zero clears weather")
+{
+    GIVEN {
+        PLAYER(SPECIES_TERAPAGOS_TERASTAL);
+        PLAYER(SPECIES_CASTFORM) { Ability(ABILITY_FORECAST); }
+        OPPONENT(SPECIES_KYOGRE) { Ability(ABILITY_DRIZZLE); }
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_CELEBRATE, gimmick: GIMMICK_TERA); }
+    } SCENE {
+        ABILITY_POPUP(opponentLeft, ABILITY_DRIZZLE);
+        ABILITY_POPUP(playerRight, ABILITY_FORECAST);
+        ABILITY_POPUP(playerLeft, ABILITY_TERAFORM_ZERO);
+        ABILITY_POPUP(playerRight, ABILITY_FORECAST);
+    } THEN {
+        EXPECT_EQ(playerRight->species, SPECIES_CASTFORM_NORMAL);
+    }
+}
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Forecast transforms Castform in weather from an opponent's move (Traits)")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_SUNNY_DAY; }
@@ -427,7 +456,7 @@ SINGLE_BATTLE_TEST("Forecast transforms Castform in weather from an opponent's m
     PARAMETRIZE { move = MOVE_HAIL; }
     PARAMETRIZE { move = MOVE_SNOWSCAPE; }
     GIVEN {
-        PLAYER(SPECIES_CASTFORM_NORMAL) { Ability(ABILITY_FORECAST); }
+        PLAYER(SPECIES_CASTFORM_NORMAL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FORECAST); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, move); }
@@ -452,7 +481,7 @@ SINGLE_BATTLE_TEST("Forecast transforms Castform in weather from an opponent's m
     }
 }
 
-SINGLE_BATTLE_TEST("Forecast transforms Castform in weather from its own move (Trait)")
+SINGLE_BATTLE_TEST("Forecast transforms Castform in weather from its own move (Traits)")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_SUNNY_DAY; }
@@ -485,7 +514,7 @@ SINGLE_BATTLE_TEST("Forecast transforms Castform in weather from its own move (T
     }
 }
 
-DOUBLE_BATTLE_TEST("Forecast transforms Castform in weather from a partner's move (Trait)")
+DOUBLE_BATTLE_TEST("Forecast transforms Castform in weather from a partner's move (Traits)")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_SUNNY_DAY; }
@@ -520,7 +549,7 @@ DOUBLE_BATTLE_TEST("Forecast transforms Castform in weather from a partner's mov
     }
 }
 
-DOUBLE_BATTLE_TEST("Forecast transforms all Castforms present in weather (Trait)")
+DOUBLE_BATTLE_TEST("Forecast transforms all Castforms present in weather (Traits)")
 {
     u32 move;
     PARAMETRIZE { move = MOVE_SUNNY_DAY; }
@@ -573,9 +602,10 @@ DOUBLE_BATTLE_TEST("Forecast transforms all Castforms present in weather (Trait)
     }
 }
 
-SINGLE_BATTLE_TEST("Forecast transforms Castform in weather from an ability (Trait)")
+SINGLE_BATTLE_TEST("Forecast transforms Castform in weather from an ability (Traits)")
 {
-    u32 species, ability;
+    u32 species;
+    enum Ability ability;
     PARAMETRIZE { species = SPECIES_KYOGRE; ability = ABILITY_DRIZZLE; }
     PARAMETRIZE { species = SPECIES_GROUDON; ability = ABILITY_DROUGHT; }
     PARAMETRIZE { species = SPECIES_ABOMASNOW; ability = ABILITY_SNOW_WARNING; }
@@ -601,13 +631,16 @@ SINGLE_BATTLE_TEST("Forecast transforms Castform in weather from an ability (Tra
         case ABILITY_SNOW_WARNING:
             EXPECT_EQ(player->species, SPECIES_CASTFORM_SNOWY);
             break;
+        default:
+            break;
         }
     }
 }
 
-SINGLE_BATTLE_TEST("Forecast transforms Castform in primal weather (Trait)")
+SINGLE_BATTLE_TEST("Forecast transforms Castform in primal weather (Traits)")
 {
-    u32 species, item, ability;
+    u32 species, item;
+    enum Ability ability;
     PARAMETRIZE { species = SPECIES_KYOGRE; ability = ABILITY_PRIMORDIAL_SEA; item = ITEM_BLUE_ORB; }
     PARAMETRIZE { species = SPECIES_GROUDON; ability = ABILITY_DESOLATE_LAND; item = ITEM_RED_ORB; }
     GIVEN {
@@ -630,11 +663,13 @@ SINGLE_BATTLE_TEST("Forecast transforms Castform in primal weather (Trait)")
         case ABILITY_PRIMORDIAL_SEA:
             EXPECT_EQ(player->species, SPECIES_CASTFORM_RAINY);
             break;
+        default:
+            break;
         }
     }
 }
 
-SINGLE_BATTLE_TEST("Forecast transforms Castform back to normal when weather expires (Trait)")
+SINGLE_BATTLE_TEST("Forecast transforms Castform back to normal when weather expires (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_CASTFORM_NORMAL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FORECAST); }
@@ -660,7 +695,7 @@ SINGLE_BATTLE_TEST("Forecast transforms Castform back to normal when weather exp
     }
 }
 
-SINGLE_BATTLE_TEST("Forecast transforms Castform back to normal when Sandstorm is active (Trait)")
+SINGLE_BATTLE_TEST("Forecast transforms Castform back to normal when Sandstorm is active (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_CASTFORM_NORMAL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FORECAST); }
@@ -682,15 +717,16 @@ SINGLE_BATTLE_TEST("Forecast transforms Castform back to normal when Sandstorm i
     }
 }
 
-SINGLE_BATTLE_TEST("Forecast transforms Castform back to normal under Cloud Nine/Air Lock (Trait)")
+SINGLE_BATTLE_TEST("Forecast transforms Castform back to normal under Cloud Nine/Air Lock (Traits)")
 {
-    u32 species = 0, ability = 0;
+    u32 species = 0;
+    enum Ability ability = 0;
     PARAMETRIZE { species = SPECIES_PSYDUCK;  ability = ABILITY_CLOUD_NINE; }
     PARAMETRIZE { species = SPECIES_RAYQUAZA; ability = ABILITY_AIR_LOCK; }
     GIVEN {
         PLAYER(SPECIES_CASTFORM_NORMAL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FORECAST); }
         OPPONENT(SPECIES_WOBBUFFET);
-        OPPONENT(species) { Ability(ABILITY_DAMP); Innates(ability); }
+        OPPONENT(species) { Ability(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_RAIN_DANCE); }
         TURN { SWITCH(opponent, 1); }
@@ -709,7 +745,7 @@ SINGLE_BATTLE_TEST("Forecast transforms Castform back to normal under Cloud Nine
     }
 }
 
-SINGLE_BATTLE_TEST("Forecast transforms Castform on switch-in (Trait)")
+SINGLE_BATTLE_TEST("Forecast transforms Castform on switch-in (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -730,7 +766,7 @@ SINGLE_BATTLE_TEST("Forecast transforms Castform on switch-in (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Forecast transforms Castform when weather changes (Trait)")
+SINGLE_BATTLE_TEST("Forecast transforms Castform when weather changes (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_CASTFORM_NORMAL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FORECAST); }
@@ -752,30 +788,7 @@ SINGLE_BATTLE_TEST("Forecast transforms Castform when weather changes (Trait)")
     }
 }
 
-//Not needed since supression is Ability only
-// SINGLE_BATTLE_TEST("Forecast transforms Castform back to normal when its ability is suppressed (Trait)")
-// {
-//     GIVEN {
-//         ASSUME(B_WEATHER_FORMS >= GEN_5);
-//         PLAYER(SPECIES_CASTFORM_NORMAL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FORECAST); }
-//         OPPONENT(SPECIES_WOBBUFFET);
-//     } WHEN {
-//         TURN { MOVE(opponent, MOVE_SUNNY_DAY); }
-//         TURN { MOVE(opponent, MOVE_GASTRO_ACID); }
-//     } SCENE {
-//         // transforms in sun
-//         ABILITY_POPUP(player, ABILITY_FORECAST);
-//         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FORM_CHANGE, player);
-//         MESSAGE("Castform transformed!");
-//         // back to normal
-//         ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_FORM_CHANGE, player);
-//         MESSAGE("Castform transformed!");
-//     } THEN {
-//         EXPECT_EQ(player->species, SPECIES_CASTFORM_NORMAL);
-//     }
-// }
-
-SINGLE_BATTLE_TEST("Forecast transforms Castform back when it switches out (Trait)")
+SINGLE_BATTLE_TEST("Forecast transforms Castform back when it switches out (Traits)")
 {
     GIVEN {
         ASSUME(B_WEATHER_FORMS >= GEN_5);
@@ -796,7 +809,7 @@ SINGLE_BATTLE_TEST("Forecast transforms Castform back when it switches out (Trai
     }
 }
 
-SINGLE_BATTLE_TEST("Forecast transforms Castform back when it uses a move that forces it to switch out (Trait)")
+SINGLE_BATTLE_TEST("Forecast transforms Castform back when it uses a move that forces it to switch out (Traits)")
 {
     GIVEN {
         ASSUME(B_WEATHER_FORMS >= GEN_5);
@@ -817,15 +830,16 @@ SINGLE_BATTLE_TEST("Forecast transforms Castform back when it uses a move that f
     }
 }
 
-SINGLE_BATTLE_TEST("Forecast transforms Castform when Cloud Nine ability user leaves the field (Trait)")
+SINGLE_BATTLE_TEST("Forecast transforms Castform when Cloud Nine ability user leaves the field (Traits)")
 {
-    u32 species = 0, ability = 0;
+    u32 species = 0;
+    enum Ability ability = 0;
     PARAMETRIZE { species = SPECIES_PSYDUCK;  ability = ABILITY_CLOUD_NINE; }
     PARAMETRIZE { species = SPECIES_RAYQUAZA; ability = ABILITY_AIR_LOCK; }
 
     GIVEN {
         PLAYER(SPECIES_CASTFORM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FORECAST); }
-        OPPONENT(species) { Ability(ABILITY_DAMP); Innates(ability); }
+        OPPONENT(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_SUNNY_DAY); MOVE(opponent, MOVE_CELEBRATE); }
@@ -838,3 +852,23 @@ SINGLE_BATTLE_TEST("Forecast transforms Castform when Cloud Nine ability user le
         MESSAGE("Castform transformed!");
     }
 }
+
+DOUBLE_BATTLE_TEST("Forecast reverts Castform back after Teraform Zero clears weather (Traits)")
+{
+    GIVEN {
+        PLAYER(SPECIES_TERAPAGOS_TERASTAL);
+        PLAYER(SPECIES_CASTFORM) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_FORECAST); }
+        OPPONENT(SPECIES_KYOGRE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DRIZZLE); }
+        OPPONENT(SPECIES_WYNAUT);
+    } WHEN {
+        TURN { MOVE(playerLeft, MOVE_CELEBRATE, gimmick: GIMMICK_TERA); }
+    } SCENE {
+        ABILITY_POPUP(opponentLeft, ABILITY_DRIZZLE);
+        ABILITY_POPUP(playerRight, ABILITY_FORECAST);
+        ABILITY_POPUP(playerLeft, ABILITY_TERAFORM_ZERO);
+        ABILITY_POPUP(playerRight, ABILITY_FORECAST);
+    } THEN {
+        EXPECT_EQ(playerRight->species, SPECIES_CASTFORM_NORMAL);
+    }
+}
+#endif

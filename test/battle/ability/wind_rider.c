@@ -126,7 +126,8 @@ SINGLE_BATTLE_TEST("Wind Rider absorbs Wind moves and raises Attack by one stage
     }
 }
 
-SINGLE_BATTLE_TEST("Wind Rider raises Attack by one stage if it sets up Tailwind (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Wind Rider raises Attack by one stage if it sets up Tailwind (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -143,7 +144,7 @@ SINGLE_BATTLE_TEST("Wind Rider raises Attack by one stage if it sets up Tailwind
     }
 }
 
-DOUBLE_BATTLE_TEST("Wind Rider raises Attack by one stage if Tailwind is setup by its partner (Trait)")
+DOUBLE_BATTLE_TEST("Wind Rider raises Attack by one stage if Tailwind is setup by its partner (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -162,7 +163,7 @@ DOUBLE_BATTLE_TEST("Wind Rider raises Attack by one stage if Tailwind is setup b
     }
 }
 
-SINGLE_BATTLE_TEST("Wind Rider doesn't raise Attack if opponent sets up Tailwind (Trait)")
+SINGLE_BATTLE_TEST("Wind Rider doesn't raise Attack if opponent sets up Tailwind (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -181,7 +182,7 @@ SINGLE_BATTLE_TEST("Wind Rider doesn't raise Attack if opponent sets up Tailwind
     }
 }
 
-SINGLE_BATTLE_TEST("Wind Rider raises Attack by one stage if switched into Tailwind on its side of the field (Trait)")
+SINGLE_BATTLE_TEST("Wind Rider raises Attack by one stage if switched into Tailwind on its side of the field (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -201,30 +202,7 @@ SINGLE_BATTLE_TEST("Wind Rider raises Attack by one stage if switched into Tailw
     }
 }
 
-SINGLE_BATTLE_TEST("Wind Rider activates when it's no longer effected by Neutralizing Gas (Trait)")
-{
-    GIVEN {
-        PLAYER(SPECIES_WEEZING) { Ability(ABILITY_LEVITATE); Innates(ABILITY_NEUTRALIZING_GAS); }
-        PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_BRAMBLIN) { Ability(ABILITY_WIND_RIDER); }
-    } WHEN {
-        TURN { MOVE(opponent, MOVE_TAILWIND); }
-        TURN { SWITCH(player, 1); }
-    } SCENE {
-        ABILITY_POPUP(player, ABILITY_NEUTRALIZING_GAS);
-        MESSAGE("Neutralizing gas filled the area!");
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TAILWIND, opponent);
-        SWITCH_OUT_MESSAGE("Weezing");
-        MESSAGE("The effects of the neutralizing gas wore off!");
-        ABILITY_POPUP(opponent, ABILITY_WIND_RIDER);
-        ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
-        MESSAGE("The opposing Bramblin's Wind Rider raised its Attack!");
-    } THEN {
-        EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 1);
-    }
-}
-
-SINGLE_BATTLE_TEST("Wind Rider absorbs Wind moves and raises Attack by one stage (Trait)")
+SINGLE_BATTLE_TEST("Wind Rider absorbs Wind moves and raises Attack by one stage (Traits)")
 {
     GIVEN {
         ASSUME(IsWindMove(MOVE_GUST));
@@ -244,3 +222,4 @@ SINGLE_BATTLE_TEST("Wind Rider absorbs Wind moves and raises Attack by one stage
         EXPECT_EQ(opponent->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 1);
     }
 }
+#endif

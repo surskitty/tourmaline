@@ -41,7 +41,7 @@ SINGLE_BATTLE_TEST("Recoil if miss: Jump Kick has 50% recoil on protect")
 SINGLE_BATTLE_TEST("Recoil if miss: Jump Kick has no recoil if no target")
 {
     GIVEN {
-        ASSUME(B_HEALING_WISH_SWITCH >= GEN_5);
+        WITH_CONFIG(CONFIG_HEALING_WISH_SWITCH, GEN_5);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WYNAUT);
@@ -134,7 +134,7 @@ SINGLE_BATTLE_TEST("Recoil if miss: Supercell Slam causes recoil if it is absorb
 
 SINGLE_BATTLE_TEST("Recoil if miss: Disguise doesn't prevent crash damage from Jump Kick into ghost types")
 {
-    u32 ability;
+    enum Ability ability;
     PARAMETRIZE { ability = ABILITY_EARLY_BIRD; }
     PARAMETRIZE { ability = ABILITY_SCRAPPY; }
 
@@ -155,7 +155,8 @@ SINGLE_BATTLE_TEST("Recoil if miss: Disguise doesn't prevent crash damage from J
     }
 }
 
-SINGLE_BATTLE_TEST("Recoil if miss: Supercell Slam causes recoil if it is absorbed (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Recoil if miss: Supercell Slam causes recoil if it is absorbed (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -170,14 +171,14 @@ SINGLE_BATTLE_TEST("Recoil if miss: Supercell Slam causes recoil if it is absorb
     }
 }
 
-SINGLE_BATTLE_TEST("Recoil if miss: Disguise doesn't prevent crash damage from Jump Kick into ghost types (Trait)")
+SINGLE_BATTLE_TEST("Recoil if miss: Disguise doesn't prevent crash damage from Jump Kick into ghost types (Traits)")
 {
-    u32 ability;
+    enum Ability ability;
     PARAMETRIZE { ability = ABILITY_EARLY_BIRD; }
     PARAMETRIZE { ability = ABILITY_SCRAPPY; }
 
     GIVEN {
-        PLAYER(SPECIES_KANGASKHAN) { Ability(ABILITY_LIGHT_METAL); Innates(ability); };
+        PLAYER(SPECIES_KANGASKHAN) { Ability(ABILITY_INNER_FOCUS); Innates(ability); };
         OPPONENT(SPECIES_MIMIKYU_DISGUISED) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_DISGUISE); }
     } WHEN {
         TURN { MOVE(player, MOVE_JUMP_KICK); }
@@ -192,3 +193,4 @@ SINGLE_BATTLE_TEST("Recoil if miss: Disguise doesn't prevent crash damage from J
         }
     }
 }
+#endif

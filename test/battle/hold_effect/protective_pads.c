@@ -9,7 +9,7 @@ ASSUMPTIONS
 
 SINGLE_BATTLE_TEST("Protective Pads protected moves still make direct contact", s16 damage)
 {
-    u32 ability;
+    enum Ability ability;
     PARAMETRIZE { ability = ABILITY_KLUTZ; }
     PARAMETRIZE { ability = ABILITY_FLUFFY; }
     GIVEN {
@@ -111,14 +111,14 @@ SINGLE_BATTLE_TEST("Protective Pads protects from Protect's secondary effects")
     }
 }
 
-SINGLE_BATTLE_TEST("Protective Pads protected moves still make direct contact (Trait)", s16 damage)
+SINGLE_BATTLE_TEST("Protective Pads protected moves still make direct contact", s16 damage)
 {
-    u32 ability;
+    enum Ability ability;
     PARAMETRIZE { ability = ABILITY_KLUTZ; }
     PARAMETRIZE { ability = ABILITY_FLUFFY; }
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Item(ITEM_PROTECTIVE_PADS); }
-        OPPONENT(SPECIES_STUFFUL) { Ability(ABILITY_SNIPER); Innates(ability); }
+        OPPONENT(SPECIES_STUFFUL) { Ability(ABILITY_CUTE_CHARM); Innates(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_SCRATCH); }
     } SCENE {
@@ -129,7 +129,7 @@ SINGLE_BATTLE_TEST("Protective Pads protected moves still make direct contact (T
     }
 }
 
-SINGLE_BATTLE_TEST("Protective Pads doesn't reduce tough claws damage (Trait)", s16 damage)
+SINGLE_BATTLE_TEST("Protective Pads doesn't reduce tough claws damage", s16 damage)
 {
     u32 item;
     PARAMETRIZE { item = ITEM_NONE; }
@@ -147,7 +147,7 @@ SINGLE_BATTLE_TEST("Protective Pads doesn't reduce tough claws damage (Trait)", 
     }
 }
 
-SINGLE_BATTLE_TEST("Protective Pads doesn't invalid unseen fist (Trait)")
+SINGLE_BATTLE_TEST("Protective Pads doesn't invalid unseen fist")
 {
     GIVEN {
         PLAYER(SPECIES_URSHIFU_RAPID_STRIKE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_UNSEEN_FIST); Item(ITEM_PROTECTIVE_PADS); }

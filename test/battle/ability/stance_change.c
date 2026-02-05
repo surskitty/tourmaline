@@ -80,7 +80,8 @@ SINGLE_BATTLE_TEST("Stance Change doesn't change Aegislash to Shield if King's S
     }
 }
 
-SINGLE_BATTLE_TEST("Stance Change changes Aegislash from Shield to Blade when using a damaging move (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Stance Change changes Aegislash from Shield to Blade when using a damaging move (Traits)")
 {
     u16 move;
     PARAMETRIZE { move = MOVE_SCRATCH; }
@@ -110,7 +111,7 @@ SINGLE_BATTLE_TEST("Stance Change changes Aegislash from Shield to Blade when us
     }
 }
 
-SINGLE_BATTLE_TEST("Stance Change changes Aegislash from Blade to Shield when using King's Shield (Trait)")
+SINGLE_BATTLE_TEST("Stance Change changes Aegislash from Blade to Shield when using King's Shield (Traits)")
 {
     u16 move;
     PARAMETRIZE { move = MOVE_PROTECT; }
@@ -139,7 +140,7 @@ SINGLE_BATTLE_TEST("Stance Change changes Aegislash from Blade to Shield when us
     }
 }
 
-SINGLE_BATTLE_TEST("Stance Change doesn't change Aegislash to Shield if King's Shield is called by a different move - Sleep Talk (Trait)")
+SINGLE_BATTLE_TEST("Stance Change doesn't change Aegislash to Shield if King's Shield is called by a different move - Sleep Talk (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SLEEP_TALK) == EFFECT_SLEEP_TALK);
@@ -157,4 +158,4 @@ SINGLE_BATTLE_TEST("Stance Change doesn't change Aegislash to Shield if King's S
         EXPECT_EQ(player->species, SPECIES_AEGISLASH_BLADE);
     }
 }
-
+#endif

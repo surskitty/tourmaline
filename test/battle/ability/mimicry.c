@@ -13,7 +13,7 @@ SINGLE_BATTLE_TEST("Mimicry changes the battler's type based on Terrain")
 {
     u32 j;
     u32 terrainMove = MOVE_NONE;
-    u32 terrainType = TYPE_NONE;
+    enum Type terrainType = TYPE_NONE;
 
     for (j = 0; j < ARRAY_COUNT(terrainData); j++)
         PARAMETRIZE { terrainMove = terrainData[j][0]; terrainType = terrainData[j][1]; }
@@ -51,8 +51,8 @@ SINGLE_BATTLE_TEST("Mimicry restores the battler's types when terrain is removed
     }
 
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_STUNFISK_GALAR].types[0] == TYPE_GROUND);
-        ASSUME(gSpeciesInfo[SPECIES_STUNFISK_GALAR].types[1] == TYPE_STEEL);
+        ASSUME(GetSpeciesType(SPECIES_STUNFISK_GALAR, 0) == TYPE_GROUND);
+        ASSUME(GetSpeciesType(SPECIES_STUNFISK_GALAR, 1) == TYPE_STEEL);
         PLAYER(SPECIES_WOBBUFFET); 
         OPPONENT(SPECIES_STUNFISK_GALAR) { Ability(ABILITY_MIMICRY); }
     } WHEN {
@@ -71,18 +71,73 @@ SINGLE_BATTLE_TEST("Mimicry restores the battler's types when terrain is removed
     }
 }
 
-SINGLE_BATTLE_TEST("Mimicry changes the battler's type based on Terrain (Trait)")
+DOUBLE_BATTLE_TEST("Mimicry can trigger multiple times in a turn")
+{
+    GIVEN {
+        PLAYER(SPECIES_STUNFISK_GALAR) { Speed(50); Ability(ABILITY_MIMICRY); }
+        PLAYER(SPECIES_MORELULL) { Speed(40); }
+        OPPONENT(SPECIES_IGGLYBUFF) { Speed(60); }
+        OPPONENT(SPECIES_BAGON) { Speed(70); }
+    } WHEN {
+        TURN { MOVE(opponentRight, MOVE_ELECTRIC_TERRAIN); MOVE(opponentLeft, MOVE_MISTY_TERRAIN); }
+    } SCENE {
+        MESSAGE("The opposing Bagon used Electric Terrain!");
+        ABILITY_POPUP(playerLeft, ABILITY_MIMICRY);
+        MESSAGE("Stunfisk's type changed to Electric!");
+        // igglybuff
+        MESSAGE("The opposing Igglybuff used Misty Terrain!");
+        ABILITY_POPUP(playerLeft, ABILITY_MIMICRY);
+        MESSAGE("Stunfisk's type changed to Fairy!");
+    } THEN {
+        EXPECT_EQ(gBattleMons[0].types[0], TYPE_FAIRY);
+        EXPECT_EQ(gBattleMons[0].types[1], TYPE_FAIRY);
+        EXPECT_EQ(gBattleMons[0].types[2], TYPE_MYSTERY);
+    }
+}
+
+DOUBLE_BATTLE_TEST("Mimicry triggers after Skill Swap")
+{
+    GIVEN {
+        PLAYER(SPECIES_STUNFISK_GALAR) { Speed(40); Ability(ABILITY_MIMICRY); }
+        PLAYER(SPECIES_SHIFTRY)        { Speed(50); Ability(ABILITY_CHLOROPHYLL); }
+        OPPONENT(SPECIES_SHUCKLE)      { Speed(30); }
+        OPPONENT(SPECIES_CHANSEY)      { Speed(20); }
+    } WHEN {
+        TURN { MOVE(playerRight, MOVE_GRASSY_TERRAIN); }
+        TURN { MOVE(playerRight, MOVE_SKILL_SWAP, target: playerLeft);
+               MOVE(playerLeft,  MOVE_SPLASH);
+             }
+    } SCENE {
+        // turn 1
+        MESSAGE("Shiftry used Grassy Terrain!");
+        ABILITY_POPUP(playerLeft, ABILITY_MIMICRY);
+        MESSAGE("Stunfisk's type changed to Grass!");
+        // turn 2
+        MESSAGE("Shiftry used Skill Swap!");
+        ABILITY_POPUP(playerRight, ABILITY_MIMICRY);
+        MESSAGE("Shiftry's type changed to Grass!");
+        MESSAGE("Stunfisk used Splash!"); // make sure popup occurs before the subsequent move
+    } THEN {
+        EXPECT_EQ(playerLeft->types[0], TYPE_GRASS);
+        EXPECT_EQ(playerLeft->types[1], TYPE_GRASS);
+        EXPECT_EQ(playerRight->types[0], TYPE_GRASS);
+        EXPECT_EQ(playerRight->types[1], TYPE_GRASS);
+    }
+}
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Mimicry changes the battler's type based on Terrain (Traits)")
 {
     u32 j;
     u32 terrainMove = MOVE_NONE;
-    u32 terrainType = TYPE_NONE;
+    enum Type terrainType = TYPE_NONE;
 
     for (j = 0; j < ARRAY_COUNT(terrainData); j++)
         PARAMETRIZE { terrainMove = terrainData[j][0]; terrainType = terrainData[j][1]; }
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_STUNFISK_GALAR) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MIMICRY); }
+        OPPONENT(SPECIES_STUNFISK_GALAR) { Ability(ABILITY_STATIC); Innates(ABILITY_MIMICRY); }
     } WHEN {
         TURN { MOVE(player, terrainMove); }
     } SCENE {
@@ -100,7 +155,7 @@ SINGLE_BATTLE_TEST("Mimicry changes the battler's type based on Terrain (Trait)"
     }
 }
 
-SINGLE_BATTLE_TEST("Mimicry restores the battler's types when terrain is removed by Steel Roller and Ice Spinner (Trait)")
+SINGLE_BATTLE_TEST("Mimicry restores the battler's types when terrain is removed by Steel Roller and Ice Spinner (Traits)")
 {
     u32 j;
     u32 terrainMove = MOVE_NONE;
@@ -113,10 +168,10 @@ SINGLE_BATTLE_TEST("Mimicry restores the battler's types when terrain is removed
     }
 
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_STUNFISK_GALAR].types[0] == TYPE_GROUND);
-        ASSUME(gSpeciesInfo[SPECIES_STUNFISK_GALAR].types[1] == TYPE_STEEL);
+        ASSUME(GetSpeciesType(SPECIES_STUNFISK_GALAR, 0) == TYPE_GROUND);
+        ASSUME(GetSpeciesType(SPECIES_STUNFISK_GALAR, 1) == TYPE_STEEL);
         PLAYER(SPECIES_WOBBUFFET); 
-        OPPONENT(SPECIES_STUNFISK_GALAR) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_MIMICRY); }
+        OPPONENT(SPECIES_STUNFISK_GALAR) { Ability(ABILITY_STATIC); Innates(ABILITY_MIMICRY); }
     } WHEN {
         TURN { MOVE(opponent, terrainMove); MOVE(player, removeTerrainMove); }
     } SCENE {
@@ -132,3 +187,28 @@ SINGLE_BATTLE_TEST("Mimicry restores the battler's types when terrain is removed
         EXPECT_EQ(gBattleMons[B_POSITION_OPPONENT_LEFT].types[1], TYPE_STEEL);
     }
 }
+
+DOUBLE_BATTLE_TEST("Mimicry can trigger multiple times in a turn (Traits)")
+{
+    GIVEN {
+        PLAYER(SPECIES_STUNFISK_GALAR) { Speed(50); Ability(ABILITY_STATIC); Innates(ABILITY_MIMICRY); }
+        PLAYER(SPECIES_MORELULL) { Speed(40); }
+        OPPONENT(SPECIES_IGGLYBUFF) { Speed(60); }
+        OPPONENT(SPECIES_BAGON) { Speed(70); }
+    } WHEN {
+        TURN { MOVE(opponentRight, MOVE_ELECTRIC_TERRAIN); MOVE(opponentLeft, MOVE_MISTY_TERRAIN); }
+    } SCENE {
+        MESSAGE("The opposing Bagon used Electric Terrain!");
+        ABILITY_POPUP(playerLeft, ABILITY_MIMICRY);
+        MESSAGE("Stunfisk's type changed to Electric!");
+        // igglybuff
+        MESSAGE("The opposing Igglybuff used Misty Terrain!");
+        ABILITY_POPUP(playerLeft, ABILITY_MIMICRY);
+        MESSAGE("Stunfisk's type changed to Fairy!");
+    } THEN {
+        EXPECT_EQ(gBattleMons[0].types[0], TYPE_FAIRY);
+        EXPECT_EQ(gBattleMons[0].types[1], TYPE_FAIRY);
+        EXPECT_EQ(gBattleMons[0].types[2], TYPE_MYSTERY);
+    }
+}
+#endif

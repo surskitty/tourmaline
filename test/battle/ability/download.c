@@ -9,7 +9,7 @@ ASSUMPTIONS
 
 SINGLE_BATTLE_TEST("Download raises Attack if player has lower Def than Sp. Def", s16 damage)
 {
-    u32 ability;
+    enum Ability ability;
     PARAMETRIZE { ability = ABILITY_TRACE; }
     PARAMETRIZE { ability = ABILITY_DOWNLOAD; }
     GIVEN {
@@ -32,7 +32,7 @@ SINGLE_BATTLE_TEST("Download raises Attack if player has lower Def than Sp. Def"
 
 SINGLE_BATTLE_TEST("Download raises Sp.Attack if enemy has lower Sp. Def than Def", s16 damage)
 {
-    u32 ability;
+    enum Ability ability;
     PARAMETRIZE { ability = ABILITY_TRACE; }
     PARAMETRIZE { ability = ABILITY_DOWNLOAD; }
     GIVEN {
@@ -55,7 +55,7 @@ SINGLE_BATTLE_TEST("Download raises Sp.Attack if enemy has lower Sp. Def than De
 
 SINGLE_BATTLE_TEST("Download doesn't activate if target hasn't been sent out yet", s16 damagePhysical, s16 damageSpecial)
 {
-    u32 ability;
+    enum Ability ability;
 
     PARAMETRIZE { ability = ABILITY_TRACE; }
     PARAMETRIZE { ability = ABILITY_DOWNLOAD; }
@@ -97,7 +97,7 @@ SINGLE_BATTLE_TEST("Download doesn't activate if target hasn't been sent out yet
 
 DOUBLE_BATTLE_TEST("Download raises Sp.Attack if enemies have lower total Sp. Def than Def", s16 damage)
 {
-    u32 ability;
+    enum Ability ability;
     PARAMETRIZE { ability = ABILITY_TRACE; }
     PARAMETRIZE { ability = ABILITY_DOWNLOAD; }
     GIVEN {
@@ -120,14 +120,15 @@ DOUBLE_BATTLE_TEST("Download raises Sp.Attack if enemies have lower total Sp. De
     }
 }
 
-SINGLE_BATTLE_TEST("Download raises Attack if player has lower Def than Sp. Def (Trait)", s16 damage)
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Download raises Attack if player has lower Def than Sp. Def (Traits)", s16 damage)
 {
-    u32 ability;
-    PARAMETRIZE { ability = ABILITY_MINUS; }
+    enum Ability ability;
+    PARAMETRIZE { ability = ABILITY_LIGHT_METAL; }
     PARAMETRIZE { ability = ABILITY_DOWNLOAD; }
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Defense(100); SpDefense(200); }
-        OPPONENT(SPECIES_PORYGON) { Ability(ABILITY_LIGHT_METAL); Innates(ability); Attack(100); }
+        OPPONENT(SPECIES_PORYGON) { Ability(ABILITY_ANALYTIC); Innates(ability); Attack(100); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SCRATCH); }
     } SCENE {
@@ -143,13 +144,13 @@ SINGLE_BATTLE_TEST("Download raises Attack if player has lower Def than Sp. Def 
     }
 }
 
-SINGLE_BATTLE_TEST("Download raises Sp.Attack if enemy has lower Sp. Def than Def (Trait)", s16 damage)
+SINGLE_BATTLE_TEST("Download raises Sp.Attack if enemy has lower Sp. Def than Def (Traits)", s16 damage)
 {
-    u32 ability;
-    PARAMETRIZE { ability = ABILITY_MINUS; }
+    enum Ability ability;
+    PARAMETRIZE { ability = ABILITY_LIGHT_METAL; }
     PARAMETRIZE { ability = ABILITY_DOWNLOAD; }
     GIVEN {
-        PLAYER(SPECIES_PORYGON) { Ability(ABILITY_LIGHT_METAL); Innates(ability); SpAttack(100); }
+        PLAYER(SPECIES_PORYGON) { Ability(ABILITY_ANALYTIC); Innates(ability); SpAttack(100); }
         OPPONENT(SPECIES_WOBBUFFET) { Defense(200); SpDefense(100); }
     } WHEN {
         TURN { MOVE(player, MOVE_TRI_ATTACK); }
@@ -166,18 +167,18 @@ SINGLE_BATTLE_TEST("Download raises Sp.Attack if enemy has lower Sp. Def than De
     }
 }
 
-SINGLE_BATTLE_TEST("Download doesn't activate if target hasn't been sent out yet (Trait)", s16 damagePhysical, s16 damageSpecial)
+SINGLE_BATTLE_TEST("Download doesn't activate if target hasn't been sent out yet (Traits)", s16 damagePhysical, s16 damageSpecial)
 {
-    u32 ability;
+    enum Ability ability;
 
-    PARAMETRIZE { ability = ABILITY_MINUS; }
+    PARAMETRIZE { ability = ABILITY_LIGHT_METAL; }
     PARAMETRIZE { ability = ABILITY_DOWNLOAD; }
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_EXPLOSION) == EFFECT_EXPLOSION);
         PLAYER(SPECIES_WOBBUFFET) { Speed(100); }
-        PLAYER(SPECIES_PORYGON) { Ability(ABILITY_LIGHT_METAL); Innates(ability); Defense(400); SpDefense(300); Speed(300); Attack(100); }
+        PLAYER(SPECIES_PORYGON) { Ability(ABILITY_ANALYTIC); Innates(ability); Defense(400); SpDefense(300); Speed(300); Attack(100); }
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); Speed(100); }
-        OPPONENT(SPECIES_PORYGON2) { Ability(ABILITY_LIGHT_METAL); Innates(ability); Defense(100); SpDefense(200); Speed(200); }
+        OPPONENT(SPECIES_PORYGON2) { Ability(ABILITY_ANALYTIC); Innates(ability); Defense(100); SpDefense(200); Speed(200); }
     } WHEN {
         TURN { MOVE(player, MOVE_EXPLOSION); SEND_OUT(player, 1); SEND_OUT(opponent, 1); }
         TURN { MOVE(player, MOVE_SCRATCH); MOVE(opponent, MOVE_TRI_ATTACK); }
@@ -208,13 +209,13 @@ SINGLE_BATTLE_TEST("Download doesn't activate if target hasn't been sent out yet
     }
 }
 
-DOUBLE_BATTLE_TEST("Download raises Sp.Attack if enemies have lower total Sp. Def than Def (Trait)", s16 damage)
+DOUBLE_BATTLE_TEST("Download raises Sp.Attack if enemies have lower total Sp. Def than Def (Traits)", s16 damage)
 {
-    u32 ability;
-    PARAMETRIZE { ability = ABILITY_MINUS; }
+    enum Ability ability;
+    PARAMETRIZE { ability = ABILITY_LIGHT_METAL; }
     PARAMETRIZE { ability = ABILITY_DOWNLOAD; }
     GIVEN {
-        PLAYER(SPECIES_PORYGON) { Ability(ABILITY_LIGHT_METAL); Innates(ability); SpAttack(100); }
+        PLAYER(SPECIES_PORYGON) { Ability(ABILITY_ANALYTIC); Innates(ability); SpAttack(100); }
         PLAYER(SPECIES_WYNAUT);
         OPPONENT(SPECIES_WOBBUFFET) { Defense(200); SpDefense(100); }
         OPPONENT(SPECIES_WOBBUFFET) { Defense(100); SpDefense(150); }
@@ -232,3 +233,4 @@ DOUBLE_BATTLE_TEST("Download raises Sp.Attack if enemies have lower total Sp. De
         EXPECT_MUL_EQ(results[0].damage, Q_4_12(1.5), results[1].damage);
     }
 }
+#endif

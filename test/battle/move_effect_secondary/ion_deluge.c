@@ -50,7 +50,7 @@ SINGLE_BATTLE_TEST("Plasma Fists turns normal moves into electric for the remain
 SINGLE_BATTLE_TEST("Plasma Fists does not set up Ion Deluge if it does not connect")
 {
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_PHANPY].types[0] == TYPE_GROUND || gSpeciesInfo[SPECIES_PHANPY].types[1] == TYPE_GROUND);
+        ASSUME(GetSpeciesType(SPECIES_PHANPY, 0) == TYPE_GROUND || GetSpeciesType(SPECIES_PHANPY, 1) == TYPE_GROUND);
         PLAYER(SPECIES_KRABBY);
         OPPONENT(SPECIES_PHANPY);
     } WHEN {
@@ -117,7 +117,8 @@ SINGLE_BATTLE_TEST("Plasma Fists turns normal type dynamax-moves into electric t
     }
 }
 
-SINGLE_BATTLE_TEST("Plasma Fists type-changing effect does not override Pixilate (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Plasma Fists type-changing effect does not override Pixilate (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_KRABBY) { Speed(300); };
@@ -134,11 +135,11 @@ SINGLE_BATTLE_TEST("Plasma Fists type-changing effect does not override Pixilate
     }
 }
 
-SINGLE_BATTLE_TEST("Plasma Fists type-changing effect is applied after Normalize (Trait)")
+SINGLE_BATTLE_TEST("Plasma Fists type-changing effect is applied after Normalize")
 {
     GIVEN {
         PLAYER(SPECIES_KRABBY);
-        OPPONENT(SPECIES_SKITTY) { Ability(ABILITY_WONDER_SKIN); Innates(ABILITY_NORMALIZE); }
+        OPPONENT(SPECIES_SKITTY) { Ability(ABILITY_CUTE_CHARM); Innates(ABILITY_NORMALIZE); }
     } WHEN {
         TURN { MOVE(player, MOVE_PLASMA_FISTS); MOVE(opponent, MOVE_EMBER); }
     } SCENE {
@@ -150,3 +151,4 @@ SINGLE_BATTLE_TEST("Plasma Fists type-changing effect is applied after Normalize
         MESSAGE("It's super effective!");
     }
 }
+#endif

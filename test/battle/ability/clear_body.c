@@ -5,7 +5,8 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent intimid
 {
     s16 turnOneHit;
     s16 turnTwoHit;
-    u32 species, ability;
+    u32 species;
+    enum Ability ability;
 
     PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; }
     PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; }
@@ -40,7 +41,8 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent intimid
 SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent stat stage reduction from moves")
 {
     u16 move = MOVE_NONE;
-    u32 j, species = SPECIES_NONE, ability = ABILITY_NONE;
+    u32 j, species = SPECIES_NONE;
+    enum Ability ability = ABILITY_NONE;
     static const u16 statReductionMoves[] = {
         MOVE_GROWL,
         MOVE_LEER,
@@ -86,7 +88,8 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent stat st
 
 SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent Sticky Web effect on switchin")
 {
-    u32 species, ability;
+    u32 species;
+    enum Ability ability;
     PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; }
     PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; }
     PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_WHITE_SMOKE; }
@@ -114,7 +117,8 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent Sticky 
 
 SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent stat stage reduction from moves used by the user")
 {
-    u32 species, ability;
+    u32 species;
+    enum Ability ability;
     PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; }
     PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; }
     PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_WHITE_SMOKE; }
@@ -137,8 +141,9 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent s
 
 SINGLE_BATTLE_TEST("Mold Breaker, Teravolt, and Turboblaze ignore Clear Body and White Smoke, but not Full Metal Body")
 {
-    u32 j, k, species = SPECIES_NONE, ability = ABILITY_NONE;
-    u16 breakerAbility = ABILITY_NONE;
+    u32 j, k, species = SPECIES_NONE;
+    enum Ability ability = ABILITY_NONE;
+    enum Ability breakerAbility = ABILITY_NONE;
     u16 move = ABILITY_NONE;
     static const u16 breakerAbilities[] = {
         ABILITY_MOLD_BREAKER,
@@ -197,7 +202,8 @@ SINGLE_BATTLE_TEST("Mold Breaker, Teravolt, and Turboblaze ignore Clear Body and
 
 SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Speed reduction from Iron Ball")
 {
-    u32 j, species = SPECIES_NONE, ability = ABILITY_NONE;
+    u32 j, species = SPECIES_NONE;
+    enum Ability ability = ABILITY_NONE;
     u16 heldItem = ITEM_NONE;
     static const u16 heldItems[] = {
         ITEM_NONE,
@@ -239,7 +245,8 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent S
 
 SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Speed reduction from paralysis")
 {
-    u32 species, ability;
+    u32 species;
+    enum Ability ability;
 
     PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; }
     PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; }
@@ -276,7 +283,8 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent S
 SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Attack reduction from burn", s16 damage)
 {
     bool32 burned = FALSE;
-    u32 species, ability;
+    u32 species;
+    enum Ability ability;
     PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; burned = FALSE; }
     PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; burned = TRUE; }
     PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; burned = FALSE; }
@@ -299,7 +307,8 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent A
 
 SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent receiving negative stat changes from Baton Pass")
 {
-    u32 species, ability;
+    u32 species;
+    enum Ability ability;
 
     PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; }
     PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; }
@@ -329,7 +338,8 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent r
 
 SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Topsy-Turvy")
 {
-    u32 species, ability;
+    u32 species;
+    enum Ability ability;
 
     PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; }
     PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; }
@@ -370,7 +380,8 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent T
 
 SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Spectral Thief from resetting positive stat changes")
 {
-    u32 species, ability;
+    u32 species;
+    enum Ability ability;
 
     PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; }
     PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; }
@@ -417,7 +428,7 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke protect from Pr
 {
     u32 move = MOVE_NONE;
     u32 species = SPECIES_NONE;
-    u32 ability = ABILITY_NONE;
+    enum Ability ability = ABILITY_NONE;
 
     static const u32 moves[] = {
         MOVE_SPIKY_SHIELD,
@@ -453,19 +464,21 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke protect from Pr
     }
 }
 
-SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent intimidate (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent intimidate (Traits)")
 {
     s16 turnOneHit;
     s16 turnTwoHit;
-    u32 species, ability, innate;
+    u32 species;
+    enum Ability ability;
 
-    PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_LIGHT_METAL; innate = ABILITY_CLEAR_BODY; }
-    PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_LIGHT_METAL; innate = ABILITY_FULL_METAL_BODY; }
-    PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_SHELL_ARMOR; innate = ABILITY_WHITE_SMOKE; }
+    PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; }
+    PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; }
+    PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_WHITE_SMOKE; }
     GIVEN {
         PLAYER(SPECIES_EKANS) { Ability(ABILITY_UNNERVE); Innates(ABILITY_SHED_SKIN); };
         PLAYER(SPECIES_EKANS) { Ability(ABILITY_UNNERVE); Innates(ABILITY_INTIMIDATE); };
-        OPPONENT(species) { Ability(ability); Innates(innate); };
+        OPPONENT(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); };
     } WHEN {
         TURN { MOVE(opponent, MOVE_SCRATCH); }
         TURN { SWITCH(player, 1); MOVE(opponent, MOVE_SCRATCH); }
@@ -476,10 +489,10 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent intimid
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
         }
-        ABILITY_POPUP(opponent, innate);
-        if (innate == ABILITY_FULL_METAL_BODY)
+        ABILITY_POPUP(opponent, ability);
+        if (ability == ABILITY_FULL_METAL_BODY)
             MESSAGE("The opposing Solgaleo's Full Metal Body prevents stat loss!");
-        else if (innate == ABILITY_WHITE_SMOKE)
+        else if (ability == ABILITY_WHITE_SMOKE)
             MESSAGE("The opposing Torkoal's White Smoke prevents stat loss!");
         else
             MESSAGE("The opposing Metang's Clear Body prevents stat loss!");
@@ -489,10 +502,11 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent intimid
     }
 }
 
-SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent stat stage reduction from moves (Trait)")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent stat stage reduction from moves (Traits)")
 {
     u16 move = MOVE_NONE;
-    u32 j, species = SPECIES_NONE, ability = ABILITY_NONE, innate = ABILITY_NONE;
+    u32 j, species = SPECIES_NONE;
+    enum Ability ability = ABILITY_NONE;
     static const u16 statReductionMoves[] = {
         MOVE_GROWL,
         MOVE_LEER,
@@ -504,9 +518,9 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent stat st
     };
     for (j = 0; j < ARRAY_COUNT(statReductionMoves); j++)
         {
-            PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_LIGHT_METAL; innate = ABILITY_CLEAR_BODY; move = statReductionMoves[j]; }
-            PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_LIGHT_METAL; innate = ABILITY_FULL_METAL_BODY; move = statReductionMoves[j]; }
-            PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_SHELL_ARMOR; innate = ABILITY_WHITE_SMOKE; move = statReductionMoves[j]; }
+            PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; move = statReductionMoves[j]; }
+            PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; move = statReductionMoves[j]; }
+            PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_WHITE_SMOKE; move = statReductionMoves[j]; }
         }
 
     GIVEN {
@@ -518,7 +532,7 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent stat st
         ASSUME(GetMoveEffect(MOVE_SWEET_SCENT) == (B_UPDATED_MOVE_DATA >= GEN_6 ? EFFECT_EVASION_DOWN_2 : EFFECT_EVASION_DOWN));
         ASSUME(GetMoveEffect(MOVE_SAND_ATTACK) == EFFECT_ACCURACY_DOWN);
         PLAYER(SPECIES_WOBBUFFET)
-        OPPONENT(species) { Ability(ability); Innates(innate); }
+        OPPONENT(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
@@ -526,27 +540,28 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent stat st
             ANIMATION(ANIM_TYPE_MOVE, move, player);
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
         }
-        ABILITY_POPUP(opponent, innate);
-        if (innate == ABILITY_FULL_METAL_BODY)
+        ABILITY_POPUP(opponent, ability);
+        if (ability == ABILITY_FULL_METAL_BODY)
             MESSAGE("The opposing Solgaleo's Full Metal Body prevents stat loss!");
-        else if (innate == ABILITY_WHITE_SMOKE)
+        else if (ability == ABILITY_WHITE_SMOKE)
             MESSAGE("The opposing Torkoal's White Smoke prevents stat loss!");
         else
             MESSAGE("The opposing Metang's Clear Body prevents stat loss!");
     }
 }
 
-SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent Sticky Web effect on switchin (Trait)")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent Sticky Web effect on switchin (Traits)")
 {
-    u32 species, ability, innate;
-    PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_LIGHT_METAL; innate = ABILITY_CLEAR_BODY; }
-    PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_LIGHT_METAL; innate = ABILITY_FULL_METAL_BODY; }
-    PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_SHELL_ARMOR; innate = ABILITY_WHITE_SMOKE; }
+    u32 species;
+    enum Ability ability;
+    PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; }
+    PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; }
+    PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_WHITE_SMOKE; }
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_STICKY_WEB) == EFFECT_STICKY_WEB);
         PLAYER(SPECIES_WOBBUFFET)
         OPPONENT(SPECIES_WOBBUFFET)
-        OPPONENT(species) { Ability(ability); Innates(innate); }
+        OPPONENT(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_STICKY_WEB); }
         TURN { SWITCH(opponent, 1); }
@@ -554,32 +569,33 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke prevent Sticky 
         NONE_OF {
             ANIMATION(ANIM_TYPE_GENERAL, B_ANIM_STATS_CHANGE, opponent);
         }
-        ABILITY_POPUP(opponent, innate);
-        if (innate == ABILITY_FULL_METAL_BODY)
+        ABILITY_POPUP(opponent, ability);
+        if (ability == ABILITY_FULL_METAL_BODY)
             MESSAGE("The opposing Solgaleo's Full Metal Body prevents stat loss!");
-        else if (innate == ABILITY_WHITE_SMOKE)
+        else if (ability == ABILITY_WHITE_SMOKE)
             MESSAGE("The opposing Torkoal's White Smoke prevents stat loss!");
         else
             MESSAGE("The opposing Metang's Clear Body prevents stat loss!");
     }
 }
 
-SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent stat stage reduction from moves used by the user (Trait)")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent stat stage reduction from moves used by the user (Traits)")
 {
-    u32 species, ability, innate;
-    PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_LIGHT_METAL; innate = ABILITY_CLEAR_BODY; }
-    PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_LIGHT_METAL; innate = ABILITY_FULL_METAL_BODY; }
-    PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_SHELL_ARMOR; innate = ABILITY_WHITE_SMOKE; }
+    u32 species;
+    enum Ability ability;
+    PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; }
+    PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; }
+    PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_WHITE_SMOKE; }
     GIVEN {
         ASSUME(MoveHasAdditionalEffectSelf(MOVE_SUPERPOWER, MOVE_EFFECT_ATK_DEF_DOWN) == TRUE);
         PLAYER(SPECIES_WOBBUFFET)
-        OPPONENT(species) { Ability(ability); Innates(innate); }
+        OPPONENT(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SUPERPOWER); }
     } SCENE {
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SUPERPOWER, opponent);
         NONE_OF {
-            ABILITY_POPUP(opponent, innate);
+            ABILITY_POPUP(opponent, ability);
             MESSAGE("The opposing Solgaleo's Full Metal Body prevents stat loss!");
             MESSAGE("The opposing Torkoal's White Smoke prevents stat loss!");
             MESSAGE("The opposing Metang's Clear Body prevents stat loss!");
@@ -587,10 +603,11 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent s
     }
 }
 
-SINGLE_BATTLE_TEST("Mold Breaker, Teravolt, and Turboblaze ignore Clear Body and White Smoke, but not Full Metal Body (Trait)")
+SINGLE_BATTLE_TEST("Mold Breaker, Teravolt, and Turboblaze ignore Clear Body and White Smoke, but not Full Metal Body (Traits)")
 {
-    u32 j, k, species = SPECIES_NONE, ability = ABILITY_NONE, innate = ABILITY_NONE;
-    u16 breakerAbility = ABILITY_NONE;
+    u32 j, k, species = SPECIES_NONE;
+    enum Ability ability = ABILITY_NONE;
+    enum Ability breakerAbility = ABILITY_NONE;
     u16 move = ABILITY_NONE;
     static const u16 breakerAbilities[] = {
         ABILITY_MOLD_BREAKER,
@@ -611,9 +628,9 @@ SINGLE_BATTLE_TEST("Mold Breaker, Teravolt, and Turboblaze ignore Clear Body and
     {
         for (k = 0; k < ARRAY_COUNT(breakerAbilities); k++)
         {
-            PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_LIGHT_METAL; innate = ABILITY_CLEAR_BODY; move = statReductionMoves[j]; breakerAbility = breakerAbilities[k]; }
-            PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_LIGHT_METAL; innate = ABILITY_FULL_METAL_BODY; move = statReductionMoves[j]; breakerAbility = breakerAbilities[k]; }
-            PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_SHELL_ARMOR; innate = ABILITY_WHITE_SMOKE; move = statReductionMoves[j]; breakerAbility = breakerAbilities[k]; }
+            PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; move = statReductionMoves[j]; breakerAbility = breakerAbilities[k]; }
+            PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; move = statReductionMoves[j]; breakerAbility = breakerAbilities[k]; }
+            PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_WHITE_SMOKE; move = statReductionMoves[j]; breakerAbility = breakerAbilities[k]; }
         }
     }
 
@@ -626,19 +643,19 @@ SINGLE_BATTLE_TEST("Mold Breaker, Teravolt, and Turboblaze ignore Clear Body and
         ASSUME(GetMoveEffect(MOVE_SWEET_SCENT) == (B_UPDATED_MOVE_DATA >= GEN_6 ? EFFECT_EVASION_DOWN_2 : EFFECT_EVASION_DOWN));
         ASSUME(GetMoveEffect(MOVE_SAND_ATTACK) == EFFECT_ACCURACY_DOWN);
         PLAYER(SPECIES_WOBBUFFET) { Ability(ABILITY_SHADOW_TAG); Innates(breakerAbility); }
-        OPPONENT(species) { Ability(ability); Innates(innate); }
+        OPPONENT(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
     } WHEN {
         TURN { MOVE(player, move); }
     } SCENE {
-        if (innate == ABILITY_FULL_METAL_BODY){ // Full Metal Body can't be ignored by breaker abilities
+        if (ability == ABILITY_FULL_METAL_BODY){ // Full Metal Body can't be ignored by breaker abilities
             NOT ANIMATION(ANIM_TYPE_MOVE, move, player);
-            ABILITY_POPUP(opponent, innate);
+            ABILITY_POPUP(opponent, ability);
             MESSAGE("The opposing Solgaleo's Full Metal Body prevents stat loss!");
         }
         else{
             ANIMATION(ANIM_TYPE_MOVE, move, player);
             NONE_OF {
-                ABILITY_POPUP(opponent, innate);
+                ABILITY_POPUP(opponent, ability);
                 MESSAGE("The opposing Solgaleo's Full Metal Body prevents stat loss!");
                 MESSAGE("The opposing Torkoal's White Smoke prevents stat loss!");
                 MESSAGE("The opposing Metang's Clear Body prevents stat loss!");
@@ -647,9 +664,10 @@ SINGLE_BATTLE_TEST("Mold Breaker, Teravolt, and Turboblaze ignore Clear Body and
     }
 }
 
-SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Speed reduction from Iron Ball (Trait)")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Speed reduction from Iron Ball (Traits)")
 {
-    u32 j, species = SPECIES_NONE, ability = ABILITY_NONE, innate = ABILITY_NONE;
+    u32 j, species = SPECIES_NONE;
+    enum Ability ability = ABILITY_NONE;
     u16 heldItem = ITEM_NONE;
     static const u16 heldItems[] = {
         ITEM_NONE,
@@ -657,30 +675,30 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent S
     };
     for (j = 0; j < ARRAY_COUNT(heldItems); j++)
     {
-        PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_LIGHT_METAL; innate = ABILITY_CLEAR_BODY; heldItem = heldItems[j]; }
-        PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_LIGHT_METAL; innate = ABILITY_FULL_METAL_BODY; heldItem = heldItems[j]; }
-        PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_SHELL_ARMOR; innate = ABILITY_WHITE_SMOKE; heldItem = heldItems[j]; }
+        PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; heldItem = heldItems[j]; }
+        PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; heldItem = heldItems[j]; }
+        PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_WHITE_SMOKE; heldItem = heldItems[j]; }
     }
     GIVEN {
         ASSUME(gItemsInfo[ITEM_IRON_BALL].holdEffect == HOLD_EFFECT_IRON_BALL);
         PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
-        OPPONENT(species) { Speed(6); Ability(ability); Innates(innate); Item(heldItem); }
+        OPPONENT(species) { Speed(6); Ability(ABILITY_LIGHT_METAL); Innates(ability); Item(heldItem); }
     } WHEN {
         TURN { }
     } SCENE {
-        NOT ABILITY_POPUP(opponent, innate);
+        NOT ABILITY_POPUP(opponent, ability);
         if (heldItem == ITEM_IRON_BALL) {
             MESSAGE("Wobbuffet used Celebrate!");
-            if (innate == ABILITY_FULL_METAL_BODY)
+            if (ability == ABILITY_FULL_METAL_BODY)
                 MESSAGE("The opposing Solgaleo used Celebrate!");
-            else if (innate == ABILITY_WHITE_SMOKE)
+            else if (ability == ABILITY_WHITE_SMOKE)
                 MESSAGE("The opposing Torkoal used Celebrate!");
             else
                 MESSAGE("The opposing Metang used Celebrate!");
         } else {
-            if (innate == ABILITY_FULL_METAL_BODY)
+            if (ability == ABILITY_FULL_METAL_BODY)
                 MESSAGE("The opposing Solgaleo used Celebrate!");
-            else if (innate == ABILITY_WHITE_SMOKE)
+            else if (ability == ABILITY_WHITE_SMOKE)
                 MESSAGE("The opposing Torkoal used Celebrate!");
             else
                 MESSAGE("The opposing Metang used Celebrate!");
@@ -689,30 +707,31 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent S
     }
 }
 
-SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Speed reduction from paralysis (Trait)")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Speed reduction from paralysis (Traits)")
 {
-    u32 species, ability, innate;
+    u32 species;
+    enum Ability ability;
 
-    PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_LIGHT_METAL; innate = ABILITY_CLEAR_BODY; }
-    PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_LIGHT_METAL; innate = ABILITY_FULL_METAL_BODY; }
-    PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_SHELL_ARMOR; innate = ABILITY_WHITE_SMOKE; }
+    PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; }
+    PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; }
+    PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_WHITE_SMOKE; }
 
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
-        OPPONENT(species) { Speed(6); Ability(ability); Innates(innate); }
+        OPPONENT(species) { Speed(6); Ability(ABILITY_LIGHT_METAL); Innates(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_THUNDER_WAVE); }
         TURN { MOVE(player, MOVE_THUNDER_WAVE); }
     } SCENE {
-        if (innate == ABILITY_FULL_METAL_BODY)
+        if (ability == ABILITY_FULL_METAL_BODY)
             MESSAGE("The opposing Solgaleo used Celebrate!");
-        else if (innate == ABILITY_WHITE_SMOKE)
+        else if (ability == ABILITY_WHITE_SMOKE)
             MESSAGE("The opposing Torkoal used Celebrate!");
         else
             MESSAGE("The opposing Metang used Celebrate!");
         MESSAGE("Wobbuffet used Thunder Wave!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_THUNDER_WAVE, player);
-        NOT ABILITY_POPUP(opponent, innate);
+        NOT ABILITY_POPUP(opponent, ability);
         MESSAGE("Wobbuffet used Thunder Wave!");
         ONE_OF {
             MESSAGE("The opposing Metang used Celebrate!");
@@ -725,67 +744,70 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent S
     }
 }
 
-SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Attack reduction from burn (Trait)", s16 damage)
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Attack reduction from burn (Traits)", s16 damage)
 {
     bool32 burned = FALSE;
-    u32 species, ability, innate;
-    PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_LIGHT_METAL; innate = ABILITY_CLEAR_BODY; burned = FALSE; }
-    PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_LIGHT_METAL; innate = ABILITY_CLEAR_BODY; burned = TRUE; }
-    PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_LIGHT_METAL; innate = ABILITY_FULL_METAL_BODY; burned = FALSE; }
-    PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_LIGHT_METAL; innate = ABILITY_FULL_METAL_BODY; burned = TRUE; }
-    PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_SHELL_ARMOR; innate = ABILITY_WHITE_SMOKE; burned = FALSE; }
-    PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_SHELL_ARMOR; innate = ABILITY_WHITE_SMOKE; burned = TRUE; }
+    u32 species;
+    enum Ability ability;
+    PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; burned = FALSE; }
+    PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; burned = TRUE; }
+    PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; burned = FALSE; }
+    PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; burned = TRUE; }
+    PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_WHITE_SMOKE; burned = FALSE; }
+    PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_WHITE_SMOKE; burned = TRUE; }
     GIVEN {
         ASSUME(GetMoveCategory(MOVE_SCRATCH) == DAMAGE_CATEGORY_PHYSICAL);
         PLAYER(SPECIES_WOBBUFFET)
-        OPPONENT(species) { Ability(ability); Innates(innate); if (burned) Status1(STATUS1_BURN); }
+        OPPONENT(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); if (burned) Status1(STATUS1_BURN); }
     } WHEN {
         TURN { MOVE(opponent, MOVE_SCRATCH); }
     } SCENE {
-        NOT ABILITY_POPUP(opponent, innate);
+        NOT ABILITY_POPUP(opponent, ability);
         HP_BAR(player, captureDamage: &results[i].damage);
     } FINALLY {
         EXPECT_MUL_EQ(results[0].damage, Q_4_12(0.5), results[1].damage);
     }
 }
 
-SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent receiving negative stat changes from Baton Pass (Trait)")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent receiving negative stat changes from Baton Pass (Traits)")
 {
-    u32 species, ability, innate;
+    u32 species;
+    enum Ability ability;
 
-    PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_LIGHT_METAL; innate = ABILITY_CLEAR_BODY; }
-    PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_LIGHT_METAL; innate = ABILITY_FULL_METAL_BODY; }
-    PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_SHELL_ARMOR; innate = ABILITY_WHITE_SMOKE; }
+    PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; }
+    PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; }
+    PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_WHITE_SMOKE; }
 
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SCARY_FACE) == EFFECT_SPEED_DOWN_2);
         ASSUME(GetMoveEffect(MOVE_BATON_PASS) == EFFECT_BATON_PASS);
         PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(3); }
-        OPPONENT(species) { Speed(6); Ability(ability); Innates(innate); }
+        OPPONENT(species) { Speed(6); Ability(ABILITY_LIGHT_METAL); Innates(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_SCARY_FACE); MOVE(opponent, MOVE_BATON_PASS); SEND_OUT(opponent, 1); }
         TURN { MOVE(player, MOVE_SCARY_FACE); }
     } SCENE {
         MESSAGE("Wobbuffet used Scary Face!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SCARY_FACE, player);
-        ABILITY_POPUP(opponent, innate);
-        if (innate == ABILITY_FULL_METAL_BODY)
+        ABILITY_POPUP(opponent, ability);
+        if (ability == ABILITY_FULL_METAL_BODY)
             MESSAGE("The opposing Solgaleo used Celebrate!");
-        else if (innate == ABILITY_WHITE_SMOKE)
+        else if (ability == ABILITY_WHITE_SMOKE)
             MESSAGE("The opposing Torkoal used Celebrate!");
         else
             MESSAGE("The opposing Metang used Celebrate!");
     }
 }
 
-SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Topsy-Turvy (Trait)")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Topsy-Turvy (Traits)")
 {
-    u32 species, ability, innate;
+    u32 species;
+    enum Ability ability;
 
-    PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_LIGHT_METAL; innate = ABILITY_CLEAR_BODY; }
-    PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_LIGHT_METAL; innate = ABILITY_FULL_METAL_BODY; }
-    PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_SHELL_ARMOR; innate = ABILITY_WHITE_SMOKE; }
+    PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; }
+    PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; }
+    PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_WHITE_SMOKE; }
 
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_TOPSY_TURVY) == EFFECT_TOPSY_TURVY);
@@ -793,20 +815,20 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent T
         ASSUME(GetMoveEffect(MOVE_BATON_PASS) == EFFECT_BATON_PASS);
         PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
         OPPONENT(SPECIES_WOBBUFFET) { Speed(3); }
-        OPPONENT(species) { Speed(6); Ability(ability); Innates(innate); }
+        OPPONENT(species) { Speed(6); Ability(ABILITY_LIGHT_METAL); Innates(ability); }
     } WHEN {
         TURN { MOVE(player, MOVE_SCARY_FACE); MOVE(opponent, MOVE_BATON_PASS); SEND_OUT(opponent, 1); }
         TURN { MOVE(player, MOVE_TOPSY_TURVY); }
         TURN { MOVE(player, MOVE_SCARY_FACE); }
     } SCENE {
         MESSAGE("Wobbuffet used Topsy-Turvy!");
-        NOT ABILITY_POPUP(opponent, innate);
+        NOT ABILITY_POPUP(opponent, ability);
         ANIMATION(ANIM_TYPE_MOVE, MOVE_TOPSY_TURVY, player);
-        if (innate == ABILITY_FULL_METAL_BODY) {
+        if (ability == ABILITY_FULL_METAL_BODY) {
             MESSAGE("The opposing Solgaleo used Celebrate!");
             MESSAGE("The opposing Solgaleo used Celebrate!");
         }
-        else if (innate == ABILITY_WHITE_SMOKE) {
+        else if (ability == ABILITY_WHITE_SMOKE) {
             MESSAGE("The opposing Torkoal used Celebrate!");
             MESSAGE("The opposing Torkoal used Celebrate!");
         }
@@ -816,61 +838,61 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent T
         }
         MESSAGE("Wobbuffet used Scary Face!");
         NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_SCARY_FACE, player);
-        ABILITY_POPUP(opponent, innate);
+        ABILITY_POPUP(opponent, ability);
     }
 }
 
-SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Spectral Thief from resetting positive stat changes (Trait)")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke don't prevent Spectral Thief from resetting positive stat changes (Traits)")
 {
-    u32 species, ability, innate;
+    u32 species;
+    enum Ability ability;
 
-    PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_LIGHT_METAL; innate = ABILITY_CLEAR_BODY; }
-    PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_LIGHT_METAL; innate = ABILITY_FULL_METAL_BODY; }
-    PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_SHELL_ARMOR; innate = ABILITY_WHITE_SMOKE; }
+    PARAMETRIZE{ species = SPECIES_METANG; ability = ABILITY_CLEAR_BODY; }
+    PARAMETRIZE{ species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; }
+    PARAMETRIZE{ species = SPECIES_TORKOAL; ability = ABILITY_WHITE_SMOKE; }
 
     GIVEN {
         ASSUME(GetMoveEffect(MOVE_SPECTRAL_THIEF) == EFFECT_SPECTRAL_THIEF);
         ASSUME(GetMoveEffect(MOVE_AGILITY) == EFFECT_SPEED_UP_2);
         PLAYER(SPECIES_WOBBUFFET) { Speed(4); }
-        OPPONENT(species) { Speed(5); Ability(ability); Innates(innate); }
+        OPPONENT(species) { Speed(5); Ability(ABILITY_LIGHT_METAL); Innates(ability); }
     } WHEN {
         TURN{ MOVE(opponent, MOVE_AGILITY); }
         TURN{ MOVE(player, MOVE_SPECTRAL_THIEF); }
         TURN{ }
     } SCENE {
-        if (innate == ABILITY_FULL_METAL_BODY)
+        if (ability == ABILITY_FULL_METAL_BODY)
             MESSAGE("The opposing Solgaleo used Agility!");
-        else if (innate == ABILITY_WHITE_SMOKE)
+        else if (ability == ABILITY_WHITE_SMOKE)
             MESSAGE("The opposing Torkoal used Agility!");
         else
             MESSAGE("The opposing Metang used Agility!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_AGILITY, opponent);
         MESSAGE("Wobbuffet used Celebrate!");
-        if (innate == ABILITY_FULL_METAL_BODY)
+        if (ability == ABILITY_FULL_METAL_BODY)
             MESSAGE("The opposing Solgaleo used Celebrate!");
-        else if (innate == ABILITY_WHITE_SMOKE)
+        else if (ability == ABILITY_WHITE_SMOKE)
             MESSAGE("The opposing Torkoal used Celebrate!");
         else
             MESSAGE("The opposing Metang used Celebrate!");
         MESSAGE("Wobbuffet used Spectral Thief!");
         ANIMATION(ANIM_TYPE_MOVE, MOVE_SPECTRAL_THIEF, player);
-        NOT ABILITY_POPUP(opponent, innate);
+        NOT ABILITY_POPUP(opponent, ability);
         MESSAGE("Wobbuffet used Celebrate!");
-        if (innate == ABILITY_FULL_METAL_BODY)
+        if (ability == ABILITY_FULL_METAL_BODY)
             MESSAGE("The opposing Solgaleo used Celebrate!");
-        else if (innate == ABILITY_WHITE_SMOKE)
+        else if (ability == ABILITY_WHITE_SMOKE)
             MESSAGE("The opposing Torkoal used Celebrate!");
         else
             MESSAGE("The opposing Metang used Celebrate!");
     }
 }
 
-SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke protect from Protect's secondary effects (Trait)")
+SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke protect from Protect's secondary effects (Traits)")
 {
     u32 move = MOVE_NONE;
     u32 species = SPECIES_NONE;
-    u32 ability = ABILITY_NONE;
-    u32 innate = ABILITY_NONE;
+    enum Ability ability = ABILITY_NONE;
 
     static const u32 moves[] = {
         MOVE_SPIKY_SHIELD,
@@ -881,13 +903,13 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke protect from Pr
 
     for (u32 j = 0; j < ARRAY_COUNT(moves); j++)
     {
-        PARAMETRIZE{ move = moves[j]; species = SPECIES_METANG;   ability = ABILITY_LIGHT_METAL; innate = ABILITY_CLEAR_BODY; }
-        PARAMETRIZE{ move = moves[j]; species = SPECIES_SOLGALEO; ability = ABILITY_LIGHT_METAL; innate = ABILITY_FULL_METAL_BODY; }
-        PARAMETRIZE{ move = moves[j]; species = SPECIES_TORKOAL;  ability = ABILITY_SHELL_ARMOR; innate = ABILITY_WHITE_SMOKE; }
+        PARAMETRIZE{ move = moves[j]; species = SPECIES_METANG;   ability = ABILITY_CLEAR_BODY; }
+        PARAMETRIZE{ move = moves[j]; species = SPECIES_SOLGALEO; ability = ABILITY_FULL_METAL_BODY; }
+        PARAMETRIZE{ move = moves[j]; species = SPECIES_TORKOAL;  ability = ABILITY_WHITE_SMOKE; }
     }
 
     GIVEN {
-        PLAYER(species) { Ability(ability); Innates(innate); }
+        PLAYER(species) { Ability(ABILITY_LIGHT_METAL); Innates(ability); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, move); MOVE(player, MOVE_SCRATCH); }
@@ -905,3 +927,4 @@ SINGLE_BATTLE_TEST("Clear Body, Full Metal Body, and White Smoke protect from Pr
         }
     }
 }
+#endif

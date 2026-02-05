@@ -113,7 +113,8 @@ SINGLE_BATTLE_TEST("Tera Shell respects immunity")
     }
 }
 
-SINGLE_BATTLE_TEST("Tera Shell makes all moves against Terapagos not very effective when at full HP (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Tera Shell makes all moves against Terapagos not very effective when at full HP (Traits)")
 {
     u16 hp;
     PARAMETRIZE { hp = 100; }
@@ -142,7 +143,7 @@ SINGLE_BATTLE_TEST("Tera Shell makes all moves against Terapagos not very effect
     }
 }
 
-SINGLE_BATTLE_TEST("Tera Shell makes all hits of multi-hit moves against Terapagos not very effective (Trait)")
+SINGLE_BATTLE_TEST("Tera Shell makes all hits of multi-hit moves against Terapagos not very effective (Traits)")
 {
     s16 firstHit;
     s16 secondHit;
@@ -165,7 +166,7 @@ SINGLE_BATTLE_TEST("Tera Shell makes all hits of multi-hit moves against Terapag
     }
 }
 
-DOUBLE_BATTLE_TEST("Tera Shell only makes the first hit of a double battle turn not very effective (Trait)")
+DOUBLE_BATTLE_TEST("Tera Shell only makes the first hit of a double battle turn not very effective (Traits)")
 {
     s16 firstHit;
     s16 secondHit;
@@ -190,7 +191,7 @@ DOUBLE_BATTLE_TEST("Tera Shell only makes the first hit of a double battle turn 
     }
 }
 
-DOUBLE_BATTLE_TEST("Tera Shell only makes the first hit against Terapagos from a multi-target move not very effective (Trait)")
+DOUBLE_BATTLE_TEST("Tera Shell only makes the first hit against Terapagos from a multi-target move not very effective (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_TERAPAGOS_TERASTAL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TERA_SHELL); }
@@ -210,7 +211,7 @@ DOUBLE_BATTLE_TEST("Tera Shell only makes the first hit against Terapagos from a
     }
 }
 
-SINGLE_BATTLE_TEST("Tera Shell respects immunity (Trait)")
+SINGLE_BATTLE_TEST("Tera Shell respects immunity (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_TERAPAGOS_TERASTAL) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_TERA_SHELL); }
@@ -224,3 +225,4 @@ SINGLE_BATTLE_TEST("Tera Shell respects immunity (Trait)")
         }
     }
 }
+#endif

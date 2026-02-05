@@ -55,7 +55,7 @@ SINGLE_BATTLE_TEST("Explosion causes the user to faint even if it has no effect"
 {
     GIVEN {
         ASSUME(GetMoveType(MOVE_EXPLOSION) == TYPE_NORMAL);
-        ASSUME(gSpeciesInfo[SPECIES_GASTLY].types[0] == TYPE_GHOST);
+        ASSUME(GetSpeciesType(SPECIES_GASTLY, 0) == TYPE_GHOST);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_GASTLY);
     } WHEN {
@@ -146,11 +146,11 @@ DOUBLE_BATTLE_TEST("Explosion boosted by Galvanize is correctly blocked by Volt 
     }
 }
 
-SINGLE_BATTLE_TEST("Explosion is blocked by Ability Damp (Trait)")
+SINGLE_BATTLE_TEST("Explosion is blocked by Ability Damp")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
-        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_CLOUD_NINE); Innates(ABILITY_DAMP); }
+        OPPONENT(SPECIES_GOLDUCK) { Ability(ABILITY_SWIFT_SWIM); Innates(ABILITY_DAMP); }
     } WHEN {
         TURN { MOVE(player, MOVE_EXPLOSION); }
     } SCENE {
@@ -163,10 +163,11 @@ SINGLE_BATTLE_TEST("Explosion is blocked by Ability Damp (Trait)")
     }
 }
 
-DOUBLE_BATTLE_TEST("Explosion boosted by Galvanize is correctly blocked by Volt Absorb (Trait)")
+#if MAX_MON_TRAITS > 1
+DOUBLE_BATTLE_TEST("Explosion boosted by Galvanize is correctly blocked by Volt Absorb (Traits)")
 {
     GIVEN {
-        PLAYER(SPECIES_GEODUDE_ALOLA) { Ability(ABILITY_STURDY); Innates(ABILITY_GALVANIZE); }
+        PLAYER(SPECIES_GEODUDE_ALOLA) { Ability(ABILITY_MAGNET_PULL); Innates(ABILITY_GALVANIZE); }
         PLAYER(SPECIES_WYNAUT) { HP(1); }
         OPPONENT(SPECIES_LANTURN) { Ability(ABILITY_ILLUMINATE); Innates(ABILITY_VOLT_ABSORB); }
         OPPONENT(SPECIES_WOBBUFFET) { HP(1); }
@@ -184,3 +185,4 @@ DOUBLE_BATTLE_TEST("Explosion boosted by Galvanize is correctly blocked by Volt 
         MESSAGE("Geodude fainted!");
     }
 }
+#endif

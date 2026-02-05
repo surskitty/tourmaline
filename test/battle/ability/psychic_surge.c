@@ -14,10 +14,11 @@ SINGLE_BATTLE_TEST("Psychic Surge creates Psychic Terrain when entering the batt
     }
 }
 
-SINGLE_BATTLE_TEST("Psychic Surge creates Psychic Terrain when entering the battle (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Psychic Surge creates Psychic Terrain when entering the battle (Traits)")
 {
     GIVEN {
-        PLAYER(SPECIES_TAPU_LELE) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_PSYCHIC_SURGE); }
+        PLAYER(SPECIES_TAPU_LELE) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_PSYCHIC_SURGE); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN {}
@@ -26,3 +27,4 @@ SINGLE_BATTLE_TEST("Psychic Surge creates Psychic Terrain when entering the batt
         MESSAGE("The battlefield got weird!");
     }
 }
+#endif

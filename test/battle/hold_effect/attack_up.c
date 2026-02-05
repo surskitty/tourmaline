@@ -4,8 +4,8 @@
 ASSUMPTIONS
 {
     ASSUME(gItemsInfo[ITEM_LIECHI_BERRY].holdEffect == HOLD_EFFECT_ATTACK_UP);
-    ASSUME(GetMoveEffect(MOVE_DRAGON_RAGE) == EFFECT_FIXED_DAMAGE_ARG);
-    ASSUME(GetMoveFixedDamage(MOVE_DRAGON_RAGE) == 40);
+    ASSUME(GetMoveEffect(MOVE_DRAGON_RAGE) == EFFECT_FIXED_HP_DAMAGE);
+    ASSUME(GetMoveFixedHPDamage(MOVE_DRAGON_RAGE) == 40);
 }
 
 SINGLE_BATTLE_TEST("Liechi Berry raises the holder's Attack by one stage when HP drops to 1/4 or below")
@@ -69,7 +69,9 @@ SINGLE_BATTLE_TEST("Liechi Berry raises Attack by one stage when HP drops to 1/4
     }
 }
 
-SINGLE_BATTLE_TEST("Liechi Berry raises Attack by one stage when HP drops to 1/2 or below if holder has Gluttony (Trait)")
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Liechi Berry raises Attack by one stage when HP drops to 1/2 or below if holder has Gluttony (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_BELLSPROUT) { MaxHP(80); HP(80); Ability(ABILITY_CHLOROPHYLL); Innates(ABILITY_GLUTTONY); Item(ITEM_LIECHI_BERRY); }
@@ -85,10 +87,10 @@ SINGLE_BATTLE_TEST("Liechi Berry raises Attack by one stage when HP drops to 1/2
     }
 }
 
-SINGLE_BATTLE_TEST("Liechi Berry raises Attack by one stage when HP drops to 1/4 or below if holder has Ripen (Trait)")
+SINGLE_BATTLE_TEST("Liechi Berry raises Attack by one stage when HP drops to 1/4 or below if holder has Ripen (Traits)")
 {
     GIVEN {
-        PLAYER(SPECIES_APPLIN) { MaxHP(160); HP(80); Ability(ABILITY_CHLOROPHYLL); Innates(ABILITY_RIPEN); Item(ITEM_LIECHI_BERRY); }
+        PLAYER(SPECIES_APPLIN) { MaxHP(160); HP(80); Ability(ABILITY_BULLETPROOF); Innates(ABILITY_RIPEN); Item(ITEM_LIECHI_BERRY); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_DRAGON_RAGE); }
@@ -100,3 +102,4 @@ SINGLE_BATTLE_TEST("Liechi Berry raises Attack by one stage when HP drops to 1/4
         EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 2);
     }
 }
+#endif

@@ -111,7 +111,8 @@ SINGLE_BATTLE_TEST("Toxic Chain makes Lum/Pecha Berry trigger before being knock
     }
 }
 
-SINGLE_BATTLE_TEST("Toxic Chain inflicts bad poison when attacking (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Toxic Chain inflicts bad poison when attacking (Traits)")
 {
     PASSES_RANDOMLY(3, 10, RNG_TOXIC_CHAIN);
     GIVEN {
@@ -131,7 +132,7 @@ SINGLE_BATTLE_TEST("Toxic Chain inflicts bad poison when attacking (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Toxic Chain inflicts bad poison on any hit of a multi-hit move (Trait)")
+SINGLE_BATTLE_TEST("Toxic Chain inflicts bad poison on any hit of a multi-hit move (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveCategory(MOVE_DOUBLE_SLAP) != DAMAGE_CATEGORY_STATUS);
@@ -158,7 +159,7 @@ SINGLE_BATTLE_TEST("Toxic Chain inflicts bad poison on any hit of a multi-hit mo
     }
 }
 
-DOUBLE_BATTLE_TEST("Toxic Chain can inflict bad poison on both foes (Trait)")
+DOUBLE_BATTLE_TEST("Toxic Chain can inflict bad poison on both foes (Traits)")
 {
     GIVEN {
         ASSUME(GetMoveCategory(MOVE_RAZOR_LEAF) != DAMAGE_CATEGORY_STATUS);
@@ -187,7 +188,7 @@ DOUBLE_BATTLE_TEST("Toxic Chain can inflict bad poison on both foes (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Toxic Chain makes Lum/Pecha Berry trigger before being knocked off (Trait)")
+SINGLE_BATTLE_TEST("Toxic Chain makes Lum/Pecha Berry trigger before being knocked off (Traits)")
 {
     u16 item = 0;
 
@@ -220,3 +221,4 @@ SINGLE_BATTLE_TEST("Toxic Chain makes Lum/Pecha Berry trigger before being knock
         EXPECT(opponent->status1 == 0);
     }
 }
+#endif

@@ -49,7 +49,8 @@ SINGLE_BATTLE_TEST("Aftermath ability pop-up will be displayed correctly: oppone
     }
 }
 
-SINGLE_BATTLE_TEST("Aftermath damages the attacker by 1/4th of its max HP if fainted by a contact move (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Aftermath damages the attacker by 1/4th of its max HP if fainted by a contact move (Traits)")
 {
     s16 aftermathDamage;
 
@@ -69,7 +70,7 @@ SINGLE_BATTLE_TEST("Aftermath damages the attacker by 1/4th of its max HP if fai
     }
 }
 
-SINGLE_BATTLE_TEST("Aftermath ability pop-up will be displayed correctly: player point of view (Trait)")
+SINGLE_BATTLE_TEST("Aftermath ability pop-up will be displayed correctly: player point of view (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_SHROOMISH) { Ability(ABILITY_QUICK_FEET); Innates(ABILITY_POISON_HEAL); };
@@ -83,7 +84,7 @@ SINGLE_BATTLE_TEST("Aftermath ability pop-up will be displayed correctly: player
     }
 }
 
-SINGLE_BATTLE_TEST("Aftermath ability pop-up will be displayed correctly: opponent point of view (Trait)")
+SINGLE_BATTLE_TEST("Aftermath ability pop-up will be displayed correctly: opponent point of view (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_VOLTORB) { HP(1); Ability(ABILITY_SOUNDPROOF); Innates(ABILITY_AFTERMATH); };
@@ -96,3 +97,4 @@ SINGLE_BATTLE_TEST("Aftermath ability pop-up will be displayed correctly: oppone
         ABILITY_POPUP(player, ABILITY_AFTERMATH);
     }
 }
+#endif

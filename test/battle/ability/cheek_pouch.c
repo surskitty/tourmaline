@@ -1,6 +1,15 @@
 #include "global.h"
 #include "test/battle.h"
 
+TO_DO_BATTLE_TEST("Cheek Pouch restores 33% max HP")
+TO_DO_BATTLE_TEST("Cheek Pouch restores HP after the berry's effect")
+TO_DO_BATTLE_TEST("Cheek Pouch activates via Bug Bite/Pluck if it would trigger an effect")
+TO_DO_BATTLE_TEST("Cheek Pouch activates when receiving from Fling if it would trigger an effect")
+TO_DO_BATTLE_TEST("Cheek Pouch doesn't activate when using Natural Gift")
+TO_DO_BATTLE_TEST("Cheek Pouch doesn't activate when using Fling")
+TO_DO_BATTLE_TEST("Cheek Pouch doesn't activate when using a berry from the bag")
+TO_DO_BATTLE_TEST("Cheek Pouch doesn't activate under Heal Block's effect")
+
 SINGLE_BATTLE_TEST("Cheek Pouch activation doesn't mutate damage when restoring HP mid battle")
 {
     s16 damage;
@@ -20,7 +29,7 @@ SINGLE_BATTLE_TEST("Cheek Pouch activation doesn't mutate damage when restoring 
     }
 }
 
-SINGLE_BATTLE_TEST("Cheek Pouch activation doesn't mutate damage when restoring HP mid battle (Trait)")
+SINGLE_BATTLE_TEST("Cheek Pouch activation doesn't mutate damage when restoring HP mid battle")
 {
     s16 damage;
     s16 healing;
@@ -38,4 +47,3 @@ SINGLE_BATTLE_TEST("Cheek Pouch activation doesn't mutate damage when restoring 
         EXPECT_GT(damage, 0);
     }
 }
-

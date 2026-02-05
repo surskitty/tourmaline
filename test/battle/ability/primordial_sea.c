@@ -52,7 +52,7 @@ DOUBLE_BATTLE_TEST("Primordial Sea blocks damaging Fire-type moves and prints th
     }
 }
 
-SINGLE_BATTLE_TEST("Primordial Sea does not block a move if pokemon is asleep and uses a Fire-type move") // Sleep/confusion/paralysis all happen before the check for primal weather
+SINGLE_BATTLE_TEST("Primordial Sea does not block a move if Pokémon is asleep and uses a Fire-type move") // Sleep/confusion/paralysis all happen before the check for primal weather
 {
     GIVEN {
         PLAYER(SPECIES_KYOGRE) {Item(ITEM_BLUE_ORB);}
@@ -65,60 +65,81 @@ SINGLE_BATTLE_TEST("Primordial Sea does not block a move if pokemon is asleep an
     }
 }
 
-SINGLE_BATTLE_TEST("Primordial Sea blocks damaging Fire-type moves (Trait)")
+SINGLE_BATTLE_TEST("Primordial Sea blocks weather-setting moves")
 {
+    u16 move;
+    PARAMETRIZE { move = MOVE_SUNNY_DAY; }
+    PARAMETRIZE { move = MOVE_RAIN_DANCE; }
+    PARAMETRIZE { move = MOVE_SANDSTORM; }
+    PARAMETRIZE { move = MOVE_HAIL; }
+    PARAMETRIZE { move = MOVE_SNOWSCAPE; }
+
     GIVEN {
-        PLAYER(SPECIES_KYOGRE) { Ability(ABILITY_TORRENT); Innates(ABILITY_PRIMORDIAL_SEA); }
+        ASSUME(GetMoveEffect(MOVE_SUNNY_DAY) == EFFECT_SUNNY_DAY);
+        ASSUME(GetMoveEffect(MOVE_RAIN_DANCE) == EFFECT_RAIN_DANCE);
+        ASSUME(GetMoveEffect(MOVE_SANDSTORM) == EFFECT_SANDSTORM);
+        ASSUME(GetMoveEffect(MOVE_HAIL) == EFFECT_HAIL);
+        ASSUME(GetMoveEffect(MOVE_SNOWSCAPE) == EFFECT_SNOWSCAPE);
+        PLAYER(SPECIES_KYOGRE) { Item(ITEM_BLUE_ORB); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
-        TURN { MOVE(opponent, MOVE_EMBER); }
-        TURN { MOVE(opponent, MOVE_EMBER); }
+        TURN { MOVE(opponent, move); }
     } SCENE {
-        MESSAGE("The opposing Wobbuffet used Ember!");
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_EMBER, opponent);
-        MESSAGE("The Fire-type attack fizzled out in the heavy rain!");
-        NOT HP_BAR(player);
-        MESSAGE("The opposing Wobbuffet used Ember!");
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_EMBER, opponent);
-        MESSAGE("The Fire-type attack fizzled out in the heavy rain!");
-        NOT HP_BAR(player);
+        NOT ANIMATION(ANIM_TYPE_MOVE, move, opponent);
     } THEN {
-        EXPECT_EQ(player->hp, player->maxHP);
+        EXPECT(gBattleWeather & B_WEATHER_RAIN_PRIMAL);
     }
 }
 
-DOUBLE_BATTLE_TEST("Primordial Sea blocks damaging Fire-type moves and prints the message only once with moves hitting multiple targets (Trait)")
+SINGLE_BATTLE_TEST("Primordial Sea prevents other weather abilities")
 {
+    u16 ability, species;
+    PARAMETRIZE { ability = ABILITY_DROUGHT;      species = SPECIES_NINETALES; }
+    PARAMETRIZE { ability = ABILITY_DRIZZLE;      species = SPECIES_POLITOED; }
+    PARAMETRIZE { ability = ABILITY_SAND_STREAM;  species = SPECIES_HIPPOWDON; }
+    PARAMETRIZE { ability = ABILITY_SNOW_WARNING; species = SPECIES_ABOMASNOW; }
+
     GIVEN {
-        ASSUME(!IsBattleMoveStatus(MOVE_ERUPTION));
-        ASSUME(GetMoveType(MOVE_ERUPTION) == TYPE_FIRE);
-        ASSUME(GetMoveTarget(MOVE_ERUPTION) == MOVE_TARGET_BOTH);
-        PLAYER(SPECIES_KYOGRE) { Ability(ABILITY_TORRENT); Innates(ABILITY_PRIMORDIAL_SEA); {Speed(5);}}
-        PLAYER(SPECIES_WOBBUFFET) {Speed(5);}
-        OPPONENT(SPECIES_WOBBUFFET) {Speed(10);}
-        OPPONENT(SPECIES_WOBBUFFET) {Speed(8);}
+        PLAYER(SPECIES_KYOGRE) { Item(ITEM_BLUE_ORB); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(species) { Ability(ability); }
     } WHEN {
-        TURN { MOVE(opponentLeft, MOVE_ERUPTION); }
+        TURN { SWITCH(opponent, 1); }
     } SCENE {
-        MESSAGE("The opposing Wobbuffet used Eruption!");
-        NOT ANIMATION(ANIM_TYPE_MOVE, MOVE_ERUPTION, opponentLeft);
-        MESSAGE("The Fire-type attack fizzled out in the heavy rain!");
-        NOT MESSAGE("The Fire-type attack fizzled out in the heavy rain!");
+        ABILITY_POPUP(opponent, ability);
     } THEN {
-        EXPECT_EQ(playerLeft->hp, playerLeft->maxHP);
-        EXPECT_EQ(playerRight->hp, playerRight->maxHP);
+        EXPECT(gBattleWeather & B_WEATHER_RAIN_PRIMAL);
     }
 }
 
-SINGLE_BATTLE_TEST("Primordial Sea does not block a move if pokemon is asleep and uses a Fire-type move (Trait)") // Sleep/confusion/paralysis all happen before the check for primal weather
+SINGLE_BATTLE_TEST("Primordial Sea can be replaced by Delta Stream")
 {
     GIVEN {
-        PLAYER(SPECIES_KYOGRE) { Ability(ABILITY_TORRENT); Innates(ABILITY_PRIMORDIAL_SEA);}
-        OPPONENT(SPECIES_WOBBUFFET) {Status1(STATUS1_SLEEP);}
+        PLAYER(SPECIES_KYOGRE) { Item(ITEM_BLUE_ORB); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_RAYQUAZA) { Ability(ABILITY_DELTA_STREAM); }
     } WHEN {
-        TURN { MOVE(opponent, MOVE_EMBER); }
+        TURN { SWITCH(opponent, 1); }
     } SCENE {
-        NOT MESSAGE("The Fire-type attack fizzled out in the heavy rain!");
-        MESSAGE("The opposing Wobbuffet is fast asleep.");
+        ABILITY_POPUP(opponent, ABILITY_DELTA_STREAM);
+        MESSAGE("Mysterious strong winds are protecting Flying-type Pokémon!");
+    } THEN {
+        EXPECT(gBattleWeather & B_WEATHER_STRONG_WINDS);
+    }
+}
+
+SINGLE_BATTLE_TEST("Primordial Sea can be replaced by Desolate Land")
+{
+    GIVEN {
+        PLAYER(SPECIES_KYOGRE) { Item(ITEM_BLUE_ORB); }
+        OPPONENT(SPECIES_WOBBUFFET);
+        OPPONENT(SPECIES_GROUDON) { Item(ITEM_RED_ORB); }
+    } WHEN {
+        TURN { SWITCH(opponent, 1); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_DESOLATE_LAND);
+        MESSAGE("The sunlight turned extremely harsh!");
+    } THEN {
+        EXPECT(gBattleWeather & B_WEATHER_SUN_PRIMAL);
     }
 }

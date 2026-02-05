@@ -812,9 +812,8 @@ static void HealMon(struct Pokemon *mon)
 
 static bool8 DoesAbilityPreventStatus(struct Pokemon *mon, u32 status)
 {
-    //u16 ability = GetMonAbility(mon);
     bool8 ret = FALSE;
-    u16 battlerTraits[MAX_MON_TRAITS];
+    enum Ability battlerTraits[MAX_MON_TRAITS];
     STORE_BATTLER_TRAITS(gBattlerTarget);
 
     if (SearchTraits(battlerTraits, ABILITY_COMATOSE))
@@ -854,22 +853,22 @@ static bool8 DoesTypePreventStatus(u16 species, u32 status)
     switch (status)
     {
     case STATUS1_TOXIC_POISON:
-        if (gSpeciesInfo[species].types[0] == TYPE_STEEL || gSpeciesInfo[species].types[0] == TYPE_POISON
-            || gSpeciesInfo[species].types[1] == TYPE_STEEL || gSpeciesInfo[species].types[1] == TYPE_POISON)
+        if (GetSpeciesType(species, 0) == TYPE_STEEL || GetSpeciesType(species, 0) == TYPE_POISON
+            || GetSpeciesType(species, 1) == TYPE_STEEL || GetSpeciesType(species, 1) == TYPE_POISON)
             ret = TRUE;
         break;
     case STATUS1_FREEZE:
     case STATUS1_FROSTBITE:
-        if (gSpeciesInfo[species].types[0] == TYPE_ICE || gSpeciesInfo[species].types[1] == TYPE_ICE)
+        if (GetSpeciesType(species, 0) == TYPE_ICE || GetSpeciesType(species, 1) == TYPE_ICE)
             ret = TRUE;
         break;
     case STATUS1_PARALYSIS:
-        if (gSpeciesInfo[species].types[0] == TYPE_GROUND || gSpeciesInfo[species].types[1] == TYPE_GROUND
-            || (B_PARALYZE_ELECTRIC >= GEN_6 && (gSpeciesInfo[species].types[0] == TYPE_ELECTRIC || gSpeciesInfo[species].types[1] == TYPE_ELECTRIC)))
+        if (GetSpeciesType(species, 0) == TYPE_GROUND || GetSpeciesType(species, 1) == TYPE_GROUND
+            || (GetConfig(CONFIG_PARALYZE_ELECTRIC) >= GEN_6 && (GetSpeciesType(species, 0) == TYPE_ELECTRIC || GetSpeciesType(species, 1) == TYPE_ELECTRIC)))
             ret = TRUE;
         break;
     case STATUS1_BURN:
-        if (gSpeciesInfo[species].types[0] == TYPE_FIRE || gSpeciesInfo[species].types[1] == TYPE_FIRE)
+        if (GetSpeciesType(species, 0) == TYPE_FIRE || GetSpeciesType(species, 1) == TYPE_FIRE)
             ret = TRUE;
         break;
     case STATUS1_SLEEP:
@@ -1144,7 +1143,7 @@ bool32 TryGenerateBattlePikeWildMon(bool8 checkKeenEyeIntimidate)
                MON_DATA_EXP,
                &gExperienceTables[gSpeciesInfo[wildMons[headerId][pikeMonId].species].growthRate][monLevel]);
 
-    if (gSpeciesInfo[wildMons[headerId][pikeMonId].species].abilities[1])
+    if (GetSpeciesAbility(wildMons[headerId][pikeMonId].species, 1))
         abilityNum = Random() % 2;
     else
         abilityNum = 0;
@@ -1590,7 +1589,7 @@ static void SaveMonHeldItems(void)
 
     for (i = 0; i < FRONTIER_PARTY_SIZE; i++)
     {
-        int heldItem = GetMonData(&gSaveBlock1Ptr->playerParty[gSaveBlock2Ptr->frontier.selectedPartyMons[i] - 1],
+        int heldItem = GetMonData(GetSavedPlayerPartyMon(gSaveBlock2Ptr->frontier.selectedPartyMons[i] - 1),
                                   MON_DATA_HELD_ITEM);
         gSaveBlock2Ptr->frontier.pikeHeldItemsBackup[i] = heldItem;
     }
@@ -1626,9 +1625,8 @@ static bool8 CanEncounterWildMon(u8 enemyMonLevel)
 {
     if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
     {
-        //u16 monAbility = GetMonAbility(&gPlayerParty[0]);
-        if (MonHasTrait(&gPlayerParty[0], ABILITY_SOUNDPROOF, TRUE)
-         || MonHasTrait(&gPlayerParty[0], ABILITY_INTIMIDATE, TRUE))
+        if (MonHasTrait(&gPlayerParty[0], ABILITY_KEEN_EYE)
+         || MonHasTrait(&gPlayerParty[0], ABILITY_INTIMIDATE))
         {
             u8 playerMonLevel = GetMonData(&gPlayerParty[0], MON_DATA_LEVEL);
             if (playerMonLevel > 5 && enemyMonLevel <= playerMonLevel - 5 && Random() % 2 == 0)

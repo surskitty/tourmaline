@@ -74,7 +74,7 @@ SINGLE_BATTLE_TEST("Syrup Bomb is prevented by Bulletproof")
 SINGLE_BATTLE_TEST("Sticky Syrup speed reduction is prevented by Clear Body, White Smoke or Full Metal Body")
 {
     u32 species;
-    u32 ability;
+    enum Ability ability;
 
     PARAMETRIZE { species = SPECIES_BELDUM; ability = ABILITY_CLEAR_BODY; }
     PARAMETRIZE { species = SPECIES_TORKOAL; ability = ABILITY_WHITE_SMOKE; }
@@ -218,7 +218,8 @@ SINGLE_BATTLE_TEST("Sticky Syrup is removed when the user faints")
     }
 }
 
-SINGLE_BATTLE_TEST("Syrup Bomb is prevented by Bulletproof (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Syrup Bomb is prevented by Bulletproof (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
@@ -235,10 +236,10 @@ SINGLE_BATTLE_TEST("Syrup Bomb is prevented by Bulletproof (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Sticky Syrup speed reduction is prevented by Clear Body, White Smoke or Full Metal Body (Trait)")
+SINGLE_BATTLE_TEST("Sticky Syrup speed reduction is prevented by Clear Body, White Smoke or Full Metal Body (Traits)")
 {
     u32 species;
-    u32 ability;
+    enum Ability ability;
 
     PARAMETRIZE { species = SPECIES_BELDUM; ability = ABILITY_CLEAR_BODY; }
     PARAMETRIZE { species = SPECIES_TORKOAL; ability = ABILITY_WHITE_SMOKE; }
@@ -286,3 +287,4 @@ SINGLE_BATTLE_TEST("Sticky Syrup speed reduction is prevented by Clear Body, Whi
         }
     }
 }
+#endif

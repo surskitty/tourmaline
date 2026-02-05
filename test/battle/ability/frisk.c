@@ -1,7 +1,7 @@
 #include "global.h"
 #include "test/battle.h"
 
-DOUBLE_BATTLE_TEST("Frisk does not trigger when pokemon hold no items")
+DOUBLE_BATTLE_TEST("Frisk does not trigger when Pokémon hold no items")
 {
     GIVEN {
         PLAYER(SPECIES_FURRET) { Ability(ABILITY_FRISK); };
@@ -81,7 +81,8 @@ DOUBLE_BATTLE_TEST("Frisk triggers for opponent in a Double Battle after switchi
     }
 }
 
-DOUBLE_BATTLE_TEST("Frisk does not trigger when pokemon hold no items (Trait)")
+#if MAX_MON_TRAITS > 1
+DOUBLE_BATTLE_TEST("Frisk does not trigger when Pokémon hold no items (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_FURRET) { Ability(ABILITY_RUN_AWAY); Innates(ABILITY_FRISK); };
@@ -100,7 +101,7 @@ DOUBLE_BATTLE_TEST("Frisk does not trigger when pokemon hold no items (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Frisk triggers in a Single Battle (Trait)")
+SINGLE_BATTLE_TEST("Frisk triggers in a Single Battle (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_FURRET) { Ability(ABILITY_RUN_AWAY); Innates(ABILITY_FRISK); Item(ITEM_POTION); };
@@ -115,7 +116,7 @@ SINGLE_BATTLE_TEST("Frisk triggers in a Single Battle (Trait)")
     }
 }
 
-DOUBLE_BATTLE_TEST("Frisk triggers for player in a Double Battle after switching-in after fainting (Trait)")
+DOUBLE_BATTLE_TEST("Frisk triggers for player in a Double Battle after switching-in after fainting (Traits)")
 {
     struct BattlePokemon *target = NULL;
     PARAMETRIZE { target = playerLeft; }
@@ -138,7 +139,7 @@ DOUBLE_BATTLE_TEST("Frisk triggers for player in a Double Battle after switching
     }
 }
 
-DOUBLE_BATTLE_TEST("Frisk triggers for opponent in a Double Battle after switching-in after fainting (Trait)")
+DOUBLE_BATTLE_TEST("Frisk triggers for opponent in a Double Battle after switching-in after fainting (Traits)")
 {
     struct BattlePokemon *target = NULL;
     PARAMETRIZE { target = opponentLeft; }
@@ -160,3 +161,4 @@ DOUBLE_BATTLE_TEST("Frisk triggers for opponent in a Double Battle after switchi
         MESSAGE("The opposing Furret frisked Wynaut and found its Potion!");
     }
 }
+#endif

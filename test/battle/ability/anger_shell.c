@@ -94,7 +94,28 @@ SINGLE_BATTLE_TEST("Anger Shell activates after all hits from a multi-hit move")
     }
 }
 
-SINGLE_BATTLE_TEST("Anger Shell activates only if the target had more than 50% of its HP (Trait)")
+SINGLE_BATTLE_TEST("Anger Shell does not activate if move is boosted by Sheer Force")
+{
+    u16 maxHp = 500;
+    GIVEN {
+        PLAYER(SPECIES_KLAWF) { Ability(ABILITY_ANGER_SHELL); MaxHP(maxHp); HP(maxHp / 2 + 1); }
+        OPPONENT(SPECIES_NIDOKING) { Ability(ABILITY_SHEER_FORCE); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_EMBER); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_EMBER, opponent);
+        NOT ABILITY_POPUP(player, ABILITY_ANGER_SHELL);
+    } THEN {
+        EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE);
+        EXPECT_EQ(player->statStages[STAT_SPDEF], DEFAULT_STAT_STAGE);
+        EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE);
+        EXPECT_EQ(player->statStages[STAT_SPATK], DEFAULT_STAT_STAGE);
+        EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE);
+    }
+}
+
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Anger Shell activates only if the target had more than 50% of its HP (Traits)")
 {
     bool32 activates = FALSE;
     u16 maxHp = 500, hp = 0;
@@ -108,7 +129,7 @@ SINGLE_BATTLE_TEST("Anger Shell activates only if the target had more than 50% o
 
     GIVEN {
         ASSUME(!IsBattleMoveStatus(MOVE_SCRATCH));
-        PLAYER(SPECIES_KLAWF) { Ability(ABILITY_SHELL_ARMOR); Innates(ABILITY_ANGER_SHELL); MaxHP(maxHp); HP(hp); }
+        PLAYER(SPECIES_KLAWF) { Ability(ABILITY_REGENERATOR); Innates(ABILITY_ANGER_SHELL); MaxHP(maxHp); HP(hp); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SCRATCH); }
@@ -130,12 +151,12 @@ SINGLE_BATTLE_TEST("Anger Shell activates only if the target had more than 50% o
     }
 }
 
-SINGLE_BATTLE_TEST("Anger Shell lowers Def/Sp.Def by 1 and raises Atk/Sp.Atk/Spd by 1 (Trait)")
+SINGLE_BATTLE_TEST("Anger Shell lowers Def/Sp.Def by 1 and raises Atk/Sp.Atk/Spd by 1 (Traits)")
 {
     u16 maxHp = 500;
     GIVEN {
         ASSUME(!IsBattleMoveStatus(MOVE_SCRATCH));
-        PLAYER(SPECIES_KLAWF) { Ability(ABILITY_SHELL_ARMOR); Innates(ABILITY_ANGER_SHELL); MaxHP(maxHp); HP(maxHp / 2 + 1); }
+        PLAYER(SPECIES_KLAWF) { Ability(ABILITY_REGENERATOR); Innates(ABILITY_ANGER_SHELL); MaxHP(maxHp); HP(maxHp / 2 + 1); }
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(opponent, MOVE_SCRATCH); }
@@ -160,3 +181,50 @@ SINGLE_BATTLE_TEST("Anger Shell lowers Def/Sp.Def by 1 and raises Atk/Sp.Atk/Spd
         EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE + 1);
     }
 }
+
+SINGLE_BATTLE_TEST("Anger Shell activates after all hits from a multi-hit move (Traits)")
+{
+    u32 j;
+    u16 maxHp = 500;
+    GIVEN {
+        ASSUME(GetMoveEffect(MOVE_DOUBLE_SLAP) == EFFECT_MULTI_HIT);
+        PLAYER(SPECIES_KLAWF) { Ability(ABILITY_REGENERATOR); Innates(ABILITY_ANGER_SHELL); MaxHP(maxHp); HP(maxHp / 2 + 1); }
+        OPPONENT(SPECIES_SHELLDER) { Ability(ABILITY_SHELL_ARMOR); Innates(ABILITY_SKILL_LINK); } // Always hits 5 times.
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_DOUBLE_SLAP); }
+    } SCENE {
+        for (j = 0; j < 4; j++) {
+            ANIMATION(ANIM_TYPE_MOVE, MOVE_DOUBLE_SLAP, opponent);
+            NOT ABILITY_POPUP(player, ABILITY_ANGER_SHELL);
+        }
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_DOUBLE_SLAP, opponent);
+        ABILITY_POPUP(player, ABILITY_ANGER_SHELL);
+    } THEN {
+        EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE - 1);
+        EXPECT_EQ(player->statStages[STAT_SPDEF], DEFAULT_STAT_STAGE - 1);
+        EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE + 1);
+        EXPECT_EQ(player->statStages[STAT_SPATK], DEFAULT_STAT_STAGE + 1);
+        EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE + 1);
+    }
+}
+
+SINGLE_BATTLE_TEST("Anger Shell does not activate if move is boosted by Sheer Force (Traits)")
+{
+    u16 maxHp = 500;
+    GIVEN {
+        PLAYER(SPECIES_KLAWF) { Ability(ABILITY_REGENERATOR); Innates(ABILITY_ANGER_SHELL); MaxHP(maxHp); HP(maxHp / 2 + 1); }
+        OPPONENT(SPECIES_NIDOKING) { Ability(ABILITY_POISON_POINT); Innates(ABILITY_SHEER_FORCE); }
+    } WHEN {
+        TURN { MOVE(opponent, MOVE_EMBER); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_EMBER, opponent);
+        NOT ABILITY_POPUP(player, ABILITY_ANGER_SHELL);
+    } THEN {
+        EXPECT_EQ(player->statStages[STAT_DEF], DEFAULT_STAT_STAGE);
+        EXPECT_EQ(player->statStages[STAT_SPDEF], DEFAULT_STAT_STAGE);
+        EXPECT_EQ(player->statStages[STAT_ATK], DEFAULT_STAT_STAGE);
+        EXPECT_EQ(player->statStages[STAT_SPATK], DEFAULT_STAT_STAGE);
+        EXPECT_EQ(player->statStages[STAT_SPEED], DEFAULT_STAT_STAGE);
+    }
+}
+#endif

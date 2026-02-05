@@ -54,6 +54,59 @@ SINGLE_BATTLE_TEST("Quark Drive boosts either Attack or Special Attack, not both
     }
 }
 
+SINGLE_BATTLE_TEST("Quark Drive keeps its initial boosted stat after Speed is lowered")
+{
+    s16 damage[2];
+
+    GIVEN {
+        PLAYER(SPECIES_IRON_MOTH) { Ability(ABILITY_QUARK_DRIVE); Attack(10); Defense(10); SpAttack(150); SpDefense(120); Speed(180); Moves(MOVE_ROUND, MOVE_CELEBRATE); }
+        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_ELECTRIC_SURGE); Moves(MOVE_CELEBRATE, MOVE_ICY_WIND); Speed(100); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_ROUND); MOVE(opponent, MOVE_CELEBRATE); }
+        TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, MOVE_ICY_WIND); }
+        TURN { MOVE(player, MOVE_ROUND); MOVE(opponent, MOVE_CELEBRATE); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_ELECTRIC_SURGE);
+        ABILITY_POPUP(player, ABILITY_QUARK_DRIVE);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROUND, player);
+        HP_BAR(opponent, captureDamage: &damage[0]);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ICY_WIND, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROUND, player);
+        HP_BAR(opponent, captureDamage: &damage[1]);
+    } THEN {
+        EXPECT_EQ(damage[0], damage[1]);
+    }
+}
+
+SINGLE_BATTLE_TEST("Quark Drive retains its boosted stat after Neutralizing Gas briefly suppresses it")
+{
+    s16 damage[2];
+
+    GIVEN {
+        PLAYER(SPECIES_IRON_MOTH) { Ability(ABILITY_QUARK_DRIVE); Attack(10); Defense(10); SpAttack(150); SpDefense(120); Speed(180); Moves(MOVE_ELECTRIC_TERRAIN, MOVE_ROUND, MOVE_CELEBRATE); }
+        OPPONENT(SPECIES_WOBBUFFET) { Moves(MOVE_CELEBRATE); Speed(1); }
+        OPPONENT(SPECIES_WEEZING) { Ability(ABILITY_NEUTRALIZING_GAS); Moves(MOVE_CELEBRATE); Speed(70); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_ELECTRIC_TERRAIN); MOVE(opponent, MOVE_CELEBRATE); }
+        TURN { MOVE(player, MOVE_ROUND); MOVE(opponent, MOVE_CELEBRATE); }
+        TURN { MOVE(player, MOVE_CELEBRATE); SWITCH(opponent, 1); }
+        TURN { MOVE(player, MOVE_CELEBRATE); SWITCH(opponent, 0); }
+        TURN { MOVE(player, MOVE_ROUND); MOVE(opponent, MOVE_CELEBRATE); }
+    } SCENE {
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ELECTRIC_TERRAIN, player);
+        ABILITY_POPUP(player, ABILITY_QUARK_DRIVE);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROUND, player);
+        HP_BAR(opponent, captureDamage: &damage[0]);
+        ABILITY_POPUP(opponent, ABILITY_NEUTRALIZING_GAS);
+        MESSAGE("Neutralizing gas filled the area!");
+        MESSAGE("The effects of the neutralizing gas wore off!");
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROUND, player);
+        HP_BAR(opponent, captureDamage: &damage[1]);
+    } THEN {
+        EXPECT_EQ(damage[0], damage[1]);
+    }
+}
+
 SINGLE_BATTLE_TEST("Quark Drive ability pop up activates only once during the duration of electric terrain")
 {
     u16 turns;
@@ -104,7 +157,7 @@ SINGLE_BATTLE_TEST("Quark Drive activates on switch-in")
 SINGLE_BATTLE_TEST("Quark Drive activates on Electric Terrain even if not grounded")
 {
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_IRON_JUGULIS].types[0] == TYPE_FLYING || gSpeciesInfo[SPECIES_IRON_JUGULIS].types[1] == TYPE_FLYING);
+        ASSUME(GetSpeciesType(SPECIES_IRON_JUGULIS, 0) == TYPE_FLYING || GetSpeciesType(SPECIES_IRON_JUGULIS, 1) == TYPE_FLYING);
         PLAYER(SPECIES_IRON_JUGULIS) { Ability(ABILITY_QUARK_DRIVE); }
         OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_ELECTRIC_SURGE); };
     } WHEN {
@@ -184,7 +237,8 @@ SINGLE_BATTLE_TEST("Quark Drive doesn't activate for a transformed battler")
     }
 }
 
-SINGLE_BATTLE_TEST("Quark Drive boosts the highest stat (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Quark Drive boosts the highest stat (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_IRON_MOTH) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_QUARK_DRIVE); }
@@ -199,7 +253,7 @@ SINGLE_BATTLE_TEST("Quark Drive boosts the highest stat (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Quark Drive boosts either Attack or Special Attack, not both (Trait)")
+SINGLE_BATTLE_TEST("Quark Drive boosts either Attack or Special Attack, not both (Traits)")
 {
     u16 species;
     u32 move;
@@ -231,7 +285,31 @@ SINGLE_BATTLE_TEST("Quark Drive boosts either Attack or Special Attack, not both
     }
 }
 
-SINGLE_BATTLE_TEST("Quark Drive ability pop up activates only once during the duration of electric terrain (Trait)")
+SINGLE_BATTLE_TEST("Quark Drive keeps its initial boosted stat after Speed is lowered (Traits)")
+{
+    s16 damage[2];
+
+    GIVEN {
+        PLAYER(SPECIES_IRON_MOTH) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_QUARK_DRIVE); Attack(10); Defense(10); SpAttack(150); SpDefense(120); Speed(180); Moves(MOVE_ROUND, MOVE_CELEBRATE); }
+        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ELECTRIC_SURGE); Moves(MOVE_CELEBRATE, MOVE_ICY_WIND); Speed(100); }
+    } WHEN {
+        TURN { MOVE(player, MOVE_ROUND); MOVE(opponent, MOVE_CELEBRATE); }
+        TURN { MOVE(player, MOVE_CELEBRATE); MOVE(opponent, MOVE_ICY_WIND); }
+        TURN { MOVE(player, MOVE_ROUND); MOVE(opponent, MOVE_CELEBRATE); }
+    } SCENE {
+        ABILITY_POPUP(opponent, ABILITY_ELECTRIC_SURGE);
+        ABILITY_POPUP(player, ABILITY_QUARK_DRIVE);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROUND, player);
+        HP_BAR(opponent, captureDamage: &damage[0]);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ICY_WIND, opponent);
+        ANIMATION(ANIM_TYPE_MOVE, MOVE_ROUND, player);
+        HP_BAR(opponent, captureDamage: &damage[1]);
+    } THEN {
+        EXPECT_EQ(damage[0], damage[1]);
+    }
+}
+
+SINGLE_BATTLE_TEST("Quark Drive ability pop up activates only once during the duration of electric terrain (Traits)")
 {
     u16 turns;
 
@@ -262,12 +340,12 @@ SINGLE_BATTLE_TEST("Quark Drive ability pop up activates only once during the du
     }
 }
 
-SINGLE_BATTLE_TEST("Quark Drive activates on switch-in (Trait)")
+SINGLE_BATTLE_TEST("Quark Drive activates on switch-in (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_IRON_MOTH) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_QUARK_DRIVE); }
-        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_ELECTRIC_SURGE); };
+        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ELECTRIC_SURGE); };
     } WHEN {
         TURN { SWITCH(player, 1); }
     } SCENE {
@@ -278,12 +356,12 @@ SINGLE_BATTLE_TEST("Quark Drive activates on switch-in (Trait)")
     }
 }
 
-SINGLE_BATTLE_TEST("Quark Drive activates on Electric Terrain even if not grounded (Trait)")
+SINGLE_BATTLE_TEST("Quark Drive activates on Electric Terrain even if not grounded (Traits)")
 {
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_IRON_JUGULIS].types[0] == TYPE_FLYING || gSpeciesInfo[SPECIES_IRON_JUGULIS].types[1] == TYPE_FLYING);
+        ASSUME(GetSpeciesType(SPECIES_IRON_JUGULIS, 0) == TYPE_FLYING || GetSpeciesType(SPECIES_IRON_JUGULIS, 1) == TYPE_FLYING);
         PLAYER(SPECIES_IRON_JUGULIS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_QUARK_DRIVE); }
-        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_ELECTRIC_SURGE); };
+        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ELECTRIC_SURGE); };
     } WHEN {
         TURN { }
     } SCENE {
@@ -292,7 +370,7 @@ SINGLE_BATTLE_TEST("Quark Drive activates on Electric Terrain even if not ground
     }
 }
 
-SINGLE_BATTLE_TEST("Quark Drive prioritizes stats in the case of a tie in the following order: Atk, Def, Sp.Atk, Sp.Def, Speed (Trait)")
+SINGLE_BATTLE_TEST("Quark Drive prioritizes stats in the case of a tie in the following order: Atk, Def, Sp.Atk, Sp.Def, Speed (Traits)")
 {
     u8 stats[] = {1, 1, 1, 1, 1};
 
@@ -302,7 +380,7 @@ SINGLE_BATTLE_TEST("Quark Drive prioritizes stats in the case of a tie in the fo
     PARAMETRIZE { stats[4] = 255; stats[3] = 255; }
     GIVEN {
         PLAYER(SPECIES_IRON_TREADS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_QUARK_DRIVE); Attack(stats[0]); Defense(stats[1]); SpAttack(stats[2]); SpDefense(stats[3]); Speed(stats[4]); }
-        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_ELECTRIC_SURGE); Speed(5); }
+        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ELECTRIC_SURGE); Speed(5); }
     } WHEN {
         TURN { }
     } SCENE {
@@ -325,12 +403,12 @@ SINGLE_BATTLE_TEST("Quark Drive prioritizes stats in the case of a tie in the fo
     }
 }
 
-SINGLE_BATTLE_TEST("Quark Drive activates in Electric Terrain before Booster Energy (Trait)")
+SINGLE_BATTLE_TEST("Quark Drive activates in Electric Terrain before Booster Energy (Traits)")
 {
     GIVEN {
         PLAYER(SPECIES_WOBBUFFET);
         PLAYER(SPECIES_IRON_TREADS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_QUARK_DRIVE); Item(ITEM_BOOSTER_ENERGY); }
-        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_ELECTRIC_SURGE); }
+        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_ELECTRIC_SURGE); }
     } WHEN {
         TURN { SWITCH(player, 1); }
     } SCENE {
@@ -340,23 +418,4 @@ SINGLE_BATTLE_TEST("Quark Drive activates in Electric Terrain before Booster Ene
         EXPECT_EQ(player->item, ITEM_BOOSTER_ENERGY);
     }
 }
-
-SINGLE_BATTLE_TEST("Quark Drive doesn't activate for a transformed battler (Trait)")
-{
-    GIVEN {
-        PLAYER(SPECIES_WOBBUFFET);
-        PLAYER(SPECIES_IRON_TREADS) { Ability(ABILITY_LIGHT_METAL); Innates(ABILITY_QUARK_DRIVE); Item(ITEM_BOOSTER_ENERGY); }
-        OPPONENT(SPECIES_TAPU_KOKO) { Ability(ABILITY_TELEPATHY); Innates(ABILITY_ELECTRIC_SURGE); Item(ITEM_BOOSTER_ENERGY); }
-    } WHEN {
-        TURN { SWITCH(player, 1); MOVE(opponent, MOVE_TRANSFORM); }
-    } SCENE {
-        ABILITY_POPUP(opponent, ABILITY_ELECTRIC_SURGE);
-        ABILITY_POPUP(player, ABILITY_QUARK_DRIVE);
-        ANIMATION(ANIM_TYPE_MOVE, MOVE_TRANSFORM, opponent);
-        NOT ABILITY_POPUP(opponent, ABILITY_QUARK_DRIVE);
-    } THEN {
-        EXPECT_EQ(player->item, ITEM_BOOSTER_ENERGY);
-        EXPECT_EQ(opponent->item, ITEM_BOOSTER_ENERGY);
-        //EXPECT_EQ(opponent->ability, ABILITY_QUARK_DRIVE);  //Is an Innate instead of an Ability
-    }
-}
+#endif

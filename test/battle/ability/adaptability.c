@@ -3,7 +3,7 @@
 
 SINGLE_BATTLE_TEST("Adaptability increases same-type attack bonus from x1.5 to x2", s16 damage)
 {
-    u32 ability;
+    enum Ability ability;
     PARAMETRIZE { ability = ABILITY_HYPER_CUTTER; }
     PARAMETRIZE { ability = ABILITY_ADAPTABILITY; }
     GIVEN {
@@ -63,9 +63,10 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing into the same type with Adaptability g
 
 TO_DO_BATTLE_TEST("Adaptability does not affect Stellar-type moves");
 
-SINGLE_BATTLE_TEST("Adaptability increases same-type attack bonus from x1.5 to x2 (Trait)", s16 damage)
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Adaptability increases same-type attack bonus from x1.5 to x2 (Traits)", s16 damage)
 {
-    u32 ability;
+    enum Ability ability;
     PARAMETRIZE { ability = ABILITY_HYPER_CUTTER; }
     PARAMETRIZE { ability = ABILITY_ADAPTABILITY; }
     GIVEN {
@@ -83,7 +84,7 @@ SINGLE_BATTLE_TEST("Adaptability increases same-type attack bonus from x1.5 to x
     }
 }
 
-SINGLE_BATTLE_TEST("(TERA) Terastallizing into a different type with Adaptability gives 2.0x STAB (Trait)", s16 damage)
+SINGLE_BATTLE_TEST("(TERA) Terastallizing into a different type with Adaptability gives 2.0x STAB (Traits)", s16 damage)
 {
     bool32 tera;
     PARAMETRIZE { tera = GIMMICK_NONE; }
@@ -103,7 +104,7 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing into a different type with Adaptabilit
     }
 }
 
-SINGLE_BATTLE_TEST("(TERA) Terastallizing into the same type with Adaptability gives 2.25x STAB (Trait)", s16 damage)
+SINGLE_BATTLE_TEST("(TERA) Terastallizing into the same type with Adaptability gives 2.25x STAB (Traits)", s16 damage)
 {
     bool32 tera;
     PARAMETRIZE { tera = GIMMICK_NONE; }
@@ -123,4 +124,5 @@ SINGLE_BATTLE_TEST("(TERA) Terastallizing into the same type with Adaptability g
     }
 }
 
-TO_DO_BATTLE_TEST("Adaptability does not affect Stellar-type moves (Trait)");
+TO_DO_BATTLE_TEST("Adaptability does not affect Stellar-type moves (Traits)");
+#endif

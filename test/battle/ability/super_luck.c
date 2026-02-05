@@ -10,8 +10,8 @@ SINGLE_BATTLE_TEST("Super Luck increases the critical hit ratio by 1 stage")
         PARAMETRIZE { genConfig = j; passes = 1; trials = 8; }  // 12.5%
     PASSES_RANDOMLY(passes, trials, RNG_CRITICAL_HIT);
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_TOGEPI].baseSpeed == 20);
-        WITH_CONFIG(GEN_CONFIG_CRIT_CHANCE, genConfig);
+        ASSUME(GetSpeciesBaseSpeed(SPECIES_TOGEPI) == 20);
+        WITH_CONFIG(CONFIG_CRIT_CHANCE, genConfig);
         PLAYER(SPECIES_TOGEPI) { Ability(ABILITY_SUPER_LUCK); };
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -22,9 +22,10 @@ SINGLE_BATTLE_TEST("Super Luck increases the critical hit ratio by 1 stage")
     }
 }
 
-TO_DO_BATTLE_TEST("Super Luck increases the chances of wild Pokémon holding items (Gen8+) (Trait)");
+TO_DO_BATTLE_TEST("Super Luck increases the chances of wild Pokémon holding items (Gen8+)");
 
-SINGLE_BATTLE_TEST("Super Luck increases the critical hit ratio by 1 stage (Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Super Luck increases the critical hit ratio by 1 stage (Traits)")
 {
     u32 j, genConfig = 0, passes = 0, trials = 0;
 
@@ -33,9 +34,9 @@ SINGLE_BATTLE_TEST("Super Luck increases the critical hit ratio by 1 stage (Trai
         PARAMETRIZE { genConfig = j; passes = 1; trials = 8; }  // 12.5%
     PASSES_RANDOMLY(passes, trials, RNG_CRITICAL_HIT);
     GIVEN {
-        ASSUME(gSpeciesInfo[SPECIES_TOGEPI].baseSpeed == 20);
-        WITH_CONFIG(GEN_CONFIG_CRIT_CHANCE, genConfig);
-        PLAYER(SPECIES_TOGEPI) { Ability(ABILITY_SERENE_GRACE); Innates(ABILITY_SUPER_LUCK); };
+        ASSUME(GetSpeciesBaseSpeed(SPECIES_TOGEPI) == 20);
+        WITH_CONFIG(CONFIG_CRIT_CHANCE, genConfig);
+        PLAYER(SPECIES_TOGEPI) { Ability(ABILITY_HUSTLE); Innates(ABILITY_SUPER_LUCK); };
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
         TURN { MOVE(player, MOVE_SCRATCH); }
@@ -45,4 +46,5 @@ SINGLE_BATTLE_TEST("Super Luck increases the critical hit ratio by 1 stage (Trai
     }
 }
 
-TO_DO_BATTLE_TEST("Super Luck increases the chances of wild Pokémon holding items (Gen8+) (Trait)");
+TO_DO_BATTLE_TEST("Super Luck increases the chances of wild Pokémon holding items (Gen8+) (Traits)");
+#endif

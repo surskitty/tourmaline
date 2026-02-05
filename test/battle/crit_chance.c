@@ -13,8 +13,8 @@ SINGLE_BATTLE_TEST("Critical hits without modifiers occur at different rates by 
 
     PASSES_RANDOMLY(passes, trials, RNG_CRITICAL_HIT);
     GIVEN {
-        WITH_CONFIG(GEN_CONFIG_CRIT_CHANCE, genConfig);
-        ASSUME(gSpeciesInfo[SPECIES_WOBBUFFET].baseSpeed == 33);
+        WITH_CONFIG(CONFIG_CRIT_CHANCE, genConfig);
+        ASSUME(GetSpeciesBaseSpeed(SPECIES_WOBBUFFET) == 33);
         PLAYER(SPECIES_WOBBUFFET);
         OPPONENT(SPECIES_WOBBUFFET);
     } WHEN {
@@ -35,7 +35,7 @@ SINGLE_BATTLE_TEST("Crit Chance: Raising critical hit rate to 3 guarantees a cri
         PARAMETRIZE { genConfig = j; passes = 1,   trials = 1; }   // 100%
     PASSES_RANDOMLY(passes, trials, RNG_CRITICAL_HIT);
     GIVEN {
-        WITH_CONFIG(GEN_CONFIG_CRIT_CHANCE, genConfig);
+        WITH_CONFIG(CONFIG_CRIT_CHANCE, genConfig);
         ASSUME(GetMoveCriticalHitStage(MOVE_SLASH) == 1);
         ASSUME(gItemsInfo[ITEM_SCOPE_LENS].holdEffect == HOLD_EFFECT_SCOPE_LENS);
         PLAYER(SPECIES_TOGEKISS) { Ability(ABILITY_SUPER_LUCK); Item(ITEM_SCOPE_LENS); };
@@ -48,7 +48,8 @@ SINGLE_BATTLE_TEST("Crit Chance: Raising critical hit rate to 3 guarantees a cri
     }
 }
 
-SINGLE_BATTLE_TEST("Crit Chance: Raising critical hit rate to 3 guarantees a critical hit (Gen 6+)Crit Chan(Trait)")
+#if MAX_MON_TRAITS > 1
+SINGLE_BATTLE_TEST("Crit Chance: Raising critical hit rate to 3 guarantees a critical hit (Gen 6+) (Traits)")
 {
     u32 genConfig = 0, passes, trials;
     PARAMETRIZE { genConfig = GEN_1; passes = 255; trials = 256; } // ~99.6%
@@ -59,7 +60,7 @@ SINGLE_BATTLE_TEST("Crit Chance: Raising critical hit rate to 3 guarantees a cri
         PARAMETRIZE { genConfig = j; passes = 1,   trials = 1; }   // 100%
     PASSES_RANDOMLY(passes, trials, RNG_CRITICAL_HIT);
     GIVEN {
-        WITH_CONFIG(GEN_CONFIG_CRIT_CHANCE, genConfig);
+        WITH_CONFIG(CONFIG_CRIT_CHANCE, genConfig);
         ASSUME(GetMoveCriticalHitStage(MOVE_SLASH) == 1);
         ASSUME(gItemsInfo[ITEM_SCOPE_LENS].holdEffect == HOLD_EFFECT_SCOPE_LENS);
         PLAYER(SPECIES_TOGEKISS) { Ability(ABILITY_SERENE_GRACE); Innates(ABILITY_SUPER_LUCK); Item(ITEM_SCOPE_LENS); };
@@ -71,3 +72,4 @@ SINGLE_BATTLE_TEST("Crit Chance: Raising critical hit rate to 3 guarantees a cri
         MESSAGE("A critical hit!");
     }
 }
+#endif
