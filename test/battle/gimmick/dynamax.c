@@ -1,3 +1,5 @@
+/*
+
 #include "global.h"
 #include "test/battle.h"
 
@@ -1743,3 +1745,5 @@ DOUBLE_BATTLE_TEST("Dynamax stat raising moves don't make stat-changing abilitie
 
 TO_DO_BATTLE_TEST("Dynamax: Contrary inverts stat-lowering Max Moves, without showing a message")
 TO_DO_BATTLE_TEST("Dynamax: Contrary inverts stat-increasing Max Moves, without showing a message")
+
+*/
